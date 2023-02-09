@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.12.0]
+
+## Added
+- Support for ECPU billing for autonomous databases and dedicated autonomous databases on Exadata Cloud at Customer in the Database service
+- Support for providing a vault secret ID when creating or updating autonomous shared databases in the Database service
+- Support for including ORDS and database transform URLs as autonomous database connections in the Database service
+- Support for setting up custom private IPs while creating private endpoints in the Database service
+- Support for memory encryption on confidential VMs in the Compute service
+- Support for role based access control on OpenSearch clusters in the Search service
+- Support for managed shell stages on deployments in the DevOps service
+- Support for configuration items, and reporting ownership of configuration items, in the Application Performance Monitoring service
+- Support for personally identifiable information detection in the AI Language service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.91.0
+
 ## [4.11.0]
 
 ## Added

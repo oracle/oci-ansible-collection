@@ -23,7 +23,10 @@ module: oci_ai_language_detect_language_sentiments_actions
 short_description: Perform actions on a DetectLanguageSentiments resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageSentiments resource in Oracle Cloud Infrastructure
-    - "For I(action=detect_language_sentiments), the API extracts aspect-based in text records.
+    - "For I(action=detect_language_sentiments), **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT.
+      We recommend you replace this API with the batch API, L(BatchDetectLanguageSentiments,https://docs.cloud.oracle.com/iaas/api/#/en/language/20221001/BatchD
+      etectLanguageSentiments/BatchDetectLanguageSentiments).
+      The DetectLanguageSentiments API extracts aspect-based in text records.
       For aspect-based sentiment analysis, a set of aspects and their respective sentiment is returned.
       For sentiment analysis, confidence scores are provided for each of the classes (positive, negative, neutral).
       Learn more about sentiment analysis L(here,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#sentiment).

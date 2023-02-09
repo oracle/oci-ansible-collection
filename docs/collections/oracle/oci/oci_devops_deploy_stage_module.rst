@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage -- Manage a DeployStage resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -320,7 +320,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Namespace A for deployment.</div>
+                                            <div>Namespace A for deployment. Example: namespaceA - first Namespace name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -336,7 +336,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Namespace B for deployment.</div>
+                                            <div>Namespace B for deployment. Example: namespaceB - second Namespace name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -404,7 +404,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Canary namespace to be used for Kubernetes canary deployment.</div>
+                                            <div>Canary namespace to be used for Kubernetes canary deployment. Example: canary - Name of the Canary namespace.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -440,6 +440,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-command_spec_deploy_artifact_id"></div>
+                    <b>command_spec_deploy_artifact_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-command_spec_deploy_artifact_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the artifact that contains the command specification.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when deploy_stage_type is &#x27;SHELL&#x27;</div>
+                                            <div>Required when deploy_stage_type is &#x27;SHELL&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -555,6 +573,215 @@ Parameters
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config"></div>
+                    <b>container_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when deploy_stage_type is &#x27;SHELL&#x27;</div>
+                                            <div>Required when deploy_stage_type is &#x27;SHELL&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/availability_domain"></div>
+                    <b>availability_domain</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/availability_domain" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Availability domain where the ContainerInstance will be created.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compartment where the ContainerInstance will be created.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/container_config_type"></div>
+                    <b>container_config_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/container_config_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CONTAINER_INSTANCE_CONFIG</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Container configuration type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/network_channel"></div>
+                    <b>network_channel</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/network_channel" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/network_channel/network_channel_type"></div>
+                    <b>network_channel_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/network_channel/network_channel_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SERVICE_VNIC_CHANNEL</li>
+                                                                                                                                                                                                <li>PRIVATE_ENDPOINT_CHANNEL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Network channel type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/network_channel/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/network_channel/nsg_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>An array of network security group OCIDs.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/network_channel/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/network_channel/subnet_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the subnet where private resources exist.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/shape_config"></div>
+                    <b>shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs available to the instance.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-container_config/shape_name"></div>
+                    <b>shape_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-container_config/shape_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The shape of the ContainerInstance. The shape determines the resources available to the ContainerInstance.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
@@ -686,7 +913,7 @@ Parameters
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;OKE_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;OKE_DEPLOYMENT&#x27;, &#x27;DEPLOY_FUNCTION&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;OKE_HELM_CHART_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;OKE_CANARY_APPROVAL&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;, &#x27;WAIT&#x27;, &#x27;INVOKE_FUNCTION&#x27;]</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;OKE_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;SHELL&#x27;, &#x27;OKE_DEPLOYMENT&#x27;, &#x27;DEPLOY_FUNCTION&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;OKE_HELM_CHART_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;OKE_CANARY_APPROVAL&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;, &#x27;WAIT&#x27;, &#x27;INVOKE_FUNCTION&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -742,6 +969,7 @@ Parameters
                                                                                                                                                                                                 <li>COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>WAIT</li>
                                                                                                                                                                                                 <li>LOAD_BALANCER_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>SHELL</li>
                                                                                                                                                                                                 <li>COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT</li>
                                                                                                                                                                                                 <li>OKE_BLUE_GREEN_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT</li>
@@ -1638,9 +1866,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Time to wait for execution of a helm stage. Defaults to 300 seconds.</div>
+                                            <div>Time to wait for execution of a shell stage. Defaults to 36000 seconds.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;OKE_HELM_CHART_DEPLOYMENT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;SHELL&#x27;, &#x27;OKE_HELM_CHART_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1655,7 +1883,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the target or destination backend set.</div>
+                                            <div>Specifies the target or destination backend set. Example: BLUE - Traffic from the existing backends of managed Load Balance Listener to blue Backend IPs, as per rolloutPolicy. GREEN - Traffic from the existing backends of managed Load Balance Listener to blue Backend IPs ser as per rolloutPolicy.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when deploy_stage_type is &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;</div>
                                             <div>Required when deploy_stage_type is &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;</div>
@@ -1927,6 +2155,46 @@ Examples
 
           # optional
           batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = SHELL
+      oci_devops_deploy_stage:
+        # required
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: SHELL
+
+        # optional
+        container_config:
+          # required
+          container_config_type: CONTAINER_INSTANCE_CONFIG
+          shape_name: shape_name_example
+          shape_config:
+            # required
+            ocpus: 3.4
+
+            # optional
+            memory_in_gbs: 3.4
+          network_channel:
+            # required
+            network_channel_type: SERVICE_VNIC_CHANNEL
+            subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            nsg_ids: [ "nsg_ids_example" ]
+
+            # optional
+          compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+          availability_domain: Uocm:PHX-AD-1
+        command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        timeout_in_seconds: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -2405,6 +2673,45 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+    - name: Update deploy_stage with deploy_stage_type = SHELL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: SHELL
+
+        # optional
+        container_config:
+          # required
+          container_config_type: CONTAINER_INSTANCE_CONFIG
+          shape_name: shape_name_example
+          shape_config:
+            # required
+            ocpus: 3.4
+
+            # optional
+            memory_in_gbs: 3.4
+          network_channel:
+            # required
+            network_channel_type: SERVICE_VNIC_CHANNEL
+            subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            nsg_ids: [ "nsg_ids_example" ]
+
+            # optional
+          compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+          availability_domain: Uocm:PHX-AD-1
+        command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        timeout_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
     - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
       oci_devops_deploy_stage:
         # required
@@ -2838,6 +3145,45 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = SHELL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: SHELL
+
+        # optional
+        container_config:
+          # required
+          container_config_type: CONTAINER_INSTANCE_CONFIG
+          shape_name: shape_name_example
+          shape_config:
+            # required
+            ocpus: 3.4
+
+            # optional
+            memory_in_gbs: 3.4
+          network_channel:
+            # required
+            network_channel_type: SERVICE_VNIC_CHANNEL
+            subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            nsg_ids: [ "nsg_ids_example" ]
+
+            # optional
+          compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+          availability_domain: Uocm:PHX-AD-1
+        command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        timeout_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
     - name: >
         Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
         with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
@@ -3194,7 +3540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeployStage resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;helm_chart_deploy_artifact_id&#x27;: &#x27;ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;values_artifact_ids&#x27;: [], &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;command_spec_deploy_artifact_id&#x27;: &#x27;ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;container_config&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_config_type&#x27;: &#x27;CONTAINER_INSTANCE_CONFIG&#x27;, &#x27;network_channel&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;helm_chart_deploy_artifact_id&#x27;: &#x27;ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;values_artifact_ids&#x27;: [], &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -3334,7 +3680,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Namespace A for deployment.</div>
+                                            <div>Namespace A for deployment. Example: namespaceA - first Namespace name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_a_example</div>
@@ -3353,7 +3699,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Namespace B for deployment.</div>
+                                            <div>Namespace B for deployment. Example: namespaceB - second Namespace name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_b_example</div>
@@ -3427,7 +3773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Canary namespace to be used for Kubernetes canary deployment.</div>
+                                            <div>Canary namespace to be used for Kubernetes canary deployment. Example: canary - Name of the Canary namespace.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
@@ -3453,6 +3799,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/command_spec_deploy_artifact_id"></div>
+                    <b>command_spec_deploy_artifact_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/command_spec_deploy_artifact_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the artifact that contains the command specification.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -3559,6 +3923,233 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                         </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config"></div>
+                    <b>container_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/availability_domain"></div>
+                    <b>availability_domain</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/availability_domain" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Availability domain where the ContainerInstance will be created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compartment where the ContainerInstance will be created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/container_config_type"></div>
+                    <b>container_config_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/container_config_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Container configuration type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CONTAINER_INSTANCE_CONFIG</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/network_channel"></div>
+                    <b>network_channel</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/network_channel" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/network_channel/network_channel_type"></div>
+                    <b>network_channel_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/network_channel/network_channel_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network channel type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIVATE_ENDPOINT_CHANNEL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/network_channel/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/network_channel/nsg_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An array of network security group OCIDs.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/network_channel/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/network_channel/subnet_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the subnet where VNIC resources will be created for private endpoint.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/shape_config"></div>
+                    <b>shape_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/shape_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/shape_config/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/shape_config/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs available to the instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/container_config/shape_name"></div>
+                    <b>shape_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/container_config/shape_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The shape of the ContainerInstance. The shape determines the resources available to the ContainerInstance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_name_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -4692,7 +5283,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies the target or destination backend set.</div>
+                                            <div>Specifies the target or destination backend set. Example: BLUE - Traffic from the existing backends of managed Load Balance Listener to blue Backend IPs, as per rolloutPolicy. GREEN - Traffic from the existing backends of managed Load Balance Listener to green Backend IPs as per rolloutPolicy.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTO_SELECT</div>

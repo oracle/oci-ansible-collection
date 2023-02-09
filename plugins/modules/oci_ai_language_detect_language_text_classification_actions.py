@@ -23,8 +23,11 @@ module: oci_ai_language_detect_language_text_classification_actions
 short_description: Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
-    - "For I(action=detect_language_text_classification), the API automatically classifies text into a set of pre-determined classes and sub-classes. A single
-      class/subclass is returned for each record classified.
+    - "For I(action=detect_language_text_classification), **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT.
+      We recommend you replace this API with the batch API, L(BatchDetectLanguageTextClassification,https://docs.cloud.oracle.com/iaas/api/#/en/language/2022100
+      1/BatchDetectLanguageTextClassification/BatchDetectLanguageTextClassification).
+      The DetectLanguageTextClassification API automatically classifies text into a set of pre-determined classes and sub-classes. A single class/subclass is
+      returned for each record classified.
       Learn more about text classification L(here,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#text-class).
       Limitations:
       - A record may be up to 1000 characters long."

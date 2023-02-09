@@ -252,7 +252,7 @@ deployments:
                             sample: "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx"
                         approval_actions:
                             description:
-                                - ""
+                                - Specifies the Canary approval actions.
                             returned: on success
                             type: complex
                             contains:
@@ -294,7 +294,8 @@ deployments:
                             sample: version_example
                         namespace:
                             description:
-                                - Namespace either environment A or environment B where artifacts are deployed.
+                                - "Namespace either environment A or environment B where artifacts are deployed. Example:  blue - Name of the namespace where
+                                  blue artifacts were deployed. green - Name of the namespace where green artifacts were deployed."
                             returned: on success
                             type: str
                             sample: namespace_example

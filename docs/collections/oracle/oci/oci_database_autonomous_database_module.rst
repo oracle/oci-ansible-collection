@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database -- Manage an AutonomousDatabase reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -363,6 +363,41 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compute_count"></div>
+                    <b>compute_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-compute_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the &#x27;ECPU&#x27; compute model requires values in multiples of two. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compute_model"></div>
+                    <b>compute_model</b>
+                    <a class="ansibleOptionLink" href="#parameter-compute_model" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ECPU</li>
+                                                                                                                                                                                                <li>OCPU</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -508,6 +543,70 @@ Parameters
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_tools_details"></div>
+                    <b>db_tools_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_tools_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of database tools details.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_tools_details/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_tools_details/is_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether tool is enabled.</div>
+                                            <div>Applicable when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_tools_details/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_tools_details/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>APEX</li>
+                                                                                                                                                                                                <li>DATABASE_ACTIONS</li>
+                                                                                                                                                                                                <li>GRAPH_STUDIO</li>
+                                                                                                                                                                                                <li>OML</li>
+                                                                                                                                                                                                <li>DATA_TRANSFORMS</li>
+                                                                                                                                                                                                <li>ORDS</li>
+                                                                                                                                                                                                <li>MONGODB_API</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Name of database tool.</div>
+                                            <div>Required when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-db_version"></div>
@@ -991,6 +1090,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-private_endpoint_ip"></div>
+                    <b>private_endpoint_ip</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_endpoint_ip" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The private endpoint Ip address for the resource.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-private_endpoint_label"></div>
                     <b>private_endpoint_label</b>
                     <a class="ansibleOptionLink" href="#parameter-private_endpoint_label" title="Permalink to this option"></a>
@@ -1137,6 +1252,38 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-secret_id"></div>
+                    <b>secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCI vault secret [/Content/General/Concepts/identifiers.htm]OCID.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-secret_version_number"></div>
+                    <b>secret_version_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-secret_version_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The version of the vault secret. If no version is specified, the latest version will be used.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-source"></div>
@@ -1403,6 +1550,7 @@ Examples
         # optional
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1410,6 +1558,7 @@ Examples
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1431,6 +1580,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1448,6 +1598,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
       oci_database_autonomous_database:
@@ -1459,6 +1617,7 @@ Examples
         # optional
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1466,6 +1625,7 @@ Examples
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1488,6 +1648,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1505,6 +1666,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Create autonomous_database with source = BACKUP_FROM_ID
       oci_database_autonomous_database:
@@ -1517,6 +1686,7 @@ Examples
         # optional
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1524,6 +1694,7 @@ Examples
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1545,6 +1716,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1562,6 +1734,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
       oci_database_autonomous_database:
@@ -1576,6 +1756,7 @@ Examples
         use_latest_available_backup_time_stamp: true
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1583,6 +1764,7 @@ Examples
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1604,6 +1786,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1621,6 +1804,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
       oci_database_autonomous_database:
@@ -1632,6 +1823,7 @@ Examples
         # optional
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1639,6 +1831,7 @@ Examples
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1660,6 +1853,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1677,6 +1871,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Create autonomous_database with source = NONE
       oci_database_autonomous_database:
@@ -1686,6 +1888,7 @@ Examples
         # optional
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
+        compute_model: ECPU
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         is_preview_version_with_service_terms_accepted: true
@@ -1694,6 +1897,7 @@ Examples
         source: NONE
         autonomous_maintenance_schedule_type: EARLY
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1715,6 +1919,7 @@ Examples
         db_version: db_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1732,6 +1937,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Update autonomous_database
       oci_database_autonomous_database:
@@ -1740,6 +1953,7 @@ Examples
 
         # optional
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1766,6 +1980,7 @@ Examples
         permission_level: RESTRICTED
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1783,6 +1998,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_database:
@@ -1792,6 +2015,7 @@ Examples
 
         # optional
         cpu_core_count: 56
+        compute_count: 3.4
         ocpu_count: 3.4
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
@@ -1817,6 +2041,7 @@ Examples
         permission_level: RESTRICTED
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_label: private_endpoint_label_example
+        private_endpoint_ip: private_endpoint_ip_example
         nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
@@ -1834,6 +2059,14 @@ Examples
         is_auto_scaling_for_storage_enabled: true
         max_cpu_core_count: 56
         database_edition: database_edition_example
+        db_tools_details:
+        - # required
+          name: APEX
+
+          # optional
+          is_enabled: true
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: 56
 
     - name: Delete autonomous_database
       oci_database_autonomous_database:
@@ -1883,7 +2116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;max_cpu_core_count&#x27;: 56, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 3.4, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;database_transforms_url&#x27;: &#x27;database_transforms_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;mongo_db_url&#x27;: &#x27;mongo_db_url_example&#x27;, &#x27;ords_url&#x27;: &#x27;ords_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_tools_details&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;name&#x27;: &#x27;APEX&#x27;}], &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;max_cpu_core_count&#x27;: 56, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2138,6 +2371,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/compute_count"></div>
+                    <b>compute_count</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/compute_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the &#x27;ECPU&#x27; compute model requires values in multiples of two. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/compute_model"></div>
+                    <b>compute_model</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/compute_model" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ECPU</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2467,6 +2736,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/connection_urls/database_transforms_url"></div>
+                    <b>database_transforms_url</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/connection_urls/database_transforms_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL of the Database Transforms for the Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_transforms_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/connection_urls/graph_studio_url"></div>
                     <b>graph_studio_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/connection_urls/graph_studio_url" title="Permalink to this return value"></a>
@@ -2499,6 +2787,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">machine_learning_user_management_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/connection_urls/mongo_db_url"></div>
+                    <b>mongo_db_url</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/connection_urls/mongo_db_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL of the MongoDB API for the Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mongo_db_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/connection_urls/ords_url"></div>
+                    <b>ords_url</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/connection_urls/ords_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Oracle REST Data Services (ORDS) URL of the Web Access for the Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ords_url_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2702,6 +3028,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/db_tools_details"></div>
+                    <b>db_tools_details</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/db_tools_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of database tools details.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/db_tools_details/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/db_tools_details/is_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether tool is enabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/db_tools_details/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/db_tools_details/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of database tool.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">APEX</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

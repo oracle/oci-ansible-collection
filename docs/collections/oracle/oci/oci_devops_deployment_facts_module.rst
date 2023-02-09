@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deployment_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1216,7 +1216,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Specifies the Canary approval actions.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1736,7 +1736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Namespace either environment A or environment B where artifacts are deployed.</div>
+                                            <div>Namespace either environment A or environment B where artifacts are deployed. Example:  blue - Name of the namespace where blue artifacts were deployed. green - Name of the namespace where green artifacts were deployed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>

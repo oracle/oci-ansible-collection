@@ -97,6 +97,14 @@ options:
               For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are:
               AL16UTF16 or UTF8."
         type: str
+    compute_model:
+        description:
+            - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error
+              to specify `computeModel` to a non-null value.
+        type: str
+        choices:
+            - "ECPU"
+            - "OCPU"
     kms_key_id:
         description:
             - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -157,6 +165,13 @@ options:
             - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             - This parameter is updatable.
         type: int
+    compute_count:
+        description:
+            - The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or
+              Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the 'ECPU' compute model requires values in multiples of two.
+              Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.
+            - This parameter is updatable.
+        type: float
     ocpu_count:
         description:
             - The number of OCPU cores to be made available to the database.
@@ -389,6 +404,11 @@ options:
               same private endpoint database to the public endpoint database.
             - This parameter is updatable.
         type: str
+    private_endpoint_ip:
+        description:
+            - The private endpoint Ip address for the resource.
+            - This parameter is updatable.
+        type: str
     nsg_ids:
         description:
             - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which this
@@ -469,6 +489,42 @@ options:
             - The Oracle Database Edition that applies to the Autonomous databases.
             - This parameter is updatable.
         type: str
+    db_tools_details:
+        description:
+            - List of database tools details.
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            name:
+                description:
+                    - Name of database tool.
+                    - Required when source is 'DATABASE'
+                type: str
+                choices:
+                    - "APEX"
+                    - "DATABASE_ACTIONS"
+                    - "GRAPH_STUDIO"
+                    - "OML"
+                    - "DATA_TRANSFORMS"
+                    - "ORDS"
+                    - "MONGODB_API"
+                required: true
+            is_enabled:
+                description:
+                    - Indicates whether tool is enabled.
+                    - Applicable when source is 'DATABASE'
+                type: bool
+    secret_id:
+        description:
+            - The OCI vault secret [/Content/General/Concepts/identifiers.htm]OCID.
+            - This parameter is updatable.
+        type: str
+    secret_version_number:
+        description:
+            - The version of the vault secret. If no version is specified, the latest version will be used.
+            - This parameter is updatable.
+        type: int
     autonomous_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -502,6 +558,7 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -509,6 +566,7 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -530,6 +588,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -547,6 +606,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
@@ -558,6 +625,7 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -565,6 +633,7 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -587,6 +656,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -604,6 +674,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Create autonomous_database with source = BACKUP_FROM_ID
   oci_database_autonomous_database:
@@ -616,6 +694,7 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -623,6 +702,7 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -644,6 +724,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -661,6 +742,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
@@ -675,6 +764,7 @@ EXAMPLES = """
     use_latest_available_backup_time_stamp: true
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -682,6 +772,7 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -703,6 +794,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -720,6 +812,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
@@ -731,6 +831,7 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -738,6 +839,7 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -759,6 +861,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -776,6 +879,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Create autonomous_database with source = NONE
   oci_database_autonomous_database:
@@ -785,6 +896,7 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -793,6 +905,7 @@ EXAMPLES = """
     source: NONE
     autonomous_maintenance_schedule_type: EARLY
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -814,6 +927,7 @@ EXAMPLES = """
     db_version: db_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -831,6 +945,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Update autonomous_database
   oci_database_autonomous_database:
@@ -839,6 +961,7 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -865,6 +988,7 @@ EXAMPLES = """
     permission_level: RESTRICTED
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -882,6 +1006,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
@@ -891,6 +1023,7 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
@@ -916,6 +1049,7 @@ EXAMPLES = """
     permission_level: RESTRICTED
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
@@ -933,6 +1067,14 @@ EXAMPLES = """
     is_auto_scaling_for_storage_enabled: true
     max_cpu_core_count: 56
     database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
 
 - name: Delete autonomous_database
   oci_database_autonomous_database:
@@ -1125,6 +1267,22 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        compute_model:
+            description:
+                - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an
+                  error to specify `computeModel` to a non-null value.
+            returned: on success
+            type: str
+            sample: ECPU
+        compute_count:
+            description:
+                - The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or
+                  Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the 'ECPU' compute model requires values in multiples of two.
+                  Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null
+                  value.
+            returned: on success
+            type: float
+            sample: 3.4
         ocpu_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -1334,6 +1492,24 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: graph_studio_url_example
+                mongo_db_url:
+                    description:
+                        - The URL of the MongoDB API for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: mongo_db_url_example
+                ords_url:
+                    description:
+                        - The Oracle REST Data Services (ORDS) URL of the Web Access for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: ords_url_example
+                database_transforms_url:
+                    description:
+                        - The URL of the Database Transforms for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: database_transforms_url_example
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -1864,6 +2040,24 @@ autonomous_database:
             returned: on success
             type: str
             sample: STANDARD_EDITION
+        db_tools_details:
+            description:
+                - List of database tools details.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - Name of database tool.
+                    returned: on success
+                    type: str
+                    sample: APEX
+                is_enabled:
+                    description:
+                        - Indicates whether tool is enabled.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1891,6 +2085,8 @@ autonomous_database:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "compute_model": "ECPU",
+        "compute_count": 3.4,
         "ocpu_count": 3.4,
         "provisionable_cpus": [],
         "data_storage_size_in_tbs": 56,
@@ -1923,7 +2119,10 @@ autonomous_database:
             "sql_dev_web_url": "sql_dev_web_url_example",
             "apex_url": "apex_url_example",
             "machine_learning_user_management_url": "machine_learning_user_management_url_example",
-            "graph_studio_url": "graph_studio_url_example"
+            "graph_studio_url": "graph_studio_url_example",
+            "mongo_db_url": "mongo_db_url_example",
+            "ords_url": "ords_url_example",
+            "database_transforms_url": "database_transforms_url_example"
         },
         "license_model": "LICENSE_INCLUDED",
         "used_data_storage_size_in_tbs": 56,
@@ -2005,7 +2204,11 @@ autonomous_database:
         "allocated_storage_size_in_tbs": 1.2,
         "actual_used_data_storage_size_in_tbs": 1.2,
         "max_cpu_core_count": 56,
-        "database_edition": "STANDARD_EDITION"
+        "database_edition": "STANDARD_EDITION",
+        "db_tools_details": [{
+            "name": "APEX",
+            "is_enabled": true
+        }]
     }
 """
 
@@ -2123,6 +2326,8 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "use_latest_available_backup_time_stamp",
+            "secret_id",
+            "secret_version_number",
             "autonomous_database_backup_id",
             "source",
             "clone_type",
@@ -2201,6 +2406,7 @@ def main():
             compartment_id=dict(type="str"),
             character_set=dict(type="str"),
             ncharacter_set=dict(type="str"),
+            compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
             kms_key_id=dict(type="str"),
             vault_id=dict(type="str"),
             is_preview_version_with_service_terms_accepted=dict(type="bool"),
@@ -2222,6 +2428,7 @@ def main():
                 type="str", choices=["EARLY", "REGULAR"]
             ),
             cpu_core_count=dict(type="int"),
+            compute_count=dict(type="float"),
             ocpu_count=dict(type="float"),
             data_storage_size_in_tbs=dict(type="int"),
             data_storage_size_in_gbs=dict(type="int"),
@@ -2250,6 +2457,7 @@ def main():
             permission_level=dict(type="str", choices=["RESTRICTED", "UNRESTRICTED"]),
             subnet_id=dict(type="str"),
             private_endpoint_label=dict(type="str"),
+            private_endpoint_ip=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             customer_contacts=dict(
                 type="list", elements="dict", options=dict(email=dict(type="str"))
@@ -2285,6 +2493,28 @@ def main():
             is_auto_scaling_for_storage_enabled=dict(type="bool"),
             max_cpu_core_count=dict(type="int"),
             database_edition=dict(type="str"),
+            db_tools_details=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    name=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "APEX",
+                            "DATABASE_ACTIONS",
+                            "GRAPH_STUDIO",
+                            "OML",
+                            "DATA_TRANSFORMS",
+                            "ORDS",
+                            "MONGODB_API",
+                        ],
+                    ),
+                    is_enabled=dict(type="bool"),
+                ),
+            ),
+            secret_id=dict(type="str"),
+            secret_version_number=dict(type="int", no_log=True),
             autonomous_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -69,6 +69,13 @@ options:
             - The time zone to use for the Cloud Autonomous VM cluster. For details, see L(DB System Time
               Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
         type: str
+    compute_model:
+        description:
+            - The compute model of the Cloud Autonomous VM Cluster.
+        type: str
+        choices:
+            - "ECPU"
+            - "OCPU"
     db_servers:
         description:
             - The list of database servers.
@@ -257,6 +264,7 @@ EXAMPLES = """
     memory_per_oracle_compute_unit_in_gbs: 56
     autonomous_data_storage_size_in_tbs: 3.4
     cluster_time_zone: cluster_time_zone_example
+    compute_model: ECPU
     db_servers: [ "db_servers_example" ]
     description: description_example
     maintenance_window_details:
@@ -503,6 +511,12 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: float
             sample: 3.4
+        compute_model:
+            description:
+                - The compute model of the Cloud Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: ECPU
         cpu_core_count_per_node:
             description:
                 - The number of OCPU cores enabled per VM cluster node.
@@ -717,6 +731,7 @@ cloud_autonomous_vm_cluster:
         "data_storage_size_in_gbs": 1.2,
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "compute_model": "ECPU",
         "cpu_core_count_per_node": 56,
         "memory_size_in_gbs": 56,
         "license_model": "LICENSE_INCLUDED",
@@ -938,6 +953,7 @@ def main():
             memory_per_oracle_compute_unit_in_gbs=dict(type="int"),
             autonomous_data_storage_size_in_tbs=dict(type="float"),
             cluster_time_zone=dict(type="str"),
+            compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
             db_servers=dict(type="list", elements="str"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),

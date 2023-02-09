@@ -23,8 +23,11 @@ module: oci_ai_language_detect_language_key_phrases_actions
 short_description: Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
-    - "For I(action=detect_language_key_phrases), the API extracts key-phrases in text records. For each key-phrase, a score (between 0 and 1) is returned that
-      highlights the importance of the key-phrase in the context of the text.
+    - "For I(action=detect_language_key_phrases), **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT.
+      We recommend you replace this API with the batch API, L(BatchDetectLanguageKeyPhrases,https://docs.cloud.oracle.com/iaas/api/#/en/language/20221001/BatchD
+      etectLanguageKeyPhrases/BatchDetectLanguageKeyPhrases).
+      The DetectLanguageKeyPhrases API extracts key-phrases in text records. For each key-phrase, a score (between 0 and 1) is returned that highlights the
+      importance of the key-phrase in the context of the text.
       Limitations:
       - A record may be up to 1000 characters long."
 version_added: "2.9.0"

@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config -- Manage a Config resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1117,7 +1117,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Config resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group&#x27;: &#x27;group_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;options&#x27;: {}, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group&#x27;: &#x27;group_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;in_use_by&#x27;: [{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;options_group&#x27;: &#x27;options_group_example&#x27;}], &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;options&#x27;: {}, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1136,6 +1136,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SPAN_FILTER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/created_by"></div>
+                    <b>created_by</b>
+                    <a class="ansibleOptionLink" href="#return-config/created_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1250,6 +1268,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/etag"></div>
+                    <b>etag</b>
+                    <a class="ansibleOptionLink" href="#return-config/etag" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For optimistic concurrency control. See `if-match`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-config/filter_id"></div>
                     <b>filter_id</b>
                     <a class="ansibleOptionLink" href="#return-config/filter_id" title="Permalink to this return value"></a>
@@ -1337,6 +1373,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/in_use_by"></div>
+                    <b>in_use_by</b>
+                    <a class="ansibleOptionLink" href="#return-config/in_use_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of configuration items that reference the span filter.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-config/in_use_by/config_type"></div>
+                    <b>config_type</b>
+                    <a class="ansibleOptionLink" href="#return-config/in_use_by/config_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of configuration item.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SPAN_FILTER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-config/in_use_by/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-config/in_use_by/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-config/in_use_by/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-config/in_use_by/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the configuration item. An OCID is generated when the item is created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-config/in_use_by/options_group"></div>
+                    <b>options_group</b>
+                    <a class="ansibleOptionLink" href="#return-config/in_use_by/options_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that specifies the group that an OPTIONS item belongs to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">options_group_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1648,6 +1777,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/updated_by"></div>
+                    <b>updated_by</b>
+                    <a class="ansibleOptionLink" href="#return-config/updated_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_example</div>
                                     </td>
             </tr>
                     

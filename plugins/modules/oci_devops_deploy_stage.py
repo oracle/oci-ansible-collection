@@ -57,12 +57,12 @@ options:
                 required: true
             namespace_a:
                 description:
-                    - Namespace A for deployment.
+                    - "Namespace A for deployment. Example: namespaceA - first Namespace name."
                 type: str
                 required: true
             namespace_b:
                 description:
-                    - Namespace B for deployment.
+                    - "Namespace B for deployment. Example: namespaceB - second Namespace name."
                 type: str
                 required: true
             ingress_name:
@@ -85,7 +85,7 @@ options:
                 required: true
             namespace:
                 description:
-                    - Canary namespace to be used for Kubernetes canary deployment.
+                    - "Canary namespace to be used for Kubernetes canary deployment. Example: canary - Name of the Canary namespace."
                 type: str
                 required: true
             ingress_name:
@@ -167,12 +167,6 @@ options:
             - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
             - Required when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
         type: str
-    timeout_in_seconds:
-        description:
-            - Time to wait for execution of a helm stage. Defaults to 300 seconds.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
-        type: int
     compute_instance_group_deploy_environment_id:
         description:
             - A compute instance group environment OCID for Canary deployment.
@@ -180,6 +174,86 @@ options:
             - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
             - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT']
         type: str
+    container_config:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'SHELL'
+            - Required when deploy_stage_type is 'SHELL'
+        type: dict
+        suboptions:
+            container_config_type:
+                description:
+                    - Container configuration type.
+                type: str
+                choices:
+                    - "CONTAINER_INSTANCE_CONFIG"
+                required: true
+            compartment_id:
+                description:
+                    - The OCID of the compartment where the ContainerInstance will be created.
+                type: str
+            availability_domain:
+                description:
+                    - Availability domain where the ContainerInstance will be created.
+                type: str
+            shape_name:
+                description:
+                    - The shape of the ContainerInstance. The shape determines the resources available to the ContainerInstance.
+                type: str
+                required: true
+            shape_config:
+                description:
+                    - ""
+                type: dict
+                required: true
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the instance.
+                        type: float
+                        required: true
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the instance, in gigabytes.
+                        type: float
+            network_channel:
+                description:
+                    - ""
+                type: dict
+                required: true
+                suboptions:
+                    network_channel_type:
+                        description:
+                            - Network channel type.
+                        type: str
+                        choices:
+                            - "SERVICE_VNIC_CHANNEL"
+                            - "PRIVATE_ENDPOINT_CHANNEL"
+                        required: true
+                    subnet_id:
+                        description:
+                            - The OCID of the subnet where private resources exist.
+                        type: str
+                        required: true
+                    nsg_ids:
+                        description:
+                            - An array of network security group OCIDs.
+                        type: list
+                        elements: str
+    command_spec_deploy_artifact_id:
+        description:
+            - The OCID of the artifact that contains the command specification.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'SHELL'
+            - Required when deploy_stage_type is 'SHELL'
+        type: str
+    timeout_in_seconds:
+        description:
+            - Time to wait for execution of a shell stage. Defaults to 36000 seconds.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['SHELL', 'OKE_HELM_CHART_DEPLOYMENT']
+        type: int
     oke_cluster_deploy_environment_id:
         description:
             - Kubernetes cluster environment OCID for deployment.
@@ -223,7 +297,9 @@ options:
                 elements: str
     traffic_shift_target:
         description:
-            - Specifies the target or destination backend set.
+            - "Specifies the target or destination backend set. Example: BLUE - Traffic from the existing backends of managed Load Balance Listener to blue
+              Backend IPs, as per rolloutPolicy. GREEN - Traffic from the existing backends of managed Load Balance Listener to blue Backend IPs ser as per
+              rolloutPolicy."
             - This parameter is updatable.
             - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
             - Required when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
@@ -473,6 +549,7 @@ options:
             - "COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT"
             - "WAIT"
             - "LOAD_BALANCER_TRAFFIC_SHIFT"
+            - "SHELL"
             - "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT"
             - "OKE_BLUE_GREEN_DEPLOYMENT"
             - "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT"
@@ -491,8 +568,8 @@ options:
             - ""
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT', 'OKE_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_DEPLOYMENT',
-              'DEPLOY_FUNCTION', 'OKE_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT',
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT', 'OKE_BLUE_GREEN_TRAFFIC_SHIFT', 'SHELL',
+              'OKE_DEPLOYMENT', 'DEPLOY_FUNCTION', 'OKE_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT',
               'OKE_BLUE_GREEN_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_CANARY_APPROVAL',
               'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT',
               'COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL', 'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
@@ -709,6 +786,46 @@ EXAMPLES = """
 
       # optional
       batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = SHELL
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: SHELL
+
+    # optional
+    container_config:
+      # required
+      container_config_type: CONTAINER_INSTANCE_CONFIG
+      shape_name: shape_name_example
+      shape_config:
+        # required
+        ocpus: 3.4
+
+        # optional
+        memory_in_gbs: 3.4
+      network_channel:
+        # required
+        network_channel_type: SERVICE_VNIC_CHANNEL
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        nsg_ids: [ "nsg_ids_example" ]
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      availability_domain: Uocm:PHX-AD-1
+    command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    timeout_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -1187,6 +1304,45 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+- name: Update deploy_stage with deploy_stage_type = SHELL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: SHELL
+
+    # optional
+    container_config:
+      # required
+      container_config_type: CONTAINER_INSTANCE_CONFIG
+      shape_name: shape_name_example
+      shape_config:
+        # required
+        ocpus: 3.4
+
+        # optional
+        memory_in_gbs: 3.4
+      network_channel:
+        # required
+        network_channel_type: SERVICE_VNIC_CHANNEL
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        nsg_ids: [ "nsg_ids_example" ]
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      availability_domain: Uocm:PHX-AD-1
+    command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    timeout_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
     # required
@@ -1610,6 +1766,45 @@ EXAMPLES = """
 
       # optional
       batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = SHELL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: SHELL
+
+    # optional
+    container_config:
+      # required
+      container_config_type: CONTAINER_INSTANCE_CONFIG
+      shape_name: shape_name_example
+      shape_config:
+        # required
+        ocpus: 3.4
+
+        # optional
+        memory_in_gbs: 3.4
+      network_channel:
+        # required
+        network_channel_type: SERVICE_VNIC_CHANNEL
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        nsg_ids: [ "nsg_ids_example" ]
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      availability_domain: Uocm:PHX-AD-1
+    command_spec_deploy_artifact_id: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    timeout_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -2147,7 +2342,9 @@ deploy_stage:
                     sample: []
         traffic_shift_target:
             description:
-                - Specifies the target or destination backend set.
+                - "Specifies the target or destination backend set. Example: BLUE - Traffic from the existing backends of managed Load Balance Listener to blue
+                  Backend IPs, as per rolloutPolicy. GREEN - Traffic from the existing backends of managed Load Balance Listener to green Backend IPs as per
+                  rolloutPolicy."
             returned: on success
             type: str
             sample: AUTO_SELECT
@@ -2189,13 +2386,13 @@ deploy_stage:
                     sample: NGINX_BLUE_GREEN_STRATEGY
                 namespace_a:
                     description:
-                        - Namespace A for deployment.
+                        - "Namespace A for deployment. Example: namespaceA - first Namespace name."
                     returned: on success
                     type: str
                     sample: namespace_a_example
                 namespace_b:
                     description:
-                        - Namespace B for deployment.
+                        - "Namespace B for deployment. Example: namespaceB - second Namespace name."
                     returned: on success
                     type: str
                     sample: namespace_b_example
@@ -2249,7 +2446,7 @@ deploy_stage:
                     sample: NGINX_CANARY_STRATEGY
                 namespace:
                     description:
-                        - Canary namespace to be used for Kubernetes canary deployment.
+                        - "Canary namespace to be used for Kubernetes canary deployment. Example: canary - Name of the Canary namespace."
                     returned: on success
                     type: str
                     sample: namespace_example
@@ -2337,12 +2534,6 @@ deploy_stage:
             returned: on success
             type: str
             sample: namespace_example
-        timeout_in_seconds:
-            description:
-                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
-            returned: on success
-            type: int
-            sample: 56
         rollback_policy:
             description:
                 - ""
@@ -2355,6 +2546,90 @@ deploy_stage:
                     returned: on success
                     type: str
                     sample: AUTOMATED_STAGE_ROLLBACK_POLICY
+        container_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                container_config_type:
+                    description:
+                        - Container configuration type.
+                    returned: on success
+                    type: str
+                    sample: CONTAINER_INSTANCE_CONFIG
+                compartment_id:
+                    description:
+                        - The OCID of the compartment where the ContainerInstance will be created.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - Availability domain where the ContainerInstance will be created.
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
+                shape_name:
+                    description:
+                        - The shape of the ContainerInstance. The shape determines the resources available to the ContainerInstance.
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                shape_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - The total number of OCPUs available to the instance.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                        memory_in_gbs:
+                            description:
+                                - The total amount of memory available to the instance, in gigabytes.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                network_channel:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        network_channel_type:
+                            description:
+                                - Network channel type.
+                            returned: on success
+                            type: str
+                            sample: PRIVATE_ENDPOINT_CHANNEL
+                        subnet_id:
+                            description:
+                                - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                        nsg_ids:
+                            description:
+                                - An array of network security group OCIDs.
+                            returned: on success
+                            type: list
+                            sample: []
+        command_spec_deploy_artifact_id:
+            description:
+                - The OCID of the artifact that contains the command specification.
+            returned: on success
+            type: str
+            sample: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        timeout_in_seconds:
+            description:
+                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
+            returned: on success
+            type: int
+            sample: 56
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -2556,10 +2831,26 @@ deploy_stage:
         "values_artifact_ids": [],
         "release_name": "release_name_example",
         "namespace": "namespace_example",
-        "timeout_in_seconds": 56,
         "rollback_policy": {
             "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
         },
+        "container_config": {
+            "container_config_type": "CONTAINER_INSTANCE_CONFIG",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1",
+            "shape_name": "shape_name_example",
+            "shape_config": {
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
+            },
+            "network_channel": {
+                "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "nsg_ids": []
+            }
+        },
+        "command_spec_deploy_artifact_id": "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "timeout_in_seconds": 56,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -2780,8 +3071,44 @@ def main():
             helm_chart_deploy_artifact_id=dict(type="str"),
             values_artifact_ids=dict(type="list", elements="str"),
             release_name=dict(type="str"),
-            timeout_in_seconds=dict(type="int"),
             compute_instance_group_deploy_environment_id=dict(type="str"),
+            container_config=dict(
+                type="dict",
+                options=dict(
+                    container_config_type=dict(
+                        type="str", required=True, choices=["CONTAINER_INSTANCE_CONFIG"]
+                    ),
+                    compartment_id=dict(type="str"),
+                    availability_domain=dict(type="str"),
+                    shape_name=dict(type="str", required=True),
+                    shape_config=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            ocpus=dict(type="float", required=True),
+                            memory_in_gbs=dict(type="float"),
+                        ),
+                    ),
+                    network_channel=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            network_channel_type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "SERVICE_VNIC_CHANNEL",
+                                    "PRIVATE_ENDPOINT_CHANNEL",
+                                ],
+                            ),
+                            subnet_id=dict(type="str", required=True),
+                            nsg_ids=dict(type="list", elements="str"),
+                        ),
+                    ),
+                ),
+            ),
+            command_spec_deploy_artifact_id=dict(type="str"),
+            timeout_in_seconds=dict(type="int"),
             oke_cluster_deploy_environment_id=dict(type="str"),
             namespace=dict(type="str"),
             blue_backend_ips=dict(
@@ -2886,6 +3213,7 @@ def main():
                     "COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT",
                     "WAIT",
                     "LOAD_BALANCER_TRAFFIC_SHIFT",
+                    "SHELL",
                     "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT",
                     "OKE_BLUE_GREEN_DEPLOYMENT",
                     "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",

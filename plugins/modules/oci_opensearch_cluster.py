@@ -148,6 +148,25 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    security_mode:
+        description:
+            - The security mode of the cluster.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "DISABLED"
+            - "PERMISSIVE"
+            - "ENFORCING"
+    security_master_user_name:
+        description:
+            - The name of the master user that are used to manage security config
+            - This parameter is updatable.
+        type: str
+    security_master_user_password_hash:
+        description:
+            - The password hash of the master user that are used to manage security config
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -207,6 +226,9 @@ EXAMPLES = """
     master_node_host_bare_metal_shape: master_node_host_bare_metal_shape_example
     data_node_host_bare_metal_shape: data_node_host_bare_metal_shape_example
     system_tags: null
+    security_mode: DISABLED
+    security_master_user_name: security_master_user_name_example
+    security_master_user_password_hash: security_master_user_password_hash_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -218,6 +240,9 @@ EXAMPLES = """
 
     # optional
     software_version: software_version_example
+    security_mode: DISABLED
+    security_master_user_name: security_master_user_name_example
+    security_master_user_password_hash: security_master_user_password_hash_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -229,6 +254,9 @@ EXAMPLES = """
 
     # optional
     software_version: software_version_example
+    security_mode: DISABLED
+    security_master_user_name: security_master_user_name_example
+    security_master_user_password_hash: security_master_user_password_hash_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -479,6 +507,24 @@ opensearch_cluster:
             returned: on success
             type: list
             sample: []
+        security_mode:
+            description:
+                - The security mode of the cluster.
+            returned: on success
+            type: str
+            sample: DISABLED
+        security_master_user_name:
+            description:
+                - The name of the master user that are used to manage security config
+            returned: on success
+            type: str
+            sample: security_master_user_name_example
+        security_master_user_password_hash:
+            description:
+                - The password hash of the master user that are used to manage security config
+            returned: on success
+            type: str
+            sample: security_master_user_password_hash_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -516,7 +562,10 @@ opensearch_cluster:
         "vcn_compartment_id": "ocid1.vcncompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_compartment_id": "ocid1.subnetcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "fqdn": "fqdn_example",
-        "availability_domains": []
+        "availability_domains": [],
+        "security_mode": "DISABLED",
+        "security_master_user_name": "security_master_user_name_example",
+        "security_master_user_password_hash": "security_master_user_password_hash_example"
     }
 """
 
@@ -693,6 +742,11 @@ def main():
             system_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             software_version=dict(type="str"),
+            security_mode=dict(
+                type="str", choices=["DISABLED", "PERMISSIVE", "ENFORCING"]
+            ),
+            security_master_user_name=dict(type="str"),
+            security_master_user_password_hash=dict(type="str", no_log=True),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             opensearch_cluster_id=dict(aliases=["id"], type="str"),
