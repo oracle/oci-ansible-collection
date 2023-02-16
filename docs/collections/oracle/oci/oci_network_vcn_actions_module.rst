@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -792,7 +792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A DNS label for the VCN, used in conjunction with the VNIC&#x27;s hostname and subnet&#x27;s DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet (for example, `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be an alphanumeric string that begins with a letter. The value cannot be changed.</div>
+                                            <div>A DNS label for the VCN, used in conjunction with the VNIC&#x27;s hostname and subnet&#x27;s DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet (for example, `bminstance1.subnet123.vcn1.oraclevcn.com`). Must be an alphanumeric string that begins with a letter. The value cannot be changed.</div>
                                             <div>The absence of this parameter means the Internet and VCN Resolver will not work for this VCN.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>Example: `vcn1`</div>

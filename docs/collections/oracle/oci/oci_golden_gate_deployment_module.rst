@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment -- Manage a Deployment resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Deployment.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_actions_module>` module: change_compartment, collect_deployment_diagnostic, start, stop, upgrade.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_actions_module>` module: change_compartment, collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, import_deployment_wallet, start, stop, upgrade.
 
 
 .. Aliases

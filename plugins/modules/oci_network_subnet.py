@@ -78,7 +78,7 @@ options:
         description:
             - A DNS label for the subnet, used in conjunction with the VNIC's hostname and
               VCN's DNS label to form a fully qualified domain name (FQDN) for each VNIC
-              within this subnet (for example, `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+              within this subnet (for example, `bminstance1.subnet123.vcn1.oraclevcn.com`).
               Must be an alphanumeric string that begins with a letter and is unique within the VCN.
               The value cannot be changed.
             - This value must be set if you want to use the Internet and VCN Resolver to resolve the
@@ -331,7 +331,7 @@ subnet:
             description:
                 - A DNS label for the subnet, used in conjunction with the VNIC's hostname and
                   VCN's DNS label to form a fully qualified domain name (FQDN) for each VNIC
-                  within this subnet (for example, `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+                  within this subnet (for example, `bminstance1.subnet123.vcn1.oraclevcn.com`).
                   Must be an alphanumeric string that begins with a letter and is unique within the VCN.
                   The value cannot be changed.
                 - The absence of this parameter means the Internet and VCN Resolver

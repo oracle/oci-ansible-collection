@@ -299,6 +299,17 @@ deployments:
                             returned: on success
                             type: str
                             sample: namespace_example
+                        helm_diff:
+                            description:
+                                - "Helm Diff output
+                                  Example:
+                                  Helm diff was successful
+                                  data:
+                                  - greeting: Version 1.0
+                                  + greeting: Version 1.1"
+                            returned: on success
+                            type: str
+                            sample: helm_diff_example
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -652,6 +663,7 @@ deployments:
                 "chart_url": "chart_url_example",
                 "version": "version_example",
                 "namespace": "namespace_example",
+                "helm_diff": "helm_diff_example",
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
                 "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",

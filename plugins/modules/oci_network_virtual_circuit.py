@@ -141,14 +141,14 @@ options:
                       Oracle. Specified by the owner of that router. If the session goes from Oracle
                       to a customer, this is the BGP IPv4 address of the customer's edge router. If the
                       session goes from Oracle to a provider, this is the BGP IPv4 address of the
-                      provider's edge router. Must use a /30 or /31 subnet mask.
+                      provider's edge router. Must use a subnet mask from /28 to /31.
                     - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                     - "Example: `10.0.0.18/31`"
                 type: str
             oracle_bgp_peering_ip:
                 description:
-                    - The IPv4 address for Oracle's end of the BGP session. Must use a /30 or /31
-                      subnet mask. If the session goes from Oracle to a customer's edge router,
+                    - The IPv4 address for Oracle's end of the BGP session. Must use a subnet mask from /28 to /31.
+                      If the session goes from Oracle to a customer's edge router,
                       the customer specifies this information. If the session goes from Oracle to
                       a provider's edge router, the provider specifies this.
                     - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
@@ -495,7 +495,7 @@ virtual_circuit:
                           Oracle. Specified by the owner of that router. If the session goes from Oracle
                           to a customer, this is the BGP IPv4 address of the customer's edge router. If the
                           session goes from Oracle to a provider, this is the BGP IPv4 address of the
-                          provider's edge router. Must use a /30 or /31 subnet mask.
+                          provider's edge router. Must use a subnet mask from /28 to /31.
                         - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                         - "Example: `10.0.0.18/31`"
                     returned: on success
@@ -503,8 +503,8 @@ virtual_circuit:
                     sample: customer_bgp_peering_ip_example
                 oracle_bgp_peering_ip:
                     description:
-                        - The IPv4 address for Oracle's end of the BGP session. Must use a /30 or /31
-                          subnet mask. If the session goes from Oracle to a customer's edge router,
+                        - The IPv4 address for Oracle's end of the BGP session. Must use a subnet mask from /28 to /31.
+                          If the session goes from Oracle to a customer's edge router,
                           the customer specifies this information. If the session goes from Oracle to
                           a provider's edge router, the provider specifies this.
                         - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."

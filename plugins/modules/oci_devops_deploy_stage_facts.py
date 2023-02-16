@@ -540,6 +540,126 @@ deploy_stages:
                     returned: on success
                     type: str
                     sample: AUTOMATED_STAGE_ROLLBACK_POLICY
+        set_values:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of parameters defined to set helm value.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
+                            returned: on success
+                            type: str
+                            sample: value_example
+        set_string:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of parameters defined to set helm value.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
+                            returned: on success
+                            type: str
+                            sample: value_example
+        are_hooks_enabled:
+            description:
+                - Disable pre/post upgrade hooks. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        should_reuse_values:
+            description:
+                - During upgrade, reuse the values of the last release and merge overrides from the command line. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        should_reset_values:
+            description:
+                - During upgrade, reset the values to the ones built into the chart. It overrides shouldReuseValues. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        is_force_enabled:
+            description:
+                - Force resource update through delete; or if required, recreate. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        should_cleanup_on_fail:
+            description:
+                - Allow deletion of new resources created during when an upgrade fails. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        max_history:
+            description:
+                - Limit the maximum number of revisions saved per release. Use 0 for no limit. Set to 10 by default
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        should_skip_crds:
+            description:
+                - If set, no CRDs are installed. By default, CRDs are installed only if they are not present already. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        should_skip_render_subchart_notes:
+            description:
+                - If set, renders subchart notes along with the parent. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        should_not_wait:
+            description:
+                - Waits until all the resources are in a ready state to mark the release as successful. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        is_debug_enabled:
+            description:
+                - Enables helm --debug option to stream output to tf stdout. Set to false by default.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         container_config:
             description:
                 - ""
@@ -832,6 +952,28 @@ deploy_stages:
         "rollback_policy": {
             "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
         },
+        "set_values": {
+            "items": [{
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
+        "set_string": {
+            "items": [{
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
+        "are_hooks_enabled": true,
+        "should_reuse_values": true,
+        "should_reset_values": true,
+        "is_force_enabled": true,
+        "should_cleanup_on_fail": true,
+        "max_history": 56,
+        "should_skip_crds": true,
+        "should_skip_render_subchart_notes": true,
+        "should_not_wait": true,
+        "is_debug_enabled": true,
         "container_config": {
             "container_config_type": "CONTAINER_INSTANCE_CONFIG",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
-- For *state=present*, create an instance pool.
+- For *state=present*, creates an instance pool.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_compute_management_instance_pool_actions <ansible_collections.oracle.oci.oci_compute_management_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, start, stop.
 
 
@@ -554,7 +554,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The display name of the VNIC. This is also use to match against the instance configuration defined secondary VNIC.</div>
+                                            <div>The display name of the VNIC. This is also used to match against the instance configuration defined secondary VNIC.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -1221,7 +1221,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The display name of the VNIC. This is also use to match against the instance configuration defined secondary VNIC.</div>
+                                            <div>The display name of the VNIC. This is also used to match against the instance configuration defined secondary VNIC.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>

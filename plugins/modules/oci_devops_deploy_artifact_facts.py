@@ -168,6 +168,37 @@ deploy_artifacts:
                     returned: on success
                     type: str
                     sample: deploy_artifact_version_example
+                helm_verification_key_source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        current_public_key:
+                            description:
+                                - Current version of Base64 encoding of the public key which is in binary GPG exported format.
+                            returned: on success
+                            type: str
+                            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+                        previous_public_key:
+                            description:
+                                - Previous version of Base64 encoding of the public key which is in binary GPG exported format. This would be used for key
+                                  rotation scenarios.
+                            returned: on success
+                            type: str
+                            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+                        verification_key_source_type:
+                            description:
+                                - Specifies type of verification material.
+                            returned: on success
+                            type: str
+                            sample: VAULT_SECRET
+                        vault_secret_id:
+                            description:
+                                - The OCID of the Vault Secret containing the verification key versions.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.vaultsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 base64_encoded_content:
                     description:
                         - base64 Encoded String
@@ -257,6 +288,12 @@ deploy_artifacts:
             "deploy_artifact_path": "deploy_artifact_path_example",
             "chart_url": "chart_url_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
+            "helm_verification_key_source": {
+                "current_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+                "previous_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+                "verification_key_source_type": "VAULT_SECRET",
+                "vault_secret_id": "ocid1.vaultsecret.oc1..xxxxxxEXAMPLExxxxxx"
+            },
             "base64_encoded_content": null,
             "deploy_artifact_source_type": "INLINE",
             "image_uri": "image_uri_example",

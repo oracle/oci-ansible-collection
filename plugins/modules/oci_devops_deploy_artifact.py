@@ -77,6 +77,37 @@ options:
                     - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
                     - Required when deploy_artifact_source_type is one of ['GENERIC_ARTIFACT', 'HELM_CHART']
                 type: str
+            helm_verification_key_source:
+                description:
+                    - ""
+                    - Applicable when deploy_artifact_source_type is 'HELM_CHART'
+                type: dict
+                suboptions:
+                    current_public_key:
+                        description:
+                            - Current version of Base64 encoding of the public key which is in binary GPG exported format.
+                            - Required when verification_key_source_type is 'INLINE_PUBLIC_KEY'
+                        type: str
+                    previous_public_key:
+                        description:
+                            - Previous version of Base64 encoding of the public key which is in binary GPG exported format. This would be used for key rotation
+                              scenarios.
+                            - Applicable when verification_key_source_type is 'INLINE_PUBLIC_KEY'
+                        type: str
+                    vault_secret_id:
+                        description:
+                            - The OCID of the Vault Secret containing the verification key versions.
+                            - Required when verification_key_source_type is 'VAULT_SECRET'
+                        type: str
+                    verification_key_source_type:
+                        description:
+                            - Specifies type of verification material.
+                        type: str
+                        choices:
+                            - "INLINE_PUBLIC_KEY"
+                            - "VAULT_SECRET"
+                            - "NONE"
+                        required: true
             image_uri:
                 description:
                     - "Specifies OCIR image path - optionally include tag."
@@ -289,6 +320,37 @@ deploy_artifact:
                     returned: on success
                     type: str
                     sample: deploy_artifact_version_example
+                helm_verification_key_source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        current_public_key:
+                            description:
+                                - Current version of Base64 encoding of the public key which is in binary GPG exported format.
+                            returned: on success
+                            type: str
+                            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+                        previous_public_key:
+                            description:
+                                - Previous version of Base64 encoding of the public key which is in binary GPG exported format. This would be used for key
+                                  rotation scenarios.
+                            returned: on success
+                            type: str
+                            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+                        verification_key_source_type:
+                            description:
+                                - Specifies type of verification material.
+                            returned: on success
+                            type: str
+                            sample: VAULT_SECRET
+                        vault_secret_id:
+                            description:
+                                - The OCID of the Vault Secret containing the verification key versions.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.vaultsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 base64_encoded_content:
                     description:
                         - base64 Encoded String
@@ -373,6 +435,12 @@ deploy_artifact:
             "deploy_artifact_path": "deploy_artifact_path_example",
             "chart_url": "chart_url_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
+            "helm_verification_key_source": {
+                "current_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+                "previous_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+                "verification_key_source_type": "VAULT_SECRET",
+                "vault_secret_id": "ocid1.vaultsecret.oc1..xxxxxxEXAMPLExxxxxx"
+            },
             "base64_encoded_content": null,
             "deploy_artifact_source_type": "INLINE",
             "image_uri": "image_uri_example",
@@ -550,6 +618,20 @@ def main():
                     deploy_artifact_path=dict(type="str"),
                     chart_url=dict(type="str"),
                     deploy_artifact_version=dict(type="str"),
+                    helm_verification_key_source=dict(
+                        type="dict",
+                        no_log=False,
+                        options=dict(
+                            current_public_key=dict(type="str", no_log=True),
+                            previous_public_key=dict(type="str", no_log=True),
+                            vault_secret_id=dict(type="str"),
+                            verification_key_source_type=dict(
+                                type="str",
+                                required=True,
+                                choices=["INLINE_PUBLIC_KEY", "VAULT_SECRET", "NONE"],
+                            ),
+                        ),
+                    ),
                     image_uri=dict(type="str"),
                     image_digest=dict(type="str"),
                     deploy_artifact_source_type=dict(

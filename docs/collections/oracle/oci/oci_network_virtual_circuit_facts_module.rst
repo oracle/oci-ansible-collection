@@ -30,7 +30,7 @@ oracle.oci.oci_network_virtual_circuit_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -629,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The BGP IPv4 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv4 address of the customer&#x27;s edge router. If the session goes from Oracle to a provider, this is the BGP IPv4 address of the provider&#x27;s edge router. Must use a /30 or /31 subnet mask.</div>
+                                            <div>The BGP IPv4 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv4 address of the customer&#x27;s edge router. If the session goes from Oracle to a provider, this is the BGP IPv4 address of the provider&#x27;s edge router. Must use a subnet mask from /28 to /31.</div>
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.18/31`</div>
                                         <br/>
@@ -672,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IPv4 address for Oracle&#x27;s end of the BGP session. Must use a /30 or /31 subnet mask. If the session goes from Oracle to a customer&#x27;s edge router, the customer specifies this information. If the session goes from Oracle to a provider&#x27;s edge router, the provider specifies this.</div>
+                                            <div>The IPv4 address for Oracle&#x27;s end of the BGP session. Must use a subnet mask from /28 to /31. If the session goes from Oracle to a customer&#x27;s edge router, the customer specifies this information. If the session goes from Oracle to a provider&#x27;s edge router, the provider specifies this.</div>
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.19/31`</div>
                                         <br/>

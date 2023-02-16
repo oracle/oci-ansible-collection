@@ -102,7 +102,7 @@ instance_configurations:
                     sample: compute
                 block_volumes:
                     description:
-                        - ""
+                        - Block volume parameters.
                     returned: on success
                     type: complex
                     contains:
@@ -211,7 +211,7 @@ instance_configurations:
                                     sample: {'Department': 'Finance'}
                                 kms_key_id:
                                     description:
-                                        - The OCID of the Key Management key to assign as the master encryption key
+                                        - The OCID of the Vault service key to assign as the master encryption key
                                           for the volume.
                                     returned: on success
                                     type: str
@@ -690,7 +690,7 @@ instance_configurations:
                             sample: FAULT-DOMAIN-1
                         dedicated_vm_host_id:
                             description:
-                                - The OCID of dedicated VM host.
+                                - The OCID of the dedicated virtual machine host to place the instance on.
                                 - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                                   cannot be used to launch instance pools.
                             returned: on success
@@ -918,7 +918,7 @@ instance_configurations:
                                             sample: true
                 secondary_vnics:
                     description:
-                        - ""
+                        - Secondary VNIC parameters.
                     returned: on success
                     type: complex
                     contains:

@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.13.0]
+
+## Added
+- Support for the Visual Builder Studio service
+- Support for Helm attestation and Helm arguments on deploy operations in the DevOps service
+- Support for uploading master key wallets for deployments in the GoldenGate service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.92.0
+
 ## [4.12.0]
 
 ## Added

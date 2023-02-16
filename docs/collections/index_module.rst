@@ -918,6 +918,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_golden_gate_deployment_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_facts_module>` -- Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_golden_gate_deployment_type_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_type_facts_module>` -- Fetches details about one or multiple DeploymentType resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_golden_gate_deployment_upgrade_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_upgrade_facts_module>` -- Fetches details about one or multiple DeploymentUpgrade resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_golden_gate_deployment_wallets_operation_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_wallets_operation_facts_module>` -- Fetches details about one or multiple DeploymentWalletsOperation resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_golden_gate_message_facts <ansible_collections.oracle.oci.oci_golden_gate_message_facts_module>` -- Fetches details about one or multiple Message resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_golden_gate_trail_file_facts <ansible_collections.oracle.oci.oci_golden_gate_trail_file_facts_module>` -- Fetches details about one or multiple TrailFile resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_golden_gate_trail_sequence_facts <ansible_collections.oracle.oci.oci_golden_gate_trail_sequence_facts_module>` -- Fetches details about one or multiple TrailSequence resources in Oracle Cloud Infrastructure
@@ -1754,6 +1755,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_vault_secret_facts <ansible_collections.oracle.oci.oci_vault_secret_facts_module>` -- Fetches details about one or multiple Secret resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_vault_secret_version_actions <ansible_collections.oracle.oci.oci_vault_secret_version_actions_module>` -- Perform actions on a SecretVersion resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_vault_secret_version_facts <ansible_collections.oracle.oci.oci_vault_secret_version_facts_module>` -- Fetches details about one or multiple SecretVersion resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_vbs_inst_vbs_instance <ansible_collections.oracle.oci.oci_vbs_inst_vbs_instance_module>` -- Manage a VbsInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_vbs_inst_vbs_instance_actions <ansible_collections.oracle.oci.oci_vbs_inst_vbs_instance_actions_module>` -- Perform actions on a VbsInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_vbs_inst_vbs_instance_facts <ansible_collections.oracle.oci.oci_vbs_inst_vbs_instance_facts_module>` -- Fetches details about one or multiple VbsInstance resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_visual_builder_vb_instance <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_module>` -- Manage a VbInstance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_visual_builder_vb_instance_actions <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_actions_module>` -- Perform actions on a VbInstance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_visual_builder_vb_instance_facts <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_facts_module>` -- Fetches details about one or multiple VbInstance resources in Oracle Cloud Infrastructure

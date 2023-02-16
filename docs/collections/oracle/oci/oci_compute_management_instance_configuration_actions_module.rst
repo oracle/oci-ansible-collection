@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, moves an instance configuration into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When you move an instance configuration to a different compartment, associated resources such as instance pools are not moved. **Important:** Most of the properties for an existing instance configuration, including the compartment, cannot be modified after you create the instance configuration. Although you can move an instance configuration to a different compartment, you will not be able to use the instance configuration to manage instance pools in the new compartment. If you want to update an instance configuration to point to a different compartment, you should instead create a new instance configuration in the target compartment using `CreateInstanceConfiguration <https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/InstanceConfiguration/CreateInstanceConfiguration>`_.
-- For *action=launch*, launches an instance from an instance configuration. If the instance configuration does not include all of the parameters that are required to launch an instance, such as the availability domain and subnet ID, you must provide these parameters when you launch an instance from the instance configuration. For more information, see the `InstanceConfiguration <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/>`_ resource.
+- For *action=launch*, creates an instance from an instance configuration. If the instance configuration does not include all of the parameters that are required to create an instance, such as the availability domain and subnet ID, you must provide these parameters when you create an instance from the instance configuration. For more information, see the `InstanceConfiguration <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/>`_ resource.
 
 
 .. Aliases
@@ -217,7 +217,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Block volume parameters.</div>
                                             <div>Applicable only for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
@@ -575,7 +575,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the volume.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -782,7 +782,7 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>compute</li>
+                                                                                                                                                                <li><div style="color: blue"><b>compute</b>&nbsp;&larr;</div></li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1254,7 +1254,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                             <div>Dedicated VM hosts can be used when launching individual instances from an instance configuration. They cannot be used to launch instance pools.</div>
                                                         </td>
             </tr>
@@ -2234,7 +2234,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Secondary VNIC parameters.</div>
                                             <div>Applicable only for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
@@ -2523,10 +2523,9 @@ Examples
 
     - name: Perform action launch on instance_configuration with instance_type = compute
       oci_compute_management_instance_configuration_actions:
-        # required
-        instance_type: compute
 
         # optional
+        instance_type: compute
         block_volumes:
         - # optional
           attach_details:
@@ -2967,7 +2966,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host that the instance is placed on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4026,7 +4025,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the boot volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4260,7 +4259,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Block volume parameters.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -4656,7 +4655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -5330,7 +5329,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                             <div>Dedicated VM hosts can be used when launching individual instances from an instance configuration. They cannot be used to launch instance pools.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -6346,7 +6345,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Secondary VNIC parameters.</div>
                                         <br/>
                                                         </td>
             </tr>

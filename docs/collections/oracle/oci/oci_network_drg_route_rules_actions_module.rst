@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_route_rules_actions -- Perform actions on a DrgRouteR
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -348,7 +348,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of destination for the rule. Required if `direction` = `EGRESS`. Allowed values: * `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
+                                            <div>Type of destination for the rule. Allowed values: * `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -546,7 +546,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of destination for the rule. the type is required if `direction` = `EGRESS`.</div>
+                                            <div>The type of destination for the rule.</div>
                                             <div>Allowed values:</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation. * `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
                                         <br/>

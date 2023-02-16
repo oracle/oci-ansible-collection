@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Deployment.
     - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: change_compartment,
-      collect_deployment_diagnostic, start, stop, upgrade."
+      collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, import_deployment_wallet, start, stop, upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

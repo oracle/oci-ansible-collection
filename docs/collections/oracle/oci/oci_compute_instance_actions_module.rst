@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -67,7 +67,7 @@ Synopsis
 - - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off and then powered back on.
 - - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Caution: Sending a diagnostic interrupt to a live system can cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see `Sending a Diagnostic Interrupt <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm>`_.
 - - **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it, and then powers it back on. Before you send a diagnostic reboot, restart the instance's OS, confirm that the instance and networking settings are configured correctly, and try other `troubleshooting steps <https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm>`_. Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only. For more information, see `Performing a Diagnostic Reboot <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm>`_.
-- - **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on.
+- - **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on. For more information, see `Infrastructure Maintenance <https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm>`_.
 - For more information about managing instance lifecycle states, see `Stopping and Starting an Instance <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm>`_.
 
 
@@ -407,7 +407,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>If present, this parameter will set (or re-set) the scheduled time that the instance will be reboot migrated in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.  This will also change the timeRebootMigrationDue field on the instance. If not present, the reboot migration will be triggered immediately.</div>
+                                            <div>If present, this parameter will set (or reset) the scheduled time that the instance will be reboot migrated in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.  This will also change the `timeMaintenanceRebootDue` field on the instance.</div>
+                                            <div>If not present, the reboot migration will be triggered immediately.</div>
                                             <div>Applicable only for <em>action=instance_action</em>.</div>
                                             <div>Applicable when action_type is &#x27;rebootMigrate&#x27;</div>
                                                         </td>
@@ -978,7 +979,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host that the instance is placed on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2037,7 +2038,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the boot volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>

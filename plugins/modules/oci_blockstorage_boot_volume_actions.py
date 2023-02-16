@@ -196,7 +196,7 @@ boot_volume:
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
-                - The OCID of the Key Management master encryption key assigned to the boot volume.
+                - The OCID of the Vault service master encryption key assigned to the boot volume.
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

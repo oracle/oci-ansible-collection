@@ -57,7 +57,7 @@ options:
         type: str
     kms_key_id:
         description:
-            - The OCID of the Key Management key to assign as the master encryption key
+            - The OCID of the Vault service key to assign as the master encryption key
               for the volume.
         type: str
     size_in_mbs:
@@ -352,7 +352,7 @@ volume:
             sample: true
         kms_key_id:
             description:
-                - The OCID of the Key Management key which is the master encryption key for the volume.
+                - The OCID of the Vault service key which is the master encryption key for the volume.
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

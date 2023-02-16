@@ -23,7 +23,8 @@ module: oci_compute_instance_maintenance_reboot_facts
 short_description: Fetches details about a InstanceMaintenanceReboot resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a InstanceMaintenanceReboot resource in Oracle Cloud Infrastructure
-    - Gets the maximum possible date that a maintenance reboot can be extended.
+    - Gets the maximum possible date that a maintenance reboot can be extended. For more information, see
+      L(Infrastructure Maintenance,https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

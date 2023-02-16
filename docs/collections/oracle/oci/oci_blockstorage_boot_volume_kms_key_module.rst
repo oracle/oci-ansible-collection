@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_boot_volume_kms_key -- Manage a BootVolumeKmsKey res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -257,7 +257,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the new Key Management key to assign to protect the specified volume. This key has to be a valid Key Management key, and policies must exist to allow the user and the Block Volume service to access this key. If you specify the same OCID as the previous key&#x27;s OCID, the Block Volume service will use it to regenerate a volume encryption key.</div>
+                                            <div>The OCID of the new Vault service key to assign to protect the specified volume. This key has to be a valid Vault service key, and policies must exist to allow the user and the Block Volume service to access this key. If you specify the same OCID as the previous key&#x27;s OCID, the Block Volume service will use it to regenerate a volume encryption key.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -401,7 +401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key assigned to this volume. If the volume is not using Key Management, then the `kmsKeyId` will be a null string.</div>
+                                            <div>The OCID of the Vault service key assigned to this volume. If the volume is not using Vault service, then the `kmsKeyId` will be a null string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>

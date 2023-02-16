@@ -63,7 +63,7 @@ options:
                 suboptions:
                     display_name:
                         description:
-                            - The display name of the VNIC. This is also use to match against the instance configuration defined
+                            - The display name of the VNIC. This is also used to match against the instance configuration defined
                               secondary VNIC.
                         type: str
                         aliases: ["name"]
@@ -386,7 +386,7 @@ cluster_network:
                             contains:
                                 display_name:
                                     description:
-                                        - The display name of the VNIC. This is also use to match against the instance configuration defined
+                                        - The display name of the VNIC. This is also used to match against the instance configuration defined
                                           secondary VNIC.
                                     returned: on success
                                     type: str
@@ -490,7 +490,7 @@ cluster_network:
                     contains:
                         display_name:
                             description:
-                                - The display name of the VNIC. This is also use to match against the instance configuration defined
+                                - The display name of the VNIC. This is also used to match against the instance configuration defined
                                   secondary VNIC.
                             returned: on success
                             type: str

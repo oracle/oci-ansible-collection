@@ -42,10 +42,10 @@ options:
                 type: str
                 choices:
                     - "compute"
-                required: true
+                default: "compute"
             block_volumes:
                 description:
-                    - ""
+                    - Block volume parameters.
                 type: list
                 elements: dict
                 suboptions:
@@ -134,7 +134,7 @@ options:
                                 type: dict
                             kms_key_id:
                                 description:
-                                    - The OCID of the Key Management key to assign as the master encryption key
+                                    - The OCID of the Vault service key to assign as the master encryption key
                                       for the volume.
                                 type: str
                             vpus_per_gb:
@@ -553,7 +553,7 @@ options:
                         type: str
                     dedicated_vm_host_id:
                         description:
-                            - The OCID of dedicated VM host.
+                            - The OCID of the dedicated virtual machine host to place the instance on.
                             - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                               cannot be used to launch instance pools.
                         type: str
@@ -775,7 +775,7 @@ options:
                                         type: bool
             secondary_vnics:
                 description:
-                    - ""
+                    - Secondary VNIC parameters.
                 type: list
                 elements: dict
                 suboptions:
@@ -893,8 +893,8 @@ options:
               us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationVolumeSourceFromVolumeBackupDetails)
               to include the block volume backups in the list of settings.
             - "The following values are supported:"
-            - "* `NONE`: Creates an instance configuration using the list of settings that you specify."
-            - "* `INSTANCE`: Creates an instance configuration using an existing instance as a template."
+            - "* `NONE`: Creates an instance configuration using the list of settings that you specify.
+              * `INSTANCE`: Creates an instance configuration using an existing instance as a template."
         type: str
         choices:
             - "NONE"
@@ -953,10 +953,8 @@ EXAMPLES = """
   oci_compute_management_instance_configuration:
     # required
     instance_details:
-      # required
-      instance_type: compute
-
       # optional
+      instance_type: compute
       block_volumes:
       - # optional
         attach_details:
@@ -1209,7 +1207,7 @@ instance_configuration:
                     sample: compute
                 block_volumes:
                     description:
-                        - ""
+                        - Block volume parameters.
                     returned: on success
                     type: complex
                     contains:
@@ -1318,7 +1316,7 @@ instance_configuration:
                                     sample: {'Department': 'Finance'}
                                 kms_key_id:
                                     description:
-                                        - The OCID of the Key Management key to assign as the master encryption key
+                                        - The OCID of the Vault service key to assign as the master encryption key
                                           for the volume.
                                     returned: on success
                                     type: str
@@ -1797,7 +1795,7 @@ instance_configuration:
                             sample: FAULT-DOMAIN-1
                         dedicated_vm_host_id:
                             description:
-                                - The OCID of dedicated VM host.
+                                - The OCID of the dedicated virtual machine host to place the instance on.
                                 - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                                   cannot be used to launch instance pools.
                             returned: on success
@@ -2025,7 +2023,7 @@ instance_configuration:
                                             sample: true
                 secondary_vnics:
                     description:
-                        - ""
+                        - Secondary VNIC parameters.
                     returned: on success
                     type: complex
                     contains:
@@ -2454,7 +2452,9 @@ def main():
             instance_details=dict(
                 type="dict",
                 options=dict(
-                    instance_type=dict(type="str", required=True, choices=["compute"]),
+                    instance_type=dict(
+                        type="str", default="compute", choices=["compute"]
+                    ),
                     block_volumes=dict(
                         type="list",
                         elements="dict",

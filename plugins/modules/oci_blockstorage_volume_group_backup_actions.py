@@ -57,12 +57,12 @@ options:
         aliases: ["name"]
     kms_key_id:
         description:
-            - The OCID of the Key Management key in the destination region which will be the master encryption key
+            - The OCID of the Vault service key in the destination region which will be the master encryption key
               for the copied volume group backup.
               If you do not specify this attribute the volume group backup will be encrypted with the Oracle-provided encryption
               key when it is copied to the destination region.
-            - For more information about the Key Management service and encryption keys, see
-              L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+            - For more information about the Vault service and encryption keys, see
+              L(Overview of Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
               L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             - Applicable only for I(action=copy).
         type: str

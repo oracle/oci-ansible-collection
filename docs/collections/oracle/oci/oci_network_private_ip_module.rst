@@ -30,7 +30,7 @@ oracle.oci.oci_network_private_ip -- Manage a PrivateIp resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -313,9 +313,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
+                                            <div>The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
-                                            <div>Example: `bminstance-1`</div>
+                                            <div>Example: `bminstance1`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -666,9 +666,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
+                                            <div>The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
-                                            <div>Example: `bminstance-1`</div>
+                                            <div>Example: `bminstance1`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_label_example</div>
