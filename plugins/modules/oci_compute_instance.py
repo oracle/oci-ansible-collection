@@ -134,7 +134,7 @@ options:
                 description:
                     - The hostname for the VNIC's primary private IP. Used for DNS. The value is the hostname
                       portion of the primary private IP's fully qualified domain name (FQDN)
-                      (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+                      (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`).
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
@@ -148,7 +148,7 @@ options:
                       of the deprecated `hostnameLabel` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
-                    - "Example: `bminstance-1`"
+                    - "Example: `bminstance1`"
                     - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN
                       can not be assigned a hostname. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
@@ -210,7 +210,7 @@ options:
                 type: str
     dedicated_vm_host_id:
         description:
-            - The OCID of the dedicated VM host.
+            - The OCID of the dedicated virtual machine host to place the instance on.
         type: str
     hostname_label:
         description:
@@ -291,7 +291,7 @@ options:
                 type: str
             kms_key_id:
                 description:
-                    - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                     - Applicable when source_type is 'image'
                 type: str
             boot_volume_vpus_per_gb:
@@ -736,12 +736,19 @@ options:
                     - "STOP_INSTANCE"
     time_maintenance_reboot_due:
         description:
-            - The date and time the instance is expected to be stopped and restarted, in the format defined by
-              L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            - For a VM instance, resets the scheduled time that the instance will be reboot migrated for
+              infrastructure maintenance, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
               If the instance hasn't been rebooted after this date, Oracle reboots the instance within 24 hours of the time
               and date that maintenance is due.
-              Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches
+            - To get the maximum possible date that a maintenance reboot can be extended,
+              use L(GetInstanceMaintenanceReboot,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/InstanceMaintenanceReboot/GetInstanceMaintenanceReboot).
+            - Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches the
               Stopped state.
+            - To reboot migrate a bare metal instance, use the L(InstanceAction,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/Instance/InstanceAction) operation.
+            - For more information, see
+              L(Infrastructure Maintenance,https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm).
             - "Example: `2018-05-25T21:10:29.600Z`"
             - This parameter is updatable.
         type: str
@@ -1006,7 +1013,7 @@ instance:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
-                - The OCID of dedicated VM host.
+                - The OCID of the dedicated virtual machine host that the instance is placed on.
             returned: on success
             type: str
             sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1376,7 +1383,7 @@ instance:
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
-                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

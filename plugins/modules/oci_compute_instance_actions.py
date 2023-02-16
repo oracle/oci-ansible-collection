@@ -51,7 +51,8 @@ description:
       correctly, and try other L(troubleshooting steps,https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm).
       Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only.
       For more information, see L(Performing a Diagnostic Reboot,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm)."
-    - "- **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on."
+    - "- **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on. For more information, see
+      L(Infrastructure Maintenance,https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm)."
     - For more information about managing instance lifecycle states, see
       L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm).
 version_added: "2.9.0"
@@ -92,10 +93,10 @@ options:
         type: bool
     time_scheduled:
         description:
-            - If present, this parameter will set (or re-set) the scheduled time that the instance will be reboot
+            - If present, this parameter will set (or reset) the scheduled time that the instance will be reboot
               migrated in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).  This will also change
-              the timeRebootMigrationDue field on the instance.
-              If not present, the reboot migration will be triggered immediately.
+              the `timeMaintenanceRebootDue` field on the instance.
+            - If not present, the reboot migration will be triggered immediately.
             - Applicable only for I(action=instance_action).
             - Applicable when action_type is 'rebootMigrate'
         type: str
@@ -366,7 +367,7 @@ instance:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
-                - The OCID of dedicated VM host.
+                - The OCID of the dedicated virtual machine host that the instance is placed on.
             returned: on success
             type: str
             sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -736,7 +737,7 @@ instance:
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
-                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

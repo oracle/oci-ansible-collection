@@ -183,9 +183,9 @@ boot_volume_backups:
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
-                - The OCID of the Key Management master encryption assigned to the boot volume backup.
-                  For more information about the Key Management service and encryption keys, see
-                  L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+                - The OCID of the Vault service master encryption assigned to the boot volume backup.
+                  For more information about the Vault service and encryption keys, see
+                  L(Overview of Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
                   L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: str

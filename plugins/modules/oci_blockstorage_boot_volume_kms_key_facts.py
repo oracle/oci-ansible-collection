@@ -23,7 +23,7 @@ module: oci_blockstorage_boot_volume_kms_key_facts
 short_description: Fetches details about a BootVolumeKmsKey resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a BootVolumeKmsKey resource in Oracle Cloud Infrastructure
-    - Gets the Key Management encryption key assigned to the specified boot volume.
+    - Gets the Vault service encryption key assigned to the specified boot volume.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -53,7 +53,7 @@ boot_volume_kms_key:
     contains:
         kms_key_id:
             description:
-                - The OCID of the Key Management key assigned to this volume. If the volume is not using Key Management, then the `kmsKeyId` will be a null
+                - The OCID of the Vault service key assigned to this volume. If the volume is not using Vault service, then the `kmsKeyId` will be a null
                   string.
             returned: on success
             type: str

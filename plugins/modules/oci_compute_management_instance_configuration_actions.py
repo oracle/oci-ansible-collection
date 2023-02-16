@@ -34,10 +34,10 @@ description:
       in the new compartment. If you want to update an instance configuration to point to a different compartment,
       you should instead create a new instance configuration in the target compartment using
       L(CreateInstanceConfiguration,https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/InstanceConfiguration/CreateInstanceConfiguration)."
-    - For I(action=launch), launches an instance from an instance configuration.
+    - For I(action=launch), creates an instance from an instance configuration.
       If the instance configuration does not include all of the parameters that are
-      required to launch an instance, such as the availability domain and subnet ID, you must
-      provide these parameters when you launch an instance from the instance configuration.
+      required to create an instance, such as the availability domain and subnet ID, you must
+      provide these parameters when you create an instance from the instance configuration.
       For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/)
       resource.
 version_added: "2.9.0"
@@ -62,9 +62,10 @@ options:
         type: str
         choices:
             - "compute"
+        default: "compute"
     block_volumes:
         description:
-            - ""
+            - Block volume parameters.
             - Applicable only for I(action=launch).
         type: list
         elements: dict
@@ -154,7 +155,7 @@ options:
                         type: dict
                     kms_key_id:
                         description:
-                            - The OCID of the Key Management key to assign as the master encryption key
+                            - The OCID of the Vault service key to assign as the master encryption key
                               for the volume.
                         type: str
                     vpus_per_gb:
@@ -570,7 +571,7 @@ options:
                 type: str
             dedicated_vm_host_id:
                 description:
-                    - The OCID of dedicated VM host.
+                    - The OCID of the dedicated virtual machine host to place the instance on.
                     - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                       cannot be used to launch instance pools.
                 type: str
@@ -791,7 +792,7 @@ options:
                                 type: bool
     secondary_vnics:
         description:
-            - ""
+            - Secondary VNIC parameters.
             - Applicable only for I(action=launch).
         type: list
         elements: dict
@@ -899,10 +900,9 @@ EXAMPLES = """
 
 - name: Perform action launch on instance_configuration with instance_type = compute
   oci_compute_management_instance_configuration_actions:
-    # required
-    instance_type: compute
 
     # optional
+    instance_type: compute
     block_volumes:
     - # optional
       attach_details:
@@ -1075,7 +1075,7 @@ instance:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
-                - The OCID of dedicated VM host.
+                - The OCID of the dedicated virtual machine host that the instance is placed on.
             returned: on success
             type: str
             sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1445,7 +1445,7 @@ instance:
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
-                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1785,7 +1785,7 @@ instance_configuration:
                     sample: compute
                 block_volumes:
                     description:
-                        - ""
+                        - Block volume parameters.
                     returned: on success
                     type: complex
                     contains:
@@ -1894,7 +1894,7 @@ instance_configuration:
                                     sample: {'Department': 'Finance'}
                                 kms_key_id:
                                     description:
-                                        - The OCID of the Key Management key to assign as the master encryption key
+                                        - The OCID of the Vault service key to assign as the master encryption key
                                           for the volume.
                                     returned: on success
                                     type: str
@@ -2373,7 +2373,7 @@ instance_configuration:
                             sample: FAULT-DOMAIN-1
                         dedicated_vm_host_id:
                             description:
-                                - The OCID of dedicated VM host.
+                                - The OCID of the dedicated virtual machine host to place the instance on.
                                 - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                                   cannot be used to launch instance pools.
                             returned: on success
@@ -2601,7 +2601,7 @@ instance_configuration:
                                             sample: true
                 secondary_vnics:
                     description:
-                        - ""
+                        - Secondary VNIC parameters.
                     returned: on success
                     type: complex
                     contains:
@@ -2995,7 +2995,7 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             instance_configuration_id=dict(aliases=["id"], type="str", required=True),
-            instance_type=dict(type="str", choices=["compute"]),
+            instance_type=dict(type="str", default="compute", choices=["compute"]),
             block_volumes=dict(
                 type="list",
                 elements="dict",

@@ -30,7 +30,7 @@ oracle.oci.oci_compute_image_facts -- Fetches details about one or multiple Imag
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
-- Lists a subset of images available in the specified compartment, including `platform images <https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm>`_ and `custom images <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm>`_. The list of platform images includes the three most recently published versions of each major distribution.
+- Lists a subset of images available in the specified compartment, including `platform images <https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm>`_ and `custom images <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm>`_. The list of platform images includes the three most recently published versions of each major distribution. The list does not support filtering based on image tags.
 - The list of images returned is ordered to first show the recent platform images, then all of the custom images.
 - **Caution:** Platform images are refreshed regularly. When new images are released, older versions are replaced. The image OCIDs remain available, but when the platform image is replaced, the image OCIDs are no longer returned as part of the platform image list.
 - If *image_id* is specified, the details of a single Image will be returned.

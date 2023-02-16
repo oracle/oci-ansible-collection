@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -367,7 +367,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Block volume parameters.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -743,7 +743,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the volume.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -876,11 +876,11 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-instance_details/instance_type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>compute</li>
+                                                                                                                                                                <li><div style="color: blue"><b>compute</b>&nbsp;&larr;</div></li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1375,7 +1375,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                             <div>Dedicated VM hosts can be used when launching individual instances from an instance configuration. They cannot be used to launch instance pools.</div>
                                                         </td>
             </tr>
@@ -2388,7 +2388,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Secondary VNIC parameters.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2708,8 +2708,7 @@ Parameters
                                             <div>To create an instance configuration that includes the custom setup from an instance&#x27;s boot volume, you must first create a custom image from the instance (see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Image/CreateImage'>CreateImage</a>). Then, use the custom image to launch a new instance (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance'>LaunchInstance</a>). Finally, create the instance configuration based on the instance that you created from the custom image.</div>
                                             <div>To include block volume contents with an instance configuration, first create a backup of the attached block volumes (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VolumeBackup/CreateVolumeBackup'>CreateVolumeBackup</a>). Then, create the instance configuration by specifying the list of settings, using <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationVolumeSourceFromVolumeBackupDetails'>InstanceConfigurationVolumeSourceFromVolumeBackupDetails</a> to include the block volume backups in the list of settings.</div>
                                             <div>The following values are supported:</div>
-                                            <div>* `NONE`: Creates an instance configuration using the list of settings that you specify.</div>
-                                            <div>* `INSTANCE`: Creates an instance configuration using an existing instance as a template.</div>
+                                            <div>* `NONE`: Creates an instance configuration using the list of settings that you specify. * `INSTANCE`: Creates an instance configuration using an existing instance as a template.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2777,10 +2776,8 @@ Examples
       oci_compute_management_instance_configuration:
         # required
         instance_details:
-          # required
-          instance_type: compute
-
           # optional
+          instance_type: compute
           block_volumes:
           - # optional
             attach_details:
@@ -3148,7 +3145,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Block volume parameters.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3544,7 +3541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4218,7 +4215,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                             <div>Dedicated VM hosts can be used when launching individual instances from an instance configuration. They cannot be used to launch instance pools.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -5234,7 +5231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Secondary VNIC parameters.</div>
                                         <br/>
                                                         </td>
             </tr>

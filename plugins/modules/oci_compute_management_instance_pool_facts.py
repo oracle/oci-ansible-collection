@@ -151,7 +151,7 @@ instance_pools:
                     contains:
                         display_name:
                             description:
-                                - The display name of the VNIC. This is also use to match against the instance configuration defined
+                                - The display name of the VNIC. This is also used to match against the instance configuration defined
                                   secondary VNIC.
                             returned: on success
                             type: str

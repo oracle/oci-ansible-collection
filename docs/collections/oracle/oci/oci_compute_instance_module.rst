@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -615,10 +615,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The hostname for the VNIC&#x27;s primary private IP. Used for DNS. The value is the hostname portion of the primary private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp'>GetPrivateIp</a>.</div>
+                                            <div>The hostname for the VNIC&#x27;s primary private IP. Used for DNS. The value is the hostname portion of the primary private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp'>GetPrivateIp</a>.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>When launching an instance, use this `hostnameLabel` instead of the deprecated `hostnameLabel` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails'>LaunchInstanceDetails</a>. If you provide both, the values must match.</div>
-                                            <div>Example: `bminstance-1`</div>
+                                            <div>Example: `bminstance1`</div>
                                             <div>If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN can not be assigned a hostname. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
@@ -726,7 +726,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1718,7 +1718,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the boot volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                             <div>Applicable when source_type is &#x27;image&#x27;</div>
                                                         </td>
             </tr>
@@ -1806,7 +1806,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The date and time the instance is expected to be stopped and restarted, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. If the instance hasn&#x27;t been rebooted after this date, Oracle reboots the instance within 24 hours of the time and date that maintenance is due. Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches Stopped state.</div>
+                                            <div>For a VM instance, resets the scheduled time that the instance will be reboot migrated for infrastructure maintenance, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. If the instance hasn&#x27;t been rebooted after this date, Oracle reboots the instance within 24 hours of the time and date that maintenance is due.</div>
+                                            <div>To get the maximum possible date that a maintenance reboot can be extended, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/InstanceMaintenanceReboot/GetInstanceMaintenanceReboot'>GetInstanceMaintenanceReboot</a>.</div>
+                                            <div>Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches the Stopped state.</div>
+                                            <div>To reboot migrate a bare metal instance, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Instance/InstanceAction'>InstanceAction</a> operation.</div>
+                                            <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm'>Infrastructure Maintenance</a>.</div>
                                             <div>Example: `2018-05-25T21:10:29.600Z`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -2374,7 +2378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host that the instance is placed on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -3469,7 +3473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the boot volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>

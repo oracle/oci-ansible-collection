@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -461,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DeployStage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;command_spec_deploy_artifact_id&#x27;: &#x27;ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;container_config&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_config_type&#x27;: &#x27;CONTAINER_INSTANCE_CONFIG&#x27;, &#x27;network_channel&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;helm_chart_deploy_artifact_id&#x27;: &#x27;ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;values_artifact_ids&#x27;: [], &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;are_hooks_enabled&#x27;: True, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;command_spec_deploy_artifact_id&#x27;: &#x27;ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;container_config&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_config_type&#x27;: &#x27;CONTAINER_INSTANCE_CONFIG&#x27;, &#x27;network_channel&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;helm_chart_deploy_artifact_id&#x27;: &#x27;ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_debug_enabled&#x27;: True, &#x27;is_force_enabled&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_history&#x27;: 56, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;set_string&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;set_values&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;should_cleanup_on_fail&#x27;: True, &#x27;should_not_wait&#x27;: True, &#x27;should_reset_values&#x27;: True, &#x27;should_reuse_values&#x27;: True, &#x27;should_skip_crds&#x27;: True, &#x27;should_skip_render_subchart_notes&#x27;: True, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;values_artifact_ids&#x27;: [], &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -520,6 +520,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/are_hooks_enabled"></div>
+                    <b>are_hooks_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/are_hooks_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Disable pre/post upgrade hooks. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -1564,6 +1583,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/is_debug_enabled"></div>
+                    <b>is_debug_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/is_debug_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enables helm --debug option to stream output to tf stdout. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/is_force_enabled"></div>
+                    <b>is_force_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/is_force_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Force resource update through delete; or if required, recreate. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_stages/is_validation_enabled"></div>
                     <b>is_validation_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deploy_stages/is_validation_enabled" title="Permalink to this return value"></a>
@@ -1708,6 +1765,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/max_history"></div>
+                    <b>max_history</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/max_history" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Limit the maximum number of revisions saved per release. Use 0 for no limit. Set to 10 by default</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -2084,6 +2160,272 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_string"></div>
+                    <b>set_string</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_string" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_string/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_string/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of parameters defined to set helm value.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_string/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_string/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the parameter (case-sensitive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_string/items/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_string/items/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Value of the parameter.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_values"></div>
+                    <b>set_values</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_values/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_values/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of parameters defined to set helm value.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_values/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_values/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the parameter (case-sensitive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/set_values/items/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/set_values/items/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Value of the parameter.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_cleanup_on_fail"></div>
+                    <b>should_cleanup_on_fail</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_cleanup_on_fail" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Allow deletion of new resources created during when an upgrade fails. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_not_wait"></div>
+                    <b>should_not_wait</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_not_wait" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Waits until all the resources are in a ready state to mark the release as successful. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_reset_values"></div>
+                    <b>should_reset_values</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_reset_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>During upgrade, reset the values to the ones built into the chart. It overrides shouldReuseValues. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_reuse_values"></div>
+                    <b>should_reuse_values</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_reuse_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>During upgrade, reuse the values of the last release and merge overrides from the command line. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_skip_crds"></div>
+                    <b>should_skip_crds</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_skip_crds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If set, no CRDs are installed. By default, CRDs are installed only if they are not present already. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/should_skip_render_subchart_notes"></div>
+                    <b>should_skip_render_subchart_notes</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/should_skip_render_subchart_notes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If set, renders subchart notes along with the parent. Set to false by default.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

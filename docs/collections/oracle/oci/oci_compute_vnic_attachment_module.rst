@@ -30,7 +30,7 @@ oracle.oci.oci_compute_vnic_attachment -- Manage a VnicAttachment resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -372,10 +372,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The hostname for the VNIC&#x27;s primary private IP. Used for DNS. The value is the hostname portion of the primary private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp'>GetPrivateIp</a>.</div>
+                                            <div>The hostname for the VNIC&#x27;s primary private IP. Used for DNS. The value is the hostname portion of the primary private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp'>GetPrivateIp</a>.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>When launching an instance, use this `hostnameLabel` instead of the deprecated `hostnameLabel` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails'>LaunchInstanceDetails</a>. If you provide both, the values must match.</div>
-                                            <div>Example: `bminstance-1`</div>
+                                            <div>Example: `bminstance1`</div>
                                             <div>If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN can not be assigned a hostname. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>

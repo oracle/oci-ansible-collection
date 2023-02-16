@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_maintenance_reboot_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a InstanceMaintenanceReboot resource in Oracle Cloud Infrastructure
-- Gets the maximum possible date that a maintenance reboot can be extended.
+- Gets the maximum possible date that a maintenance reboot can be extended. For more information, see `Infrastructure Maintenance <https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm>`_.
 
 
 .. Aliases

@@ -87,7 +87,7 @@ options:
                 description:
                     - The hostname for the VNIC's primary private IP. Used for DNS. The value is the hostname
                       portion of the primary private IP's fully qualified domain name (FQDN)
-                      (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+                      (for example, `bminstance1` in FQDN `bminstance1.subnet123.vcn1.oraclevcn.com`).
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
@@ -101,7 +101,7 @@ options:
                       of the deprecated `hostnameLabel` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
-                    - "Example: `bminstance-1`"
+                    - "Example: `bminstance1`"
                     - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN
                       can not be assigned a hostname. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str

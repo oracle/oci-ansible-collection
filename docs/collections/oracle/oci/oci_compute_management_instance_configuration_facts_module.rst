@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -564,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Block volume parameters.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -960,7 +960,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1634,7 +1634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host to place the instance on.</div>
                                             <div>Dedicated VM hosts can be used when launching individual instances from an instance configuration. They cannot be used to launch instance pools.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -2650,7 +2650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Secondary VNIC parameters.</div>
                                         <br/>
                                                         </td>
             </tr>

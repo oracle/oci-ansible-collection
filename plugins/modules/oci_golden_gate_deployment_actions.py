@@ -29,6 +29,12 @@ description:
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=collect_deployment_diagnostic), collects the diagnostic of a Deployment. When provided, If-Match is checked against ETag values of the
       resource.
+    - For I(action=deployment_wallet_exists), checks if a wallet is already present in the deployment. When provided, If-Match is checked against ETag values of
+      the resource.
+    - For I(action=export_deployment_wallet), export the OGG wallet from the deployment to OCI vault. When provided, If-Match is checked against ETag values of
+      the resource.
+    - For I(action=import_deployment_wallet), imports an OGG wallet from the OCI Vault to the Deployment. When provided, If-Match is checked against ETag values
+      of the resource.
     - For I(action=start), starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=stop), stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=upgrade), upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
@@ -67,6 +73,47 @@ options:
               such as `2016-08-25T21:10:29.600Z`.
             - Applicable only for I(action=collect_deployment_diagnostic).
         type: str
+    secret_name:
+        description:
+            - Name of the secret with which secret is shown in vault
+            - Required for I(action=export_deployment_wallet).
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
+              referenced.
+              If provided, this will reference a vault which the customer will be required to ensure
+              the policies are established to permit the GoldenGate Service to manage secrets contained
+              within this vault.
+            - Required for I(action=export_deployment_wallet), I(action=import_deployment_wallet).
+        type: str
+    new_wallet_secret_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
+              referenced.
+              If provided, this will reference a key which the customer will be required to ensure
+              the policies are established to permit the GoldenGate Service to utilize this Secret
+            - Required for I(action=import_deployment_wallet).
+        type: str
+    wallet_backup_secret_name:
+        description:
+            - Name of the secret with which secret is shown in vault
+            - Applicable only for I(action=import_deployment_wallet).
+        type: str
+    master_encryption_key_id:
+        description:
+            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
+              referenced.
+              If provided, this will reference a key which the customer will be required to ensure
+              the policies are established to permit the GoldenGate Service to utilize this key to
+              manage secrets."
+            - Required for I(action=export_deployment_wallet).
+        type: str
+    description:
+        description:
+            - Metadata about this specific object.
+            - Applicable only for I(action=export_deployment_wallet)I(action=import_deployment_wallet).
+        type: str
     deployment_id:
         description:
             - A unique Deployment identifier.
@@ -75,8 +122,8 @@ options:
         required: true
     type:
         description:
-            - The type of a deployment start
-            - Required for I(action=start), I(action=stop), I(action=upgrade).
+            - The type of a deployment for wallet
+            - Required for I(action=deployment_wallet_exists), I(action=start), I(action=stop), I(action=upgrade).
         type: str
         choices:
             - "DEFAULT"
@@ -89,6 +136,9 @@ options:
         choices:
             - "change_compartment"
             - "collect_deployment_diagnostic"
+            - "deployment_wallet_exists"
+            - "export_deployment_wallet"
+            - "import_deployment_wallet"
             - "start"
             - "stop"
             - "upgrade"
@@ -115,6 +165,41 @@ EXAMPLES = """
     # optional
     time_diagnostic_start: time_diagnostic_start_example
     time_diagnostic_end: time_diagnostic_end_example
+
+- name: Perform action deployment_wallet_exists on deployment with type = DEFAULT
+  oci_golden_gate_deployment_actions:
+    # required
+    type: DEFAULT
+
+- name: Perform action deployment_wallet_exists on deployment with type = CURRENT_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    type: CURRENT_RELEASE
+
+- name: Perform action export_deployment_wallet on deployment
+  oci_golden_gate_deployment_actions:
+    # required
+    secret_name: secret_name_example
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    master_encryption_key_id: "ocid1.masterencryptionkey.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: export_deployment_wallet
+
+    # optional
+    description: description_example
+
+- name: Perform action import_deployment_wallet on deployment
+  oci_golden_gate_deployment_actions:
+    # required
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    new_wallet_secret_id: "ocid1.newwalletsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: import_deployment_wallet
+
+    # optional
+    wallet_backup_secret_name: wallet_backup_secret_name_example
+    master_encryption_key_id: "ocid1.masterencryptionkey.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
 
 - name: Perform action start on deployment with type = DEFAULT
   oci_golden_gate_deployment_actions:
@@ -149,6 +234,22 @@ EXAMPLES = """
 """
 
 RETURN = """
+deployment_wallet_exists_response_details:
+    description:
+        - Details of the Deployment resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        is_ogg_wallet_exists:
+            description:
+                - Indicates if the wallet is present in the deployment container
+            returned: on success
+            type: bool
+            sample: true
+    sample: {
+        "is_ogg_wallet_exists": true
+    }
+
 deployment:
     description:
         - Details of the Deployment resource acted upon by the current operation
@@ -481,6 +582,9 @@ try:
     from oci.golden_gate import GoldenGateClient
     from oci.golden_gate.models import ChangeDeploymentCompartmentDetails
     from oci.golden_gate.models import CollectDeploymentDiagnosticDetails
+    from oci.golden_gate.models import DeploymentWalletExistsDetails
+    from oci.golden_gate.models import ExportDeploymentWalletDetails
+    from oci.golden_gate.models import ImportDeploymentWalletDetails
     from oci.golden_gate.models import StartDeploymentDetails
     from oci.golden_gate.models import StopDeploymentDetails
     from oci.golden_gate.models import UpgradeDeploymentDetails
@@ -495,6 +599,9 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         collect_deployment_diagnostic
+        deployment_wallet_exists
+        export_deployment_wallet
+        import_deployment_wallet
         start
         stop
         upgrade
@@ -515,6 +622,19 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             self.client.get_deployment,
             deployment_id=self.module.params.get("deployment_id"),
         )
+
+    def get_response_field_name(self, action):
+        response_fields = dict(
+            stop="deployment",
+            start="deployment",
+            collect_deployment_diagnostic="deployment",
+            deployment_wallet_exists="deployment_wallet_exists_response_details",
+            export_deployment_wallet="deployment",
+            import_deployment_wallet="deployment",
+            upgrade="deployment",
+            change_compartment="deployment",
+        )
+        return response_fields.get(action, "deployment")
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
@@ -547,6 +667,71 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 collect_deployment_diagnostic_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def deployment_wallet_exists(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DeploymentWalletExistsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.deployment_wallet_exists,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                deployment_wallet_exists_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def export_deployment_wallet(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ExportDeploymentWalletDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.export_deployment_wallet,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                export_deployment_wallet_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def import_deployment_wallet(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ImportDeploymentWalletDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.import_deployment_wallet,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                import_deployment_wallet_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -641,6 +826,12 @@ def main():
             diagnostic_name_prefix=dict(type="str"),
             time_diagnostic_start=dict(type="str"),
             time_diagnostic_end=dict(type="str"),
+            secret_name=dict(type="str"),
+            vault_id=dict(type="str"),
+            new_wallet_secret_id=dict(type="str"),
+            wallet_backup_secret_name=dict(type="str"),
+            master_encryption_key_id=dict(type="str"),
+            description=dict(type="str"),
             deployment_id=dict(aliases=["id"], type="str", required=True),
             type=dict(type="str", choices=["DEFAULT", "CURRENT_RELEASE"]),
             action=dict(
@@ -649,6 +840,9 @@ def main():
                 choices=[
                     "change_compartment",
                     "collect_deployment_diagnostic",
+                    "deployment_wallet_exists",
+                    "export_deployment_wallet",
+                    "import_deployment_wallet",
                     "start",
                     "stop",
                     "upgrade",

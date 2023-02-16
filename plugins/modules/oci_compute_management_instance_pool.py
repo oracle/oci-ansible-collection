@@ -23,7 +23,7 @@ module: oci_compute_management_instance_pool
 short_description: Manage an InstancePool resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
-    - For I(state=present), create an instance pool.
+    - For I(state=present), creates an instance pool.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_pool_actions) module: attach_load_balancer,
       change_compartment, detach_load_balancer, reset, softreset, start, stop."
 version_added: "2.9.0"
@@ -131,7 +131,8 @@ options:
                 elements: str
             primary_subnet_id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
+                      instances.
                     - This parameter is updatable.
                 type: str
                 required: true
@@ -143,7 +144,7 @@ options:
                 suboptions:
                     display_name:
                         description:
-                            - The display name of the VNIC. This is also use to match against the instance configuration defined
+                            - The display name of the VNIC. This is also used to match against the instance configuration defined
                               secondary VNIC.
                         type: str
                         aliases: ["name"]
@@ -373,7 +374,7 @@ instance_pool:
                     contains:
                         display_name:
                             description:
-                                - The display name of the VNIC. This is also use to match against the instance configuration defined
+                                - The display name of the VNIC. This is also used to match against the instance configuration defined
                                   secondary VNIC.
                             returned: on success
                             type: str

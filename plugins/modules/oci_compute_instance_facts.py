@@ -26,6 +26,10 @@ description:
     - Lists the instances in the specified compartment and the specified availability domain.
       You can filter the results by specifying an instance name (the list will include all the identically-named
       instances in the compartment).
+    - "**Note:** To retrieve public and private IP addresses for an instance, use the L(ListVnicAttachments,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments)
+      operation to get the VNIC ID for the instance, and then call L(GetVnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/GetVnic) with
+      the VNIC ID."
     - If I(instance_id) is specified, the details of a single Instance will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -145,7 +149,7 @@ instances:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
-                - The OCID of dedicated VM host.
+                - The OCID of the dedicated virtual machine host that the instance is placed on.
             returned: on success
             type: str
             sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -515,7 +519,7 @@ instances:
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
-                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_actions -- Perform actions on a Deployment
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,6 +59,9 @@ Synopsis
 - Perform actions on a Deployment resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, moves the Deployment into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.  For information about moving resources between compartments, see `Moving Resources Between Compartments <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=collect_deployment_diagnostic*, collects the diagnostic of a Deployment. When provided, If-Match is checked against ETag values of the resource.
+- For *action=deployment_wallet_exists*, checks if a wallet is already present in the deployment. When provided, If-Match is checked against ETag values of the resource.
+- For *action=export_deployment_wallet*, export the OGG wallet from the deployment to OCI vault. When provided, If-Match is checked against ETag values of the resource.
+- For *action=import_deployment_wallet*, imports an OGG wallet from the OCI Vault to the Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=start*, starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=stop*, stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=upgrade*, upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
@@ -103,6 +106,9 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>collect_deployment_diagnostic</li>
+                                                                                                                                                                                                <li>deployment_wallet_exists</li>
+                                                                                                                                                                                                <li>export_deployment_wallet</li>
+                                                                                                                                                                                                <li>import_deployment_wallet</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                                                                                                                                 <li>upgrade</li>
@@ -306,6 +312,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Metadata about this specific object.</div>
+                                            <div>Applicable only for <em>action=export_deployment_wallet</em><em>action=import_deployment_wallet</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-diagnostic_name_prefix"></div>
                     <b>diagnostic_name_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-diagnostic_name_prefix" title="Permalink to this option"></a>
@@ -318,6 +340,22 @@ Parameters
                                                                 <td>
                                             <div>Prefix of the diagnostic collected and uploaded to object storage</div>
                                             <div>Required for <em>action=collect_deployment_diagnostic</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-master_encryption_key_id"></div>
+                    <b>master_encryption_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-master_encryption_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer &quot;Master&quot; key being referenced. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to utilize this key to manage secrets.</div>
+                                            <div>Required for <em>action=export_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -338,6 +376,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-new_wallet_secret_id"></div>
+                    <b>new_wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-new_wallet_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer GGS Secret being referenced. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to utilize this Secret</div>
+                                            <div>Required for <em>action=import_deployment_wallet</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -349,6 +403,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-secret_name"></div>
+                    <b>secret_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-secret_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the secret with which secret is shown in vault</div>
+                                            <div>Required for <em>action=export_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -414,8 +484,24 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of a deployment start</div>
-                                            <div>Required for <em>action=start</em>, <em>action=stop</em>, <em>action=upgrade</em>.</div>
+                                            <div>The type of a deployment for wallet</div>
+                                            <div>Required for <em>action=deployment_wallet_exists</em>, <em>action=start</em>, <em>action=stop</em>, <em>action=upgrade</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vault_id"></div>
+                    <b>vault_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-vault_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer vault being referenced. If provided, this will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage secrets contained within this vault.</div>
+                                            <div>Required for <em>action=export_deployment_wallet</em>, <em>action=import_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -450,6 +536,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wallet_backup_secret_name"></div>
+                    <b>wallet_backup_secret_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-wallet_backup_secret_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the secret with which secret is shown in vault</div>
+                                            <div>Applicable only for <em>action=import_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
                         </table>
@@ -496,6 +598,41 @@ Examples
         # optional
         time_diagnostic_start: time_diagnostic_start_example
         time_diagnostic_end: time_diagnostic_end_example
+
+    - name: Perform action deployment_wallet_exists on deployment with type = DEFAULT
+      oci_golden_gate_deployment_actions:
+        # required
+        type: DEFAULT
+
+    - name: Perform action deployment_wallet_exists on deployment with type = CURRENT_RELEASE
+      oci_golden_gate_deployment_actions:
+        # required
+        type: CURRENT_RELEASE
+
+    - name: Perform action export_deployment_wallet on deployment
+      oci_golden_gate_deployment_actions:
+        # required
+        secret_name: secret_name_example
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        master_encryption_key_id: "ocid1.masterencryptionkey.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: export_deployment_wallet
+
+        # optional
+        description: description_example
+
+    - name: Perform action import_deployment_wallet on deployment
+      oci_golden_gate_deployment_actions:
+        # required
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        new_wallet_secret_id: "ocid1.newwalletsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: import_deployment_wallet
+
+        # optional
+        wallet_backup_secret_name: wallet_backup_secret_name_example
+        master_encryption_key_id: "ocid1.masterencryptionkey.oc1..xxxxxxEXAMPLExxxxxx"
+        description: description_example
 
     - name: Perform action start on deployment with type = DEFAULT
       oci_golden_gate_deployment_actions:
@@ -1308,6 +1445,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment_wallet_exists_response_details"></div>
+                    <b>deployment_wallet_exists_response_details</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_wallet_exists_response_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details of the Deployment resource acted upon by the current operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;is_ogg_wallet_exists&#x27;: True}</div>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment_wallet_exists_response_details/is_ogg_wallet_exists"></div>
+                    <b>is_ogg_wallet_exists</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_wallet_exists_response_details/is_ogg_wallet_exists" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the wallet is present in the deployment container</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     

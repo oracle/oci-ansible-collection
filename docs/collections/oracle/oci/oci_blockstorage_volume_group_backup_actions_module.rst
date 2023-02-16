@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_group_backup_actions -- Perform actions on a 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -312,8 +312,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Key Management key in the destination region which will be the master encryption key for the copied volume group backup. If you do not specify this attribute the volume group backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
-                                            <div>For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>The OCID of the Vault service key in the destination region which will be the master encryption key for the copied volume group backup. If you do not specify this attribute the volume group backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
+                                            <div>For more information about the Vault service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Vault service</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
                                             <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>

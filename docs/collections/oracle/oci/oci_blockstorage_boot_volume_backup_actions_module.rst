@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_boot_volume_backup_actions -- Perform actions on a B
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -328,8 +328,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Key Management key in the destination region which will be the master encryption key for the copied boot volume backup. If you do not specify this attribute the boot volume backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
-                                            <div>For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>The OCID of the Vault service key in the destination region which will be the master encryption key for the copied boot volume backup. If you do not specify this attribute the boot volume backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
+                                            <div>For more information about the Vault service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Vault service</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
                                             <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
@@ -636,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management master encryption assigned to the boot volume backup. For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>The OCID of the Vault service master encryption assigned to the boot volume backup. For more information about the Vault service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Vault service</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>

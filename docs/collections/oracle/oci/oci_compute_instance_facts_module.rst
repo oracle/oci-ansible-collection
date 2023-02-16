@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_facts -- Fetches details about one or multiple I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Fetches details about one or multiple Instance resources in Oracle Cloud Infrastructure
 - Lists the instances in the specified compartment and the specified availability domain. You can filter the results by specifying an instance name (the list will include all the identically-named instances in the compartment).
+- **Note:** To retrieve public and private IP addresses for an instance, use the `ListVnicAttachments <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments>`_ operation to get the VNIC ID for the instance, and then call `GetVnic <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/GetVnic>`_ with the VNIC ID.
 - If *instance_id* is specified, the details of a single Instance will be returned.
 
 
@@ -749,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of dedicated VM host.</div>
+                                            <div>The OCID of the dedicated virtual machine host that the instance is placed on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1844,7 +1845,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management key to assign as the master encryption key for the boot volume.</div>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
