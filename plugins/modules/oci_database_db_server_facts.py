@@ -152,6 +152,20 @@ db_servers:
             returned: on success
             type: list
             sample: []
+        autonomous_vm_cluster_ids:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous VM Clusters associated with the
+                  Db server.
+            returned: on success
+            type: list
+            sample: []
+        autonomous_virtual_machine_ids:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Virtual Machines associated with
+                  the Db server.
+            returned: on success
+            type: list
+            sample: []
         db_node_ids:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db nodes associated with the Db server.
@@ -254,6 +268,8 @@ db_servers:
         "memory_size_in_gbs": 56,
         "db_node_storage_size_in_gbs": 56,
         "vm_cluster_ids": [],
+        "autonomous_vm_cluster_ids": [],
+        "autonomous_virtual_machine_ids": [],
         "db_node_ids": [],
         "shape": "shape_example",
         "lifecycle_state": "CREATING",

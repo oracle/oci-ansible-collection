@@ -26,6 +26,9 @@ description:
     - For I(action=change_compartment), move the Autonomous Container Database and its dependent resources to the specified compartment.
       For more information about moving Autonomous Container Databases, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
+    - For I(action=change_dataguard_role), switch the Autonomous Container Database role between Standby and Snapshot Standby.
+      For more information about changing Autonomous Container Databases Dataguard Role, see
+      L(Change Database Role to Snapshot Standby,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#changeRole).
     - For I(action=restart), rolling restarts the specified Autonomous Container Database.
     - For I(action=rotate_autonomous_container_database_encryption_key), creates a new version of an existing L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
@@ -37,6 +40,30 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
             - Required for I(action=change_compartment).
         type: str
+    role:
+        description:
+            - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
+            - Required for I(action=change_dataguard_role).
+        type: str
+        choices:
+            - "PRIMARY"
+            - "STANDBY"
+            - "DISABLED_STANDBY"
+            - "SNAPSHOT_STANDBY"
+    autonomous_container_database_dataguard_association_id:
+        description:
+            - The Autonomous Container Database-Autonomous Data Guard association
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for I(action=change_dataguard_role).
+        type: str
+    connection_strings_type:
+        description:
+            - type of connection strings when converting database to snapshot mode
+            - Applicable only for I(action=change_dataguard_role).
+        type: str
+        choices:
+            - "SNAPSHOT_SERVICES"
+            - "PRIMARY_SERVICES"
     autonomous_container_database_id:
         description:
             - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -50,6 +77,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "change_dataguard_role"
             - "restart"
             - "rotate_autonomous_container_database_encryption_key"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -62,6 +90,17 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action change_dataguard_role on autonomous_container_database
+  oci_database_autonomous_container_database_actions:
+    # required
+    role: PRIMARY
+    autonomous_container_database_dataguard_association_id: "ocid1.autonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_dataguard_role
+
+    # optional
+    connection_strings_type: SNAPSHOT_SERVICES
 
 - name: Perform action restart on autonomous_container_database
   oci_database_autonomous_container_database_actions:
@@ -211,6 +250,12 @@ autonomous_container_database:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_snapshot_standby_revert:
+            description:
+                - The date and time the Autonomous Container Database will be reverted to Standby from Snapshot Standby.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         patch_model:
             description:
                 - Database patch model preference.
@@ -332,6 +377,12 @@ autonomous_container_database:
             returned: on success
             type: int
             sample: 56
+        version_preference:
+            description:
+                - The next maintenance version preference.
+            returned: on success
+            type: str
+            sample: NEXT_RELEASE_UPDATE
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -489,6 +540,7 @@ autonomous_container_database:
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "time_snapshot_standby_revert": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
@@ -510,6 +562,7 @@ autonomous_container_database:
             "lead_time_in_weeks": 56
         },
         "standby_maintenance_buffer_in_days": 56,
+        "version_preference": "NEXT_RELEASE_UPDATE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "role": "PRIMARY",
@@ -550,6 +603,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import ChangeCompartmentDetails
+    from oci.database.models import ChangeDataguardRoleDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -560,6 +614,7 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        change_dataguard_role
         restart
         rotate_autonomous_container_database_encryption_key
     """
@@ -599,6 +654,29 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 change_compartment_details=action_details,
+                autonomous_container_database_id=self.module.params.get(
+                    "autonomous_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_dataguard_role(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeDataguardRoleDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_dataguard_role,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_dataguard_role_details=action_details,
                 autonomous_container_database_id=self.module.params.get(
                     "autonomous_container_database_id"
                 ),
@@ -671,6 +749,14 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            role=dict(
+                type="str",
+                choices=["PRIMARY", "STANDBY", "DISABLED_STANDBY", "SNAPSHOT_STANDBY"],
+            ),
+            autonomous_container_database_dataguard_association_id=dict(type="str"),
+            connection_strings_type=dict(
+                type="str", choices=["SNAPSHOT_SERVICES", "PRIMARY_SERVICES"]
+            ),
             autonomous_container_database_id=dict(
                 aliases=["id"], type="str", required=True
             ),
@@ -679,6 +765,7 @@ def main():
                 required=True,
                 choices=[
                     "change_compartment",
+                    "change_dataguard_role",
                     "restart",
                     "rotate_autonomous_container_database_encryption_key",
                 ],

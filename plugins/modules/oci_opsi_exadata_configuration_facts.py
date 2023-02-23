@@ -174,6 +174,36 @@ exadata_configurations:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        vmcluster_details:
+            description:
+                - Array of objects containing VM cluster information.
+            returned: on success
+            type: complex
+            contains:
+                vmcluster_name:
+                    description:
+                        - The name of the vm cluster.
+                    returned: on success
+                    type: str
+                    sample: vmcluster_name_example
+                memory_allocated_in_gbs:
+                    description:
+                        - The memory allocated on a vm cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                cpu_allocated:
+                    description:
+                        - The cpu allocated on a vm cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                db_nodes_count:
+                    description:
+                        - The number of DB nodes on a vm cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: [{
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "entity_source": "EM_MANAGED_EXTERNAL_EXADATA",
@@ -183,7 +213,13 @@ exadata_configurations:
         "exadata_type": "DBMACHINE",
         "exadata_rack_type": "FULL",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'}
+        "freeform_tags": {'Department': 'Finance'},
+        "vmcluster_details": [{
+            "vmcluster_name": "vmcluster_name_example",
+            "memory_allocated_in_gbs": 56,
+            "cpu_allocated": 56,
+            "db_nodes_count": 56
+        }]
     }]
 """
 

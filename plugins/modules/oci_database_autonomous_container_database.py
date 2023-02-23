@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
     - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_container_database_actions) module: change_compartment,
-      restart, rotate_autonomous_container_database_encryption_key."
+      change_dataguard_role, restart, rotate_autonomous_container_database_encryption_key."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -47,6 +47,10 @@ options:
             - "**No longer used.** This parameter is no longer used for Autonomous Database on dedicated Exadata infrasture. Specify a
               `cloudAutonomousVmClusterId` instead. Using this parameter will cause the operation to fail."
         type: str
+    db_version:
+        description:
+            - The base version for the Autonomous Container Database.
+        type: str
     peer_autonomous_exadata_infrastructure_id:
         description:
             - "*No longer used.* This parameter is no longer used for Autonomous Database on dedicated Exadata infrasture. Specify a
@@ -65,6 +69,10 @@ options:
         choices:
             - "MAXIMUM_AVAILABILITY"
             - "MAXIMUM_PERFORMANCE"
+    fast_start_fail_over_lag_limit_in_seconds:
+        description:
+            - The lag time for my preference based on data loss tolerance in seconds.
+        type: int
     is_automatic_failover_enabled:
         description:
             - Indicates whether Automatic Failover is enabled for Autonomous Container Database Dataguard Association
@@ -289,6 +297,14 @@ options:
               This value represents the number of days before scheduled maintenance of the primary database.
             - This parameter is updatable.
         type: int
+    version_preference:
+        description:
+            - The next maintenance version preference.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "NEXT_RELEASE_UPDATE"
+            - "LATEST_RELEASE_UPDATE"
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -378,9 +394,11 @@ EXAMPLES = """
     db_unique_name: db_unique_name_example
     service_level_agreement_type: STANDARD
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    db_version: db_version_example
     peer_autonomous_exadata_infrastructure_id: "ocid1.peerautonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_container_database_display_name: peer_autonomous_container_database_display_name_example
     protection_mode: MAXIMUM_AVAILABILITY
+    fast_start_fail_over_lag_limit_in_seconds: 56
     is_automatic_failover_enabled: true
     peer_cloud_autonomous_vm_cluster_id: "ocid1.peercloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_vm_cluster_id: "ocid1.peerautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
@@ -421,6 +439,7 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     standby_maintenance_buffer_in_days: 56
+    version_preference: NEXT_RELEASE_UPDATE
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -461,6 +480,7 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     standby_maintenance_buffer_in_days: 56
+    version_preference: NEXT_RELEASE_UPDATE
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -501,6 +521,7 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     standby_maintenance_buffer_in_days: 56
+    version_preference: NEXT_RELEASE_UPDATE
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -665,6 +686,12 @@ autonomous_container_database:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_snapshot_standby_revert:
+            description:
+                - The date and time the Autonomous Container Database will be reverted to Standby from Snapshot Standby.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         patch_model:
             description:
                 - Database patch model preference.
@@ -786,6 +813,12 @@ autonomous_container_database:
             returned: on success
             type: int
             sample: 56
+        version_preference:
+            description:
+                - The next maintenance version preference.
+            returned: on success
+            type: str
+            sample: NEXT_RELEASE_UPDATE
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -943,6 +976,7 @@ autonomous_container_database:
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "time_snapshot_standby_revert": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
@@ -964,6 +998,7 @@ autonomous_container_database:
             "lead_time_in_weeks": 56
         },
         "standby_maintenance_buffer_in_days": 56,
+        "version_preference": "NEXT_RELEASE_UPDATE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "role": "PRIMARY",
@@ -1110,6 +1145,7 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
             "peer_autonomous_container_database_compartment_id",
             "is_automatic_failover_enabled",
             "protection_mode",
+            "fast_start_fail_over_lag_limit_in_seconds",
             "peer_autonomous_vm_cluster_id",
         ]
 
@@ -1188,11 +1224,13 @@ def main():
                 type="str", choices=["STANDARD", "AUTONOMOUS_DATAGUARD"]
             ),
             autonomous_exadata_infrastructure_id=dict(type="str"),
+            db_version=dict(type="str"),
             peer_autonomous_exadata_infrastructure_id=dict(type="str"),
             peer_autonomous_container_database_display_name=dict(type="str"),
             protection_mode=dict(
                 type="str", choices=["MAXIMUM_AVAILABILITY", "MAXIMUM_PERFORMANCE"]
             ),
+            fast_start_fail_over_lag_limit_in_seconds=dict(type="int"),
             is_automatic_failover_enabled=dict(type="bool"),
             peer_cloud_autonomous_vm_cluster_id=dict(type="str"),
             peer_autonomous_vm_cluster_id=dict(type="str"),
@@ -1294,6 +1332,9 @@ def main():
                 ),
             ),
             standby_maintenance_buffer_in_days=dict(type="int"),
+            version_preference=dict(
+                type="str", choices=["NEXT_RELEASE_UPDATE", "LATEST_RELEASE_UPDATE"]
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             backup_config=dict(

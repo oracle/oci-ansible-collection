@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.14.0]
+
+## Added
+- Support for the Autonomous Recovery service
+- Support for changing Data Guard role of a database instance within the Database service
+- Support for listing autonomous container database versions in the Database service
+- Support for specifying a database version when creating or updating an autonomous container database in the Database service
+- Support for specifying an eCPU count when creating or updating autonomous shared databases in the Database service
+- Support for selecting specific database servers when creating autonomous VM clusters in the Database service
+- Support for creating autonomous VMs during the creation of autonomous VM clusters in the Database service
+- Support for custom configurations in the Operations Insights service
+- Support for machine learning pipelines in the Data Science service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.93.0
+
 ## [4.13.0]
 
 ## Added

@@ -585,6 +585,19 @@ database_insights:
             returned: on success
             type: str
             sample: database_resource_type_example
+        parent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM Cluster or DB System ID, depending on which
+                  configuration the resource belongs to.
+            returned: on success
+            type: str
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
+        root_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
+            returned: on success
+            type: str
+            sample: "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
@@ -639,7 +652,9 @@ database_insights:
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "database_display_name": "database_display_name_example",
-        "database_resource_type": "database_resource_type_example"
+        "database_resource_type": "database_resource_type_example",
+        "parent_id": "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx",
+        "root_id": "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

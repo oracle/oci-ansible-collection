@@ -346,6 +346,18 @@ autonomous_databases:
             returned: on success
             type: float
             sample: 3.4
+        backup_retention_period_in_days:
+            description:
+                - Retention period, in days, for backups.
+            returned: on success
+            type: int
+            sample: 56
+        total_backup_storage_size_in_gbs:
+            description:
+                - The backup storage to the database.
+            returned: on success
+            type: float
+            sample: 1.2
         ocpu_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -561,6 +573,12 @@ autonomous_databases:
                     returned: on success
                     type: str
                     sample: mongo_db_url_example
+                machine_learning_notebook_url:
+                    description:
+                        - The URL of the Oracle Machine Learning (OML) Notebook for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: machine_learning_notebook_url_example
                 ords_url:
                     description:
                         - The Oracle REST Data Services (ORDS) URL of the Web Access for the Autonomous Database.
@@ -1121,6 +1139,18 @@ autonomous_databases:
                     returned: on success
                     type: bool
                     sample: true
+                compute_count:
+                    description:
+                        - Compute used by database tools.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_idle_time_in_minutes:
+                    description:
+                        - The max idle time, in minutes, after which the VM used by database tools will be terminated.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1150,6 +1180,8 @@ autonomous_databases:
         "cpu_core_count": 56,
         "compute_model": "ECPU",
         "compute_count": 3.4,
+        "backup_retention_period_in_days": 56,
+        "total_backup_storage_size_in_gbs": 1.2,
         "ocpu_count": 3.4,
         "provisionable_cpus": [],
         "data_storage_size_in_tbs": 56,
@@ -1184,6 +1216,7 @@ autonomous_databases:
             "machine_learning_user_management_url": "machine_learning_user_management_url_example",
             "graph_studio_url": "graph_studio_url_example",
             "mongo_db_url": "mongo_db_url_example",
+            "machine_learning_notebook_url": "machine_learning_notebook_url_example",
             "ords_url": "ords_url_example",
             "database_transforms_url": "database_transforms_url_example"
         },
@@ -1270,7 +1303,9 @@ autonomous_databases:
         "database_edition": "STANDARD_EDITION",
         "db_tools_details": [{
             "name": "APEX",
-            "is_enabled": true
+            "is_enabled": true,
+            "compute_count": 3.4,
+            "max_idle_time_in_minutes": 56
         }]
     }]
 """

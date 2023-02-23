@@ -122,13 +122,6 @@ exadata_insights:
     returned: on success
     type: complex
     contains:
-        is_virtualized_exadata:
-            description:
-                - true if virtualization is used in the Exadata system
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -179,6 +172,34 @@ exadata_insights:
             returned: on success
             type: bool
             sample: true
+        is_virtualized_exadata:
+            description:
+                - true if virtualization is used in the Exadata system
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        exadata_infra_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_infra_resource_type:
+            description:
+                - OCI exadata infrastructure resource type
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: cloudExadataInfrastructure
+        exadata_shape:
+            description:
+                - The shape of the Exadata Infrastructure.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: exadata_shape_example
         entity_source:
             description:
                 - Source of the Exadata system.
@@ -275,7 +296,6 @@ exadata_insights:
             type: str
             sample: lifecycle_details_example
     sample: [{
-        "is_virtualized_exadata": true,
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
@@ -283,6 +303,10 @@ exadata_insights:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_sync_enabled": true,
+        "is_virtualized_exadata": true,
+        "exadata_infra_id": "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_infra_resource_type": "cloudExadataInfrastructure",
+        "exadata_shape": "exadata_shape_example",
         "entity_source": "EM_MANAGED_EXTERNAL_EXADATA",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

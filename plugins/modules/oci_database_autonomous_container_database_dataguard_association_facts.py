@@ -128,6 +128,12 @@ autonomous_container_database_dataguard_associations:
             returned: on success
             type: str
             sample: MAXIMUM_AVAILABILITY
+        fast_start_fail_over_lag_limit_in_seconds:
+            description:
+                - The lag time for my preference based on data loss tolerance in seconds.
+            returned: on success
+            type: int
+            sample: 56
         apply_lag:
             description:
                 - The lag time between updates to the primary Autonomous Container Database and application of the redo data on the standby Autonomous Container
@@ -187,6 +193,7 @@ autonomous_container_database_dataguard_associations:
         "peer_role": "PRIMARY",
         "peer_lifecycle_state": "PROVISIONING",
         "protection_mode": "MAXIMUM_AVAILABILITY",
+        "fast_start_fail_over_lag_limit_in_seconds": 56,
         "apply_lag": "apply_lag_example",
         "apply_rate": "apply_rate_example",
         "is_automatic_failover_enabled": true,

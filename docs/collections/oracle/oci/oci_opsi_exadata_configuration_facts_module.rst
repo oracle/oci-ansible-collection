@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_exadata_configuration_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -460,12 +460,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations"></div>
                     <b>exadata_configurations</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations" title="Permalink to this return value"></a>
@@ -478,12 +478,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ExadataConfiguration resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entity_source&#x27;: &#x27;EM_MANAGED_EXTERNAL_EXADATA&#x27;, &#x27;exadata_display_name&#x27;: &#x27;exadata_display_name_example&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exadata_name&#x27;: &#x27;exadata_name_example&#x27;, &#x27;exadata_rack_type&#x27;: &#x27;FULL&#x27;, &#x27;exadata_type&#x27;: &#x27;DBMACHINE&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entity_source&#x27;: &#x27;EM_MANAGED_EXTERNAL_EXADATA&#x27;, &#x27;exadata_display_name&#x27;: &#x27;exadata_display_name_example&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exadata_name&#x27;: &#x27;exadata_name_example&#x27;, &#x27;exadata_rack_type&#x27;: &#x27;FULL&#x27;, &#x27;exadata_type&#x27;: &#x27;DBMACHINE&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;vmcluster_details&#x27;: [{&#x27;cpu_allocated&#x27;: 56, &#x27;db_nodes_count&#x27;: 56, &#x27;memory_allocated_in_gbs&#x27;: 56, &#x27;vmcluster_name&#x27;: &#x27;vmcluster_name_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/compartment_id" title="Permalink to this return value"></a>
@@ -501,7 +501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/defined_tags" title="Permalink to this return value"></a>
@@ -519,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/entity_source"></div>
                     <b>entity_source</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/entity_source" title="Permalink to this return value"></a>
@@ -537,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/exadata_display_name"></div>
                     <b>exadata_display_name</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/exadata_display_name" title="Permalink to this return value"></a>
@@ -555,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/exadata_insight_id"></div>
                     <b>exadata_insight_id</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/exadata_insight_id" title="Permalink to this return value"></a>
@@ -573,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/exadata_name"></div>
                     <b>exadata_name</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/exadata_name" title="Permalink to this return value"></a>
@@ -591,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/exadata_rack_type"></div>
                     <b>exadata_rack_type</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/exadata_rack_type" title="Permalink to this return value"></a>
@@ -609,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/exadata_type"></div>
                     <b>exadata_type</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/exadata_type" title="Permalink to this return value"></a>
@@ -627,7 +627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_configurations/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-exadata_configurations/freeform_tags" title="Permalink to this return value"></a>
@@ -643,6 +643,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_configurations/vmcluster_details"></div>
+                    <b>vmcluster_details</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_configurations/vmcluster_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of objects containing VM cluster information.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_configurations/vmcluster_details/cpu_allocated"></div>
+                    <b>cpu_allocated</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_configurations/vmcluster_details/cpu_allocated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The cpu allocated on a vm cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_configurations/vmcluster_details/db_nodes_count"></div>
+                    <b>db_nodes_count</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_configurations/vmcluster_details/db_nodes_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of DB nodes on a vm cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_configurations/vmcluster_details/memory_allocated_in_gbs"></div>
+                    <b>memory_allocated_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_configurations/vmcluster_details/memory_allocated_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The memory allocated on a vm cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_configurations/vmcluster_details/vmcluster_name"></div>
+                    <b>vmcluster_name</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_configurations/vmcluster_details/vmcluster_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the vm cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vmcluster_name_example</div>
+                                    </td>
+            </tr>
+                    
                     
                         </table>
     <br/><br/>

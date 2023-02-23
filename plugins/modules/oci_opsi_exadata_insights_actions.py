@@ -67,6 +67,49 @@ exadata_insights:
     returned: on success
     type: complex
     contains:
+        enterprise_manager_identifier:
+            description:
+                - Enterprise Manager Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
+            description:
+                - Enterprise Manager Entity Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        is_auto_sync_enabled:
+            description:
+                - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights)
+                  will be placed in the same compartment as the related Exadata Insight.
+            returned: on success
+            type: bool
+            sample: true
         entity_source:
             description:
                 - Source of the Exadata system.
@@ -168,50 +211,32 @@ exadata_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        enterprise_manager_identifier:
+        exadata_infra_id:
             description:
-                - Enterprise Manager Unique Identifier
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
             returned: on success
             type: str
-            sample: enterprise_manager_identifier_example
-        enterprise_manager_entity_name:
+            sample: "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_infra_resource_type:
             description:
-                - Enterprise Manager Entity Name
+                - OCI exadata infrastructure resource type
             returned: on success
             type: str
-            sample: enterprise_manager_entity_name_example
-        enterprise_manager_entity_type:
+            sample: cloudExadataInfrastructure
+        exadata_shape:
             description:
-                - Enterprise Manager Entity Type
+                - The shape of the Exadata Infrastructure.
             returned: on success
             type: str
-            sample: enterprise_manager_entity_type_example
-        enterprise_manager_entity_identifier:
-            description:
-                - Enterprise Manager Entity Unique Identifier
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_identifier_example
-        enterprise_manager_entity_display_name:
-            description:
-                - Enterprise Manager Entity Display Name
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_display_name_example
-        enterprise_manager_bridge_id:
-            description:
-                - OPSI Enterprise Manager Bridge OCID
-            returned: on success
-            type: str
-            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-        is_auto_sync_enabled:
-            description:
-                - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights)
-                  will be placed in the same compartment as the related Exadata Insight.
-            returned: on success
-            type: bool
-            sample: true
+            sample: exadata_shape_example
     sample: {
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_auto_sync_enabled": true,
         "entity_source": "EM_MANAGED_EXTERNAL_EXADATA",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -228,13 +253,9 @@ exadata_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
-        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
-        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
-        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
-        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
-        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_auto_sync_enabled": true
+        "exadata_infra_id": "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_infra_resource_type": "cloudExadataInfrastructure",
+        "exadata_shape": "exadata_shape_example"
     }
 """
 

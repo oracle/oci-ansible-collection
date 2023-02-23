@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_forecast_trend_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -497,7 +497,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter by host resource metric. Supported values are CPU, MEMORY, and LOGICAL_MEMORY.</div>
+                                            <div>Filter by host resource metric.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -585,6 +585,21 @@ Parameters
                                             <div>Filter by utilization level by the following buckets: - HIGH_UTILIZATION: DBs with utilization greater or equal than 75. - LOW_UTILIZATION: DBs with utilization lower than 25. - MEDIUM_HIGH_UTILIZATION: DBs with utilization greater or equal than 50 but lower than 75. - MEDIUM_LOW_UTILIZATION: DBs with utilization greater or equal than 25 but lower than 50.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vmcluster_name"></div>
+                    <b>vmcluster_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-vmcluster_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of Exadata Insight VM cluster name.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -635,6 +650,7 @@ Examples
         compartment_id_in_subtree: true
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+        vmcluster_name: [ "vmcluster_name_example" ]
 
 
 
