@@ -45,6 +45,21 @@ options:
             - Indicates whether Automatic Failover is enabled for Autonomous Container Database Dataguard Association
             - This parameter is updatable.
         type: bool
+    protection_mode:
+        description:
+            - The protection mode of this Autonomous Data Guard association. For more information, see
+              L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
+              in the Oracle Data Guard documentation.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "MAXIMUM_AVAILABILITY"
+            - "MAXIMUM_PERFORMANCE"
+    fast_start_fail_over_lag_limit_in_seconds:
+        description:
+            - The lag time for my preference based on data loss tolerance in seconds.
+            - This parameter is updatable.
+        type: int
     state:
         description:
             - The state of the AutonomousContainerDatabaseDataguardAssociation.
@@ -65,6 +80,8 @@ EXAMPLES = """
 
     # optional
     is_automatic_failover_enabled: true
+    protection_mode: MAXIMUM_AVAILABILITY
+    fast_start_fail_over_lag_limit_in_seconds: 56
 
 """
 
@@ -138,6 +155,12 @@ autonomous_container_database_dataguard_association:
             returned: on success
             type: str
             sample: MAXIMUM_AVAILABILITY
+        fast_start_fail_over_lag_limit_in_seconds:
+            description:
+                - The lag time for my preference based on data loss tolerance in seconds.
+            returned: on success
+            type: int
+            sample: 56
         apply_lag:
             description:
                 - The lag time between updates to the primary Autonomous Container Database and application of the redo data on the standby Autonomous Container
@@ -197,6 +220,7 @@ autonomous_container_database_dataguard_association:
         "peer_role": "PRIMARY",
         "peer_lifecycle_state": "PROVISIONING",
         "protection_mode": "MAXIMUM_AVAILABILITY",
+        "fast_start_fail_over_lag_limit_in_seconds": 56,
         "apply_lag": "apply_lag_example",
         "apply_rate": "apply_rate_example",
         "is_automatic_failover_enabled": true,
@@ -345,6 +369,10 @@ def main():
                 aliases=["id"], type="str", required=True
             ),
             is_automatic_failover_enabled=dict(type="bool"),
+            protection_mode=dict(
+                type="str", choices=["MAXIMUM_AVAILABILITY", "MAXIMUM_PERFORMANCE"]
+            ),
+            fast_start_fail_over_lag_limit_in_seconds=dict(type="int"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

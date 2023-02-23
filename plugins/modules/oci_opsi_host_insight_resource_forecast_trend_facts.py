@@ -36,7 +36,6 @@ options:
     resource_metric:
         description:
             - Filter by host resource metric.
-              Supported values are CPU, MEMORY, and LOGICAL_MEMORY.
         type: str
         required: true
     analysis_time_interval:
@@ -176,6 +175,11 @@ options:
         description:
             - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host (Compute Id)
         type: str
+    vmcluster_name:
+        description:
+            - Optional list of Exadata Insight VM cluster name.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -205,6 +209,7 @@ EXAMPLES = """
     compartment_id_in_subtree: true
     host_type: [ "host_type_example" ]
     host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+    vmcluster_name: [ "vmcluster_name_example" ]
 
 """
 
@@ -356,6 +361,7 @@ class HostInsightResourceForecastTrendFactsHelperGen(OCIResourceFactsHelperBase)
             "compartment_id_in_subtree",
             "host_type",
             "host_id",
+            "vmcluster_name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -420,6 +426,7 @@ def main():
             compartment_id_in_subtree=dict(type="bool"),
             host_type=dict(type="list", elements="str"),
             host_id=dict(type="str"),
+            vmcluster_name=dict(type="list", elements="str"),
         )
     )
 

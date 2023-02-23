@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database_dataguard_association -- M
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -263,6 +263,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-fast_start_fail_over_lag_limit_in_seconds"></div>
+                    <b>fast_start_fail_over_lag_limit_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#parameter-fast_start_fail_over_lag_limit_in_seconds" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The lag time for my preference based on data loss tolerance in seconds.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-is_automatic_failover_enabled"></div>
                     <b>is_automatic_failover_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-is_automatic_failover_enabled" title="Permalink to this option"></a>
@@ -278,6 +294,26 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates whether Automatic Failover is enabled for Autonomous Container Database Dataguard Association</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-protection_mode"></div>
+                    <b>protection_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-protection_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>MAXIMUM_AVAILABILITY</li>
+                                                                                                                                                                                                <li>MAXIMUM_PERFORMANCE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The protection mode of this Autonomous Data Guard association. For more information, see <a href='http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000'>Oracle Data Guard Protection Modes</a> in the Oracle Data Guard documentation.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -397,6 +433,8 @@ Examples
 
         # optional
         is_automatic_failover_enabled: true
+        protection_mode: MAXIMUM_AVAILABILITY
+        fast_start_fail_over_lag_limit_in_seconds: 56
 
 
 
@@ -433,7 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousContainerDatabaseDataguardAssociation resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_lag&#x27;: &#x27;apply_lag_example&#x27;, &#x27;apply_rate&#x27;: &#x27;apply_rate_example&#x27;, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic_failover_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_autonomous_container_database_dataguard_association_id&#x27;: &#x27;ocid1.peerautonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_autonomous_container_database_id&#x27;: &#x27;ocid1.peerautonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_role&#x27;: &#x27;PRIMARY&#x27;, &#x27;protection_mode&#x27;: &#x27;MAXIMUM_AVAILABILITY&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_synced&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;transport_lag&#x27;: &#x27;transport_lag_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_lag&#x27;: &#x27;apply_lag_example&#x27;, &#x27;apply_rate&#x27;: &#x27;apply_rate_example&#x27;, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fast_start_fail_over_lag_limit_in_seconds&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic_failover_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_autonomous_container_database_dataguard_association_id&#x27;: &#x27;ocid1.peerautonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_autonomous_container_database_id&#x27;: &#x27;ocid1.peerautonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_role&#x27;: &#x27;PRIMARY&#x27;, &#x27;protection_mode&#x27;: &#x27;MAXIMUM_AVAILABILITY&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_synced&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;transport_lag&#x27;: &#x27;transport_lag_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -490,6 +528,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database_dataguard_association/fast_start_fail_over_lag_limit_in_seconds"></div>
+                    <b>fast_start_fail_over_lag_limit_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database_dataguard_association/fast_start_fail_over_lag_limit_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The lag time for my preference based on data loss tolerance in seconds.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

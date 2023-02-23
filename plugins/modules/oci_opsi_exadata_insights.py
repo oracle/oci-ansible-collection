@@ -29,40 +29,190 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - Compartment Identifier of Exadata insight
-            - Required for create using I(state=present).
-        type: str
     enterprise_manager_identifier:
         description:
             - Enterprise Manager Unique Identifier
-            - Required for create using I(state=present).
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
         type: str
     enterprise_manager_bridge_id:
         description:
             - OPSI Enterprise Manager Bridge OCID
-            - Required for create using I(state=present).
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
         type: str
     enterprise_manager_entity_identifier:
         description:
             - Enterprise Manager Entity Unique Identifier
-            - Required for create using I(state=present).
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
         type: str
     member_entity_details:
         description:
             - ""
+            - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
         type: list
         elements: dict
         suboptions:
             enterprise_manager_entity_identifier:
                 description:
                     - Enterprise Manager Entity Unique Identifier
+                    - Required when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
                 type: str
                 required: true
             compartment_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+                    - Required when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
+                type: str
+                required: true
+    compartment_id:
+        description:
+            - Compartment Identifier of Exadata insight
+            - Required for create using I(state=present).
+        type: str
+    exadata_infra_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
+            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+        type: str
+    member_vm_cluster_details:
+        description:
+            - ""
+            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+        type: list
+        elements: dict
+        suboptions:
+            vmcluster_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM Cluster.
+                    - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                type: str
+                required: true
+            opsi_private_endpoint_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+                    - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                type: str
+                required: true
+            member_database_details:
+                description:
+                    - The databases that belong to the VM Cluster
+                    - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                type: list
+                elements: dict
+                suboptions:
+                    entity_source:
+                        description:
+                            - Source of the database entity.
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        choices:
+                            - "EM_MANAGED_EXTERNAL_DATABASE"
+                            - "PE_COMANAGED_DATABASE"
+                        required: true
+                    compartment_id:
+                        description:
+                            - Compartment Identifier of database
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        required: true
+                    freeform_tags:
+                        description:
+                            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                              Example: `{\\"bar-key\\": \\"value\\"}`"
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: dict
+                    defined_tags:
+                        description:
+                            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: dict
+                    database_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        required: true
+                    database_resource_type:
+                        description:
+                            - OCI database resource type
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        required: true
+                    opsi_private_endpoint_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                    dbm_private_endpoint_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Management private
+                              endpoint
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                    service_name:
+                        description:
+                            - Database service name used for connection requests.
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        required: true
+                    credential_details:
+                        description:
+                            - ""
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: dict
+                        required: true
+                        suboptions:
+                            credential_source_name:
+                                description:
+                                    - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                                type: str
+                                required: true
+                            credential_type:
+                                description:
+                                    - Credential type.
+                                type: str
+                                choices:
+                                    - "CREDENTIALS_BY_SOURCE"
+                                    - "CREDENTIALS_BY_VAULT"
+                                required: true
+                            user_name:
+                                description:
+                                    - database user name.
+                                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                                type: str
+                            password_secret_id:
+                                description:
+                                    - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database
+                                      credentials.
+                                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                                type: str
+                            role:
+                                description:
+                                    - database user role.
+                                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                                type: str
+                                choices:
+                                    - "NORMAL"
+                    deployment_type:
+                        description:
+                            - Database Deployment Type
+                            - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: str
+                        choices:
+                            - "VIRTUAL_MACHINE"
+                            - "BARE_METAL"
+                            - "EXACS"
+                        required: true
+                    system_tags:
+                        description:
+                            - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                              Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: dict
+            compartment_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+                    - Required when entity_source is 'PE_COMANAGED_EXADATA'
                 type: str
                 required: true
     entity_source:
@@ -72,6 +222,7 @@ options:
         type: str
         choices:
             - "EM_MANAGED_EXTERNAL_EXADATA"
+            - "PE_COMANAGED_EXADATA"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -89,6 +240,7 @@ options:
             - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights) will
               be placed in the same compartment as the related Exadata Insight.
             - This parameter is updatable.
+            - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_EXADATA'
         type: bool
     exadata_insight_id:
         description:
@@ -113,10 +265,10 @@ EXAMPLES = """
 - name: Create exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA
   oci_opsi_exadata_insights:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     entity_source: EM_MANAGED_EXTERNAL_EXADATA
 
     # optional
@@ -128,6 +280,43 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_auto_sync_enabled: true
 
+- name: Create exadata_insights with entity_source = PE_COMANAGED_EXADATA
+  oci_opsi_exadata_insights:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_infra_id: "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_source: PE_COMANAGED_EXADATA
+
+    # optional
+    member_vm_cluster_details:
+    - # required
+      vmcluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+      opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      member_database_details:
+      - # required
+        entity_source: EM_MANAGED_EXTERNAL_DATABASE
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        database_resource_type: database_resource_type_example
+        service_name: service_name_example
+        credential_details:
+          # required
+          credential_source_name: credential_source_name_example
+          credential_type: CREDENTIALS_BY_SOURCE
+        deployment_type: VIRTUAL_MACHINE
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        system_tags: null
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Update exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA
   oci_opsi_exadata_insights:
     # required
@@ -137,6 +326,15 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_auto_sync_enabled: true
+
+- name: Update exadata_insights with entity_source = PE_COMANAGED_EXADATA
+  oci_opsi_exadata_insights:
+    # required
+    entity_source: PE_COMANAGED_EXADATA
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete exadata_insights
   oci_opsi_exadata_insights:
@@ -153,6 +351,49 @@ exadata_insights:
     returned: on success
     type: complex
     contains:
+        enterprise_manager_identifier:
+            description:
+                - Enterprise Manager Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
+            description:
+                - Enterprise Manager Entity Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        is_auto_sync_enabled:
+            description:
+                - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights)
+                  will be placed in the same compartment as the related Exadata Insight.
+            returned: on success
+            type: bool
+            sample: true
         entity_source:
             description:
                 - Source of the Exadata system.
@@ -254,50 +495,32 @@ exadata_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        enterprise_manager_identifier:
+        exadata_infra_id:
             description:
-                - Enterprise Manager Unique Identifier
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
             returned: on success
             type: str
-            sample: enterprise_manager_identifier_example
-        enterprise_manager_entity_name:
+            sample: "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_infra_resource_type:
             description:
-                - Enterprise Manager Entity Name
+                - OCI exadata infrastructure resource type
             returned: on success
             type: str
-            sample: enterprise_manager_entity_name_example
-        enterprise_manager_entity_type:
+            sample: cloudExadataInfrastructure
+        exadata_shape:
             description:
-                - Enterprise Manager Entity Type
+                - The shape of the Exadata Infrastructure.
             returned: on success
             type: str
-            sample: enterprise_manager_entity_type_example
-        enterprise_manager_entity_identifier:
-            description:
-                - Enterprise Manager Entity Unique Identifier
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_identifier_example
-        enterprise_manager_entity_display_name:
-            description:
-                - Enterprise Manager Entity Display Name
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_display_name_example
-        enterprise_manager_bridge_id:
-            description:
-                - OPSI Enterprise Manager Bridge OCID
-            returned: on success
-            type: str
-            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-        is_auto_sync_enabled:
-            description:
-                - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights)
-                  will be placed in the same compartment as the related Exadata Insight.
-            returned: on success
-            type: bool
-            sample: true
+            sample: exadata_shape_example
     sample: {
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_auto_sync_enabled": true,
         "entity_source": "EM_MANAGED_EXTERNAL_EXADATA",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -314,13 +537,9 @@ exadata_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
-        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
-        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
-        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
-        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
-        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_auto_sync_enabled": true
+        "exadata_infra_id": "ocid1.exadatainfra.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_infra_resource_type": "cloudExadataInfrastructure",
+        "exadata_shape": "exadata_shape_example"
     }
 """
 
@@ -410,7 +629,7 @@ class ExadataInsightsHelperGen(OCIResourceHelperBase):
         return CreateExadataInsightDetails
 
     def get_exclude_attributes(self):
-        return ["member_entity_details"]
+        return ["member_vm_cluster_details", "member_entity_details"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -472,7 +691,6 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str"),
             enterprise_manager_identifier=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
             enterprise_manager_entity_identifier=dict(type="str"),
@@ -486,7 +704,69 @@ def main():
                     compartment_id=dict(type="str", required=True),
                 ),
             ),
-            entity_source=dict(type="str", choices=["EM_MANAGED_EXTERNAL_EXADATA"]),
+            compartment_id=dict(type="str"),
+            exadata_infra_id=dict(type="str"),
+            member_vm_cluster_details=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    vmcluster_id=dict(type="str", required=True),
+                    opsi_private_endpoint_id=dict(type="str", required=True),
+                    member_database_details=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            entity_source=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "EM_MANAGED_EXTERNAL_DATABASE",
+                                    "PE_COMANAGED_DATABASE",
+                                ],
+                            ),
+                            compartment_id=dict(type="str", required=True),
+                            freeform_tags=dict(type="dict"),
+                            defined_tags=dict(type="dict"),
+                            database_id=dict(type="str", required=True),
+                            database_resource_type=dict(type="str", required=True),
+                            opsi_private_endpoint_id=dict(type="str"),
+                            dbm_private_endpoint_id=dict(type="str"),
+                            service_name=dict(type="str", required=True),
+                            credential_details=dict(
+                                type="dict",
+                                required=True,
+                                options=dict(
+                                    credential_source_name=dict(
+                                        type="str", required=True
+                                    ),
+                                    credential_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=[
+                                            "CREDENTIALS_BY_SOURCE",
+                                            "CREDENTIALS_BY_VAULT",
+                                        ],
+                                    ),
+                                    user_name=dict(type="str"),
+                                    password_secret_id=dict(type="str"),
+                                    role=dict(type="str", choices=["NORMAL"]),
+                                ),
+                            ),
+                            deployment_type=dict(
+                                type="str",
+                                required=True,
+                                choices=["VIRTUAL_MACHINE", "BARE_METAL", "EXACS"],
+                            ),
+                            system_tags=dict(type="dict"),
+                        ),
+                    ),
+                    compartment_id=dict(type="str", required=True),
+                ),
+            ),
+            entity_source=dict(
+                type="str",
+                choices=["EM_MANAGED_EXTERNAL_EXADATA", "PE_COMANAGED_EXADATA"],
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             is_auto_sync_enabled=dict(type="bool"),

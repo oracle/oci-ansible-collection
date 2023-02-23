@@ -185,6 +185,11 @@ options:
         description:
             - A flag to search all resources within a given compartment and all sub-compartments.
         type: bool
+    vmcluster_name:
+        description:
+            - Optional list of Exadata Insight VM cluster name.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -215,6 +220,7 @@ EXAMPLES = """
     defined_tag_exists: [ "defined_tag_exists_example" ]
     freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
+    vmcluster_name: [ "vmcluster_name_example" ]
 
 """
 
@@ -346,6 +352,7 @@ class ResourceCapacityTrendFactsHelperGen(OCIResourceFactsHelperBase):
             "defined_tag_exists",
             "freeform_tag_exists",
             "compartment_id_in_subtree",
+            "vmcluster_name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -426,6 +433,7 @@ def main():
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
             compartment_id_in_subtree=dict(type="bool"),
+            vmcluster_name=dict(type="list", elements="str"),
         )
     )
 

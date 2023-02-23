@@ -267,6 +267,12 @@ autonomous_container_databases:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_snapshot_standby_revert:
+            description:
+                - The date and time the Autonomous Container Database will be reverted to Standby from Snapshot Standby.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         patch_model:
             description:
                 - Database patch model preference.
@@ -388,6 +394,12 @@ autonomous_container_databases:
             returned: on success
             type: int
             sample: 56
+        version_preference:
+            description:
+                - The next maintenance version preference.
+            returned: on success
+            type: str
+            sample: NEXT_RELEASE_UPDATE
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -545,6 +557,7 @@ autonomous_container_databases:
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "time_snapshot_standby_revert": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
@@ -566,6 +579,7 @@ autonomous_container_databases:
             "lead_time_in_weeks": 56
         },
         "standby_maintenance_buffer_in_days": 56,
+        "version_preference": "NEXT_RELEASE_UPDATE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "role": "PRIMARY",

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.13.0
+Collection version 4.14.0
 
 .. toctree::
     :maxdepth: 1
@@ -557,15 +557,24 @@ Modules
 * :ref:`oci_data_science_notebook_session_actions <ansible_collections.oracle.oci.oci_data_science_notebook_session_actions_module>` -- Perform actions on a NotebookSession resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session_facts <ansible_collections.oracle.oci.oci_data_science_notebook_session_facts_module>` -- Fetches details about one or multiple NotebookSession resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session_shape_facts <ansible_collections.oracle.oci.oci_data_science_notebook_session_shape_facts_module>` -- Fetches details about one or multiple NotebookSessionShape resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline <ansible_collections.oracle.oci.oci_data_science_pipeline_module>` -- Manage a Pipeline resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline_actions <ansible_collections.oracle.oci.oci_data_science_pipeline_actions_module>` -- Perform actions on a Pipeline resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline_facts <ansible_collections.oracle.oci.oci_data_science_pipeline_facts_module>` -- Fetches details about one or multiple Pipeline resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline_run <ansible_collections.oracle.oci.oci_data_science_pipeline_run_module>` -- Manage a PipelineRun resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline_run_actions <ansible_collections.oracle.oci.oci_data_science_pipeline_run_actions_module>` -- Perform actions on a PipelineRun resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_pipeline_run_facts <ansible_collections.oracle.oci.oci_data_science_pipeline_run_facts_module>` -- Fetches details about one or multiple PipelineRun resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_project <ansible_collections.oracle.oci.oci_data_science_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_project_actions <ansible_collections.oracle.oci.oci_data_science_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_project_facts <ansible_collections.oracle.oci.oci_data_science_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_step_artifact <ansible_collections.oracle.oci.oci_data_science_step_artifact_module>` -- Manage a StepArtifact resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_step_artifact_content_facts <ansible_collections.oracle.oci.oci_data_science_step_artifact_content_facts_module>` -- Fetches details about a StepArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database <ansible_collections.oracle.oci.oci_database_autonomous_container_database_module>` -- Manage an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database_actions <ansible_collections.oracle.oci.oci_database_autonomous_container_database_actions_module>` -- Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database_dataguard_association <ansible_collections.oracle.oci.oci_database_autonomous_container_database_dataguard_association_module>` -- Manage an AutonomousContainerDatabaseDataguardAssociation resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database_dataguard_association_actions <ansible_collections.oracle.oci.oci_database_autonomous_container_database_dataguard_association_actions_module>` -- Perform actions on an AutonomousContainerDatabaseDataguardAssociation resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database_dataguard_association_facts <ansible_collections.oracle.oci.oci_database_autonomous_container_database_dataguard_association_facts_module>` -- Fetches details about one or multiple AutonomousContainerDatabaseDataguardAssociation resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_container_database_facts <ansible_collections.oracle.oci.oci_database_autonomous_container_database_facts_module>` -- Fetches details about one or multiple AutonomousContainerDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_autonomous_container_database_version_facts <ansible_collections.oracle.oci.oci_database_autonomous_container_database_version_facts_module>` -- Fetches details about one or multiple AutonomousContainerDatabaseVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database <ansible_collections.oracle.oci.oci_database_autonomous_database_module>` -- Manage an AutonomousDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_actions <ansible_collections.oracle.oci.oci_database_autonomous_database_actions_module>` -- Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_backup <ansible_collections.oracle.oci.oci_database_autonomous_database_backup_module>` -- Manage an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
@@ -586,6 +595,7 @@ Modules
 * :ref:`oci_database_autonomous_exadata_infrastructure_ocpus_facts <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_ocpus_facts_module>` -- Fetches details about a AutonomousExadataInfrastructureOcpus resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_exadata_infrastructure_shape_facts <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_shape_facts_module>` -- Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_patch_facts <ansible_collections.oracle.oci.oci_database_autonomous_patch_facts_module>` -- Fetches details about one or multiple AutonomousPatch resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_autonomous_virtual_machine_facts <ansible_collections.oracle.oci.oci_database_autonomous_virtual_machine_facts_module>` -- Fetches details about one or multiple AutonomousVirtualMachine resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_vm_cluster <ansible_collections.oracle.oci.oci_database_autonomous_vm_cluster_module>` -- Manage an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_vm_cluster_actions <ansible_collections.oracle.oci.oci_database_autonomous_vm_cluster_actions_module>` -- Perform actions on an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_vm_cluster_facts <ansible_collections.oracle.oci.oci_database_autonomous_vm_cluster_facts_module>` -- Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
@@ -1494,6 +1504,10 @@ Modules
 * :ref:`oci_opsi_awr_hub_facts <ansible_collections.oracle.oci.oci_opsi_awr_hub_facts_module>` -- Fetches details about one or multiple AwrHub resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_report_facts_module>` -- Fetches details about a AwrReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_snapshot_facts <ansible_collections.oracle.oci.oci_opsi_awr_snapshot_facts_module>` -- Fetches details about one or multiple AwrSnapshot resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_configuration_items_facts <ansible_collections.oracle.oci.oci_opsi_configuration_items_facts_module>` -- Fetches details about a ConfigurationItems resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_configurations <ansible_collections.oracle.oci.oci_opsi_configurations_module>` -- Manage an OpsiConfigurations resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_configurations_actions <ansible_collections.oracle.oci.oci_opsi_configurations_actions_module>` -- Perform actions on an OpsiConfigurations resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_configurations_facts <ansible_collections.oracle.oci.oci_opsi_configurations_facts_module>` -- Fetches details about one or multiple OpsiConfigurations resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_data_objects_actions <ansible_collections.oracle.oci.oci_opsi_data_objects_actions_module>` -- Perform actions on an OpsiDataObjects resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_data_objects_facts <ansible_collections.oracle.oci.oci_opsi_data_objects_facts_module>` -- Fetches details about one or multiple OpsiDataObjects resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_configuration_facts <ansible_collections.oracle.oci.oci_opsi_database_configuration_facts_module>` -- Fetches details about one or multiple DatabaseConfiguration resources in Oracle Cloud Infrastructure
@@ -1620,6 +1634,15 @@ Modules
 * :ref:`oci_queue_actions <ansible_collections.oracle.oci.oci_queue_actions_module>` -- Perform actions on a Queue resource in Oracle Cloud Infrastructure
 * :ref:`oci_queue_facts <ansible_collections.oracle.oci.oci_queue_facts_module>` -- Fetches details about one or multiple Queue resources in Oracle Cloud Infrastructure
 * :ref:`oci_queue_stats_facts <ansible_collections.oracle.oci.oci_queue_stats_facts_module>` -- Fetches details about a QueueStats resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protected_database <ansible_collections.oracle.oci.oci_recovery_protected_database_module>` -- Manage a ProtectedDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protected_database_actions <ansible_collections.oracle.oci.oci_recovery_protected_database_actions_module>` -- Perform actions on a ProtectedDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protected_database_facts <ansible_collections.oracle.oci.oci_recovery_protected_database_facts_module>` -- Fetches details about one or multiple ProtectedDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protection_policy <ansible_collections.oracle.oci.oci_recovery_protection_policy_module>` -- Manage a ProtectionPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protection_policy_actions <ansible_collections.oracle.oci.oci_recovery_protection_policy_actions_module>` -- Perform actions on a ProtectionPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_protection_policy_facts <ansible_collections.oracle.oci.oci_recovery_protection_policy_facts_module>` -- Fetches details about one or multiple ProtectionPolicy resources in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_service_subnet <ansible_collections.oracle.oci.oci_recovery_service_subnet_module>` -- Manage a RecoveryServiceSubnet resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_service_subnet_actions <ansible_collections.oracle.oci.oci_recovery_service_subnet_actions_module>` -- Perform actions on a RecoveryServiceSubnet resource in Oracle Cloud Infrastructure
+* :ref:`oci_recovery_service_subnet_facts <ansible_collections.oracle.oci.oci_recovery_service_subnet_facts_module>` -- Fetches details about one or multiple RecoveryServiceSubnet resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_module>` -- Manage a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
@@ -2407,15 +2430,24 @@ Modules
     oci_data_science_notebook_session_actions_module
     oci_data_science_notebook_session_facts_module
     oci_data_science_notebook_session_shape_facts_module
+    oci_data_science_pipeline_module
+    oci_data_science_pipeline_actions_module
+    oci_data_science_pipeline_facts_module
+    oci_data_science_pipeline_run_module
+    oci_data_science_pipeline_run_actions_module
+    oci_data_science_pipeline_run_facts_module
     oci_data_science_project_module
     oci_data_science_project_actions_module
     oci_data_science_project_facts_module
+    oci_data_science_step_artifact_module
+    oci_data_science_step_artifact_content_facts_module
     oci_database_autonomous_container_database_module
     oci_database_autonomous_container_database_actions_module
     oci_database_autonomous_container_database_dataguard_association_module
     oci_database_autonomous_container_database_dataguard_association_actions_module
     oci_database_autonomous_container_database_dataguard_association_facts_module
     oci_database_autonomous_container_database_facts_module
+    oci_database_autonomous_container_database_version_facts_module
     oci_database_autonomous_database_module
     oci_database_autonomous_database_actions_module
     oci_database_autonomous_database_backup_module
@@ -2436,6 +2468,7 @@ Modules
     oci_database_autonomous_exadata_infrastructure_ocpus_facts_module
     oci_database_autonomous_exadata_infrastructure_shape_facts_module
     oci_database_autonomous_patch_facts_module
+    oci_database_autonomous_virtual_machine_facts_module
     oci_database_autonomous_vm_cluster_module
     oci_database_autonomous_vm_cluster_actions_module
     oci_database_autonomous_vm_cluster_facts_module
@@ -3344,6 +3377,10 @@ Modules
     oci_opsi_awr_hub_facts_module
     oci_opsi_awr_report_facts_module
     oci_opsi_awr_snapshot_facts_module
+    oci_opsi_configuration_items_facts_module
+    oci_opsi_configurations_module
+    oci_opsi_configurations_actions_module
+    oci_opsi_configurations_facts_module
     oci_opsi_data_objects_actions_module
     oci_opsi_data_objects_facts_module
     oci_opsi_database_configuration_facts_module
@@ -3470,6 +3507,15 @@ Modules
     oci_queue_actions_module
     oci_queue_facts_module
     oci_queue_stats_facts_module
+    oci_recovery_protected_database_module
+    oci_recovery_protected_database_actions_module
+    oci_recovery_protected_database_facts_module
+    oci_recovery_protection_policy_module
+    oci_recovery_protection_policy_actions_module
+    oci_recovery_protection_policy_facts_module
+    oci_recovery_service_subnet_module
+    oci_recovery_service_subnet_actions_module
+    oci_recovery_service_subnet_facts_module
     oci_resource_manager_configuration_source_provider_module
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module

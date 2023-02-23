@@ -87,6 +87,11 @@ options:
         description:
             - The data disk group size to be allocated for Autonomous Databases, in TBs.
         type: float
+    db_servers:
+        description:
+            - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db servers.
+        type: list
+        elements: str
     scan_listener_port_tls:
         description:
             - The SCAN Listener TLS port number. Default value is 2484.
@@ -255,6 +260,7 @@ EXAMPLES = """
     compute_model: ECPU
     memory_per_oracle_compute_unit_in_gbs: 56
     autonomous_data_storage_size_in_tbs: 3.4
+    db_servers: [ "db_servers_example" ]
     scan_listener_port_tls: 56
     scan_listener_port_non_tls: 56
     is_mtls_enabled: true
@@ -595,6 +601,12 @@ autonomous_vm_cluster:
             returned: on success
             type: float
             sample: 1.2
+        node_count:
+            description:
+                - The number of nodes in the Autonomous VM Cluster.
+            returned: on success
+            type: int
+            sample: 56
         license_model:
             description:
                 - The Oracle license model that applies to the Autonomous VM cluster. The default is LICENSE_INCLUDED.
@@ -616,6 +628,12 @@ autonomous_vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        db_servers:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db servers.
+            returned: on success
+            type: list
+            sample: []
         reclaimable_cpus:
             description:
                 - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
@@ -696,9 +714,11 @@ autonomous_vm_cluster:
         "data_storage_size_in_tbs": 1.2,
         "data_storage_size_in_gbs": 1.2,
         "available_data_storage_size_in_tbs": 1.2,
+        "node_count": 56,
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "db_servers": [],
         "reclaimable_cpus": 56,
         "available_container_databases": 56,
         "available_autonomous_data_storage_size_in_tbs": 1.2,
@@ -885,6 +905,7 @@ def main():
             compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
             memory_per_oracle_compute_unit_in_gbs=dict(type="int"),
             autonomous_data_storage_size_in_tbs=dict(type="float"),
+            db_servers=dict(type="list", elements="str"),
             scan_listener_port_tls=dict(type="int"),
             scan_listener_port_non_tls=dict(type="int"),
             is_mtls_enabled=dict(type="bool"),

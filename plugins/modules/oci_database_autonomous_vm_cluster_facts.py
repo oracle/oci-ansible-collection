@@ -348,6 +348,12 @@ autonomous_vm_clusters:
             returned: on success
             type: float
             sample: 1.2
+        node_count:
+            description:
+                - The number of nodes in the Autonomous VM Cluster.
+            returned: on success
+            type: int
+            sample: 56
         license_model:
             description:
                 - The Oracle license model that applies to the Autonomous VM cluster. The default is LICENSE_INCLUDED.
@@ -369,6 +375,12 @@ autonomous_vm_clusters:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        db_servers:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db servers.
+            returned: on success
+            type: list
+            sample: []
         reclaimable_cpus:
             description:
                 - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
@@ -449,9 +461,11 @@ autonomous_vm_clusters:
         "data_storage_size_in_tbs": 1.2,
         "data_storage_size_in_gbs": 1.2,
         "available_data_storage_size_in_tbs": 1.2,
+        "node_count": 56,
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "db_servers": [],
         "reclaimable_cpus": 56,
         "available_container_databases": 56,
         "available_autonomous_data_storage_size_in_tbs": 1.2,

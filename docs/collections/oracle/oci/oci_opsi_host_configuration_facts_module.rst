@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_configuration_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -488,6 +488,21 @@ Parameters
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vmcluster_name"></div>
+                    <b>vmcluster_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-vmcluster_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of Exadata Insight VM cluster name.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -531,6 +546,7 @@ Examples
         compartment_id_in_subtree: true
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+        vmcluster_name: [ "vmcluster_name_example" ]
 
 
 
