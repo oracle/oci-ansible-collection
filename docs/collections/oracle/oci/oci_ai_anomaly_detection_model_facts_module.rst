@@ -30,7 +30,7 @@ oracle.oci.oci_ai_anomaly_detection_model_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,7 +463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Model resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETING&#x27;, &#x27;model_training_details&#x27;: {&#x27;data_asset_ids&#x27;: [], &#x27;target_fap&#x27;: 3.4, &#x27;training_fraction&#x27;: 3.4}, &#x27;model_training_results&#x27;: {&#x27;fap&#x27;: 3.4, &#x27;is_training_goal_achieved&#x27;: True, &#x27;multivariate_fap&#x27;: 3.4, &#x27;row_reduction_details&#x27;: {&#x27;is_reduction_enabled&#x27;: True, &#x27;reduction_method&#x27;: &#x27;DELETE_ROW&#x27;, &#x27;reduction_percentage&#x27;: 1.2}, &#x27;signal_details&#x27;: [{&#x27;details&#x27;: &#x27;details_example&#x27;, &#x27;fap&#x27;: 3.4, &#x27;is_quantized&#x27;: True, &#x27;max&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;mvi_ratio&#x27;: 1.2, &#x27;signal_name&#x27;: &#x27;signal_name_example&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;std&#x27;: 1.2}], &#x27;warning&#x27;: &#x27;warning_example&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETING&#x27;, &#x27;model_training_details&#x27;: {&#x27;algorithm_hint&#x27;: &#x27;MULTIVARIATE_MSET&#x27;, &#x27;data_asset_ids&#x27;: [], &#x27;target_fap&#x27;: 3.4, &#x27;training_fraction&#x27;: 3.4, &#x27;window_size&#x27;: 56}, &#x27;model_training_results&#x27;: {&#x27;algorithm&#x27;: &#x27;MULTIVARIATE_MSET&#x27;, &#x27;fap&#x27;: 3.4, &#x27;is_training_goal_achieved&#x27;: True, &#x27;multivariate_fap&#x27;: 3.4, &#x27;row_reduction_details&#x27;: {&#x27;is_reduction_enabled&#x27;: True, &#x27;reduction_method&#x27;: &#x27;DELETE_ROW&#x27;, &#x27;reduction_percentage&#x27;: 1.2}, &#x27;signal_details&#x27;: [{&#x27;details&#x27;: &#x27;details_example&#x27;, &#x27;fap&#x27;: 3.4, &#x27;is_quantized&#x27;: True, &#x27;max&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;mvi_ratio&#x27;: 1.2, &#x27;signal_name&#x27;: &#x27;signal_name_example&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;std&#x27;: 1.2}], &#x27;warning&#x27;: &#x27;warning_example&#x27;, &#x27;window_size&#x27;: 56}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -631,6 +631,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/model_training_details/algorithm_hint"></div>
+                    <b>algorithm_hint</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_training_details/algorithm_hint" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>User can choose specific algorithm for training.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MULTIVARIATE_MSET</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-models/model_training_details/data_asset_ids"></div>
                     <b>data_asset_ids</b>
                     <a class="ansibleOptionLink" href="#return-models/model_training_details/data_asset_ids" title="Permalink to this return value"></a>
@@ -682,6 +701,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/model_training_details/window_size"></div>
+                    <b>window_size</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_training_details/window_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value would determine the window size of the training algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -700,6 +738,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/model_training_results/algorithm"></div>
+                    <b>algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_training_results/algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Actual algorithm used to train the model</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MULTIVARIATE_MSET</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1051,6 +1108,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">warning_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/model_training_results/window_size"></div>
+                    <b>window_size</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_training_results/window_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Window size defined during training or deduced by the algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1082,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{ &quot;orcl-cloud&quot;: { &quot;free-tier-retained&quot;: &quot;true&quot; } }`</div>
                                         <br/>
                                                         </td>
             </tr>

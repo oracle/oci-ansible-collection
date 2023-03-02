@@ -152,6 +152,12 @@ models:
             returned: on success
             type: complex
             contains:
+                algorithm_hint:
+                    description:
+                        - User can choose specific algorithm for training.
+                    returned: on success
+                    type: str
+                    sample: MULTIVARIATE_MSET
                 target_fap:
                     description:
                         - A target model accuracy metric user provides as their requirement
@@ -164,6 +170,12 @@ models:
                     returned: on success
                     type: float
                     sample: 3.4
+                window_size:
+                    description:
+                        - This value would determine the window size of the training algorithm.
+                    returned: on success
+                    type: int
+                    sample: 56
                 data_asset_ids:
                     description:
                         - The list of OCIDs of the data assets to train the model. The dataAssets have to be in the same project where the ai model would
@@ -189,6 +201,18 @@ models:
                     returned: on success
                     type: float
                     sample: 3.4
+                algorithm:
+                    description:
+                        - Actual algorithm used to train the model
+                    returned: on success
+                    type: str
+                    sample: MULTIVARIATE_MSET
+                window_size:
+                    description:
+                        - Window size defined during training or deduced by the algorithm.
+                    returned: on success
+                    type: int
+                    sample: 56
                 is_training_goal_achieved:
                     description:
                         - A boolean value to indicate if train goal/targetFap is achieved for trained model
@@ -325,7 +349,7 @@ models:
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  Example: `{ \\"orcl-cloud\\": { \\"free-tier-retained\\": \\"true\\" } }`"
             returned: on success
             type: dict
             sample: {}
@@ -337,13 +361,17 @@ models:
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "model_training_details": {
+            "algorithm_hint": "MULTIVARIATE_MSET",
             "target_fap": 3.4,
             "training_fraction": 3.4,
+            "window_size": 56,
             "data_asset_ids": []
         },
         "model_training_results": {
             "fap": 3.4,
             "multivariate_fap": 3.4,
+            "algorithm": "MULTIVARIATE_MSET",
+            "window_size": 56,
             "is_training_goal_achieved": true,
             "warning": "warning_example",
             "signal_details": [{

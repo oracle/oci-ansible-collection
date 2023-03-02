@@ -329,6 +329,19 @@ managed_database:
                     returned: on success
                     type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external
+                  DB system that this Managed Database is part of.
+            returned: on success
+            type: str
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        storage_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the storage DB system.
+            returned: on success
+            type: str
+            sample: "ocid1.storagesystem.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Managed Database was created.
@@ -439,6 +452,8 @@ managed_database:
             "name": "name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         }],
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "storage_system_id": "ocid1.storagesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "database_status": "UP",
         "parent_container_name": "parent_container_name_example",

@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.15.0]
+
+## Added
+- Support for discovery and monitoring of external Oracle database infrastructure components in the Database Management service
+- Support for async jobs in the AI Anomaly Detection service
+- Support for specifying algorithm hints and windows sizes during model training in the AI Anomaly Detection service
+- Support for specifying a sensitivity value during model detection in the AI Anomaly Detection service
+
+
+## Fixed
+- Issue while updating shape_details for `oci_loadbalancer_load_balancer` module (#205)
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.93.1
+
 ## [4.14.0]
 
 ## Added

@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_managed_database_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -466,7 +466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagedDatabase resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_status&#x27;: &#x27;UP&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_count&#x27;: 56, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;is_cluster&#x27;: True, &#x27;managed_database_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;management_option&#x27;: &#x27;BASIC&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parent_container_compartment_id&#x27;: &#x27;ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_id&#x27;: &#x27;ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_name&#x27;: &#x27;parent_container_name_example&#x27;, &#x27;pdb_count&#x27;: 56, &#x27;pdb_status&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;workload_type&#x27;: &#x27;OLTP&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_status&#x27;: &#x27;UP&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_count&#x27;: 56, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;is_cluster&#x27;: True, &#x27;managed_database_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;management_option&#x27;: &#x27;BASIC&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parent_container_compartment_id&#x27;: &#x27;ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_id&#x27;: &#x27;ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_name&#x27;: &#x27;parent_container_name_example&#x27;, &#x27;pdb_count&#x27;: 56, &#x27;pdb_status&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;storage_system_id&#x27;: &#x27;ocid1.storagesystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;workload_type&#x27;: &#x27;OLTP&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -557,6 +557,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_SIDB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_databases/db_system_id"></div>
+                    <b>db_system_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_databases/db_system_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the external DB system that this Managed Database is part of.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -968,6 +986,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_databases/storage_system_id"></div>
+                    <b>storage_system_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_databases/storage_system_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the storage DB system.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.storagesystem.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
