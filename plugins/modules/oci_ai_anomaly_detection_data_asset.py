@@ -519,7 +519,7 @@ data_asset:
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  Example: `{ \\"orcl-cloud\\": { \\"free-tier-retained\\": \\"true\\" } }`"
             returned: on success
             type: dict
             sample: {}

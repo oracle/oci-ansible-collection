@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.14.0
+Collection version 4.15.0
 
 .. toctree::
     :maxdepth: 1
@@ -37,6 +37,9 @@ Modules
 * :ref:`oci_ai_anomaly_detection_data_asset <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_module>` -- Manage a DataAsset resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_data_asset_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_actions_module>` -- Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_data_asset_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_facts_module>` -- Fetches details about one or multiple DataAsset resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_detect_anomaly_job <ansible_collections.oracle.oci.oci_ai_anomaly_detection_detect_anomaly_job_module>` -- 
+* :ref:`oci_ai_anomaly_detection_detect_anomaly_job_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_detect_anomaly_job_actions_module>` -- Perform actions on a DetectAnomalyJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_detect_anomaly_job_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_detect_anomaly_job_facts_module>` -- Fetches details about one or multiple DetectAnomalyJob resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_model <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_model_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_model_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
@@ -673,6 +676,7 @@ Modules
 * :ref:`oci_database_management_associated_database_facts <ansible_collections.oracle.oci.oci_database_management_associated_database_facts_module>` -- Fetches details about one or multiple AssociatedDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_attention_log_counts_facts <ansible_collections.oracle.oci.oci_database_management_attention_log_counts_facts_module>` -- Fetches details about one or multiple AttentionLogCounts resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_attention_log_facts <ansible_collections.oracle.oci.oci_database_management_attention_log_facts_module>` -- Fetches details about one or multiple AttentionLog resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_availability_metric_facts <ansible_collections.oracle.oci.oci_database_management_availability_metric_facts_module>` -- Fetches details about one or multiple AvailabilityMetric resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_cpu_usage_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_cpu_usage_facts_module>` -- Fetches details about a AwrDbCpuUsage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_facts_module>` -- Fetches details about one or multiple AwrDb resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_metric_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_metric_facts_module>` -- Fetches details about a AwrDbMetric resource in Oracle Cloud Infrastructure
@@ -697,6 +701,31 @@ Modules
 * :ref:`oci_database_management_db_management_private_endpoint_actions <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_actions_module>` -- Perform actions on a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_db_management_private_endpoint_facts <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_facts_module>` -- Fetches details about one or multiple DbManagementPrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_execution_plan_stats_comparision_facts <ansible_collections.oracle.oci.oci_database_management_execution_plan_stats_comparision_facts_module>` -- Fetches details about a ExecutionPlanStatsComparision resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm <ansible_collections.oracle.oci.oci_database_management_external_asm_module>` -- Manage an ExternalAsm resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm_configuration_facts <ansible_collections.oracle.oci.oci_database_management_external_asm_configuration_facts_module>` -- Fetches details about a ExternalAsmConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm_disk_group_facts <ansible_collections.oracle.oci.oci_database_management_external_asm_disk_group_facts_module>` -- Fetches details about one or multiple ExternalAsmDiskGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm_facts <ansible_collections.oracle.oci.oci_database_management_external_asm_facts_module>` -- Fetches details about one or multiple ExternalAsm resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm_instance_facts <ansible_collections.oracle.oci.oci_database_management_external_asm_instance_facts_module>` -- Fetches details about one or multiple ExternalAsmInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_asm_user_facts <ansible_collections.oracle.oci.oci_database_management_external_asm_user_facts_module>` -- Fetches details about one or multiple ExternalAsmUser resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_cluster <ansible_collections.oracle.oci.oci_database_management_external_cluster_module>` -- Manage an ExternalCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_cluster_facts <ansible_collections.oracle.oci.oci_database_management_external_cluster_facts_module>` -- Fetches details about one or multiple ExternalCluster resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_cluster_instance <ansible_collections.oracle.oci.oci_database_management_external_cluster_instance_module>` -- Manage an ExternalClusterInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_cluster_instance_facts <ansible_collections.oracle.oci.oci_database_management_external_cluster_instance_facts_module>` -- Fetches details about one or multiple ExternalClusterInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_database_facts <ansible_collections.oracle.oci.oci_database_management_external_database_facts_module>` -- Fetches details about one or multiple ExternalDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_home_facts <ansible_collections.oracle.oci.oci_database_management_external_db_home_facts_module>` -- Fetches details about one or multiple ExternalDbHome resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_node <ansible_collections.oracle.oci.oci_database_management_external_db_node_module>` -- Manage an ExternalDbNode resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_node_facts <ansible_collections.oracle.oci.oci_database_management_external_db_node_facts_module>` -- Fetches details about one or multiple ExternalDbNode resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system <ansible_collections.oracle.oci.oci_database_management_external_db_system_module>` -- Manage an ExternalDbSystem resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_actions <ansible_collections.oracle.oci.oci_database_management_external_db_system_actions_module>` -- Perform actions on an ExternalDbSystem resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_connector <ansible_collections.oracle.oci.oci_database_management_external_db_system_connector_module>` -- Manage an ExternalDbSystemConnector resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_connector_actions <ansible_collections.oracle.oci.oci_database_management_external_db_system_connector_actions_module>` -- Perform actions on an ExternalDbSystemConnector resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_connector_facts <ansible_collections.oracle.oci.oci_database_management_external_db_system_connector_facts_module>` -- Fetches details about one or multiple ExternalDbSystemConnector resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_discovery <ansible_collections.oracle.oci.oci_database_management_external_db_system_discovery_module>` -- Manage an ExternalDbSystemDiscovery resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_discovery_facts <ansible_collections.oracle.oci.oci_database_management_external_db_system_discovery_facts_module>` -- Fetches details about one or multiple ExternalDbSystemDiscovery resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_db_system_facts <ansible_collections.oracle.oci.oci_database_management_external_db_system_facts_module>` -- Fetches details about one or multiple ExternalDbSystem resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_listener <ansible_collections.oracle.oci.oci_database_management_external_listener_module>` -- Manage an ExternalListener resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_listener_facts <ansible_collections.oracle.oci.oci_database_management_external_listener_facts_module>` -- Fetches details about one or multiple ExternalListener resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_external_listener_service_facts <ansible_collections.oracle.oci.oci_database_management_external_listener_service_facts_module>` -- Fetches details about one or multiple ExternalListenerService resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_historic_addm_result_actions <ansible_collections.oracle.oci.oci_database_management_historic_addm_result_actions_module>` -- Perform actions on a HistoricAddmResult resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job <ansible_collections.oracle.oci.oci_database_management_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_actions <ansible_collections.oracle.oci.oci_database_management_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
@@ -709,6 +738,7 @@ Modules
 * :ref:`oci_database_management_managed_database_group <ansible_collections.oracle.oci.oci_database_management_managed_database_group_module>` -- Manage a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_group_actions_module>` -- Perform actions on a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_metrics_aggregation_range_facts <ansible_collections.oracle.oci.oci_database_management_metrics_aggregation_range_facts_module>` -- Fetches details about one or multiple MetricsAggregationRange resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_object_privilege_facts <ansible_collections.oracle.oci.oci_database_management_object_privilege_facts_module>` -- Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_optimizer_statistics_advisor_execution_script_facts <ansible_collections.oracle.oci.oci_database_management_optimizer_statistics_advisor_execution_script_facts_module>` -- Fetches details about a OptimizerStatisticsAdvisorExecutionScript resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_optimizer_statistics_collection_aggregations_facts <ansible_collections.oracle.oci.oci_database_management_optimizer_statistics_collection_aggregations_facts_module>` -- Fetches details about one or multiple OptimizerStatisticsCollectionAggregations resources in Oracle Cloud Infrastructure
@@ -1910,6 +1940,9 @@ Modules
     oci_ai_anomaly_detection_data_asset_module
     oci_ai_anomaly_detection_data_asset_actions_module
     oci_ai_anomaly_detection_data_asset_facts_module
+    oci_ai_anomaly_detection_detect_anomaly_job_module
+    oci_ai_anomaly_detection_detect_anomaly_job_actions_module
+    oci_ai_anomaly_detection_detect_anomaly_job_facts_module
     oci_ai_anomaly_detection_model_module
     oci_ai_anomaly_detection_model_actions_module
     oci_ai_anomaly_detection_model_facts_module
@@ -2546,6 +2579,7 @@ Modules
     oci_database_management_associated_database_facts_module
     oci_database_management_attention_log_counts_facts_module
     oci_database_management_attention_log_facts_module
+    oci_database_management_availability_metric_facts_module
     oci_database_management_awr_db_cpu_usage_facts_module
     oci_database_management_awr_db_facts_module
     oci_database_management_awr_db_metric_facts_module
@@ -2570,6 +2604,31 @@ Modules
     oci_database_management_db_management_private_endpoint_actions_module
     oci_database_management_db_management_private_endpoint_facts_module
     oci_database_management_execution_plan_stats_comparision_facts_module
+    oci_database_management_external_asm_module
+    oci_database_management_external_asm_configuration_facts_module
+    oci_database_management_external_asm_disk_group_facts_module
+    oci_database_management_external_asm_facts_module
+    oci_database_management_external_asm_instance_facts_module
+    oci_database_management_external_asm_user_facts_module
+    oci_database_management_external_cluster_module
+    oci_database_management_external_cluster_facts_module
+    oci_database_management_external_cluster_instance_module
+    oci_database_management_external_cluster_instance_facts_module
+    oci_database_management_external_database_facts_module
+    oci_database_management_external_db_home_facts_module
+    oci_database_management_external_db_node_module
+    oci_database_management_external_db_node_facts_module
+    oci_database_management_external_db_system_module
+    oci_database_management_external_db_system_actions_module
+    oci_database_management_external_db_system_connector_module
+    oci_database_management_external_db_system_connector_actions_module
+    oci_database_management_external_db_system_connector_facts_module
+    oci_database_management_external_db_system_discovery_module
+    oci_database_management_external_db_system_discovery_facts_module
+    oci_database_management_external_db_system_facts_module
+    oci_database_management_external_listener_module
+    oci_database_management_external_listener_facts_module
+    oci_database_management_external_listener_service_facts_module
     oci_database_management_historic_addm_result_actions_module
     oci_database_management_job_module
     oci_database_management_job_actions_module
@@ -2582,6 +2641,7 @@ Modules
     oci_database_management_managed_database_group_module
     oci_database_management_managed_database_group_actions_module
     oci_database_management_managed_database_group_facts_module
+    oci_database_management_metrics_aggregation_range_facts_module
     oci_database_management_object_privilege_facts_module
     oci_database_management_optimizer_statistics_advisor_execution_script_facts_module
     oci_database_management_optimizer_statistics_collection_aggregations_facts_module

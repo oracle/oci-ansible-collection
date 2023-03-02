@@ -154,6 +154,12 @@ awr_db_wait_event:
             returned: on success
             type: float
             sample: 1.2
+        avg_wait_time_per_wait:
+            description:
+                - The average wait time in milliseconds per wait.
+            returned: on success
+            type: float
+            sample: 1.2
         snapshot_id:
             description:
                 - "The ID of the snapshot. The snapshot ID is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -168,6 +174,7 @@ awr_db_wait_event:
         "time_end": "2013-10-20T19:20:30+01:00",
         "waits_per_sec": 1.2,
         "avg_wait_time_per_sec": 1.2,
+        "avg_wait_time_per_wait": 1.2,
         "snapshot_id": 56
     }
 """

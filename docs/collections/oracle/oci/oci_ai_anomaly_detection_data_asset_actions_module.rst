@@ -30,7 +30,7 @@ oracle.oci.oci_ai_anomaly_detection_data_asset_actions -- Perform actions on a D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1083,7 +1083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{ &quot;orcl-cloud&quot;: { &quot;free-tier-retained&quot;: &quot;true&quot; } }`</div>
                                         <br/>
                                                         </td>
             </tr>

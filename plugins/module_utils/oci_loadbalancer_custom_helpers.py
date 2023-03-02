@@ -231,20 +231,24 @@ class LoadBalancerHelperCustom:
     # adding this customization to support the update operation of shape of LoadBalancer
     # within the resource module.
     def is_update_necessary(self, existing_resource_dict):
-        # check if shape_name is present in update params and if the value of resource's
-        # shape_name is different
+        # check if shape_name, shape_details is present in update params and if the value of resource's
+        # shape_name or shape_details is different
         if (
-            not self.module.params.get("shape_name")
-            or self.module.params.get("shape_name")
-            == existing_resource_dict["shape_name"]
+            self.module.params.get("shape_name")
+            and self.module.params.get("shape_name")
+            != existing_resource_dict["shape_name"]
+        ) or (
+            self.module.params.get("shape_details")
+            and self.module.params.get("shape_details")
+            != existing_resource_dict["shape_details"]
         ):
-            # calling the base is_update_necessary to check for update param changes in resource's
-            # actual update model
-            return super(LoadBalancerHelperCustom, self).is_update_necessary(
-                existing_resource_dict
-            )
-        # variation in shape_name, hence return back True as it needs to be updated
-        return True
+            # variation in shape_name or shape_details hence return back True as it needs to be updated
+            return True
+        # calling the base is_update_necessary to check for update param changes in resource's
+        # actual update model
+        return super(LoadBalancerHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )
 
     # adding this customization to support the update operation of shape of LoadBalancer
     # within the resource module.
@@ -255,6 +259,9 @@ class LoadBalancerHelperCustom:
         if (
             self.module.params.get("shape_name")
             and self.module.params.get("shape_name") != resource["shape_name"]
+        ) or (
+            self.module.params.get("shape_details")
+            and self.module.params.get("shape_details") != resource["shape_details"]
         ):
             # since the shape_name is being changed, call the updateShape operation
             shape_update_details = oci_common_utils.convert_input_data_to_model_class(

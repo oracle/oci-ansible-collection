@@ -77,3 +77,13 @@ class ModelHelperCustom:
                 oci_common_utils.DELETE_OPERATION_KEY,
             ),
         )
+
+
+class DetectAnomalyJobHelperCustom:
+    def get_wait_for_states_for_operation(self, operation):
+        wait_for_states = super(
+            DetectAnomalyJobHelperCustom, self
+        ).get_wait_for_states_for_operation(operation)
+        if operation == oci_common_utils.DELETE_OPERATION_KEY:
+            return wait_for_states + ["CANCELED"]
+        return wait_for_states
