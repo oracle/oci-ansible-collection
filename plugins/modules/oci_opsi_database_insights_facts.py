@@ -169,6 +169,13 @@ database_insights:
     returned: on success
     type: complex
     contains:
+        is_advanced_features_enabled:
+            description:
+                - Flag is to identify if advanced features for autonomous database is enabled or not
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -514,6 +521,7 @@ database_insights:
             type: str
             sample: database_connection_status_details_example
     sample: [{
+        "is_advanced_features_enabled": true,
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",

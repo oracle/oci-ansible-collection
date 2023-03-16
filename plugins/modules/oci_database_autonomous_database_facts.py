@@ -240,6 +240,43 @@ autonomous_databases:
             returned: on success
             type: str
             sample: ncharacter_set_example
+        next_long_term_backup_time_stamp:
+            description:
+                - The date and time when the next long-term backup would be created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        long_term_backup_schedule:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                repeat_cadence:
+                    description:
+                        - The frequency of the long-term backup schedule
+                    returned: on success
+                    type: str
+                    sample: ONE_TIME
+                time_of_backup:
+                    description:
+                        - The timestamp for the long-term backup schedule. For a MONTHLY cadence, months having fewer days than the provided date will have the
+                          backup taken on the last day of that month.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                retention_period_in_days:
+                    description:
+                        - Retention period, in days, for long-term backups
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_disabled:
+                    description:
+                        - Indicates if the long-term backup schedule should be deleted. The default value is `FALSE`.
+                    returned: on success
+                    type: bool
+                    sample: true
         is_free_tier:
             description:
                 - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
@@ -348,7 +385,7 @@ autonomous_databases:
             sample: 3.4
         backup_retention_period_in_days:
             description:
-                - Retention period, in days, for backups.
+                - Retention period, in days, for long-term backups
             returned: on success
             type: int
             sample: 56
@@ -1163,6 +1200,13 @@ autonomous_databases:
         "db_name": "db_name_example",
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
+        "next_long_term_backup_time_stamp": "2013-10-20T19:20:30+01:00",
+        "long_term_backup_schedule": {
+            "repeat_cadence": "ONE_TIME",
+            "time_of_backup": "2013-10-20T19:20:30+01:00",
+            "retention_period_in_days": 56,
+            "is_disabled": true
+        },
         "is_free_tier": true,
         "system_tags": {},
         "time_reclamation_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",

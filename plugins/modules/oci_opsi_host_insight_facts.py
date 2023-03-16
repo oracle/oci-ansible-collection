@@ -65,7 +65,7 @@ options:
     host_type:
         description:
             - Filter by one or more host types.
-              Possible values are CLOUD-HOST, EXTERNAL-HOST
+              Possible values are CLOUD-HOST, EXTERNAL-HOST, COMANAGED-VM-HOST, COMANAGED-BM-HOST, COMANAGED-EXACS-HOST
         type: list
         elements: str
     platform_type:
@@ -210,6 +210,13 @@ host_insights:
             returned: on success
             type: str
             sample: platform_name_example
+        platform_version:
+            description:
+                - Platform version.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: platform_version_example
         platform_type:
             description:
                 - "Platform type.
@@ -220,13 +227,21 @@ host_insights:
             returned: on success
             type: str
             sample: LINUX
-        platform_version:
+        parent_id:
             description:
-                - Platform version.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM Cluster or DB System ID, depending on which
+                  configuration the resource belongs to.
                 - Returned for get operation
             returned: on success
             type: str
-            sample: platform_version_example
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
+        root_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
         entity_source:
             description:
                 - Source of the host entity.
@@ -293,7 +308,6 @@ host_insights:
         opsi_private_endpoint_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
-                - Returned for list operation
             returned: on success
             type: str
             sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
@@ -339,8 +353,10 @@ host_insights:
         "compute_id": "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_name": "platform_name_example",
-        "platform_type": "LINUX",
         "platform_version": "platform_version_example",
+        "platform_type": "LINUX",
+        "parent_id": "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx",
+        "root_id": "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx",
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

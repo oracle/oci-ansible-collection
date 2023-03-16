@@ -231,6 +231,24 @@ host_insight:
             returned: on success
             type: str
             sample: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        platform_name:
+            description:
+                - Platform name.
+            returned: on success
+            type: str
+            sample: platform_name_example
+        platform_version:
+            description:
+                - Platform version.
+            returned: on success
+            type: str
+            sample: platform_version_example
         entity_source:
             description:
                 - Source of the host entity.
@@ -325,18 +343,12 @@ host_insight:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        management_agent_id:
+        opsi_private_endpoint_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
             returned: on success
             type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        platform_name:
-            description:
-                - Platform name.
-            returned: on success
-            type: str
-            sample: platform_name_example
+            sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         platform_type:
             description:
                 - "Platform type.
@@ -346,12 +358,19 @@ host_insight:
             returned: on success
             type: str
             sample: LINUX
-        platform_version:
+        parent_id:
             description:
-                - Platform version.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM Cluster or DB System ID, depending on which
+                  configuration the resource belongs to.
             returned: on success
             type: str
-            sample: platform_version_example
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
+        root_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata Infrastructure.
+            returned: on success
+            type: str
+            sample: "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
@@ -361,6 +380,9 @@ host_insight:
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_id": "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
+        "platform_name": "platform_name_example",
+        "platform_version": "platform_version_example",
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -376,10 +398,10 @@ host_insight:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "platform_name": "platform_name_example",
+        "opsi_private_endpoint_id": "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
-        "platform_version": "platform_version_example"
+        "parent_id": "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx",
+        "root_id": "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

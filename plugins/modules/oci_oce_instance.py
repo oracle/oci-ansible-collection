@@ -129,6 +129,21 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    lifecycle_details:
+        description:
+            - Details of the current state of the instance lifecycle
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "STANDBY"
+            - "FAILOVER"
+            - "DOWN"
+            - "PRIMARY"
+    dr_region:
+        description:
+            - disaster recovery paired ragion name
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -184,6 +199,7 @@ EXAMPLES = """
     instance_license_type: NEW
     instance_usage_type: PRIMARY
     add_on_features: [ "add_on_features_example" ]
+    dr_region: us-phoenix-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -198,6 +214,8 @@ EXAMPLES = """
     instance_license_type: NEW
     instance_usage_type: PRIMARY
     add_on_features: [ "add_on_features_example" ]
+    lifecycle_details: STANDBY
+    dr_region: us-phoenix-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -213,6 +231,8 @@ EXAMPLES = """
     instance_license_type: NEW
     instance_usage_type: PRIMARY
     add_on_features: [ "add_on_features_example" ]
+    lifecycle_details: STANDBY
+    dr_region: us-phoenix-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -379,6 +399,12 @@ oce_instance:
             returned: on success
             type: str
             sample: STANDBY
+        dr_region:
+            description:
+                - disaster recovery paired ragion name
+            returned: on success
+            type: str
+            sample: us-phoenix-1
         state_message:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
@@ -439,6 +465,7 @@ oce_instance:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "STANDBY",
+        "dr_region": "us-phoenix-1",
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -624,6 +651,10 @@ def main():
             ),
             instance_usage_type=dict(type="str", choices=["PRIMARY", "NONPRIMARY"]),
             add_on_features=dict(type="list", elements="str"),
+            lifecycle_details=dict(
+                type="str", choices=["STANDBY", "FAILOVER", "DOWN", "PRIMARY"]
+            ),
+            dr_region=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oce_instance_id=dict(aliases=["id"], type="str"),

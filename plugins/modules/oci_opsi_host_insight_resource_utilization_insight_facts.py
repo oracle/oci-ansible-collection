@@ -128,7 +128,7 @@ options:
     host_type:
         description:
             - Filter by one or more host types.
-              Possible values are CLOUD-HOST, EXTERNAL-HOST
+              Possible values are CLOUD-HOST, EXTERNAL-HOST, COMANAGED-VM-HOST, COMANAGED-BM-HOST, COMANAGED-EXACS-HOST
         type: list
         elements: str
     host_id:

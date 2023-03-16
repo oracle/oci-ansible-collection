@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1817,6 +1817,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-update_operation_constraint"></div>
+                    <b>update_operation_constraint</b>
+                    <a class="ansibleOptionLink" href="#parameter-update_operation_constraint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ALLOW_DOWNTIME</li>
+                                                                                                                                                                                                <li>AVOID_DOWNTIME</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The parameter acts as a fail-safe to prevent unwanted downtime when updating a running instance. The default is ALLOW_DOWNTIME. * `ALLOW_DOWNTIME` - Compute might reboot the instance while updating the instance if a reboot is required. * `AVOID_DOWNTIME` - If the instance is in running state, Compute tries to update the instance without rebooting it. If the instance requires a reboot to be updated, an error is returned and the instance is not updated. If the instance is stopped, it is updated and remains in the stopped state.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -1998,6 +2018,7 @@ Examples
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
           nvmes: 56
+        update_operation_constraint: ALLOW_DOWNTIME
         instance_options:
           # optional
           are_legacy_imds_endpoints_disabled: true
@@ -2044,6 +2065,7 @@ Examples
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
           nvmes: 56
+        update_operation_constraint: ALLOW_DOWNTIME
         instance_options:
           # optional
           are_legacy_imds_endpoints_disabled: true

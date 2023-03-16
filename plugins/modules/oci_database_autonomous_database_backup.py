@@ -22,7 +22,7 @@ DOCUMENTATION = """
 module: oci_database_autonomous_database_backup
 short_description: Manage an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
+    - This module allows the user to create, update and delete an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database backup for the specified database based on the provided request parameters.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -30,21 +30,39 @@ options:
     display_name:
         description:
             - The user-friendly name for the backup. The name does not have to be unique.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
     autonomous_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.
+            - Required for create using I(state=present).
         type: str
-        required: true
+    is_long_term_backup:
+        description:
+            - Indicates whether the backup is long-term
+        type: bool
+    retention_period_in_days:
+        description:
+            - Retention period, in days, for long-term backups
+            - This parameter is updatable.
+        type: int
+    autonomous_database_backup_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the AutonomousDatabaseBackup.
-            - Use I(state=present) to create an AutonomousDatabaseBackup.
+            - Use I(state=present) to create or update an AutonomousDatabaseBackup.
+            - Use I(state=absent) to delete an AutonomousDatabaseBackup.
         type: str
         required: false
         default: 'present'
-        choices: ["present"]
+        choices: ["present", "absent"]
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -56,6 +74,36 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
+    is_long_term_backup: true
+    retention_period_in_days: 56
+
+- name: Update autonomous_database_backup
+  oci_database_autonomous_database_backup:
+    # required
+    autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    retention_period_in_days: 56
+
+- name: Update autonomous_database_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_autonomous_database_backup:
+    # required
+    display_name: display_name_example
+
+    # optional
+    retention_period_in_days: 56
+
+- name: Delete autonomous_database_backup
+  oci_database_autonomous_database_backup:
+    # required
+    autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    state: absent
+
+- name: Delete autonomous_database_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_autonomous_database_backup:
+    # required
+    display_name: display_name_example
+    state: absent
 
 """
 
@@ -170,6 +218,30 @@ autonomous_database_backup:
             returned: on success
             type: str
             sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        retention_period_in_days:
+            description:
+                - Retention period, in days, for long-term backups
+            returned: on success
+            type: int
+            sample: 56
+        time_available_till:
+            description:
+                - Timestamp until when the backup will be available
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        db_version:
+            description:
+                - A valid Oracle Database version for Autonomous Database.
+            returned: on success
+            type: str
+            sample: db_version_example
+        size_in_tbs:
+            description:
+                - The backup size in terrabytes (TB).
+            returned: on success
+            type: float
+            sample: 1.2
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -187,7 +259,11 @@ autonomous_database_backup:
         "key_store_wallet_name": "key_store_wallet_name_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "retention_period_in_days": 56,
+        "time_available_till": "2013-10-20T19:20:30+01:00",
+        "db_version": "db_version_example",
+        "size_in_tbs": 1.2
     }
 """
 
@@ -205,6 +281,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import CreateAutonomousDatabaseBackupDetails
+    from oci.database.models import UpdateAutonomousDatabaseBackupDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -212,7 +289,7 @@ except ImportError:
 
 
 class AutonomousDatabaseBackupHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, get and list"""
+    """Supported operations: create, update, get, list and delete"""
 
     def __init__(self, *args, **kwargs):
         super(AutonomousDatabaseBackupHelperGen, self).__init__(*args, **kwargs)
@@ -232,6 +309,12 @@ class AutonomousDatabaseBackupHelperGen(OCIResourceHelperBase):
             "autonomousdatabasebackupsresource",
             "database",
         ]
+
+    def get_module_resource_id_param(self):
+        return "autonomous_database_backup_id"
+
+    def get_module_resource_id(self):
+        return self.module.params.get("autonomous_database_backup_id")
 
     def get_get_fn(self):
         return self.client.get_autonomous_database_backup
@@ -281,6 +364,9 @@ class AutonomousDatabaseBackupHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAutonomousDatabaseBackupDetails
 
+    def get_exclude_attributes(self):
+        return ["is_long_term_backup"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -291,6 +377,43 @@ class AutonomousDatabaseBackupHelperGen(OCIResourceHelperBase):
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def get_update_model_class(self):
+        return UpdateAutonomousDatabaseBackupDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_autonomous_database_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_backup_id=self.module.params.get(
+                    "autonomous_database_backup_id"
+                ),
+                update_autonomous_database_backup_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def delete_resource(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.delete_autonomous_database_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_backup_id=self.module.params.get(
+                    "autonomous_database_backup_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.work_request_client,
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
@@ -315,8 +438,11 @@ def main():
     module_args.update(
         dict(
             display_name=dict(aliases=["name"], type="str"),
-            autonomous_database_id=dict(type="str", required=True),
-            state=dict(type="str", default="present", choices=["present"]),
+            autonomous_database_id=dict(type="str"),
+            is_long_term_backup=dict(type="bool"),
+            retention_period_in_days=dict(type="int"),
+            autonomous_database_backup_id=dict(aliases=["id"], type="str"),
+            state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )
 
@@ -334,7 +460,15 @@ def main():
 
     result = dict(changed=False)
 
-    if resource_helper.is_create():
+    if resource_helper.is_delete_using_name():
+        result = resource_helper.delete_using_name()
+    elif resource_helper.is_delete():
+        result = resource_helper.delete()
+    elif resource_helper.is_update_using_name():
+        result = resource_helper.update_using_name()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
+    elif resource_helper.is_create():
         result = resource_helper.create()
 
     module.exit_json(**result)

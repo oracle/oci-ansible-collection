@@ -55,6 +55,10 @@ options:
         choices:
             - "AGENT"
             - "GATEWAY"
+    compartment_id_in_subtree:
+        description:
+            - if set to true then it fetches resources for all compartments where user has access to else only on the compartment specified.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -68,6 +72,7 @@ EXAMPLES = """
     # optional
     has_plugins: true
     install_type: AGENT
+    compartment_id_in_subtree: true
 
 """
 
@@ -160,6 +165,7 @@ class ManagementAgentAggregationFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "has_plugins",
             "install_type",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -199,6 +205,7 @@ def main():
             ),
             has_plugins=dict(type="bool"),
             install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

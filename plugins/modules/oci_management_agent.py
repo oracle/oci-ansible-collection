@@ -295,6 +295,30 @@ management_agent:
             returned: on success
             type: str
             sample: AGENT
+        management_agent_properties:
+            description:
+                - Additional properties for this Management Agent
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - Name of the property
+                    returned: on success
+                    type: str
+                    sample: name_example
+                values:
+                    description:
+                        - Values of the property
+                    returned: on success
+                    type: list
+                    sample: []
+                units:
+                    description:
+                        - Unit for the property
+                    returned: on success
+                    type: str
+                    sample: PERCENTAGE
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -340,6 +364,11 @@ management_agent:
         "lifecycle_details": "lifecycle_details_example",
         "is_customer_deployed": true,
         "install_type": "AGENT",
+        "management_agent_properties": [{
+            "name": "name_example",
+            "values": [],
+            "units": "PERCENTAGE"
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

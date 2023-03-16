@@ -246,6 +246,12 @@ oce_instances:
             returned: on success
             type: str
             sample: STANDBY
+        dr_region:
+            description:
+                - disaster recovery paired ragion name
+            returned: on success
+            type: str
+            sample: us-phoenix-1
         state_message:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
@@ -306,6 +312,7 @@ oce_instances:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "STANDBY",
+        "dr_region": "us-phoenix-1",
         "state_message": "state_message_example",
         "service": {},
         "freeform_tags": {'Department': 'Finance'},

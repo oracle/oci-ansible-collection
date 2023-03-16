@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_resource_capacity_trend_facts -- Fetches details about a Res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -418,6 +418,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-high_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-host_name" title="Permalink to this option"></a>
@@ -463,6 +478,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied. When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the whole database which contains an instance on this host.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-low_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered low utilized.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -682,6 +712,8 @@ Examples
         freeform_tag_exists: [ "freeform_tag_exists_example" ]
         compartment_id_in_subtree: true
         vmcluster_name: [ "vmcluster_name_example" ]
+        high_utilization_threshold: 1
+        low_utilization_threshold: 0
 
 
 
@@ -718,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceCapacityTrend resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;capacity_data&#x27;: [{&#x27;base_capacity&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_host_capacity&#x27;: 1.2}], &#x27;item_duration_in_ms&#x27;: 56, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;capacity_data&#x27;: [{&#x27;base_capacity&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_host_capacity&#x27;: 1.2}], &#x27;high_utilization_threshold&#x27;: 56, &#x27;item_duration_in_ms&#x27;: 56, &#x27;low_utilization_threshold&#x27;: 56, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -817,6 +849,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_capacity_trend/high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-resource_capacity_trend/high_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_capacity_trend/item_duration_in_ms"></div>
                     <b>item_duration_in_ms</b>
                     <a class="ansibleOptionLink" href="#return-resource_capacity_trend/item_duration_in_ms" title="Permalink to this return value"></a>
@@ -827,6 +877,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Time duration in milliseconds between data points (one hour or one day).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_capacity_trend/low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-resource_capacity_trend/low_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered lowly utilized.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

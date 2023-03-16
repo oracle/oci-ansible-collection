@@ -18,7 +18,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_log_utils,
     oci_version_utils,
 )
-
 from ansible_collections.oracle.oci.plugins.module_utils.oci_error_utils import (
     OciAnsibleErrorFactory,
 )
@@ -48,29 +47,10 @@ class OCIResourceCommonBase:
         self.resource_type = resource_type
         self.service_client_class = service_client_class
 
-        # setting up logging
-        log_level = oci_log_utils.get_log_level(self.module._verbosity)
-        log_dir = oci_log_utils.get_log_dir()
-        oci_log_utils.setup_logging(log_level, log_dir)
         self.client = oci_config_utils.create_service_client(
             self.module, self.service_client_class
         )
         self.namespace = namespace
-        # fetching various version details
-        self.python_version = oci_version_utils.get_python_version()
-        self.oci_python_sdk_version = oci_version_utils.get_oci_python_sdk_version()
-        self.ansible_version = oci_version_utils.get_ansible_version()
-        self.oci_ansible_collection_installed_version = (
-            oci_version_utils.get_oci_ansible_collection_installed_version()
-        )
-        # will enable this in error message improvement
-        # self.oci_ansible_collection_latest_version = (
-        #     oci_version_utils.get_oci_ansible_collection_latest_version()
-        # )
-        self.oci_python_sdk_path = oci_version_utils.get_oci_python_sdk_path()
-        self.ansible_module_python_path = (
-            oci_version_utils.get_ansible_module_python_path()
-        )
 
     def prepare_result(self, changed, resource_type, resource=None, msg=None):
         result = dict(changed=changed)
@@ -208,9 +188,17 @@ class OCIResourceFactsHelperBase(OCIResourceCommonBase):
         logger.info("Getting resource")
         try:
             resource = self.get_resource().data
-        except Exception as e:
+        except ServiceError as se:
             self.module.fail_json(
-                msg="Getting resource failed", error=e, resource_helper=self
+                msg="Getting resource failed with exception: ",
+                error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
             )
         return to_dict(resource)
 
@@ -218,9 +206,17 @@ class OCIResourceFactsHelperBase(OCIResourceCommonBase):
         logger.info("Listing resource")
         try:
             resources = self.list_resources()
-        except Exception as e:
+        except ServiceError as se:
             self.module.fail_json(
-                msg="Listing resource failed", error=e, resource_helper=self
+                msg="Listing resource failed with exception: ",
+                error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Listing resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
             )
         return to_dict(resources)
 
@@ -289,6 +285,12 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         except NotImplementedError as ex:
             logger.debug("no get_resource implemented exception : {0}".format(str(ex)))
             return True
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         if action.upper() == "CHANGE_COMPARTMENT":
             return self.is_change_compartment_necessary(resource)
         if hasattr(
@@ -320,17 +322,13 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
                     is_action_necessary = self.is_action_necessary(action)
                 except ServiceError as se:
                     self.module.fail_json(
-                        msg="Getting resource failed with exception: {0}".format(
-                            se.message
-                        ),
+                        msg="Getting resource failed with exception: ",
                         error=se,
                         resource_helper=self,
                     )
             else:
                 self.module.fail_json(
-                    msg="Getting resource failed with exception: {0}".format(
-                        se.message
-                    ),
+                    msg="Getting resource failed with exception: ",
                     error=se,
                     resource_helper=self,
                 )
@@ -338,6 +336,8 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             logger.debug("no get_resource impelemented exception : {0}".format(str(ex)))
             resource = {}
             is_action_necessary = True
+        except Exception as ex:
+            self.module.fail_json(msg=str(ex), error=ex, resource_helper=self)
         else:
             resource = to_dict(get_response.data)
             try:
@@ -346,9 +346,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
                 )
             except ServiceError as se:
                 self.module.fail_json(
-                    msg="Getting resource failed with exception: {0}".format(
-                        se.message
-                    ),
+                    msg="Getting resource failed with exception: ",
                     error=se,
                     resource_helper=self,
                 )
@@ -370,11 +368,21 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         try:
             actioned_resource = action_fn()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Performing action failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             self.module.fail_json(
-                msg="Performing action failed with exception: {0}".format(se.message),
+                msg="Performing action failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Performing action failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -841,6 +849,18 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     "idempotence. exception : {0}".format(str(ex))
                 )
                 resource_matched = None
+            except ServiceError as se:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: ",
+                    error=se,
+                    resource_helper=self,
+                )
+            except Exception as ex:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: ",
+                    error=ex,
+                    resource_helper=self,
+                )
             if resource_matched:
                 logger.debug(
                     "found matching {resource_type}".format(
@@ -871,10 +891,24 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             created_resource = self.create_resource()
 
-        except MaximumWaitTimeExceeded as ex:
-            self.module.fail_json(msg=str(ex), error=ex, resource_helper=self)
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(
+                msg="Creating resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
-            self.module.fail_json(msg=se.message, error=se, resource_helper=self)
+            self.module.fail_json(
+                msg="Creating resource failed with exception: ",
+                error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Creating resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         else:
             return self.prepare_result(
                 changed=True,
@@ -934,9 +968,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource = dict()
             else:
                 self.module.fail_json(
-                    msg="Getting resource failed with exception: {0}".format(
-                        se.message
-                    ),
+                    msg="Getting resource failed with exception: ",
                     error=se,
                     resource_helper=self,
                 )
@@ -946,6 +978,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 "exception : {0}".format(str(ex))
             )
             resource = dict()
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
@@ -964,11 +1002,21 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             updated_resource = self.update_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Updating resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             self.module.fail_json(
-                msg="Updating resource failed with exception: {0}".format(se.message),
+                msg="Updating resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Updating resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -997,9 +1045,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource = None
             else:
                 self.module.fail_json(
-                    msg="Getting resource failed with exception: {0}".format(
-                        se.message
-                    ),
+                    msg="Getting resource failed with exception: ",
                     error=se,
                     resource_helper=self,
                 )
@@ -1009,6 +1055,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 "exception : {}".format(str(ex))
             )
             resource = dict()
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         else:
             resource = to_dict(get_response.data)
 
@@ -1030,11 +1082,21 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             patched_resource = self.patch_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Patching resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             self.module.fail_json(
-                msg="Patching resource failed with exception: {0}".format(se.message),
+                msg="Patching resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Patching resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1060,7 +1122,6 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             # normal path convention: DELETE /resources/{resourceId} (e.g. AppCatalogSubscription)
             # so there can be a delete without a resourceId
             pass
-
         try:
             get_response = self.get_resource()
         except ServiceError as se:
@@ -1071,7 +1132,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     resource=dict(),
                 )
             self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message),
+                msg="Getting resource failed with exception: ",
                 error=se,
                 resource_helper=self,
             )
@@ -1081,6 +1142,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 "exception : {0}".format(str(ex))
             )
             resource = dict()
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         else:
             resource = to_dict(get_response.data)
             if self.is_resource_dead(get_response.data):
@@ -1100,7 +1167,11 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             deleted_resource = self.delete_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Deleting resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             if se.status == 404:
                 return self.prepare_result(
@@ -1111,8 +1182,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     ),
                 )
             self.module.fail_json(
-                msg="Deleting resource failed with exception: {0}".format(se.message),
+                msg="Deleting resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Deleting resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1140,12 +1217,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource = dict()
             else:
                 self.module.fail_json(
-                    msg="Getting resource failed with exception: {0}".format(
-                        se.message
-                    ),
+                    msg="Getting resource failed with exception: ",
                     error=se,
                     resource_helper=self,
                 )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
+                resource_helper=self,
+            )
         self.set_required_ids_in_module_when_name_is_identifier(resource)
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
@@ -1165,11 +1246,21 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             updated_resource = self.update_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Updating resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             self.module.fail_json(
-                msg="Updating resource failed with exception: {0}".format(se.message),
+                msg="Updating resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Updating resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1185,8 +1276,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             get_response = self.get_resource_using_name()
         except ServiceError as se:
             self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message),
+                msg="Getting resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1211,11 +1308,21 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             patched_resource = self.patch_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Patching resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             self.module.fail_json(
-                msg="Patching resource failed with exception: {0}".format(se.message),
+                msg="Patching resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Patching resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1237,8 +1344,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     resource=dict(),
                 )
             self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message),
+                msg="Getting resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1264,7 +1377,11 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             deleted_resource = self.delete_resource()
         except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex), error=mwtex, resource_helper=self)
+            self.module.fail_json(
+                msg="Deleting resource failed with exception: ",
+                error=mwtex,
+                resource_helper=self,
+            )
         except ServiceError as se:
             if se.status == 404:
                 return self.prepare_result(
@@ -1275,8 +1392,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     ),
                 )
             self.module.fail_json(
-                msg="Deleting resource failed with exception: {0}".format(se.message),
+                msg="Deleting resource failed with exception: ",
                 error=se,
+                resource_helper=self,
+            )
+        except Exception as ex:
+            self.module.fail_json(
+                msg="Deleting resource failed with exception: ",
+                error=ex,
                 resource_helper=self,
             )
         else:
@@ -1319,6 +1442,25 @@ class OCIAnsibleModule(AnsibleModule):
         self.log_container = log_container
         super(OCIAnsibleModule, self).__init__(*args, **kwargs)
 
+        # setting up loggin
+        log_level = oci_log_utils.get_log_level(self._verbosity)
+        log_dir = oci_log_utils.get_log_dir()
+        oci_log_utils.setup_logging(log_level, log_dir)
+        # fetching various version details
+        self.python_version = oci_version_utils.get_python_version()
+        self.oci_python_sdk_version = oci_version_utils.get_oci_python_sdk_version()
+        self.ansible_version = oci_version_utils.get_ansible_version()
+        self.oci_ansible_collection_installed_version = (
+            oci_version_utils.get_oci_ansible_collection_installed_version()
+        )
+        self.oci_ansible_collection_latest_version = (
+            oci_version_utils.get_oci_ansible_collection_latest_version()
+        )
+        self.oci_python_sdk_path = oci_version_utils.get_oci_python_sdk_path()
+        self.ansible_module_python_path = (
+            oci_version_utils.get_ansible_module_python_path()
+        )
+
     OCI_DEBUG_LOGS_KEY = "oci_ansible_logs"
 
     def exit_json(self, **kwargs):
@@ -1333,7 +1475,8 @@ class OCIAnsibleModule(AnsibleModule):
             kwargs[self.OCI_DEBUG_LOGS_KEY] = self.log_container.get_logs()
         error = kwargs.pop("error", None)
         resource_helper = kwargs.pop("resource_helper", None)
-        error_object = OciAnsibleErrorFactory.get_object(type(error))
+        error_factory = OciAnsibleErrorFactory()
+        error_object = error_factory.get_object(type(error))
         kwargs = error_object.format_error(
             msg=msg, error=error, resource_helper=resource_helper, **kwargs
         )

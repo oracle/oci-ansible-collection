@@ -23,10 +23,8 @@ module: oci_ai_language_detect_language_entities_actions
 short_description: Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
-    - "For I(action=detect_language_entities), **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT.
-      We recommend you replace this API with the batch API,
-      L(BatchDetectLanguageEntities,https://docs.cloud.oracle.com/iaas/api/#/en/language/20221001/BatchDetectLanguageEntities/BatchDetectLanguageEntities).
-      The DetectLanguageEntities API extracts entities in text records. For each entity, its type and confidence score (between 0 and 1) is returned.
+    - "For I(action=detect_language_entities), this API will be retired on Monday, 10 Oct 2023 00:00:00 GMT
+      The API extracts entities in text records. For each entity, its type and confidence score (between 0 and 1) is returned.
       Limitations:
       - A text may be up to 1000 characters long."
 version_added: "2.9.0"

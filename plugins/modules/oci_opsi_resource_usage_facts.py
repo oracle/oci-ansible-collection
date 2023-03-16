@@ -158,6 +158,11 @@ options:
             - Optional list of Exadata Insight VM cluster name.
         type: list
         elements: str
+    cdb_name:
+        description:
+            - Filter by one or more cdb name.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -185,6 +190,7 @@ EXAMPLES = """
     freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
     vmcluster_name: [ "vmcluster_name_example" ]
+    cdb_name: [ "cdb_name_example" ]
 
 """
 
@@ -298,6 +304,7 @@ class ResourceUsageFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_exists",
             "compartment_id_in_subtree",
             "vmcluster_name",
+            "cdb_name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -361,6 +368,7 @@ def main():
             freeform_tag_exists=dict(type="list", elements="str"),
             compartment_id_in_subtree=dict(type="bool"),
             vmcluster_name=dict(type="list", elements="str"),
+            cdb_name=dict(type="list", elements="str"),
         )
     )
 
