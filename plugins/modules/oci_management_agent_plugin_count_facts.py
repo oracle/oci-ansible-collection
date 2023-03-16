@@ -40,6 +40,10 @@ options:
         choices:
             - "pluginName"
         required: true
+    compartment_id_in_subtree:
+        description:
+            - if set to true then it fetches resources for all compartments where user has access to else only on the compartment specified.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -49,6 +53,9 @@ EXAMPLES = """
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     group_by: pluginName
+
+    # optional
+    compartment_id_in_subtree: true
 
 """
 
@@ -117,7 +124,9 @@ class ManagementAgentPluginCountFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def list_resources(self):
-        optional_list_method_params = []
+        optional_list_method_params = [
+            "compartment_id_in_subtree",
+        ]
         optional_kwargs = dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
@@ -149,6 +158,7 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             group_by=dict(type="str", required=True, choices=["pluginName"]),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

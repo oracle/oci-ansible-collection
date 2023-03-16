@@ -68,6 +68,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "UPDATING"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -206,6 +207,30 @@ autonomous_database_backups:
             returned: on success
             type: str
             sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        retention_period_in_days:
+            description:
+                - Retention period, in days, for long-term backups
+            returned: on success
+            type: int
+            sample: 56
+        time_available_till:
+            description:
+                - Timestamp until when the backup will be available
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        db_version:
+            description:
+                - A valid Oracle Database version for Autonomous Database.
+            returned: on success
+            type: str
+            sample: db_version_example
+        size_in_tbs:
+            description:
+                - The backup size in terrabytes (TB).
+            returned: on success
+            type: float
+            sample: 1.2
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -223,7 +248,11 @@ autonomous_database_backups:
         "key_store_wallet_name": "key_store_wallet_name_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "retention_period_in_days": 56,
+        "time_available_till": "2013-10-20T19:20:30+01:00",
+        "db_version": "db_version_example",
+        "size_in_tbs": 1.2
     }]
 """
 
@@ -302,7 +331,14 @@ def main():
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(
                 type="str",
-                choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
+                choices=[
+                    "CREATING",
+                    "ACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                    "UPDATING",
+                ],
             ),
             display_name=dict(aliases=["name"], type="str"),
         )

@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_detect_language_text_classification_actions -- Perfor
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
-- For *action=detect_language_text_classification*, **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT. We recommend you replace this API with the batch API, `BatchDetectLanguageTextClassification <https://docs.cloud.oracle.com/iaas/api/#/en/language/2022100 1/BatchDetectLanguageTextClassification/BatchDetectLanguageTextClassification>`_. The DetectLanguageTextClassification API automatically classifies text into a set of pre-determined classes and sub-classes. A single class/subclass is returned for each record classified. Learn more about text classification `here <https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#text-class>`_. Limitations: - A record may be up to 1000 characters long.
+- For *action=detect_language_text_classification*, this API will be retired on Monday, 10 Oct 2023 00:00:00 GMT The API automatically classifies text into a set of pre-determined classes and sub-classes. A single class/subclass is returned for each record classified. Learn more about text classification `here <https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#text-class>`_. Limitations: - A record may be up to 1000 characters long.
 
 
 .. Aliases

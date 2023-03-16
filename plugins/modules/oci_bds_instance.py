@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Big Data Service cluster.
     - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql,
-      add_worker_nodes, change_compartment, change_shape, install_patch, remove_cloud_sql, remove_node, restart_node, start, stop."
+      add_worker_nodes, change_compartment, change_shape, execute_bootstrap_script, install_patch, remove_cloud_sql, remove_node, restart_node, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_availability_history_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -324,7 +324,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter to limit the availability history results to that of time after the input time including the boundary record. Defaulted to current date minus one year. The date and time to be given as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
+                                            <div>Filter to limit the availability history results to that of time after the input time including the boundary record. Defaulted to current date minus one year. The date and time to be given as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 5.6.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -339,7 +339,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter to limit the availability history results to that of time before the input time including the boundary record Defaulted to current date. The date and time to be given as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
+                                            <div>Filter to limit the availability history results to that of time before the input time including the boundary record Defaulted to current date. The date and time to be given as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 5.6.</div>
                                                         </td>
             </tr>
                         </table>

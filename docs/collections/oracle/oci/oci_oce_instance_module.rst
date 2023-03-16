@@ -30,7 +30,7 @@ oracle.oci.oci_oce_instance -- Manage an OceInstance resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -315,6 +315,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-dr_region"></div>
+                    <b>dr_region</b>
+                    <a class="ansibleOptionLink" href="#parameter-dr_region" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>disaster recovery paired ragion name</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -486,6 +502,28 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-lifecycle_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>STANDBY</li>
+                                                                                                                                                                                                <li>FAILOVER</li>
+                                                                                                                                                                                                <li>DOWN</li>
+                                                                                                                                                                                                <li>PRIMARY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Details of the current state of the instance lifecycle</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -735,6 +773,7 @@ Examples
         instance_license_type: NEW
         instance_usage_type: PRIMARY
         add_on_features: [ "add_on_features_example" ]
+        dr_region: us-phoenix-1
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -749,6 +788,8 @@ Examples
         instance_license_type: NEW
         instance_usage_type: PRIMARY
         add_on_features: [ "add_on_features_example" ]
+        lifecycle_details: STANDBY
+        dr_region: us-phoenix-1
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -764,6 +805,8 @@ Examples
         instance_license_type: NEW
         instance_usage_type: PRIMARY
         add_on_features: [ "add_on_features_example" ]
+        lifecycle_details: STANDBY
+        dr_region: us-phoenix-1
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -815,7 +858,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the OceInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;add_on_features&#x27;: [], &#x27;admin_email&#x27;: &#x27;admin_email_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;guid&#x27;: &#x27;guid_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_tenancy&#x27;: &#x27;idcs_tenancy_example&#x27;, &#x27;identity_stripe&#x27;: {&#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;tenancy&#x27;: &#x27;tenancy_example&#x27;}, &#x27;instance_access_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;instance_license_type&#x27;: &#x27;NEW&#x27;, &#x27;instance_usage_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;lifecycle_details&#x27;: &#x27;STANDBY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_storage_namespace&#x27;: &#x27;object_storage_namespace_example&#x27;, &#x27;service&#x27;: {}, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenancy_name&#x27;: &#x27;tenancy_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_schedule&#x27;: &#x27;UPGRADE_IMMEDIATELY&#x27;, &#x27;waf_primary_domain&#x27;: &#x27;waf_primary_domain_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;add_on_features&#x27;: [], &#x27;admin_email&#x27;: &#x27;admin_email_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dr_region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;guid&#x27;: &#x27;guid_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_tenancy&#x27;: &#x27;idcs_tenancy_example&#x27;, &#x27;identity_stripe&#x27;: {&#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;tenancy&#x27;: &#x27;tenancy_example&#x27;}, &#x27;instance_access_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;instance_license_type&#x27;: &#x27;NEW&#x27;, &#x27;instance_usage_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;lifecycle_details&#x27;: &#x27;STANDBY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_storage_namespace&#x27;: &#x27;object_storage_namespace_example&#x27;, &#x27;service&#x27;: {}, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenancy_name&#x27;: &#x27;tenancy_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_schedule&#x27;: &#x27;UPGRADE_IMMEDIATELY&#x27;, &#x27;waf_primary_domain&#x27;: &#x27;waf_primary_domain_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -904,6 +947,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-oce_instance/dr_region"></div>
+                    <b>dr_region</b>
+                    <a class="ansibleOptionLink" href="#return-oce_instance/dr_region" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>disaster recovery paired ragion name</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">us-phoenix-1</div>
                                     </td>
             </tr>
                                 <tr>

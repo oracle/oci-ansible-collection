@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_resource_usage_trend_facts -- Fetches details about a Resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -198,6 +198,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cdb_name"></div>
+                    <b>cdb_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-cdb_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more cdb name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -628,6 +643,7 @@ Examples
         freeform_tag_exists: [ "freeform_tag_exists_example" ]
         compartment_id_in_subtree: true
         vmcluster_name: [ "vmcluster_name_example" ]
+        cdb_name: [ "cdb_name_example" ]
 
 
 

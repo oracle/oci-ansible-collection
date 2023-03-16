@@ -165,6 +165,38 @@ options:
             - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             - This parameter is updatable.
         type: int
+    long_term_backup_schedule:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            repeat_cadence:
+                description:
+                    - The frequency of the long-term backup schedule
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ONE_TIME"
+                    - "WEEKLY"
+                    - "MONTHLY"
+                    - "YEARLY"
+            time_of_backup:
+                description:
+                    - The timestamp for the long-term backup schedule. For a MONTHLY cadence, months having fewer days than the provided date will have the
+                      backup taken on the last day of that month.
+                    - This parameter is updatable.
+                type: str
+            retention_period_in_days:
+                description:
+                    - Retention period, in days, for long-term backups
+                    - This parameter is updatable.
+                type: int
+            is_disabled:
+                description:
+                    - Indicates if the long-term backup schedule should be deleted. The default value is `FALSE`.
+                    - This parameter is updatable.
+                type: bool
     compute_count:
         description:
             - The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or
@@ -983,6 +1015,12 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    long_term_backup_schedule:
+      # optional
+      repeat_cadence: ONE_TIME
+      time_of_backup: time_of_backup_example
+      retention_period_in_days: 56
+      is_disabled: true
     compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
@@ -1047,6 +1085,12 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    long_term_backup_schedule:
+      # optional
+      repeat_cadence: ONE_TIME
+      time_of_backup: time_of_backup_example
+      retention_period_in_days: 56
+      is_disabled: true
     compute_count: 3.4
     ocpu_count: 3.4
     data_storage_size_in_tbs: 56
@@ -1203,6 +1247,43 @@ autonomous_database:
             returned: on success
             type: str
             sample: ncharacter_set_example
+        next_long_term_backup_time_stamp:
+            description:
+                - The date and time when the next long-term backup would be created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        long_term_backup_schedule:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                repeat_cadence:
+                    description:
+                        - The frequency of the long-term backup schedule
+                    returned: on success
+                    type: str
+                    sample: ONE_TIME
+                time_of_backup:
+                    description:
+                        - The timestamp for the long-term backup schedule. For a MONTHLY cadence, months having fewer days than the provided date will have the
+                          backup taken on the last day of that month.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                retention_period_in_days:
+                    description:
+                        - Retention period, in days, for long-term backups
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_disabled:
+                    description:
+                        - Indicates if the long-term backup schedule should be deleted. The default value is `FALSE`.
+                    returned: on success
+                    type: bool
+                    sample: true
         is_free_tier:
             description:
                 - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
@@ -1311,7 +1392,7 @@ autonomous_database:
             sample: 3.4
         backup_retention_period_in_days:
             description:
-                - Retention period, in days, for backups.
+                - Retention period, in days, for long-term backups
             returned: on success
             type: int
             sample: 56
@@ -2126,6 +2207,13 @@ autonomous_database:
         "db_name": "db_name_example",
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
+        "next_long_term_backup_time_stamp": "2013-10-20T19:20:30+01:00",
+        "long_term_backup_schedule": {
+            "repeat_cadence": "ONE_TIME",
+            "time_of_backup": "2013-10-20T19:20:30+01:00",
+            "retention_period_in_days": 56,
+            "is_disabled": true
+        },
         "is_free_tier": true,
         "system_tags": {},
         "time_reclamation_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
@@ -2489,6 +2577,17 @@ def main():
                 type="str", choices=["EARLY", "REGULAR"]
             ),
             cpu_core_count=dict(type="int"),
+            long_term_backup_schedule=dict(
+                type="dict",
+                options=dict(
+                    repeat_cadence=dict(
+                        type="str", choices=["ONE_TIME", "WEEKLY", "MONTHLY", "YEARLY"]
+                    ),
+                    time_of_backup=dict(type="str"),
+                    retention_period_in_days=dict(type="int"),
+                    is_disabled=dict(type="bool"),
+                ),
+            ),
             compute_count=dict(type="float"),
             ocpu_count=dict(type="float"),
             data_storage_size_in_tbs=dict(type="int"),

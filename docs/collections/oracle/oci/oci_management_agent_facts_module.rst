@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_facts -- Fetches details about one or multiple M
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -319,6 +319,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-gateway_id"></div>
+                    <b>gateway_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-gateway_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter to return only results having the particular gatewayId.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_id"></div>
                     <b>host_id</b>
                     <a class="ansibleOptionLink" href="#parameter-host_id" title="Permalink to this option"></a>
@@ -426,6 +441,7 @@ Parameters
                                                                                                                                                                 <li>LINUX</li>
                                                                                                                                                                                                 <li>WINDOWS</li>
                                                                                                                                                                                                 <li>SOLARIS</li>
+                                                                                                                                                                                                <li>MACOSX</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -580,6 +596,7 @@ Examples
         platform_type: [ "LINUX" ]
         is_customer_deployed: true
         install_type: AGENT
+        gateway_id: [ "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx" ]
         sort_order: ASC
         sort_by: timeCreated
         compartment_id_in_subtree: true
@@ -620,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementAgent resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;host_id&#x27;: &#x27;ocid1.host.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;install_type&#x27;: &#x27;AGENT&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;is_customer_deployed&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_status&#x27;: &#x27;RUNNING&#x27;, &#x27;plugin_status_message&#x27;: &#x27;plugin_status_message_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;resource_artifact_version&#x27;: &#x27;resource_artifact_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;host_id&#x27;: &#x27;ocid1.host.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;install_type&#x27;: &#x27;AGENT&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;is_customer_deployed&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;units&#x27;: &#x27;PERCENTAGE&#x27;, &#x27;values&#x27;: []}], &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_status&#x27;: &#x27;RUNNING&#x27;, &#x27;plugin_status_message&#x27;: &#x27;plugin_status_message_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;resource_artifact_version&#x27;: &#x27;resource_artifact_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -894,6 +911,79 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agents/management_agent_properties"></div>
+                    <b>management_agent_properties</b>
+                    <a class="ansibleOptionLink" href="#return-management_agents/management_agent_properties" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Additional properties for this Management Agent</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agents/management_agent_properties/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agents/management_agent_properties/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the property</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agents/management_agent_properties/units"></div>
+                    <b>units</b>
+                    <a class="ansibleOptionLink" href="#return-management_agents/management_agent_properties/units" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unit for the property</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PERCENTAGE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agents/management_agent_properties/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-management_agents/management_agent_properties/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Values of the property</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

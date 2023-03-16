@@ -91,6 +91,7 @@ options:
             - "LINUX"
             - "WINDOWS"
             - "SOLARIS"
+            - "MACOSX"
     is_customer_deployed:
         description:
             - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
@@ -102,6 +103,11 @@ options:
         choices:
             - "AGENT"
             - "GATEWAY"
+    gateway_id:
+        description:
+            - Filter to return only results having the particular gatewayId.
+        type: list
+        elements: str
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -155,6 +161,7 @@ EXAMPLES = """
     platform_type: [ "LINUX" ]
     is_customer_deployed: true
     install_type: AGENT
+    gateway_id: [ "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx" ]
     sort_order: ASC
     sort_by: timeCreated
     compartment_id_in_subtree: true
@@ -176,6 +183,31 @@ management_agents:
             returned: on success
             type: str
             sample: install_path_example
+        management_agent_properties:
+            description:
+                - Additional properties for this Management Agent
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - Name of the property
+                    returned: on success
+                    type: str
+                    sample: name_example
+                values:
+                    description:
+                        - Values of the property
+                    returned: on success
+                    type: list
+                    sample: []
+                units:
+                    description:
+                        - Unit for the property
+                    returned: on success
+                    type: str
+                    sample: PERCENTAGE
         id:
             description:
                 - agent identifier
@@ -367,6 +399,11 @@ management_agents:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "install_path": "install_path_example",
+        "management_agent_properties": [{
+            "name": "name_example",
+            "values": [],
+            "units": "PERCENTAGE"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "install_key_id": "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -446,6 +483,7 @@ class ManagementAgentFactsHelperGen(OCIResourceFactsHelperBase):
             "platform_type",
             "is_customer_deployed",
             "install_type",
+            "gateway_id",
             "sort_order",
             "sort_by",
             "compartment_id_in_subtree",
@@ -499,10 +537,13 @@ def main():
             ),
             host_id=dict(type="str"),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "WINDOWS", "SOLARIS"]
+                type="list",
+                elements="str",
+                choices=["LINUX", "WINDOWS", "SOLARIS", "MACOSX"],
             ),
             is_customer_deployed=dict(type="bool"),
             install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),
+            gateway_id=dict(type="list", elements="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(
                 type="str",

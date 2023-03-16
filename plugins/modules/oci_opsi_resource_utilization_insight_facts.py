@@ -156,6 +156,19 @@ options:
             - Optional list of Exadata Insight VM cluster name.
         type: list
         elements: str
+    cdb_name:
+        description:
+            - Filter by one or more cdb name.
+        type: list
+        elements: str
+    high_utilization_threshold:
+        description:
+            - Percent value in which a resource metric is considered highly utilized.
+        type: int
+    low_utilization_threshold:
+        description:
+            - Percent value in which a resource metric is considered low utilized.
+        type: int
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -183,6 +196,9 @@ EXAMPLES = """
     freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
     vmcluster_name: [ "vmcluster_name_example" ]
+    cdb_name: [ "cdb_name_example" ]
+    high_utilization_threshold: 1
+    low_utilization_threshold: 0
 
 """
 
@@ -205,6 +221,18 @@ resource_utilization_insight:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        high_utilization_threshold:
+            description:
+                - Percent value in which a resource metric is considered highly utilized.
+            returned: on success
+            type: int
+            sample: 56
+        low_utilization_threshold:
+            description:
+                - Percent value in which a resource metric is considered lowly utilized.
+            returned: on success
+            type: int
+            sample: 56
         resource_metric:
             description:
                 - "Defines the type of resource metric (example: CPU, STORAGE)"
@@ -274,6 +302,8 @@ resource_utilization_insight:
     sample: {
         "time_interval_start": "2013-10-20T19:20:30+01:00",
         "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "high_utilization_threshold": 56,
+        "low_utilization_threshold": 56,
         "resource_metric": "CPU",
         "projected_utilization": {
             "low": [{
@@ -334,6 +364,9 @@ class ResourceUtilizationInsightFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_exists",
             "compartment_id_in_subtree",
             "vmcluster_name",
+            "cdb_name",
+            "high_utilization_threshold",
+            "low_utilization_threshold",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -402,6 +435,9 @@ def main():
             freeform_tag_exists=dict(type="list", elements="str"),
             compartment_id_in_subtree=dict(type="bool"),
             vmcluster_name=dict(type="list", elements="str"),
+            cdb_name=dict(type="list", elements="str"),
+            high_utilization_threshold=dict(type="int"),
+            low_utilization_threshold=dict(type="int"),
         )
     )
 

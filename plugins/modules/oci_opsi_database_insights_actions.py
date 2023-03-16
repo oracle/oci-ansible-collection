@@ -23,11 +23,17 @@ module: oci_opsi_database_insights_actions
 short_description: Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
+    - For I(action=change_autonomous_database_insight_advanced_features), update connection detail for advanced features of Autonomous Database in Operations
+      Insights.
     - For I(action=change), moves a DatabaseInsight resource from one compartment identifier to another. When provided, If-Match is checked against ETag values
       of the resource.
     - For I(action=change_pe_comanaged), change the connection details of a co-managed  database insight. When provided, If-Match is checked against ETag values
       of the resource.
+    - For I(action=disable_autonomous_database_insight_advanced_features), disable advanced features for an Autonomous Database in Operations Insights. The
+      connection detail and advanced features will be removed.
     - For I(action=disable), disables a database in Operations Insights. Database metric collection and analysis will be stopped.
+    - For I(action=enable_autonomous_database_insight_advanced_features), enables advanced features for an Autonomous Database in Operations Insights. A direct
+      connection will be available for further collection.
     - For I(action=enable), enables a database in Operations Insights. Database metric collection and analysis will be started.
     - For I(action=ingest_database_configuration), this is a generic ingest endpoint for all database configuration metrics.
     - For I(action=ingest_sql_bucket), the sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline.
@@ -43,6 +49,35 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    connection_details:
+        description:
+            - ""
+            - Required for I(action=change_autonomous_database_insight_advanced_features), I(action=enable_autonomous_database_insight_advanced_features).
+        type: dict
+        suboptions:
+            host_name:
+                description:
+                    - Name of the listener host that will be used to create the connect string to the database.
+                type: str
+                required: true
+            protocol:
+                description:
+                    - Protocol used for connection requests.
+                type: str
+                choices:
+                    - "TCP"
+                    - "TCPS"
+                required: true
+            port:
+                description:
+                    - Listener port number used for connection requests.
+                type: int
+                required: true
+            service_name:
+                description:
+                    - Database service name used for connection requests.
+                type: str
+                required: true
     entity_source:
         description:
             - Source of the database entity.
@@ -66,7 +101,8 @@ options:
     credential_details:
         description:
             - ""
-            - Required for I(action=change_pe_comanaged).
+            - Required for I(action=change_autonomous_database_insight_advanced_features), I(action=change_pe_comanaged),
+              I(action=enable_autonomous_database_insight_advanced_features).
             - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
         type: dict
         suboptions:
@@ -124,7 +160,9 @@ options:
     database_insight_id:
         description:
             - Unique database insight identifier
-            - Required for I(action=change), I(action=change_pe_comanaged), I(action=disable), I(action=enable).
+            - Required for I(action=change_autonomous_database_insight_advanced_features), I(action=change), I(action=change_pe_comanaged),
+              I(action=disable_autonomous_database_insight_advanced_features), I(action=disable),
+              I(action=enable_autonomous_database_insight_advanced_features), I(action=enable).
         type: str
     items:
         description:
@@ -791,9 +829,12 @@ options:
         type: str
         required: true
         choices:
+            - "change_autonomous_database_insight_advanced_features"
             - "change"
             - "change_pe_comanaged"
+            - "disable_autonomous_database_insight_advanced_features"
             - "disable"
+            - "enable_autonomous_database_insight_advanced_features"
             - "enable"
             - "ingest_database_configuration"
             - "ingest_sql_bucket"
@@ -804,6 +845,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action change_autonomous_database_insight_advanced_features on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    connection_details:
+      # required
+      host_name: host_name_example
+      protocol: TCP
+      port: 56
+      service_name: service_name_example
+    credential_details:
+      # required
+      credential_source_name: credential_source_name_example
+      credential_type: CREDENTIALS_BY_SOURCE
+    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_autonomous_database_insight_advanced_features
+
+    # optional
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action change on database_insights
   oci_opsi_database_insights_actions:
     # required
@@ -823,11 +883,36 @@ EXAMPLES = """
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_pe_comanaged
 
+- name: Perform action disable_autonomous_database_insight_advanced_features on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_autonomous_database_insight_advanced_features
+
 - name: Perform action disable on database_insights
   oci_opsi_database_insights_actions:
     # required
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable
+
+- name: Perform action enable_autonomous_database_insight_advanced_features on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    connection_details:
+      # required
+      host_name: host_name_example
+      protocol: TCP
+      port: 56
+      service_name: service_name_example
+    credential_details:
+      # required
+      credential_source_name: credential_source_name_example
+      credential_type: CREDENTIALS_BY_SOURCE
+    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_autonomous_database_insight_advanced_features
+
+    # optional
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action enable on database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights_actions:
@@ -968,6 +1053,12 @@ database_insights:
     returned: on success
     type: complex
     contains:
+        is_advanced_features_enabled:
+            description:
+                - Flag is to identify if advanced features for autonomous database is enabled or not
+            returned: on success
+            type: bool
+            sample: true
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -1289,6 +1380,7 @@ database_insights:
             type: str
             sample: "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
+        "is_advanced_features_enabled": true,
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
@@ -1360,8 +1452,10 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.opsi import OperationsInsightsClient
+    from oci.opsi.models import ChangeAutonomousDatabaseInsightAdvancedFeaturesDetails
     from oci.opsi.models import ChangeDatabaseInsightCompartmentDetails
     from oci.opsi.models import ChangePeComanagedDatabaseInsightDetails
+    from oci.opsi.models import EnableAutonomousDatabaseInsightAdvancedFeaturesDetails
     from oci.opsi.models import EnableDatabaseInsightDetails
     from oci.opsi.models import IngestDatabaseConfigurationDetails
     from oci.opsi.models import IngestSqlBucketDetails
@@ -1377,9 +1471,12 @@ except ImportError:
 class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_autonomous_database_insight_advanced_features
         change
         change_pe_comanaged
+        disable_autonomous_database_insight_advanced_features
         disable
+        enable_autonomous_database_insight_advanced_features
         enable
         ingest_database_configuration
         ingest_sql_bucket
@@ -1395,6 +1492,27 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_database_insight,
             database_insight_id=self.module.params.get("database_insight_id"),
+        )
+
+    def change_autonomous_database_insight_advanced_features(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeAutonomousDatabaseInsightAdvancedFeaturesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_autonomous_database_insight_advanced_features,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_autonomous_database_insight_advanced_features_details=action_details,
+                database_insight_id=self.module.params.get("database_insight_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change(self):
@@ -1439,11 +1557,49 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def disable_autonomous_database_insight_advanced_features(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_autonomous_database_insight_advanced_features,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_insight_id=self.module.params.get("database_insight_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def disable(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.disable_database_insight,
             call_fn_args=(),
             call_fn_kwargs=dict(
+                database_insight_id=self.module.params.get("database_insight_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_autonomous_database_insight_advanced_features(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableAutonomousDatabaseInsightAdvancedFeaturesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_autonomous_database_insight_advanced_features,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                enable_autonomous_database_insight_advanced_features_details=action_details,
                 database_insight_id=self.module.params.get("database_insight_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
@@ -1618,6 +1774,15 @@ def main():
     )
     module_args.update(
         dict(
+            connection_details=dict(
+                type="dict",
+                options=dict(
+                    host_name=dict(type="str", required=True),
+                    protocol=dict(type="str", required=True, choices=["TCP", "TCPS"]),
+                    port=dict(type="int", required=True),
+                    service_name=dict(type="str", required=True),
+                ),
+            ),
             entity_source=dict(
                 type="str",
                 choices=["EM_MANAGED_EXTERNAL_DATABASE", "PE_COMANAGED_DATABASE"],
@@ -1798,9 +1963,12 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_autonomous_database_insight_advanced_features",
                     "change",
                     "change_pe_comanaged",
+                    "disable_autonomous_database_insight_advanced_features",
                     "disable",
+                    "enable_autonomous_database_insight_advanced_features",
                     "enable",
                     "ingest_database_configuration",
                     "ingest_sql_bucket",

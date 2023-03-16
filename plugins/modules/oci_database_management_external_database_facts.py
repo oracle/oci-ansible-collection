@@ -51,7 +51,7 @@ options:
             - "DISPLAYNAME"
     sort_order:
         description:
-            - The option to sort information in ascending (???ASC???) or descending (???DESC???) order. Ascending order is the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"

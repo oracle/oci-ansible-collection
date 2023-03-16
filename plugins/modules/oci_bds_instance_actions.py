@@ -34,6 +34,7 @@ description:
     - For I(action=change_shape), changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of
       all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD
       shapes can be scaled.
+    - For I(action=execute_bootstrap_script), execute bootstrap script.
     - For I(action=install_patch), install the specified patch to this cluster.
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
     - For I(action=remove_node), remove a single node of a Big Data Service cluster
@@ -223,6 +224,11 @@ options:
                         description:
                             - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
+    bootstrap_script_url:
+        description:
+            - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
+            - Applicable only for I(action=execute_bootstrap_script).
+        type: str
     version:
         description:
             - The version of the patch to be installed.
@@ -253,8 +259,8 @@ options:
     cluster_admin_password:
         description:
             - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
-            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=install_patch),
-              I(action=remove_cloud_sql), I(action=remove_node), I(action=start), I(action=stop).
+            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape),
+              I(action=execute_bootstrap_script), I(action=install_patch), I(action=remove_cloud_sql), I(action=remove_node), I(action=start), I(action=stop).
         type: str
     action:
         description:
@@ -267,6 +273,7 @@ options:
             - "add_worker_nodes"
             - "change_compartment"
             - "change_shape"
+            - "execute_bootstrap_script"
             - "install_patch"
             - "remove_cloud_sql"
             - "remove_node"
@@ -371,6 +378,16 @@ EXAMPLES = """
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: example-password
     action: change_shape
+
+- name: Perform action execute_bootstrap_script on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: execute_bootstrap_script
+
+    # optional
+    bootstrap_script_url: bootstrap_script_url_example
 
 - name: Perform action install_patch on bds_instance
   oci_bds_instance_actions:
@@ -924,6 +941,7 @@ try:
     from oci.bds.models import AddWorkerNodesDetails
     from oci.bds.models import ChangeBdsInstanceCompartmentDetails
     from oci.bds.models import ChangeShapeDetails
+    from oci.bds.models import ExecuteBootstrapScriptDetails
     from oci.bds.models import InstallPatchDetails
     from oci.bds.models import RemoveCloudSqlDetails
     from oci.bds.models import RemoveNodeDetails
@@ -944,6 +962,7 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         add_worker_nodes
         change_compartment
         change_shape
+        execute_bootstrap_script
         install_patch
         remove_cloud_sql
         remove_node
@@ -1062,6 +1081,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 change_shape_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def execute_bootstrap_script(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ExecuteBootstrapScriptDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.execute_bootstrap_script,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                execute_bootstrap_script_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1287,6 +1327,7 @@ def main():
                     ),
                 ),
             ),
+            bootstrap_script_url=dict(type="str"),
             version=dict(type="str"),
             is_force_remove_enabled=dict(type="bool"),
             node_id=dict(type="str"),
@@ -1302,6 +1343,7 @@ def main():
                     "add_worker_nodes",
                     "change_compartment",
                     "change_shape",
+                    "execute_bootstrap_script",
                     "install_patch",
                     "remove_cloud_sql",
                     "remove_node",

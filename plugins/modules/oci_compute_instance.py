@@ -609,6 +609,19 @@ options:
                     - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                     - This parameter is updatable.
                 type: int
+    update_operation_constraint:
+        description:
+            - "The parameter acts as a fail-safe to prevent unwanted downtime when updating a running instance.
+              The default is ALLOW_DOWNTIME.
+              * `ALLOW_DOWNTIME` - Compute might reboot the instance while updating the instance if a reboot is required.
+              * `AVOID_DOWNTIME` - If the instance is in running state, Compute tries to update the instance without rebooting
+                                it. If the instance requires a reboot to be updated, an error is returned and the instance
+                                is not updated. If the instance is stopped, it is updated and remains in the stopped state."
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ALLOW_DOWNTIME"
+            - "AVOID_DOWNTIME"
     instance_options:
         description:
             - ""
@@ -901,6 +914,7 @@ EXAMPLES = """
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
       nvmes: 56
+    update_operation_constraint: ALLOW_DOWNTIME
     instance_options:
       # optional
       are_legacy_imds_endpoints_disabled: true
@@ -947,6 +961,7 @@ EXAMPLES = """
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
       nvmes: 56
+    update_operation_constraint: ALLOW_DOWNTIME
     instance_options:
       # optional
       are_legacy_imds_endpoints_disabled: true
@@ -1965,6 +1980,9 @@ def main():
                     ),
                     nvmes=dict(type="int"),
                 ),
+            ),
+            update_operation_constraint=dict(
+                type="str", choices=["ALLOW_DOWNTIME", "AVOID_DOWNTIME"]
             ),
             instance_options=dict(
                 type="dict",

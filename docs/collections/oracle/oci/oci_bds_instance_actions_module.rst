@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -62,6 +62,7 @@ Synopsis
 - For *action=add_worker_nodes*, increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same shape and will have the same amount of attached block storage as other worker nodes in the cluster.
 - For *action=change_compartment*, moves a Big Data Service cluster into a different compartment.
 - For *action=change_shape*, changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD shapes can be scaled.
+- For *action=execute_bootstrap_script*, execute bootstrap script.
 - For *action=install_patch*, install the specified patch to this cluster.
 - For *action=remove_cloud_sql*, removes Cloud SQL from the cluster.
 - For *action=remove_node*, remove a single node of a Big Data Service cluster
@@ -112,6 +113,7 @@ Parameters
                                                                                                                                                                                                 <li>add_worker_nodes</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>change_shape</li>
+                                                                                                                                                                                                <li>execute_bootstrap_script</li>
                                                                                                                                                                                                 <li>install_patch</li>
                                                                                                                                                                                                 <li>remove_cloud_sql</li>
                                                                                                                                                                                                 <li>remove_node</li>
@@ -257,6 +259,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-bootstrap_script_url"></div>
+                    <b>bootstrap_script_url</b>
+                    <a class="ansibleOptionLink" href="#parameter-bootstrap_script_url" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.</div>
+                                            <div>Applicable only for <em>action=execute_bootstrap_script</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -283,7 +301,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
-                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
+                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=execute_bootstrap_script</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1226,6 +1244,16 @@ Examples
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: example-password
         action: change_shape
+
+    - name: Perform action execute_bootstrap_script on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: execute_bootstrap_script
+
+        # optional
+        bootstrap_script_url: bootstrap_script_url_example
 
     - name: Perform action install_patch on bds_instance
       oci_bds_instance_actions:

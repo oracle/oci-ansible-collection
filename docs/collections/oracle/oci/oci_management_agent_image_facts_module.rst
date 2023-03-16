@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_image_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -426,12 +426,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images"></div>
                     <b>management_agent_images</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images" title="Permalink to this return value"></a>
@@ -444,12 +444,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementAgentImage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;checksum&#x27;: &#x27;checksum_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;object_url&#x27;: &#x27;object_url_example&#x27;, &#x27;package_architecture_type&#x27;: &#x27;X86_64&#x27;, &#x27;package_type&#x27;: &#x27;RPM&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;size&#x27;: 10, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;checksum&#x27;: &#x27;checksum_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_object_storage_details&#x27;: {&#x27;checksum&#x27;: &#x27;checksum_example&#x27;, &#x27;object_bucket&#x27;: &#x27;object_bucket_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;object_namespace&#x27;: &#x27;object_namespace_example&#x27;, &#x27;object_url&#x27;: &#x27;object_url_example&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;object_url&#x27;: &#x27;object_url_example&#x27;, &#x27;package_architecture_type&#x27;: &#x27;X86_64&#x27;, &#x27;package_type&#x27;: &#x27;RPM&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;size&#x27;: 10, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/checksum"></div>
                     <b>checksum</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/checksum" title="Permalink to this return value"></a>
@@ -467,7 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/id" title="Permalink to this return value"></a>
@@ -485,7 +485,119 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details"></div>
+                    <b>image_object_storage_details</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details/checksum"></div>
+                    <b>checksum</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details/checksum" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Object content SHA256 Hash</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">checksum_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details/object_bucket"></div>
+                    <b>object_bucket</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details/object_bucket" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Objectstorage bucket reference providing the original location of this object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_bucket_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details/object_name"></div>
+                    <b>object_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details/object_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Objectstorage object name reference providing the original location of this object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details/object_namespace"></div>
+                    <b>object_namespace</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details/object_namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Objectstorage namespace reference providing the original location of this object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/image_object_storage_details/object_url"></div>
+                    <b>object_url</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/image_object_storage_details/object_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Object storage URL for download</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_url_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/lifecycle_state" title="Permalink to this return value"></a>
@@ -503,7 +615,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/object_url"></div>
                     <b>object_url</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/object_url" title="Permalink to this return value"></a>
@@ -521,7 +633,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/package_architecture_type"></div>
                     <b>package_architecture_type</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/package_architecture_type" title="Permalink to this return value"></a>
@@ -539,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/package_type"></div>
                     <b>package_type</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/package_type" title="Permalink to this return value"></a>
@@ -557,7 +669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/platform_name"></div>
                     <b>platform_name</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/platform_name" title="Permalink to this return value"></a>
@@ -575,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/platform_type"></div>
                     <b>platform_type</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/platform_type" title="Permalink to this return value"></a>
@@ -593,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/size"></div>
                     <b>size</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/size" title="Permalink to this return value"></a>
@@ -611,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent_images/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#return-management_agent_images/version" title="Permalink to this return value"></a>

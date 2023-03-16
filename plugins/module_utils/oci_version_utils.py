@@ -26,10 +26,13 @@ logger = logging.getLogger(__name__)
 
 
 def get_oci_python_sdk_version():
-    try:
-        python_sdk_version = oci.__version__
-    except AttributeError:
-        python_sdk_version = None
+    if not HAS_OCI_PY_SDK:
+        python_sdk_version = "Not installed"
+    else:
+        try:
+            python_sdk_version = oci.__version__
+        except AttributeError:
+            python_sdk_version = None
     logger.debug("OCI-Python-Sdk version: {}".format(python_sdk_version))
     return python_sdk_version
 
@@ -86,10 +89,13 @@ def get_oci_ansible_collection_latest_version():
 
 
 def get_oci_python_sdk_path():
-    try:
-        oci_python_sdk_path = oci.__path__
-    except AttributeError:
-        oci_python_sdk_path = None
+    if not HAS_OCI_PY_SDK:
+        oci_python_sdk_path = "Not installed"
+    else:
+        try:
+            oci_python_sdk_path = oci.__path__
+        except AttributeError:
+            oci_python_sdk_path = None
 
     logger.debug("OCI-Python-Sdk path: {}".format(oci_python_sdk_path))
     return oci_python_sdk_path

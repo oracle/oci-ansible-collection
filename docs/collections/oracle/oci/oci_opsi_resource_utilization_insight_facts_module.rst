@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_resource_utilization_insight_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -198,6 +198,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cdb_name"></div>
+                    <b>cdb_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-cdb_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more cdb name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -418,6 +433,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-high_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-host_name" title="Permalink to this option"></a>
@@ -463,6 +493,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied. When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the whole database which contains an instance on this host.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-low_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered low utilized.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -603,6 +648,9 @@ Examples
         freeform_tag_exists: [ "freeform_tag_exists_example" ]
         compartment_id_in_subtree: true
         vmcluster_name: [ "vmcluster_name_example" ]
+        cdb_name: [ "cdb_name_example" ]
+        high_utilization_threshold: 1
+        low_utilization_threshold: 0
 
 
 
@@ -639,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceUtilizationInsight resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;current_utilization&#x27;: {&#x27;high&#x27;: [], &#x27;low&#x27;: []}, &#x27;projected_utilization&#x27;: {&#x27;high&#x27;: [{&#x27;days_to_reach&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;low&#x27;: [{&#x27;days_to_reach&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;current_utilization&#x27;: {&#x27;high&#x27;: [], &#x27;low&#x27;: []}, &#x27;high_utilization_threshold&#x27;: 56, &#x27;low_utilization_threshold&#x27;: 56, &#x27;projected_utilization&#x27;: {&#x27;high&#x27;: [{&#x27;days_to_reach&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;low&#x27;: [{&#x27;days_to_reach&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -693,6 +741,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-resource_utilization_insight/high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-resource_utilization_insight/high_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-resource_utilization_insight/low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-resource_utilization_insight/low_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered lowly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

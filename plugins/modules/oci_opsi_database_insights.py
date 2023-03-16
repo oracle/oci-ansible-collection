@@ -25,8 +25,10 @@ description:
     - This module allows the user to create, update and delete a DatabaseInsights resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights.
       Database metric collection and analysis will be started.
-    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module: change, change_pe_comanaged, disable,
-      enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text."
+    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module:
+      change_autonomous_database_insight_advanced_features, change, change_pe_comanaged, disable_autonomous_database_insight_advanced_features, disable,
+      enable_autonomous_database_insight_advanced_features, enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats,
+      ingest_sql_text."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -278,6 +280,12 @@ database_insights:
     returned: on success
     type: complex
     contains:
+        is_advanced_features_enabled:
+            description:
+                - Flag is to identify if advanced features for autonomous database is enabled or not
+            returned: on success
+            type: bool
+            sample: true
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -599,6 +607,7 @@ database_insights:
             type: str
             sample: "ocid1.root.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
+        "is_advanced_features_enabled": true,
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",

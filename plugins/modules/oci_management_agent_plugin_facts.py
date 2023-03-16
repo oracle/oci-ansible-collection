@@ -71,6 +71,7 @@ options:
             - "LINUX"
             - "WINDOWS"
             - "SOLARIS"
+            - "MACOSX"
     agent_id:
         description:
             - The ManagementAgentID of the agent from which the Management Agents to be filtered.
@@ -239,7 +240,9 @@ def main():
                 ],
             ),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "WINDOWS", "SOLARIS"]
+                type="list",
+                elements="str",
+                choices=["LINUX", "WINDOWS", "SOLARIS", "MACOSX"],
             ),
             agent_id=dict(type="str"),
             name=dict(type="str"),

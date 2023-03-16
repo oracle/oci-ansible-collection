@@ -174,6 +174,19 @@ class InstanceHelperCustom:
             )
         return result
 
+    # logic for idempotency
+    # update_operation_constraint is not available in get_resource() operation
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            InstanceHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+
+        # update_operation_constraint is not a param in update_instance model.
+        # The parameter acts as a fail-safe to prevent unwanted downtime when updating a running instance.
+        update_model_dict.pop("update_operation_constraint", None)
+
+        return update_model_dict
+
 
 class InstanceFactsHelperCustom:
     def __init__(self, *args, **kwargs):

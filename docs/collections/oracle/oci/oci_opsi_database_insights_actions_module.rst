@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights_actions -- Perform actions on a DatabaseIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,12 @@ Synopsis
 .. Description
 
 - Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
+- For *action=change_autonomous_database_insight_advanced_features*, update connection detail for advanced features of Autonomous Database in Operations Insights.
 - For *action=change*, moves a DatabaseInsight resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
 - For *action=change_pe_comanaged*, change the connection details of a co-managed  database insight. When provided, If-Match is checked against ETag values of the resource.
+- For *action=disable_autonomous_database_insight_advanced_features*, disable advanced features for an Autonomous Database in Operations Insights. The connection detail and advanced features will be removed.
 - For *action=disable*, disables a database in Operations Insights. Database metric collection and analysis will be stopped.
+- For *action=enable_autonomous_database_insight_advanced_features*, enables advanced features for an Autonomous Database in Operations Insights. A direct connection will be available for further collection.
 - For *action=enable*, enables a database in Operations Insights. Database metric collection and analysis will be started.
 - For *action=ingest_database_configuration*, this is a generic ingest endpoint for all database configuration metrics.
 - For *action=ingest_sql_bucket*, the sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline. Either databaseId or id must be specified.
@@ -105,9 +108,12 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change</li>
+                                                                                                                                                                <li>change_autonomous_database_insight_advanced_features</li>
+                                                                                                                                                                                                <li>change</li>
                                                                                                                                                                                                 <li>change_pe_comanaged</li>
+                                                                                                                                                                                                <li>disable_autonomous_database_insight_advanced_features</li>
                                                                                                                                                                                                 <li>disable</li>
+                                                                                                                                                                                                <li>enable_autonomous_database_insight_advanced_features</li>
                                                                                                                                                                                                 <li>enable</li>
                                                                                                                                                                                                 <li>ingest_database_configuration</li>
                                                                                                                                                                                                 <li>ingest_sql_bucket</li>
@@ -283,6 +289,91 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details"></div>
+                    <b>connection_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required for <em>action=change_autonomous_database_insight_advanced_features</em>, <em>action=enable_autonomous_database_insight_advanced_features</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/host_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the listener host that will be used to create the connect string to the database.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Listener port number used for connection requests.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/protocol" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TCP</li>
+                                                                                                                                                                                                <li>TCPS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Protocol used for connection requests.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/service_name"></div>
+                    <b>service_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/service_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Database service name used for connection requests.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details"></div>
                     <b>credential_details</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details" title="Permalink to this option"></a>
@@ -294,7 +385,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for <em>action=change_pe_comanaged</em>.</div>
+                                            <div>Required for <em>action=change_autonomous_database_insight_advanced_features</em>, <em>action=change_pe_comanaged</em>, <em>action=enable_autonomous_database_insight_advanced_features</em>.</div>
                                             <div>Required when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
                                                         </td>
             </tr>
@@ -418,7 +509,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Unique database insight identifier</div>
-                                            <div>Required for <em>action=change</em>, <em>action=change_pe_comanaged</em>, <em>action=disable</em>, <em>action=enable</em>.</div>
+                                            <div>Required for <em>action=change_autonomous_database_insight_advanced_features</em>, <em>action=change</em>, <em>action=change_pe_comanaged</em>, <em>action=disable_autonomous_database_insight_advanced_features</em>, <em>action=disable</em>, <em>action=enable_autonomous_database_insight_advanced_features</em>, <em>action=enable</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2855,6 +2946,25 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_autonomous_database_insight_advanced_features on database_insights
+      oci_opsi_database_insights_actions:
+        # required
+        connection_details:
+          # required
+          host_name: host_name_example
+          protocol: TCP
+          port: 56
+          service_name: service_name_example
+        credential_details:
+          # required
+          credential_source_name: credential_source_name_example
+          credential_type: CREDENTIALS_BY_SOURCE
+        database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_autonomous_database_insight_advanced_features
+
+        # optional
+        opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Perform action change on database_insights
       oci_opsi_database_insights_actions:
         # required
@@ -2874,11 +2984,36 @@ Examples
         database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_pe_comanaged
 
+    - name: Perform action disable_autonomous_database_insight_advanced_features on database_insights
+      oci_opsi_database_insights_actions:
+        # required
+        database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+        action: disable_autonomous_database_insight_advanced_features
+
     - name: Perform action disable on database_insights
       oci_opsi_database_insights_actions:
         # required
         database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable
+
+    - name: Perform action enable_autonomous_database_insight_advanced_features on database_insights
+      oci_opsi_database_insights_actions:
+        # required
+        connection_details:
+          # required
+          host_name: host_name_example
+          protocol: TCP
+          port: 56
+          service_name: service_name_example
+        credential_details:
+          # required
+          credential_source_name: credential_source_name_example
+          credential_type: CREDENTIALS_BY_SOURCE
+        database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+        action: enable_autonomous_database_insight_advanced_features
+
+        # optional
+        opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Perform action enable on database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
       oci_opsi_database_insights_actions:
@@ -3045,7 +3180,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DatabaseInsights resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;connection_details&#x27;: {&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;hosts&#x27;: [{&#x27;host_ip&#x27;: &#x27;host_ip_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;database_connection_status_details&#x27;: &#x27;database_connection_status_details_example&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_resource_type&#x27;: &#x27;database_resource_type_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_additional_details&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;enterprise_manager_bridge_id&#x27;: &#x27;ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enterprise_manager_entity_display_name&#x27;: &#x27;enterprise_manager_entity_display_name_example&#x27;, &#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;entity_source&#x27;: &#x27;AUTONOMOUS_DATABASE&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opsi_private_endpoint_id&#x27;: &#x27;ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_id&#x27;: &#x27;ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;processor_count&#x27;: 56, &#x27;root_id&#x27;: &#x27;ocid1.root.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;DISABLED&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;connection_details&#x27;: {&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;hosts&#x27;: [{&#x27;host_ip&#x27;: &#x27;host_ip_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;database_connection_status_details&#x27;: &#x27;database_connection_status_details_example&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_resource_type&#x27;: &#x27;database_resource_type_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_additional_details&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;enterprise_manager_bridge_id&#x27;: &#x27;ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enterprise_manager_entity_display_name&#x27;: &#x27;enterprise_manager_entity_display_name_example&#x27;, &#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;entity_source&#x27;: &#x27;AUTONOMOUS_DATABASE&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_advanced_features_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opsi_private_endpoint_id&#x27;: &#x27;ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_id&#x27;: &#x27;ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;processor_count&#x27;: 56, &#x27;root_id&#x27;: &#x27;ocid1.root.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;DISABLED&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -3797,6 +3932,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/is_advanced_features_enabled"></div>
+                    <b>is_advanced_features_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/is_advanced_features_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Flag is to identify if advanced features for autonomous database is enabled or not</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

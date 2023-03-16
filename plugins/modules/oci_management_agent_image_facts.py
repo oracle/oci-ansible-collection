@@ -150,6 +150,42 @@ management_agent_images:
             returned: on success
             type: str
             sample: object_url_example
+        image_object_storage_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                object_namespace:
+                    description:
+                        - Objectstorage namespace reference providing the original location of this object
+                    returned: on success
+                    type: str
+                    sample: object_namespace_example
+                object_bucket:
+                    description:
+                        - Objectstorage bucket reference providing the original location of this object
+                    returned: on success
+                    type: str
+                    sample: object_bucket_example
+                object_name:
+                    description:
+                        - Objectstorage object name reference providing the original location of this object
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                object_url:
+                    description:
+                        - Object storage URL for download
+                    returned: on success
+                    type: str
+                    sample: object_url_example
+                checksum:
+                    description:
+                        - Object content SHA256 Hash
+                    returned: on success
+                    type: str
+                    sample: checksum_example
         lifecycle_state:
             description:
                 - The current state of Management Agent Image
@@ -166,6 +202,13 @@ management_agent_images:
         "size": 10,
         "checksum": "checksum_example",
         "object_url": "object_url_example",
+        "image_object_storage_details": {
+            "object_namespace": "object_namespace_example",
+            "object_bucket": "object_bucket_example",
+            "object_name": "object_name_example",
+            "object_url": "object_url_example",
+            "checksum": "checksum_example"
+        },
         "lifecycle_state": "CREATING"
     }]
 """
