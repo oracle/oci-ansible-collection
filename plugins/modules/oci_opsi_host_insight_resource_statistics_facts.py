@@ -36,6 +36,7 @@ options:
     resource_metric:
         description:
             - Filter by host resource metric.
+              Supported values are CPU, MEMORY, LOGICAL_MEMORY, STORAGE and NETWORK.
         type: str
         required: true
     analysis_time_interval:
@@ -167,6 +168,14 @@ options:
             - Optional list of Exadata Insight VM cluster name.
         type: list
         elements: str
+    high_utilization_threshold:
+        description:
+            - Percent value in which a resource metric is considered highly utilized.
+        type: int
+    low_utilization_threshold:
+        description:
+            - Percent value in which a resource metric is considered low utilized.
+        type: int
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -197,6 +206,8 @@ EXAMPLES = """
     host_type: [ "host_type_example" ]
     host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
     vmcluster_name: [ "vmcluster_name_example" ]
+    high_utilization_threshold: 1
+    low_utilization_threshold: 0
 
 """
 
@@ -219,6 +230,18 @@ host_insight_resource_statistics:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        high_utilization_threshold:
+            description:
+                - Percent value in which a resource metric is considered highly utilized.
+            returned: on success
+            type: int
+            sample: 56
+        low_utilization_threshold:
+            description:
+                - Percent value in which a resource metric is considered lowly utilized.
+            returned: on success
+            type: int
+            sample: 56
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
@@ -288,36 +311,6 @@ host_insight_resource_statistics:
                     returned: on success
                     type: complex
                     contains:
-                        usage:
-                            description:
-                                - Total amount used of the resource metric type (CPU, STORAGE).
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        capacity:
-                            description:
-                                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        utilization_percent:
-                            description:
-                                - Resource utilization in percentage.
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        usage_change_percent:
-                            description:
-                                - Change in resource utilization in percentage
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        resource_name:
-                            description:
-                                - Name of resource for host
-                            returned: on success
-                            type: str
-                            sample: HOST_CPU_STATISTICS
                         free_memory:
                             description:
                                 - ""
@@ -396,9 +389,59 @@ host_insight_resource_statistics:
                                     returned: on success
                                     type: float
                                     sample: 1.2
+                        network_read_in_mbs:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        network_write_in_mbs:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        usage:
+                            description:
+                                - Total amount used of the resource metric type (CPU, STORAGE).
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        capacity:
+                            description:
+                                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        utilization_percent:
+                            description:
+                                - Resource utilization in percentage.
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        usage_change_percent:
+                            description:
+                                - Change in resource utilization in percentage
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        resource_name:
+                            description:
+                                - Name of resource for host
+                            returned: on success
+                            type: str
+                            sample: HOST_CPU_STATISTICS
+                        filesystem_available_in_percent:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
     sample: [{
         "time_interval_start": "2013-10-20T19:20:30+01:00",
         "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "high_utilization_threshold": 56,
+        "low_utilization_threshold": 56,
         "resource_metric": "CPU",
         "usage_unit": "CORES",
         "items": [{
@@ -411,11 +454,6 @@ host_insight_resource_statistics:
                 "agent_identifier": "agent_identifier_example"
             },
             "current_statistics": {
-                "usage": 1.2,
-                "capacity": 1.2,
-                "utilization_percent": 1.2,
-                "usage_change_percent": 1.2,
-                "resource_name": "HOST_CPU_STATISTICS",
                 "free_memory": 1.2,
                 "available_memory": 1.2,
                 "huge_pages_total": 56,
@@ -429,7 +467,15 @@ host_insight_resource_statistics:
                     "median": 1.2,
                     "lower_quartile": 1.2,
                     "upper_quartile": 1.2
-                }
+                },
+                "network_read_in_mbs": 1.2,
+                "network_write_in_mbs": 1.2,
+                "usage": 1.2,
+                "capacity": 1.2,
+                "utilization_percent": 1.2,
+                "usage_change_percent": 1.2,
+                "resource_name": "HOST_CPU_STATISTICS",
+                "filesystem_available_in_percent": 1.2
             }
         }]
     }]
@@ -480,6 +526,8 @@ class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "host_type",
             "host_id",
             "vmcluster_name",
+            "high_utilization_threshold",
+            "low_utilization_threshold",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -544,6 +592,8 @@ def main():
             host_type=dict(type="list", elements="str"),
             host_id=dict(type="str"),
             vmcluster_name=dict(type="list", elements="str"),
+            high_utilization_threshold=dict(type="int"),
+            low_utilization_threshold=dict(type="int"),
         )
     )
 

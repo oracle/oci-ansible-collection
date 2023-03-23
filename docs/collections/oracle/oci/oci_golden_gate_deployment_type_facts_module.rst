@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_type_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -247,6 +247,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-deployment_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OGG</li>
+                                                                                                                                                                                                <li>DATABASE_ORACLE</li>
+                                                                                                                                                                                                <li>BIGDATA</li>
+                                                                                                                                                                                                <li>DATABASE_MYSQL</li>
+                                                                                                                                                                                                <li>DATABASE_POSTGRESQL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of the service executed in the deployment. Default value is DATABASE_ORACLE.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -260,6 +282,21 @@ Parameters
                                             <div>A filter to return only the resources that match the entire &#x27;displayName&#x27; given.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ogg_version"></div>
+                    <b>ogg_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-ogg_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Allows to query by a specific GoldenGate version.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -360,6 +397,8 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        deployment_type: OGG
+        ogg_version: ogg_version_example
         display_name: display_name_example
         sort_order: ASC
         sort_by: timeCreated
@@ -399,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DeploymentType resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category&#x27;: &#x27;DATA_REPLICATION&#x27;, &#x27;connection_types&#x27;: [], &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;source_technologies&#x27;: [], &#x27;target_technologies&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category&#x27;: &#x27;DATA_REPLICATION&#x27;, &#x27;connection_types&#x27;: [], &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;source_technologies&#x27;: [], &#x27;target_technologies&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -470,6 +509,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_types/ogg_version"></div>
+                    <b>ogg_version</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_types/ogg_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Version of OGG</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ogg_version_example</div>
                                     </td>
             </tr>
                                 <tr>

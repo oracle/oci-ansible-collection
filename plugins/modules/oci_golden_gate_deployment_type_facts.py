@@ -32,6 +32,20 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
         type: str
         required: true
+    deployment_type:
+        description:
+            - The type of deployment, the value determines the exact 'type' of the service executed in the deployment. Default value is DATABASE_ORACLE.
+        type: str
+        choices:
+            - "OGG"
+            - "DATABASE_ORACLE"
+            - "BIGDATA"
+            - "DATABASE_MYSQL"
+            - "DATABASE_POSTGRESQL"
+    ogg_version:
+        description:
+            - Allows to query by a specific GoldenGate version.
+        type: str
     display_name:
         description:
             - A filter to return only the resources that match the entire 'displayName' given.
@@ -63,6 +77,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    deployment_type: OGG
+    ogg_version: ogg_version_example
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -119,13 +135,20 @@ deployment_types:
             returned: on success
             type: list
             sample: []
+        ogg_version:
+            description:
+                - Version of OGG
+            returned: on success
+            type: str
+            sample: ogg_version_example
     sample: [{
         "category": "DATA_REPLICATION",
         "display_name": "display_name_example",
         "deployment_type": "OGG",
         "connection_types": [],
         "source_technologies": [],
-        "target_technologies": []
+        "target_technologies": [],
+        "ogg_version": "ogg_version_example"
     }]
 """
 
@@ -154,6 +177,8 @@ class DeploymentTypeFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "deployment_type",
+            "ogg_version",
             "display_name",
             "sort_order",
             "sort_by",
@@ -184,6 +209,17 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
+            deployment_type=dict(
+                type="str",
+                choices=[
+                    "OGG",
+                    "DATABASE_ORACLE",
+                    "BIGDATA",
+                    "DATABASE_MYSQL",
+                    "DATABASE_POSTGRESQL",
+                ],
+            ),
+            ogg_version=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

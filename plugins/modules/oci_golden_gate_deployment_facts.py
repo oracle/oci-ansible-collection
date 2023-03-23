@@ -78,6 +78,7 @@ options:
             - "CANCELING"
             - "CANCELED"
             - "SUCCEEDED"
+            - "WAITING"
     lifecycle_sub_state:
         description:
             - A filter to return only the resources that match the 'lifecycleSubState' given.
@@ -90,6 +91,7 @@ options:
             - "UPGRADING"
             - "RESTORING"
             - "BACKUP_IN_PROGRESS"
+            - "ROLLBACK_IN_PROGRESS"
     display_name:
         description:
             - A filter to return only the resources that match the entire 'displayName' given.
@@ -247,6 +249,47 @@ deployments:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+        maintenance_window:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                day:
+                    description:
+                        - Days of the week.
+                    returned: on success
+                    type: str
+                    sample: MONDAY
+                start_hour:
+                    description:
+                        - Start hour for maintenance period. Hour is in UTC.
+                    returned: on success
+                    type: int
+                    sample: 56
+        time_of_next_maintenance:
+            description:
+                - The time of next maintenance schedule. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        next_maintenance_action_type:
+            description:
+                - Type of the next maintenance.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: UPGRADE
+        next_maintenance_description:
+            description:
+                - Description of the next maintenance.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: next_maintenance_description_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
@@ -391,10 +434,13 @@ deployments:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable
+                - "Note: Deprecated: Use timeOfNextMaintenance instead, or related upgrade records
+                  to check, when deployment will be forced to upgrade to a newer version.
+                  Old description:
+                  The date the existing version in use will no longer be considered as usable
                   and an upgrade will be required.  This date is typically 6 months after the
                   version was released for use by GGS.  The format is defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`."
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -437,6 +483,13 @@ deployments:
             "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
             "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
         },
+        "maintenance_window": {
+            "day": "MONDAY",
+            "start_hour": 56
+        },
+        "time_of_next_maintenance": "2013-10-20T19:20:30+01:00",
+        "next_maintenance_action_type": "UPGRADE",
+        "next_maintenance_description": "next_maintenance_description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -568,6 +621,7 @@ def main():
                     "CANCELING",
                     "CANCELED",
                     "SUCCEEDED",
+                    "WAITING",
                 ],
             ),
             lifecycle_sub_state=dict(
@@ -580,6 +634,7 @@ def main():
                     "UPGRADING",
                     "RESTORING",
                     "BACKUP_IN_PROGRESS",
+                    "ROLLBACK_IN_PROGRESS",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

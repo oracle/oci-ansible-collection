@@ -211,6 +211,14 @@ options:
                         description:
                             - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
                         type: str
+    type:
+        description:
+            - Type of cluster
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "BASIC_CLUSTER"
+            - "ENHANCED_CLUSTER"
     cluster_id:
         description:
             - The OCID of the cluster.
@@ -279,6 +287,7 @@ EXAMPLES = """
       key_details:
       - # optional
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    type: BASIC_CLUSTER
 
 - name: Update cluster
   oci_container_engine_cluster:
@@ -318,6 +327,7 @@ EXAMPLES = """
       key_details:
       - # optional
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    type: BASIC_CLUSTER
 
 - name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
@@ -357,6 +367,7 @@ EXAMPLES = """
       key_details:
       - # optional
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    type: BASIC_CLUSTER
 
 - name: Delete cluster
   oci_container_engine_cluster:
@@ -715,6 +726,12 @@ cluster:
                     returned: on success
                     type: str
                     sample: OCI_VCN_IP_NATIVE
+        type:
+            description:
+                - Type of cluster
+            returned: on success
+            type: str
+            sample: BASIC_CLUSTER
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -780,7 +797,8 @@ cluster:
         },
         "cluster_pod_network_options": [{
             "cni_type": "OCI_VCN_IP_NATIVE"
-        }]
+        }],
+        "type": "BASIC_CLUSTER"
     }
 """
 
@@ -1008,6 +1026,7 @@ def main():
                     ),
                 ),
             ),
+            type=dict(type="str", choices=["BASIC_CLUSTER", "ENHANCED_CLUSTER"]),
             cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

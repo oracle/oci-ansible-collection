@@ -1245,6 +1245,11 @@ _WAITER_OVERRIDE_MAP = {
             "SCHEDULE_CERTIFICATE_DELETION", oci_common_utils.ACTION_OPERATION_KEY,
         ),
     ): LifecycleStateWaiter,
+    (
+        "container_engine",
+        "addon",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
 }
 
 

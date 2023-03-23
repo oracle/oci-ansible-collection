@@ -84,6 +84,13 @@ options:
         description:
             - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host (Compute Id)
         type: str
+    statistic:
+        description:
+            - Choose the type of statistic metric data to be used for forecasting.
+        type: str
+        choices:
+            - "AVG"
+            - "MAX"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -102,6 +109,7 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     host_type: [ "host_type_example" ]
     host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+    statistic: AVG
 
 """
 
@@ -205,6 +213,7 @@ class SummarizeHostInsightsTopProcessesUsageFactsHelperGen(OCIResourceFactsHelpe
             "analysis_time_interval",
             "host_type",
             "host_id",
+            "statistic",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -246,6 +255,7 @@ def main():
             analysis_time_interval=dict(type="str"),
             host_type=dict(type="list", elements="str"),
             host_id=dict(type="str"),
+            statistic=dict(type="str", choices=["AVG", "MAX"]),
         )
     )
 
