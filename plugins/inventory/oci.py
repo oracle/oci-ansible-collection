@@ -398,7 +398,7 @@ from contextlib import contextmanager
 
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
-    oci_version,
+    oci_version, oci_version_utils,
 )
 
 try:
@@ -617,6 +617,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self.params["debug"]:
             self.display.display(*args, **kwargs)
         pass
+
+    def info(self, *args, **kwargs):
+        self.display.display(*args, **kwargs)
 
     def setup_clients(self, regions):
         """
@@ -1956,6 +1959,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                 host_name,
                             )
 
+    def update_version_logs(self, fn):
+        fn("OCI-Python-Sdk version: {}".format(oci_version_utils.get_oci_python_sdk_version()))
+        fn("Python Version: {}".format(oci_version_utils.get_python_version()))
+        fn("Ansible Version: {}".format(oci_version_utils.get_ansible_version()))
+        fn("OCI-Ansible-Collections installed Version: {}".format(oci_version_utils.get_oci_ansible_collection_installed_version()))
+        fn("OCI-Ansible-Collections latest version available: {}".format(oci_version_utils.get_oci_ansible_collection_latest_version()))
+        fn("OCI-Python-Sdk path: {}".format(oci_version_utils.get_oci_python_sdk_path()))
+        fn("Ansible module python path: {}".format(oci_version_utils.get_ansible_module_python_path()))
+
     def verify_file(self, path):
         """
         :param loader: an ansible.parsing.dataloader.DataLoader object
@@ -2109,6 +2121,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def parse(self, inventory, loader, path, cache=True):
         if not HAS_OCI_PY_SDK:
+            # always print version details if python-sdk not found
+            self.update_version_logs(self.info)
             raise AnsibleError(
                 "The oci dynamic inventory plugin requires oci python sdk."
             )
@@ -2120,6 +2134,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self.get_option("debug") is not None:
             self.params["debug"] = self.get_option("debug")
         self.debug("The debug flag is set to {0}".format(self.params["debug"]))
+
+        # print version details when debug=True
+        self.update_version_logs(self.debug)
 
         # read oci config
         self.read_oci_config_file()

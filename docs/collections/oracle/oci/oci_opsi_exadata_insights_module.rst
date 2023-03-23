@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_exadata_insights -- Manage an ExadataInsights resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -872,13 +872,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/opsi_private_endpoint_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the OPSI private endpoint</div>
-                                            <div>Required when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1038,10 +1038,10 @@ Examples
         member_vm_cluster_details:
         - # required
           vmcluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-          opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
           compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional
+          opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
           member_database_details:
           - # required
             entity_source: EM_MANAGED_EXTERNAL_DATABASE

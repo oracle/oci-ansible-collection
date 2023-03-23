@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.17.0]
+
+
+## ## Added
+- Support for maintenance features in the GoldenGate service
+- Support for host storage metrics and network metrics as part of host capacity planning in the Operations Insights service
+- Support for managing enhanced clusters, cluster add-ons, and serverless virtual node pools in the Container Engine for Kubernetes service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.96.0
+
 ## [4.16.0]
 
 ## Added

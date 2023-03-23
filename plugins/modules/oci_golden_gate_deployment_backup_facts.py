@@ -60,6 +60,7 @@ options:
             - "CANCELING"
             - "CANCELED"
             - "SUCCEEDED"
+            - "WAITING"
     display_name:
         description:
             - A filter to return only the resources that match the entire 'displayName' given.
@@ -353,6 +354,7 @@ def main():
                     "CANCELING",
                     "CANCELED",
                     "SUCCEEDED",
+                    "WAITING",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

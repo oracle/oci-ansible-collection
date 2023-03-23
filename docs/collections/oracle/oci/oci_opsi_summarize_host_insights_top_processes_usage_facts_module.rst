@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_facts -- Fetches
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -337,6 +337,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-statistic"></div>
+                    <b>statistic</b>
+                    <a class="ansibleOptionLink" href="#parameter-statistic" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AVG</li>
+                                                                                                                                                                                                <li>MAX</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Choose the type of statistic metric data to be used for forecasting.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -434,6 +453,7 @@ Examples
         analysis_time_interval: analysis_time_interval_example
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+        statistic: AVG
 
 
 

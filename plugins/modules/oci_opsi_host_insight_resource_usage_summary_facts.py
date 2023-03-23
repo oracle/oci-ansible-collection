@@ -38,6 +38,7 @@ options:
     resource_metric:
         description:
             - Filter by host resource metric.
+              Supported values are CPU, MEMORY, LOGICAL_MEMORY, STORAGE and NETWORK.
         type: str
         required: true
     analysis_time_interval:

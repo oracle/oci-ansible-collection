@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_cluster -- Manage a Cluster resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -895,6 +895,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>BASIC_CLUSTER</li>
+                                                                                                                                                                                                <li>ENHANCED_CLUSTER</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of cluster</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-vcn_id"></div>
                     <b>vcn_id</b>
                     <a class="ansibleOptionLink" href="#parameter-vcn_id" title="Permalink to this option"></a>
@@ -1016,6 +1036,7 @@ Examples
           key_details:
           - # optional
             kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        type: BASIC_CLUSTER
 
     - name: Update cluster
       oci_container_engine_cluster:
@@ -1055,6 +1076,7 @@ Examples
           key_details:
           - # optional
             kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        type: BASIC_CLUSTER
 
     - name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_cluster:
@@ -1094,6 +1116,7 @@ Examples
           key_details:
           - # optional
             kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        type: BASIC_CLUSTER
 
     - name: Delete cluster
       oci_container_engine_cluster:
@@ -1143,7 +1166,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Cluster resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available_kubernetes_upgrades&#x27;: [], &#x27;cluster_pod_network_options&#x27;: [{&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;endpoint_config&#x27;: {&#x27;is_public_ip_enabled&#x27;: True, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;endpoints&#x27;: {&#x27;kubernetes&#x27;: &#x27;kubernetes_example&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;public_endpoint&#x27;: &#x27;public_endpoint_example&#x27;, &#x27;vcn_hostname_endpoint&#x27;: &#x27;vcn_hostname_endpoint_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_policy_config&#x27;: {&#x27;is_policy_enabled&#x27;: True, &#x27;key_details&#x27;: [{&#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metadata&#x27;: {&#x27;created_by_user_id&#x27;: &#x27;ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_work_request_id&#x27;: &#x27;ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_user_id&#x27;: &#x27;ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_work_request_id&#x27;: &#x27;ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deleted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_user_id&#x27;: &#x27;ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;updated_by_work_request_id&#x27;: &#x27;ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;options&#x27;: {&#x27;add_ons&#x27;: {&#x27;is_kubernetes_dashboard_enabled&#x27;: True, &#x27;is_tiller_enabled&#x27;: True}, &#x27;admission_controller_options&#x27;: {&#x27;is_pod_security_policy_enabled&#x27;: True}, &#x27;kubernetes_network_config&#x27;: {&#x27;pods_cidr&#x27;: &#x27;pods_cidr_example&#x27;, &#x27;services_cidr&#x27;: &#x27;services_cidr_example&#x27;}, &#x27;persistent_volume_config&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}, &#x27;service_lb_config&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}, &#x27;service_lb_subnet_ids&#x27;: []}, &#x27;system_tags&#x27;: {}, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available_kubernetes_upgrades&#x27;: [], &#x27;cluster_pod_network_options&#x27;: [{&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;endpoint_config&#x27;: {&#x27;is_public_ip_enabled&#x27;: True, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;endpoints&#x27;: {&#x27;kubernetes&#x27;: &#x27;kubernetes_example&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;public_endpoint&#x27;: &#x27;public_endpoint_example&#x27;, &#x27;vcn_hostname_endpoint&#x27;: &#x27;vcn_hostname_endpoint_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_policy_config&#x27;: {&#x27;is_policy_enabled&#x27;: True, &#x27;key_details&#x27;: [{&#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metadata&#x27;: {&#x27;created_by_user_id&#x27;: &#x27;ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_work_request_id&#x27;: &#x27;ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_user_id&#x27;: &#x27;ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_work_request_id&#x27;: &#x27;ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deleted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_user_id&#x27;: &#x27;ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;updated_by_work_request_id&#x27;: &#x27;ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;options&#x27;: {&#x27;add_ons&#x27;: {&#x27;is_kubernetes_dashboard_enabled&#x27;: True, &#x27;is_tiller_enabled&#x27;: True}, &#x27;admission_controller_options&#x27;: {&#x27;is_pod_security_policy_enabled&#x27;: True}, &#x27;kubernetes_network_config&#x27;: {&#x27;pods_cidr&#x27;: &#x27;pods_cidr_example&#x27;, &#x27;services_cidr&#x27;: &#x27;services_cidr_example&#x27;}, &#x27;persistent_volume_config&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}, &#x27;service_lb_config&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}, &#x27;service_lb_subnet_ids&#x27;: []}, &#x27;system_tags&#x27;: {}, &#x27;type&#x27;: &#x27;BASIC_CLUSTER&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2106,6 +2129,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cluster/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-cluster/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of cluster</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BASIC_CLUSTER</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

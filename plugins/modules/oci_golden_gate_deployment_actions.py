@@ -120,6 +120,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    ogg_version:
+        description:
+            - Version of OGG
+            - Applicable only for I(action=upgrade).
+            - Required when type is 'SPECIFIC_RELEASE'
+        type: str
     type:
         description:
             - The type of a deployment for wallet
@@ -127,6 +133,7 @@ options:
         type: str
         choices:
             - "DEFAULT"
+            - "SPECIFIC_RELEASE"
             - "CURRENT_RELEASE"
     action:
         description:
@@ -171,6 +178,11 @@ EXAMPLES = """
     # required
     type: DEFAULT
 
+- name: Perform action deployment_wallet_exists on deployment with type = SPECIFIC_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    type: SPECIFIC_RELEASE
+
 - name: Perform action deployment_wallet_exists on deployment with type = CURRENT_RELEASE
   oci_golden_gate_deployment_actions:
     # required
@@ -206,6 +218,11 @@ EXAMPLES = """
     # required
     type: DEFAULT
 
+- name: Perform action start on deployment with type = SPECIFIC_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    type: SPECIFIC_RELEASE
+
 - name: Perform action start on deployment with type = CURRENT_RELEASE
   oci_golden_gate_deployment_actions:
     # required
@@ -216,6 +233,11 @@ EXAMPLES = """
     # required
     type: DEFAULT
 
+- name: Perform action stop on deployment with type = SPECIFIC_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    type: SPECIFIC_RELEASE
+
 - name: Perform action stop on deployment with type = CURRENT_RELEASE
   oci_golden_gate_deployment_actions:
     # required
@@ -225,6 +247,12 @@ EXAMPLES = """
   oci_golden_gate_deployment_actions:
     # required
     type: DEFAULT
+
+- name: Perform action upgrade on deployment with type = SPECIFIC_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    ogg_version: ogg_version_example
+    type: SPECIFIC_RELEASE
 
 - name: Perform action upgrade on deployment with type = CURRENT_RELEASE
   oci_golden_gate_deployment_actions:
@@ -418,10 +446,13 @@ deployment:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable
+                - "Note: Deprecated: Use timeOfNextMaintenance instead, or related upgrade records
+                  to check, when deployment will be forced to upgrade to a newer version.
+                  Old description:
+                  The date the existing version in use will no longer be considered as usable
                   and an upgrade will be required.  This date is typically 6 months after the
                   version was released for use by GGS.  The format is defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`."
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -521,6 +552,43 @@ deployment:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                day:
+                    description:
+                        - Days of the week.
+                    returned: on success
+                    type: str
+                    sample: MONDAY
+                start_hour:
+                    description:
+                        - Start hour for maintenance period. Hour is in UTC.
+                    returned: on success
+                    type: int
+                    sample: 56
+        time_of_next_maintenance:
+            description:
+                - The time of next maintenance schedule. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        next_maintenance_action_type:
+            description:
+                - Type of the next maintenance.
+            returned: on success
+            type: str
+            sample: UPGRADE
+        next_maintenance_description:
+            description:
+                - Description of the next maintenance.
+            returned: on success
+            type: str
+            sample: next_maintenance_description_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -564,7 +632,14 @@ deployment:
             "diagnostic_state": "IN_PROGRESS",
             "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
             "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
-        }
+        },
+        "maintenance_window": {
+            "day": "MONDAY",
+            "start_hour": 56
+        },
+        "time_of_next_maintenance": "2013-10-20T19:20:30+01:00",
+        "next_maintenance_action_type": "UPGRADE",
+        "next_maintenance_description": "next_maintenance_description_example"
     }
 """
 
@@ -833,7 +908,10 @@ def main():
             master_encryption_key_id=dict(type="str"),
             description=dict(type="str"),
             deployment_id=dict(aliases=["id"], type="str", required=True),
-            type=dict(type="str", choices=["DEFAULT", "CURRENT_RELEASE"]),
+            ogg_version=dict(type="str"),
+            type=dict(
+                type="str", choices=["DEFAULT", "SPECIFIC_RELEASE", "CURRENT_RELEASE"]
+            ),
             action=dict(
                 type="str",
                 required=True,

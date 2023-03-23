@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_statistics_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -371,6 +371,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-high_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_id"></div>
                     <b>host_id</b>
                     <a class="ansibleOptionLink" href="#parameter-host_id" title="Permalink to this option"></a>
@@ -427,6 +442,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Return data of a specific insight Possible values are High Utilization, Low Utilization, Any ,High Utilization Forecast, Low Utilization Forecast</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-low_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered low utilized.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -492,7 +522,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter by host resource metric.</div>
+                                            <div>Filter by host resource metric. Supported values are CPU, MEMORY, LOGICAL_MEMORY, STORAGE and NETWORK.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -647,6 +677,8 @@ Examples
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         vmcluster_name: [ "vmcluster_name_example" ]
+        high_utilization_threshold: 1
+        low_utilization_threshold: 0
 
 
 
@@ -683,10 +715,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of HostInsightResourceStatistics resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;high_utilization_threshold&#x27;: 56, &#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;filesystem_available_in_percent&#x27;: 1.2, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;network_read_in_mbs&#x27;: 1.2, &#x27;network_write_in_mbs&#x27;: 1.2, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;low_utilization_threshold&#x27;: 56, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/high_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items"></div>
@@ -754,6 +804,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items/current_statistics/filesystem_available_in_percent"></div>
+                    <b>filesystem_available_in_percent</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/items/current_statistics/filesystem_available_in_percent" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -1009,6 +1079,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items/current_statistics/network_read_in_mbs"></div>
+                    <b>network_read_in_mbs</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/items/current_statistics/network_read_in_mbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items/current_statistics/network_write_in_mbs"></div>
+                    <b>network_write_in_mbs</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/items/current_statistics/network_write_in_mbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items/current_statistics/resource_name"></div>
                     <b>resource_name</b>
                     <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/items/current_statistics/resource_name" title="Permalink to this return value"></a>
@@ -1224,6 +1334,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                     
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/low_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered lowly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">

@@ -89,9 +89,8 @@ options:
             opsi_private_endpoint_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
-                    - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                    - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
                 type: str
-                required: true
             member_database_details:
                 description:
                     - The databases that belong to the VM Cluster
@@ -291,10 +290,10 @@ EXAMPLES = """
     member_vm_cluster_details:
     - # required
       vmcluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-      opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
       compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
+      opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
       member_database_details:
       - # required
         entity_source: EM_MANAGED_EXTERNAL_DATABASE
@@ -711,7 +710,7 @@ def main():
                 elements="dict",
                 options=dict(
                     vmcluster_id=dict(type="str", required=True),
-                    opsi_private_endpoint_id=dict(type="str", required=True),
+                    opsi_private_endpoint_id=dict(type="str"),
                     member_database_details=dict(
                         type="list",
                         elements="dict",

@@ -60,6 +60,7 @@ options:
             - "CANCELING"
             - "CANCELED"
             - "SUCCEEDED"
+            - "WAITING"
     display_name:
         description:
             - A filter to return only the resources that match the entire 'displayName' given.
@@ -224,6 +225,59 @@ deployment_upgrades:
             returned: on success
             type: dict
             sample: {}
+        previous_ogg_version:
+            description:
+                - Version of OGG
+            returned: on success
+            type: str
+            sample: previous_ogg_version_example
+        time_schedule:
+            description:
+                - The time of upgrade schedule. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        is_snoozed:
+            description:
+                - Indicates if upgrade notifications are snoozed or not.
+            returned: on success
+            type: bool
+            sample: true
+        time_snoozed_until:
+            description:
+                - The time the upgrade notifications are snoozed until. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_released:
+            description:
+                - The time the resource was released. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        release_type:
+            description:
+                - The type of release.
+            returned: on success
+            type: str
+            sample: MAJOR
+        is_security_fix:
+            description:
+                - Indicates if OGG release contains security fix.
+            returned: on success
+            type: bool
+            sample: true
+        is_rollback_allowed:
+            description:
+                - "Indicates if rollback is allowed. In practice only the last upgrade can be rolled back.
+                  - Manual upgrade is allowed to rollback only until the old version isn't deprecated yet.
+                  - Automatic upgrade by default is not allowed, unless a serious issue does not justify."
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -241,7 +295,15 @@ deployment_upgrades:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "previous_ogg_version": "previous_ogg_version_example",
+        "time_schedule": "2013-10-20T19:20:30+01:00",
+        "is_snoozed": true,
+        "time_snoozed_until": "2013-10-20T19:20:30+01:00",
+        "time_released": "2013-10-20T19:20:30+01:00",
+        "release_type": "MAJOR",
+        "is_security_fix": true,
+        "is_rollback_allowed": true
     }]
 """
 
@@ -332,6 +394,7 @@ def main():
                     "CANCELING",
                     "CANCELED",
                     "SUCCEEDED",
+                    "WAITING",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

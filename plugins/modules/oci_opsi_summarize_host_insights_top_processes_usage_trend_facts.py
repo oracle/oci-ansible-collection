@@ -82,6 +82,13 @@ options:
         description:
             - Unique identifier for a process.
         type: str
+    statistic:
+        description:
+            - Choose the type of statistic metric data to be used for forecasting.
+        type: str
+        choices:
+            - "AVG"
+            - "MAX"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -100,6 +107,7 @@ EXAMPLES = """
     host_type: [ "host_type_example" ]
     host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
     process_hash: process_hash_example
+    statistic: AVG
 
 """
 
@@ -213,6 +221,7 @@ class SummarizeHostInsightsTopProcessesUsageTrendFactsHelperGen(
             "host_type",
             "host_id",
             "process_hash",
+            "statistic",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -253,6 +262,7 @@ def main():
             host_type=dict(type="list", elements="str"),
             host_id=dict(type="str"),
             process_hash=dict(type="str"),
+            statistic=dict(type="str", choices=["AVG", "MAX"]),
         )
     )
 

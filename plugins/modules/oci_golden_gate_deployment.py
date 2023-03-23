@@ -133,6 +133,10 @@ options:
                     - The name given to the GoldenGate service deployment.
                       The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
                 type: str
+            ogg_version:
+                description:
+                    - Version of OGG
+                type: str
             admin_username:
                 description:
                     - The GoldenGate deployment console username.
@@ -156,6 +160,32 @@ options:
                     - A PEM-encoded private key.
                     - This parameter is updatable.
                 type: str
+    maintenance_window:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            day:
+                description:
+                    - Days of the week.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "MONDAY"
+                    - "TUESDAY"
+                    - "WEDNESDAY"
+                    - "THURSDAY"
+                    - "FRIDAY"
+                    - "SATURDAY"
+                    - "SUNDAY"
+                required: true
+            start_hour:
+                description:
+                    - Start hour for maintenance period. Hour is in UTC.
+                    - This parameter is updatable.
+                type: int
+                required: true
     deployment_id:
         description:
             - A unique Deployment identifier.
@@ -198,10 +228,15 @@ EXAMPLES = """
     ogg_data:
       # optional
       deployment_name: deployment_name_example
+      ogg_version: ogg_version_example
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
       key: key_example
+    maintenance_window:
+      # required
+      day: MONDAY
+      start_hour: 56
 
 - name: Update deployment
   oci_golden_gate_deployment:
@@ -223,10 +258,15 @@ EXAMPLES = """
     ogg_data:
       # optional
       deployment_name: deployment_name_example
+      ogg_version: ogg_version_example
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
       key: key_example
+    maintenance_window:
+      # required
+      day: MONDAY
+      start_hour: 56
 
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
@@ -248,10 +288,15 @@ EXAMPLES = """
     ogg_data:
       # optional
       deployment_name: deployment_name_example
+      ogg_version: ogg_version_example
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
       key: key_example
+    maintenance_window:
+      # required
+      day: MONDAY
+      start_hour: 56
 
 - name: Delete deployment
   oci_golden_gate_deployment:
@@ -437,10 +482,13 @@ deployment:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable
+                - "Note: Deprecated: Use timeOfNextMaintenance instead, or related upgrade records
+                  to check, when deployment will be forced to upgrade to a newer version.
+                  Old description:
+                  The date the existing version in use will no longer be considered as usable
                   and an upgrade will be required.  This date is typically 6 months after the
                   version was released for use by GGS.  The format is defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`."
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -540,6 +588,43 @@ deployment:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                day:
+                    description:
+                        - Days of the week.
+                    returned: on success
+                    type: str
+                    sample: MONDAY
+                start_hour:
+                    description:
+                        - Start hour for maintenance period. Hour is in UTC.
+                    returned: on success
+                    type: int
+                    sample: 56
+        time_of_next_maintenance:
+            description:
+                - The time of next maintenance schedule. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        next_maintenance_action_type:
+            description:
+                - Type of the next maintenance.
+            returned: on success
+            type: str
+            sample: UPGRADE
+        next_maintenance_description:
+            description:
+                - Description of the next maintenance.
+            returned: on success
+            type: str
+            sample: next_maintenance_description_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -583,7 +668,14 @@ deployment:
             "diagnostic_state": "IN_PROGRESS",
             "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
             "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
-        }
+        },
+        "maintenance_window": {
+            "day": "MONDAY",
+            "start_hour": 56
+        },
+        "time_of_next_maintenance": "2013-10-20T19:20:30+01:00",
+        "next_maintenance_action_type": "UPGRADE",
+        "next_maintenance_description": "next_maintenance_description_example"
     }
 """
 
@@ -775,10 +867,30 @@ def main():
                 type="dict",
                 options=dict(
                     deployment_name=dict(type="str"),
+                    ogg_version=dict(type="str"),
                     admin_username=dict(type="str"),
                     admin_password=dict(type="str", no_log=True),
                     certificate=dict(type="str"),
                     key=dict(type="str", no_log=True),
+                ),
+            ),
+            maintenance_window=dict(
+                type="dict",
+                options=dict(
+                    day=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY",
+                        ],
+                    ),
+                    start_hour=dict(type="int", required=True),
                 ),
             ),
             deployment_id=dict(aliases=["id"], type="str"),

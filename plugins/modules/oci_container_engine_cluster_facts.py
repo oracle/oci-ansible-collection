@@ -435,6 +435,12 @@ clusters:
                     returned: on success
                     type: str
                     sample: OCI_VCN_IP_NATIVE
+        type:
+            description:
+                - Type of cluster
+            returned: on success
+            type: str
+            sample: BASIC_CLUSTER
     sample: [{
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -500,7 +506,8 @@ clusters:
         },
         "cluster_pod_network_options": [{
             "cni_type": "OCI_VCN_IP_NATIVE"
-        }]
+        }],
+        "type": "BASIC_CLUSTER"
     }]
 """
 

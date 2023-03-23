@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_forecast_trend_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -406,6 +406,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-high_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_id"></div>
                     <b>host_id</b>
                     <a class="ansibleOptionLink" href="#parameter-host_id" title="Permalink to this option"></a>
@@ -447,6 +462,51 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional list of host insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-interface_name"></div>
+                    <b>interface_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-interface_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the network interface.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-low_utilization_threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Percent value in which a resource metric is considered low utilized.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-mount_point"></div>
+                    <b>mount_point</b>
+                    <a class="ansibleOptionLink" href="#parameter-mount_point" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Mount points are specialized NTFS filesystem objects.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -497,7 +557,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter by host resource metric.</div>
+                                            <div>Filter by host resource metric. Supported values are CPU, MEMORY, LOGICAL_MEMORY, STORAGE and NETWORK.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -651,6 +711,10 @@ Examples
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         vmcluster_name: [ "vmcluster_name_example" ]
+        high_utilization_threshold: 1
+        low_utilization_threshold: 0
+        mount_point: mount_point_example
+        interface_name: interface_name_example
 
 
 
@@ -687,10 +751,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>HostInsightResourceForecastTrend resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage&#x27;: 1.2}], &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 1.2}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;high_utilization_threshold&#x27;: 56, &#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage&#x27;: 1.2}], &#x27;low_utilization_threshold&#x27;: 56, &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 1.2}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_forecast_trend/high_utilization_threshold"></div>
+                    <b>high_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_forecast_trend/high_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered highly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-host_insight_resource_forecast_trend/historical_data"></div>
@@ -745,6 +827,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_forecast_trend/low_utilization_threshold"></div>
+                    <b>low_utilization_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_forecast_trend/low_utilization_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Percent value in which a resource metric is considered lowly utilized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

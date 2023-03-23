@@ -452,6 +452,12 @@ cluster:
                     returned: on success
                     type: str
                     sample: OCI_VCN_IP_NATIVE
+        type:
+            description:
+                - Type of cluster
+            returned: on success
+            type: str
+            sample: BASIC_CLUSTER
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -517,7 +523,8 @@ cluster:
         },
         "cluster_pod_network_options": [{
             "cni_type": "OCI_VCN_IP_NATIVE"
-        }]
+        }],
+        "type": "BASIC_CLUSTER"
     }
 """
 
