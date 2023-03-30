@@ -42,15 +42,16 @@ options:
         type: str
     deployment_type:
         description:
-            - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
-              NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
-                    in favor of the equivalent 'DATABASE_ORACLE' value."
+            - "The type of deployment, which can be any one of the Allowed values.
+              NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                  Its use is discouraged in favor of 'DATABASE_ORACLE'."
             - Required for create using I(state=present).
         type: str
         choices:
             - "OGG"
             - "DATABASE_ORACLE"
             - "BIGDATA"
+            - "DATABASE_MICROSOFT_SQLSERVER"
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
     display_name:
@@ -144,10 +145,9 @@ options:
                 type: str
             admin_password:
                 description:
-                    - "The password associated with the GoldenGate deployment console username.
+                    - The password associated with the GoldenGate deployment console username.
                       The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric,
                       and 1 special character. Special characters such as '$', '^', or '?' are not allowed.
-                      This field will be deprecated and replaced by \\"passwordSecretId\\"."
                     - This parameter is updatable.
                 type: str
             certificate:
@@ -507,9 +507,9 @@ deployment:
             sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
-                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent 'DATABASE_ORACLE' value."
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
             returned: on success
             type: str
             sample: OGG
@@ -846,6 +846,7 @@ def main():
                     "OGG",
                     "DATABASE_ORACLE",
                     "BIGDATA",
+                    "DATABASE_MICROSOFT_SQLSERVER",
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
                 ],

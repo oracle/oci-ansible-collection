@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -176,6 +176,7 @@ Parameters
                                                                                                                                                                 <li>OGG</li>
                                                                                                                                                                                                 <li>DATABASE_ORACLE</li>
                                                                                                                                                                                                 <li>BIGDATA</li>
+                                                                                                                                                                                                <li>DATABASE_MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>DATABASE_MYSQL</li>
                                                                                                                                                                                                 <li>DATABASE_POSTGRESQL</li>
                                                                                     </ul>
@@ -265,7 +266,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which to list resources.</div>
+                                            <div>The OCID of the compartment that contains the work request. Work requests should be scoped to the same compartment as the resource the work request affects. If the work request concerns multiple resources, and those resources are not in the same compartment, it is up to the service team to pick the primary resource whose compartment should be used.</div>
                                             <div>Required to list multiple connections.</div>
                                                         </td>
             </tr>
@@ -331,11 +332,18 @@ Parameters
                                                                                                                                                                                                 <li>KAFKA</li>
                                                                                                                                                                                                 <li>KAFKA_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>MYSQL</li>
+                                                                                                                                                                                                <li>JAVA_MESSAGE_SERVICE</li>
+                                                                                                                                                                                                <li>MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>ORACLE</li>
                                                                                                                                                                                                 <li>AZURE_DATA_LAKE_STORAGE</li>
                                                                                                                                                                                                 <li>POSTGRESQL</li>
                                                                                                                                                                                                 <li>AZURE_SYNAPSE_ANALYTICS</li>
+                                                                                                                                                                                                <li>SNOWFLAKE</li>
+                                                                                                                                                                                                <li>AMAZON_S3</li>
+                                                                                                                                                                                                <li>HDFS</li>
+                                                                                                                                                                                                <li>ORACLE_NOSQL</li>
+                                                                                                                                                                                                <li>MONGODB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -447,30 +455,42 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GOLDENGATE</li>
                                                                                                                                                                                                 <li>OCI_AUTONOMOUS_DATABASE</li>
+                                                                                                                                                                                                <li>OCI_AUTONOMOUS_JSON_DATABASE</li>
                                                                                                                                                                                                 <li>OCI_MYSQL</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>OCI_STREAMING</li>
                                                                                                                                                                                                 <li>ORACLE_DATABASE</li>
                                                                                                                                                                                                 <li>ORACLE_EXADATA</li>
+                                                                                                                                                                                                <li>ORACLE_NOSQL</li>
+                                                                                                                                                                                                <li>ORACLE_WEBLOGIC_JMS</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_ORACLE</li>
+                                                                                                                                                                                                <li>AMAZON_RDS_SQLSERVER</li>
+                                                                                                                                                                                                <li>AMAZON_S3</li>
                                                                                                                                                                                                 <li>AMAZON_AURORA_MYSQL</li>
                                                                                                                                                                                                 <li>AMAZON_AURORA_POSTGRESQL</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_MARIADB</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_MYSQL</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_POSTGRESQL</li>
                                                                                                                                                                                                 <li>APACHE_KAFKA</li>
+                                                                                                                                                                                                <li>AZURE_COSMOS_DB_FOR_MONGODB</li>
                                                                                                                                                                                                 <li>AZURE_DATA_LAKE_STORAGE</li>
                                                                                                                                                                                                 <li>AZURE_EVENT_HUBS</li>
                                                                                                                                                                                                 <li>AZURE_MYSQL</li>
                                                                                                                                                                                                 <li>AZURE_POSTGRESQL</li>
+                                                                                                                                                                                                <li>AZURE_SQLSERVER_MANAGED_INSTANCE</li>
+                                                                                                                                                                                                <li>AZURE_SQLSERVER_NON_MANAGED_INSTANCE</li>
                                                                                                                                                                                                 <li>AZURE_SYNAPSE_ANALYTICS</li>
                                                                                                                                                                                                 <li>CONFLUENT_KAFKA</li>
                                                                                                                                                                                                 <li>CONFLUENT_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>GOOGLE_CLOUD_SQL_MYSQL</li>
                                                                                                                                                                                                 <li>GOOGLE_CLOUD_SQL_POSTGRESQL</li>
+                                                                                                                                                                                                <li>HDFS</li>
                                                                                                                                                                                                 <li>MARIADB</li>
+                                                                                                                                                                                                <li>MICROSOFT_SQLSERVER</li>
+                                                                                                                                                                                                <li>MONGODB</li>
                                                                                                                                                                                                 <li>MYSQL_SERVER</li>
                                                                                                                                                                                                 <li>POSTGRESQL_SERVER</li>
+                                                                                                                                                                                                <li>SNOWFLAKE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -573,10 +593,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Connection resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;access_key_id&#x27;: &#x27;ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_factory&#x27;: &#x27;connection_factory_example&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;connection_url&#x27;: &#x27;connection_url_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;jndi_connection_factory&#x27;: &#x27;jndi_connection_factory_example&#x27;, &#x27;jndi_initial_context_factory&#x27;: &#x27;jndi_initial_context_factory_example&#x27;, &#x27;jndi_provider_url&#x27;: &#x27;jndi_provider_url_example&#x27;, &#x27;jndi_security_principal&#x27;: &#x27;jndi_security_principal_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;should_use_jndi&#x27;: True, &#x27;should_validate_server_certificate&#x27;: True, &#x27;ssl_ca&#x27;: &#x27;ssl_ca_example&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AMAZON_S3&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/access_key_id"></div>
+                    <b>access_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-connections/access_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Access key ID to access the Amazon S3 bucket. e.g.: &quot;this-is-not-the-secret&quot;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/account_name"></div>
@@ -804,6 +843,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/connection_factory"></div>
+                    <b>connection_factory</b>
+                    <a class="ansibleOptionLink" href="#return-connections/connection_factory" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The of Java class implementing javax.jms.ConnectionFactory interface supplied by the Java Message Service provider. e.g.: &#x27;com.stc.jmsjca.core.JConnectionFactoryXA&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connection_factory_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/connection_string"></div>
                     <b>connection_string</b>
                     <a class="ansibleOptionLink" href="#return-connections/connection_string" title="Permalink to this return value"></a>
@@ -841,6 +899,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/connection_url"></div>
+                    <b>connection_url</b>
+                    <a class="ansibleOptionLink" href="#return-connections/connection_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Connectin URL of the Java Message Service, specifying the protocol, host, and port. e.g.: &#x27;mq://myjms.host.domain:7676&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connection_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#return-connections/database_id" title="Permalink to this return value"></a>
@@ -850,7 +927,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the database being referenced.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Autonomous Json Database.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1056,7 +1133,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of ingress IP addresses, from where the GoldenGate deployment connects to this connection&#x27;s privateIp.</div>
+                                            <div>List of ingress IP addresses from where the GoldenGate deployment connects to this connection&#x27;s privateIp. Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1083,6 +1160,82 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/jndi_connection_factory"></div>
+                    <b>jndi_connection_factory</b>
+                    <a class="ansibleOptionLink" href="#return-connections/jndi_connection_factory" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Connection Factory can be looked up using this name. e.g.: &#x27;ConnectionFactory&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jndi_connection_factory_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/jndi_initial_context_factory"></div>
+                    <b>jndi_initial_context_factory</b>
+                    <a class="ansibleOptionLink" href="#return-connections/jndi_initial_context_factory" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The implementation of javax.naming.spi.InitialContextFactory interface that the client uses to obtain initial naming context. e.g.: &#x27;org.apache.activemq.jndi.ActiveMQInitialContextFactory&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jndi_initial_context_factory_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/jndi_provider_url"></div>
+                    <b>jndi_provider_url</b>
+                    <a class="ansibleOptionLink" href="#return-connections/jndi_provider_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL that Java Message Service will use to contact the JNDI provider. e.g.: &#x27;tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jndi_provider_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/jndi_security_principal"></div>
+                    <b>jndi_security_principal</b>
+                    <a class="ansibleOptionLink" href="#return-connections/jndi_security_principal" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the identity of the principal (user) to be authenticated. e.g.: &#x27;admin2&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jndi_security_principal_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/key_id"></div>
                     <b>key_id</b>
                     <a class="ansibleOptionLink" href="#return-connections/key_id" title="Permalink to this return value"></a>
@@ -1092,7 +1245,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer &quot;Master&quot; key being referenced. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to utilize this key to manage secrets.</div>
+                                            <div>Refers to the customer&#x27;s master key OCID. If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1248,6 +1401,63 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/should_use_jndi"></div>
+                    <b>should_use_jndi</b>
+                    <a class="ansibleOptionLink" href="#return-connections/should_use_jndi" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/should_validate_server_certificate"></div>
+                    <b>should_validate_server_certificate</b>
+                    <a class="ansibleOptionLink" href="#return-connections/should_validate_server_certificate" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If set to true, the driver validates the certificate that is sent by the database server.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/ssl_ca"></div>
+                    <b>ssl_ca</b>
+                    <a class="ansibleOptionLink" href="#return-connections/ssl_ca" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Database Certificate - The base64 encoded content of pem file containing the server public key (for 1-way SSL).</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssl_ca_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/ssl_mode"></div>
                     <b>ssl_mode</b>
                     <a class="ansibleOptionLink" href="#return-connections/ssl_mode" title="Permalink to this return value"></a>
@@ -1330,11 +1540,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Azure Data Lake Storage technology type.</div>
+                                            <div>The Amazon S3 technology type.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AZURE_DATA_LAKE_STORAGE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMAZON_S3</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1442,7 +1652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the database.  It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.</div>
+                                            <div>The username Oracle GoldenGate uses to connect the associated system of the given technology. This username must already exist and be available by the system/application to be connected to and must conform to the case sensitivty requirments defined in it.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1461,7 +1671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer vault being referenced. If provided, this will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage secrets contained within this vault.</div>
+                                            <div>Refers to the customer&#x27;s vault OCID. If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate to manage secrets contained within this vault.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>

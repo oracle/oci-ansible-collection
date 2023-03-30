@@ -165,6 +165,25 @@ functions:
             returned: on success
             type: str
             sample: image_digest_example
+        source_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - "Type of the Function Source. Possible values: PBF."
+                    returned: on success
+                    type: str
+                    sample: PRE_BUILT_FUNCTIONS
+                pbf_listing_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the PbfListing this
+                          function is sourced from.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
         memory_in_mbs:
             description:
                 - Maximum usable memory for the function (MiB).
@@ -255,6 +274,10 @@ functions:
         "lifecycle_state": "CREATING",
         "image": "image_example",
         "image_digest": "image_digest_example",
+        "source_details": {
+            "source_type": "PRE_BUILT_FUNCTIONS",
+            "pbf_listing_id": "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "memory_in_mbs": 56,
         "timeout_in_seconds": 56,
         "provisioned_concurrency_config": {

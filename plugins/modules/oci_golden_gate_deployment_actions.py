@@ -80,19 +80,16 @@ options:
         type: str
     vault_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-              referenced.
-              If provided, this will reference a vault which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to manage secrets contained
-              within this vault.
+            - Refers to the customer's vault OCID.
+              If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+              to manage secrets contained within this vault.
             - Required for I(action=export_deployment_wallet), I(action=import_deployment_wallet).
         type: str
     new_wallet_secret_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
-              referenced.
-              If provided, this will reference a key which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to utilize this Secret
+            - The OCID of the customer's GoldenGate Service Secret.
+              If provided, it references a key that customers will be required to ensure the policies are established
+              to permit GoldenGate to use this Secret.
             - Required for I(action=import_deployment_wallet).
         type: str
     wallet_backup_secret_name:
@@ -102,11 +99,8 @@ options:
         type: str
     master_encryption_key_id:
         description:
-            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-              referenced.
-              If provided, this will reference a key which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to utilize this key to
-              manage secrets."
+            - Refers to the customer's master key OCID.
+              If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             - Required for I(action=export_deployment_wallet).
         type: str
     description:
@@ -471,9 +465,9 @@ deployment:
             sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
-                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent 'DATABASE_ORACLE' value."
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
             returned: on success
             type: str
             sample: OGG

@@ -68,6 +68,13 @@ connection:
     returned: on success
     type: complex
     contains:
+        access_key_id:
+            description:
+                - "Access key ID to access the Amazon S3 bucket.
+                  e.g.: \\"this-is-not-the-secret\\""
+            returned: on success
+            type: str
+            sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
         account_name:
             description:
                 - Sets the Azure storage account name.
@@ -101,6 +108,49 @@ connection:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        should_use_jndi:
+            description:
+                - If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.
+            returned: on success
+            type: bool
+            sample: true
+        jndi_connection_factory:
+            description:
+                - "The Connection Factory can be looked up using this name.
+                  e.g.: 'ConnectionFactory'"
+            returned: on success
+            type: str
+            sample: jndi_connection_factory_example
+        jndi_provider_url:
+            description:
+                - "The URL that Java Message Service will use to contact the JNDI provider.
+                  e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'"
+            returned: on success
+            type: str
+            sample: jndi_provider_url_example
+        jndi_initial_context_factory:
+            description:
+                - "The implementation of javax.naming.spi.InitialContextFactory interface
+                  that the client uses to obtain initial naming context.
+                  e.g.: 'org.apache.activemq.jndi.ActiveMQInitialContextFactory'"
+            returned: on success
+            type: str
+            sample: jndi_initial_context_factory_example
+        jndi_security_principal:
+            description:
+                - "Specifies the identity of the principal (user) to be authenticated.
+                  e.g.: 'admin2'"
+            returned: on success
+            type: str
+            sample: jndi_security_principal_example
+        connection_factory:
+            description:
+                - "The of Java class implementing javax.jms.ConnectionFactory interface
+                  supplied by the Java Message Service provider.
+                  e.g.: 'com.stc.jmsjca.core.JConnectionFactoryXA'"
+            returned: on success
+            type: str
+            sample: connection_factory_example
         stream_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the stream pool being referenced.
@@ -145,37 +195,25 @@ connection:
             returned: on success
             type: str
             sample: url_example
-        authentication_type:
+        ssl_ca:
             description:
-                - Used authentication mechanism to access Azure Data Lake Storage.
+                - "Database Certificate - The base64 encoded content of pem file
+                  containing the server public key (for 1-way SSL)."
             returned: on success
             type: str
-            sample: SHARED_KEY
+            sample: ssl_ca_example
+        should_validate_server_certificate:
+            description:
+                - If set to true, the driver validates the certificate that is sent by the database server.
+            returned: on success
+            type: bool
+            sample: true
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
             returned: on success
             type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-        tenancy_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
-            returned: on success
-            type: str
-            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-        region:
-            description:
-                - "The name of the region. e.g.: us-ashburn-1"
-            returned: on success
-            type: str
-            sample: us-phoenix-1
-        user_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
-                  The user must have write access to the bucket they want to connect to.
-            returned: on success
-            type: str
-            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - "JDBC connection string.
@@ -195,10 +233,88 @@ connection:
             sample: DIRECT
         database_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Autonomous Json Database.
             returned: on success
             type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        tenancy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
+            returned: on success
+            type: str
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        region:
+            description:
+                - "The name of the region. e.g.: us-ashburn-1"
+            returned: on success
+            type: str
+            sample: us-phoenix-1
+        user_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
+                  The user must have write access to the bucket they want to connect to.
+            returned: on success
+            type: str
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name:
+            description:
+                - The name of the database.
+            returned: on success
+            type: str
+            sample: database_name_example
+        host:
+            description:
+                - The name or address of a host.
+            returned: on success
+            type: str
+            sample: host_example
+        port:
+            description:
+                - The port of an endpoint usually specified for a connection.
+            returned: on success
+            type: int
+            sample: 56
+        additional_attributes:
+            description:
+                - An array of name-value pair attribute entries.
+                  Used as additional parameters in connection string.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the property entry.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                value:
+                    description:
+                        - The value of the property entry.
+                    returned: on success
+                    type: str
+                    sample: value_example
+        security_protocol:
+            description:
+                - Kafka security protocol.
+            returned: on success
+            type: str
+            sample: SSL
+        ssl_mode:
+            description:
+                - SSL modes for MySQL.
+            returned: on success
+            type: str
+            sample: DISABLED
+        private_ip:
+            description:
+                - The private IP address of the connection's endpoint in the customer's VCN, typically a
+                  database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
+                  In case the privateIp is provided, the subnetId must also be provided.
+                  In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
+                  In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
+            returned: on success
+            type: str
+            sample: private_ip_example
         connection_type:
             description:
                 - The connection type.
@@ -283,21 +399,16 @@ connection:
             sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-                  referenced.
-                  If provided, this will reference a vault which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to manage secrets contained
-                  within this vault.
+                - Refers to the customer's vault OCID.
+                  If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+                  to manage secrets contained within this vault.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this key to
-                  manage secrets."
+                - Refers to the customer's master key OCID.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
@@ -309,7 +420,8 @@ connection:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_ips:
             description:
-                - List of ingress IP addresses, from where the GoldenGate deployment connects to this connection's privateIp.
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
             returned: on success
             type: complex
             contains:
@@ -327,83 +439,44 @@ connection:
             sample: []
         technology_type:
             description:
-                - The Azure Data Lake Storage technology type.
+                - The Amazon S3 technology type.
             returned: on success
             type: str
-            sample: AZURE_DATA_LAKE_STORAGE
-        database_name:
+            sample: AMAZON_S3
+        connection_url:
             description:
-                - The name of the database.
+                - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
+                  e.g.: 'mq://myjms.host.domain:7676'"
             returned: on success
             type: str
-            sample: database_name_example
-        host:
+            sample: connection_url_example
+        authentication_type:
             description:
-                - The name or address of a host.
+                - Used authentication mechanism to access Azure Data Lake Storage.
             returned: on success
             type: str
-            sample: host_example
-        port:
-            description:
-                - The port of an endpoint usually specified for a connection.
-            returned: on success
-            type: int
-            sample: 56
+            sample: SHARED_KEY
         username:
             description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
+                - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+                  This username must already exist and be available by the system/application to be connected to
+                  and must conform to the case sensitivty requirments defined in it.
             returned: on success
             type: str
             sample: username_example
-        additional_attributes:
-            description:
-                - An array of name-value pair attribute entries.
-                  Used as additional parameters in connection string.
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the property entry.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                value:
-                    description:
-                        - The value of the property entry.
-                    returned: on success
-                    type: str
-                    sample: value_example
-        security_protocol:
-            description:
-                - Kafka security protocol.
-            returned: on success
-            type: str
-            sample: SSL
-        ssl_mode:
-            description:
-                - SSL modes for MySQL.
-            returned: on success
-            type: str
-            sample: DISABLED
-        private_ip:
-            description:
-                - The private IP address of the connection's endpoint in the customer's VCN, typically a
-                  database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
-                  In case the privateIp is provided, the subnetId must also be provided.
-                  In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
-                  In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
-            returned: on success
-            type: str
-            sample: private_ip_example
     sample: {
+        "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
         "account_name": "account_name_example",
         "azure_tenant_id": "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx",
         "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint": "endpoint_example",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "should_use_jndi": true,
+        "jndi_connection_factory": "jndi_connection_factory_example",
+        "jndi_provider_url": "jndi_provider_url_example",
+        "jndi_initial_context_factory": "jndi_initial_context_factory_example",
+        "jndi_security_principal": "jndi_security_principal_example",
+        "connection_factory": "connection_factory_example",
         "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "bootstrap_servers": [{
             "host": "host_example",
@@ -411,14 +484,25 @@ connection:
             "private_ip": "private_ip_example"
         }],
         "url": "url_example",
-        "authentication_type": "SHARED_KEY",
+        "ssl_ca": "ssl_ca_example",
+        "should_validate_server_certificate": true,
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "us-phoenix-1",
-        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_string": "connection_string_example",
         "session_mode": "DIRECT",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
+        "region": "us-phoenix-1",
+        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_name": "database_name_example",
+        "host": "host_example",
+        "port": 56,
+        "additional_attributes": [{
+            "name": "name_example",
+            "value": "value_example"
+        }],
+        "security_protocol": "SSL",
+        "ssl_mode": "DISABLED",
+        "private_ip": "private_ip_example",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -438,18 +522,10 @@ connection:
             "ingress_ip": "ingress_ip_example"
         }],
         "nsg_ids": [],
-        "technology_type": "AZURE_DATA_LAKE_STORAGE",
-        "database_name": "database_name_example",
-        "host": "host_example",
-        "port": 56,
-        "username": "username_example",
-        "additional_attributes": [{
-            "name": "name_example",
-            "value": "value_example"
-        }],
-        "security_protocol": "SSL",
-        "ssl_mode": "DISABLED",
-        "private_ip": "private_ip_example"
+        "technology_type": "AMAZON_S3",
+        "connection_url": "connection_url_example",
+        "authentication_type": "SHARED_KEY",
+        "username": "username_example"
     }
 """
 

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_actions -- Perform actions on a Deployment
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -354,7 +354,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer &quot;Master&quot; key being referenced. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to utilize this key to manage secrets.</div>
+                                            <div>Refers to the customer&#x27;s master key OCID. If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.</div>
                                             <div>Required for <em>action=export_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
@@ -386,7 +386,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer GGS Secret being referenced. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to utilize this Secret</div>
+                                            <div>The OCID of the customer&#x27;s GoldenGate Service Secret. If provided, it references a key that customers will be required to ensure the policies are established to permit GoldenGate to use this Secret.</div>
                                             <div>Required for <em>action=import_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
@@ -518,7 +518,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer vault being referenced. If provided, this will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage secrets contained within this vault.</div>
+                                            <div>Refers to the customer&#x27;s vault OCID. If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate to manage secrets contained within this vault.</div>
                                             <div>Required for <em>action=export_deployment_wallet</em>, <em>action=import_deployment_wallet</em>.</div>
                                                         </td>
             </tr>
@@ -957,7 +957,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of service executed in the Deployment. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes.  Its use is discouraged in favor of the equivalent &#x27;DATABASE_ORACLE&#x27; value.</div>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>

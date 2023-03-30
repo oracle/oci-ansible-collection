@@ -35,7 +35,7 @@ options:
         required: true
     target_version:
         description:
-            - The commit or reference name where changes are coming from.
+            - The commit or reference name that represents the newer changes against the base version.
         type: str
         required: true
     base_version:

@@ -23,7 +23,8 @@ module: oci_devops_build_run
 short_description: Manage a BuildRun resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a BuildRun resource in Oracle Cloud Infrastructure
-    - For I(state=present), starts a build pipeline run for a predefined build pipeline.
+    - For I(state=present), starts a build pipeline run for a predefined build pipeline. Please ensure the completion of any work request for creation/updation
+      of Build Pipeline before starting a Build Run.
     - "This resource has the following action operations in the M(oracle.oci.oci_devops_build_run_actions) module: cancel."
 version_added: "2.9.0"
 author: Oracle (@oracle)

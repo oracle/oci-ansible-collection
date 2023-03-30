@@ -62,9 +62,150 @@ options:
         type: str
     database_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Autonomous Json Database.
             - This parameter is updatable.
-            - Applicable when connection_type is 'ORACLE'
+            - Applicable when connection_type is one of ['MONGODB', 'ORACLE']
+        type: str
+    account_name:
+        description:
+            - Sets the Azure storage account name.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+            - Required when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    account_key:
+        description:
+            - "Azure storage account key. This property is required when 'authenticationType' is set to 'SHARED_KEY'.
+              e.g.: pa3WbhVATzj56xD4DH1VjOUhApRGEGHvOo58eQJVWIzX+j8j4CUVFcTjpIqDSRaSa1Wo2LbWY5at+AStEgLOIQ=="
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    sas_token:
+        description:
+            - "Credential that uses a shared access signature (SAS) to authenticate to an Azure Service. This property is
+              required when 'authenticationType' is set to 'SHARED_ACCESS_SIGNATURE'.
+              e.g.: ?sv=2020-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2020-09-10T20:27:28Z&st=2022-08-05T12:27:28Z&spr=https&sig=C1IgHsiLBmTSStYkXXGLTP8it0xBrArcg
+              CqOsZbXwIQ%3D"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    azure_tenant_id:
+        description:
+            - "Azure tenant ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
+              e.g.: 14593954-d337-4a61-a364-9f758c64f97f"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    client_id:
+        description:
+            - "Azure client ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
+              e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    client_secret:
+        description:
+            - "Azure client secret (aka application password) for authentication. This property is required when 'authenticationType' is set to
+              'AZURE_ACTIVE_DIRECTORY'.
+              e.g.: dO29Q~F5-VwnA.lZdd11xFF_t5NAXCaGwDl9NbT1"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    endpoint:
+        description:
+            - "Azure Storage service endpoint.
+              e.g: https://test.blob.core.windows.net"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
+        type: str
+    should_use_jndi:
+        description:
+            - If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+            - Required when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: bool
+    jndi_connection_factory:
+        description:
+            - "The Connection Factory can be looked up using this name.
+              e.g.: 'ConnectionFactory'"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    jndi_provider_url:
+        description:
+            - "The URL that Java Message Service will use to contact the JNDI provider.
+              e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    jndi_initial_context_factory:
+        description:
+            - "The implementation of javax.naming.spi.InitialContextFactory interface
+              that the client uses to obtain initial naming context.
+              e.g.: 'org.apache.activemq.jndi.ActiveMQInitialContextFactory'"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    jndi_security_principal:
+        description:
+            - "Specifies the identity of the principal (user) to be authenticated.
+              e.g.: 'admin2'"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    jndi_security_credentials:
+        description:
+            - The password associated to the principal.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    connection_factory:
+        description:
+            - "The of Java class implementing javax.jms.ConnectionFactory interface
+              supplied by the Java Message Service provider.
+              e.g.: 'com.stc.jmsjca.core.JConnectionFactoryXA'"
+            - This parameter is updatable.
+            - Applicable when connection_type is 'JAVA_MESSAGE_SERVICE'
+        type: str
+    deployment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'GOLDENGATE'
+        type: str
+    should_validate_server_certificate:
+        description:
+            - If set to true, the driver validates the certificate that is sent by the database server.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MICROSOFT_SQLSERVER'
+        type: bool
+    tenancy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
+        type: str
+    region:
+        description:
+            - "The name of the region. e.g.: us-ashburn-1"
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
+        type: str
+    user_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
+              The user must have write access to the bucket they want to connect to.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
+        type: str
+    public_key_fingerprint:
+        description:
+            - "The fingerprint of the API Key of the user specified by the userId.
+              See documentation: https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcredentials.htm"
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
+            - Required when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
         type: str
     url:
         description:
@@ -74,53 +215,77 @@ options:
             - Applicable when connection_type is 'KAFKA_SCHEMA_REGISTRY'
             - Required when connection_type is 'KAFKA_SCHEMA_REGISTRY'
         type: str
-    tenancy_id:
+    access_key_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
+            - "Access key ID to access the Amazon S3 bucket.
+              e.g.: \\"this-is-not-the-secret\\""
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is 'AMAZON_S3'
+            - Required when connection_type is 'AMAZON_S3'
         type: str
-    region:
+    secret_access_key:
         description:
-            - "The name of the region. e.g.: us-ashburn-1"
+            - "Secret access key to access the Amazon S3 bucket.
+              e.g.: \\"this-is-not-the-secret\\""
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is 'AMAZON_S3'
+            - Required when connection_type is 'AMAZON_S3'
         type: str
-    user_id:
+    connection_url:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
-              The user must have write access to the bucket they want to connect to.
+            - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
+              e.g.: 'mq://myjms.host.domain:7676'"
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is one of ['SNOWFLAKE', 'JAVA_MESSAGE_SERVICE']
+            - Required when connection_type is 'SNOWFLAKE'
+        type: str
+    authentication_type:
+        description:
+            - Used authentication mechanism to access Schema Registry.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'SNOWFLAKE', 'KAFKA_SCHEMA_REGISTRY']
+            - Required when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'SNOWFLAKE', 'KAFKA_SCHEMA_REGISTRY']
         type: str
     private_key_file:
         description:
-            - "The base64 encoded content of the private key file (PEM file) corresponding to the API key of the fingerprint.
-              See documentation: https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcredentials.htm"
+            - The base64 encoded content of private key file in PEM format.
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
-            - Required when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'SNOWFLAKE', 'ORACLE_NOSQL']
+            - Required when connection_type is one of ['OCI_OBJECT_STORAGE', 'ORACLE_NOSQL']
         type: str
     private_key_passphrase:
         description:
-            - The passphrase of the private key.
+            - Password if the private key file is encrypted.
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is one of ['OCI_OBJECT_STORAGE', 'SNOWFLAKE', 'ORACLE_NOSQL']
         type: str
-    public_key_fingerprint:
+    core_site_xml:
         description:
-            - "The fingerprint of the API Key of the user specified by the userId.
-              See documentation: https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcredentials.htm"
+            - The base64 encoded content of the Hadoop Distributed File System configuration file (core-site.xml).
             - This parameter is updatable.
-            - Applicable when connection_type is 'OCI_OBJECT_STORAGE'
-            - Required when connection_type is 'OCI_OBJECT_STORAGE'
+            - Applicable when connection_type is 'HDFS'
+            - Required when connection_type is 'HDFS'
         type: str
+    host:
+        description:
+            - The name or address of a host.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'GOLDENGATE', 'POSTGRESQL']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'POSTGRESQL']
+        type: str
+    port:
+        description:
+            - The port of an endpoint usually specified for a connection.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'GOLDENGATE', 'POSTGRESQL']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'POSTGRESQL']
+        type: int
     database_name:
         description:
             - The name of the database.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'POSTGRESQL']
-            - Required when connection_type is one of ['MYSQL', 'POSTGRESQL']
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'POSTGRESQL']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'POSTGRESQL']
         type: str
     ssl_mode:
         description:
@@ -132,7 +297,7 @@ options:
         description:
             - The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'POSTGRESQL']
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'POSTGRESQL']
         type: str
     ssl_crl:
         description:
@@ -152,12 +317,23 @@ options:
             - This parameter is updatable.
             - Applicable when connection_type is one of ['MYSQL', 'POSTGRESQL']
         type: str
+    private_ip:
+        description:
+            - The private IP address of the connection's endpoint in the customer's VCN, typically a
+              database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
+              In case the privateIp is provided, the subnetId must also be provided.
+              In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
+              In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'JAVA_MESSAGE_SERVICE', 'GOLDENGATE', 'KAFKA_SCHEMA_REGISTRY',
+              'POSTGRESQL', 'ORACLE']
+        type: str
     additional_attributes:
         description:
             - An array of name-value pair attribute entries.
               Used as additional parameters in connection string.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'POSTGRESQL']
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'POSTGRESQL']
         type: list
         elements: dict
         suboptions:
@@ -220,8 +396,8 @@ options:
         description:
             - Security protocol for PostgreSQL.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'KAFKA', 'POSTGRESQL']
-            - Required when connection_type is one of ['MYSQL', 'POSTGRESQL']
+            - Applicable when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'KAFKA', 'POSTGRESQL']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'POSTGRESQL']
         type: str
     trust_store:
         description:
@@ -266,120 +442,40 @@ options:
             - This parameter is updatable.
             - Applicable when connection_type is 'KAFKA'
         type: str
-    authentication_type:
-        description:
-            - Used authentication mechanism to access Schema Registry.
-            - This parameter is updatable.
-            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'KAFKA_SCHEMA_REGISTRY']
-            - Required when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'KAFKA_SCHEMA_REGISTRY']
-        type: str
-    account_name:
-        description:
-            - Sets the Azure storage account name.
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-            - Required when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    account_key:
-        description:
-            - "Azure storage account key. This property is required when 'authenticationType' is set to 'SHARED_KEY'.
-              e.g.: pa3WbhVATzj56xD4DH1VjOUhApRGEGHvOo58eQJVWIzX+j8j4CUVFcTjpIqDSRaSa1Wo2LbWY5at+AStEgLOIQ=="
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    sas_token:
-        description:
-            - "Credential that uses a shared access signature (SAS) to authenticate to an Azure Service. This property is
-              required when 'authenticationType' is set to 'SHARED_ACCESS_SIGNATURE'.
-              e.g.: ?sv=2020-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2020-09-10T20:27:28Z&st=2022-08-05T12:27:28Z&spr=https&sig=C1IgHsiLBmTSStYkXXGLTP8it0xBrArcg
-              CqOsZbXwIQ%3D"
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    azure_tenant_id:
-        description:
-            - "Azure tenant ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
-              e.g.: 14593954-d337-4a61-a364-9f758c64f97f"
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    client_id:
-        description:
-            - "Azure client ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
-              e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d"
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    client_secret:
-        description:
-            - "Azure client secret (aka application password) for authentication. This property is required when 'authenticationType' is set to
-              'AZURE_ACTIVE_DIRECTORY'.
-              e.g.: dO29Q~F5-VwnA.lZdd11xFF_t5NAXCaGwDl9NbT1"
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    endpoint:
-        description:
-            - "Azure Storage service endpoint.
-              e.g: https://test.blob.core.windows.net"
-            - This parameter is updatable.
-            - Applicable when connection_type is 'AZURE_DATA_LAKE_STORAGE'
-        type: str
-    deployment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
-            - This parameter is updatable.
-            - Applicable when connection_type is 'GOLDENGATE'
-        type: str
-    host:
-        description:
-            - The name or address of a host.
-            - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'GOLDENGATE', 'POSTGRESQL']
-            - Required when connection_type is 'POSTGRESQL'
-        type: str
-    port:
-        description:
-            - The port of an endpoint usually specified for a connection.
-            - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'GOLDENGATE', 'POSTGRESQL']
-            - Required when connection_type is 'POSTGRESQL'
-        type: int
-    private_ip:
-        description:
-            - The private IP address of the connection's endpoint in the customer's VCN, typically a
-              database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
-              In case the privateIp is provided, the subnetId must also be provided.
-              In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
-              In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
-            - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'GOLDENGATE', 'KAFKA_SCHEMA_REGISTRY', 'POSTGRESQL', 'ORACLE']
-        type: str
     connection_type:
         description:
             - The connection type.
             - Required for create using I(state=present), update using I(state=present) with connection_id present.
-            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'MYSQL', 'OCI_OBJECT_STORAGE', 'KAFKA', 'GOLDENGATE',
-              'KAFKA_SCHEMA_REGISTRY', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
+            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'MYSQL', 'OCI_OBJECT_STORAGE', 'HDFS', 'MONGODB', 'JAVA_MESSAGE_SERVICE',
+              'ORACLE', 'MICROSOFT_SQLSERVER', 'AMAZON_S3', 'SNOWFLAKE', 'KAFKA', 'ORACLE_NOSQL', 'GOLDENGATE', 'KAFKA_SCHEMA_REGISTRY',
+              'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL']
         type: str
         choices:
             - "POSTGRESQL"
             - "KAFKA_SCHEMA_REGISTRY"
-            - "AZURE_SYNAPSE_ANALYTICS"
+            - "MICROSOFT_SQLSERVER"
+            - "JAVA_MESSAGE_SERVICE"
+            - "SNOWFLAKE"
             - "AZURE_DATA_LAKE_STORAGE"
-            - "MYSQL"
+            - "MONGODB"
+            - "AMAZON_S3"
+            - "HDFS"
             - "OCI_OBJECT_STORAGE"
+            - "AZURE_SYNAPSE_ANALYTICS"
+            - "MYSQL"
             - "KAFKA"
             - "ORACLE"
             - "GOLDENGATE"
+            - "ORACLE_NOSQL"
     display_name:
         description:
             - An object's Display Name.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'MYSQL', 'OCI_OBJECT_STORAGE', 'KAFKA', 'GOLDENGATE',
-              'KAFKA_SCHEMA_REGISTRY', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
+            - Applicable when connection_type is one of ['AZURE_DATA_LAKE_STORAGE', 'MYSQL', 'OCI_OBJECT_STORAGE', 'HDFS', 'MONGODB', 'JAVA_MESSAGE_SERVICE',
+              'ORACLE', 'MICROSOFT_SQLSERVER', 'AMAZON_S3', 'SNOWFLAKE', 'KAFKA', 'ORACLE_NOSQL', 'GOLDENGATE', 'KAFKA_SCHEMA_REGISTRY',
+              'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL']
         type: str
         aliases: ["name"]
     description:
@@ -402,20 +498,15 @@ options:
         type: dict
     vault_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-              referenced.
-              If provided, this will reference a vault which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to manage secrets contained
-              within this vault.
+            - Refers to the customer's vault OCID.
+              If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+              to manage secrets contained within this vault.
             - This parameter is updatable.
         type: str
     key_id:
         description:
-            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-              referenced.
-              If provided, this will reference a key which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to utilize this key to
-              manage secrets."
+            - Refers to the customer's master key OCID.
+              If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             - This parameter is updatable.
         type: str
     nsg_ids:
@@ -426,30 +517,26 @@ options:
         elements: str
     connection_string:
         description:
-            - "JDBC connection string.
-              e.g.: 'jdbc:sqlserver://<synapse-workspace>.sql.azuresynapse.net:1433;database=<db-
-              name>;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'"
+            - "MongoDB connection string.
+              e.g.: 'mongodb://mongodb0.example.com:27017/recordsrecords'"
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['AZURE_SYNAPSE_ANALYTICS', 'ORACLE']
+            - Applicable when connection_type is one of ['MONGODB', 'AZURE_SYNAPSE_ANALYTICS', 'ORACLE']
             - Required when connection_type is 'AZURE_SYNAPSE_ANALYTICS'
         type: str
     username:
         description:
-            - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-              already exist and be available for use by the database.  It must conform to the security
-              requirements implemented by the database including length, case sensitivity, and so on.
+            - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+              This username must already exist and be available by the system/application to be connected to
+              and must conform to the case sensitivty requirments defined in it.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'KAFKA', 'KAFKA_SCHEMA_REGISTRY', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
-            - Required when connection_type is one of ['MYSQL', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
         type: str
     password:
         description:
-            - The password Oracle GoldenGate uses to connect the associated RDBMS.  It must conform to the
-              specific security requirements implemented by the database including length, case
-              sensitivity, and so on.
+            - The password Oracle GoldenGate uses to connect the associated system of the given technology.
+              It must conform to the specific security requirements including length, case sensitivity, and so on.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['MYSQL', 'KAFKA', 'KAFKA_SCHEMA_REGISTRY', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
-            - Required when connection_type is one of ['MYSQL', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
+            - Required when connection_type is one of ['MICROSOFT_SQLSERVER', 'MYSQL', 'AZURE_SYNAPSE_ANALYTICS', 'POSTGRESQL', 'ORACLE']
         type: str
     connection_id:
         description:
@@ -480,20 +567,20 @@ EXAMPLES = """
 
     # optional
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -514,12 +601,70 @@ EXAMPLES = """
     # optional
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     url: url_example
+    authentication_type: authentication_type_example
+    private_ip: private_ip_example
     trust_store: trust_store_example
     trust_store_password: example-password
     key_store: key_store_example
     key_store_password: example-password
     ssl_key_password: example-password
-    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Create connection with connection_type = MICROSOFT_SQLSERVER
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: MICROSOFT_SQLSERVER
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    should_validate_server_certificate: true
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    ssl_ca: ssl_ca_example
+    private_ip: private_ip_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    security_protocol: security_protocol_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Create connection with connection_type = JAVA_MESSAGE_SERVICE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: JAVA_MESSAGE_SERVICE
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    should_use_jndi: true
+    jndi_connection_factory: jndi_connection_factory_example
+    jndi_provider_url: jndi_provider_url_example
+    jndi_initial_context_factory: jndi_initial_context_factory_example
+    jndi_security_principal: jndi_security_principal_example
+    jndi_security_credentials: jndi_security_credentials_example
+    connection_factory: connection_factory_example
+    connection_url: connection_url_example
     private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
@@ -530,6 +675,135 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
+
+- name: Create connection with connection_type = SNOWFLAKE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: SNOWFLAKE
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_url: connection_url_example
+    authentication_type: authentication_type_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Create connection with connection_type = AZURE_DATA_LAKE_STORAGE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: AZURE_DATA_LAKE_STORAGE
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    account_name: account_name_example
+    account_key: account_key_example
+    sas_token: sas_token_example
+    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+    client_secret: client_secret_example
+    endpoint: endpoint_example
+    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Create connection with connection_type = MONGODB
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: MONGODB
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    connection_string: connection_string_example
+    username: username_example
+    password: example-password
+
+- name: Create connection with connection_type = AMAZON_S3
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: AMAZON_S3
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_access_key: secret_access_key_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Create connection with connection_type = HDFS
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: HDFS
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    core_site_xml: core_site_xml_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Create connection with connection_type = OCI_OBJECT_STORAGE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: OCI_OBJECT_STORAGE
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Create connection with connection_type = AZURE_SYNAPSE_ANALYTICS
   oci_golden_gate_connection:
@@ -551,31 +825,6 @@ EXAMPLES = """
     username: username_example
     password: example-password
 
-- name: Create connection with connection_type = AZURE_DATA_LAKE_STORAGE
-  oci_golden_gate_connection:
-    # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    technology_type: technology_type_example
-    connection_type: AZURE_DATA_LAKE_STORAGE
-
-    # optional
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    authentication_type: authentication_type_example
-    account_name: account_name_example
-    account_key: account_key_example
-    sas_token: sas_token_example
-    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
-    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
-    client_secret: client_secret_example
-    endpoint: endpoint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-
 - name: Create connection with connection_type = MYSQL
   oci_golden_gate_connection:
     # required
@@ -585,21 +834,21 @@ EXAMPLES = """
 
     # optional
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -609,29 +858,6 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
-
-- name: Create connection with connection_type = OCI_OBJECT_STORAGE
-  oci_golden_gate_connection:
-    # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    technology_type: technology_type_example
-    connection_type: OCI_OBJECT_STORAGE
-
-    # optional
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-    region: us-phoenix-1
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-    private_key_file: private_key_file_example
-    private_key_passphrase: private_key_passphrase_example
-    public_key_fingerprint: public_key_fingerprint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Create connection with connection_type = KAFKA
   oci_golden_gate_connection:
@@ -712,6 +938,31 @@ EXAMPLES = """
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Create connection with connection_type = ORACLE_NOSQL
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: ORACLE_NOSQL
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection with connection_type = POSTGRESQL
   oci_golden_gate_connection:
@@ -719,20 +970,20 @@ EXAMPLES = """
     connection_type: POSTGRESQL
 
     # optional
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -750,12 +1001,64 @@ EXAMPLES = """
 
     # optional
     url: url_example
+    authentication_type: authentication_type_example
+    private_ip: private_ip_example
     trust_store: trust_store_example
     trust_store_password: example-password
     key_store: key_store_example
     key_store_password: example-password
     ssl_key_password: example-password
-    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection with connection_type = MICROSOFT_SQLSERVER
+  oci_golden_gate_connection:
+    # required
+    connection_type: MICROSOFT_SQLSERVER
+
+    # optional
+    should_validate_server_certificate: true
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    ssl_ca: ssl_ca_example
+    private_ip: private_ip_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    security_protocol: security_protocol_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection with connection_type = JAVA_MESSAGE_SERVICE
+  oci_golden_gate_connection:
+    # required
+    connection_type: JAVA_MESSAGE_SERVICE
+
+    # optional
+    should_use_jndi: true
+    jndi_connection_factory: jndi_connection_factory_example
+    jndi_provider_url: jndi_provider_url_example
+    jndi_initial_context_factory: jndi_initial_context_factory_example
+    jndi_security_principal: jndi_security_principal_example
+    jndi_security_credentials: jndi_security_credentials_example
+    connection_factory: connection_factory_example
+    connection_url: connection_url_example
     private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
@@ -766,6 +1069,117 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
+
+- name: Update connection with connection_type = SNOWFLAKE
+  oci_golden_gate_connection:
+    # required
+    connection_type: SNOWFLAKE
+
+    # optional
+    connection_url: connection_url_example
+    authentication_type: authentication_type_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection with connection_type = AZURE_DATA_LAKE_STORAGE
+  oci_golden_gate_connection:
+    # required
+    connection_type: AZURE_DATA_LAKE_STORAGE
+
+    # optional
+    account_name: account_name_example
+    account_key: account_key_example
+    sas_token: sas_token_example
+    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+    client_secret: client_secret_example
+    endpoint: endpoint_example
+    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection with connection_type = MONGODB
+  oci_golden_gate_connection:
+    # required
+    connection_type: MONGODB
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    connection_string: connection_string_example
+    username: username_example
+    password: example-password
+
+- name: Update connection with connection_type = AMAZON_S3
+  oci_golden_gate_connection:
+    # required
+    connection_type: AMAZON_S3
+
+    # optional
+    access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_access_key: secret_access_key_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection with connection_type = HDFS
+  oci_golden_gate_connection:
+    # required
+    connection_type: HDFS
+
+    # optional
+    core_site_xml: core_site_xml_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection with connection_type = OCI_OBJECT_STORAGE
+  oci_golden_gate_connection:
+    # required
+    connection_type: OCI_OBJECT_STORAGE
+
+    # optional
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection with connection_type = AZURE_SYNAPSE_ANALYTICS
   oci_golden_gate_connection:
@@ -784,49 +1198,27 @@ EXAMPLES = """
     username: username_example
     password: example-password
 
-- name: Update connection with connection_type = AZURE_DATA_LAKE_STORAGE
-  oci_golden_gate_connection:
-    # required
-    connection_type: AZURE_DATA_LAKE_STORAGE
-
-    # optional
-    authentication_type: authentication_type_example
-    account_name: account_name_example
-    account_key: account_key_example
-    sas_token: sas_token_example
-    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
-    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
-    client_secret: client_secret_example
-    endpoint: endpoint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-
 - name: Update connection with connection_type = MYSQL
   oci_golden_gate_connection:
     # required
     connection_type: MYSQL
 
     # optional
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -836,26 +1228,6 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
-
-- name: Update connection with connection_type = OCI_OBJECT_STORAGE
-  oci_golden_gate_connection:
-    # required
-    connection_type: OCI_OBJECT_STORAGE
-
-    # optional
-    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-    region: us-phoenix-1
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-    private_key_file: private_key_file_example
-    private_key_passphrase: private_key_passphrase_example
-    public_key_fingerprint: public_key_fingerprint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection with connection_type = KAFKA
   oci_golden_gate_connection:
@@ -927,6 +1299,28 @@ EXAMPLES = """
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection with connection_type = ORACLE_NOSQL
+  oci_golden_gate_connection:
+    # required
+    connection_type: ORACLE_NOSQL
+
+    # optional
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = POSTGRESQL
   oci_golden_gate_connection:
@@ -935,20 +1329,20 @@ EXAMPLES = """
     connection_type: POSTGRESQL
 
     # optional
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -967,12 +1361,66 @@ EXAMPLES = """
 
     # optional
     url: url_example
+    authentication_type: authentication_type_example
+    private_ip: private_ip_example
     trust_store: trust_store_example
     trust_store_password: example-password
     key_store: key_store_example
     key_store_password: example-password
     ssl_key_password: example-password
-    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MICROSOFT_SQLSERVER
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: MICROSOFT_SQLSERVER
+
+    # optional
+    should_validate_server_certificate: true
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    ssl_ca: ssl_ca_example
+    private_ip: private_ip_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    security_protocol: security_protocol_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = JAVA_MESSAGE_SERVICE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: JAVA_MESSAGE_SERVICE
+
+    # optional
+    should_use_jndi: true
+    jndi_connection_factory: jndi_connection_factory_example
+    jndi_provider_url: jndi_provider_url_example
+    jndi_initial_context_factory: jndi_initial_context_factory_example
+    jndi_security_principal: jndi_security_principal_example
+    jndi_security_credentials: jndi_security_credentials_example
+    connection_factory: connection_factory_example
+    connection_url: connection_url_example
     private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
@@ -983,6 +1431,123 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = SNOWFLAKE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: SNOWFLAKE
+
+    # optional
+    connection_url: connection_url_example
+    authentication_type: authentication_type_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_DATA_LAKE_STORAGE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: AZURE_DATA_LAKE_STORAGE
+
+    # optional
+    account_name: account_name_example
+    account_key: account_key_example
+    sas_token: sas_token_example
+    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+    client_secret: client_secret_example
+    endpoint: endpoint_example
+    authentication_type: authentication_type_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MONGODB
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: MONGODB
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    connection_string: connection_string_example
+    username: username_example
+    password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AMAZON_S3
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: AMAZON_S3
+
+    # optional
+    access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_access_key: secret_access_key_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = HDFS
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: HDFS
+
+    # optional
+    core_site_xml: core_site_xml_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = OCI_OBJECT_STORAGE
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: OCI_OBJECT_STORAGE
+
+    # optional
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_SYNAPSE_ANALYTICS
   oci_golden_gate_connection:
@@ -1002,29 +1567,6 @@ EXAMPLES = """
     username: username_example
     password: example-password
 
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_DATA_LAKE_STORAGE
-  oci_golden_gate_connection:
-    # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_type: AZURE_DATA_LAKE_STORAGE
-
-    # optional
-    authentication_type: authentication_type_example
-    account_name: account_name_example
-    account_key: account_key_example
-    sas_token: sas_token_example
-    azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
-    client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
-    client_secret: client_secret_example
-    endpoint: endpoint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MYSQL
   oci_golden_gate_connection:
     # required
@@ -1032,21 +1574,21 @@ EXAMPLES = """
     connection_type: MYSQL
 
     # optional
+    host: host_example
+    port: 56
     database_name: database_name_example
     ssl_mode: ssl_mode_example
     ssl_ca: ssl_ca_example
     ssl_crl: ssl_crl_example
     ssl_cert: ssl_cert_example
     ssl_key: ssl_key_example
+    private_ip: private_ip_example
     additional_attributes:
     - # required
       name: name_example
       value: value_example
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     security_protocol: security_protocol_example
-    host: host_example
-    port: 56
-    private_ip: private_ip_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -1056,27 +1598,6 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     username: username_example
     password: example-password
-
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = OCI_OBJECT_STORAGE
-  oci_golden_gate_connection:
-    # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_type: OCI_OBJECT_STORAGE
-
-    # optional
-    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-    region: us-phoenix-1
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-    private_key_file: private_key_file_example
-    private_key_passphrase: private_key_passphrase_example
-    public_key_fingerprint: public_key_fingerprint_example
-    display_name: display_name_example
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = KAFKA
   oci_golden_gate_connection:
@@ -1151,6 +1672,29 @@ EXAMPLES = """
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = ORACLE_NOSQL
+  oci_golden_gate_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: ORACLE_NOSQL
+
+    # optional
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    region: us-phoenix-1
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key_fingerprint: public_key_fingerprint_example
+    private_key_file: private_key_file_example
+    private_key_passphrase: private_key_passphrase_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete connection
   oci_golden_gate_connection:
@@ -1174,6 +1718,13 @@ connection:
     returned: on success
     type: complex
     contains:
+        access_key_id:
+            description:
+                - "Access key ID to access the Amazon S3 bucket.
+                  e.g.: \\"this-is-not-the-secret\\""
+            returned: on success
+            type: str
+            sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
         account_name:
             description:
                 - Sets the Azure storage account name.
@@ -1207,6 +1758,49 @@ connection:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        should_use_jndi:
+            description:
+                - If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.
+            returned: on success
+            type: bool
+            sample: true
+        jndi_connection_factory:
+            description:
+                - "The Connection Factory can be looked up using this name.
+                  e.g.: 'ConnectionFactory'"
+            returned: on success
+            type: str
+            sample: jndi_connection_factory_example
+        jndi_provider_url:
+            description:
+                - "The URL that Java Message Service will use to contact the JNDI provider.
+                  e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'"
+            returned: on success
+            type: str
+            sample: jndi_provider_url_example
+        jndi_initial_context_factory:
+            description:
+                - "The implementation of javax.naming.spi.InitialContextFactory interface
+                  that the client uses to obtain initial naming context.
+                  e.g.: 'org.apache.activemq.jndi.ActiveMQInitialContextFactory'"
+            returned: on success
+            type: str
+            sample: jndi_initial_context_factory_example
+        jndi_security_principal:
+            description:
+                - "Specifies the identity of the principal (user) to be authenticated.
+                  e.g.: 'admin2'"
+            returned: on success
+            type: str
+            sample: jndi_security_principal_example
+        connection_factory:
+            description:
+                - "The of Java class implementing javax.jms.ConnectionFactory interface
+                  supplied by the Java Message Service provider.
+                  e.g.: 'com.stc.jmsjca.core.JConnectionFactoryXA'"
+            returned: on success
+            type: str
+            sample: connection_factory_example
         stream_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the stream pool being referenced.
@@ -1251,37 +1845,25 @@ connection:
             returned: on success
             type: str
             sample: url_example
-        authentication_type:
+        ssl_ca:
             description:
-                - Used authentication mechanism to access Azure Data Lake Storage.
+                - "Database Certificate - The base64 encoded content of pem file
+                  containing the server public key (for 1-way SSL)."
             returned: on success
             type: str
-            sample: SHARED_KEY
+            sample: ssl_ca_example
+        should_validate_server_certificate:
+            description:
+                - If set to true, the driver validates the certificate that is sent by the database server.
+            returned: on success
+            type: bool
+            sample: true
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
             returned: on success
             type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-        tenancy_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
-            returned: on success
-            type: str
-            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-        region:
-            description:
-                - "The name of the region. e.g.: us-ashburn-1"
-            returned: on success
-            type: str
-            sample: us-phoenix-1
-        user_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
-                  The user must have write access to the bucket they want to connect to.
-            returned: on success
-            type: str
-            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - "JDBC connection string.
@@ -1301,10 +1883,88 @@ connection:
             sample: DIRECT
         database_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Autonomous Json Database.
             returned: on success
             type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        tenancy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
+            returned: on success
+            type: str
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        region:
+            description:
+                - "The name of the region. e.g.: us-ashburn-1"
+            returned: on success
+            type: str
+            sample: us-phoenix-1
+        user_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI user who will access the Object Storage.
+                  The user must have write access to the bucket they want to connect to.
+            returned: on success
+            type: str
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name:
+            description:
+                - The name of the database.
+            returned: on success
+            type: str
+            sample: database_name_example
+        host:
+            description:
+                - The name or address of a host.
+            returned: on success
+            type: str
+            sample: host_example
+        port:
+            description:
+                - The port of an endpoint usually specified for a connection.
+            returned: on success
+            type: int
+            sample: 56
+        additional_attributes:
+            description:
+                - An array of name-value pair attribute entries.
+                  Used as additional parameters in connection string.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the property entry.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                value:
+                    description:
+                        - The value of the property entry.
+                    returned: on success
+                    type: str
+                    sample: value_example
+        security_protocol:
+            description:
+                - Kafka security protocol.
+            returned: on success
+            type: str
+            sample: SSL
+        ssl_mode:
+            description:
+                - SSL modes for MySQL.
+            returned: on success
+            type: str
+            sample: DISABLED
+        private_ip:
+            description:
+                - The private IP address of the connection's endpoint in the customer's VCN, typically a
+                  database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
+                  In case the privateIp is provided, the subnetId must also be provided.
+                  In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
+                  In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
+            returned: on success
+            type: str
+            sample: private_ip_example
         connection_type:
             description:
                 - The connection type.
@@ -1389,21 +2049,16 @@ connection:
             sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-                  referenced.
-                  If provided, this will reference a vault which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to manage secrets contained
-                  within this vault.
+                - Refers to the customer's vault OCID.
+                  If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+                  to manage secrets contained within this vault.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this key to
-                  manage secrets."
+                - Refers to the customer's master key OCID.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1415,7 +2070,8 @@ connection:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_ips:
             description:
-                - List of ingress IP addresses, from where the GoldenGate deployment connects to this connection's privateIp.
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
             returned: on success
             type: complex
             contains:
@@ -1433,83 +2089,44 @@ connection:
             sample: []
         technology_type:
             description:
-                - The Azure Data Lake Storage technology type.
+                - The Amazon S3 technology type.
             returned: on success
             type: str
-            sample: AZURE_DATA_LAKE_STORAGE
-        database_name:
+            sample: AMAZON_S3
+        connection_url:
             description:
-                - The name of the database.
+                - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
+                  e.g.: 'mq://myjms.host.domain:7676'"
             returned: on success
             type: str
-            sample: database_name_example
-        host:
+            sample: connection_url_example
+        authentication_type:
             description:
-                - The name or address of a host.
+                - Used authentication mechanism to access Azure Data Lake Storage.
             returned: on success
             type: str
-            sample: host_example
-        port:
-            description:
-                - The port of an endpoint usually specified for a connection.
-            returned: on success
-            type: int
-            sample: 56
+            sample: SHARED_KEY
         username:
             description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
+                - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+                  This username must already exist and be available by the system/application to be connected to
+                  and must conform to the case sensitivty requirments defined in it.
             returned: on success
             type: str
             sample: username_example
-        additional_attributes:
-            description:
-                - An array of name-value pair attribute entries.
-                  Used as additional parameters in connection string.
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the property entry.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                value:
-                    description:
-                        - The value of the property entry.
-                    returned: on success
-                    type: str
-                    sample: value_example
-        security_protocol:
-            description:
-                - Kafka security protocol.
-            returned: on success
-            type: str
-            sample: SSL
-        ssl_mode:
-            description:
-                - SSL modes for MySQL.
-            returned: on success
-            type: str
-            sample: DISABLED
-        private_ip:
-            description:
-                - The private IP address of the connection's endpoint in the customer's VCN, typically a
-                  database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
-                  In case the privateIp is provided, the subnetId must also be provided.
-                  In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible.
-                  In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
-            returned: on success
-            type: str
-            sample: private_ip_example
     sample: {
+        "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
         "account_name": "account_name_example",
         "azure_tenant_id": "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx",
         "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint": "endpoint_example",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "should_use_jndi": true,
+        "jndi_connection_factory": "jndi_connection_factory_example",
+        "jndi_provider_url": "jndi_provider_url_example",
+        "jndi_initial_context_factory": "jndi_initial_context_factory_example",
+        "jndi_security_principal": "jndi_security_principal_example",
+        "connection_factory": "connection_factory_example",
         "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "bootstrap_servers": [{
             "host": "host_example",
@@ -1517,14 +2134,25 @@ connection:
             "private_ip": "private_ip_example"
         }],
         "url": "url_example",
-        "authentication_type": "SHARED_KEY",
+        "ssl_ca": "ssl_ca_example",
+        "should_validate_server_certificate": true,
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "us-phoenix-1",
-        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_string": "connection_string_example",
         "session_mode": "DIRECT",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
+        "region": "us-phoenix-1",
+        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_name": "database_name_example",
+        "host": "host_example",
+        "port": 56,
+        "additional_attributes": [{
+            "name": "name_example",
+            "value": "value_example"
+        }],
+        "security_protocol": "SSL",
+        "ssl_mode": "DISABLED",
+        "private_ip": "private_ip_example",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -1544,18 +2172,10 @@ connection:
             "ingress_ip": "ingress_ip_example"
         }],
         "nsg_ids": [],
-        "technology_type": "AZURE_DATA_LAKE_STORAGE",
-        "database_name": "database_name_example",
-        "host": "host_example",
-        "port": 56,
-        "username": "username_example",
-        "additional_attributes": [{
-            "name": "name_example",
-            "value": "value_example"
-        }],
-        "security_protocol": "SSL",
-        "ssl_mode": "DISABLED",
-        "private_ip": "private_ip_example"
+        "technology_type": "AMAZON_S3",
+        "connection_url": "connection_url_example",
+        "authentication_type": "SHARED_KEY",
+        "username": "username_example"
     }
 """
 
@@ -1663,15 +2283,17 @@ class ConnectionHelperGen(OCIResourceHelperBase):
             "consumer_properties",
             "ssl_key",
             "trust_store",
+            "secret_access_key",
             "account_key",
             "producer_properties",
             "ssl_key_password",
             "private_key_passphrase",
             "key_store",
             "sas_token",
-            "private_key_file",
             "password",
-            "ssl_ca",
+            "private_key_file",
+            "core_site_xml",
+            "jndi_security_credentials",
             "key_store_password",
             "public_key_fingerprint",
             "client_secret",
@@ -1743,19 +2365,43 @@ def main():
             wallet=dict(type="str"),
             session_mode=dict(type="str"),
             database_id=dict(type="str"),
-            url=dict(type="str"),
+            account_name=dict(type="str"),
+            account_key=dict(type="str", no_log=True),
+            sas_token=dict(type="str", no_log=True),
+            azure_tenant_id=dict(type="str"),
+            client_id=dict(type="str"),
+            client_secret=dict(type="str", no_log=True),
+            endpoint=dict(type="str"),
+            should_use_jndi=dict(type="bool"),
+            jndi_connection_factory=dict(type="str"),
+            jndi_provider_url=dict(type="str"),
+            jndi_initial_context_factory=dict(type="str"),
+            jndi_security_principal=dict(type="str"),
+            jndi_security_credentials=dict(type="str"),
+            connection_factory=dict(type="str"),
+            deployment_id=dict(type="str"),
+            should_validate_server_certificate=dict(type="bool"),
             tenancy_id=dict(type="str"),
             region=dict(type="str"),
             user_id=dict(type="str"),
+            public_key_fingerprint=dict(type="str", no_log=True),
+            url=dict(type="str"),
+            access_key_id=dict(type="str"),
+            secret_access_key=dict(type="str", no_log=True),
+            connection_url=dict(type="str"),
+            authentication_type=dict(type="str"),
             private_key_file=dict(type="str"),
             private_key_passphrase=dict(type="str", no_log=True),
-            public_key_fingerprint=dict(type="str", no_log=True),
+            core_site_xml=dict(type="str"),
+            host=dict(type="str"),
+            port=dict(type="int"),
             database_name=dict(type="str"),
             ssl_mode=dict(type="str"),
             ssl_ca=dict(type="str"),
             ssl_crl=dict(type="str"),
             ssl_cert=dict(type="str"),
             ssl_key=dict(type="str", no_log=True),
+            private_ip=dict(type="str"),
             additional_attributes=dict(
                 type="list",
                 elements="dict",
@@ -1783,30 +2429,25 @@ def main():
             ssl_key_password=dict(type="str", no_log=True),
             consumer_properties=dict(type="str"),
             producer_properties=dict(type="str"),
-            authentication_type=dict(type="str"),
-            account_name=dict(type="str"),
-            account_key=dict(type="str", no_log=True),
-            sas_token=dict(type="str", no_log=True),
-            azure_tenant_id=dict(type="str"),
-            client_id=dict(type="str"),
-            client_secret=dict(type="str", no_log=True),
-            endpoint=dict(type="str"),
-            deployment_id=dict(type="str"),
-            host=dict(type="str"),
-            port=dict(type="int"),
-            private_ip=dict(type="str"),
             connection_type=dict(
                 type="str",
                 choices=[
                     "POSTGRESQL",
                     "KAFKA_SCHEMA_REGISTRY",
-                    "AZURE_SYNAPSE_ANALYTICS",
+                    "MICROSOFT_SQLSERVER",
+                    "JAVA_MESSAGE_SERVICE",
+                    "SNOWFLAKE",
                     "AZURE_DATA_LAKE_STORAGE",
-                    "MYSQL",
+                    "MONGODB",
+                    "AMAZON_S3",
+                    "HDFS",
                     "OCI_OBJECT_STORAGE",
+                    "AZURE_SYNAPSE_ANALYTICS",
+                    "MYSQL",
                     "KAFKA",
                     "ORACLE",
                     "GOLDENGATE",
+                    "ORACLE_NOSQL",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

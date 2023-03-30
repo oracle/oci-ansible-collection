@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment -- Manage a Deployment resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -330,12 +330,13 @@ Parameters
                                                                                                                                                                 <li>OGG</li>
                                                                                                                                                                                                 <li>DATABASE_ORACLE</li>
                                                                                                                                                                                                 <li>BIGDATA</li>
+                                                                                                                                                                                                <li>DATABASE_MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>DATABASE_MYSQL</li>
                                                                                                                                                                                                 <li>DATABASE_POSTGRESQL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of service executed in the Deployment. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes.  Its use is discouraged in favor of the equivalent &#x27;DATABASE_ORACLE&#x27; value.</div>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -608,7 +609,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as &#x27;$&#x27;, &#x27;^&#x27;, or &#x27;?&#x27; are not allowed. This field will be deprecated and replaced by &quot;passwordSecretId&quot;.</div>
+                                            <div>The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as &#x27;$&#x27;, &#x27;^&#x27;, or &#x27;?&#x27; are not allowed.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1182,7 +1183,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of service executed in the Deployment. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes.  Its use is discouraged in favor of the equivalent &#x27;DATABASE_ORACLE&#x27; value.</div>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>
