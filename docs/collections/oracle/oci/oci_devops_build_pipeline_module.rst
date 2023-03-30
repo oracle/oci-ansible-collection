@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_pipeline -- Manage a BuildPipeline resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -244,7 +244,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-build_pipeline_parameters/items/default_value" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -572,9 +572,9 @@ Examples
           items:
           - # required
             name: name_example
+            default_value: default_value_example
 
             # optional
-            default_value: default_value_example
             description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -592,9 +592,9 @@ Examples
           items:
           - # required
             name: name_example
+            default_value: default_value_example
 
             # optional
-            default_value: default_value_example
             description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -611,9 +611,9 @@ Examples
           items:
           - # required
             name: name_example
+            default_value: default_value_example
 
             # optional
-            default_value: default_value_example
             description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.17.0
+Collection version 4.18.0
 
 .. toctree::
     :maxdepth: 1
@@ -948,6 +948,9 @@ Modules
 * :ref:`oci_functions_function <ansible_collections.oracle.oci.oci_functions_function_module>` -- Manage a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_actions <ansible_collections.oracle.oci.oci_functions_function_actions_module>` -- Perform actions on a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_facts <ansible_collections.oracle.oci.oci_functions_function_facts_module>` -- Fetches details about one or multiple Function resources in Oracle Cloud Infrastructure
+* :ref:`oci_functions_pbf_listing_facts <ansible_collections.oracle.oci.oci_functions_pbf_listing_facts_module>` -- Fetches details about one or multiple PbfListing resources in Oracle Cloud Infrastructure
+* :ref:`oci_functions_pbf_listing_version_facts <ansible_collections.oracle.oci.oci_functions_pbf_listing_version_facts_module>` -- Fetches details about one or multiple PbfListingVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_functions_triggers_facts <ansible_collections.oracle.oci.oci_functions_triggers_facts_module>` -- Fetches details about one or multiple Triggers resources in Oracle Cloud Infrastructure
 * :ref:`oci_fusion_apps_admin_user_facts <ansible_collections.oracle.oci.oci_fusion_apps_admin_user_facts_module>` -- Fetches details about one or multiple AdminUser resources in Oracle Cloud Infrastructure
 * :ref:`oci_fusion_apps_data_masking_activity_facts <ansible_collections.oracle.oci.oci_fusion_apps_data_masking_activity_facts_module>` -- Fetches details about one or multiple DataMaskingActivity resources in Oracle Cloud Infrastructure
 * :ref:`oci_fusion_apps_fusion_environment_actions <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_actions_module>` -- Perform actions on a FusionEnvironment resource in Oracle Cloud Infrastructure
@@ -2862,6 +2865,9 @@ Modules
     oci_functions_function_module
     oci_functions_function_actions_module
     oci_functions_function_facts_module
+    oci_functions_pbf_listing_facts_module
+    oci_functions_pbf_listing_version_facts_module
+    oci_functions_triggers_facts_module
     oci_fusion_apps_admin_user_facts_module
     oci_fusion_apps_data_masking_activity_facts_module
     oci_fusion_apps_fusion_environment_actions_module

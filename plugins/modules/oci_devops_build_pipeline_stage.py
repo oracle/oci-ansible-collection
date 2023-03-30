@@ -138,6 +138,31 @@ options:
             - This parameter is updatable.
             - Applicable when build_pipeline_stage_type is 'BUILD'
         type: str
+    build_runner_shape_config:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+        type: dict
+        suboptions:
+            build_runner_type:
+                description:
+                    - Name of the build runner shape in which the execution occurs. If not specified, the default shape is chosen.
+                type: str
+                choices:
+                    - "DEFAULT"
+                    - "CUSTOM"
+                default: "DEFAULT"
+            ocpus:
+                description:
+                    - The total number of OCPUs set for the instance.
+                    - Required when build_runner_type is 'CUSTOM'
+                type: int
+            memory_in_gbs:
+                description:
+                    - The total amount of memory set for the instance in gigabytes.
+                    - Required when build_runner_type is 'CUSTOM'
+                type: int
     private_access_config:
         description:
             - ""
@@ -366,6 +391,9 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    build_runner_shape_config:
+      # optional
+      build_runner_type: DEFAULT
     private_access_config:
       # required
       network_channel_type: SERVICE_VNIC_CHANNEL
@@ -462,6 +490,9 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    build_runner_shape_config:
+      # optional
+      build_runner_type: DEFAULT
     private_access_config:
       # required
       network_channel_type: SERVICE_VNIC_CHANNEL
@@ -560,6 +591,9 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    build_runner_shape_config:
+      # optional
+      build_runner_type: DEFAULT
     private_access_config:
       # required
       network_channel_type: SERVICE_VNIC_CHANNEL
@@ -673,6 +707,30 @@ build_pipeline_stage:
             returned: on success
             type: str
             sample: primary_build_source_example
+        build_runner_shape_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs set for the instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory set for the instance in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
+                build_runner_type:
+                    description:
+                        - Name of the build runner shape in which the execution occurs. If not specified, the default shape is chosen.
+                    returned: on success
+                    type: str
+                    sample: CUSTOM
         private_access_config:
             description:
                 - ""
@@ -876,6 +934,11 @@ build_pipeline_stage:
             }]
         },
         "primary_build_source": "primary_build_source_example",
+        "build_runner_shape_config": {
+            "ocpus": 56,
+            "memory_in_gbs": 56,
+            "build_runner_type": "CUSTOM"
+        },
         "private_access_config": {
             "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1119,6 +1182,16 @@ def main():
                 ),
             ),
             primary_build_source=dict(type="str"),
+            build_runner_shape_config=dict(
+                type="dict",
+                options=dict(
+                    build_runner_type=dict(
+                        type="str", default="DEFAULT", choices=["DEFAULT", "CUSTOM"]
+                    ),
+                    ocpus=dict(type="int"),
+                    memory_in_gbs=dict(type="int"),
+                ),
+            ),
             private_access_config=dict(
                 type="dict",
                 options=dict(

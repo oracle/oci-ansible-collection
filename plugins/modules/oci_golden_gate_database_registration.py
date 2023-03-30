@@ -23,7 +23,7 @@ module: oci_golden_gate_database_registration
 short_description: Manage a DatabaseRegistration resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DatabaseRegistration resource in Oracle Cloud Infrastructure
-    - "For I(state=present), note: Deprecated. Use the new resource model APIs instead.
+    - "For I(state=present), note: Deprecated. Use the /connections API instead.
       Creates a new DatabaseRegistration."
     - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_database_registration_actions) module: change_compartment."
 version_added: "2.9.0"
@@ -51,27 +51,19 @@ options:
         type: str
     vault_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-              referenced.
-              If provided, this will reference a vault which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to manage secrets contained
-              within this vault.
+            - Refers to the customer's vault OCID.
+              If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+              to manage secrets contained within this vault.
         type: str
     key_id:
         description:
-            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-              referenced.
-              If provided, this will reference a key which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to utilize this key to
-              manage secrets."
+            - Refers to the customer's master key OCID.
+              If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
         type: str
     secret_compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the
-              the GGS Secret will be created.
-              If provided, this will reference a key which the customer will be required to ensure
-              the policies are established to permit the GoldenGate Service to utilize this Compartment
-              in which to create a Secret.
+            - The OCID of the compartment where the GoldenGate Secret will be created.
+              If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
         type: str
     display_name:
         description:
@@ -107,24 +99,22 @@ options:
         type: str
     username:
         description:
-            - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-              already exist and be available for use by the database.  It must conform to the security
-              requirements implemented by the database including length, case sensitivity, and so on.
+            - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+              This username must already exist and be available by the system/application to be connected to
+              and must conform to the case sensitivty requirments defined in it.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     password:
         description:
-            - The password Oracle GoldenGate uses to connect the associated RDBMS.  It must conform to the
-              specific security requirements implemented by the database including length, case
-              sensitivity, and so on.
+            - The password Oracle GoldenGate uses to connect the associated system of the given technology.
+              It must conform to the specific security requirements including length, case sensitivity, and so on.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     connection_string:
         description:
-            - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a
-              database.
+            - Connect descriptor or Easy Connect Naming method used to connect to a database.
             - This parameter is updatable.
         type: str
     session_mode:
@@ -346,10 +336,10 @@ database_registration:
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         rce_private_ip:
             description:
-                - A Private Endpoint IP Address created in the customer's subnet.  A customer
-                  database can expect network traffic initiated by GGS from this IP address and send network traffic
-                  to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize
-                  this IP address in Security Lists or Network Security Groups (NSG) as needed.
+                - A Private Endpoint IP address created in the customer's subnet.
+                  A customer database can expect network traffic initiated by GoldenGate Service from this IP address.
+                  It can also send network traffic to this IP address, typically in response to requests from GoldenGate Service.
+                  The customer may use this IP address in Security Lists or Network Security Groups (NSG) as needed.
             returned: on success
             type: str
             sample: rce_private_ip_example
@@ -364,16 +354,15 @@ database_registration:
             sample: {}
         username:
             description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
+                - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+                  This username must already exist and be available by the system/application to be connected to
+                  and must conform to the case sensitivty requirments defined in it.
             returned: on success
             type: str
             sample: username_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a
-                  database.
+                - Connect descriptor or Easy Connect Naming method used to connect to a database.
             returned: on success
             type: str
             sample: connection_string_example
@@ -394,40 +383,31 @@ database_registration:
             sample: alias_name_example
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-                  referenced.
-                  If provided, this will reference a vault which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to manage secrets contained
-                  within this vault.
+                - Refers to the customer's vault OCID.
+                  If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+                  to manage secrets contained within this vault.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this key to
-                  manage secrets."
+                - Refers to the customer's master key OCID.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the
-                  the GGS Secret will be created.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this Compartment
-                  in which to create a Secret.
+                - The OCID of the compartment where the GoldenGate Secret will be created.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             returned: on success
             type: str
             sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this Secret
+                - The OCID of the customer's GoldenGate Service Secret.
+                  If provided, it references a key that customers will be required to ensure the policies are established
+                  to permit GoldenGate to use this Secret.
             returned: on success
             type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"

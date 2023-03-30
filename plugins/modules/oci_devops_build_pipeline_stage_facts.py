@@ -182,6 +182,31 @@ build_pipeline_stages:
             returned: on success
             type: str
             sample: primary_build_source_example
+        build_runner_shape_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs set for the instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory set for the instance in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
+                build_runner_type:
+                    description:
+                        - Name of the build runner shape in which the execution occurs. If not specified, the default shape is chosen.
+                    returned: on success
+                    type: str
+                    sample: CUSTOM
         private_access_config:
             description:
                 - ""
@@ -390,6 +415,11 @@ build_pipeline_stages:
             }]
         },
         "primary_build_source": "primary_build_source_example",
+        "build_runner_shape_config": {
+            "ocpus": 56,
+            "memory_in_gbs": 56,
+            "build_runner_type": "CUSTOM"
+        },
         "private_access_config": {
             "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",

@@ -67,6 +67,7 @@ options:
                         description:
                             - Default value of the parameter.
                         type: str
+                        required: true
                     description:
                         description:
                             - Description of the parameter.
@@ -116,9 +117,9 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
+        default_value: default_value_example
 
         # optional
-        default_value: default_value_example
         description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -136,9 +137,9 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
+        default_value: default_value_example
 
         # optional
-        default_value: default_value_example
         description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -155,9 +156,9 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
+        default_value: default_value_example
 
         # optional
-        default_value: default_value_example
         description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -475,7 +476,7 @@ def main():
                         required=True,
                         options=dict(
                             name=dict(type="str", required=True),
-                            default_value=dict(type="str"),
+                            default_value=dict(type="str", required=True),
                             description=dict(type="str"),
                         ),
                     )

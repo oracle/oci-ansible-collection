@@ -43,12 +43,29 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    source_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            source_type:
+                description:
+                    - "Type of the Function Source. Possible values: PBF."
+                type: str
+                choices:
+                    - "PRE_BUILT_FUNCTIONS"
+                required: true
+            pbf_listing_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the PbfListing this
+                      function is sourced from.
+                type: str
+                required: true
     image:
         description:
             - "The qualified name of the Docker image to use in the function, including the image tag.
               The image should be in the OCI Registry that is in the same region as the function itself.
               Example: `phx.ocir.io/ten/functions/function:0.0.1`"
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     image_digest:
@@ -147,10 +164,14 @@ EXAMPLES = """
     # required
     display_name: display_name_example
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
-    image: image_example
     memory_in_mbs: 56
 
     # optional
+    source_details:
+      # required
+      source_type: PRE_BUILT_FUNCTIONS
+      pbf_listing_id: "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
+    image: image_example
     image_digest: image_digest_example
     config: null
     timeout_in_seconds: 56
@@ -272,6 +293,25 @@ function:
             returned: on success
             type: str
             sample: image_digest_example
+        source_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - "Type of the Function Source. Possible values: PBF."
+                    returned: on success
+                    type: str
+                    sample: PRE_BUILT_FUNCTIONS
+                pbf_listing_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the PbfListing this
+                          function is sourced from.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
         memory_in_mbs:
             description:
                 - Maximum usable memory for the function (MiB).
@@ -372,6 +412,10 @@ function:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "image": "image_example",
         "image_digest": "image_digest_example",
+        "source_details": {
+            "source_type": "PRE_BUILT_FUNCTIONS",
+            "pbf_listing_id": "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
@@ -543,6 +587,15 @@ def main():
         dict(
             display_name=dict(aliases=["name"], type="str"),
             application_id=dict(type="str"),
+            source_details=dict(
+                type="dict",
+                options=dict(
+                    source_type=dict(
+                        type="str", required=True, choices=["PRE_BUILT_FUNCTIONS"]
+                    ),
+                    pbf_listing_id=dict(type="str", required=True),
+                ),
+            ),
             image=dict(type="str"),
             image_digest=dict(type="str"),
             memory_in_mbs=dict(type="int"),

@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.18.0]
+
+## Added
+- Support for managed build stages to be configured to use custom shape build runners in the DevOps service
+- Support for listing pre-built functions and creating functions from pre-built functions in the Functions service
+- Support for connections types for database resources of type Amazon S3, HDFS, SQL Server, Java Messaging service, Mongo DB, Oracle NoSQL, and Snowflake in the GoldenGate service
+
+## Fixed
+- Issue with update (addition) the new shape to the compatible shapes in custom image using `oci_compute_image_shape_compatibility_entry` module. (#209)
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.96.1
+
 ## [4.17.0]
 
 

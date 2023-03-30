@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -159,7 +159,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filters for compatible deployments which can be, but currently not assigned to the connection specified by its id.</div>
+                                            <div>Return the deployments to which the specified connectionId may be assigned.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -243,7 +243,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which to list resources.</div>
+                                            <div>The OCID of the compartment that contains the work request. Work requests should be scoped to the same compartment as the resource the work request affects. If the work request concerns multiple resources, and those resources are not in the same compartment, it is up to the service team to pick the primary resource whose compartment should be used.</div>
                                             <div>Required to list multiple deployments.</div>
                                                         </td>
             </tr>
@@ -448,11 +448,18 @@ Parameters
                                                                                                                                                                                                 <li>KAFKA</li>
                                                                                                                                                                                                 <li>KAFKA_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>MYSQL</li>
+                                                                                                                                                                                                <li>JAVA_MESSAGE_SERVICE</li>
+                                                                                                                                                                                                <li>MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>ORACLE</li>
                                                                                                                                                                                                 <li>AZURE_DATA_LAKE_STORAGE</li>
                                                                                                                                                                                                 <li>POSTGRESQL</li>
                                                                                                                                                                                                 <li>AZURE_SYNAPSE_ANALYTICS</li>
+                                                                                                                                                                                                <li>SNOWFLAKE</li>
+                                                                                                                                                                                                <li>AMAZON_S3</li>
+                                                                                                                                                                                                <li>HDFS</li>
+                                                                                                                                                                                                <li>ORACLE_NOSQL</li>
+                                                                                                                                                                                                <li>MONGODB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -776,7 +783,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of service executed in the Deployment. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes.  Its use is discouraged in favor of the equivalent &#x27;DATABASE_ORACLE&#x27; value.</div>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>

@@ -23,7 +23,7 @@ module: oci_golden_gate_database_registration_facts
 short_description: Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
+    - "Note: Deprecated. Use the /connections API instead.
       Lists the DatabaseRegistrations in the compartment."
     - If I(database_registration_id) is specified, the details of a single DatabaseRegistration will be returned.
 version_added: "2.9.0"
@@ -37,7 +37,10 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
+            - The OCID of the compartment that contains the work request. Work requests should be scoped
+              to the same compartment as the resource the work request affects. If the work request concerns
+              multiple resources, and those resources are not in the same compartment, it is up to the service team
+              to pick the primary resource whose compartment should be used.
             - Required to list multiple database_registrations.
         type: str
     lifecycle_state:
@@ -118,43 +121,35 @@ database_registrations:
             sample: ip_address_example
         rce_private_ip:
             description:
-                - A Private Endpoint IP Address created in the customer's subnet.  A customer
-                  database can expect network traffic initiated by GGS from this IP address and send network traffic
-                  to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize
-                  this IP address in Security Lists or Network Security Groups (NSG) as needed.
+                - A Private Endpoint IP address created in the customer's subnet.
+                  A customer database can expect network traffic initiated by GoldenGate Service from this IP address.
+                  It can also send network traffic to this IP address, typically in response to requests from GoldenGate Service.
+                  The customer may use this IP address in Security Lists or Network Security Groups (NSG) as needed.
                 - Returned for get operation
             returned: on success
             type: str
             sample: rce_private_ip_example
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-                  referenced.
-                  If provided, this will reference a vault which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to manage secrets contained
-                  within this vault.
+                - Refers to the customer's vault OCID.
+                  If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+                  to manage secrets contained within this vault.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this key to
-                  manage secrets."
+                - Refers to the customer's master key OCID.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the
-                  the GGS Secret will be created.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this Compartment
-                  in which to create a Secret.
+                - The OCID of the compartment where the GoldenGate Secret will be created.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
                 - Returned for get operation
             returned: on success
             type: str
@@ -255,16 +250,15 @@ database_registrations:
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         username:
             description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
+                - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+                  This username must already exist and be available by the system/application to be connected to
+                  and must conform to the case sensitivty requirments defined in it.
             returned: on success
             type: str
             sample: username_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a
-                  database.
+                - Connect descriptor or Easy Connect Naming method used to connect to a database.
             returned: on success
             type: str
             sample: connection_string_example
@@ -285,10 +279,9 @@ database_registrations:
             sample: alias_name_example
         secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this Secret
+                - The OCID of the customer's GoldenGate Service Secret.
+                  If provided, it references a key that customers will be required to ensure the policies are established
+                  to permit GoldenGate to use this Secret.
             returned: on success
             type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"

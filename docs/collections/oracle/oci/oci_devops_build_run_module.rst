@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_run -- Manage a BuildRun resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create and update a BuildRun resource in Oracle Cloud Infrastructure
-- For *state=present*, starts a build pipeline run for a predefined build pipeline.
+- For *state=present*, starts a build pipeline run for a predefined build pipeline. Please ensure the completion of any work request for creation/updation of Build Pipeline before starting a Build Run.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_devops_build_run_actions <ansible_collections.oracle.oci.oci_devops_build_run_actions_module>` module: cancel.
 
 

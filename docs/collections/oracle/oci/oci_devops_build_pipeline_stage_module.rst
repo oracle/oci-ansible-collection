@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_pipeline_stage -- Manage a BuildPipelineStage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -296,6 +296,78 @@ Parameters
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with build_pipeline_stage_id present.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-build_runner_shape_config"></div>
+                    <b>build_runner_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-build_runner_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when build_pipeline_stage_type is &#x27;BUILD&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-build_runner_shape_config/build_runner_type"></div>
+                    <b>build_runner_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-build_runner_shape_config/build_runner_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>DEFAULT</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>CUSTOM</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Name of the build runner shape in which the execution occurs. If not specified, the default shape is chosen.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-build_runner_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-build_runner_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory set for the instance in gigabytes.</div>
+                                            <div>Required when build_runner_type is &#x27;CUSTOM&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-build_runner_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-build_runner_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs set for the instance.</div>
+                                            <div>Required when build_runner_type is &#x27;CUSTOM&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-build_source_collection"></div>
@@ -1093,6 +1165,9 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        build_runner_shape_config:
+          # optional
+          build_runner_type: DEFAULT
         private_access_config:
           # required
           network_channel_type: SERVICE_VNIC_CHANNEL
@@ -1189,6 +1264,9 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        build_runner_shape_config:
+          # optional
+          build_runner_type: DEFAULT
         private_access_config:
           # required
           network_channel_type: SERVICE_VNIC_CHANNEL
@@ -1287,6 +1365,9 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        build_runner_shape_config:
+          # optional
+          build_runner_type: DEFAULT
         private_access_config:
           # required
           network_channel_type: SERVICE_VNIC_CHANNEL
@@ -1351,7 +1432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BuildPipelineStage resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deliver_artifact_collection&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_id&#x27;: &#x27;ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_name&#x27;: &#x27;artifact_name_example&#x27;}]}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;is_pass_all_parameters_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;private_access_config&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;build_runner_shape_config&#x27;: {&#x27;build_runner_type&#x27;: &#x27;CUSTOM&#x27;, &#x27;memory_in_gbs&#x27;: 56, &#x27;ocpus&#x27;: 56}, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deliver_artifact_collection&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_id&#x27;: &#x27;ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_name&#x27;: &#x27;artifact_name_example&#x27;}]}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;is_pass_all_parameters_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;private_access_config&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1445,6 +1526,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">WAIT</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-build_pipeline_stage/build_runner_shape_config"></div>
+                    <b>build_runner_shape_config</b>
+                    <a class="ansibleOptionLink" href="#return-build_pipeline_stage/build_runner_shape_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-build_pipeline_stage/build_runner_shape_config/build_runner_type"></div>
+                    <b>build_runner_type</b>
+                    <a class="ansibleOptionLink" href="#return-build_pipeline_stage/build_runner_shape_config/build_runner_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the build runner shape in which the execution occurs. If not specified, the default shape is chosen.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOM</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-build_pipeline_stage/build_runner_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-build_pipeline_stage/build_runner_shape_config/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total amount of memory set for the instance in gigabytes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-build_pipeline_stage/build_runner_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-build_pipeline_stage/build_runner_shape_config/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs set for the instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

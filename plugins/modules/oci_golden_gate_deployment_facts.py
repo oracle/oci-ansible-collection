@@ -36,7 +36,10 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
+            - The OCID of the compartment that contains the work request. Work requests should be scoped
+              to the same compartment as the resource the work request affects. If the work request concerns
+              multiple resources, and those resources are not in the same compartment, it is up to the service team
+              to pick the primary resource whose compartment should be used.
             - Required to list multiple deployments.
         type: str
     supported_connection_type:
@@ -48,18 +51,25 @@ options:
             - "KAFKA"
             - "KAFKA_SCHEMA_REGISTRY"
             - "MYSQL"
+            - "JAVA_MESSAGE_SERVICE"
+            - "MICROSOFT_SQLSERVER"
             - "OCI_OBJECT_STORAGE"
             - "ORACLE"
             - "AZURE_DATA_LAKE_STORAGE"
             - "POSTGRESQL"
             - "AZURE_SYNAPSE_ANALYTICS"
+            - "SNOWFLAKE"
+            - "AMAZON_S3"
+            - "HDFS"
+            - "ORACLE_NOSQL"
+            - "MONGODB"
     assigned_connection_id:
         description:
             - The OCID of the connection which for the deployment must be assigned.
         type: str
     assignable_connection_id:
         description:
-            - Filters for compatible deployments which can be, but currently not assigned to the connection specified by its id.
+            - Return the deployments to which the specified connectionId may be assigned.
         type: str
     lifecycle_state:
         description:
@@ -446,9 +456,9 @@ deployments:
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
-                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent 'DATABASE_ORACLE' value."
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
             returned: on success
             type: str
             sample: OGG
@@ -597,11 +607,18 @@ def main():
                     "KAFKA",
                     "KAFKA_SCHEMA_REGISTRY",
                     "MYSQL",
+                    "JAVA_MESSAGE_SERVICE",
+                    "MICROSOFT_SQLSERVER",
                     "OCI_OBJECT_STORAGE",
                     "ORACLE",
                     "AZURE_DATA_LAKE_STORAGE",
                     "POSTGRESQL",
                     "AZURE_SYNAPSE_ANALYTICS",
+                    "SNOWFLAKE",
+                    "AMAZON_S3",
+                    "HDFS",
+                    "ORACLE_NOSQL",
+                    "MONGODB",
                 ],
             ),
             assigned_connection_id=dict(type="str"),

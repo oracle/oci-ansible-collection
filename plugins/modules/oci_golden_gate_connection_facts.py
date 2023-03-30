@@ -36,7 +36,10 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
+            - The OCID of the compartment that contains the work request. Work requests should be scoped
+              to the same compartment as the resource the work request affects. If the work request concerns
+              multiple resources, and those resources are not in the same compartment, it is up to the service team
+              to pick the primary resource whose compartment should be used.
             - Required to list multiple connections.
         type: str
     technology_type:
@@ -47,30 +50,42 @@ options:
         choices:
             - "GOLDENGATE"
             - "OCI_AUTONOMOUS_DATABASE"
+            - "OCI_AUTONOMOUS_JSON_DATABASE"
             - "OCI_MYSQL"
             - "OCI_OBJECT_STORAGE"
             - "OCI_STREAMING"
             - "ORACLE_DATABASE"
             - "ORACLE_EXADATA"
+            - "ORACLE_NOSQL"
+            - "ORACLE_WEBLOGIC_JMS"
             - "AMAZON_RDS_ORACLE"
+            - "AMAZON_RDS_SQLSERVER"
+            - "AMAZON_S3"
             - "AMAZON_AURORA_MYSQL"
             - "AMAZON_AURORA_POSTGRESQL"
             - "AMAZON_RDS_MARIADB"
             - "AMAZON_RDS_MYSQL"
             - "AMAZON_RDS_POSTGRESQL"
             - "APACHE_KAFKA"
+            - "AZURE_COSMOS_DB_FOR_MONGODB"
             - "AZURE_DATA_LAKE_STORAGE"
             - "AZURE_EVENT_HUBS"
             - "AZURE_MYSQL"
             - "AZURE_POSTGRESQL"
+            - "AZURE_SQLSERVER_MANAGED_INSTANCE"
+            - "AZURE_SQLSERVER_NON_MANAGED_INSTANCE"
             - "AZURE_SYNAPSE_ANALYTICS"
             - "CONFLUENT_KAFKA"
             - "CONFLUENT_SCHEMA_REGISTRY"
             - "GOOGLE_CLOUD_SQL_MYSQL"
             - "GOOGLE_CLOUD_SQL_POSTGRESQL"
+            - "HDFS"
             - "MARIADB"
+            - "MICROSOFT_SQLSERVER"
+            - "MONGODB"
             - "MYSQL_SERVER"
             - "POSTGRESQL_SERVER"
+            - "SNOWFLAKE"
     connection_type:
         description:
             - The array of connection types.
@@ -81,11 +96,18 @@ options:
             - "KAFKA"
             - "KAFKA_SCHEMA_REGISTRY"
             - "MYSQL"
+            - "JAVA_MESSAGE_SERVICE"
+            - "MICROSOFT_SQLSERVER"
             - "OCI_OBJECT_STORAGE"
             - "ORACLE"
             - "AZURE_DATA_LAKE_STORAGE"
             - "POSTGRESQL"
             - "AZURE_SYNAPSE_ANALYTICS"
+            - "SNOWFLAKE"
+            - "AMAZON_S3"
+            - "HDFS"
+            - "ORACLE_NOSQL"
+            - "MONGODB"
     assigned_deployment_id:
         description:
             - The OCID of the deployment which for the connection must be assigned.
@@ -102,6 +124,7 @@ options:
             - "OGG"
             - "DATABASE_ORACLE"
             - "BIGDATA"
+            - "DATABASE_MICROSOFT_SQLSERVER"
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
     lifecycle_state:
@@ -170,6 +193,14 @@ connections:
     returned: on success
     type: complex
     contains:
+        access_key_id:
+            description:
+                - "Access key ID to access the Amazon S3 bucket.
+                  e.g.: \\"this-is-not-the-secret\\""
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
         account_name:
             description:
                 - Sets the Azure storage account name.
@@ -208,6 +239,55 @@ connections:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        should_use_jndi:
+            description:
+                - If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        jndi_connection_factory:
+            description:
+                - "The Connection Factory can be looked up using this name.
+                  e.g.: 'ConnectionFactory'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: jndi_connection_factory_example
+        jndi_provider_url:
+            description:
+                - "The URL that Java Message Service will use to contact the JNDI provider.
+                  e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: jndi_provider_url_example
+        jndi_initial_context_factory:
+            description:
+                - "The implementation of javax.naming.spi.InitialContextFactory interface
+                  that the client uses to obtain initial naming context.
+                  e.g.: 'org.apache.activemq.jndi.ActiveMQInitialContextFactory'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: jndi_initial_context_factory_example
+        jndi_security_principal:
+            description:
+                - "Specifies the identity of the principal (user) to be authenticated.
+                  e.g.: 'admin2'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: jndi_security_principal_example
+        connection_factory:
+            description:
+                - "The of Java class implementing javax.jms.ConnectionFactory interface
+                  supplied by the Java Message Service provider.
+                  e.g.: 'com.stc.jmsjca.core.JConnectionFactoryXA'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: connection_factory_example
         stream_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the stream pool being referenced.
@@ -255,13 +335,21 @@ connections:
             returned: on success
             type: str
             sample: url_example
-        authentication_type:
+        ssl_ca:
             description:
-                - Used authentication mechanism to access Azure Data Lake Storage.
+                - "Database Certificate - The base64 encoded content of pem file
+                  containing the server public key (for 1-way SSL)."
                 - Returned for get operation
             returned: on success
             type: str
-            sample: SHARED_KEY
+            sample: ssl_ca_example
+        should_validate_server_certificate:
+            description:
+                - If set to true, the driver validates the certificate that is sent by the database server.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
@@ -269,6 +357,32 @@ connections:
             returned: on success
             type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_string:
+            description:
+                - "JDBC connection string.
+                  e.g.: 'jdbc:sqlserver://<synapse-workspace>.sql.azuresynapse.net:1433;database=<db-
+                  name>;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: connection_string_example
+        session_mode:
+            description:
+                - "The mode of the database connection session to be established by the data client.
+                  'REDIRECT' - for a RAC database, 'DIRECT' - for a non-RAC database.
+                  Connection to a RAC database involves a redirection received from the SCAN listeners
+                  to the database node to connect to. By default the mode would be DIRECT."
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: DIRECT
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Autonomous Json Database.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related OCI tenancy.
@@ -291,39 +405,6 @@ connections:
             returned: on success
             type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_string:
-            description:
-                - "JDBC connection string.
-                  e.g.: 'jdbc:sqlserver://<synapse-workspace>.sql.azuresynapse.net:1433;database=<db-
-                  name>;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: connection_string_example
-        session_mode:
-            description:
-                - "The mode of the database connection session to be established by the data client.
-                  'REDIRECT' - for a RAC database, 'DIRECT' - for a non-RAC database.
-                  Connection to a RAC database involves a redirection received from the SCAN listeners
-                  to the database node to connect to. By default the mode would be DIRECT."
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: DIRECT
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        technology_type:
-            description:
-                - The Azure Data Lake Storage technology type.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: AZURE_DATA_LAKE_STORAGE
         database_name:
             description:
                 - The name of the database.
@@ -345,15 +426,6 @@ connections:
             returned: on success
             type: int
             sample: 56
-        username:
-            description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: username_example
         additional_attributes:
             description:
                 - An array of name-value pair attribute entries.
@@ -399,6 +471,37 @@ connections:
             returned: on success
             type: str
             sample: private_ip_example
+        technology_type:
+            description:
+                - The Amazon S3 technology type.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: AMAZON_S3
+        connection_url:
+            description:
+                - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
+                  e.g.: 'mq://myjms.host.domain:7676'"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: connection_url_example
+        authentication_type:
+            description:
+                - Used authentication mechanism to access Azure Data Lake Storage.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: SHARED_KEY
+        username:
+            description:
+                - The username Oracle GoldenGate uses to connect the associated system of the given technology.
+                  This username must already exist and be available by the system/application to be connected to
+                  and must conform to the case sensitivty requirments defined in it.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: username_example
         connection_type:
             description:
                 - The connection type.
@@ -483,21 +586,16 @@ connections:
             sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
-                  referenced.
-                  If provided, this will reference a vault which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to manage secrets contained
-                  within this vault.
+                - Refers to the customer's vault OCID.
+                  If provided, it references a vault where GoldenGate can manage secrets. Customers must add policies to permit GoldenGate
+                  to manage secrets contained within this vault.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this key to
-                  manage secrets."
+                - Refers to the customer's master key OCID.
+                  If provided, it references a key to manage secrets. Customers must add policies to permit GoldenGate to use this key.
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
@@ -509,7 +607,8 @@ connections:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_ips:
             description:
-                - List of ingress IP addresses, from where the GoldenGate deployment connects to this connection's privateIp.
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
             returned: on success
             type: complex
             contains:
@@ -526,11 +625,18 @@ connections:
             type: list
             sample: []
     sample: [{
+        "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
         "account_name": "account_name_example",
         "azure_tenant_id": "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx",
         "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint": "endpoint_example",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "should_use_jndi": true,
+        "jndi_connection_factory": "jndi_connection_factory_example",
+        "jndi_provider_url": "jndi_provider_url_example",
+        "jndi_initial_context_factory": "jndi_initial_context_factory_example",
+        "jndi_security_principal": "jndi_security_principal_example",
+        "connection_factory": "connection_factory_example",
         "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "bootstrap_servers": [{
             "host": "host_example",
@@ -538,19 +644,18 @@ connections:
             "private_ip": "private_ip_example"
         }],
         "url": "url_example",
-        "authentication_type": "SHARED_KEY",
+        "ssl_ca": "ssl_ca_example",
+        "should_validate_server_certificate": true,
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "us-phoenix-1",
-        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_string": "connection_string_example",
         "session_mode": "DIRECT",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "technology_type": "AZURE_DATA_LAKE_STORAGE",
+        "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
+        "region": "us-phoenix-1",
+        "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "host": "host_example",
         "port": 56,
-        "username": "username_example",
         "additional_attributes": [{
             "name": "name_example",
             "value": "value_example"
@@ -558,6 +663,10 @@ connections:
         "security_protocol": "SSL",
         "ssl_mode": "DISABLED",
         "private_ip": "private_ip_example",
+        "technology_type": "AMAZON_S3",
+        "connection_url": "connection_url_example",
+        "authentication_type": "SHARED_KEY",
+        "username": "username_example",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -657,30 +766,42 @@ def main():
                 choices=[
                     "GOLDENGATE",
                     "OCI_AUTONOMOUS_DATABASE",
+                    "OCI_AUTONOMOUS_JSON_DATABASE",
                     "OCI_MYSQL",
                     "OCI_OBJECT_STORAGE",
                     "OCI_STREAMING",
                     "ORACLE_DATABASE",
                     "ORACLE_EXADATA",
+                    "ORACLE_NOSQL",
+                    "ORACLE_WEBLOGIC_JMS",
                     "AMAZON_RDS_ORACLE",
+                    "AMAZON_RDS_SQLSERVER",
+                    "AMAZON_S3",
                     "AMAZON_AURORA_MYSQL",
                     "AMAZON_AURORA_POSTGRESQL",
                     "AMAZON_RDS_MARIADB",
                     "AMAZON_RDS_MYSQL",
                     "AMAZON_RDS_POSTGRESQL",
                     "APACHE_KAFKA",
+                    "AZURE_COSMOS_DB_FOR_MONGODB",
                     "AZURE_DATA_LAKE_STORAGE",
                     "AZURE_EVENT_HUBS",
                     "AZURE_MYSQL",
                     "AZURE_POSTGRESQL",
+                    "AZURE_SQLSERVER_MANAGED_INSTANCE",
+                    "AZURE_SQLSERVER_NON_MANAGED_INSTANCE",
                     "AZURE_SYNAPSE_ANALYTICS",
                     "CONFLUENT_KAFKA",
                     "CONFLUENT_SCHEMA_REGISTRY",
                     "GOOGLE_CLOUD_SQL_MYSQL",
                     "GOOGLE_CLOUD_SQL_POSTGRESQL",
+                    "HDFS",
                     "MARIADB",
+                    "MICROSOFT_SQLSERVER",
+                    "MONGODB",
                     "MYSQL_SERVER",
                     "POSTGRESQL_SERVER",
+                    "SNOWFLAKE",
                 ],
             ),
             connection_type=dict(
@@ -691,11 +812,18 @@ def main():
                     "KAFKA",
                     "KAFKA_SCHEMA_REGISTRY",
                     "MYSQL",
+                    "JAVA_MESSAGE_SERVICE",
+                    "MICROSOFT_SQLSERVER",
                     "OCI_OBJECT_STORAGE",
                     "ORACLE",
                     "AZURE_DATA_LAKE_STORAGE",
                     "POSTGRESQL",
                     "AZURE_SYNAPSE_ANALYTICS",
+                    "SNOWFLAKE",
+                    "AMAZON_S3",
+                    "HDFS",
+                    "ORACLE_NOSQL",
+                    "MONGODB",
                 ],
             ),
             assigned_deployment_id=dict(type="str"),
@@ -706,6 +834,7 @@ def main():
                     "OGG",
                     "DATABASE_ORACLE",
                     "BIGDATA",
+                    "DATABASE_MICROSOFT_SQLSERVER",
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
                 ],

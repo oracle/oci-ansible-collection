@@ -227,6 +227,26 @@ class ImageShapeCompatibilityEntryHelperCustom:
 
         return True
 
+    # shape_name param is not part of update model, So it is not considered for update.
+    # And, get operation throws 404 error if shape is not present in custom image.
+    # So, if get operation returns 404, we need to update the shape in custom image.
+    def is_update_necessary(self, existing_resource_dict):
+        try:
+            self.get_resource()
+        except ServiceError as se:
+            if se.status == 404:
+                return True
+            else:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: ",
+                    error=se,
+                    resource_helper=self,
+                )
+        else:
+            return super(
+                ImageShapeCompatibilityEntryHelperCustom, self
+            ).is_update_necessary(existing_resource_dict)
+
 
 class VnicAttachmentHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):

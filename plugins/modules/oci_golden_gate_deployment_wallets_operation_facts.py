@@ -83,10 +83,9 @@ deployment_wallets_operations:
             sample: "ocid1.walletoperation.oc1..xxxxxxEXAMPLExxxxxx"
         wallet_secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
-                  referenced.
-                  If provided, this will reference a key which the customer will be required to ensure
-                  the policies are established to permit the GoldenGate Service to utilize this Secret
+                - The OCID of the customer's GoldenGate Service Secret.
+                  If provided, it references a key that customers will be required to ensure the policies are established
+                  to permit GoldenGate to use this Secret.
             returned: on success
             type: str
             sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
