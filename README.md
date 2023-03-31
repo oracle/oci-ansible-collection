@@ -82,9 +82,11 @@ See [CHANGELOG](https://github.com/oracle/oci-ansible-collections/blob/master/CH
 
 ## Contributing
 
-This is an open source project. See [CONTRIBUTING](https://github.com/oracle/oci-ansible-collections/blob/master/CONTRIBUTING.md) for details.
+This project welcomes contributions from the community. Before submitting a pull request, please [review our contribution guide](./CONTRIBUTING.md)
 
-Oracle gratefully acknowledges the contributions to `oci-ansible-collections` that have been made by the community.
+## Security
+
+Please consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process
 
 ## Known Issues
 
@@ -92,7 +94,7 @@ You can find information on any known issues on [Known Issues](https://github.co
 
 ## License
 
-Copyright (c) 2020, Oracle and/or its affiliates.
+Copyright (c) 2020,  2023 Oracle and/or its affiliates.
 
 This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 
