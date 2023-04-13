@@ -24,19 +24,20 @@ short_description: Perform actions on a Connection resource in Oracle Cloud Infr
 description:
     - Perform actions on a Connection resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), used to change the Database Connection compartment.
+    - For I(action=connection_diagnostics), perform connection test for a database connection.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     connection_id:
         description:
             - The OCID of the database connection
         type: str
         aliases: ["id"]
-        required: true
-    compartment_id:
-        description:
-            - The OCID of the compartment to move the resource to.
-        type: str
         required: true
     action:
         description:
@@ -45,6 +46,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "connection_diagnostics"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -52,9 +54,15 @@ EXAMPLES = """
 - name: Perform action change_compartment on connection
   oci_database_migration_connection_actions:
     # required
-    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action connection_diagnostics on connection
+  oci_database_migration_connection_actions:
+    # required
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+    action: connection_diagnostics
 
 """
 
@@ -363,6 +371,7 @@ class ConnectionActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        connection_diagnostics
     """
 
     @staticmethod
@@ -404,6 +413,23 @@ class ConnectionActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def connection_diagnostics(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.connection_diagnostics,
+            call_fn_args=(),
+            call_fn_kwargs=dict(connection_id=self.module.params.get("connection_id"),),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 ConnectionActionsHelperCustom = get_custom_class("ConnectionActionsHelperCustom")
 
@@ -418,9 +444,13 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             connection_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "connection_diagnostics"],
+            ),
         )
     )
 

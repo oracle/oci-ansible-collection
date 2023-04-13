@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Database Connection resource that contains the details to connect to either a Source or Target Database
       in the migration.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_connection_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_connection_actions) module: change_compartment,
+      connection_diagnostics."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

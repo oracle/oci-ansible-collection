@@ -803,6 +803,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_devops_build_run_actions <ansible_collections.oracle.oci.oci_devops_build_run_actions_module>` -- Perform actions on a BuildRun resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_build_run_facts <ansible_collections.oracle.oci.oci_devops_build_run_facts_module>` -- Fetches details about one or multiple BuildRun resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_connection <ansible_collections.oracle.oci.oci_devops_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_connection_actions <ansible_collections.oracle.oci.oci_devops_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_connection_facts <ansible_collections.oracle.oci.oci_devops_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_deploy_artifact <ansible_collections.oracle.oci.oci_devops_deploy_artifact_module>` -- Manage a DeployArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_deploy_artifact_facts <ansible_collections.oracle.oci.oci_devops_deploy_artifact_facts_module>` -- Fetches details about one or multiple DeployArtifact resources in Oracle Cloud Infrastructure
