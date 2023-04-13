@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_connection_actions -- Perform actions on a Con
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.19.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Perform actions on a Connection resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, used to change the Database Connection compartment.
+- For *action=connection_diagnostics*, perform connection test for a database connection.
 
 
 .. Aliases
@@ -98,6 +99,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>connection_diagnostics</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -225,12 +227,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the compartment to move the resource to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -337,9 +340,15 @@ Examples
     - name: Perform action change_compartment on connection
       oci_database_migration_connection_actions:
         # required
-        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action connection_diagnostics on connection
+      oci_database_migration_connection_actions:
+        # required
+        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+        action: connection_diagnostics
 
 
 

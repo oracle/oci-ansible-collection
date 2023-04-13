@@ -19,6 +19,19 @@ class DevopsConnectionHelperCustom:
         return optional_list_method_params
 
 
+class DevopsConnectionActionsHelperCustom:
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            DevopsConnectionActionsHelperCustom, self
+        ).get_action_desired_states(action)
+
+        if action.lower() == "validate":
+            return action_desired_states + [
+                "ACTIVE",
+            ]
+        return action_desired_states
+
+
 class DevopsBuildRunHelperCustom:
     # Running a build is not an idempotent operation. It is perfectly valid
     # to run the build multiple times.

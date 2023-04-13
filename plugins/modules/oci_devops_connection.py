@@ -24,6 +24,7 @@ short_description: Manage a Connection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new connection.
+    - "This resource has the following action operations in the M(oracle.oci.oci_devops_connection_actions) module: validate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -493,6 +494,30 @@ connection:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        last_connection_validation_result:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                result:
+                    description:
+                        - The latest result of whether the credentials pass the validation.
+                    returned: on success
+                    type: str
+                    sample: PASS
+                time_validated:
+                    description:
+                        - The latest timestamp when the connection was validated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                message:
+                    description:
+                        - A message describing the result of connection validation in more detail.
+                    returned: on success
+                    type: str
+                    sample: message_example
         lifecycle_details:
             description:
                 - A detailed message describing the current state. For example, can be used to provide actionable information for a resource in Failed state.
@@ -554,6 +579,11 @@ connection:
         "connection_type": "GITHUB_ACCESS_TOKEN",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "last_connection_validation_result": {
+            "result": "PASS",
+            "time_validated": "2013-10-20T19:20:30+01:00",
+            "message": "message_example"
+        },
         "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
