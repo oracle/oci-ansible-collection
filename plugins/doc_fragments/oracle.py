@@ -94,4 +94,10 @@ class ModuleDocFragment(object):
                   This will override the default CA certificate bundle. If not set, then the value
                   of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.
             type: str
+        realm_specific_endpoint_template_enabled:
+            description:
+                - Enable/Disable realm specific endpoint template for service client. By Default, realm specific endpoint
+                  template is disabled. If not set, then the value of the OCI_REALM_SPECIFIC_SERVICE_ENDPOINT_TEMPLATE_ENABLED
+                  variable, if any, is used.
+            type: bool
     """

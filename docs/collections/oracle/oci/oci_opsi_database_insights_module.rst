@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights -- Manage a DatabaseInsights resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DatabaseInsights resource in Oracle Cloud Infrastructure
 - For *state=present*, create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights. Database metric collection and analysis will be started.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` module: change_autonomous_database_insight_advanced_features, change, change_pe_comanaged, disable_autonomous_database_insight_advanced_features, disable, enable_autonomous_database_insight_advanced_features, enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` module: change_autonomous_database_insight_advanced_features, change, change_pe_comanaged, disable_autonomous_database_insight_advanced_features, disable, enable_autonomous_database_insight_advanced_features, enable, ingest_addm_reports, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text.
 
 
 .. Aliases
@@ -608,6 +608,25 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the OPSI private endpoint</div>
                                             <div>Applicable when entity_source is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
+                    <b>realm_specific_endpoint_template_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enable/Disable realm specific endpoint template for service client. By Default, realm specific endpoint template is disabled. If not set, then the value of the OCI_REALM_SPECIFIC_SERVICE_ENDPOINT_TEMPLATE_ENABLED variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>

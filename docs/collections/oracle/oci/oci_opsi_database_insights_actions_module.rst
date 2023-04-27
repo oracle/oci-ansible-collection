@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights_actions -- Perform actions on a DatabaseIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -64,6 +64,7 @@ Synopsis
 - For *action=disable*, disables a database in Operations Insights. Database metric collection and analysis will be stopped.
 - For *action=enable_autonomous_database_insight_advanced_features*, enables advanced features for an Autonomous Database in Operations Insights. A direct connection will be available for further collection.
 - For *action=enable*, enables a database in Operations Insights. Database metric collection and analysis will be started.
+- For *action=ingest_addm_reports*, this endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline. Either databaseId or id must be specified.
 - For *action=ingest_database_configuration*, this is a generic ingest endpoint for all database configuration metrics.
 - For *action=ingest_sql_bucket*, the sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline. Either databaseId or id must be specified.
 - For *action=ingest_sql_plan_lines*, the SqlPlanLines endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline. Either databaseId or id must be specified.
@@ -115,6 +116,7 @@ Parameters
                                                                                                                                                                                                 <li>disable</li>
                                                                                                                                                                                                 <li>enable_autonomous_database_insight_advanced_features</li>
                                                                                                                                                                                                 <li>enable</li>
+                                                                                                                                                                                                <li>ingest_addm_reports</li>
                                                                                                                                                                                                 <li>ingest_database_configuration</li>
                                                                                                                                                                                                 <li>ingest_sql_bucket</li>
                                                                                                                                                                                                 <li>ingest_sql_plan_lines</li>
@@ -493,7 +495,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated DBaaS entity.</div>
-                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_stats</em><em>a ction=ingest_sql_text</em>.</div>
+                                            <div>Applicable only for <em>action=ingest_addm_reports</em><em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em> <em>action=ingest_sql_stats</em><em>action=ingest_sql_text</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -579,7 +581,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div><a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
-                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_stats</em><em>a ction=ingest_sql_text</em>.</div>
+                                            <div>Applicable only for <em>action=ingest_addm_reports</em><em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em> <em>action=ingest_sql_stats</em><em>action=ingest_sql_text</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -594,8 +596,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of one or more database configuration metrics objects.</div>
-                                            <div>Required for <em>action=ingest_database_configuration</em>.</div>
+                                            <div>List of Addm reports</div>
+                                            <div>Required for <em>action=ingest_addm_reports</em>, <em>action=ingest_database_configuration</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -628,6 +630,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Contains the name of the action that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_ACTION</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/addm_report"></div>
+                    <b>addm_report</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/addm_report" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The complete ADDM report</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -936,6 +954,22 @@ Parameters
                                                                 <td>
                                             <div>Creation time.</div>
                                             <div>Applicable when metric_name is &#x27;DB_EXTERNAL_PROPERTIES&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/database_identifier"></div>
+                    <b>database_identifier</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/database_identifier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Internal id of the database.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1461,6 +1495,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/instance_number"></div>
+                    <b>instance_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/instance_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Database instance number.</div>
+                                            <div>Required when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/instance_role"></div>
                     <b>instance_role</b>
                     <a class="ansibleOptionLink" href="#parameter-items/instance_role" title="Permalink to this option"></a>
@@ -1590,6 +1641,40 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/is_changed"></div>
+                    <b>is_changed</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/is_changed" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether the parameter&#x27;s value changed in given snapshot or not.</div>
+                                            <div>Applicable when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/is_default" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether this value is the default value or not.</div>
+                                            <div>Applicable when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/java_exec_time_in_us"></div>
                     <b>java_exec_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/java_exec_time_in_us" title="Permalink to this option"></a>
@@ -1683,6 +1768,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>DB_OS_CONFIG_INSTANCE</li>
                                                                                                                                                                                                 <li>DB_EXTERNAL_INSTANCE</li>
+                                                                                                                                                                                                <li>DB_PARAMETERS</li>
                                                                                                                                                                                                 <li>DB_EXTERNAL_PROPERTIES</li>
                                                                                     </ul>
                                                                             </td>
@@ -2046,6 +2132,40 @@ Parameters
                                                                 <td>
                                             <div>Indicates whether the instance is mounted in cluster database mode (YES) or not (NO).</div>
                                             <div>Applicable when metric_name is &#x27;DB_EXTERNAL_INSTANCE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/parameter_name"></div>
+                    <b>parameter_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/parameter_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Database parameter name.</div>
+                                            <div>Required when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/parameter_value"></div>
+                    <b>parameter_value</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/parameter_value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Database parameter value.</div>
+                                            <div>Required when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2453,6 +2573,55 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/snapshot_id"></div>
+                    <b>snapshot_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/snapshot_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>AWR snapshot id for the parameter value</div>
+                                            <div>Applicable when metric_name is &#x27;DB_PARAMETERS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/snapshot_interval_end"></div>
+                    <b>snapshot_interval_end</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/snapshot_interval_end" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>AWR snapshot id.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/snapshot_interval_start"></div>
+                    <b>snapshot_interval_start</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/snapshot_interval_start" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>AWR snapshot id.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/sorts"></div>
                     <b>sorts</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sorts" title="Permalink to this option"></a>
@@ -2616,6 +2785,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/task_identifier"></div>
+                    <b>task_identifier</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/task_identifier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>TASK_ID in the oracle database view DBA_ADDM_TASKS</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/temp_space"></div>
                     <b>temp_space</b>
                     <a class="ansibleOptionLink" href="#parameter-items/temp_space" title="Permalink to this option"></a>
@@ -2643,6 +2828,38 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Collection timestamp Example: `&quot;2020-05-06T00:00:00.000Z&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/time_interval_end"></div>
+                    <b>time_interval_end</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/time_interval_end" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The end timestamp that was passed into the request.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/time_interval_start"></div>
+                    <b>time_interval_start</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/time_interval_start" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The start timestamp that was passed into the request.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2821,6 +3038,25 @@ Parameters
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the OPSI private endpoint</div>
                                             <div>Required for <em>action=change_pe_comanaged</em>.</div>
                                             <div>Required when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
+                    <b>realm_specific_endpoint_template_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enable/Disable realm specific endpoint template for service client. By Default, realm specific endpoint template is disabled. If not set, then the value of the OCI_REALM_SPECIFIC_SERVICE_ENDPOINT_TEMPLATE_ENABLED variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3036,6 +3272,27 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         system_tags: null
+
+    - name: Perform action ingest_addm_reports on database_insights
+      oci_opsi_database_insights_actions:
+        # required
+        items:
+        - # required
+          host_name: host_name_example
+          metric_name: DB_OS_CONFIG_INSTANCE
+          instance_name: instance_name_example
+
+          # optional
+          num_cp_us: 56
+          num_cpu_cores: 56
+          num_cpu_sockets: 56
+          physical_memory_bytes: 3.4
+          time_collected: time_collected_example
+        action: ingest_addm_reports
+
+        # optional
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Perform action ingest_database_configuration on database_insights
       oci_opsi_database_insights_actions:

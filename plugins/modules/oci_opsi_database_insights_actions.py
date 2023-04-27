@@ -35,6 +35,8 @@ description:
     - For I(action=enable_autonomous_database_insight_advanced_features), enables advanced features for an Autonomous Database in Operations Insights. A direct
       connection will be available for further collection.
     - For I(action=enable), enables a database in Operations Insights. Database metric collection and analysis will be started.
+    - For I(action=ingest_addm_reports), this endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline.
+      Either databaseId or id must be specified.
     - For I(action=ingest_database_configuration), this is a generic ingest endpoint for all database configuration metrics.
     - For I(action=ingest_sql_bucket), the sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline.
       Either databaseId or id must be specified.
@@ -166,11 +168,39 @@ options:
         type: str
     items:
         description:
-            - Array of one or more database configuration metrics objects.
-            - Required for I(action=ingest_database_configuration).
+            - List of Addm reports
+            - Required for I(action=ingest_addm_reports), I(action=ingest_database_configuration).
         type: list
         elements: dict
         suboptions:
+            time_interval_start:
+                description:
+                    - The start timestamp that was passed into the request.
+                type: str
+            time_interval_end:
+                description:
+                    - The end timestamp that was passed into the request.
+                type: str
+            task_identifier:
+                description:
+                    - TASK_ID in the oracle database view DBA_ADDM_TASKS
+                type: str
+            database_identifier:
+                description:
+                    - Internal id of the database.
+                type: str
+            snapshot_interval_start:
+                description:
+                    - AWR snapshot id.
+                type: str
+            snapshot_interval_end:
+                description:
+                    - AWR snapshot id.
+                type: str
+            addm_report:
+                description:
+                    - The complete ADDM report
+                type: str
             num_cp_us:
                 description:
                     - Total number of CPUs available.
@@ -246,6 +276,36 @@ options:
                     - Start up time of the database instance.
                     - Applicable when metric_name is 'DB_EXTERNAL_INSTANCE'
                 type: str
+            instance_number:
+                description:
+                    - Database instance number.
+                    - Required when metric_name is 'DB_PARAMETERS'
+                type: int
+            parameter_name:
+                description:
+                    - Database parameter name.
+                    - Required when metric_name is 'DB_PARAMETERS'
+                type: str
+            parameter_value:
+                description:
+                    - Database parameter value.
+                    - Required when metric_name is 'DB_PARAMETERS'
+                type: str
+            snapshot_id:
+                description:
+                    - AWR snapshot id for the parameter value
+                    - Applicable when metric_name is 'DB_PARAMETERS'
+                type: int
+            is_changed:
+                description:
+                    - Indicates whether the parameter's value changed in given snapshot or not.
+                    - Applicable when metric_name is 'DB_PARAMETERS'
+                type: str
+            is_default:
+                description:
+                    - Indicates whether this value is the default value or not.
+                    - Applicable when metric_name is 'DB_PARAMETERS'
+                type: str
             metric_name:
                 description:
                     - Name of the metric group.
@@ -253,6 +313,7 @@ options:
                 choices:
                     - "DB_OS_CONFIG_INSTANCE"
                     - "DB_EXTERNAL_INSTANCE"
+                    - "DB_PARAMETERS"
                     - "DB_EXTERNAL_PROPERTIES"
             name:
                 description:
@@ -814,14 +875,14 @@ options:
     database_id:
         description:
             - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
-            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_stats)I(a
-              ction=ingest_sql_text).
+            - Applicable only for I(action=ingest_addm_reports)I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)
+              I(action=ingest_sql_stats)I(action=ingest_sql_text).
         type: str
     id:
         description:
             - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
-            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_stats)I(a
-              ction=ingest_sql_text).
+            - Applicable only for I(action=ingest_addm_reports)I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)
+              I(action=ingest_sql_stats)I(action=ingest_sql_text).
         type: str
     action:
         description:
@@ -836,6 +897,7 @@ options:
             - "disable"
             - "enable_autonomous_database_insight_advanced_features"
             - "enable"
+            - "ingest_addm_reports"
             - "ingest_database_configuration"
             - "ingest_sql_bucket"
             - "ingest_sql_plan_lines"
@@ -935,6 +997,27 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
+
+- name: Perform action ingest_addm_reports on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    items:
+    - # required
+      host_name: host_name_example
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+
+      # optional
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 3.4
+      time_collected: time_collected_example
+    action: ingest_addm_reports
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action ingest_database_configuration on database_insights
   oci_opsi_database_insights_actions:
@@ -1457,6 +1540,7 @@ try:
     from oci.opsi.models import ChangePeComanagedDatabaseInsightDetails
     from oci.opsi.models import EnableAutonomousDatabaseInsightAdvancedFeaturesDetails
     from oci.opsi.models import EnableDatabaseInsightDetails
+    from oci.opsi.models import IngestAddmReportsDetails
     from oci.opsi.models import IngestDatabaseConfigurationDetails
     from oci.opsi.models import IngestSqlBucketDetails
     from oci.opsi.models import IngestSqlPlanLinesDetails
@@ -1478,6 +1562,7 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
         disable
         enable_autonomous_database_insight_advanced_features
         enable
+        ingest_addm_reports
         ingest_database_configuration
         ingest_sql_bucket
         ingest_sql_plan_lines
@@ -1631,6 +1716,30 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def ingest_addm_reports(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, IngestAddmReportsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.ingest_addm_reports,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                ingest_addm_reports_details=action_details,
+                database_id=self.module.params.get("database_id"),
+                id=self.module.params.get("id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def ingest_database_configuration(self):
@@ -1811,6 +1920,13 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
+                    time_interval_start=dict(type="str"),
+                    time_interval_end=dict(type="str"),
+                    task_identifier=dict(type="str"),
+                    database_identifier=dict(type="str"),
+                    snapshot_interval_start=dict(type="str"),
+                    snapshot_interval_end=dict(type="str"),
+                    addm_report=dict(type="str"),
                     num_cp_us=dict(type="int"),
                     num_cpu_cores=dict(type="int"),
                     num_cpu_sockets=dict(type="int"),
@@ -1826,11 +1942,18 @@ def main():
                     status=dict(type="str"),
                     edition=dict(type="str"),
                     startup_time=dict(type="str"),
+                    instance_number=dict(type="int"),
+                    parameter_name=dict(type="str"),
+                    parameter_value=dict(type="str"),
+                    snapshot_id=dict(type="int"),
+                    is_changed=dict(type="str"),
+                    is_default=dict(type="str"),
                     metric_name=dict(
                         type="str",
                         choices=[
                             "DB_OS_CONFIG_INSTANCE",
                             "DB_EXTERNAL_INSTANCE",
+                            "DB_PARAMETERS",
                             "DB_EXTERNAL_PROPERTIES",
                         ],
                     ),
@@ -1970,6 +2093,7 @@ def main():
                     "disable",
                     "enable_autonomous_database_insight_advanced_features",
                     "enable",
+                    "ingest_addm_reports",
                     "ingest_database_configuration",
                     "ingest_sql_bucket",
                     "ingest_sql_plan_lines",
