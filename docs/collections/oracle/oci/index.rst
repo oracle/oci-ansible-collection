@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.19.0
+Collection version 4.20.0
 
 .. toctree::
     :maxdepth: 1
@@ -1530,6 +1530,18 @@ Modules
 * :ref:`oci_operator_access_control_operator_control_assignment_actions <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_assignment_actions_module>` -- Perform actions on an OperatorControlAssignment resource in Oracle Cloud Infrastructure
 * :ref:`oci_operator_access_control_operator_control_assignment_facts <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_assignment_facts_module>` -- Fetches details about one or multiple OperatorControlAssignment resources in Oracle Cloud Infrastructure
 * :ref:`oci_operator_access_control_operator_control_facts <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_facts_module>` -- Fetches details about one or multiple OperatorControl resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_facts_module>` -- Fetches details about one or multiple AddmDb resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_finding_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_finding_aggregation_facts_module>` -- Fetches details about one or multiple AddmDbFindingAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_finding_category_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_finding_category_facts_module>` -- Fetches details about one or multiple AddmDbFindingCategory resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_findings_time_series_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_findings_time_series_facts_module>` -- Fetches details about one or multiple AddmDbFindingsTimeSeries resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_parameter_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_parameter_aggregation_facts_module>` -- Fetches details about one or multiple AddmDbParameterAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_parameter_category_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_parameter_category_facts_module>` -- Fetches details about one or multiple AddmDbParameterCategory resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_parameter_change_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_parameter_change_aggregation_facts_module>` -- Fetches details about one or multiple AddmDbParameterChangeAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_recommendation_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_recommendation_aggregation_facts_module>` -- Fetches details about one or multiple AddmDbRecommendationAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_recommendation_category_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_recommendation_category_facts_module>` -- Fetches details about one or multiple AddmDbRecommendationCategory resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_recommendations_time_series_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_recommendations_time_series_facts_module>` -- Fetches details about one or multiple AddmDbRecommendationsTimeSeries resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_schema_object_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_schema_object_facts_module>` -- Fetches details about one or multiple AddmDbSchemaObject resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_addm_db_sql_statement_facts <ansible_collections.oracle.oci.oci_opsi_addm_db_sql_statement_facts_module>` -- Fetches details about one or multiple AddmDbSqlStatement resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_database_cpu_usage_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_cpu_usage_facts_module>` -- Fetches details about one or multiple AwrDatabaseCpuUsage resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_database_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_facts_module>` -- Fetches details about one or multiple AwrDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_database_metric_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_metric_facts_module>` -- Fetches details about one or multiple AwrDatabaseMetric resources in Oracle Cloud Infrastructure
@@ -3448,6 +3460,18 @@ Modules
     oci_operator_access_control_operator_control_assignment_actions_module
     oci_operator_access_control_operator_control_assignment_facts_module
     oci_operator_access_control_operator_control_facts_module
+    oci_opsi_addm_db_facts_module
+    oci_opsi_addm_db_finding_aggregation_facts_module
+    oci_opsi_addm_db_finding_category_facts_module
+    oci_opsi_addm_db_findings_time_series_facts_module
+    oci_opsi_addm_db_parameter_aggregation_facts_module
+    oci_opsi_addm_db_parameter_category_facts_module
+    oci_opsi_addm_db_parameter_change_aggregation_facts_module
+    oci_opsi_addm_db_recommendation_aggregation_facts_module
+    oci_opsi_addm_db_recommendation_category_facts_module
+    oci_opsi_addm_db_recommendations_time_series_facts_module
+    oci_opsi_addm_db_schema_object_facts_module
+    oci_opsi_addm_db_sql_statement_facts_module
     oci_opsi_awr_database_cpu_usage_facts_module
     oci_opsi_awr_database_facts_module
     oci_opsi_awr_database_metric_facts_module

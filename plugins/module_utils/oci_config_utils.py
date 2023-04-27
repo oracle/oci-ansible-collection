@@ -186,6 +186,18 @@ def create_service_client(
 
     # Create service client class (optionally with signer)
     client = service_client_class(config, **kwargs)
+
+    # Enable/Disable realm specific endpoint template.
+    # By Default, realm specific endpoint template is disabled.
+    realm_specific_endpoint_template_enabled = get_realm_specific_endpoint_template_enabled(
+        module
+    )
+
+    if realm_specific_endpoint_template_enabled is not None:
+        client.base_client.client_level_realm_specific_endpoint_template_enabled = (
+            realm_specific_endpoint_template_enabled
+        )
+
     if not _is_instance_principal_auth(module) and not _is_delegation_token_auth(
         module
     ):
@@ -229,6 +241,16 @@ def create_service_client(
     set_db_test_flag(client)
 
     return client
+
+
+def get_realm_specific_endpoint_template_enabled(module):
+    # check if realm specific endpoint template is overridden via module params
+    client_configuration = module.params.get("realm_specific_endpoint_template_enabled")
+
+    if client_configuration is not None:
+        return client_configuration
+
+    return None
 
 
 def _create_instance_principal_signer(module, delegation_token_location=None):

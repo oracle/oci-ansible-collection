@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_connection -- Manage a Connection resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -480,6 +480,25 @@ Parameters
                                             <div>A map of maps that contains the properties which are specific to the connection type. Each connection type definition defines it&#x27;s set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the &quot;default&quot; category. To determine the set of optional and required properties for a connection type, a query can be done on &#x27;/types?type=connection&#x27; that returns a collection of all connection types. The appropriate connection type, which will include definitions of all of it&#x27;s properties, can be identified from this collection. Example: `{&quot;properties&quot;: { &quot;default&quot;: { &quot;username&quot;: &quot;user1&quot;}}}`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
+                    <b>realm_specific_endpoint_template_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enable/Disable realm specific endpoint template for service client. By Default, realm specific endpoint template is disabled. If not set, then the value of the OCI_REALM_SPECIFIC_SERVICE_ENDPOINT_TEMPLATE_ENABLED variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>

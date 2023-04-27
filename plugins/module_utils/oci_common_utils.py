@@ -481,6 +481,7 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
         tenancy=dict(type="str"),
         region=dict(type="str"),
         cert_bundle=dict(type="str"),
+        realm_specific_endpoint_template_enabled=dict(type="bool"),
     )
 
     if supports_create:
