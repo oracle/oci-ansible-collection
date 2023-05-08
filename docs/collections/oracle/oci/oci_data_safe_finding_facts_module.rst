@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_finding_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -304,6 +304,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-references"></div>
+                    <b>references</b>
+                    <a class="ansibleOptionLink" href="#parameter-references" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>STIG</li>
+                                                                                                                                                                                                <li>CIS</li>
+                                                                                                                                                                                                <li>GDPR</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>An optional filter to return only findings containing the specified reference.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -402,6 +422,7 @@ Examples
 
         # optional
         severity: HIGH
+        references: STIG
         compartment_id_in_subtree: true
         access_level: RESTRICTED
         finding_key: finding_key_example

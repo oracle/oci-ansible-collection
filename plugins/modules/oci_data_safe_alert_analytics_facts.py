@@ -23,7 +23,7 @@ module: oci_data_safe_alert_analytics_facts
 short_description: Fetches details about one or multiple AlertAnalytics resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AlertAnalytics resources in Oracle Cloud Infrastructure
-    - Returns aggregation details of alerts.
+    - Returns the aggregation details of the alerts.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -85,7 +85,9 @@ options:
               at L(RFC3339,https://tools.ietf.org/html/draft-ietf-scim-api-12). In SCIM filtering expressions,
               text, date, and time values must be enclosed in quotation marks, with date and time values using ISO-8601 format.
               (Numeric and boolean values should not be quoted.)
-            - "**Example:** query=(timeCreated ge '2021-06-04T01-00-26') and (targetNames eq 'target_1')
+            - "**Example:** |
+              query=(timeCreated ge '2021-06-04T01-00-26') and (targetNames eq 'target_1')
+              query=(featureDetails.userName eq \\"user\\") and (targetNames eq \\"target_1\\")
               Supported fields:
               severity
               status
@@ -96,7 +98,9 @@ options:
               lifecycleState
               displayName
               timeCreated
-              timeUpdated"
+              timeUpdated
+              featureDetails.* (* can be any field in nestedStrMap in Feature Attributes in Alert Summary. For example -
+              userName,object,clientHostname,osUserName,clientIPs,clientId,commandText,commandParam,clientProgram,objectType,targetOwner)"
         type: str
     summary_field:
         description:

@@ -67,7 +67,7 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided.
+            - The field to sort by. Only one sort parameter may be provided.
         type: str
         choices:
             - "DISPLAYNAME"

@@ -153,6 +153,30 @@ external_databases:
                     returned: on success
                     type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                exadata_infra_info:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external Exadata Infrastructure.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        display_name:
+                            description:
+                                - The user-friendly name for the Exadata Infrastructure. The name does not have to be unique.
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         db_management_config:
             description:
                 - ""
@@ -225,7 +249,12 @@ external_databases:
         "db_system_info": {
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "exadata_infra_info": {
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "display_name": "display_name_example",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+            }
         },
         "db_management_config": {
             "database_management_status": "ENABLING",

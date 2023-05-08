@@ -26,6 +26,10 @@ description:
     - For I(action=change_compartment), change the compartment for an integration instance
     - For I(action=change_integration_instance_network_endpoint), change an Integration instance network endpoint. The operation is long-running
       and creates a new WorkRequest.
+    - For I(action=change_private_endpoint_outbound_connection), change private endpoint outbound connection for given Integration instance. The operation is
+      long-running
+      and creates a new WorkRequest.
+    - For I(action=enable_process_automation), enable Process Automation for given Integration Instance
     - For I(action=start), start an integration instance that was previously in an INACTIVE state
     - For I(action=stop), stop an integration instance that was previously in an ACTIVE state
 version_added: "2.9.0"
@@ -76,6 +80,31 @@ options:
                 description:
                     - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
                 type: bool
+    private_endpoint_outbound_connection:
+        description:
+            - ""
+            - Applicable only for I(action=change_private_endpoint_outbound_connection).
+        type: dict
+        suboptions:
+            subnet_id:
+                description:
+                    - Customer Private Network VCN Subnet OCID. This is a required argument.
+                    - Required when outbound_connection_type is 'PRIVATE_ENDPOINT'
+                type: str
+            nsg_ids:
+                description:
+                    - One or more Network security group Ids. This is an optional argument.
+                    - Applicable when outbound_connection_type is 'PRIVATE_ENDPOINT'
+                type: list
+                elements: str
+            outbound_connection_type:
+                description:
+                    - The type of Outbound Connection.
+                type: str
+                choices:
+                    - "PRIVATE_ENDPOINT"
+                    - "NONE"
+                required: true
     integration_instance_id:
         description:
             - Unique Integration Instance identifier.
@@ -90,6 +119,8 @@ options:
         choices:
             - "change_compartment"
             - "change_integration_instance_network_endpoint"
+            - "change_private_endpoint_outbound_connection"
+            - "enable_process_automation"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -125,6 +156,27 @@ EXAMPLES = """
         # optional
         allowlisted_ips: [ "allowlisted_ips_example" ]
       is_integration_vcn_allowlisted: true
+
+- name: Perform action change_private_endpoint_outbound_connection on integration_instance
+  oci_integration_instance_actions:
+    # required
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_private_endpoint_outbound_connection
+
+    # optional
+    private_endpoint_outbound_connection:
+      # required
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      outbound_connection_type: PRIVATE_ENDPOINT
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
+
+- name: Perform action enable_process_automation on integration_instance
+  oci_integration_instance_actions:
+    # required
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_process_automation
 
 - name: Perform action start on integration_instance
   oci_integration_instance_actions:
@@ -436,6 +488,30 @@ integration_instance:
             returned: on success
             type: str
             sample: DEVELOPMENT
+        private_endpoint_outbound_connection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                outbound_connection_type:
+                    description:
+                        - The type of Outbound Connection.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT
+                subnet_id:
+                    description:
+                        - Customer Private Network VCN Subnet OCID. This is a required argument.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - One or more Network security group Ids. This is an optional argument.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -488,7 +564,12 @@ integration_instance:
             "target_instance_url": "target_instance_url_example",
             "target_service_type": "target_service_type_example"
         }],
-        "shape": "DEVELOPMENT"
+        "shape": "DEVELOPMENT",
+        "private_endpoint_outbound_connection": {
+            "outbound_connection_type": "PRIVATE_ENDPOINT",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        }
     }
 """
 
@@ -506,6 +587,7 @@ try:
     from oci.integration import IntegrationInstanceClient
     from oci.integration.models import ChangeIntegrationInstanceCompartmentDetails
     from oci.integration.models import ChangeIntegrationInstanceNetworkEndpointDetails
+    from oci.integration.models import ChangePrivateEndpointOutboundConnectionDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -517,6 +599,8 @@ class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         change_integration_instance_network_endpoint
+        change_private_endpoint_outbound_connection
+        enable_process_automation
         start
         stop
     """
@@ -572,6 +656,48 @@ class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
                     "integration_instance_id"
                 ),
                 change_integration_instance_network_endpoint_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_private_endpoint_outbound_connection(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangePrivateEndpointOutboundConnectionDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_private_endpoint_outbound_connection,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                integration_instance_id=self.module.params.get(
+                    "integration_instance_id"
+                ),
+                change_private_endpoint_outbound_connection_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_process_automation(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_process_automation,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                integration_instance_id=self.module.params.get(
+                    "integration_instance_id"
+                ),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -658,6 +784,16 @@ def main():
                     is_integration_vcn_allowlisted=dict(type="bool"),
                 ),
             ),
+            private_endpoint_outbound_connection=dict(
+                type="dict",
+                options=dict(
+                    subnet_id=dict(type="str"),
+                    nsg_ids=dict(type="list", elements="str"),
+                    outbound_connection_type=dict(
+                        type="str", required=True, choices=["PRIVATE_ENDPOINT", "NONE"]
+                    ),
+                ),
+            ),
             integration_instance_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
@@ -665,6 +801,8 @@ def main():
                 choices=[
                     "change_compartment",
                     "change_integration_instance_network_endpoint",
+                    "change_private_endpoint_outbound_connection",
+                    "enable_process_automation",
                     "start",
                     "stop",
                 ],

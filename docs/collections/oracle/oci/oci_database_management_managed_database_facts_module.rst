@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_managed_database_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -272,6 +272,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-external_exadata_infrastructure_id"></div>
+                    <b>external_exadata_infrastructure_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-external_exadata_infrastructure_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Exadata infrastructure.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-managed_database_id"></div>
                     <b>managed_database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-managed_database_id" title="Permalink to this option"></a>
@@ -447,6 +462,7 @@ Examples
         name: name_example
         management_option: BASIC
         deployment_type: ONPREMISE
+        external_exadata_infrastructure_id: "ocid1.externalexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         sort_by: TIMECREATED
         sort_order: ASC
 

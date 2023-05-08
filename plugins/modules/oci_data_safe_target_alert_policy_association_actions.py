@@ -35,7 +35,7 @@ options:
         required: true
     compartment_id:
         description:
-            - The OCID of the new compartment to move the target-alert policy association to.
+            - The OCID of the compartment to move the target-alert policy association to.
         type: str
         required: true
     action:

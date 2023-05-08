@@ -55,6 +55,24 @@ options:
         description:
             - A filter to return only items that match the specified user category.
         type: str
+    user_role:
+        description:
+            - A filter to return only items that match the specified user role.
+        type: str
+    user_profile:
+        description:
+            - A filter to return only items that match the specified user profile.
+        type: str
+    user_type:
+        description:
+            - "A filter to return only items that match the specified user type. The possible values can be
+                - ADMIN_PRIVILEGED
+                - APPLICATION
+                - PRIVILEGED
+                - SCHEMA
+                - NON_PRIVILEGED
+              as specified by '#/definitions/userTypes'."
+        type: str
     user_key:
         description:
             - A filter to return only items that match the specified user key.
@@ -144,6 +162,9 @@ EXAMPLES = """
     compartment_id_in_subtree: true
     access_level: RESTRICTED
     user_category: user_category_example
+    user_role: user_role_example
+    user_profile: user_profile_example
+    user_type: user_type_example
     user_key: user_key_example
     account_status: account_status_example
     authentication_type: authentication_type_example
@@ -288,6 +309,9 @@ class DataSafeUserFactsHelperGen(OCIResourceFactsHelperBase):
             "compartment_id_in_subtree",
             "access_level",
             "user_category",
+            "user_role",
+            "user_profile",
+            "user_type",
             "user_key",
             "account_status",
             "authentication_type",
@@ -329,6 +353,9 @@ def main():
             compartment_id_in_subtree=dict(type="bool"),
             access_level=dict(type="str", choices=["RESTRICTED", "ACCESSIBLE"]),
             user_category=dict(type="str"),
+            user_role=dict(type="str"),
+            user_profile=dict(type="str"),
+            user_type=dict(type="str"),
             user_key=dict(type="str", no_log=True),
             account_status=dict(type="str"),
             authentication_type=dict(type="str"),

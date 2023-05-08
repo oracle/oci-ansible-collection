@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_private_endpoint -- Manage a DataSafePrivateEndpoint re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -313,8 +313,9 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The display name for the private endpoint. The name does not have to be unique, and it&#x27;s changeable.</div>
-                                            <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with data_safe_private_endpoint_id present.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -579,10 +580,10 @@ Examples
     - name: Update data_safe_private_endpoint
       oci_data_safe_private_endpoint:
         # required
-        display_name: display_name_example
         data_safe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        display_name: display_name_example
         description: description_example
         nsg_ids: [ "nsg_ids_example" ]
         freeform_tags: {'Department': 'Finance'}

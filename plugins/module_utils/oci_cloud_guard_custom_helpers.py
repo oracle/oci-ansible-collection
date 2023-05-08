@@ -47,25 +47,29 @@ class TargetHelperCustom:
             TargetHelperCustom, self
         ).get_update_model_dict_for_idempotence_check(update_model)
 
-        for recipes_list in update_model_dict["target_detector_recipes"]:
-            if "target_detector_recipe_id" in recipes_list:
-                recipes_list["detector_recipe_id"] = recipes_list[
-                    "target_detector_recipe_id"
-                ]
-                del recipes_list["target_detector_recipe_id"]
+        if update_model_dict.get("target_detector_recipes") is not None:
+            for recipes_list in update_model_dict.get("target_detector_recipes"):
+                if "target_detector_recipe_id" in recipes_list:
+                    recipes_list["detector_recipe_id"] = recipes_list.get(
+                        "target_detector_recipe_id"
+                    )
+                    recipes_list.pop("target_detector_recipe_id", None)
 
-            for rules_list in recipes_list["detector_rules"]:
-                del rules_list["details"]
+                if recipes_list.get("detector_rules") is not None:
+                    for rules_list in recipes_list.get("detector_rules"):
+                        rules_list.pop("details", None)
 
-        for recipes_list in update_model_dict["target_responder_recipes"]:
-            if "target_responder_recipe_id" in recipes_list:
-                recipes_list["responder_recipe_id"] = recipes_list[
-                    "target_responder_recipe_id"
-                ]
-                del recipes_list["target_responder_recipe_id"]
+        if update_model_dict.get("target_responder_recipes") is not None:
+            for recipes_list in update_model_dict.get("target_responder_recipes"):
+                if "target_responder_recipe_id" in recipes_list:
+                    recipes_list["responder_recipe_id"] = recipes_list.get(
+                        "target_responder_recipe_id"
+                    )
+                    recipes_list.pop("target_responder_recipe_id", None)
 
-            for rules_list in recipes_list["responder_rules"]:
-                del rules_list["details"]
+                if recipes_list.get("responder_rules") is not None:
+                    for rules_list in recipes_list.get("responder_rules"):
+                        rules_list.pop("details", None)
 
         return update_model_dict
 

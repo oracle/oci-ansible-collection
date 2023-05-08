@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_user_facts -- Fetches details about one or multiple Use
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -559,6 +559,51 @@ Parameters
                                             <div>A filter to return only items that match the specified user name.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-user_profile"></div>
+                    <b>user_profile</b>
+                    <a class="ansibleOptionLink" href="#parameter-user_profile" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only items that match the specified user profile.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-user_role"></div>
+                    <b>user_role</b>
+                    <a class="ansibleOptionLink" href="#parameter-user_role" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only items that match the specified user role.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-user_type"></div>
+                    <b>user_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-user_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only items that match the specified user type. The possible values can be - ADMIN_PRIVILEGED - APPLICATION - PRIVILEGED - SCHEMA - NON_PRIVILEGED as specified by &#x27;#/definitions/userTypes&#x27;.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -593,6 +638,9 @@ Examples
         compartment_id_in_subtree: true
         access_level: RESTRICTED
         user_category: user_category_example
+        user_role: user_role_example
+        user_profile: user_profile_example
+        user_type: user_type_example
         user_key: user_key_example
         account_status: account_status_example
         authentication_type: authentication_type_example

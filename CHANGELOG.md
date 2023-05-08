@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.21.0]
+
+ ## Added
+ - Added modules (oci_cloud_guard_target_detector_recipe and oci_cloud_guard_target_detector_recipe_facts) to manage Cloud Guard Detector Recipes
+ - Support for additional manageability features for large sensitive data models and masking policies in the Data Safe service
+ - Support for getting user profile details and assignments for databases and fleets in the Data Safe service
+ - Support for discovery and monitoring of External Exadata infrastructure in Database Management Service
+ - Support for change_private_endpoint_outbound_connection operation in Integration Cloud service
+ - Support for Enable Process in Integration Cloud service
+
+ ## Fixed
+ - Fixed the issue with update operation of `oci_cloud_guard_target` in Cloud Guard service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.100.0
+
 ## [4.20.0]
 
 ## Added

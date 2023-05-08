@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_external_db_node_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -456,7 +456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ExternalDbNode resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;component_name&#x27;: &#x27;component_name_example&#x27;, &#x27;cpu_core_count&#x27;: 3.4, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_connector_id&#x27;: &#x27;ocid1.externalconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;external_db_system_id&#x27;: &#x27;ocid1.externaldbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_size_in_gbs&#x27;: 3.4, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;component_name&#x27;: &#x27;component_name_example&#x27;, &#x27;cpu_core_count&#x27;: 3.4, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain_name&#x27;: &#x27;domain_name_example&#x27;, &#x27;external_connector_id&#x27;: &#x27;ocid1.externalconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;external_db_system_id&#x27;: &#x27;ocid1.externaldbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_size_in_gbs&#x27;: 3.4, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -547,6 +547,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_db_nodes/domain_name"></div>
+                    <b>domain_name</b>
+                    <a class="ansibleOptionLink" href="#return-external_db_nodes/domain_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the domain.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">domain_name_example</div>
                                     </td>
             </tr>
                                 <tr>
