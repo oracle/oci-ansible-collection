@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Integration Instance.
     - "This resource has the following action operations in the M(oracle.oci.oci_integration_instance_actions) module: change_compartment,
-      change_integration_instance_network_endpoint, start, stop."
+      change_integration_instance_network_endpoint, change_private_endpoint_outbound_connection, enable_process_automation, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -619,6 +619,30 @@ integration_instance:
             returned: on success
             type: str
             sample: DEVELOPMENT
+        private_endpoint_outbound_connection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                outbound_connection_type:
+                    description:
+                        - The type of Outbound Connection.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT
+                subnet_id:
+                    description:
+                        - Customer Private Network VCN Subnet OCID. This is a required argument.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - One or more Network security group Ids. This is an optional argument.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -671,7 +695,12 @@ integration_instance:
             "target_instance_url": "target_instance_url_example",
             "target_service_type": "target_service_type_example"
         }],
-        "shape": "DEVELOPMENT"
+        "shape": "DEVELOPMENT",
+        "private_endpoint_outbound_connection": {
+            "outbound_connection_type": "PRIVATE_ENDPOINT",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        }
     }
 """
 

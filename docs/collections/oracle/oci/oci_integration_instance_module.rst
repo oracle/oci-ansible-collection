@@ -30,7 +30,7 @@ oracle.oci.oci_integration_instance -- Manage an IntegrationInstance resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Integration Instance.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_integration_instance_actions <ansible_collections.oracle.oci.oci_integration_instance_actions_module>` module: change_compartment, change_integration_instance_network_endpoint, start, stop.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_integration_instance_actions <ansible_collections.oracle.oci.oci_integration_instance_actions_module>` module: change_compartment, change_integration_instance_network_endpoint, change_private_endpoint_outbound_connection, enable_process_automation, start, stop.
 
 
 .. Aliases
@@ -1005,7 +1005,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the IntegrationInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_info&#x27;: {&#x27;idcs_app_display_name&#x27;: &#x27;idcs_app_display_name_example&#x27;, &#x27;idcs_app_id&#x27;: &#x27;ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_app_location_url&#x27;: &#x27;idcs_app_location_url_example&#x27;, &#x27;idcs_app_name&#x27;: &#x27;idcs_app_name_example&#x27;, &#x27;instance_primary_audience_url&#x27;: &#x27;instance_primary_audience_url_example&#x27;}, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;integration_instance_type&#x27;: &#x27;STANDARD&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_file_server_enabled&#x27;: True, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;message_packs&#x27;: 56, &#x27;network_endpoint_details&#x27;: {&#x27;allowlisted_http_ips&#x27;: [], &#x27;allowlisted_http_vcns&#x27;: [{&#x27;allowlisted_ips&#x27;: [], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;is_integration_vcn_allowlisted&#x27;: True, &#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;}, &#x27;shape&#x27;: &#x27;DEVELOPMENT&#x27;, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_info&#x27;: {&#x27;idcs_app_display_name&#x27;: &#x27;idcs_app_display_name_example&#x27;, &#x27;idcs_app_id&#x27;: &#x27;ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_app_location_url&#x27;: &#x27;idcs_app_location_url_example&#x27;, &#x27;idcs_app_name&#x27;: &#x27;idcs_app_name_example&#x27;, &#x27;instance_primary_audience_url&#x27;: &#x27;instance_primary_audience_url_example&#x27;}, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;integration_instance_type&#x27;: &#x27;STANDARD&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_file_server_enabled&#x27;: True, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;message_packs&#x27;: 56, &#x27;network_endpoint_details&#x27;: {&#x27;allowlisted_http_ips&#x27;: [], &#x27;allowlisted_http_vcns&#x27;: [{&#x27;allowlisted_ips&#x27;: [], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;is_integration_vcn_allowlisted&#x27;: True, &#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;}, &#x27;private_endpoint_outbound_connection&#x27;: {&#x27;nsg_ids&#x27;: [], &#x27;outbound_connection_type&#x27;: &#x27;PRIVATE_ENDPOINT&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;shape&#x27;: &#x27;DEVELOPMENT&#x27;, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1777,6 +1777,78 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PUBLIC</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/private_endpoint_outbound_connection"></div>
+                    <b>private_endpoint_outbound_connection</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/private_endpoint_outbound_connection" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/private_endpoint_outbound_connection/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/private_endpoint_outbound_connection/nsg_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>One or more Network security group Ids. This is an optional argument.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/private_endpoint_outbound_connection/outbound_connection_type"></div>
+                    <b>outbound_connection_type</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/private_endpoint_outbound_connection/outbound_connection_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of Outbound Connection.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIVATE_ENDPOINT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/private_endpoint_outbound_connection/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/private_endpoint_outbound_connection/subnet_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customer Private Network VCN Subnet OCID. This is a required argument.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

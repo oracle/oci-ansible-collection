@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_external_database_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -415,12 +415,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-external_databases"></div>
                     <b>external_databases</b>
                     <a class="ansibleOptionLink" href="#return-external_databases" title="Permalink to this return value"></a>
@@ -433,12 +433,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ExternalDatabase resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;db_management_config&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;}, &#x27;db_system_info&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_container_database_id&#x27;: &#x27;ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;external_db_home_id&#x27;: &#x27;ocid1.externaldbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;, &#x27;instance_number&#x27;: 56}], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;db_management_config&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;}, &#x27;db_system_info&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infra_info&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_container_database_id&#x27;: &#x27;ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;external_db_home_id&#x27;: &#x27;ocid1.externaldbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;, &#x27;instance_number&#x27;: 56}], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/compartment_id" title="Permalink to this return value"></a>
@@ -456,7 +456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/database_sub_type"></div>
                     <b>database_sub_type</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/database_sub_type" title="Permalink to this return value"></a>
@@ -474,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/database_type"></div>
                     <b>database_type</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/database_type" title="Permalink to this return value"></a>
@@ -492,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_management_config"></div>
                     <b>db_management_config</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_management_config" title="Permalink to this return value"></a>
@@ -509,7 +509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_management_config/connector_id"></div>
                     <b>connector_id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_management_config/connector_id" title="Permalink to this return value"></a>
@@ -528,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_management_config/database_management_status"></div>
                     <b>database_management_status</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_management_config/database_management_status" title="Permalink to this return value"></a>
@@ -547,7 +547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_management_config/license_model"></div>
                     <b>license_model</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_management_config/license_model" title="Permalink to this return value"></a>
@@ -566,7 +566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info"></div>
                     <b>db_system_info</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_system_info" title="Permalink to this return value"></a>
@@ -583,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/compartment_id" title="Permalink to this return value"></a>
@@ -602,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/display_name" title="Permalink to this return value"></a>
@@ -621,7 +621,85 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/exadata_infra_info"></div>
+                    <b>exadata_infra_info</b>
+                    <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/exadata_infra_info" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/exadata_infra_info/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/exadata_infra_info/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/exadata_infra_info/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/exadata_infra_info/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The user-friendly name for the Exadata Infrastructure. The name does not have to be unique.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/exadata_infra_info/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/exadata_infra_info/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the external Exadata Infrastructure.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_system_info/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_system_info/id" title="Permalink to this return value"></a>
@@ -640,7 +718,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/db_unique_name"></div>
                     <b>db_unique_name</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/db_unique_name" title="Permalink to this return value"></a>
@@ -658,7 +736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/display_name" title="Permalink to this return value"></a>
@@ -676,7 +754,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/external_container_database_id"></div>
                     <b>external_container_database_id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/external_container_database_id" title="Permalink to this return value"></a>
@@ -694,7 +772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/external_db_home_id"></div>
                     <b>external_db_home_id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/external_db_home_id" title="Permalink to this return value"></a>
@@ -712,7 +790,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/id" title="Permalink to this return value"></a>
@@ -730,7 +808,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/instance_details"></div>
                     <b>instance_details</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/instance_details" title="Permalink to this return value"></a>
@@ -747,7 +825,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/instance_details/host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/instance_details/host_name" title="Permalink to this return value"></a>
@@ -766,7 +844,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/instance_details/instance_name"></div>
                     <b>instance_name</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/instance_details/instance_name" title="Permalink to this return value"></a>
@@ -785,7 +863,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-external_databases/instance_details/instance_number"></div>
                     <b>instance_number</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/instance_details/instance_number" title="Permalink to this return value"></a>
@@ -804,7 +882,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/lifecycle_state" title="Permalink to this return value"></a>
@@ -822,7 +900,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-external_databases/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-external_databases/time_created" title="Permalink to this return value"></a>

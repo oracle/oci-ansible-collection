@@ -66,6 +66,10 @@ options:
             - "EXADATA"
             - "EXADATA_CC"
             - "AUTONOMOUS"
+    external_exadata_infrastructure_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
+        type: str
     sort_by:
         description:
             - The field to sort information by. Only one sortOrder can be used. The default sort order
@@ -100,6 +104,7 @@ EXAMPLES = """
     name: name_example
     management_option: BASIC
     deployment_type: ONPREMISE
+    external_exadata_infrastructure_id: "ocid1.externalexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -392,6 +397,7 @@ class ManagedDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
             "name",
             "management_option",
             "deployment_type",
+            "external_exadata_infrastructure_id",
             "sort_by",
             "sort_order",
         ]
@@ -435,6 +441,7 @@ def main():
                     "AUTONOMOUS",
                 ],
             ),
+            external_exadata_infrastructure_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

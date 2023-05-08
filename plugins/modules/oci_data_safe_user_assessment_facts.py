@@ -308,6 +308,12 @@ user_assessments:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_last_assessed:
+            description:
+                - The date and time the user assessment was last run, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         triggered_by:
             description:
                 - Indicates whether the user assessment was created by system or user.
@@ -323,6 +329,7 @@ user_assessments:
                   SAVE_SCHEDULE: A schedule to periodically save LATEST assessments.
                   COMPARTMENT: An automatic managed assessment type that stores all details of targets in one compartment. This will keep an up-to-date status
                   of all potential risks identified in the compartment.
+                         It also keeps track of user count and target count for each profile available on the targets in a given compartment.
                          It is automatically updated once the latest assessment or refresh action is executed, as well as when a target is deleted or moved to a
                          different compartment."
             returned: on success
@@ -363,6 +370,7 @@ user_assessments:
         "target_ids": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_last_assessed": "2013-10-20T19:20:30+01:00",
         "triggered_by": "USER",
         "type": "LATEST",
         "freeform_tags": {'Department': 'Finance'},

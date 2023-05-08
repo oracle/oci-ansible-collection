@@ -52,8 +52,9 @@ options:
     display_name:
         description:
             - The display name for the private endpoint. The name does not have to be unique, and it's changeable.
-            - Required for create using I(state=present), update using I(state=present) with data_safe_private_endpoint_id present.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
@@ -119,10 +120,10 @@ EXAMPLES = """
 - name: Update data_safe_private_endpoint
   oci_data_safe_private_endpoint:
     # required
-    display_name: display_name_example
     data_safe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    display_name: display_name_example
     description: description_example
     nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}

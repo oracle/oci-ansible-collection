@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_alert_facts -- Fetches details about one or multiple Al
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -395,7 +395,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The scimQuery query parameter accepts filter expressions that use the syntax described in Section 3.2.2.2 of the System for Cross-Domain Identity Management (SCIM) specification, which is available at <a href='https://tools.ietf.org/html/draft-ietf-scim-api-12'>RFC3339</a>. In SCIM filtering expressions, text, date, and time values must be enclosed in quotation marks, with date and time values using ISO-8601 format. (Numeric and boolean values should not be quoted.)</div>
-                                            <div>**Example:** query=(timeCreated ge &#x27;2021-06-04T01-00-26&#x27;) and (targetNames eq &#x27;target_1&#x27;) Supported fields: severity status alertType targetIds targetNames operationTime lifecycleState displayName timeCreated timeUpdated</div>
+                                            <div>**Example:** | query=(timeCreated ge &#x27;2021-06-04T01-00-26&#x27;) and (targetNames eq &#x27;target_1&#x27;) query=(featureDetails.userName eq &quot;user&quot;) and (targetNames eq &quot;target_1&quot;) Supported fields: severity status alertType targetIds targetNames operationTime lifecycleState displayName timeCreated timeUpdated featureDetails.* (* can be any field in nestedStrMap in Feature Attributes in Alert Summary. For example - userName,object,clientHostname,osUserName,clientIPs,clientId,commandText,commandParam,clientProgram,objectType,targetOwner)</div>
                                                         </td>
             </tr>
                                 <tr>

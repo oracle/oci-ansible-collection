@@ -43,6 +43,14 @@ options:
             - "EVALUATE"
             - "ADVISORY"
             - "PASS"
+    references:
+        description:
+            - An optional filter to return only findings containing the specified reference.
+        type: str
+        choices:
+            - "STIG"
+            - "CIS"
+            - "GDPR"
     compartment_id_in_subtree:
         description:
             - Default is false.
@@ -74,6 +82,7 @@ EXAMPLES = """
 
     # optional
     severity: HIGH
+    references: STIG
     compartment_id_in_subtree: true
     access_level: RESTRICTED
     finding_key: finding_key_example
@@ -206,6 +215,7 @@ class DataSafeFindingFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "severity",
+            "references",
             "compartment_id_in_subtree",
             "access_level",
             "finding_key",
@@ -240,6 +250,7 @@ def main():
                 type="str",
                 choices=["HIGH", "MEDIUM", "LOW", "EVALUATE", "ADVISORY", "PASS"],
             ),
+            references=dict(type="str", choices=["STIG", "CIS", "GDPR"]),
             compartment_id_in_subtree=dict(type="bool"),
             access_level=dict(type="str", choices=["RESTRICTED", "ACCESSIBLE"]),
             finding_key=dict(type="str", no_log=True),

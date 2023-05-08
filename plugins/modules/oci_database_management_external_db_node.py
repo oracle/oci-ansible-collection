@@ -139,6 +139,12 @@ external_db_node:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        domain_name:
+            description:
+                - Name of the domain.
+            returned: on success
+            type: str
+            sample: domain_name_example
         time_created:
             description:
                 - The date and time the external DB node was created.
@@ -164,6 +170,7 @@ external_db_node:
         "additional_details": {},
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "domain_name": "domain_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }

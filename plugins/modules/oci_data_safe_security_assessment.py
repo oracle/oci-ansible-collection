@@ -186,6 +186,12 @@ security_assessment:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_last_assessed:
+            description:
+                - The date and time when the security assessment was last run. Conforms to the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the security assessment.
@@ -673,6 +679,7 @@ security_assessment:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_last_assessed": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "target_ids": [],

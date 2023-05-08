@@ -393,6 +393,30 @@ integration_instances:
             returned: on success
             type: str
             sample: DEVELOPMENT
+        private_endpoint_outbound_connection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                outbound_connection_type:
+                    description:
+                        - The type of Outbound Connection.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT
+                subnet_id:
+                    description:
+                        - Customer Private Network VCN Subnet OCID. This is a required argument.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - One or more Network security group Ids. This is an optional argument.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: [{
         "idcs_info": {
             "idcs_app_location_url": "idcs_app_location_url_example",
@@ -445,7 +469,12 @@ integration_instances:
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "shape": "DEVELOPMENT"
+        "shape": "DEVELOPMENT",
+        "private_endpoint_outbound_connection": {
+            "outbound_connection_type": "PRIVATE_ENDPOINT",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        }
     }]
 """
 

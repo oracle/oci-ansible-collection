@@ -113,6 +113,13 @@ external_db_nodes:
             returned: on success
             type: dict
             sample: {}
+        domain_name:
+            description:
+                - Name of the domain.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: domain_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external DB node.
@@ -183,6 +190,7 @@ external_db_nodes:
         "cpu_core_count": 3.4,
         "memory_size_in_gbs": 3.4,
         "additional_details": {},
+        "domain_name": "domain_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "component_name": "component_name_example",

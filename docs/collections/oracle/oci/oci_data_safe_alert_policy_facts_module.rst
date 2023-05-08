@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_alert_policy_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -410,7 +410,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. Only one sort order may be provided.</div>
+                                            <div>The field to sort by. Only one sort parameter may be provided.</div>
                                                         </td>
             </tr>
                                 <tr>
