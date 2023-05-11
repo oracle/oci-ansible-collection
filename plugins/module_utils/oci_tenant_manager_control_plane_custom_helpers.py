@@ -30,3 +30,8 @@ class ChildTenancyHelperCustom:
             return oci_common_utils.get_default_response_from_resource(resource=None)
 
         return get_fn
+
+
+class OrganizationGovernanceActionsHelperCustom:
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(resource=None)

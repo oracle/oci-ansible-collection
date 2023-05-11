@@ -44,13 +44,20 @@ options:
         required: true
     admin_email:
         description:
-            - The email address of the administrator of the child tenancy.
+            - Email address of the child tenancy administrator.
         type: str
         required: true
     policy_name:
         description:
             - The name to use for the administrator policy in the child tenancy. Must contain only letters and underscores.
         type: str
+    governance_status:
+        description:
+            - The governance status of the child tenancy.
+        type: str
+        choices:
+            - "OPTED_IN"
+            - "OPTED_OUT"
     state:
         description:
             - The state of the ChildTenancy.
@@ -73,6 +80,7 @@ EXAMPLES = """
 
     # optional
     policy_name: policy_name_example
+    governance_status: OPTED_IN
 
 """
 
@@ -163,6 +171,7 @@ def main():
             home_region=dict(type="str", required=True),
             admin_email=dict(type="str", required=True),
             policy_name=dict(type="str"),
+            governance_status=dict(type="str", choices=["OPTED_IN", "OPTED_OUT"]),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
         type: str
     subscription_id:
         description:
@@ -179,14 +179,14 @@ subscriptions:
             sample: csi_number_example
         subscription_tier:
             description:
-                - Tier for the subscription, such as if it is a free promotion subscription or a paid subscription.
+                - Tier for the subscription, whether it is a free promotion subscription or a paid subscription.
                 - Returned for get operation
             returned: on success
             type: str
             sample: subscription_tier_example
         is_government_subscription:
             description:
-                - Denotes if the subscription is a government subscription or not.
+                - Denotes whether or not the subscription is a government subscription.
                 - Returned for get operation
             returned: on success
             type: bool
@@ -200,7 +200,7 @@ subscriptions:
             contains:
                 duration:
                     description:
-                        - How long the promotion related to the subscription, if any, is valid in duration units.
+                        - Specifies how long the promotion related to the subscription, if any, is valid in duration units.
                     returned: on success
                     type: int
                     sample: 56
@@ -212,19 +212,19 @@ subscriptions:
                     sample: duration_unit_example
                 amount:
                     description:
-                        - Total amount of credit for the promotion related to the subscription if there is one.
+                        - If a subscription is present, indicates the total amount of promotional subscription credit.
                     returned: on success
                     type: float
                     sample: 3.4
                 status:
                     description:
-                        - Current status of the promotion related to the subscription if there is one.
+                        - If a subscription is present, indicates the current status of the subscription promotion.
                     returned: on success
                     type: str
                     sample: INITIALIZED
                 is_intent_to_pay:
                     description:
-                        - Whether or not customer intends to pay once the promotion is done.
+                        - Speficies whether or not the customer intends to pay after the promotion has expired.
                     returned: on success
                     type: bool
                     sample: true
@@ -236,19 +236,19 @@ subscriptions:
                     sample: currency_unit_example
                 time_started:
                     description:
-                        - Date-time for when the promotion starts.
+                        - Date and time when the promotion starts.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_expired:
                     description:
-                        - Date-time for when the promotion ends.
+                        - Date and time when the promotion ends.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
         purchase_entitlement_id:
             description:
-                - Purchase entitlement id associated with the subscription.
+                - Purchase entitlement ID associated with the subscription.
                 - Returned for get operation
             returned: on success
             type: str

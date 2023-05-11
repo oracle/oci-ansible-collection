@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_child_tenancy -- Manage a ChildTenan
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -98,7 +98,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The email address of the administrator of the child tenancy.</div>
+                                            <div>Email address of the child tenancy administrator.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -277,6 +277,25 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-governance_status"></div>
+                    <b>governance_status</b>
+                    <a class="ansibleOptionLink" href="#parameter-governance_status" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OPTED_IN</li>
+                                                                                                                                                                                                <li>OPTED_OUT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The governance status of the child tenancy.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -476,6 +495,7 @@ Examples
 
         # optional
         policy_name: policy_name_example
+        governance_status: OPTED_IN
 
 
 

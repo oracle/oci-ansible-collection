@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_domain -- Manage a Domain resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -432,7 +432,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The email to notify the user, and that the ONS subscription will be created with.</div>
+                                            <div>Email address to be used to notify the user, and that the ONS subscription will be created with.</div>
                                                         </td>
             </tr>
                                 <tr>

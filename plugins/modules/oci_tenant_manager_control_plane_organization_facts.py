@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
             - Required to list multiple organizations.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
@@ -89,7 +89,7 @@ organizations:
         default_ucm_subscription_id:
             description:
                 - OCID of the default Universal Credits Model subscription. Any tenancy joining the organization will automatically get assigned this
-                  subscription if a subscription is not explictly assigned.
+                  subscription, if a subscription is not explictly assigned.
             returned: on success
             type: str
             sample: "ocid1.defaultucmsubscription.oc1..xxxxxxEXAMPLExxxxxx"
@@ -101,13 +101,13 @@ organizations:
             sample: CREATING
         time_created:
             description:
-                - Date-time when this organization was created.
+                - Date and time when the organization was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Date-time when this organization was last updated.
+                - Date and time when the organization was last updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

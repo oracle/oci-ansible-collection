@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
             - Required to list multiple assigned_subscriptions.
         type: str
     subscription_id:
@@ -183,23 +183,16 @@ assigned_subscriptions:
             returned: on success
             type: str
             sample: cloud_amount_currency_example
-        csi_number:
-            description:
-                - Customer service identifier for the customer associated with the subscription.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: csi_number_example
         subscription_tier:
             description:
-                - Tier for the subscription, such as if it is a free promotion subscription or a paid subscription.
+                - Tier for the subscription, whether it is a free promotion subscription or a paid subscription.
                 - Returned for get operation
             returned: on success
             type: str
             sample: subscription_tier_example
         is_government_subscription:
             description:
-                - Denotes if the subscription is a government subscription or not.
+                - Denotes whether or not the subscription is a government subscription.
                 - Returned for get operation
             returned: on success
             type: bool
@@ -213,7 +206,7 @@ assigned_subscriptions:
             contains:
                 duration:
                     description:
-                        - How long the promotion related to the subscription, if any, is valid in duration units.
+                        - Specifies how long the promotion related to the subscription, if any, is valid in duration units.
                     returned: on success
                     type: int
                     sample: 56
@@ -225,19 +218,19 @@ assigned_subscriptions:
                     sample: duration_unit_example
                 amount:
                     description:
-                        - Total amount of credit for the promotion related to the subscription if there is one.
+                        - If a subscription is present, indicates the total amount of promotional subscription credit.
                     returned: on success
                     type: float
                     sample: 3.4
                 status:
                     description:
-                        - Current status of the promotion related to the subscription if there is one.
+                        - If a subscription is present, indicates the current status of the subscription promotion.
                     returned: on success
                     type: str
                     sample: INITIALIZED
                 is_intent_to_pay:
                     description:
-                        - Whether or not customer intends to pay once the promotion is done.
+                        - Speficies whether or not the customer intends to pay after the promotion has expired.
                     returned: on success
                     type: bool
                     sample: true
@@ -249,19 +242,19 @@ assigned_subscriptions:
                     sample: currency_unit_example
                 time_started:
                     description:
-                        - Date-time for when the promotion starts.
+                        - Date and time when the promotion starts.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_expired:
                     description:
-                        - Date-time for when the promotion ends.
+                        - Date and time when the promotion ends.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
         purchase_entitlement_id:
             description:
-                - Purchase entitlement id associated with the subscription.
+                - Purchase entitlement ID associated with the subscription.
                 - Returned for get operation
             returned: on success
             type: str
@@ -332,6 +325,12 @@ assigned_subscriptions:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        csi_number:
+            description:
+                - Customer service identifier for the customer associated with the subscription.
+            returned: on success
+            type: str
+            sample: csi_number_example
     sample: [{
         "skus": [{
             "sku": "sku_example",
@@ -349,7 +348,6 @@ assigned_subscriptions:
         "program_type": "program_type_example",
         "customer_country_code": "customer_country_code_example",
         "cloud_amount_currency": "cloud_amount_currency_example",
-        "csi_number": "csi_number_example",
         "subscription_tier": "subscription_tier_example",
         "is_government_subscription": true,
         "promotion": [{
@@ -373,7 +371,8 @@ assigned_subscriptions:
         "start_date": "2013-10-20T19:20:30+01:00",
         "end_date": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "csi_number": "csi_number_example"
     }]
 """
 

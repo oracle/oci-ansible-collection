@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.22.0]
+
+## Added
+- Added modules (`oci_cloud_guard_target_responder_recipe` and `oci_cloud_guard_target_responder_recipe_facts`) to manage Cloud Guard Detector Recipes
+- Support for csiNumber organization in Tenant Manager Control Plane service
+- Support for add_governance, remove_governance actions in Tenant Manager Control Plane service.
+
+## Breaking
+- The Data Connectivity Management service (oci_data_connectivity) support is removed
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.101.0
+
 ## [4.21.0]
 
  ## Added

@@ -43,6 +43,11 @@ options:
         description:
             - Email address of the recipient.
         type: str
+    subjects:
+        description:
+            - The list of subjects this invitation contains.
+        type: list
+        elements: str
     sender_invitation_id:
         description:
             - OCID of the sender invitation to update.
@@ -88,6 +93,7 @@ EXAMPLES = """
 
     # optional
     recipient_email_address: recipient_email_address_example
+    subjects: [ "subjects_example" ]
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -133,6 +139,12 @@ sender_invitation:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        subjects:
+            description:
+                - The list of subjects the invitation contains.
+            returned: on success
+            type: list
+            sample: []
         recipient_invitation_id:
             description:
                 - OCID of the corresponding recipient invitation.
@@ -165,13 +177,13 @@ sender_invitation:
             sample: display_name_example
         time_created:
             description:
-                - Date-time when this sender invitation was created.
+                - Date and time when the sender invitation was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Date-time when this sender invitation was last updated.
+                - Date and time when the sender invitation was last updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -205,6 +217,7 @@ sender_invitation:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "subjects": [],
         "recipient_invitation_id": "ocid1.recipientinvitation.oc1..xxxxxxEXAMPLExxxxxx",
         "recipient_tenancy_id": "ocid1.recipienttenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
@@ -372,6 +385,7 @@ def main():
             compartment_id=dict(type="str"),
             recipient_tenancy_id=dict(type="str"),
             recipient_email_address=dict(type="str"),
+            subjects=dict(type="list", elements="str"),
             sender_invitation_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
