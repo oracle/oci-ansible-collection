@@ -24,14 +24,14 @@ short_description: Perform actions on an OrganizationTenancy resource in Oracle 
 description:
     - Perform actions on an OrganizationTenancy resource in Oracle Cloud Infrastructure
     - For I(action=approve_organization_tenancy_for_transfer), approve an organization's child tenancy for transfer.
-    - For I(action=restore), an asynchronous API to restore tenancy.
+    - For I(action=restore), an asynchronous API to restore a tenancy.
     - For I(action=unapprove_organization_tenancy_for_transfer), cancel an organization's child tenancy for transfer.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
             - Required for I(action=approve_organization_tenancy_for_transfer), I(action=unapprove_organization_tenancy_for_transfer).
         type: str
     organization_tenancy_id:
@@ -96,34 +96,40 @@ organization_tenancy:
             sample: name_example
         lifecycle_state:
             description:
-                - Lifecycle state of the OrganizationTenancy.
+                - Lifecycle state of the organization tenancy.
             returned: on success
             type: str
             sample: CREATING
         role:
             description:
-                - Role of the OrganizationTenancy.
+                - Role of the organization tenancy.
             returned: on success
             type: str
             sample: PARENT
         time_joined:
             description:
-                - Date-time when this tenancy joined the organization.
+                - Date and time when the tenancy joined the organization.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_left:
             description:
-                - Date-time when this tenancy left the organization.
+                - Date and time when the tenancy left the organization.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         is_approved_for_transfer:
             description:
-                - Flag to indicate the tenancy is approved for transfer to another organization.
+                - Parameter to indicate the tenancy is approved for transfer to another organization.
             returned: on success
             type: bool
             sample: true
+        governance_status:
+            description:
+                - The governance status of the tenancy.
+            returned: on success
+            type: str
+            sample: OPTED_IN
     sample: {
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -131,7 +137,8 @@ organization_tenancy:
         "role": "PARENT",
         "time_joined": "2013-10-20T19:20:30+01:00",
         "time_left": "2013-10-20T19:20:30+01:00",
-        "is_approved_for_transfer": true
+        "is_approved_for_transfer": true,
+        "governance_status": "OPTED_IN"
     }
 """
 

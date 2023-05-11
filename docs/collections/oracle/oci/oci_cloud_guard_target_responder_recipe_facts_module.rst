@@ -14,7 +14,7 @@
 
 .. Anchors
 
-.. _ansible_collections.oracle.oci.oci_data_connectivity_connection_facts_module:
+.. _ansible_collections.oracle.oci.oci_cloud_guard_target_responder_recipe_facts_module:
 
 .. Anchors: short name for ansible.builtin
 
@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_data_connectivity_connection_facts -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_cloud_guard_target_responder_recipe_facts -- Fetches details about one or multiple TargetResponderRecipe resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -38,7 +38,7 @@ oracle.oci.oci_data_connectivity_connection_facts -- Fetches details about one o
 
     To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
-    To use it in a playbook, specify: :code:`oracle.oci.oci_data_connectivity_connection_facts`.
+    To use it in a playbook, specify: :code:`oracle.oci.oci_cloud_guard_target_responder_recipe_facts`.
 
 .. version_added
 
@@ -56,9 +56,9 @@ Synopsis
 
 .. Description
 
-- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
-- Retrieves a list of all connections.
-- If *connection_key* is specified, the details of a single Connection will be returned.
+- Fetches details about one or multiple TargetResponderRecipe resources in Oracle Cloud Infrastructure
+- Returns a list of all responder recipes associated with the target identified by targetId
+- If *target_responder_recipe_id* is specified, the details of a single TargetResponderRecipe will be returned.
 
 
 .. Aliases
@@ -203,6 +203,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The ID of the compartment in which to list resources.</div>
+                                            <div>Required to list multiple target_responder_recipes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -233,9 +249,9 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-connection_key"></div>
-                    <b>connection_key</b>
-                    <a class="ansibleOptionLink" href="#parameter-connection_key" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -243,74 +259,32 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The connection key.</div>
-                                            <div>Required to get a specific connection.</div>
-                                                        </td>
+                                            <div>A filter to return only resources that match the entire display name given.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-data_asset_key"></div>
-                    <b>data_asset_key</b>
-                    <a class="ansibleOptionLink" href="#parameter-data_asset_key" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Used to filter by the data asset key of the object.</div>
-                                            <div>Required to list multiple connections.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-favorites_query_param"></div>
-                    <b>favorites_query_param</b>
-                    <a class="ansibleOptionLink" href="#parameter-favorites_query_param" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-lifecycle_state" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>FAVORITES_ONLY</li>
-                                                                                                                                                                                                <li>NON_FAVORITES_ONLY</li>
-                                                                                                                                                                                                <li>ALL</li>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>INACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>FAILED</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>If value is FAVORITES_ONLY, then only objects marked as favorite by the requesting user will be included in result. If value is NON_FAVORITES_ONLY, then objects marked as favorites by the requesting user will be skipped. If value is ALL or if not specified, all objects, irrespective of favorites or not will be returned. Default is ALL.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-fields"></div>
-                    <b>fields</b>
-                    <a class="ansibleOptionLink" href="#parameter-fields" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Specifies the fields to get for an object.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Used to filter by the name of the object.</div>
+                                            <div>The field life cycle state. Only one state can be provided. Default value for state is active. If no value is specified state is active.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -349,21 +323,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-registry_id"></div>
-                    <b>registry_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-registry_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The registry OCID.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
                     <b>sort_by</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
@@ -373,13 +332,12 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>id</li>
-                                                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                <li>timeCreated</li>
                                                                                                                                                                                                 <li>displayName</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order are by relevance score in descending order).</div>
+                                            <div>The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -398,8 +356,40 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).</div>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
                                                         </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_id"></div>
+                    <b>target_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OCID of target</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_responder_recipe_id"></div>
+                    <b>target_responder_recipe_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_responder_recipe_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OCID of TargetResponderRecipe</div>
+                                            <div>Required to get a specific target_responder_recipe.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -414,21 +404,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-type"></div>
-                    <b>type</b>
-                    <a class="ansibleOptionLink" href="#parameter-type" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Type of the object to filter the results with.</div>
                                                         </td>
             </tr>
                         </table>
@@ -456,25 +431,23 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific connection
-      oci_data_connectivity_connection_facts:
+    - name: Get a specific target_responder_recipe
+      oci_cloud_guard_target_responder_recipe_facts:
         # required
-        connection_key: connection_key_example
-        registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
+        target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
 
-    - name: List connections
-      oci_data_connectivity_connection_facts:
+    - name: List target_responder_recipes
+      oci_cloud_guard_target_responder_recipe_facts:
         # required
-        registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
-        data_asset_key: data_asset_key_example
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        name: name_example
-        fields: [ "fields_example" ]
-        type: type_example
-        sort_by: id
+        display_name: display_name_example
+        lifecycle_state: CREATING
         sort_order: ASC
-        favorites_query_param: FAVORITES_ONLY
+        sort_by: timeCreated
 
 
 
@@ -493,57 +466,437 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="5">Key</th>
+            <th colspan="6">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="5">
-                    <div class="ansibleOptionAnchor" id="return-connections"></div>
-                    <b>connections</b>
-                    <a class="ansibleOptionLink" href="#return-connections" title="Permalink to this return value"></a>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes"></div>
+                    <b>target_responder_recipes</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of Connection resources</div>
+                                            <div>List of TargetResponderRecipe resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;connection_properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;is_default&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;metadata&#x27;: {&#x27;aggregator&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;aggregator_key&#x27;: &#x27;aggregator_key_example&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;created_by_name&#x27;: &#x27;created_by_name_example&#x27;, &#x27;identifier_path&#x27;: &#x27;identifier_path_example&#x27;, &#x27;info_fields&#x27;: {}, &#x27;is_favorite&#x27;: True, &#x27;labels&#x27;: [], &#x27;registry_version&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;, &#x27;updated_by_name&#x27;: &#x27;updated_by_name_example&#x27;}, &#x27;model_type&#x27;: &#x27;model_type_example&#x27;, &#x27;model_version&#x27;: &#x27;model_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_status&#x27;: 56, &#x27;object_version&#x27;: 56, &#x27;primary_schema&#x27;: {&#x27;default_connection&#x27;: &#x27;default_connection_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;is_has_containers&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;metadata&#x27;: {&#x27;aggregator&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;aggregator_key&#x27;: &#x27;aggregator_key_example&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;created_by_name&#x27;: &#x27;created_by_name_example&#x27;, &#x27;identifier_path&#x27;: &#x27;identifier_path_example&#x27;, &#x27;info_fields&#x27;: {}, &#x27;is_favorite&#x27;: True, &#x27;labels&#x27;: [], &#x27;registry_version&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;, &#x27;updated_by_name&#x27;: &#x27;updated_by_name_example&#x27;}, &#x27;model_type&#x27;: &#x27;model_type_example&#x27;, &#x27;model_version&#x27;: &#x27;model_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_status&#x27;: 56, &#x27;object_version&#x27;: 56, &#x27;parent_ref&#x27;: {&#x27;parent&#x27;: &#x27;parent_example&#x27;}, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;}, &#x27;properties&#x27;: {}, &#x27;registry_metadata&#x27;: {&#x27;aggregator_key&#x27;: &#x27;aggregator_key_example&#x27;, &#x27;created_by_user_id&#x27;: &#x27;ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_user_name&#x27;: &#x27;created_by_user_name_example&#x27;, &#x27;is_favorite&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;labels&#x27;: [], &#x27;registry_version&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_user_id&#x27;: &#x27;ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;updated_by_user_name&#x27;: &#x27;updated_by_user_name_example&#x27;}, &#x27;type&#x27;: &#x27;type_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;responder_recipe_id&#x27;: &#x27;ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/connection_properties"></div>
-                    <b>connection_properties</b>
-                    <a class="ansibleOptionLink" href="#return-connections/connection_properties" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The properties of the connection.</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/connection_properties/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/connection_properties/name" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/compartment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Compartment Identifier</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRecipe description.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRecipe display name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules"></div>
+                    <b>effective_responder_rules</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of responder rules associated with the recipe after applying all defaults</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Compartment Identifier</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRule description.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details"></div>
+                    <b>details</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition"></div>
+                    <b>condition</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/composite_operator"></div>
+                    <b>composite_operator</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/composite_operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AND</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of condition object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/left_operand"></div>
+                    <b>left_operand</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/left_operand" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/left_operand/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of condition object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of operator</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IN</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/parameter"></div>
+                    <b>parameter</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/parameter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>parameter Key</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">parameter_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/right_operand"></div>
+                    <b>right_operand</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/right_operand" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/right_operand/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of condition object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of operator</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/condition/value_type"></div>
+                    <b>value_type</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/condition/value_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of value</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MANAGED</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/configurations"></div>
+                    <b>configurations</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/configurations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRule configurations</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/configurations/config_key"></div>
+                    <b>config_key</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/configurations/config_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique name of the configuration</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">config_key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/configurations/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/configurations/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>configuration name</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -552,17 +905,19 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/connection_properties/value"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/configurations/value"></div>
                     <b>value</b>
-                    <a class="ansibleOptionLink" href="#return-connections/connection_properties/value" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/configurations/value" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value for the connection name property.</div>
+                                            <div>configuration value</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -571,53 +926,19 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-connections/description" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>User-defined description for the connection.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/identifier"></div>
-                    <b>identifier</b>
-                    <a class="ansibleOptionLink" href="#return-connections/identifier" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
-                                    </td>
-            </tr>
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/is_default"></div>
-                    <b>is_default</b>
-                    <a class="ansibleOptionLink" href="#return-connections/is_default" title="Permalink to this return value"></a>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/is_enabled" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">boolean</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The default property of the connection.</div>
+                                            <div>Identifies state for ResponderRule</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -625,318 +946,149 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata"></div>
-                    <b>metadata</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                        <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator"></div>
-                    <b>aggregator</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator/description" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/details/mode"></div>
+                    <b>mode</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/details/mode" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The description of the aggregator.</div>
+                                            <div>Execution Mode for ResponderRule</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator/identifier"></div>
-                    <b>identifier</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator/identifier" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The identifier of the aggregator.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator/key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The key of the aggregator object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator/name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The name of the aggregator.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator/type"></div>
-                    <b>type</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator/type" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The type of the aggregator.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTOACTION</div>
                                     </td>
             </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/aggregator_key"></div>
-                    <b>aggregator_key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/aggregator_key" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The owning object key for this object.</div>
+                                            <div>ResponderRule display name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">aggregator_key_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/created_by"></div>
-                    <b>created_by</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/created_by" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/lifecycle_details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user that created the object.</div>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/created_by_name"></div>
-                    <b>created_by_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/created_by_name" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/lifecycle_state" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user that created the object.</div>
+                                            <div>The current state of the ResponderRule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_name_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/identifier_path"></div>
-                    <b>identifier_path</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/identifier_path" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The full path to identify the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/info_fields"></div>
-                    <b>info_fields</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/info_fields" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Information property fields.</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/is_favorite"></div>
-                    <b>is_favorite</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/is_favorite" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Specifies whether this object is a favorite.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/labels"></div>
-                    <b>labels</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/labels" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/policies"></div>
+                    <b>policies</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/policies" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                        / <span style="color: purple">elements=string</span>                    </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>List of Policy</div>
                                         <br/>
                                                         </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/registry_version"></div>
-                    <b>registry_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/registry_version" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/responder_rule_id"></div>
+                    <b>responder_rule_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/responder_rule_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">integer</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The registry version of the object.</div>
+                                            <div>Unique ResponderRule identifier.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/time_created"></div>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/supported_modes"></div>
+                    <b>supported_modes</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/supported_modes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Supported Execution Modes</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/time_created"></div>
                     <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/time_created" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/time_created" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time that the object was created.</div>
+                                            <div>The date and time the target responder recipe rule was created. Format defined by RFC3339.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -945,17 +1097,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/time_updated"></div>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/time_updated"></div>
                     <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/time_updated" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/time_updated" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time that the object was updated.</div>
+                                            <div>The date and time the target responder recipe rule was updated. Format defined by RFC3339.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -964,181 +1116,165 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/updated_by"></div>
-                    <b>updated_by</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/updated_by" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/effective_responder_rules/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/effective_responder_rules/type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user that updated the object.</div>
+                                            <div>Type of Responder</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/metadata/updated_by_name"></div>
-                    <b>updated_by_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/metadata/updated_by_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user that updated the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_name_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">REMEDIATION</div>
                                     </td>
             </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/model_type"></div>
-                    <b>model_type</b>
-                    <a class="ansibleOptionLink" href="#return-connections/model_type" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the object.</div>
+                                            <div>Unique identifier of TargetResponderRecipe that can&#x27;t be changed after creation.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/model_version"></div>
-                    <b>model_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/model_version" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/lifecycle_details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The model version of an object.</div>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_version_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/name" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/lifecycle_state" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>The current state of the Example.</div>
+                                            <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/object_status"></div>
-                    <b>object_status</b>
-                    <a class="ansibleOptionLink" href="#return-connections/object_status" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/owner" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">integer</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The status of an object that can be set to value 1 for shallow references across objects, other values reserved.</div>
+                                            <div>Owner of ResponderRecipe</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/object_version"></div>
-                    <b>object_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/object_version" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_recipe_id"></div>
+                    <b>responder_recipe_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_recipe_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">integer</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The version of the object that is used to track changes in the object instance.</div>
+                                            <div>Unique identifier for Responder Recipe of which this is an extension.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema"></div>
-                    <b>primary_schema</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema" title="Permalink to this return value"></a>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules"></div>
+                    <b>responder_rules</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>List of responder rules associated with the recipe - user input</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/default_connection"></div>
-                    <b>default_connection</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/default_connection" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/compartment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The default connection key.</div>
+                                            <div>Compartment Identifier</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_connection_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/description"></div>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/description"></div>
                     <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/description" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/description" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>User-defined description for the schema.</div>
+                                            <div>ResponderRule description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -1147,86 +1283,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/external_key"></div>
-                    <b>external_key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/external_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The external key of the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">external_key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/identifier"></div>
-                    <b>identifier</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/identifier" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/is_has_containers"></div>
-                    <b>is_has_containers</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/is_has_containers" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Specifies whether the schema has containers.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The object key.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata"></div>
-                    <b>metadata</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata" title="Permalink to this return value"></a>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details"></div>
+                    <b>details</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -1238,13 +1298,74 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition"></div>
+                    <b>condition</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator"></div>
-                    <b>aggregator</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/composite_operator"></div>
+                    <b>composite_operator</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/composite_operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AND</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of condition object</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/left_operand"></div>
+                    <b>left_operand</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/left_operand" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -1260,20 +1381,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator/description" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/left_operand/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The description of the aggregator.</div>
+                                            <div>Type of condition object</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of operator</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IN</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1281,20 +1425,20 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator/identifier"></div>
-                    <b>identifier</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator/identifier" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/parameter"></div>
+                    <b>parameter</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/parameter" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The identifier of the aggregator.</div>
+                                            <div>parameter Key</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">parameter_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1302,20 +1446,62 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/right_operand"></div>
+                    <b>right_operand</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/right_operand" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator/key" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/right_operand/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The key of the aggregator object.</div>
+                                            <div>Type of condition object</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPOSITE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of operator</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1323,17 +1509,78 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator/name"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/condition/value_type"></div>
+                    <b>value_type</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/condition/value_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>type of value</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MANAGED</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/configurations"></div>
+                    <b>configurations</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/configurations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRule configurations</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/configurations/config_key"></div>
+                    <b>config_key</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/configurations/config_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique name of the configuration</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">config_key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/configurations/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/configurations/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the aggregator.</div>
+                                            <div>configuration name</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1344,20 +1591,20 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator/type"></div>
-                    <b>type</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator/type" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/configurations/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/configurations/value" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the aggregator.</div>
+                                            <div>configuration value</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
                     
@@ -1365,115 +1612,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/aggregator_key"></div>
-                    <b>aggregator_key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/aggregator_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The owning object key for this object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">aggregator_key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/created_by"></div>
-                    <b>created_by</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/created_by" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user that created the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/created_by_name"></div>
-                    <b>created_by_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/created_by_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user that created the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/identifier_path"></div>
-                    <b>identifier_path</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/identifier_path" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The full path to identify the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/info_fields"></div>
-                    <b>info_fields</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/info_fields" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Information property fields.</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/is_favorite"></div>
-                    <b>is_favorite</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/is_favorite" title="Permalink to this return value"></a>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/is_enabled" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">boolean</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite.</div>
+                                            <div>Identifies state for ResponderRule</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1483,451 +1632,147 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/labels"></div>
-                    <b>labels</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/labels" title="Permalink to this return value"></a>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/details/mode"></div>
+                    <b>mode</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/details/mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Execution Mode for ResponderRule</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTOACTION</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ResponderRule display name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/lifecycle_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the ResponderRule.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/policies"></div>
+                    <b>policies</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/policies" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                        / <span style="color: purple">elements=string</span>                    </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>List of Policy</div>
                                         <br/>
                                                         </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/registry_version"></div>
-                    <b>registry_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/registry_version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The registry version of the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time that the object was created.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time that the object was updated.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/updated_by"></div>
-                    <b>updated_by</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/updated_by" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user that updated the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/metadata/updated_by_name"></div>
-                    <b>updated_by_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/metadata/updated_by_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user that updated the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_name_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/model_type"></div>
-                    <b>model_type</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/model_type" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The object type.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_type_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/model_version"></div>
-                    <b>model_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/model_version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The model version of the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_version_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/object_status"></div>
-                    <b>object_status</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/object_status" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The status of an object that can be set to value 1 for shallow references across objects, other values reserved.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/object_version"></div>
-                    <b>object_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/object_version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The version of the object that is used to track changes in the object instance.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/parent_ref"></div>
-                    <b>parent_ref</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/parent_ref" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/parent_ref/parent"></div>
-                    <b>parent</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/parent_ref/parent" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Key of the parent object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">parent_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/primary_schema/resource_name"></div>
-                    <b>resource_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/primary_schema/resource_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A resource name can have letters, numbers, and special characters. The value is editable and is restricted to 4000 characters.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_name_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/properties"></div>
-                    <b>properties</b>
-                    <a class="ansibleOptionLink" href="#return-connections/properties" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/responder_rule_id"></div>
+                    <b>responder_rule_id</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/responder_rule_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>All the properties of the connection in a key-value map format.</div>
+                                            <div>Unique ResponderRule identifier.</div>
                                         <br/>
-                                                        </td>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
             </tr>
                                 <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata"></div>
-                    <b>registry_metadata</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/aggregator_key"></div>
-                    <b>aggregator_key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/aggregator_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The owning object&#x27;s key for this object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">aggregator_key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/created_by_user_id"></div>
-                    <b>created_by_user_id</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/created_by_user_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The ID of the user who created the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/created_by_user_name"></div>
-                    <b>created_by_user_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/created_by_user_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The name of the user who created the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_user_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/is_favorite"></div>
-                    <b>is_favorite</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/is_favorite" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Specifies whether the object is a favorite.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The identifying key for the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/labels"></div>
-                    <b>labels</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/labels" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/supported_modes"></div>
+                    <b>supported_modes</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/supported_modes" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                        / <span style="color: purple">elements=string</span>                    </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Supported Execution Modes</div>
                                         <br/>
                                                         </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/registry_version"></div>
-                    <b>registry_version</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/registry_version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The registry version.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/time_created"></div>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/time_created"></div>
                     <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/time_created" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/time_created" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time that the object was created.</div>
+                                            <div>The date and time the target responder recipe rule was created. Format defined by RFC3339.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1935,78 +1780,77 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time that the object was updated.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/updated_by_user_id"></div>
-                    <b>updated_by_user_id</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/updated_by_user_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The ID of the user who updated the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-connections/registry_metadata/updated_by_user_name"></div>
-                    <b>updated_by_user_name</b>
-                    <a class="ansibleOptionLink" href="#return-connections/registry_metadata/updated_by_user_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The name of the user who updated the object.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_user_name_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-connections/type"></div>
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the target responder recipe rule was updated. Format defined by RFC3339.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/responder_rules/type"></div>
                     <b>type</b>
-                    <a class="ansibleOptionLink" href="#return-connections/type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/responder_rules/type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specific Connection Type</div>
+                                            <div>Type of Responder</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">REMEDIATION</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the target responder recipe rule was created. Format defined by RFC3339.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target_responder_recipes/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-target_responder_recipes/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the target responder recipe rule was updated. Format defined by RFC3339.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

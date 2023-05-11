@@ -39,7 +39,7 @@ options:
         type: str
     subscription_email:
         description:
-            - The email to notify the user, and that the ONS subscription will be created with.
+            - Email address to be used to notify the user, and that the ONS subscription will be created with.
         type: str
     is_governance_enabled:
         description:

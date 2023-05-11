@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_domain_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -213,7 +213,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment in which to list resources.</div>
+                                            <div>OCID of the compartment. Always a tenancy OCID.</div>
                                             <div>Required to list multiple domains.</div>
                                                         </td>
             </tr>

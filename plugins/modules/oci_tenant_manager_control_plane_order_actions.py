@@ -34,7 +34,7 @@ options:
         required: true
     activation_token:
         description:
-            - Activation Token containing an order ID. A JWT RFC 7519 formatted string.
+            - Activation token containing an order ID. A JWT RFC 7519-formatted string.
         type: str
         required: true
     action:
@@ -78,7 +78,7 @@ order:
             sample: us-phoenix-1
         admin_email:
             description:
-                - Administrator email owning the subscription.
+                - Email address of the administrator who owns the subscription.
             returned: on success
             type: str
             sample: admin_email_example
@@ -102,7 +102,7 @@ order:
                     sample: "ocid1.spmsubscription.oc1..xxxxxxEXAMPLExxxxxx"
                 service:
                     description:
-                        - Service name for subscription.
+                        - Subscription service name.
                     returned: on success
                     type: str
                     sample: service_example

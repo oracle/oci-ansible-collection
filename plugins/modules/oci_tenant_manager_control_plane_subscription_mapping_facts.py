@@ -41,7 +41,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
         type: str
     lifecycle_state:
         description:

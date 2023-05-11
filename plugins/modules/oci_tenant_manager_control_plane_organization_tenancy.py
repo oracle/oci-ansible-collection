@@ -75,34 +75,40 @@ organization_tenancy:
             sample: name_example
         lifecycle_state:
             description:
-                - Lifecycle state of the OrganizationTenancy.
+                - Lifecycle state of the organization tenancy.
             returned: on success
             type: str
             sample: CREATING
         role:
             description:
-                - Role of the OrganizationTenancy.
+                - Role of the organization tenancy.
             returned: on success
             type: str
             sample: PARENT
         time_joined:
             description:
-                - Date-time when this tenancy joined the organization.
+                - Date and time when the tenancy joined the organization.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_left:
             description:
-                - Date-time when this tenancy left the organization.
+                - Date and time when the tenancy left the organization.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         is_approved_for_transfer:
             description:
-                - Flag to indicate the tenancy is approved for transfer to another organization.
+                - Parameter to indicate the tenancy is approved for transfer to another organization.
             returned: on success
             type: bool
             sample: true
+        governance_status:
+            description:
+                - The governance status of the tenancy.
+            returned: on success
+            type: str
+            sample: OPTED_IN
     sample: {
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -110,7 +116,8 @@ organization_tenancy:
         "role": "PARENT",
         "time_joined": "2013-10-20T19:20:30+01:00",
         "time_left": "2013-10-20T19:20:30+01:00",
-        "is_approved_for_transfer": true
+        "is_approved_for_transfer": true,
+        "governance_status": "OPTED_IN"
     }
 """
 

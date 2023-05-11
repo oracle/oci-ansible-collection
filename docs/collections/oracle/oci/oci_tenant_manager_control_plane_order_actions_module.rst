@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_order_actions -- Perform actions on 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -116,7 +116,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Activation Token containing an order ID. A JWT RFC 7519 formatted string.</div>
+                                            <div>Activation token containing an order ID. A JWT RFC 7519-formatted string.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -443,7 +443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Administrator email owning the subscription.</div>
+                                            <div>Email address of the administrator who owns the subscription.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">admin_email_example</div>
@@ -551,7 +551,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Service name for subscription.</div>
+                                            <div>Subscription service name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_example</div>

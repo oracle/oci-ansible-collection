@@ -34,8 +34,8 @@ options:
         required: true
     default_ucm_subscription_id:
         description:
-            - OCID of the default UCM subscription. Any tenancy joining the organization will automatically get assigned this subscription if a subscription if
-              not explictly assigned.
+            - OCID of the default Universal Credits Model subscription. Any tenancy joining the organization will automatically get assigned this subscription,
+              if a subscription is not explictly assigned.
         type: str
         required: true
     state:
@@ -92,7 +92,7 @@ organization:
         default_ucm_subscription_id:
             description:
                 - OCID of the default Universal Credits Model subscription. Any tenancy joining the organization will automatically get assigned this
-                  subscription if a subscription is not explictly assigned.
+                  subscription, if a subscription is not explictly assigned.
             returned: on success
             type: str
             sample: "ocid1.defaultucmsubscription.oc1..xxxxxxEXAMPLExxxxxx"
@@ -104,13 +104,13 @@ organization:
             sample: CREATING
         time_created:
             description:
-                - Date-time when this organization was created.
+                - Date and time when the organization was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Date-time when this organization was last updated.
+                - Date and time when the organization was last updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

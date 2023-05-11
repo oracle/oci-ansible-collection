@@ -71,6 +71,12 @@ sender_invitation:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        subjects:
+            description:
+                - The list of subjects the invitation contains.
+            returned: on success
+            type: list
+            sample: []
         recipient_invitation_id:
             description:
                 - OCID of the corresponding recipient invitation.
@@ -103,13 +109,13 @@ sender_invitation:
             sample: display_name_example
         time_created:
             description:
-                - Date-time when this sender invitation was created.
+                - Date and time when the sender invitation was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Date-time when this sender invitation was last updated.
+                - Date and time when the sender invitation was last updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -143,6 +149,7 @@ sender_invitation:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "subjects": [],
         "recipient_invitation_id": "ocid1.recipientinvitation.oc1..xxxxxxEXAMPLExxxxxx",
         "recipient_tenancy_id": "ocid1.recipienttenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",

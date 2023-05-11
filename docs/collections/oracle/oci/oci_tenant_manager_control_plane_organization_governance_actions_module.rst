@@ -14,7 +14,7 @@
 
 .. Anchors
 
-.. _ansible_collections.oracle.oci.oci_data_connectivity_config_facts_module:
+.. _ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_governance_actions_module:
 
 .. Anchors: short name for ansible.builtin
 
@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_data_connectivity_config_facts -- Fetches details about a Config resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_tenant_manager_control_plane_organization_governance_actions -- Perform actions on an OrganizationGovernance resource in Oracle Cloud Infrastructure
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -38,7 +38,7 @@ oracle.oci.oci_data_connectivity_config_facts -- Fetches details about a Config 
 
     To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
-    To use it in a playbook, specify: :code:`oracle.oci.oci_data_connectivity_config_facts`.
+    To use it in a playbook, specify: :code:`oracle.oci.oci_tenant_manager_control_plane_organization_governance_actions`.
 
 .. version_added
 
@@ -56,8 +56,9 @@ Synopsis
 
 .. Description
 
-- Fetches details about a Config resource in Oracle Cloud Infrastructure
-- This endpoint is used to fetch connector-specific engine configurations.
+- Perform actions on an OrganizationGovernance resource in Oracle Cloud Infrastructure
+- For *action=add_governance*, starts a work request to opt the tenancy in to governance rules.
+- For *action=remove_governance*, starts a work request to opt the tenancy out of governance rules.
 
 
 .. Aliases
@@ -87,6 +88,25 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-action"></div>
+                    <b>action</b>
+                    <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>add_governance</li>
+                                                                                                                                                                                                <li>remove_governance</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The action to perform on the OrganizationGovernance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
@@ -232,9 +252,9 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-connection_key"></div>
-                    <b>connection_key</b>
-                    <a class="ansibleOptionLink" href="#parameter-connection_key" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-organization_id"></div>
+                    <b>organization_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-organization_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
@@ -242,26 +262,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The connection key.</div>
+                                            <div>OCID of the organization.</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-engine_type_query_param"></div>
-                    <b>engine_type_query_param</b>
-                    <a class="ansibleOptionLink" href="#parameter-engine_type_query_param" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-organization_tenancy_id"></div>
+                    <b>organization_tenancy_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-organization_tenancy_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
-                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>SPARK</li>
-                                                                                    </ul>
-                                                                            </td>
+                                                                                                                                                            </td>
                                                                 <td>
-                                            <div>Specifies the runtime engine for the bulk read/write operation. Default is SPARK.</div>
-                                                        </td>
+                                            <div>OCID of tenancy that is opting in to governance rules.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -299,21 +317,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-registry_id"></div>
-                    <b>registry_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-registry_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The registry OCID.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -325,6 +328,40 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait"></div>
+                    <b>wait</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to wait for create or delete operation to complete.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
+                    <b>wait_timeout</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
                                                         </td>
             </tr>
                         </table>
@@ -352,14 +389,19 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific config
-      oci_data_connectivity_config_facts:
+    - name: Perform action add_governance on organization_governance
+      oci_tenant_manager_control_plane_organization_governance_actions:
         # required
-        registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_key: connection_key_example
+        organization_id: "ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx"
+        organization_tenancy_id: "ocid1.organizationtenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        action: add_governance
 
-        # optional
-        engine_type_query_param: SPARK
+    - name: Perform action remove_governance on organization_governance
+      oci_tenant_manager_control_plane_organization_governance_actions:
+        # required
+        organization_id: "ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx"
+        organization_tenancy_id: "ocid1.organizationtenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        action: remove_governance
 
 
 
@@ -370,54 +412,6 @@ Examples
 
 .. Return values
 
-Return Values
--------------
-Common return values are documented :ref:`here <common_return_values>`, the following are the fields unique to this module:
-
-.. raw:: html
-
-    <table border=0 cellpadding=0 class="documentation-table">
-        <tr>
-            <th colspan="2">Key</th>
-            <th>Returned</th>
-            <th width="100%">Description</th>
-        </tr>
-                    <tr>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-config"></div>
-                    <b>config</b>
-                    <a class="ansibleOptionLink" href="#return-config" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Config resource</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;config_map&#x27;: {}}</div>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-config/config_map"></div>
-                    <b>config_map</b>
-                    <a class="ansibleOptionLink" href="#return-config/config_map" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The connector-specific engine configurations configuration represented in a key-value map. Example - &quot;spark.sql.catalogImplementation&quot;, &quot;hive&quot;</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                    
-                        </table>
-    <br/><br/>
 
 ..  Status (Presently only deprecated)
 

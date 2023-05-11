@@ -49,7 +49,7 @@ options:
         type: str
     subscription_email:
         description:
-            - The email to notify the user, and that the ONS subscription will be created with.
+            - Email address to be used to notify the user, and that the ONS subscription will be created with.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -161,7 +161,7 @@ domain_governance:
             sample: true
         subscription_email:
             description:
-                - The email to notify the user, and that the ONS subscription will be created with.
+                - Email address to be used to notify the user, and that the ONS subscription will be created with.
             returned: on success
             type: str
             sample: subscription_email_example

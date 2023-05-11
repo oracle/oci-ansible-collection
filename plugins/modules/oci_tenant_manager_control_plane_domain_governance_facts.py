@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - OCID of the compartment. Always a tenancy OCID.
             - Required to list multiple domain_governances.
         type: str
     domain_id:
@@ -138,7 +138,7 @@ domain_governances:
             sample: true
         subscription_email:
             description:
-                - The email to notify the user, and that the ONS subscription will be created with.
+                - Email address to be used to notify the user, and that the ONS subscription will be created with.
             returned: on success
             type: str
             sample: subscription_email_example
