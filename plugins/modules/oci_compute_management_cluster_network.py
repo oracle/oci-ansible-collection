@@ -262,6 +262,18 @@ cluster_network:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        hpc_island_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the hpc island used by the cluster network.
+            returned: on success
+            type: str
+            sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+        network_block_ids:
+            description:
+                - The list of network block OCIDs of the HPC island.
+            returned: on success
+            type: list
+            sample: []
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -524,6 +536,8 @@ cluster_network:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "hpc_island_id": "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_block_ids": [],
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},

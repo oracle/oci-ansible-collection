@@ -54,6 +54,12 @@ options:
         description:
             - The OCID of the compute capacity reservation.
         type: str
+    compute_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
+              A compute cluster is a remote direct memory access (RDMA) network group.
+              For more information, see L(Compute Clusters,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm).
+        type: str
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -112,6 +118,7 @@ EXAMPLES = """
     # optional
     availability_domain: Uocm:PHX-AD-1
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    compute_cluster_id: "ocid1.computecluster.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -485,6 +492,12 @@ instances:
                     returned: on success
                     type: str
                     sample: local_disk_description_example
+        is_cross_numa_node:
+            description:
+                - Whether the instance's OCPUs and memory are distributed across multiple NUMA nodes.
+            returned: on success
+            type: bool
+            sample: true
         source_details:
             description:
                 - ""
@@ -779,6 +792,7 @@ instances:
             "local_disks_total_size_in_gbs": 3.4,
             "local_disk_description": "local_disk_description_example"
         },
+        "is_cross_numa_node": true,
         "source_details": {
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
             "source_type": "bootVolume",
@@ -854,6 +868,7 @@ class InstanceFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "availability_domain",
             "capacity_reservation_id",
+            "compute_cluster_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -886,6 +901,7 @@ def main():
             compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
             capacity_reservation_id=dict(type="str"),
+            compute_cluster_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

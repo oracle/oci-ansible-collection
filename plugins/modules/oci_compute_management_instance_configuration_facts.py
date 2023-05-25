@@ -184,6 +184,34 @@ instance_configurations:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                                is_auto_tune_enabled:
+                                    description:
+                                        - Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated.
+                                          Use the `InstanceConfigurationDetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                block_volume_replicas:
+                                    description:
+                                        - The list of block volume replicas to be enabled for this volume
+                                          in the specified destination availability domains.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        display_name:
+                                            description:
+                                                - "The display name of the block volume replica. You may optionally specify a *display name* for
+                                                  the block volume replica, otherwise a default is provided."
+                                            returned: on success
+                                            type: str
+                                            sample: display_name_example
+                                        availability_domain:
+                                            description:
+                                                - The availability domain of the block volume replica.
+                                                - "Example: `Uocm:PHX-AD-1`"
+                                            returned: on success
+                                            type: str
+                                            sample: Uocm:PHX-AD-1
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -657,6 +685,12 @@ instance_configurations:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+                                kms_key_id:
+                                    description:
+                                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_vpus_per_gb:
                                     description:
                                         - The number of volume performance units (VPUs) that will be applied to this volume per GB,
@@ -882,6 +916,14 @@ instance_configurations:
                             returned: on success
                             type: complex
                             contains:
+                                is_live_migration_preferred:
+                                    description:
+                                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 recovery_action:
                                     description:
                                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -1096,6 +1138,11 @@ instance_configurations:
                     "availability_domain": "Uocm:PHX-AD-1",
                     "backup_policy_id": "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx",
                     "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                    "is_auto_tune_enabled": true,
+                    "block_volume_replicas": [{
+                        "display_name": "display_name_example",
+                        "availability_domain": "Uocm:PHX-AD-1"
+                    }],
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},
@@ -1160,6 +1207,7 @@ instance_configurations:
                     "source_type": "bootVolume",
                     "boot_volume_size_in_gbs": 56,
                     "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+                    "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
                     "boot_volume_vpus_per_gb": 56
                 },
                 "fault_domain": "FAULT-DOMAIN-1",
@@ -1188,6 +1236,7 @@ instance_configurations:
                     "are_legacy_imds_endpoints_disabled": true
                 },
                 "availability_config": {
+                    "is_live_migration_preferred": true,
                     "recovery_action": "RESTORE_INSTANCE"
                 },
                 "preemptible_instance_config": {

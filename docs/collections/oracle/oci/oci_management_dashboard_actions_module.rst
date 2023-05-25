@@ -30,7 +30,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1033,8 +1033,8 @@ Parameters
                     <b>drilldown_config</b>
                     <a class="ansibleOptionLink" href="#parameter-dashboards/tiles/drilldown_config" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">dictionary</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1366,7 +1366,7 @@ Examples
             ui_config: null
             data_config: [ "data_config_example" ]
             state: DELETED
-            drilldown_config: null
+            drilldown_config: []
 
             # optional
             parameters_map: null
@@ -1454,7 +1454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagementDashboard resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: {}, &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2318,8 +2318,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>drilldown_config</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/tiles/drilldown_config" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
                                     </td>
                 <td>on success</td>
                 <td>

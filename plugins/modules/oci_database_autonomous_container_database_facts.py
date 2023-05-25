@@ -476,6 +476,12 @@ autonomous_container_databases:
                             returned: on success
                             type: str
                             sample: internet_proxy_example
+                        dbrs_policy_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DBRS policy used for backup.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
                 recovery_window_in_days:
                     description:
                         - Number of days between the current and the earliest point of recoverability covered by automatic backups.
@@ -499,39 +505,53 @@ autonomous_container_databases:
             sample: key_store_wallet_name_example
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU in the Autonomous VM Cluster.See L(Compute
+                  Models,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56
         available_cpus:
             description:
-                - Sum of CPUs available on the Autonomous VM Cluster + Sum of reclaimable CPUs available in the Autonomous Container Database.
+                - Sum of CPUs available on the Autonomous VM Cluster + Sum of reclaimable CPUs available in the Autonomous Container Database.<br>
+                  For Autonomous Databases on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM
+                  Cluster's compute model. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: float
             sample: 3.4
         total_cpus:
             description:
-                - The number of CPUs allocated to the Autonomous VM cluster.
+                - The number of CPUs allocated to the Autonomous VM cluster.<br>
+                  For Autonomous Databases on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM
+                  Cluster's compute model. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56
         reclaimable_cpus:
             description:
-                - CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous
-                  Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the
-                  Autonomous Container Database.
+                - "For Autonomous Databases on Dedicated Exadata Infrastructure:
+                  - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its
+                    Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by
+                    restarting the Autonomous Container Database.
+                  - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster's compute model. See L(Compute Models in Autonomous
+                    Database on Dedicated Exadata Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details."
             returned: on success
             type: float
             sample: 3.4
         provisionable_cpus:
             description:
-                - An array of CPU values that can be used to successfully provision a single Autonomous Database.
+                - An array of CPU values that can be used to successfully provision a single Autonomous Database.\\\\
+                  For Autonomous Database on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM
+                  Cluster's compute model. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: list
             sample: []
         compute_model:
             description:
-                - The compute model of the Autonomous VM Cluster.
+                - The compute model of the Autonomous VM Cluster. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: str
             sample: ECPU
@@ -591,7 +611,8 @@ autonomous_container_databases:
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
                 "vpc_password": "example-password",
-                "internet_proxy": "internet_proxy_example"
+                "internet_proxy": "internet_proxy_example",
+                "dbrs_policy_id": "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
             }],
             "recovery_window_in_days": 56
         },

@@ -212,6 +212,11 @@ options:
         description:
             - The OCID of the dedicated virtual machine host to place the instance on.
         type: str
+    compute_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(compute
+              cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) that the instance will be created in.
+        type: str
     hostname_label:
         description:
             - Deprecated. Instead use `hostnameLabel` in
@@ -338,6 +343,16 @@ options:
             - ""
         type: dict
         suboptions:
+            percentage_of_cores_enabled:
+                description:
+                    - The percentage of cores enabled. Value must be a multiple of 25%. If the requested percentage
+                      results in a fractional number of cores, the system rounds up the number of cores across processors
+                      and provisions an instance with a whole number of cores.
+                    - If the applications that you run on the instance use a core-based licensing model and need fewer cores
+                      than the full size of the shape, you can disable cores to reduce your licensing costs. The instance
+                      itself is billed for the full shape, regardless of whether all cores are enabled.
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
+                type: int
             type:
                 description:
                     - The type of platform being configured.
@@ -350,6 +365,7 @@ options:
                     - "INTEL_VM"
                     - "INTEL_SKYLAKE_BM"
                     - "AMD_MILAN_BM"
+                    - "AMD_MILAN_BM_GPU"
                 required: true
             is_secure_boot_enabled:
                 description:
@@ -371,7 +387,7 @@ options:
             numa_nodes_per_socket:
                 description:
                     - The number of NUMA nodes per socket (NPS).
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
                 type: str
                 choices:
                     - "NPS0"
@@ -386,35 +402,25 @@ options:
                       independent threads of execution, to better use the resources and increase the efficiency
                       of the CPU. When multithreading is disabled, only one thread is permitted to run on each core, which
                       can provide higher or more predictable performance for some workloads.
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
                 type: bool
             is_access_control_service_enabled:
                 description:
                     - Whether the Access Control Service is enabled on the instance. When enabled,
                       the platform can enforce PCIe device isolation, required for VFIO device pass-through.
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
                 type: bool
             are_virtual_instructions_enabled:
                 description:
                     - Whether virtualization instructions are available. For example, Secure Virtual Machine for AMD shapes
                       or VT-x for Intel shapes.
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
                 type: bool
             is_input_output_memory_management_unit_enabled:
                 description:
                     - Whether the input-output memory management unit is enabled.
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
+                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
                 type: bool
-            percentage_of_cores_enabled:
-                description:
-                    - The percentage of cores enabled. Value must be a multiple of 25%. If the requested percentage
-                      results in a fractional number of cores, the system rounds up the number of cores across processors
-                      and provisions an instance with a whole number of cores.
-                    - If the applications that you run on the instance use a core-based licensing model and need fewer cores
-                      than the full size of the shape, you can disable cores to reduce your licensing costs. The instance
-                      itself is billed for the full shape, regardless of whether all cores are enabled.
-                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
-                type: int
     capacity_reservation_id:
         description:
             - The OCID of the compute capacity reservation this instance is launched under.
@@ -812,6 +818,7 @@ EXAMPLES = """
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+    compute_cluster_id: "ocid1.computecluster.oc1..xxxxxxEXAMPLExxxxxx"
     hostname_label: hostname_label_example
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     ipxe_script: ipxe_script_example
@@ -1364,6 +1371,12 @@ instance:
                     returned: on success
                     type: str
                     sample: local_disk_description_example
+        is_cross_numa_node:
+            description:
+                - Whether the instance's OCPUs and memory are distributed across multiple NUMA nodes.
+            returned: on success
+            type: bool
+            sample: true
         source_details:
             description:
                 - ""
@@ -1658,6 +1671,7 @@ instance:
             "local_disks_total_size_in_gbs": 3.4,
             "local_disk_description": "local_disk_description_example"
         },
+        "is_cross_numa_node": true,
         "source_details": {
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
             "source_type": "bootVolume",
@@ -1762,9 +1776,14 @@ class InstanceHelperGen(OCIResourceHelperBase):
 
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = (
-            ["availability_domain", "display_name"]
+            ["availability_domain", "compute_cluster_id", "display_name"]
             if self._use_name_as_identifier()
-            else ["availability_domain", "capacity_reservation_id", "display_name"]
+            else [
+                "availability_domain",
+                "capacity_reservation_id",
+                "compute_cluster_id",
+                "display_name",
+            ]
         )
 
         return dict(
@@ -1793,6 +1812,7 @@ class InstanceHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "is_pv_encryption_in_transit_enabled",
+            "compute_cluster_id",
             "subnet_id",
             "shape_config.nvmes",
             "create_vnic_details",
@@ -1881,6 +1901,7 @@ def main():
                 ),
             ),
             dedicated_vm_host_id=dict(type="str"),
+            compute_cluster_id=dict(type="str"),
             hostname_label=dict(type="str"),
             image_id=dict(type="str"),
             ipxe_script=dict(type="str"),
@@ -1915,6 +1936,7 @@ def main():
             platform_config=dict(
                 type="dict",
                 options=dict(
+                    percentage_of_cores_enabled=dict(type="int"),
                     type=dict(
                         type="str",
                         required=True,
@@ -1926,6 +1948,7 @@ def main():
                             "INTEL_VM",
                             "INTEL_SKYLAKE_BM",
                             "AMD_MILAN_BM",
+                            "AMD_MILAN_BM_GPU",
                         ],
                     ),
                     is_secure_boot_enabled=dict(type="bool"),
@@ -1939,7 +1962,6 @@ def main():
                     is_access_control_service_enabled=dict(type="bool"),
                     are_virtual_instructions_enabled=dict(type="bool"),
                     is_input_output_memory_management_unit_enabled=dict(type="bool"),
-                    percentage_of_cores_enabled=dict(type="int"),
                 ),
             ),
             capacity_reservation_id=dict(type="str"),

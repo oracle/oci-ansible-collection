@@ -30,7 +30,7 @@ oracle.oci.oci_compute_shape_facts -- Fetches details about one or multiple Shap
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,7 +394,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Shape resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;billing_type&#x27;: &#x27;ALWAYS_FREE&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_billed_for_stopped_instance&#x27;: True, &#x27;is_flexible&#x27;: True, &#x27;is_live_migration_supported&#x27;: True, &#x27;is_subcore&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;network_ports&#x27;: 56, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;access_control_service_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;input_output_memory_management_unit_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;memory_encryption_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;percentage_of_cores_enabled_options&#x27;: {&#x27;default_value&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;symmetric_multi_threading_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;, &#x27;virtual_instructions_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;quota_names&#x27;: [], &#x27;rdma_bandwidth_in_gbps&#x27;: 56, &#x27;rdma_ports&#x27;: 56, &#x27;recommended_alternatives&#x27;: [{&#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}], &#x27;resize_compatible_shapes&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;billing_type&#x27;: &#x27;ALWAYS_FREE&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_billed_for_stopped_instance&#x27;: True, &#x27;is_flexible&#x27;: True, &#x27;is_live_migration_supported&#x27;: True, &#x27;is_subcore&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_numa_node_in_gbs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;network_ports&#x27;: 56, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;max_per_numa_node&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;access_control_service_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;input_output_memory_management_unit_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;memory_encryption_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;percentage_of_cores_enabled_options&#x27;: {&#x27;default_value&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;symmetric_multi_threading_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;, &#x27;virtual_instructions_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;quota_names&#x27;: [], &#x27;rdma_bandwidth_in_gbps&#x27;: 56, &#x27;rdma_ports&#x27;: 56, &#x27;recommended_alternatives&#x27;: [{&#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}], &#x27;resize_compatible_shapes&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -764,6 +764,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/memory_options/max_per_numa_node_in_gbs"></div>
+                    <b>max_per_numa_node_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/memory_options/max_per_numa_node_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum amount of memory per NUMA node, in gigabytes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/max_per_ocpu_in_gbs"></div>
                     <b>max_per_ocpu_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/max_per_ocpu_in_gbs" title="Permalink to this return value"></a>
@@ -976,6 +995,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum number of OCPUs.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/ocpu_options/max_per_numa_node"></div>
+                    <b>max_per_numa_node</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/ocpu_options/max_per_numa_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum number of cores available per NUMA node.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>

@@ -138,7 +138,7 @@ options:
                     drilldown_config:
                         description:
                             - Drill-down configuration to define the destination of a drill-down action.
-                        type: dict
+                        type: list
                         required: true
                     parameters_map:
                         description:
@@ -400,7 +400,7 @@ EXAMPLES = """
         ui_config: null
         data_config: [ "data_config_example" ]
         state: DELETED
-        drilldown_config: null
+        drilldown_config: []
 
         # optional
         parameters_map: null
@@ -562,8 +562,8 @@ management_dashboard:
                             description:
                                 - Drill-down configuration to define the destination of a drill-down action.
                             returned: on success
-                            type: dict
-                            sample: {}
+                            type: list
+                            sample: []
                         parameters_map:
                             description:
                                 - Specifies the saved search parameters values
@@ -821,7 +821,7 @@ management_dashboard:
                 "ui_config": {},
                 "data_config": [],
                 "state": "DELETED",
-                "drilldown_config": {},
+                "drilldown_config": [],
                 "parameters_map": {}
             }],
             "display_name": "display_name_example",
@@ -982,7 +982,7 @@ def main():
                                 required=True,
                                 choices=["DELETED", "UNAUTHORIZED", "DEFAULT"],
                             ),
-                            drilldown_config=dict(type="dict", required=True),
+                            drilldown_config=dict(type="list", required=True),
                             parameters_map=dict(type="dict"),
                         ),
                     ),

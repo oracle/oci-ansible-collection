@@ -112,6 +112,30 @@ options:
                                 description:
                                     - The OCID of the compartment that contains the volume.
                                 type: str
+                            is_auto_tune_enabled:
+                                description:
+                                    - Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated.
+                                      Use the `InstanceConfigurationDetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
+                                type: bool
+                            block_volume_replicas:
+                                description:
+                                    - The list of block volume replicas to be enabled for this volume
+                                      in the specified destination availability domains.
+                                type: list
+                                elements: dict
+                                suboptions:
+                                    display_name:
+                                        description:
+                                            - "The display name of the block volume replica. You may optionally specify a *display name* for
+                                              the block volume replica, otherwise a default is provided."
+                                        type: str
+                                        aliases: ["name"]
+                                    availability_domain:
+                                        description:
+                                            - The availability domain of the block volume replica.
+                                            - "Example: `Uocm:PHX-AD-1`"
+                                        type: str
+                                        required: true
                             defined_tags:
                                 description:
                                     - Defined tags for this resource. Each key is predefined and scoped to a
@@ -428,7 +452,7 @@ options:
                             numa_nodes_per_socket:
                                 description:
                                     - The number of NUMA nodes per socket (NPS).
-                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
+                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
                                 type: str
                                 choices:
                                     - "NPS0"
@@ -443,24 +467,24 @@ options:
                                       independent threads of execution, to better use the resources and increase the efficiency
                                       of the CPU. When multithreading is disabled, only one thread is permitted to run on each core, which
                                       can provide higher or more predictable performance for some workloads.
-                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
+                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
                                 type: bool
                             is_access_control_service_enabled:
                                 description:
                                     - Whether the Access Control Service is enabled on the instance. When enabled,
                                       the platform can enforce PCIe device isolation, required for VFIO device pass-through.
-                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
+                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
                                 type: bool
                             are_virtual_instructions_enabled:
                                 description:
                                     - Whether virtualization instructions are available. For example, Secure Virtual Machine for AMD shapes
                                       or VT-x for Intel shapes.
-                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
+                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM']
                                 type: bool
                             is_input_output_memory_management_unit_enabled:
                                 description:
                                     - Whether the input-output memory management unit is enabled.
-                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
+                                    - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'INTEL_ICELAKE_BM', 'AMD_ROME_BM']
                                 type: bool
                             type:
                                 description:
@@ -469,6 +493,7 @@ options:
                                 choices:
                                     - "AMD_MILAN_BM"
                                     - "INTEL_VM"
+                                    - "AMD_MILAN_BM_GPU"
                                     - "INTEL_ICELAKE_BM"
                                     - "AMD_ROME_BM"
                                     - "INTEL_SKYLAKE_BM"
@@ -506,6 +531,11 @@ options:
                             image_id:
                                 description:
                                     - The OCID of the image used to boot the instance.
+                                    - Applicable when source_type is 'image'
+                                type: str
+                            kms_key_id:
+                                description:
+                                    - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
                                     - Applicable when source_type is 'image'
                                 type: str
                             boot_volume_vpus_per_gb:
@@ -740,6 +770,12 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            is_live_migration_preferred:
+                                description:
+                                    - Whether to live migrate supported VM instances to a healthy physical VM host without
+                                      disrupting running instances during infrastructure maintenance events. If null, Oracle
+                                      chooses the best option for migrating the VM during infrastructure maintenance events.
+                                type: bool
                             recovery_action:
                                 description:
                                     - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -972,6 +1008,13 @@ EXAMPLES = """
           availability_domain: Uocm:PHX-AD-1
           backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
           compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+          is_auto_tune_enabled: true
+          block_volume_replicas:
+          - # required
+            availability_domain: Uocm:PHX-AD-1
+
+            # optional
+            display_name: display_name_example
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           display_name: display_name_example
           freeform_tags: {'Department': 'Finance'}
@@ -1041,6 +1084,7 @@ EXAMPLES = """
           # optional
           boot_volume_size_in_gbs: 56
           image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
           boot_volume_vpus_per_gb: 56
         fault_domain: FAULT-DOMAIN-1
         dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1069,6 +1113,7 @@ EXAMPLES = """
           are_legacy_imds_endpoints_disabled: true
         availability_config:
           # optional
+          is_live_migration_preferred: true
           recovery_action: RESTORE_INSTANCE
         preemptible_instance_config:
           # required
@@ -1289,6 +1334,34 @@ instance_configuration:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                                is_auto_tune_enabled:
+                                    description:
+                                        - Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated.
+                                          Use the `InstanceConfigurationDetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                block_volume_replicas:
+                                    description:
+                                        - The list of block volume replicas to be enabled for this volume
+                                          in the specified destination availability domains.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        display_name:
+                                            description:
+                                                - "The display name of the block volume replica. You may optionally specify a *display name* for
+                                                  the block volume replica, otherwise a default is provided."
+                                            returned: on success
+                                            type: str
+                                            sample: display_name_example
+                                        availability_domain:
+                                            description:
+                                                - The availability domain of the block volume replica.
+                                                - "Example: `Uocm:PHX-AD-1`"
+                                            returned: on success
+                                            type: str
+                                            sample: Uocm:PHX-AD-1
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -1762,6 +1835,12 @@ instance_configuration:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+                                kms_key_id:
+                                    description:
+                                        - The OCID of the Vault service key to assign as the master encryption key for the boot volume.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_vpus_per_gb:
                                     description:
                                         - The number of volume performance units (VPUs) that will be applied to this volume per GB,
@@ -1987,6 +2066,14 @@ instance_configuration:
                             returned: on success
                             type: complex
                             contains:
+                                is_live_migration_preferred:
+                                    description:
+                                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 recovery_action:
                                     description:
                                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -2168,6 +2255,11 @@ instance_configuration:
                     "availability_domain": "Uocm:PHX-AD-1",
                     "backup_policy_id": "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx",
                     "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                    "is_auto_tune_enabled": true,
+                    "block_volume_replicas": [{
+                        "display_name": "display_name_example",
+                        "availability_domain": "Uocm:PHX-AD-1"
+                    }],
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},
@@ -2232,6 +2324,7 @@ instance_configuration:
                     "source_type": "bootVolume",
                     "boot_volume_size_in_gbs": 56,
                     "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+                    "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
                     "boot_volume_vpus_per_gb": 56
                 },
                 "fault_domain": "FAULT-DOMAIN-1",
@@ -2260,6 +2353,7 @@ instance_configuration:
                     "are_legacy_imds_endpoints_disabled": true
                 },
                 "availability_config": {
+                    "is_live_migration_preferred": true,
                     "recovery_action": "RESTORE_INSTANCE"
                 },
                 "preemptible_instance_config": {
@@ -2483,6 +2577,19 @@ def main():
                                     availability_domain=dict(type="str"),
                                     backup_policy_id=dict(type="str"),
                                     compartment_id=dict(type="str"),
+                                    is_auto_tune_enabled=dict(type="bool"),
+                                    block_volume_replicas=dict(
+                                        type="list",
+                                        elements="dict",
+                                        options=dict(
+                                            display_name=dict(
+                                                aliases=["name"], type="str"
+                                            ),
+                                            availability_domain=dict(
+                                                type="str", required=True
+                                            ),
+                                        ),
+                                    ),
                                     defined_tags=dict(type="dict"),
                                     display_name=dict(aliases=["name"], type="str"),
                                     freeform_tags=dict(type="dict"),
@@ -2586,6 +2693,7 @@ def main():
                                         choices=[
                                             "AMD_MILAN_BM",
                                             "INTEL_VM",
+                                            "AMD_MILAN_BM_GPU",
                                             "INTEL_ICELAKE_BM",
                                             "AMD_ROME_BM",
                                             "INTEL_SKYLAKE_BM",
@@ -2606,6 +2714,7 @@ def main():
                                 options=dict(
                                     boot_volume_size_in_gbs=dict(type="int"),
                                     image_id=dict(type="str"),
+                                    kms_key_id=dict(type="str"),
                                     boot_volume_vpus_per_gb=dict(type="int"),
                                     source_type=dict(
                                         type="str",
@@ -2697,10 +2806,11 @@ def main():
                             availability_config=dict(
                                 type="dict",
                                 options=dict(
+                                    is_live_migration_preferred=dict(type="bool"),
                                     recovery_action=dict(
                                         type="str",
                                         choices=["RESTORE_INSTANCE", "STOP_INSTANCE"],
-                                    )
+                                    ),
                                 ),
                             ),
                             preemptible_instance_config=dict(

@@ -196,8 +196,10 @@ options:
         suboptions:
             db_version:
                 description:
-                    - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
+                    - A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.
+                    - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                      adminPassword, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds,
+                      isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
                     - Required when source is 'NONE'
                 type: str
             freeform_tags:
@@ -270,6 +272,10 @@ options:
                         type: str
                     db_workload:
                         description:
+                            - "**Deprecated.** The dbWorkload field has been deprecated for Exadata Database Service on Dedicated Infrastructure, Exadata
+                              Database Service on Cloud@Customer, and Base Database Service.
+                              Support for this attribute will end in November 2023. You may choose to update your custom scripts to exclude the dbWorkload
+                              attribute. After November 2023 if you pass a value to the dbWorkload attribute, it will be ignored."
                             - The database workload type.
                             - Applicable when source is 'NONE'
                         type: str
@@ -359,6 +365,7 @@ options:
                                             - "RECOVERY_APPLIANCE"
                                             - "OBJECT_STORE"
                                             - "LOCAL"
+                                            - "DBRS"
                                         required: true
                                     id:
                                         description:
@@ -382,6 +389,21 @@ options:
                                             - Proxy URL to connect to object store.
                                             - Applicable when source is 'NONE'
                                         type: str
+                                    dbrs_policy_id:
+                                        description:
+                                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DBRS policy used for
+                                              backup.
+                                            - Applicable when source is 'NONE'
+                                        type: str
+                            backup_deletion_policy:
+                                description:
+                                    - "This defines when the backups will be deleted. - IMMEDIATE option keep the backup for predefined time i.e 72 hours and
+                                      then delete permanently... - RETAIN will keep the backups as per the policy defined for database backups."
+                                    - Applicable when source is 'NONE'
+                                type: str
+                                choices:
+                                    - "DELETE_IMMEDIATELY"
+                                    - "DELETE_AFTER_RETENTION_PERIOD"
                     freeform_tags:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -776,6 +798,8 @@ EXAMPLES = """
             vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
+            dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_deletion_policy: DELETE_IMMEDIATELY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -884,6 +908,8 @@ EXAMPLES = """
             vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
+            dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_deletion_policy: DELETE_IMMEDIATELY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -972,6 +998,8 @@ EXAMPLES = """
             vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
+            dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_deletion_policy: DELETE_IMMEDIATELY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1062,6 +1090,8 @@ EXAMPLES = """
             vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
+            dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_deletion_policy: DELETE_IMMEDIATELY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2049,13 +2079,22 @@ def main():
                                                     "RECOVERY_APPLIANCE",
                                                     "OBJECT_STORE",
                                                     "LOCAL",
+                                                    "DBRS",
                                                 ],
                                             ),
                                             id=dict(type="str"),
                                             vpc_user=dict(type="str"),
                                             vpc_password=dict(type="str", no_log=True),
                                             internet_proxy=dict(type="str"),
+                                            dbrs_policy_id=dict(type="str"),
                                         ),
+                                    ),
+                                    backup_deletion_policy=dict(
+                                        type="str",
+                                        choices=[
+                                            "DELETE_IMMEDIATELY",
+                                            "DELETE_AFTER_RETENTION_PERIOD",
+                                        ],
                                     ),
                                 ),
                             ),

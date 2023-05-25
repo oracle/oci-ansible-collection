@@ -187,8 +187,8 @@ db_system_shapes:
             sample: 56
         available_core_count_per_node:
             description:
-                - The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape and ExaCC
-                  Elastic shapes.
+                - The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape, ExaCC Elastic
+                  shapes and VM Flex shapes.
             returned: on success
             type: int
             sample: 56

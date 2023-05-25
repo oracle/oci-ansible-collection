@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an instance pool.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_compute_management_instance_pool_actions <ansible_collections.oracle.oci.oci_compute_management_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, start, stop.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_compute_management_instance_pool_actions <ansible_collections.oracle.oci.oci_compute_management_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, softstop, start, stop.
 
 
 .. Aliases

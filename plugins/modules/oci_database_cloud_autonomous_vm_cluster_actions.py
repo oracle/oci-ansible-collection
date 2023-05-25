@@ -229,13 +229,14 @@ cloud_autonomous_vm_cluster:
             sample: 3.4
         compute_model:
             description:
-                - The compute model of the Cloud Autonomous VM Cluster.
+                - The compute model of the Cloud Autonomous VM Cluster. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: str
             sample: ECPU
         cpu_core_count_per_node:
             description:
-                - The number of OCPU cores enabled per VM cluster node.
+                - The number of CPU cores enabled per VM cluster node.
             returned: on success
             type: int
             sample: 56
@@ -254,6 +255,9 @@ cloud_autonomous_vm_cluster:
                   database/index.html), this attribute must be null because the attribute is already set at the
                   Autonomous Exadata Infrastructure level. When using L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
                   database/index.html), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs,
+                  adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or
+                  isFreeTier."
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
@@ -382,9 +386,12 @@ cloud_autonomous_vm_cluster:
             sample: 3.4
         reclaimable_cpus:
             description:
-                - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
-                  Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous
-                  Container Database.
+                - "For Autonomous Databases on Dedicated Exadata Infrastructure:
+                  - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its
+                    Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by
+                    restarting the Autonomous Container Database.
+                  - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster's compute model. See L(Compute Models in Autonomous
+                    Database on Dedicated Exadata Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details."
             returned: on success
             type: float
             sample: 3.4
@@ -420,7 +427,7 @@ cloud_autonomous_vm_cluster:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each OCPU core.
+                - The amount of memory (in GBs) enabled per each CPU core.
             returned: on success
             type: int
             sample: 56
