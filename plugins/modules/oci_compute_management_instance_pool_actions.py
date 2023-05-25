@@ -36,6 +36,10 @@ description:
       which performs the action on all the instances in the pool.
       Softreset gracefully reboots the instances by sending a shutdown command to the operating systems.
       After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
+    - For I(action=softstop), performs the softstop (ACPI shutdown and power on) action on the specified instance pool,
+      which performs the action on all the instances in the pool.
+      Softstop gracefully reboots the instances by sending a shutdown command to the operating systems.
+      After waiting 15 minutes for the OS to shutdown, the instances are powered off and then powered back on.
     - For I(action=start), performs the start (power on) action on the specified instance pool,
       which performs the action on all the instances in the pool.
     - For I(action=stop), performs the stop (immediate power off) action on the specified instance pool,
@@ -88,6 +92,7 @@ options:
             - "detach_load_balancer"
             - "reset"
             - "softreset"
+            - "softstop"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -130,6 +135,12 @@ EXAMPLES = """
     # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: softreset
+
+- name: Perform action softstop on instance_pool
+  oci_compute_management_instance_pool_actions:
+    # required
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+    action: softstop
 
 - name: Perform action start on instance_pool
   oci_compute_management_instance_pool_actions:
@@ -380,6 +391,7 @@ class InstancePoolActionsHelperGen(OCIActionsHelperBase):
         detach_load_balancer
         reset
         softreset
+        softstop
         start
         stop
     """
@@ -507,6 +519,25 @@ class InstancePoolActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def softstop(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.softstop_instance_pool,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_pool_id=self.module.params.get("instance_pool_id"),
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def start(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.start_instance_pool,
@@ -574,6 +605,7 @@ def main():
                     "detach_load_balancer",
                     "reset",
                     "softreset",
+                    "softstop",
                     "start",
                     "stop",
                 ],

@@ -135,6 +135,24 @@ compute_capacity_reservation:
                     returned: on success
                     type: str
                     sample: FAULT-DOMAIN-1
+                cluster_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        hpc_island_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HpcIsland.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+                        network_block_ids:
+                            description:
+                                - The list of OCID of the network blocks.
+                            returned: on success
+                            type: list
+                            sample: []
                 instance_shape:
                     description:
                         - The shape to use when launching instances using compute capacity reservations. The shape determines the number of CPUs, the amount of
@@ -223,6 +241,10 @@ compute_capacity_reservation:
         "is_default_reservation": true,
         "instance_reservation_configs": [{
             "fault_domain": "FAULT-DOMAIN-1",
+            "cluster_config": {
+                "hpc_island_id": "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx",
+                "network_block_ids": []
+            },
             "instance_shape": "instance_shape_example",
             "instance_shape_config": {
                 "ocpus": 3.4,

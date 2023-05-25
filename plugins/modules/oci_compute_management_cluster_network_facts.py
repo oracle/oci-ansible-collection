@@ -108,6 +108,20 @@ cluster_networks:
     returned: on success
     type: complex
     contains:
+        hpc_island_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the hpc island used by the cluster network.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+        network_block_ids:
+            description:
+                - The list of network block OCIDs of the HPC island.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         placement_configuration:
             description:
                 - ""
@@ -387,6 +401,8 @@ cluster_networks:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "hpc_island_id": "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_block_ids": [],
         "placement_configuration": {
             "availability_domain": "Uocm:PHX-AD-1",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",

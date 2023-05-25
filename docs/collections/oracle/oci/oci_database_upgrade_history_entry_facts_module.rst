@@ -30,7 +30,7 @@ oracle.oci.oci_database_upgrade_history_entry_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -643,7 +643,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.</div>
+                                            <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_db_version_example</div>

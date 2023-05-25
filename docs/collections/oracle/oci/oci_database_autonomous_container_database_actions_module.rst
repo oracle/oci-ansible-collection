@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, move the Autonomous Container Database and its dependent resources to the specified compartment. For more information about moving Autonomous Container Databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
-- For *action=change_dataguard_role*, switch the Autonomous Container Database role between Standby and Snapshot Standby. For more information about changing Autonomous Container Databases Dataguard Role, see `Change Database Role to Snapshot Standby <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#changeRole>`_.
+- For *action=change_dataguard_role*, switch the Autonomous Container Database role between Standby and Snapshot Standby. For more information about changing Autonomous Container Databases Dataguard Role, see `Convert Physical Standby to Snapshot Standby <https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcl/index.html#ADBCL- GUID-D3B503F1-0032-4B0D-9F00-ACAE8151AB80>`_ and `Convert Snapshot Standby to Physical Standby <https://docs.oracle.com/en/cloud/paas/autonomous- database/dedicated/adbcl/index.html#ADBCL-GUID-E8D7E0EE-8244-467D-B33A-1BC6F969A0A4>`_.
 - For *action=restart*, rolling restarts the specified Autonomous Container Database.
 - For *action=rotate_autonomous_container_database_encryption_key*, creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
 
@@ -517,7 +517,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousContainerDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_exadata_infrastructure_id&#x27;: &#x27;ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_vm_cluster_id&#x27;: &#x27;ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;available_cpus&#x27;: 3.4, &#x27;backup_config&#x27;: {&#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;cloud_autonomous_vm_cluster_id&#x27;: &#x27;ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_model&#x27;: &#x27;RELEASE_UPDATES&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;reclaimable_cpus&#x27;: 3.4, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_level_agreement_type&#x27;: &#x27;STANDARD&#x27;, &#x27;standby_maintenance_buffer_in_days&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_snapshot_standby_revert&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_cpus&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;version_preference&#x27;: &#x27;NEXT_RELEASE_UPDATE&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_exadata_infrastructure_id&#x27;: &#x27;ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_vm_cluster_id&#x27;: &#x27;ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;available_cpus&#x27;: 3.4, &#x27;backup_config&#x27;: {&#x27;backup_destination_details&#x27;: [{&#x27;dbrs_policy_id&#x27;: &#x27;ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;cloud_autonomous_vm_cluster_id&#x27;: &#x27;ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_model&#x27;: &#x27;RELEASE_UPDATES&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;reclaimable_cpus&#x27;: 3.4, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_level_agreement_type&#x27;: &#x27;STANDARD&#x27;, &#x27;standby_maintenance_buffer_in_days&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_snapshot_standby_revert&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_cpus&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;version_preference&#x27;: &#x27;NEXT_RELEASE_UPDATE&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -586,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Sum of CPUs available on the Autonomous VM Cluster + Sum of reclaimable CPUs available in the Autonomous Container Database.</div>
+                                            <div>Sum of CPUs available on the Autonomous VM Cluster + Sum of reclaimable CPUs available in the Autonomous Container Database.&lt;br&gt; For Autonomous Databases on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -626,6 +626,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/backup_config/backup_destination_details/dbrs_policy_id"></div>
+                    <b>dbrs_policy_id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/backup_config/backup_destination_details/dbrs_policy_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DBRS policy used for backup.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -794,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The compute model of the Autonomous VM Cluster.</div>
+                                            <div>The compute model of the Autonomous VM Cluster. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ECPU</div>
@@ -1400,7 +1420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.</div>
+                                            <div>The amount of memory (in GBs) enabled per OCPU or ECPU in the Autonomous VM Cluster.See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1472,7 +1492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of CPU values that can be used to successfully provision a single Autonomous Database.</div>
+                                            <div>An array of CPU values that can be used to successfully provision a single Autonomous Database.\\ For Autonomous Database on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1488,7 +1508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the Autonomous Container Database.</div>
+                                            <div>For Autonomous Databases on Dedicated Exadata Infrastructure: - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the Autonomous Container Database. - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1596,7 +1616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of CPUs allocated to the Autonomous VM cluster.</div>
+                                            <div>The number of CPUs allocated to the Autonomous VM cluster.&lt;br&gt; For Autonomous Databases on Dedicated Exadata Infrastructure, the CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

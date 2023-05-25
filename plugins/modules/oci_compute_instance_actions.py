@@ -703,6 +703,12 @@ instance:
                     returned: on success
                     type: str
                     sample: local_disk_description_example
+        is_cross_numa_node:
+            description:
+                - Whether the instance's OCPUs and memory are distributed across multiple NUMA nodes.
+            returned: on success
+            type: bool
+            sample: true
         source_details:
             description:
                 - ""
@@ -985,6 +991,7 @@ instance:
             "local_disks_total_size_in_gbs": 3.4,
             "local_disk_description": "local_disk_description_example"
         },
+        "is_cross_numa_node": true,
         "source_details": {
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
             "source_type": "bootVolume",

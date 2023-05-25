@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -658,6 +658,65 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/block_volumes/create_details/block_volume_replicas"></div>
+                    <b>block_volume_replicas</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/block_volumes/create_details/block_volume_replicas" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of block volume replicas to be enabled for this volume in the specified destination availability domains.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/block_volumes/create_details/block_volume_replicas/availability_domain"></div>
+                    <b>availability_domain</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/block_volumes/create_details/block_volume_replicas/availability_domain" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The availability domain of the block volume replica.</div>
+                                            <div>Example: `Uocm:PHX-AD-1`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/block_volumes/create_details/block_volume_replicas/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/block_volumes/create_details/block_volume_replicas/display_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The display name of the block volume replica. You may optionally specify a *display name* for the block volume replica, otherwise a default is provided.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-instance_details/block_volumes/create_details/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_details/block_volumes/create_details/compartment_id" title="Permalink to this option"></a>
@@ -726,6 +785,28 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/block_volumes/create_details/is_auto_tune_enabled"></div>
+                    <b>is_auto_tune_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/block_volumes/create_details/is_auto_tune_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated. Use the `InstanceConfigurationDetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1074,6 +1155,28 @@ Parameters
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/availability_config/is_live_migration_preferred"></div>
+                    <b>is_live_migration_preferred</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/availability_config/is_live_migration_preferred" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to live migrate supported VM instances to a healthy physical VM host without disrupting running instances during infrastructure maintenance events. If null, Oracle chooses the best option for migrating the VM during infrastructure maintenance events.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
@@ -1802,7 +1905,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether virtualization instructions are available. For example, Secure Virtual Machine for AMD shapes or VT-x for Intel shapes.</div>
-                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
+                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_MILAN_BM_GPU&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1825,7 +1928,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the Access Control Service is enabled on the instance. When enabled, the platform can enforce PCIe device isolation, required for VFIO device pass-through.</div>
-                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
+                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_MILAN_BM_GPU&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1848,7 +1951,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the input-output memory management unit is enabled.</div>
-                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
+                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_MILAN_BM_GPU&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1938,7 +2041,7 @@ Parameters
                                                                 <td>
                                             <div>Whether symmetric multithreading is enabled on the instance. Symmetric multithreading is also called simultaneous multithreading (SMT) or Intel Hyper-Threading.</div>
                                             <div>Intel and AMD processors have two hardware execution threads per core (OCPU). SMT permits multiple independent threads of execution, to better use the resources and increase the efficiency of the CPU. When multithreading is disabled, only one thread is permitted to run on each core, which can provide higher or more predictable performance for some workloads.</div>
-                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
+                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_MILAN_BM_GPU&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1985,7 +2088,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The number of NUMA nodes per socket (NPS).</div>
-                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
+                                            <div>Applicable when type is one of [&#x27;AMD_MILAN_BM&#x27;, &#x27;AMD_MILAN_BM_GPU&#x27;, &#x27;AMD_ROME_BM_GPU&#x27;, &#x27;INTEL_ICELAKE_BM&#x27;, &#x27;AMD_ROME_BM&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2024,6 +2127,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>AMD_MILAN_BM</li>
                                                                                                                                                                                                 <li>INTEL_VM</li>
+                                                                                                                                                                                                <li>AMD_MILAN_BM_GPU</li>
                                                                                                                                                                                                 <li>INTEL_ICELAKE_BM</li>
                                                                                                                                                                                                 <li>AMD_ROME_BM</li>
                                                                                                                                                                                                 <li>INTEL_SKYLAKE_BM</li>
@@ -2348,6 +2452,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the image used to boot the instance.</div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/source_details/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/source_details/kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
                                             <div>Applicable when source_type is &#x27;image&#x27;</div>
                                                         </td>
             </tr>
@@ -2814,6 +2937,13 @@ Examples
               availability_domain: Uocm:PHX-AD-1
               backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
               compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+              is_auto_tune_enabled: true
+              block_volume_replicas:
+              - # required
+                availability_domain: Uocm:PHX-AD-1
+
+                # optional
+                display_name: display_name_example
               defined_tags: {'Operations': {'CostCenter': 'US'}}
               display_name: display_name_example
               freeform_tags: {'Department': 'Finance'}
@@ -2883,6 +3013,7 @@ Examples
               # optional
               boot_volume_size_in_gbs: 56
               image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+              kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
               boot_volume_vpus_per_gb: 56
             fault_domain: FAULT-DOMAIN-1
             dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2911,6 +3042,7 @@ Examples
               are_legacy_imds_endpoints_disabled: true
             availability_config:
               # optional
+              is_live_migration_preferred: true
               recovery_action: RESTORE_INSTANCE
             preemptible_instance_config:
               # required
@@ -3024,7 +3156,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the InstanceConfiguration resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deferred_fields&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: {&#x27;block_volumes&#x27;: [{&#x27;attach_details&#x27;: {&#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;type&#x27;: &#x27;iscsi&#x27;, &#x27;use_chap&#x27;: True}, &#x27;create_details&#x27;: {&#x27;autotune_policies&#x27;: [{&#x27;autotune_type&#x27;: &#x27;DETACHED_VOLUME&#x27;, &#x27;max_vpus_per_gb&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy_id&#x27;: &#x27;ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;volume&#x27;}, &#x27;vpus_per_gb&#x27;: 56}, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;instance_type&#x27;: &#x27;compute&#x27;, &#x27;launch_details&#x27;: {&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_memory_encryption_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;preferred_maintenance_action&#x27;: &#x27;LIVE_MIGRATE&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 3.4}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;boot_volume_vpus_per_gb&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}}, &#x27;secondary_vnics&#x27;: [{&#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;nic_index&#x27;: 56}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deferred_fields&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: {&#x27;block_volumes&#x27;: [{&#x27;attach_details&#x27;: {&#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;type&#x27;: &#x27;iscsi&#x27;, &#x27;use_chap&#x27;: True}, &#x27;create_details&#x27;: {&#x27;autotune_policies&#x27;: [{&#x27;autotune_type&#x27;: &#x27;DETACHED_VOLUME&#x27;, &#x27;max_vpus_per_gb&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy_id&#x27;: &#x27;ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;block_volume_replicas&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_auto_tune_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;volume&#x27;}, &#x27;vpus_per_gb&#x27;: 56}, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;instance_type&#x27;: &#x27;compute&#x27;, &#x27;launch_details&#x27;: {&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;is_live_migration_preferred&#x27;: True, &#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_memory_encryption_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;preferred_maintenance_action&#x27;: &#x27;LIVE_MIGRATE&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 3.4}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;boot_volume_vpus_per_gb&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}}, &#x27;secondary_vnics&#x27;: [{&#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;nic_index&#x27;: 56}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -3465,6 +3597,71 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas"></div>
+                    <b>block_volume_replicas</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of block volume replicas to be enabled for this volume in the specified destination availability domains.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas/availability_domain"></div>
+                    <b>availability_domain</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas/availability_domain" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The availability domain of the block volume replica.</div>
+                                            <div>Example: `Uocm:PHX-AD-1`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/block_volumes/create_details/block_volume_replicas/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The display name of the block volume replica. You may optionally specify a *display name* for the block volume replica, otherwise a default is provided.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/block_volumes/create_details/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/block_volumes/create_details/compartment_id" title="Permalink to this return value"></a>
@@ -3543,6 +3740,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/block_volumes/create_details/is_auto_tune_enabled"></div>
+                    <b>is_auto_tune_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/block_volumes/create_details/is_auto_tune_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated. Use the `InstanceConfigurationDetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -3909,6 +4127,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/availability_config/is_live_migration_preferred"></div>
+                    <b>is_live_migration_preferred</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/availability_config/is_live_migration_preferred" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to live migrate supported VM instances to a healthy physical VM host without disrupting running instances during infrastructure maintenance events. If null, Oracle chooses the best option for migrating the VM during infrastructure maintenance events.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -5212,6 +5451,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/source_details/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/source_details/kms_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the Vault service key to assign as the master encryption key for the boot volume.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

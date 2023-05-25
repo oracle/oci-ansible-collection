@@ -439,6 +439,9 @@ autonomous_database:
             description:
                 - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
                   memory. For Always Free databases, memory and CPU cannot be scaled.
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  adminPassword, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, privateEndpointLabel, nsgIds, dbVersion, isRefreshable,
+                  dbName, scheduledOperations, dbToolsDetails, or isLocalDataGuardEnabled"
             returned: on success
             type: bool
             sample: true
@@ -535,9 +538,9 @@ autonomous_database:
         compute_count:
             description:
                 - The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or
-                  Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the 'ECPU' compute model requires values in multiples of two.
-                  Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null
-                  value.
+                  Dedicated infrastructure.
+                  For an Autonomous Database on Shared infrastructure, the 'ECPU' compute model requires values in multiples of two. Required when using the
+                  `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.
             returned: on success
             type: float
             sample: 3.4
@@ -584,7 +587,7 @@ autonomous_database:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each OCPU core in Autonomous VM Cluster.
+                - The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.
             returned: on success
             type: int
             sample: 56
@@ -795,6 +798,9 @@ autonomous_database:
                   database/index.html), this attribute must be null because the attribute is already set at the
                   Autonomous Exadata Infrastructure level. When using L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
                   database/index.html), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs,
+                  adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or
+                  isFreeTier."
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
@@ -850,8 +856,11 @@ autonomous_database:
             sample: private_endpoint_example
         private_endpoint_label:
             description:
-                - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change
-                  the same private endpoint database to the public endpoint database.
+                - The resource's private endpoint label. Setting this to an empty string, after the creation of the private endpoint database, changes the
+                  private endpoint database to a public endpoint database.
+                - "This setting cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  adminPassword, whitelistedIps, isMTLSConnectionRequired, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, or
+                  isFreeTier."
             returned: on success
             type: str
             sample: private_endpoint_label_example
@@ -880,6 +889,9 @@ autonomous_database:
                   - DW - indicates an Autonomous Data Warehouse database
                   - AJD - indicates an Autonomous JSON Database
                   - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  adminPassword, whitelistedIps, isMTLSConnectionRequired, privateEndpointLabel, nsgIds, dbVersion, isRefreshable, dbName, scheduledOperations,
+                  dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: str
             sample: OLTP
@@ -909,6 +921,9 @@ autonomous_database:
                   For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
                   Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
                 - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations,
+                  dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: list
             sample: []
@@ -934,6 +949,9 @@ autonomous_database:
                   For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
                   Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
                 - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations,
+                  dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: list
             sample: []
@@ -993,7 +1011,10 @@ autonomous_database:
             sample: "2013-10-20T19:20:30+01:00"
         is_refreshable_clone:
             description:
-                - Indicates whether the Autonomous Database is a refreshable clone.
+                - Indicates if the Autonomous Database is a refreshable clone.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps,
+                  openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails,
+                  isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: bool
             sample: true
@@ -1018,7 +1039,9 @@ autonomous_database:
             sample: "2013-10-20T19:20:30+01:00"
         open_mode:
             description:
-                - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
+                - Indicates the Autonomous Database mode. The database can be opened in `READ_ONLY` or `READ_WRITE` mode.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps,
+                  isMTLSConnectionRequired, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, or isFreeTier."
             returned: on success
             type: str
             sample: READ_ONLY
@@ -1045,7 +1068,9 @@ autonomous_database:
             sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
-                - The Autonomous Database permission level. Restricted mode allows access only to admin users.
+                - The Autonomous Database permission level. Restricted mode allows access only by admin users.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps,
+                  isMTLSConnectionRequired, nsgIds, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, or isFreeTier."
             returned: on success
             type: str
             sample: RESTRICTED
@@ -1227,7 +1252,23 @@ autonomous_database:
             sample: []
         is_mtls_connection_required:
             description:
-                - Indicates whether the Autonomous Database requires mTLS connections.
+                - Specifies if the Autonomous Database requires mTLS connections.
+                - "This may not be updated in parallel with any of the following: licenseModel, databaseEdition, cpuCoreCount, computeCount, maxCpuCoreCount,
+                  dataStorageSizeInTBs, whitelistedIps, openMode, permissionLevel, db-workload, privateEndpointLabel, nsgIds, customerContacts, dbVersion,
+                  scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
+                - "Service Change: The default value of the isMTLSConnectionRequired attribute will change from true to false on July 1, 2023 in the following
+                  APIs:
+                  - CreateAutonomousDatabase
+                  - GetAutonomousDatabase
+                  - UpdateAutonomousDatabase
+                  Details: Prior to the July 1, 2023 change, the isMTLSConnectionRequired attribute default value was true. This applies to Autonomous Databases
+                  on shared Exadata infrastructure.
+                  Does this impact me? If you use or maintain custom scripts or Terraform scripts referencing the CreateAutonomousDatabase,
+                  GetAutonomousDatabase, or UpdateAutonomousDatabase APIs, you want to check, and possibly modify, the scripts for the changed default value of
+                  the attribute. Should you choose not to leave your scripts unchanged, the API calls containing this attribute will continue to work, but the
+                  default value will switch from true to false.
+                  How do I make this change? Using either OCI SDKs or command line tools, update your custom scripts to explicitly set the
+                  isMTLSConnectionRequired attribute to true."
             returned: on success
             type: bool
             sample: true
@@ -1255,7 +1296,10 @@ autonomous_database:
             sample: EARLY
         scheduled_operations:
             description:
-                - list of scheduled operations
+                - The list of scheduled operations.
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, isRefreshable,
+                  dbName, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: complex
             contains:
@@ -1318,7 +1362,10 @@ autonomous_database:
             sample: STANDARD_EDITION
         db_tools_details:
             description:
-                - List of database tools details.
+                - The list of database tools details.
+                - "This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel,
+                  whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, isRefreshable,
+                  dbName, scheduledOperations, isLocalDataGuardEnabled, or isFreeTier."
             returned: on success
             type: complex
             contains:

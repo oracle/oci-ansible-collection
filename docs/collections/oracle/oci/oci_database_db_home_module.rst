@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -442,6 +442,28 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/backup_deletion_policy"></div>
+                    <b>backup_deletion_policy</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/backup_deletion_policy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DELETE_IMMEDIATELY</li>
+                                                                                                                                                                                                <li>DELETE_AFTER_RETENTION_PERIOD</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>This defines when the backups will be deleted. - IMMEDIATE option keep the backup for predefined time i.e 72 hours and then delete permanently... - RETAIN will keep the backups as per the policy defined for database backups.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/backup_destination_details"></div>
                     <b>backup_destination_details</b>
                     <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/backup_destination_details" title="Permalink to this option"></a>
@@ -457,6 +479,25 @@ Parameters
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/backup_destination_details/dbrs_policy_id"></div>
+                    <b>dbrs_policy_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/backup_destination_details/dbrs_policy_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DBRS policy used for backup.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
@@ -512,6 +553,7 @@ Parameters
                                                                                                                                                                                                 <li>RECOVERY_APPLIANCE</li>
                                                                                                                                                                                                 <li>OBJECT_STORE</li>
                                                                                                                                                                                                 <li>LOCAL</li>
+                                                                                                                                                                                                <li>DBRS</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -627,6 +669,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
+                                            <div>**Deprecated.** The dbWorkload field has been deprecated for Exadata Database Service on Dedicated Infrastructure, Exadata Database Service on Cloud@Customer, and Base Database Service. Support for this attribute will end in November 2023. You may choose to update your custom scripts to exclude the dbWorkload attribute. After November 2023 if you pass a value to the dbWorkload attribute, it will be ignored.</div>
                                             <div>The database workload type.</div>
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
@@ -864,7 +907,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.</div>
+                                            <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
@@ -1280,6 +1324,8 @@ Examples
               vpc_user: vpc_user_example
               vpc_password: example-password
               internet_proxy: internet_proxy_example
+              dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_deletion_policy: DELETE_IMMEDIATELY
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1330,6 +1376,8 @@ Examples
               vpc_user: vpc_user_example
               vpc_password: example-password
               internet_proxy: internet_proxy_example
+              dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_deletion_policy: DELETE_IMMEDIATELY
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1380,6 +1428,8 @@ Examples
               vpc_user: vpc_user_example
               vpc_password: example-password
               internet_proxy: internet_proxy_example
+              dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_deletion_policy: DELETE_IMMEDIATELY
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1438,6 +1488,8 @@ Examples
               vpc_user: vpc_user_example
               vpc_password: example-password
               internet_proxy: internet_proxy_example
+              dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_deletion_policy: DELETE_IMMEDIATELY
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1489,6 +1541,8 @@ Examples
               vpc_user: vpc_user_example
               vpc_password: example-password
               internet_proxy: internet_proxy_example
+              dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_deletion_policy: DELETE_IMMEDIATELY
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

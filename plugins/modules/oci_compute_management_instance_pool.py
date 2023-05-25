@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an instance pool.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_pool_actions) module: attach_load_balancer,
-      change_compartment, detach_load_balancer, reset, softreset, start, stop."
+      change_compartment, detach_load_balancer, reset, softreset, softstop, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

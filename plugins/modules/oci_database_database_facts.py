@@ -170,6 +170,10 @@ databases:
             sample: pdb_name_example
         db_workload:
             description:
+                - "**Deprecated.** The dbWorkload field has been deprecated for Exadata Database Service on Dedicated Infrastructure, Exadata Database Service
+                  on Cloud@Customer, and Base Database Service.
+                  Support for this attribute will end in November 2023. You may choose to update your custom scripts to exclude the dbWorkload attribute. After
+                  November 2023 if you pass a value to the dbWorkload attribute, it will be ignored."
                 - The database workload type.
             returned: on success
             type: str
@@ -202,6 +206,18 @@ databases:
         last_backup_timestamp:
             description:
                 - The date and time when the latest database backup was created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        last_backup_duration_in_seconds:
+            description:
+                - The duration when the latest database backup created.
+            returned: on success
+            type: int
+            sample: 56
+        last_failed_backup_timestamp:
+            description:
+                - The date and time when the latest database backup failed.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -275,6 +291,19 @@ databases:
                             returned: on success
                             type: str
                             sample: internet_proxy_example
+                        dbrs_policy_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DBRS policy used for backup.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+                backup_deletion_policy:
+                    description:
+                        - "This defines when the backups will be deleted. - IMMEDIATE option keep the backup for predefined time i.e 72 hours and then delete
+                          permanently... - RETAIN will keep the backups as per the policy defined for database backups."
+                    returned: on success
+                    type: str
+                    sample: DELETE_IMMEDIATELY
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -393,6 +422,8 @@ databases:
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
         "last_backup_timestamp": "2013-10-20T19:20:30+01:00",
+        "last_backup_duration_in_seconds": 56,
+        "last_failed_backup_timestamp": "2013-10-20T19:20:30+01:00",
         "db_backup_config": {
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
@@ -402,8 +433,10 @@ databases:
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
                 "vpc_password": "example-password",
-                "internet_proxy": "internet_proxy_example"
-            }]
+                "internet_proxy": "internet_proxy_example",
+                "dbrs_policy_id": "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+            }],
+            "backup_deletion_policy": "DELETE_IMMEDIATELY"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

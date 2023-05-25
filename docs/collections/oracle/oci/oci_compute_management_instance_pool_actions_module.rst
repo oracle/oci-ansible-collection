@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool_actions -- Perform actions on an
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -62,6 +62,7 @@ Synopsis
 - For *action=detach_load_balancer*, detach a load balancer from the instance pool.
 - For *action=reset*, performs the reset (immediate power off and power on) action on the specified instance pool, which performs the action on all the instances in the pool.
 - For *action=softreset*, performs the softreset (ACPI shutdown and power on) action on the specified instance pool, which performs the action on all the instances in the pool. Softreset gracefully reboots the instances by sending a shutdown command to the operating systems. After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
+- For *action=softstop*, performs the softstop (ACPI shutdown and power on) action on the specified instance pool, which performs the action on all the instances in the pool. Softstop gracefully reboots the instances by sending a shutdown command to the operating systems. After waiting 15 minutes for the OS to shutdown, the instances are powered off and then powered back on.
 - For *action=start*, performs the start (power on) action on the specified instance pool, which performs the action on all the instances in the pool.
 - For *action=stop*, performs the stop (immediate power off) action on the specified instance pool, which performs the action on all the instances in the pool.
 
@@ -108,6 +109,7 @@ Parameters
                                                                                                                                                                                                 <li>detach_load_balancer</li>
                                                                                                                                                                                                 <li>reset</li>
                                                                                                                                                                                                 <li>softreset</li>
+                                                                                                                                                                                                <li>softstop</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                     </ul>
@@ -500,6 +502,12 @@ Examples
         # required
         instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: softreset
+
+    - name: Perform action softstop on instance_pool
+      oci_compute_management_instance_pool_actions:
+        # required
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+        action: softstop
 
     - name: Perform action start on instance_pool
       oci_compute_management_instance_pool_actions:

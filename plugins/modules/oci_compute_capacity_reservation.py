@@ -116,6 +116,21 @@ options:
                       the L(Identity and Access Management Service API,https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
                     - "Example: `FAULT-DOMAIN-1`"
                 type: str
+            cluster_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    hpc_island_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HpcIsland.
+                        type: str
+                        required: true
+                    network_block_ids:
+                        description:
+                            - The list of OCID of the network blocks.
+                        type: list
+                        elements: str
             reserved_count:
                 description:
                     - The total number of instances that can be launched from the capacity configuration.
@@ -163,6 +178,12 @@ EXAMPLES = """
         ocpus: 3.4
         memory_in_gbs: 3.4
       fault_domain: FAULT-DOMAIN-1
+      cluster_config:
+        # required
+        hpc_island_id: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        network_block_ids: [ "network_block_ids_example" ]
 
 - name: Update compute_capacity_reservation
   oci_compute_capacity_reservation:
@@ -185,6 +206,12 @@ EXAMPLES = """
         ocpus: 3.4
         memory_in_gbs: 3.4
       fault_domain: FAULT-DOMAIN-1
+      cluster_config:
+        # required
+        hpc_island_id: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        network_block_ids: [ "network_block_ids_example" ]
 
 - name: Update compute_capacity_reservation using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_capacity_reservation:
@@ -207,6 +234,12 @@ EXAMPLES = """
         ocpus: 3.4
         memory_in_gbs: 3.4
       fault_domain: FAULT-DOMAIN-1
+      cluster_config:
+        # required
+        hpc_island_id: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        network_block_ids: [ "network_block_ids_example" ]
 
 - name: Delete compute_capacity_reservation
   oci_compute_capacity_reservation:
@@ -297,6 +330,24 @@ compute_capacity_reservation:
                     returned: on success
                     type: str
                     sample: FAULT-DOMAIN-1
+                cluster_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        hpc_island_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HpcIsland.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+                        network_block_ids:
+                            description:
+                                - The list of OCID of the network blocks.
+                            returned: on success
+                            type: list
+                            sample: []
                 instance_shape:
                     description:
                         - The shape to use when launching instances using compute capacity reservations. The shape determines the number of CPUs, the amount of
@@ -385,6 +436,10 @@ compute_capacity_reservation:
         "is_default_reservation": true,
         "instance_reservation_configs": [{
             "fault_domain": "FAULT-DOMAIN-1",
+            "cluster_config": {
+                "hpc_island_id": "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx",
+                "network_block_ids": []
+            },
             "instance_shape": "instance_shape_example",
             "instance_shape_config": {
                 "ocpus": 3.4,
@@ -596,6 +651,13 @@ def main():
                         ),
                     ),
                     fault_domain=dict(type="str"),
+                    cluster_config=dict(
+                        type="dict",
+                        options=dict(
+                            hpc_island_id=dict(type="str", required=True),
+                            network_block_ids=dict(type="list", elements="str"),
+                        ),
+                    ),
                     reserved_count=dict(type="int", required=True),
                 ),
             ),

@@ -30,7 +30,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -422,7 +422,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.</div>
+                                            <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                             <div>Required when source is &#x27;DB_VERSION&#x27;</div>
                                                         </td>
             </tr>
@@ -950,7 +951,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Database resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;management_type&#x27;: &#x27;BASIC&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_ONE&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cdb&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;sid_prefix&#x27;: &#x27;sid_prefix_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;management_type&#x27;: &#x27;BASIC&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_ONE&#x27;, &#x27;backup_deletion_policy&#x27;: &#x27;DELETE_IMMEDIATELY&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;dbrs_policy_id&#x27;: &#x27;ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cdb&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_duration_in_seconds&#x27;: 56, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;last_failed_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;sid_prefix&#x27;: &#x27;sid_prefix_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1193,6 +1194,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database/db_backup_config/backup_deletion_policy"></div>
+                    <b>backup_deletion_policy</b>
+                    <a class="ansibleOptionLink" href="#return-database/db_backup_config/backup_deletion_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This defines when the backups will be deleted. - IMMEDIATE option keep the backup for predefined time i.e 72 hours and then delete permanently... - RETAIN will keep the backups as per the policy defined for database backups.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DELETE_IMMEDIATELY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database/db_backup_config/backup_destination_details"></div>
                     <b>backup_destination_details</b>
                     <a class="ansibleOptionLink" href="#return-database/db_backup_config/backup_destination_details" title="Permalink to this return value"></a>
@@ -1207,6 +1227,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database/db_backup_config/backup_destination_details/dbrs_policy_id"></div>
+                    <b>dbrs_policy_id</b>
+                    <a class="ansibleOptionLink" href="#return-database/db_backup_config/backup_destination_details/dbrs_policy_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DBRS policy used for backup.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1411,6 +1451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
+                                            <div>**Deprecated.** The dbWorkload field has been deprecated for Exadata Database Service on Dedicated Infrastructure, Exadata Database Service on Cloud@Customer, and Base Database Service. Support for this attribute will end in November 2023. You may choose to update your custom scripts to exclude the dbWorkload attribute. After November 2023 if you pass a value to the dbWorkload attribute, it will be ignored.</div>
                                             <div>The database workload type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1529,6 +1570,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database/last_backup_duration_in_seconds"></div>
+                    <b>last_backup_duration_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-database/last_backup_duration_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The duration when the latest database backup created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database/last_backup_timestamp"></div>
                     <b>last_backup_timestamp</b>
                     <a class="ansibleOptionLink" href="#return-database/last_backup_timestamp" title="Permalink to this return value"></a>
@@ -1539,6 +1598,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time when the latest database backup was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database/last_failed_backup_timestamp"></div>
+                    <b>last_failed_backup_timestamp</b>
+                    <a class="ansibleOptionLink" href="#return-database/last_failed_backup_timestamp" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time when the latest database backup failed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

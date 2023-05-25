@@ -192,6 +192,12 @@ shapes:
                     returned: on success
                     type: float
                     sample: 3.4
+                max_per_numa_node:
+                    description:
+                        - The maximum number of cores available per NUMA node.
+                    returned: on success
+                    type: float
+                    sample: 3.4
         memory_options:
             description:
                 - ""
@@ -225,6 +231,12 @@ shapes:
                 max_per_ocpu_in_gbs:
                     description:
                         - The maximum amount of memory per OCPU available for this shape, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_per_numa_node_in_gbs:
+                    description:
+                        - The maximum amount of memory per NUMA node, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -549,14 +561,16 @@ shapes:
         "is_live_migration_supported": true,
         "ocpu_options": {
             "min": 3.4,
-            "max": 3.4
+            "max": 3.4,
+            "max_per_numa_node": 3.4
         },
         "memory_options": {
             "min_in_g_bs": 3.4,
             "max_in_g_bs": 3.4,
             "default_per_ocpu_in_g_bs": 3.4,
             "min_per_ocpu_in_gbs": 3.4,
-            "max_per_ocpu_in_gbs": 3.4
+            "max_per_ocpu_in_gbs": 3.4,
+            "max_per_numa_node_in_gbs": 3.4
         },
         "networking_bandwidth_options": {
             "min_in_gbps": 3.4,

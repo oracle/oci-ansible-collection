@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_vm_cluster_actions -- Perform actions on an A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -552,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The compute model of the Autonomous VM Cluster.</div>
+                                            <div>The compute model of the Autonomous VM Cluster. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ECPU</div>
@@ -1117,7 +1117,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The amount of memory (in GBs) enabled per each OCPU core.</div>
+                                            <div>The amount of memory (in GBs) to be enabled per each CPU core.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1207,7 +1207,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous Container Database.</div>
+                                            <div>For Autonomous Databases on Dedicated Exadata Infrastructure: - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the Autonomous Container Database. - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

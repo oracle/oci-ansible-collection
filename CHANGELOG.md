@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.23.0]
+
+## Added
+- Support for parity with the configuration options of the Compute service in the Compute Management service
+- Support for high-memory VMs in the Compute service
+- Support for launching bare metal instances in an RDMA network in the Compute service
+- Support for Exadata cloud service application virtual IPs (VIPs) in the Database service
+- Support for backup automation integration with the Database Recovery service in the Database service
+- Support for management saved search in Management Dashboard Service
+
+## Fixed
+- Datatype issue with `drilldown_config` param in `oci_management_dashboard_actions` module
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.103.0
+
 ## [4.22.0]
 
 ## Added

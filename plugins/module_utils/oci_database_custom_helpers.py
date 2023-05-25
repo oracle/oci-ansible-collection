@@ -335,9 +335,9 @@ class DbHomeHelperCustom:
 
             module.params["db_version"] = module.params.get("patch_details")
 
-        # this is a param rename in the codegen so this name will be meaningless to
-        # all subsequent generated code
-        del module.params["patch_details"]
+            # this is a param rename in the codegen so this name will be meaningless to
+            # all subsequent generated code
+            del module.params["patch_details"]
 
         super(DbHomeHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
