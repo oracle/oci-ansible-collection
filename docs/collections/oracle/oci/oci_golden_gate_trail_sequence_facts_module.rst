@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_trail_sequence_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -179,6 +179,7 @@ Parameters
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
                                                                                                                                                                                                 <li>resource_principal</li>
+                                                                                                                                                                                                <li>security_token</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

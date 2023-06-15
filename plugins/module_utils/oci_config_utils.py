@@ -176,6 +176,15 @@ def create_service_client(
     if _is_resource_principal_auth(module):
         kwargs["signer"] = _create_resource_principal_signer()
 
+    if _is_security_token_auth(module):
+        security_token_file = config.get("security_token_file")
+        if not security_token_file:
+            raise ValueError("security_token_file is required for security_token auth")
+        key_file = config.get("key_file")
+        if not key_file:
+            raise ValueError("key_file is required for security_token auth")
+        kwargs["signer"] = _create_security_token_signer(security_token_file, key_file)
+
     # XXX: Validate configuration -- this may be redundant, as all Client constructors perform a validation
     try:
         oci.config.validate_config(config, **kwargs)
@@ -308,6 +317,16 @@ def _create_resource_principal_signer():
     return get_resource_principals_signer()
 
 
+def _create_security_token_signer(security_token_file, key_file):
+    signer_kwargs = {}
+    token_file_expanded_location = os.path.expanduser(security_token_file)
+    with open(token_file_expanded_location, "r") as token_file:
+        signer_kwargs["token"] = token_file.read().strip()
+    signer_kwargs["private_key"] = oci.signer.load_private_key_from_file(key_file)
+    signer = oci.auth.signers.SecurityTokenSigner(**signer_kwargs)
+    return signer
+
+
 def _is_instance_principal_auth_purpose(module):
     # check if auth purpose is overridden via module params
     instance_principal_auth_purpose = (
@@ -385,6 +404,17 @@ def _is_resource_principal_auth(module):
     if (
         "OCI_ANSIBLE_AUTH_TYPE" in os.environ
         and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "resource_principal"
+    ):
+        return True
+    return False
+
+
+def _is_security_token_auth(module):
+    if "auth_type" in module.params and module.params["auth_type"] == "security_token":
+        return True
+    if (
+        "OCI_ANSIBLE_AUTH_TYPE" in os.environ
+        and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "security_token"
     ):
         return True
     return False

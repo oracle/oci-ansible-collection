@@ -42,6 +42,42 @@ options:
         description:
             - Indicates whether the backup is long-term
         type: bool
+    backup_destination_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the database backup destination.
+                type: str
+                choices:
+                    - "NFS"
+                    - "RECOVERY_APPLIANCE"
+                    - "OBJECT_STORE"
+                    - "LOCAL"
+                    - "DBRS"
+                required: true
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                type: str
+            vpc_user:
+                description:
+                    - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
+                type: str
+            vpc_password:
+                description:
+                    - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                type: str
+            internet_proxy:
+                description:
+                    - Proxy URL to connect to object store.
+                type: str
+            dbrs_policy_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DBRS policy used for backup.
+                type: str
     retention_period_in_days:
         description:
             - Retention period, in days, for long-term backups
@@ -75,6 +111,16 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     is_long_term_backup: true
+    backup_destination_details:
+      # required
+      type: NFS
+
+      # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      vpc_user: vpc_user_example
+      vpc_password: example-password
+      internet_proxy: internet_proxy_example
+      dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     retention_period_in_days: 56
 
 - name: Update autonomous_database_backup
@@ -242,6 +288,48 @@ autonomous_database_backup:
             returned: on success
             type: float
             sample: 1.2
+        backup_destination_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the database backup destination.
+                    returned: on success
+                    type: str
+                    sample: NFS
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vpc_user:
+                    description:
+                        - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
+                    returned: on success
+                    type: str
+                    sample: vpc_user_example
+                vpc_password:
+                    description:
+                        - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                    returned: on success
+                    type: str
+                    sample: example-password
+                internet_proxy:
+                    description:
+                        - Proxy URL to connect to object store.
+                    returned: on success
+                    type: str
+                    sample: internet_proxy_example
+                dbrs_policy_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DBRS policy used for backup.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -263,7 +351,15 @@ autonomous_database_backup:
         "retention_period_in_days": 56,
         "time_available_till": "2013-10-20T19:20:30+01:00",
         "db_version": "db_version_example",
-        "size_in_tbs": 1.2
+        "size_in_tbs": 1.2,
+        "backup_destination_details": {
+            "type": "NFS",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vpc_user": "vpc_user_example",
+            "vpc_password": "example-password",
+            "internet_proxy": "internet_proxy_example",
+            "dbrs_policy_id": "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+        }
     }
 """
 
@@ -440,6 +536,27 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             autonomous_database_id=dict(type="str"),
             is_long_term_backup=dict(type="bool"),
+            backup_destination_details=dict(
+                type="dict",
+                options=dict(
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "NFS",
+                            "RECOVERY_APPLIANCE",
+                            "OBJECT_STORE",
+                            "LOCAL",
+                            "DBRS",
+                        ],
+                    ),
+                    id=dict(type="str"),
+                    vpc_user=dict(type="str"),
+                    vpc_password=dict(type="str", no_log=True),
+                    internet_proxy=dict(type="str"),
+                    dbrs_policy_id=dict(type="str"),
+                ),
+            ),
             retention_period_in_days=dict(type="int"),
             autonomous_database_backup_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.24.0]
+
+## Added
+- Support for security token authentication
+- Support for database OS patching in the Database service
+- Support for Long Term Backup for Autonomous Databases on Exadata Cloud at Customer in the Database Service
+- Support for setting a management dashboard or saved search to be shared across OCI Observability & Management services in the Management Dashboard service
+- Support to list management_dashboards in the Management Dashboard service
+
+
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.104.2
+
 ## [4.23.0]
 
 ## Added

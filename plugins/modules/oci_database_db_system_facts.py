@@ -314,6 +314,12 @@ db_systems:
             returned: on success
             type: str
             sample: version_example
+        os_version:
+            description:
+                - The most recent OS Patch Version applied on the DB system.
+            returned: on success
+            type: str
+            sample: os_version_example
         cpu_core_count:
             description:
                 - The number of CPU cores enabled on the DB system.
@@ -646,6 +652,7 @@ db_systems:
         "domain": "domain_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "version": "version_example",
+        "os_version": "os_version_example",
         "cpu_core_count": 56,
         "cluster_name": "cluster_name_example",
         "data_storage_percentage": 56,
