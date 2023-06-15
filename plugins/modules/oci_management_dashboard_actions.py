@@ -64,12 +64,13 @@ options:
                 required: true
             provider_name:
                 description:
-                    - Name of the service (for example, Logging Analytics) that owns the dashboard.
+                    - The user friendly name of the service (for example, Logging Analytics) that owns the dashboard.
                 type: str
                 required: true
             provider_version:
                 description:
-                    - Version of the service that owns the dashboard.
+                    - The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved
+                      search (or dashboard) should use providerVersion 3.0.0.
                 type: str
                 required: true
             tiles:
@@ -117,12 +118,14 @@ options:
                         required: true
                     ui_config:
                         description:
-                            - JSON that contains user interface options.
+                            - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to
+                              the visualization.
                         type: dict
                         required: true
                     data_config:
                         description:
-                            - Array of JSON that contain data source options.
+                            - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for
+                              various data sources.
                         type: list
                         elements: dict
                         required: true
@@ -173,7 +176,7 @@ options:
                 required: true
             metadata_version:
                 description:
-                    - Version of the metadata.
+                    - The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.
                 type: str
                 required: true
             is_show_description:
@@ -193,12 +196,14 @@ options:
                 required: true
             ui_config:
                 description:
-                    - JSON that contains user interface options.
+                    - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the
+                      visualization.
                 type: dict
                 required: true
             data_config:
                 description:
-                    - Array of JSON that contain data source options.
+                    - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various
+                      data sources.
                 type: list
                 elements: dict
                 required: true
@@ -237,12 +242,13 @@ options:
                         required: true
                     provider_version:
                         description:
-                            - Version of the service that owns this saved search.
+                            - The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created
+                              saved search (or dashboard) should use providerVersion 3.0.0.
                         type: str
                         required: true
                     provider_name:
                         description:
-                            - Name of the service (for example, Logging Analytics) that owns the saved search.
+                            - The user friendly name of the service (for example, Logging Analytics) that owns the saved search.
                         type: str
                         required: true
                     compartment_id:
@@ -280,12 +286,14 @@ options:
                         required: true
                     ui_config:
                         description:
-                            - JSON that contains user interface options.
+                            - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to
+                              the visualization.
                         type: dict
                         required: true
                     data_config:
                         description:
-                            - Array of JSON that contain data source options.
+                            - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for
+                              various data sources.
                         type: list
                         elements: dict
                         required: true
@@ -296,17 +304,17 @@ options:
                         required: true
                     metadata_version:
                         description:
-                            - Version of the metadata.
+                            - The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.
                         type: str
                         required: true
                     widget_template:
                         description:
-                            - Reference to the HTML file of the widget.
+                            - The UI template that the saved search uses to render itself.
                         type: str
                         required: true
                     widget_vm:
                         description:
-                            - Reference to the view model of the widget.
+                            - The View Model that the saved search uses to render itself.
                         type: str
                         required: true
                     freeform_tags:
@@ -324,6 +332,10 @@ options:
                             - Defines parameters for the saved search.
                         type: list
                         elements: dict
+                    features_config:
+                        description:
+                            - Contains configuration for enabling features.
+                        type: dict
                     drilldown_config:
                         description:
                             - Drill-down configuration to define the destination of a drill-down action.
@@ -334,6 +346,10 @@ options:
                     - Defines parameters for the dashboard.
                 type: list
                 elements: dict
+            features_config:
+                description:
+                    - Contains configuration for enabling features.
+                type: dict
             drilldown_config:
                 description:
                     - Drill-down configuration to define the destination of a drill-down action.
@@ -440,10 +456,12 @@ EXAMPLES = """
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         parameters_config: [ "parameters_config_example" ]
+        features_config: null
         drilldown_config: [ "drilldown_config_example" ]
 
       # optional
       parameters_config: [ "parameters_config_example" ]
+      features_config: null
       drilldown_config: [ "drilldown_config_example" ]
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -482,13 +500,14 @@ management_dashboard:
                     sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                 provider_name:
                     description:
-                        - Name of the service (for example, Logging Analytics) that owns the dashboard.
+                        - The user friendly name of the service (for example, Logging Analytics) that owns the dashboard.
                     returned: on success
                     type: str
                     sample: provider_name_example
                 provider_version:
                     description:
-                        - Version of the service that owns the dashboard.
+                        - The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved
+                          search (or dashboard) should use providerVersion 3.0.0.
                     returned: on success
                     type: str
                     sample: provider_version_example
@@ -542,13 +561,15 @@ management_dashboard:
                             sample: {}
                         ui_config:
                             description:
-                                - JSON that contains user interface options.
+                                - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data
+                                  to the visualization.
                             returned: on success
                             type: dict
                             sample: {}
                         data_config:
                             description:
-                                - Array of JSON that contain data source options.
+                                - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed
+                                  for various data sources.
                             returned: on success
                             type: list
                             sample: []
@@ -603,7 +624,7 @@ management_dashboard:
                     sample: true
                 metadata_version:
                     description:
-                        - Version of the metadata.
+                        - The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.
                     returned: on success
                     type: str
                     sample: metadata_version_example
@@ -627,13 +648,15 @@ management_dashboard:
                     sample: {}
                 ui_config:
                     description:
-                        - JSON that contains user interface options.
+                        - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the
+                          visualization.
                     returned: on success
                     type: dict
                     sample: {}
                 data_config:
                     description:
-                        - Array of JSON that contain data source options.
+                        - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for
+                          various data sources.
                     returned: on success
                     type: list
                     sample: []
@@ -675,13 +698,14 @@ management_dashboard:
                             sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                         provider_version:
                             description:
-                                - Version of the service that owns this saved search.
+                                - The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly
+                                  created saved search (or dashboard) should use providerVersion 3.0.0.
                             returned: on success
                             type: str
                             sample: provider_version_example
                         provider_name:
                             description:
-                                - Name of the service (for example, Logging Analytics) that owns the saved search.
+                                - The user friendly name of the service (for example, Logging Analytics) that owns the saved search.
                             returned: on success
                             type: str
                             sample: provider_name_example
@@ -718,13 +742,15 @@ management_dashboard:
                             sample: SEARCH_SHOW_IN_DASHBOARD
                         ui_config:
                             description:
-                                - JSON that contains user interface options.
+                                - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data
+                                  to the visualization.
                             returned: on success
                             type: dict
                             sample: {}
                         data_config:
                             description:
-                                - Array of JSON that contain data source options.
+                                - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed
+                                  for various data sources.
                             returned: on success
                             type: list
                             sample: []
@@ -736,19 +762,19 @@ management_dashboard:
                             sample: screen_image_example
                         metadata_version:
                             description:
-                                - Version of the metadata.
+                                - The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.
                             returned: on success
                             type: str
                             sample: metadata_version_example
                         widget_template:
                             description:
-                                - Reference to the HTML file of the widget.
+                                - The UI template that the saved search uses to render itself.
                             returned: on success
                             type: str
                             sample: widget_template_example
                         widget_vm:
                             description:
-                                - Reference to the view model of the widget.
+                                - The View Model that the saved search uses to render itself.
                             returned: on success
                             type: str
                             sample: widget_vm_example
@@ -772,6 +798,12 @@ management_dashboard:
                             returned: on success
                             type: list
                             sample: []
+                        features_config:
+                            description:
+                                - Contains configuration for enabling features.
+                            returned: on success
+                            type: dict
+                            sample: {}
                         drilldown_config:
                             description:
                                 - Drill-down configuration to define the destination of a drill-down action.
@@ -784,6 +816,12 @@ management_dashboard:
                     returned: on success
                     type: list
                     sample: []
+                features_config:
+                    description:
+                        - Contains configuration for enabling features.
+                    returned: on success
+                    type: dict
+                    sample: {}
                 drilldown_config:
                     description:
                         - Drill-down configuration to define the destination of a drill-down action.
@@ -857,9 +895,11 @@ management_dashboard:
                 "freeform_tags": {'Department': 'Finance'},
                 "defined_tags": {'Operations': {'CostCenter': 'US'}},
                 "parameters_config": [],
+                "features_config": {},
                 "drilldown_config": []
             }],
             "parameters_config": [],
+            "features_config": {},
             "drilldown_config": [],
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -1038,10 +1078,12 @@ def main():
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
                             parameters_config=dict(type="list", elements="dict"),
+                            features_config=dict(type="dict"),
                             drilldown_config=dict(type="list", elements="dict"),
                         ),
                     ),
                     parameters_config=dict(type="list", elements="dict"),
+                    features_config=dict(type="dict"),
                     drilldown_config=dict(type="list", elements="dict"),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),

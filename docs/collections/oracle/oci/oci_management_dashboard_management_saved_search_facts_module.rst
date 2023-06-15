@@ -30,7 +30,7 @@ oracle.oci.oci_management_dashboard_management_saved_search_facts -- Fetches det
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -180,6 +180,7 @@ Parameters
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
                                                                                                                                                                                                 <li>resource_principal</li>
+                                                                                                                                                                                                <li>security_token</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -442,7 +443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementSavedSearch resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -475,7 +476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>User who created the saved search.</div>
+                                            <div>The principle id of the user that created this saved search. This is automatically managed by the system. In OCI the value is ignored. In EM it can skipped or otherwise it is ignored in both create and update API and system automatically sets its value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -493,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -571,6 +572,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_saved_searches/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_saved_searches/features_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Contains configuration for enabling features.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-management_saved_searches/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-management_saved_searches/freeform_tags" title="Permalink to this return value"></a>
@@ -634,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>State of dashboard.</div>
+                                            <div>OCI lifecycle status. This is automatically managed by the system.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
@@ -652,7 +669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the metadata.</div>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metadata_version_example</div>
@@ -828,7 +845,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -844,7 +861,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>User who updated the saved search.</div>
+                                            <div>The principle id of the user that updated this saved search.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_example</div>
@@ -862,7 +879,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reference to the HTML file of the widget.</div>
+                                            <div>The UI template that the saved search uses to render itself.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_template_example</div>
@@ -880,7 +897,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reference to the view model of the widget.</div>
+                                            <div>The View Model that the saved search uses to render itself.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_vm_example</div>

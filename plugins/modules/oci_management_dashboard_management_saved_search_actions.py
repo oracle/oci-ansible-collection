@@ -128,25 +128,28 @@ management_saved_search:
             sample: SEARCH_SHOW_IN_DASHBOARD
         ui_config:
             description:
-                - JSON that contains user interface options.
+                - It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the
+                  visualization.
             returned: on success
             type: dict
             sample: {}
         data_config:
             description:
-                - Array of JSON that contain data source options.
+                - It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data
+                  sources.
             returned: on success
             type: list
             sample: []
         created_by:
             description:
-                - User who created the saved search.
+                - The principle id of the user that created this saved search. This is automatically managed by the system. In OCI the value is ignored. In EM
+                  it can skipped or otherwise it is ignored in both create and update API and system automatically sets its value.
             returned: on success
             type: str
             sample: created_by_example
         updated_by:
             description:
-                - User who updated the saved search.
+                - The principle id of the user that updated this saved search.
             returned: on success
             type: str
             sample: updated_by_example
@@ -170,25 +173,25 @@ management_saved_search:
             sample: screen_image_example
         metadata_version:
             description:
-                - Version of the metadata.
+                - The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.
             returned: on success
             type: str
             sample: metadata_version_example
         widget_template:
             description:
-                - Reference to the HTML file of the widget.
+                - The UI template that the saved search uses to render itself.
             returned: on success
             type: str
             sample: widget_template_example
         widget_vm:
             description:
-                - Reference to the view model of the widget.
+                - The View Model that the saved search uses to render itself.
             returned: on success
             type: str
             sample: widget_vm_example
         lifecycle_state:
             description:
-                - State of dashboard.
+                - OCI lifecycle status. This is automatically managed by the system.
             returned: on success
             type: str
             sample: ACTIVE
@@ -198,6 +201,12 @@ management_saved_search:
             returned: on success
             type: list
             sample: []
+        features_config:
+            description:
+                - Contains configuration for enabling features.
+            returned: on success
+            type: dict
+            sample: {}
         drilldown_config:
             description:
                 - Drill-down configuration to define the destination of a drill-down action.
@@ -241,6 +250,7 @@ management_saved_search:
         "widget_vm": "widget_vm_example",
         "lifecycle_state": "ACTIVE",
         "parameters_config": [],
+        "features_config": {},
         "drilldown_config": [],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

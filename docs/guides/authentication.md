@@ -7,6 +7,7 @@ OCI Ansible supports the following authentication mechanisms:
 - [Service Principal](#service-principal)
 - [Delegation Auth](#delegation-auth)
 - [Resource Principal](#resource-principal)
+- [Token Based Auth](#token-based-authentication)
 
 The *default* option is api_key.
 
@@ -81,6 +82,23 @@ The *default* option is api_key.
   oci_network_vcn_facts:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     auth_type: "resource_principal"
+    region: "us-ashburn-1"
+```
+
+## Token Based Authentication
+
+- Token-based authentication allows customers to authenticate their session using CLI
+  interactively, then use OCI Ansible for a single session without an API signing key. 
+  This enables customers using an identity provider that is not SCIM-supported to use 
+  a federated user account with OCI Ansible. Please check 
+  [Token-based Authentication for the CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/clitoken.htm)
+  for details on how to generate the session token using CLI.
+
+``` yaml
+- name: List vcns
+  oci_network_vcn_facts:
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    auth_type: "security_token"
     region: "us-ashburn-1"
 ```
 

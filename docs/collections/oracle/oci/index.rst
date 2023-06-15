@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.23.0
+Collection version 4.24.0
 
 .. toctree::
     :maxdepth: 1
@@ -1207,6 +1207,7 @@ Modules
 * :ref:`oci_management_agent_plugin_count_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_count_facts_module>` -- Fetches details about one or multiple ManagementAgentPluginCount resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_plugin_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_facts_module>` -- Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_actions <ansible_collections.oracle.oci.oci_management_dashboard_actions_module>` -- Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_dashboard_facts <ansible_collections.oracle.oci.oci_management_dashboard_facts_module>` -- Fetches details about one or multiple ManagementDashboard resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_management_saved_search <ansible_collections.oracle.oci.oci_management_dashboard_management_saved_search_module>` -- Manage a ManagementSavedSearch resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_management_saved_search_actions <ansible_collections.oracle.oci.oci_management_dashboard_management_saved_search_actions_module>` -- Perform actions on a ManagementSavedSearch resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_management_saved_search_facts <ansible_collections.oracle.oci.oci_management_dashboard_management_saved_search_facts_module>` -- Fetches details about one or multiple ManagementSavedSearch resources in Oracle Cloud Infrastructure
@@ -3133,6 +3134,7 @@ Modules
     oci_management_agent_plugin_count_facts_module
     oci_management_agent_plugin_facts_module
     oci_management_dashboard_actions_module
+    oci_management_dashboard_facts_module
     oci_management_dashboard_management_saved_search_module
     oci_management_dashboard_management_saved_search_actions_module
     oci_management_dashboard_management_saved_search_facts_module

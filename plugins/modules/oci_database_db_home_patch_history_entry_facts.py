@@ -106,6 +106,12 @@ db_home_patch_history_entries:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        patch_type:
+            description:
+                - The type of Patch operation.
+            returned: on success
+            type: str
+            sample: OS
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
@@ -113,7 +119,8 @@ db_home_patch_history_entries:
         "lifecycle_state": "IN_PROGRESS",
         "lifecycle_details": "lifecycle_details_example",
         "time_started": "2013-10-20T19:20:30+01:00",
-        "time_ended": "2013-10-20T19:20:30+01:00"
+        "time_ended": "2013-10-20T19:20:30+01:00",
+        "patch_type": "OS"
     }]
 """
 

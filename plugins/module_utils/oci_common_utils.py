@@ -474,6 +474,7 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
                 "instance_principal",
                 "instance_obo_user",
                 "resource_principal",
+                "security_token",
             ],
             default="api_key",
         ),

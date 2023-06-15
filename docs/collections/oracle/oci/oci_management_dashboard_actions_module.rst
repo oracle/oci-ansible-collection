@@ -30,7 +30,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -199,6 +199,7 @@ Parameters
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
                                                                                                                                                                                                 <li>resource_principal</li>
+                                                                                                                                                                                                <li>security_token</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -311,7 +312,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -377,6 +378,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Drill-down configuration to define the destination of a drill-down action.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-dashboards/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-dashboards/features_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Contains configuration for enabling features.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -488,7 +505,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Version of the metadata.</div>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -552,7 +569,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Name of the service (for example, Logging Analytics) that owns the dashboard.</div>
+                                            <div>The user friendly name of the service (for example, Logging Analytics) that owns the dashboard.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -568,7 +585,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Version of the service that owns the dashboard.</div>
+                                            <div>The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved search (or dashboard) should use providerVersion 3.0.0.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -618,7 +635,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -694,6 +711,23 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-dashboards/saved_searches/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-dashboards/saved_searches/features_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Contains configuration for enabling features.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-dashboards/saved_searches/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-dashboards/saved_searches/freeform_tags" title="Permalink to this option"></a>
@@ -759,7 +793,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Version of the metadata.</div>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -827,7 +861,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Name of the service (for example, Logging Analytics) that owns the saved search.</div>
+                                            <div>The user friendly name of the service (for example, Logging Analytics) that owns the saved search.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -844,7 +878,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Version of the service that owns this saved search.</div>
+                                            <div>The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved search (or dashboard) should use providerVersion 3.0.0.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -903,7 +937,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -920,7 +954,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Reference to the HTML file of the widget.</div>
+                                            <div>The UI template that the saved search uses to render itself.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -937,7 +971,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Reference to the view model of the widget.</div>
+                                            <div>The View Model that the saved search uses to render itself.</div>
                                                         </td>
             </tr>
                     
@@ -1004,7 +1038,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1163,7 +1197,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1213,7 +1247,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                                         </td>
             </tr>
                     
@@ -1406,10 +1440,12 @@ Examples
             freeform_tags: {'Department': 'Finance'}
             defined_tags: {'Operations': {'CostCenter': 'US'}}
             parameters_config: [ "parameters_config_example" ]
+            features_config: null
             drilldown_config: [ "drilldown_config_example" ]
 
           # optional
           parameters_config: [ "parameters_config_example" ]
+          features_config: null
           drilldown_config: [ "drilldown_config_example" ]
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1454,7 +1490,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagementDashboard resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1524,7 +1560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1599,6 +1635,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Drill-down configuration to define the destination of a drill-down action.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/features_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Contains configuration for enabling features.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1710,7 +1763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the metadata.</div>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metadata_version_example</div>
@@ -1782,7 +1835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of the service (for example, Logging Analytics) that owns the dashboard.</div>
+                                            <div>The user friendly name of the service (for example, Logging Analytics) that owns the dashboard.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
@@ -1801,7 +1854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the service that owns the dashboard.</div>
+                                            <div>The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved search (or dashboard) should use providerVersion 3.0.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_version_example</div>
@@ -1858,7 +1911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1945,6 +1998,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/saved_searches/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/saved_searches/features_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Contains configuration for enabling features.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/saved_searches/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/saved_searches/freeform_tags" title="Permalink to this return value"></a>
@@ -2014,7 +2085,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the metadata.</div>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metadata_version_example</div>
@@ -2090,7 +2161,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of the service (for example, Logging Analytics) that owns the saved search.</div>
+                                            <div>The user friendly name of the service (for example, Logging Analytics) that owns the saved search.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
@@ -2110,7 +2181,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the service that owns this saved search.</div>
+                                            <div>The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved search (or dashboard) should use providerVersion 3.0.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_version_example</div>
@@ -2170,7 +2241,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2188,7 +2259,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reference to the HTML file of the widget.</div>
+                                            <div>The UI template that the saved search uses to render itself.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_template_example</div>
@@ -2208,7 +2279,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reference to the view model of the widget.</div>
+                                            <div>The View Model that the saved search uses to render itself.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_vm_example</div>
@@ -2285,7 +2356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2457,7 +2528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2514,7 +2585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>JSON that contains user interface options.</div>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
                                         <br/>
                                                         </td>
             </tr>

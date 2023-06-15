@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_backup -- Manage an AutonomousDataba
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -82,12 +82,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -102,7 +102,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -117,7 +117,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -132,7 +132,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -147,7 +147,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -165,7 +165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -179,6 +179,7 @@ Parameters
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
                                                                                                                                                                                                 <li>resource_principal</li>
+                                                                                                                                                                                                <li>security_token</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -186,7 +187,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-autonomous_database_backup_id"></div>
                     <b>autonomous_database_backup_id</b>
                     <a class="ansibleOptionLink" href="#parameter-autonomous_database_backup_id" title="Permalink to this option"></a>
@@ -204,7 +205,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-autonomous_database_id"></div>
                     <b>autonomous_database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-autonomous_database_id" title="Permalink to this option"></a>
@@ -220,7 +221,126 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details"></div>
+                    <b>backup_destination_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/dbrs_policy_id"></div>
+                    <b>dbrs_policy_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/dbrs_policy_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DBRS policy used for backup.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup destination.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/internet_proxy"></div>
+                    <b>internet_proxy</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/internet_proxy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Proxy URL to connect to object store.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NFS</li>
+                                                                                                                                                                                                <li>RECOVERY_APPLIANCE</li>
+                                                                                                                                                                                                <li>OBJECT_STORE</li>
+                                                                                                                                                                                                <li>LOCAL</li>
+                                                                                                                                                                                                <li>DBRS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the database backup destination.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/vpc_password"></div>
+                    <b>vpc_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/vpc_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_destination_details/vpc_user"></div>
+                    <b>vpc_user</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_destination_details/vpc_user" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -235,7 +355,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -250,7 +370,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -265,7 +385,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -282,7 +402,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -301,7 +421,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-is_long_term_backup"></div>
                     <b>is_long_term_backup</b>
                     <a class="ansibleOptionLink" href="#parameter-is_long_term_backup" title="Permalink to this option"></a>
@@ -320,7 +440,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -335,7 +455,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -354,7 +474,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -369,7 +489,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-retention_period_in_days"></div>
                     <b>retention_period_in_days</b>
                     <a class="ansibleOptionLink" href="#parameter-retention_period_in_days" title="Permalink to this option"></a>
@@ -385,7 +505,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -406,7 +526,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -421,7 +541,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -440,7 +560,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -487,6 +607,16 @@ Examples
         # optional
         display_name: display_name_example
         is_long_term_backup: true
+        backup_destination_details:
+          # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+          dbrs_policy_id: "ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         retention_period_in_days: 56
 
     - name: Update autonomous_database_backup
@@ -534,12 +664,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup"></div>
                     <b>autonomous_database_backup</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup" title="Permalink to this return value"></a>
@@ -552,12 +682,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousDatabaseBackup resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_database_id&#x27;: &#x27;ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_size_in_tbs&#x27;: 10, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;is_restorable&#x27;: True, &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;size_in_tbs&#x27;: 1.2, &#x27;time_available_till&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_database_id&#x27;: &#x27;ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;backup_destination_details&#x27;: {&#x27;dbrs_policy_id&#x27;: &#x27;ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_size_in_tbs&#x27;: 10, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;is_restorable&#x27;: True, &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;size_in_tbs&#x27;: 1.2, &#x27;time_available_till&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/autonomous_database_id"></div>
                     <b>autonomous_database_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/autonomous_database_id" title="Permalink to this return value"></a>
@@ -575,7 +705,138 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details"></div>
+                    <b>backup_destination_details</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/dbrs_policy_id"></div>
+                    <b>dbrs_policy_id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/dbrs_policy_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DBRS policy used for backup.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup destination.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/internet_proxy"></div>
+                    <b>internet_proxy</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/internet_proxy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Proxy URL to connect to object store.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">internet_proxy_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the database backup destination.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NFS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/vpc_password"></div>
+                    <b>vpc_password</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/vpc_password" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-password</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/backup_destination_details/vpc_user"></div>
+                    <b>vpc_user</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_backup/backup_destination_details/vpc_user" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vpc_user_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/compartment_id" title="Permalink to this return value"></a>
@@ -593,7 +854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/database_size_in_tbs"></div>
                     <b>database_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/database_size_in_tbs" title="Permalink to this return value"></a>
@@ -611,7 +872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/db_version"></div>
                     <b>db_version</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/db_version" title="Permalink to this return value"></a>
@@ -629,7 +890,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/display_name" title="Permalink to this return value"></a>
@@ -647,7 +908,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/id" title="Permalink to this return value"></a>
@@ -665,7 +926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/is_automatic"></div>
                     <b>is_automatic</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/is_automatic" title="Permalink to this return value"></a>
@@ -683,7 +944,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/is_restorable"></div>
                     <b>is_restorable</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/is_restorable" title="Permalink to this return value"></a>
@@ -701,7 +962,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/key_store_id"></div>
                     <b>key_store_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/key_store_id" title="Permalink to this return value"></a>
@@ -719,7 +980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/key_store_wallet_name"></div>
                     <b>key_store_wallet_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/key_store_wallet_name" title="Permalink to this return value"></a>
@@ -737,7 +998,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/kms_key_id"></div>
                     <b>kms_key_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/kms_key_id" title="Permalink to this return value"></a>
@@ -755,7 +1016,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/kms_key_version_id"></div>
                     <b>kms_key_version_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/kms_key_version_id" title="Permalink to this return value"></a>
@@ -773,7 +1034,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/lifecycle_details" title="Permalink to this return value"></a>
@@ -791,7 +1052,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/lifecycle_state" title="Permalink to this return value"></a>
@@ -809,7 +1070,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/retention_period_in_days"></div>
                     <b>retention_period_in_days</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/retention_period_in_days" title="Permalink to this return value"></a>
@@ -827,7 +1088,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/size_in_tbs"></div>
                     <b>size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/size_in_tbs" title="Permalink to this return value"></a>
@@ -845,7 +1106,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/time_available_till"></div>
                     <b>time_available_till</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/time_available_till" title="Permalink to this return value"></a>
@@ -863,7 +1124,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/time_ended"></div>
                     <b>time_ended</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/time_ended" title="Permalink to this return value"></a>
@@ -881,7 +1142,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/time_started" title="Permalink to this return value"></a>
@@ -899,7 +1160,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/type" title="Permalink to this return value"></a>
@@ -917,7 +1178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_backup/vault_id"></div>
                     <b>vault_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_backup/vault_id" title="Permalink to this return value"></a>
