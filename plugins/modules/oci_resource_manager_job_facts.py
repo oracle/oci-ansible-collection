@@ -204,28 +204,48 @@ jobs:
             returned: on success
             type: complex
             contains:
+                workspace_id:
+                    description:
+                        - The id of the workspace in Bitbucket Cloud for the configuration source.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+                project_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(DevOps
+                          project,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/devops/latest/Project/).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+                repository_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(DevOps
+                          repository,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/devops/latest/Repository/).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                 configuration_source_provider_id:
                     description:
                         - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
-                          for the Git configuration source.
+                          for the Bitbucket Cloud configuration source.
                     returned: on success
                     type: str
                     sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
-                        - The URL of the Git repository.
+                        - The URL of the Bitbucket Cloud repository.
                     returned: on success
                     type: str
                     sample: repository_url_example
                 branch_name:
                     description:
-                        - The name of the branch within the Git repository.
+                        - The name of the branch within the Bitbucket Cloud repository.
                     returned: on success
                     type: str
                     sample: branch_name_example
                 commit_id:
                     description:
-                        - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
+                        - The unique identifier (SHA-1 hash) of the individual change to the Bitbucket Cloud repository.
                     returned: on success
                     type: str
                     sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
@@ -253,7 +273,7 @@ jobs:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: COMPARTMENT_CONFIG_SOURCE
+                    sample: BITBUCKET_CLOUD_CONFIG_SOURCE
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
@@ -454,6 +474,9 @@ jobs:
         "working_directory": "working_directory_example",
         "variables": {},
         "config_source": {
+            "workspace_id": "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx",
+            "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
@@ -461,7 +484,7 @@ jobs:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_record_type": "COMPARTMENT_CONFIG_SOURCE"
+            "config_source_record_type": "BITBUCKET_CLOUD_CONFIG_SOURCE"
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",

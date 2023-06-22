@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_stack_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -465,7 +465,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Stack resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}, &#x27;custom_terraform_provider&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_third_party_provider_experience_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;terraform_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;clone_url&#x27;: &#x27;clone_url_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;BITBUCKET_CLOUD_CONFIG_SOURCE&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;, &#x27;workspace_id&#x27;: &#x27;ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;custom_terraform_provider&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_third_party_provider_experience_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;terraform_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -516,7 +516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the branch in the Git repository for the configuration source.</div>
+                                            <div>The name of the branch in the Bitbucket Cloud repository for the configuration source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">branch_name_example</div>
@@ -539,6 +539,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stacks/config_source/clone_url"></div>
+                    <b>clone_url</b>
+                    <a class="ansibleOptionLink" href="#return-stacks/config_source/clone_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The clone URL of Bitbucket Server configuration source.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">clone_url_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -576,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of configuration source to use for the Terraform configuration.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPARTMENT_CONFIG_SOURCE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BITBUCKET_CLOUD_CONFIG_SOURCE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -592,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Git configuration source.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Bitbucket Cloud configuration source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -621,6 +640,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stacks/config_source/project_id"></div>
+                    <b>project_id</b>
+                    <a class="ansibleOptionLink" href="#return-stacks/config_source/project_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique identifier for a Bitbucket Server project.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.project.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-stacks/config_source/region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#return-stacks/config_source/region" title="Permalink to this return value"></a>
@@ -640,6 +678,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stacks/config_source/repository_id"></div>
+                    <b>repository_id</b>
+                    <a class="ansibleOptionLink" href="#return-stacks/config_source/repository_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Bitbucket Server repository identifier, usually identified as &lt;repository&gt;.git.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-stacks/config_source/repository_url"></div>
                     <b>repository_url</b>
                     <a class="ansibleOptionLink" href="#return-stacks/config_source/repository_url" title="Permalink to this return value"></a>
@@ -649,7 +706,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The URL of the Git repository for the configuration source.</div>
+                                            <div>The URL of the Bitbucket Cloud repository for the configuration source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">repository_url_example</div>
@@ -689,6 +746,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">working_directory_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stacks/config_source/workspace_id"></div>
+                    <b>workspace_id</b>
+                    <a class="ansibleOptionLink" href="#return-stacks/config_source/workspace_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the workspace in Bitbucket Cloud for the configuration source</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

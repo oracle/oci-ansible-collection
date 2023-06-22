@@ -98,10 +98,24 @@ configuration_source_providers:
     returned: on success
     type: complex
     contains:
+        username:
+            description:
+                - Username which is used to authorize the user.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: username_example
+        secret_id:
+            description:
+                - Secret ocid which is used to authorize the user.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         api_endpoint:
             description:
-                - "The GitHub service endpoint.
-                  Example: `https://github.com/`"
+                - "The Bitbucket cloud service endpoint.
+                  Example: `https://bitbucket.org/`"
                 - Returned for get operation
             returned: on success
             type: str
@@ -150,11 +164,13 @@ configuration_source_providers:
         config_source_provider_type:
             description:
                 - The type of configuration source provider.
+                  The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud.
+                  The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server.
                   The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
                   The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
             type: str
-            sample: GITLAB_ACCESS_TOKEN
+            sample: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
         private_server_config_details:
             description:
                 - ""
@@ -192,6 +208,8 @@ configuration_source_providers:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "username": "username_example",
+        "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
         "api_endpoint": "api_endpoint_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -199,7 +217,7 @@ configuration_source_providers:
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
-        "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
+        "config_source_provider_type": "BITBUCKET_CLOUD_USERNAME_APPPASSWORD",
         "private_server_config_details": {
             "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
             "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"

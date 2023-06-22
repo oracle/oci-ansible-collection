@@ -61,7 +61,7 @@ DOCUMENTATION = """
                   used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
                   if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
                   when running ansible playbooks within an OCI compute instance.
-            choices: ['api_key', 'instance_principal', 'instance_obo_user', 'resource_principal']
+            choices: ['api_key', 'instance_principal', 'instance_obo_user', 'resource_principal', 'security_token']
             default: 'api_key'
             type: str
             env:
@@ -398,7 +398,9 @@ from contextlib import contextmanager
 
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
-    oci_version, oci_version_utils,
+    oci_version,
+    oci_version_utils,
+    oci_config_utils,
 )
 
 try:
@@ -556,7 +558,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
 
     def _validate_default_groups(self):
-        if self.get_option("default_groups_preferences") and self.get_option("default_groups"):
+        if self.get_option("default_groups_preferences") and self.get_option(
+            "default_groups"
+        ):
             raise AnsibleError(
                 "default_groups and default_groups_preferences cannot be used together"
             )
@@ -667,6 +671,18 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         elif auth_type == "resource_principal":
             kwargs["signer"] = get_resource_principals_signer()
+        elif auth_type == "security_token":
+            security_token_file = self.params.get("security_token_file")
+            if not security_token_file:
+                raise ValueError(
+                    "security_token_file is required for security_token auth"
+                )
+            key_file = self.params.get("key_file")
+            if not key_file:
+                raise ValueError("key_file is required for security_token auth")
+            kwargs["signer"] = oci_config_utils._create_security_token_signer(
+                security_token_file, key_file
+            )
 
         # Create service client class with the signer.
         client = service_client_class(params, **kwargs)
@@ -1280,7 +1296,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if "availability_domain" in self.params.get("default_groups"):
             # Group by availability domain
             ad = self.sanitize(instance.availability_domain)
-            self.filter_common_groups(common_groups, "availability_domain", {"availability_domain": ad}, ad)
+            self.filter_common_groups(
+                common_groups, "availability_domain", {"availability_domain": ad}, ad
+            )
 
         if "compartment_name" in self.params.get("default_groups"):
             # test = self.params.get("default_groups")["compartment_name"]
@@ -1292,7 +1310,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             compartment.inactive_status = None
             host_vars = to_dict(instance)
             host_vars.update(to_dict(compartment))
-            self.filter_common_groups(common_groups, "compartment_name", host_vars, compartment_name)
+            self.filter_common_groups(
+                common_groups, "compartment_name", host_vars, compartment_name
+            )
 
         if "region" in self.params.get("default_groups"):
             # Group by region
@@ -1308,8 +1328,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     tag_group_name = self.sanitize(
                         "tag_" + key + "=" + instance.freeform_tags[key]
                     )
-                    self.filter_common_groups(common_groups, "freeform_tags", {key: instance.freeform_tags[key]},
-                                              tag_group_name)
+                    self.filter_common_groups(
+                        common_groups,
+                        "freeform_tags",
+                        {key: instance.freeform_tags[key]},
+                        tag_group_name,
+                    )
 
         if "defined_tags" in self.params.get("default_groups"):
             # Group by defined tags
@@ -1323,9 +1347,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             + "="
                             + instance.defined_tags[namespace][key]
                         )
-                        self.filter_common_groups(common_groups, "defined_tags",
-                                                  {namespace: {key: instance.defined_tags[namespace][key]}},
-                                                  defined_tag_group_name)
+                        self.filter_common_groups(
+                            common_groups,
+                            "defined_tags",
+                            {namespace: {key: instance.defined_tags[namespace][key]}},
+                            defined_tag_group_name,
+                        )
         return common_groups
 
     def filter_common_groups(self, common_groups, default_group, host_vars, group):
@@ -1960,13 +1987,33 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             )
 
     def update_version_logs(self, fn):
-        fn("OCI-Python-Sdk version: {}".format(oci_version_utils.get_oci_python_sdk_version()))
+        fn(
+            "OCI-Python-Sdk version: {}".format(
+                oci_version_utils.get_oci_python_sdk_version()
+            )
+        )
         fn("Python Version: {}".format(oci_version_utils.get_python_version()))
         fn("Ansible Version: {}".format(oci_version_utils.get_ansible_version()))
-        fn("OCI-Ansible-Collections installed Version: {}".format(oci_version_utils.get_oci_ansible_collection_installed_version()))
-        fn("OCI-Ansible-Collections latest version available: {}".format(oci_version_utils.get_oci_ansible_collection_latest_version()))
-        fn("OCI-Python-Sdk path: {}".format(oci_version_utils.get_oci_python_sdk_path()))
-        fn("Ansible module python path: {}".format(oci_version_utils.get_ansible_module_python_path()))
+        fn(
+            "OCI-Ansible-Collections installed Version: {}".format(
+                oci_version_utils.get_oci_ansible_collection_installed_version()
+            )
+        )
+        fn(
+            "OCI-Ansible-Collections latest version available: {}".format(
+                oci_version_utils.get_oci_ansible_collection_latest_version()
+            )
+        )
+        fn(
+            "OCI-Python-Sdk path: {}".format(
+                oci_version_utils.get_oci_python_sdk_path()
+            )
+        )
+        fn(
+            "Ansible module python path: {}".format(
+                oci_version_utils.get_ansible_module_python_path()
+            )
+        )
 
     def verify_file(self, path):
         """
@@ -2084,7 +2131,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         hostnames = options["hostnames"]["value"]
 
         # setting the default_groups to lower case values to avoid case insensitive comparison
-        if self.get_option("default_groups") is None and self.get_option("default_groups_preferences") is None:
+        if (
+            self.get_option("default_groups") is None
+            and self.get_option("default_groups_preferences") is None
+        ):
             self.params.update({"default_groups": self.supported_default_groups})
         elif self.get_option("default_groups_preferences") is None:
             default_groups = config_data.get("default_groups", [])
@@ -2093,8 +2143,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         else:
             default_groups = config_data.get("default_groups_preferences", {})
             for group_key, group_value in default_groups.items():
-                self.params.get("default_groups_preferences")[group_key.lower()] = group_value
-            self.params.update({"default_groups": self.params.get("default_groups_preferences")})
+                self.params.get("default_groups_preferences")[
+                    group_key.lower()
+                ] = group_value
+            self.params.update(
+                {"default_groups": self.params.get("default_groups_preferences")}
+            )
 
         return regions, filters, hostnames
 

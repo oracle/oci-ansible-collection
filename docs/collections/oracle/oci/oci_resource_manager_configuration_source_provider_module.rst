@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider -- Manage a Config
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -100,9 +100,8 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The personal access token to be configured on the GitLab repository. Avoid entering confidential information.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -120,7 +119,7 @@ Parameters
                                             <div>The Git service endpoint. Example: `https://gitlab.com`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -295,13 +294,15 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GITLAB_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>BITBUCKET_CLOUD_USERNAME_APPPASSWORD</li>
                                                                                                                                                                                                 <li>GITHUB_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>BITBUCKET_SERVER_ACCESS_TOKEN</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
+                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub. The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud. The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with configuration_source_provider_id present.</div>
-                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -509,6 +510,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-secret_id"></div>
+                    <b>secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The secret ocid which is used to authorize the user.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Required when config_source_provider_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -541,6 +559,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The username for the user of the Bitbucket cloud repository.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_source_provider_type is &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;</div>
+                                            <div>Required when config_source_provider_type is &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -620,6 +656,25 @@ Examples
         api_endpoint: api_endpoint_example
         access_token: access_token_example
 
+    - name: Create configuration_source_provider with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+        # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        username: username_example
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
+
     - name: Create configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
       oci_resource_manager_configuration_source_provider:
         # required
@@ -638,6 +693,24 @@ Examples
         api_endpoint: api_endpoint_example
         access_token: access_token_example
 
+    - name: Create configuration_source_provider with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
+
     - name: Update configuration_source_provider with config_source_provider_type = GITLAB_ACCESS_TOKEN
       oci_resource_manager_configuration_source_provider:
         # required
@@ -655,6 +728,24 @@ Examples
         api_endpoint: api_endpoint_example
         access_token: access_token_example
 
+    - name: Update configuration_source_provider with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+        # optional
+        username: username_example
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
+
     - name: Update configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
       oci_resource_manager_configuration_source_provider:
         # required
@@ -671,6 +762,23 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         api_endpoint: api_endpoint_example
         access_token: access_token_example
+
+    - name: Update configuration_source_provider with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
 
     - name: >
         Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -693,6 +801,26 @@ Examples
 
     - name: >
         Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+        # optional
+        username: username_example
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
+
+    - name: >
+        Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
         with config_source_provider_type = GITHUB_ACCESS_TOKEN
       oci_resource_manager_configuration_source_provider:
         # required
@@ -709,6 +837,25 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         api_endpoint: api_endpoint_example
         access_token: access_token_example
+
+    - name: >
+        Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_resource_manager_configuration_source_provider:
+        # required
+        config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        private_server_config_details:
+          # required
+          private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        api_endpoint: api_endpoint_example
 
     - name: Delete configuration_source_provider
       oci_resource_manager_configuration_source_provider:
@@ -757,7 +904,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ConfigurationSourceProvider resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;api_endpoint&#x27;: &#x27;api_endpoint_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;private_server_config_details&#x27;: {&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;api_endpoint&#x27;: &#x27;api_endpoint_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;BITBUCKET_CLOUD_USERNAME_APPPASSWORD&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;private_server_config_details&#x27;: {&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -772,7 +919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The GitHub service endpoint. Example: `https://github.com/`</div>
+                                            <div>The Bitbucket cloud service endpoint. Example: `https://bitbucket.org/`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">api_endpoint_example</div>
@@ -808,10 +955,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
+                                            <div>The type of configuration source provider. The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud. The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GITLAB_ACCESS_TOKEN</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BITBUCKET_CLOUD_USERNAME_APPPASSWORD</div>
                                     </td>
             </tr>
                                 <tr>
@@ -980,6 +1127,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-configuration_source_provider/secret_id"></div>
+                    <b>secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-configuration_source_provider/secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Secret ocid which is used to authorize the user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_provider/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_provider/time_created" title="Permalink to this return value"></a>
@@ -993,6 +1158,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-configuration_source_provider/username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#return-configuration_source_provider/username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Username which is used to authorize the user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
                                     </td>
             </tr>
                     

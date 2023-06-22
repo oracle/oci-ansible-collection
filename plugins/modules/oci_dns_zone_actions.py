@@ -155,6 +155,33 @@ zone:
                     returned: on success
                     type: str
                     sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        external_downstreams:
+            description:
+                - External secondary servers for the zone.
+                  This field is currently not supported when `zoneType` is `SECONDARY` or `scope` is `PRIVATE`.
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: str
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port. Port value must be a value of 53, otherwise omit
+                          the port value.
+                    returned: on success
+                    type: int
+                    sample: 56
+                tsig_key_id:
+                    description:
+                        - The OCID of the TSIG key.
+                          A TSIG key is used to secure DNS messages (in this case, zone transfers) between two systems that both have the (shared) secret.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -252,6 +279,11 @@ zone:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "external_masters": [{
+            "address": "address_example",
+            "port": 56,
+            "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        }],
+        "external_downstreams": [{
             "address": "address_example",
             "port": 56,
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"

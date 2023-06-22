@@ -123,6 +123,33 @@ options:
                     - The OCID of the TSIG key.
                     - Applicable when migration_source is 'NONE'
                 type: str
+    external_downstreams:
+        description:
+            - External secondary servers for the zone.
+              This field is currently not supported when `zoneType` is `SECONDARY` or `scope` is `PRIVATE`.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: list
+        elements: dict
+        suboptions:
+            address:
+                description:
+                    - The server's IP address (IPv4 or IPv6).
+                    - Required when migration_source is 'NONE'
+                type: str
+                required: true
+            port:
+                description:
+                    - The server's port. Port value must be a value of 53, otherwise omit
+                      the port value.
+                    - Applicable when migration_source is 'NONE'
+                type: int
+            tsig_key_id:
+                description:
+                    - The OCID of the TSIG key.
+                      A TSIG key is used to secure DNS messages (in this case, zone transfers) between two systems that both have the (shared) secret.
+                    - Applicable when migration_source is 'NONE'
+                type: str
     zone_name_or_id:
         description:
             - The name or OCID of the target zone.
@@ -193,6 +220,13 @@ EXAMPLES = """
       # optional
       port: 56
       tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    external_downstreams:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     scope: GLOBAL
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -230,6 +264,13 @@ EXAMPLES = """
       # optional
       port: 56
       tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    external_downstreams:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
@@ -245,6 +286,13 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     external_masters:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    external_downstreams:
     - # required
       address: address_example
 
@@ -357,6 +405,33 @@ zone:
                     returned: on success
                     type: str
                     sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        external_downstreams:
+            description:
+                - External secondary servers for the zone.
+                  This field is currently not supported when `zoneType` is `SECONDARY` or `scope` is `PRIVATE`.
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: str
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port. Port value must be a value of 53, otherwise omit
+                          the port value.
+                    returned: on success
+                    type: int
+                    sample: 56
+                tsig_key_id:
+                    description:
+                        - The OCID of the TSIG key.
+                          A TSIG key is used to secure DNS messages (in this case, zone transfers) between two systems that both have the (shared) secret.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -454,6 +529,11 @@ zone:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "external_masters": [{
+            "address": "address_example",
+            "port": 56,
+            "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        }],
+        "external_downstreams": [{
             "address": "address_example",
             "port": 56,
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -695,6 +775,15 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             external_masters=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    address=dict(type="str", required=True),
+                    port=dict(type="int"),
+                    tsig_key_id=dict(type="str"),
+                ),
+            ),
+            external_downstreams=dict(
                 type="list",
                 elements="dict",
                 options=dict(

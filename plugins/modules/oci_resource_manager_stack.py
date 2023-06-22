@@ -82,24 +82,25 @@ options:
                     - ""
                     - Required when config_source_type is 'TEMPLATE_CONFIG_SOURCE'
                 type: str
+            workspace_id:
+                description:
+                    - The id of the workspace in Bitbucket Cloud for the configuration source
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'BITBUCKET_CLOUD_CONFIG_SOURCE'
+                    - Required when config_source_type is 'BITBUCKET_CLOUD_CONFIG_SOURCE'
+                type: str
             configuration_source_provider_id:
                 description:
-                    - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
-                      for the Git configuration source.
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Bitbucket Cloud configuration source.
                     - This parameter is updatable.
-                    - Required when config_source_type is 'GIT_CONFIG_SOURCE'
+                    - Required when config_source_type is one of ['GIT_CONFIG_SOURCE', 'BITBUCKET_SERVER_CONFIG_SOURCE', 'BITBUCKET_CLOUD_CONFIG_SOURCE']
                 type: str
             repository_url:
                 description:
-                    - The URL of the Git repository.
+                    - The URL of the Bitbucket Cloud repository for the configuration source.
                     - This parameter is updatable.
-                    - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
-                type: str
-            branch_name:
-                description:
-                    - The name of the branch within the Git repository.
-                    - This parameter is updatable.
-                    - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
+                    - Applicable when config_source_type is one of ['GIT_CONFIG_SOURCE', 'BITBUCKET_SERVER_CONFIG_SOURCE', 'BITBUCKET_CLOUD_CONFIG_SOURCE']
+                    - Required when config_source_type is one of ['BITBUCKET_SERVER_CONFIG_SOURCE', 'BITBUCKET_CLOUD_CONFIG_SOURCE']
                 type: str
             region:
                 description:
@@ -123,13 +124,23 @@ options:
                     - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
                     - Required when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
                 type: str
+            zip_file_base64_encoded:
+                description:
+                    - ""
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'ZIP_UPLOAD'
+                    - Required when config_source_type is 'ZIP_UPLOAD'
+                type: str
             config_source_type:
                 description:
                     - Specifies the `configSourceType` for uploading the Terraform configuration.
                     - This parameter is updatable.
                 type: str
                 choices:
+                    - "DEVOPS_CONFIG_SOURCE"
+                    - "BITBUCKET_CLOUD_CONFIG_SOURCE"
                     - "ZIP_UPLOAD"
+                    - "BITBUCKET_SERVER_CONFIG_SOURCE"
                     - "GIT_CONFIG_SOURCE"
                     - "OBJECT_STORAGE_CONFIG_SOURCE"
                     - "COMPARTMENT_CONFIG_SOURCE"
@@ -146,12 +157,28 @@ options:
                       Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).
                     - This parameter is updatable.
                 type: str
-            zip_file_base64_encoded:
+            project_id:
                 description:
-                    - ""
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(DevOps
+                      project,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/devops/latest/Project/).
                     - This parameter is updatable.
-                    - Applicable when config_source_type is 'ZIP_UPLOAD'
-                    - Required when config_source_type is 'ZIP_UPLOAD'
+                    - Applicable when config_source_type is 'BITBUCKET_SERVER_CONFIG_SOURCE'
+                    - Required when config_source_type is 'DEVOPS_CONFIG_SOURCE'
+                type: str
+            repository_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(DevOps
+                      repository,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/devops/latest/Repository/).
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'BITBUCKET_SERVER_CONFIG_SOURCE'
+                    - Required when config_source_type is 'DEVOPS_CONFIG_SOURCE'
+                type: str
+            branch_name:
+                description:
+                    - The name of the branch that contains the Terraform configuration.
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is one of ['DEVOPS_CONFIG_SOURCE', 'GIT_CONFIG_SOURCE', 'BITBUCKET_SERVER_CONFIG_SOURCE',
+                      'BITBUCKET_CLOUD_CONFIG_SOURCE']
                 type: str
     custom_terraform_provider:
         description:
@@ -245,11 +272,13 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     config_source:
       # required
-      config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: zip_file_base64_encoded_example
+      config_source_type: DEVOPS_CONFIG_SOURCE
+      project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       working_directory: working_directory_example
+      branch_name: branch_name_example
 
     # optional
     display_name: display_name_example
@@ -274,11 +303,13 @@ EXAMPLES = """
     description: description_example
     config_source:
       # required
-      config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: zip_file_base64_encoded_example
+      config_source_type: DEVOPS_CONFIG_SOURCE
+      project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       working_directory: working_directory_example
+      branch_name: branch_name_example
     custom_terraform_provider:
       # required
       region: us-phoenix-1
@@ -299,11 +330,13 @@ EXAMPLES = """
     description: description_example
     config_source:
       # required
-      config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: zip_file_base64_encoded_example
+      config_source_type: DEVOPS_CONFIG_SOURCE
+      project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       working_directory: working_directory_example
+      branch_name: branch_name_example
     custom_terraform_provider:
       # required
       region: us-phoenix-1
@@ -383,6 +416,18 @@ stack:
             returned: on success
             type: complex
             contains:
+                workspace_id:
+                    description:
+                        - The id of the workspace in Bitbucket Cloud for the configuration source
+                    returned: on success
+                    type: str
+                    sample: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+                clone_url:
+                    description:
+                        - The clone URL of Bitbucket Server configuration source.
+                    returned: on success
+                    type: str
+                    sample: clone_url_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -402,21 +447,33 @@ stack:
                     returned: on success
                     type: list
                     sample: []
+                project_id:
+                    description:
+                        - Unique identifier for a Bitbucket Server project.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+                repository_id:
+                    description:
+                        - Bitbucket Server repository identifier, usually identified as <repository>.git.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                 configuration_source_provider_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Bitbucket Cloud configuration source.
                     returned: on success
                     type: str
                     sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
-                        - The URL of the Git repository for the configuration source.
+                        - The URL of the Bitbucket Cloud repository for the configuration source.
                     returned: on success
                     type: str
                     sample: repository_url_example
                 branch_name:
                     description:
-                        - The name of the branch in the Git repository for the configuration source.
+                        - The name of the branch in the Bitbucket Cloud repository for the configuration source.
                     returned: on success
                     type: str
                     sample: branch_name_example
@@ -445,7 +502,7 @@ stack:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: COMPARTMENT_CONFIG_SOURCE
+                    sample: BITBUCKET_CLOUD_CONFIG_SOURCE
                 working_directory:
                     description:
                         - File path to the directory to use for running Terraform.
@@ -553,15 +610,19 @@ stack:
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "config_source": {
+            "workspace_id": "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx",
+            "clone_url": "clone_url_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "services_to_discover": [],
+            "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_type": "COMPARTMENT_CONFIG_SOURCE",
+            "config_source_type": "BITBUCKET_CLOUD_CONFIG_SOURCE",
             "working_directory": "working_directory_example"
         },
         "custom_terraform_provider": {
@@ -735,17 +796,21 @@ def main():
                     compartment_id=dict(type="str"),
                     services_to_discover=dict(type="list", elements="str"),
                     template_id=dict(type="str"),
+                    workspace_id=dict(type="str"),
                     configuration_source_provider_id=dict(type="str"),
                     repository_url=dict(type="str"),
-                    branch_name=dict(type="str"),
                     region=dict(type="str"),
                     namespace=dict(type="str"),
                     bucket_name=dict(type="str"),
+                    zip_file_base64_encoded=dict(type="str"),
                     config_source_type=dict(
                         type="str",
                         required=True,
                         choices=[
+                            "DEVOPS_CONFIG_SOURCE",
+                            "BITBUCKET_CLOUD_CONFIG_SOURCE",
                             "ZIP_UPLOAD",
+                            "BITBUCKET_SERVER_CONFIG_SOURCE",
                             "GIT_CONFIG_SOURCE",
                             "OBJECT_STORAGE_CONFIG_SOURCE",
                             "COMPARTMENT_CONFIG_SOURCE",
@@ -753,7 +818,9 @@ def main():
                         ],
                     ),
                     working_directory=dict(type="str"),
-                    zip_file_base64_encoded=dict(type="str"),
+                    project_id=dict(type="str"),
+                    repository_id=dict(type="str"),
+                    branch_name=dict(type="str"),
                 ),
             ),
             custom_terraform_provider=dict(
