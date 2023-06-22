@@ -112,11 +112,13 @@ configuration_source_provider:
         config_source_provider_type:
             description:
                 - The type of configuration source provider.
+                  The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud.
+                  The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server.
                   The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
                   The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
             type: str
-            sample: GITLAB_ACCESS_TOKEN
+            sample: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
         private_server_config_details:
             description:
                 - ""
@@ -137,6 +139,18 @@ configuration_source_provider:
                     returned: on success
                     type: str
                     sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        username:
+            description:
+                - Username which is used to authorize the user.
+            returned: on success
+            type: str
+            sample: username_example
+        secret_id:
+            description:
+                - Secret ocid which is used to authorize the user.
+            returned: on success
+            type: str
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -155,8 +169,8 @@ configuration_source_provider:
             sample: {'Operations': {'CostCenter': 'US'}}
         api_endpoint:
             description:
-                - "The GitHub service endpoint.
-                  Example: `https://github.com/`"
+                - "The Bitbucket cloud service endpoint.
+                  Example: `https://bitbucket.org/`"
             returned: on success
             type: str
             sample: api_endpoint_example
@@ -167,11 +181,13 @@ configuration_source_provider:
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
-        "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
+        "config_source_provider_type": "BITBUCKET_CLOUD_USERNAME_APPPASSWORD",
         "private_server_config_details": {
             "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
             "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "username": "username_example",
+        "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "api_endpoint": "api_endpoint_example"

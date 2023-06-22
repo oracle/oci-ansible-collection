@@ -30,7 +30,7 @@ oracle.oci.oci_dns_zone_actions -- Perform actions on a Zone resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -418,7 +418,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Zone resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_protected&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;scope&#x27;: &#x27;GLOBAL&#x27;, &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;view_id&#x27;: &#x27;ocid1.view.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;zone_transfer_servers&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;is_transfer_destination&#x27;: True, &#x27;is_transfer_source&#x27;: True, &#x27;port&#x27;: 56}], &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_downstreams&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_protected&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;scope&#x27;: &#x27;GLOBAL&#x27;, &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;view_id&#x27;: &#x27;ocid1.view.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;zone_transfer_servers&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;is_transfer_destination&#x27;: True, &#x27;is_transfer_source&#x27;: True, &#x27;port&#x27;: 56}], &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -458,6 +458,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-zone/external_downstreams"></div>
+                    <b>external_downstreams</b>
+                    <a class="ansibleOptionLink" href="#return-zone/external_downstreams" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>External secondary servers for the zone. This field is currently not supported when `zoneType` is `SECONDARY` or `scope` is `PRIVATE`.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/external_downstreams/address"></div>
+                    <b>address</b>
+                    <a class="ansibleOptionLink" href="#return-zone/external_downstreams/address" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The server&#x27;s IP address (IPv4 or IPv6).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">address_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/external_downstreams/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-zone/external_downstreams/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The server&#x27;s port. Port value must be a value of 53, otherwise omit the port value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/external_downstreams/tsig_key_id"></div>
+                    <b>tsig_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-zone/external_downstreams/tsig_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the TSIG key. A TSIG key is used to secure DNS messages (in this case, zone transfers) between two systems that both have the (shared) secret.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

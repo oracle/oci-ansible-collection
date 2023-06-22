@@ -838,6 +838,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_disaster_recovery_dr_protection_group <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_module>` -- Manage a DrProtectionGroup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_disaster_recovery_dr_protection_group_actions <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_actions_module>` -- Perform actions on a DrProtectionGroup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_disaster_recovery_dr_protection_group_facts <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_facts_module>` -- Fetches details about one or multiple DrProtectionGroup resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_dns_create_zone_from_zone_file_actions <ansible_collections.oracle.oci.oci_dns_create_zone_from_zone_file_actions_module>` -- Perform actions on a CreateZoneFromZoneFile resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records <ansible_collections.oracle.oci.oci_dns_domain_records_module>` -- Manage a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about one or multiple DomainRecords resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_resolver <ansible_collections.oracle.oci.oci_dns_resolver_module>` -- Manage a Resolver resource in Oracle Cloud Infrastructure

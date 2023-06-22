@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.25.0]
+
+## Added
+- Support for security token authentication in inventory plugin
+- Support for enabling create stack from OCI DevOps Service or Bitbucket Cloud/Server as Source Control Management in resource manager service.
+- Support for secondary egress zones in the DNS service
+
+## Breaking
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.104.3
+
 ## [4.24.0]
 
 ## Added

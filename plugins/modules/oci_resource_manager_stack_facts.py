@@ -120,6 +120,18 @@ stacks:
             returned: on success
             type: complex
             contains:
+                workspace_id:
+                    description:
+                        - The id of the workspace in Bitbucket Cloud for the configuration source
+                    returned: on success
+                    type: str
+                    sample: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+                clone_url:
+                    description:
+                        - The clone URL of Bitbucket Server configuration source.
+                    returned: on success
+                    type: str
+                    sample: clone_url_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -139,21 +151,33 @@ stacks:
                     returned: on success
                     type: list
                     sample: []
+                project_id:
+                    description:
+                        - Unique identifier for a Bitbucket Server project.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+                repository_id:
+                    description:
+                        - Bitbucket Server repository identifier, usually identified as <repository>.git.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                 configuration_source_provider_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Bitbucket Cloud configuration source.
                     returned: on success
                     type: str
                     sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
-                        - The URL of the Git repository for the configuration source.
+                        - The URL of the Bitbucket Cloud repository for the configuration source.
                     returned: on success
                     type: str
                     sample: repository_url_example
                 branch_name:
                     description:
-                        - The name of the branch in the Git repository for the configuration source.
+                        - The name of the branch in the Bitbucket Cloud repository for the configuration source.
                     returned: on success
                     type: str
                     sample: branch_name_example
@@ -182,7 +206,7 @@ stacks:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: COMPARTMENT_CONFIG_SOURCE
+                    sample: BITBUCKET_CLOUD_CONFIG_SOURCE
                 working_directory:
                     description:
                         - File path to the directory to use for running Terraform.
@@ -330,15 +354,19 @@ stacks:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "config_source": {
+            "workspace_id": "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx",
+            "clone_url": "clone_url_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "services_to_discover": [],
+            "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_type": "COMPARTMENT_CONFIG_SOURCE",
+            "config_source_type": "BITBUCKET_CLOUD_CONFIG_SOURCE",
             "working_directory": "working_directory_example"
         },
         "custom_terraform_provider": {

@@ -188,6 +188,34 @@ zones:
                     returned: on success
                     type: str
                     sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        external_downstreams:
+            description:
+                - External secondary servers for the zone.
+                  This field is currently not supported when `zoneType` is `SECONDARY` or `scope` is `PRIVATE`.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: str
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port. Port value must be a value of 53, otherwise omit
+                          the port value.
+                    returned: on success
+                    type: int
+                    sample: 56
+                tsig_key_id:
+                    description:
+                        - The OCID of the TSIG key.
+                          A TSIG key is used to secure DNS messages (in this case, zone transfers) between two systems that both have the (shared) secret.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         nameservers:
             description:
                 - The authoritative nameservers for the zone.
@@ -328,6 +356,11 @@ zones:
             sample: true
     sample: [{
         "external_masters": [{
+            "address": "address_example",
+            "port": 56,
+            "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        }],
+        "external_downstreams": [{
             "address": "address_example",
             "port": 56,
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"

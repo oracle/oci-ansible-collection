@@ -37,6 +37,19 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where
               you want to create the configuration source provider.
         type: str
+    username:
+        description:
+            - The username for the user of the Bitbucket cloud repository.
+            - This parameter is updatable.
+            - Applicable when config_source_provider_type is 'BITBUCKET_CLOUD_USERNAME_APPPASSWORD'
+            - Required when config_source_provider_type is 'BITBUCKET_CLOUD_USERNAME_APPPASSWORD'
+        type: str
+    secret_id:
+        description:
+            - The secret ocid which is used to authorize the user.
+            - This parameter is updatable.
+            - Required when config_source_provider_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'BITBUCKET_CLOUD_USERNAME_APPPASSWORD']
+        type: str
     display_name:
         description:
             - Human-readable name of the configuration source provider. Avoid entering confidential information.
@@ -54,12 +67,17 @@ options:
             - The type of configuration source provider.
               The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
               The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
+              The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud.
+              The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server.
             - Required for create using I(state=present), update using I(state=present) with configuration_source_provider_id present.
-            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+              'BITBUCKET_CLOUD_USERNAME_APPPASSWORD']
         type: str
         choices:
             - "GITLAB_ACCESS_TOKEN"
+            - "BITBUCKET_CLOUD_USERNAME_APPPASSWORD"
             - "GITHUB_ACCESS_TOKEN"
+            - "BITBUCKET_SERVER_ACCESS_TOKEN"
     private_server_config_details:
         description:
             - ""
@@ -100,14 +118,14 @@ options:
               Example: `https://gitlab.com`"
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+              'BITBUCKET_CLOUD_USERNAME_APPPASSWORD']
         type: str
     access_token:
         description:
             - The personal access token to be configured on the GitLab repository. Avoid entering confidential information.
-            - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Required when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
         type: str
     configuration_source_provider_id:
         description:
@@ -147,6 +165,25 @@ EXAMPLES = """
     api_endpoint: api_endpoint_example
     access_token: access_token_example
 
+- name: Create configuration_source_provider with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    username: username_example
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
+
 - name: Create configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
     # required
@@ -165,6 +202,24 @@ EXAMPLES = """
     api_endpoint: api_endpoint_example
     access_token: access_token_example
 
+- name: Create configuration_source_provider with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
+
 - name: Update configuration_source_provider with config_source_provider_type = GITLAB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
     # required
@@ -182,6 +237,24 @@ EXAMPLES = """
     api_endpoint: api_endpoint_example
     access_token: access_token_example
 
+- name: Update configuration_source_provider with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+    # optional
+    username: username_example
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
+
 - name: Update configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
     # required
@@ -198,6 +271,23 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
     access_token: access_token_example
+
+- name: Update configuration_source_provider with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
 
 - name: >
     Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -220,6 +310,26 @@ EXAMPLES = """
 
 - name: >
     Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with config_source_provider_type = BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
+
+    # optional
+    username: username_example
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
+
+- name: >
+    Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
     with config_source_provider_type = GITHUB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
     # required
@@ -236,6 +346,25 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
     access_token: access_token_example
+
+- name: >
+    Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with config_source_provider_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: api_endpoint_example
 
 - name: Delete configuration_source_provider
   oci_resource_manager_configuration_source_provider:
@@ -302,11 +431,13 @@ configuration_source_provider:
         config_source_provider_type:
             description:
                 - The type of configuration source provider.
+                  The `BITBUCKET_CLOUD_USERNAME_APPPASSWORD` type corresponds to Bitbucket Cloud.
+                  The `BITBUCKET_SERVER_ACCESS_TOKEN` type corresponds to Bitbucket Server.
                   The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
                   The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
             type: str
-            sample: GITLAB_ACCESS_TOKEN
+            sample: BITBUCKET_CLOUD_USERNAME_APPPASSWORD
         private_server_config_details:
             description:
                 - ""
@@ -327,6 +458,18 @@ configuration_source_provider:
                     returned: on success
                     type: str
                     sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        username:
+            description:
+                - Username which is used to authorize the user.
+            returned: on success
+            type: str
+            sample: username_example
+        secret_id:
+            description:
+                - Secret ocid which is used to authorize the user.
+            returned: on success
+            type: str
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -345,8 +488,8 @@ configuration_source_provider:
             sample: {'Operations': {'CostCenter': 'US'}}
         api_endpoint:
             description:
-                - "The GitHub service endpoint.
-                  Example: `https://github.com/`"
+                - "The Bitbucket cloud service endpoint.
+                  Example: `https://bitbucket.org/`"
             returned: on success
             type: str
             sample: api_endpoint_example
@@ -357,11 +500,13 @@ configuration_source_provider:
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
-        "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
+        "config_source_provider_type": "BITBUCKET_CLOUD_USERNAME_APPPASSWORD",
         "private_server_config_details": {
             "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
             "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "username": "username_example",
+        "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "api_endpoint": "api_endpoint_example"
@@ -553,10 +698,18 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            username=dict(type="str"),
+            secret_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             config_source_provider_type=dict(
-                type="str", choices=["GITLAB_ACCESS_TOKEN", "GITHUB_ACCESS_TOKEN"]
+                type="str",
+                choices=[
+                    "GITLAB_ACCESS_TOKEN",
+                    "BITBUCKET_CLOUD_USERNAME_APPPASSWORD",
+                    "GITHUB_ACCESS_TOKEN",
+                    "BITBUCKET_SERVER_ACCESS_TOKEN",
+                ],
             ),
             private_server_config_details=dict(
                 type="dict",
