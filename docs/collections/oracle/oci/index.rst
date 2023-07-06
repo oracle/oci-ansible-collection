@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.25.0
+Collection version 4.26.0
 
 .. toctree::
     :maxdepth: 1
@@ -1162,6 +1162,11 @@ Modules
 * :ref:`oci_log_analytics_log_group <ansible_collections.oracle.oci.oci_log_analytics_log_group_module>` -- Manage a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_log_group_actions <ansible_collections.oracle.oci.oci_log_analytics_log_group_actions_module>` -- Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_log_group_facts <ansible_collections.oracle.oci.oci_log_analytics_log_group_facts_module>` -- Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_lookup <ansible_collections.oracle.oci.oci_log_analytics_lookup_module>` -- Manage a LogAnalyticsLookup resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_lookup_actions <ansible_collections.oracle.oci.oci_log_analytics_lookup_actions_module>` -- Perform actions on a LogAnalyticsLookup resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_lookup_facts <ansible_collections.oracle.oci.oci_log_analytics_lookup_facts_module>` -- Fetches details about one or multiple LogAnalyticsLookup resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_lookup_register_actions <ansible_collections.oracle.oci.oci_log_analytics_lookup_register_actions_module>` -- Perform actions on a LookupRegister resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_lookup_summary_report_facts <ansible_collections.oracle.oci.oci_log_analytics_lookup_summary_report_facts_module>` -- Fetches details about a LookupSummaryReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_namespace_actions <ansible_collections.oracle.oci.oci_log_analytics_namespace_actions_module>` -- Perform actions on a Namespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_namespace_facts <ansible_collections.oracle.oci.oci_log_analytics_namespace_facts_module>` -- Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_object_collection_rule <ansible_collections.oracle.oci.oci_log_analytics_object_collection_rule_module>` -- Manage a LogAnalyticsObjectCollectionRule resource in Oracle Cloud Infrastructure
@@ -1207,7 +1212,9 @@ Modules
 * :ref:`oci_management_agent_install_key_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_facts_module>` -- Fetches details about one or multiple ManagementAgentInstallKey resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_plugin_count_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_count_facts_module>` -- Fetches details about one or multiple ManagementAgentPluginCount resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_plugin_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_facts_module>` -- Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_dashboard <ansible_collections.oracle.oci.oci_management_dashboard_module>` -- Manage a ManagementDashboard resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_actions <ansible_collections.oracle.oci.oci_management_dashboard_actions_module>` -- Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_dashboard_change_compartment_actions <ansible_collections.oracle.oci.oci_management_dashboard_change_compartment_actions_module>` -- Perform actions on a ChangeCompartment resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_facts <ansible_collections.oracle.oci.oci_management_dashboard_facts_module>` -- Fetches details about one or multiple ManagementDashboard resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_management_saved_search <ansible_collections.oracle.oci.oci_management_dashboard_management_saved_search_module>` -- Manage a ManagementSavedSearch resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_management_saved_search_actions <ansible_collections.oracle.oci.oci_management_dashboard_management_saved_search_actions_module>` -- Perform actions on a ManagementSavedSearch resource in Oracle Cloud Infrastructure
@@ -3090,6 +3097,11 @@ Modules
     oci_log_analytics_log_group_module
     oci_log_analytics_log_group_actions_module
     oci_log_analytics_log_group_facts_module
+    oci_log_analytics_lookup_module
+    oci_log_analytics_lookup_actions_module
+    oci_log_analytics_lookup_facts_module
+    oci_log_analytics_lookup_register_actions_module
+    oci_log_analytics_lookup_summary_report_facts_module
     oci_log_analytics_namespace_actions_module
     oci_log_analytics_namespace_facts_module
     oci_log_analytics_object_collection_rule_module
@@ -3135,7 +3147,9 @@ Modules
     oci_management_agent_install_key_facts_module
     oci_management_agent_plugin_count_facts_module
     oci_management_agent_plugin_facts_module
+    oci_management_dashboard_module
     oci_management_dashboard_actions_module
+    oci_management_dashboard_change_compartment_actions_module
     oci_management_dashboard_facts_module
     oci_management_dashboard_management_saved_search_module
     oci_management_dashboard_management_saved_search_actions_module

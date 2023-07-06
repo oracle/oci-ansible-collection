@@ -736,6 +736,15 @@ class NamespaceActionWorkRequestWaiter(WorkRequestWaiter):
         )
 
 
+class LogAnalyticsLookupWorkRequestWaiter(WorkRequestWaiter):
+    def get_fetch_func(self):
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_work_request,
+            work_request_id=self.operation_response.headers[WORK_REQUEST_HEADER],
+            namespace_name=self.resource_helper.module.params.get("namespace_name"),
+        )
+
+
 class BulkEditTagOperationWorkRequestWaiter(WorkRequestWaiter):
     def get_fetch_func(self):
         return lambda **kwargs: oci_common_utils.call_with_backoff(
@@ -1095,6 +1104,21 @@ _WAITER_OVERRIDE_MAP = {
         "namespace",
         "{0}_{1}".format("OFFBOARD", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NamespaceActionWorkRequestWaiter,
+    (
+        "log_analytics",
+        "log_analytics_lookup",
+        oci_common_utils.DELETE_OPERATION_KEY,
+    ): LogAnalyticsLookupWorkRequestWaiter,
+    (
+        "log_analytics",
+        "log_analytics_lookup",
+        "{0}_{1}".format("APPEND_LOOKUP_DATA", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): LogAnalyticsLookupWorkRequestWaiter,
+    (
+        "log_analytics",
+        "log_analytics_lookup",
+        "{0}_{1}".format("UPDATE_LOOKUP_DATA", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): LogAnalyticsLookupWorkRequestWaiter,
     (
         "database",
         "autonomous_database",

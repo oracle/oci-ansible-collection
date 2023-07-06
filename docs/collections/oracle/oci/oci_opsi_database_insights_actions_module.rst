@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights_actions -- Perform actions on a DatabaseIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.26.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -94,12 +94,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Parameter</th>
+            <th colspan="3">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -129,7 +129,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -144,7 +144,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -159,7 +159,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -174,7 +174,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -189,7 +189,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -207,7 +207,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -229,7 +229,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -244,7 +244,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -261,7 +261,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -276,7 +276,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -291,7 +291,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-connection_details"></div>
                     <b>connection_details</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_details" title="Permalink to this option"></a>
@@ -304,17 +304,18 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>Required for <em>action=change_autonomous_database_insight_advanced_features</em>, <em>action=enable_autonomous_database_insight_advanced_features</em>.</div>
+                                            <div>Applicable when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_details/host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_details/host_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -324,13 +325,65 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/hosts"></div>
+                    <b>hosts</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/hosts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of hosts and port for private endpoint accessed database resource.</div>
+                                            <div>Required when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/hosts/host_ip"></div>
+                    <b>host_ip</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/hosts/host_ip" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Host IP used for connection requests for Cloud DB resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_details/hosts/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_details/hosts/port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Listener port number used for connection requests for rivate endpoint accessed db resource.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_details/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_details/port" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -340,13 +393,13 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_details/protocol"></div>
                     <b>protocol</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_details/protocol" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -356,27 +409,29 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Protocol used for connection requests.</div>
+                                            <div>Applicable when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_details/service_name"></div>
                     <b>service_name</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_details/service_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Database service name used for connection requests.</div>
+                                            <div>Applicable when $p.relatedDiscriminatorFieldName is &#x27;PE_COMANAGED_DATABASE&#x27;</div>
                                                         </td>
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details"></div>
                     <b>credential_details</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details" title="Permalink to this option"></a>
@@ -394,7 +449,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details/credential_source_name"></div>
                     <b>credential_source_name</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details/credential_source_name" title="Permalink to this option"></a>
@@ -410,7 +465,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details/credential_type"></div>
                     <b>credential_type</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details/credential_type" title="Permalink to this option"></a>
@@ -430,7 +485,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details/password_secret_id"></div>
                     <b>password_secret_id</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details/password_secret_id" title="Permalink to this option"></a>
@@ -447,7 +502,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details/role"></div>
                     <b>role</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details/role" title="Permalink to this option"></a>
@@ -467,7 +522,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-credential_details/user_name"></div>
                     <b>user_name</b>
                     <a class="ansibleOptionLink" href="#parameter-credential_details/user_name" title="Permalink to this option"></a>
@@ -482,9 +537,26 @@ Parameters
                                             <div>Applicable when credential_type is &#x27;CREDENTIALS_BY_VAULT&#x27;</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-credential_details/wallet_secret_id"></div>
+                    <b>wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-credential_details/wallet_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the database keystore contents are stored. This is used for TCPS support in BM/VM/ExaCS cases.</div>
+                                            <div>Applicable when credential_type is &#x27;CREDENTIALS_BY_VAULT&#x27;</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-database_id" title="Permalink to this option"></a>
@@ -500,7 +572,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-database_insight_id"></div>
                     <b>database_insight_id</b>
                     <a class="ansibleOptionLink" href="#parameter-database_insight_id" title="Permalink to this option"></a>
@@ -516,7 +588,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -533,7 +605,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-entity_source"></div>
                     <b>entity_source</b>
                     <a class="ansibleOptionLink" href="#parameter-entity_source" title="Permalink to this option"></a>
@@ -553,7 +625,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -570,7 +642,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
@@ -586,7 +658,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-items" title="Permalink to this option"></a>
@@ -603,7 +675,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/access_predicates"></div>
                     <b>access_predicates</b>
                     <a class="ansibleOptionLink" href="#parameter-items/access_predicates" title="Permalink to this option"></a>
@@ -619,7 +691,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-items/action" title="Permalink to this option"></a>
@@ -635,7 +707,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/addm_report"></div>
                     <b>addm_report</b>
                     <a class="ansibleOptionLink" href="#parameter-items/addm_report" title="Permalink to this option"></a>
@@ -651,7 +723,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/application_wait_time_in_us"></div>
                     <b>application_wait_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/application_wait_time_in_us" title="Permalink to this option"></a>
@@ -667,7 +739,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/avg_hard_parse_time_in_us"></div>
                     <b>avg_hard_parse_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/avg_hard_parse_time_in_us" title="Permalink to this option"></a>
@@ -683,7 +755,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/avoided_executions"></div>
                     <b>avoided_executions</b>
                     <a class="ansibleOptionLink" href="#parameter-items/avoided_executions" title="Permalink to this option"></a>
@@ -699,7 +771,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/bucket_id"></div>
                     <b>bucket_id</b>
                     <a class="ansibleOptionLink" href="#parameter-items/bucket_id" title="Permalink to this option"></a>
@@ -715,7 +787,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/buffer_gets"></div>
                     <b>buffer_gets</b>
                     <a class="ansibleOptionLink" href="#parameter-items/buffer_gets" title="Permalink to this option"></a>
@@ -731,7 +803,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/bytes"></div>
                     <b>bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/bytes" title="Permalink to this option"></a>
@@ -747,7 +819,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cardinality"></div>
                     <b>cardinality</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cardinality" title="Permalink to this option"></a>
@@ -763,7 +835,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cdb"></div>
                     <b>cdb</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cdb" title="Permalink to this option"></a>
@@ -780,7 +852,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/child_number"></div>
                     <b>child_number</b>
                     <a class="ansibleOptionLink" href="#parameter-items/child_number" title="Permalink to this option"></a>
@@ -796,7 +868,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cluster_wait_time_in_us"></div>
                     <b>cluster_wait_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cluster_wait_time_in_us" title="Permalink to this option"></a>
@@ -812,7 +884,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/command_type"></div>
                     <b>command_type</b>
                     <a class="ansibleOptionLink" href="#parameter-items/command_type" title="Permalink to this option"></a>
@@ -828,7 +900,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/concurrency_wait_time_in_us"></div>
                     <b>concurrency_wait_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/concurrency_wait_time_in_us" title="Permalink to this option"></a>
@@ -844,7 +916,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/control_file_type"></div>
                     <b>control_file_type</b>
                     <a class="ansibleOptionLink" href="#parameter-items/control_file_type" title="Permalink to this option"></a>
@@ -861,7 +933,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cost"></div>
                     <b>cost</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cost" title="Permalink to this option"></a>
@@ -877,7 +949,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cpu_cost"></div>
                     <b>cpu_cost</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cpu_cost" title="Permalink to this option"></a>
@@ -893,7 +965,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cpu_count"></div>
                     <b>cpu_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cpu_count" title="Permalink to this option"></a>
@@ -910,7 +982,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cpu_time_in_sec"></div>
                     <b>cpu_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cpu_time_in_sec" title="Permalink to this option"></a>
@@ -926,7 +998,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/cpu_time_in_us"></div>
                     <b>cpu_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/cpu_time_in_us" title="Permalink to this option"></a>
@@ -942,7 +1014,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/created"></div>
                     <b>created</b>
                     <a class="ansibleOptionLink" href="#parameter-items/created" title="Permalink to this option"></a>
@@ -959,7 +1031,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/database_identifier"></div>
                     <b>database_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/database_identifier" title="Permalink to this option"></a>
@@ -975,7 +1047,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/database_role"></div>
                     <b>database_role</b>
                     <a class="ansibleOptionLink" href="#parameter-items/database_role" title="Permalink to this option"></a>
@@ -992,7 +1064,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/database_status"></div>
                     <b>database_status</b>
                     <a class="ansibleOptionLink" href="#parameter-items/database_status" title="Permalink to this option"></a>
@@ -1009,7 +1081,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/database_type"></div>
                     <b>database_type</b>
                     <a class="ansibleOptionLink" href="#parameter-items/database_type" title="Permalink to this option"></a>
@@ -1025,7 +1097,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/db_external_instance_version"></div>
                     <b>db_external_instance_version</b>
                     <a class="ansibleOptionLink" href="#parameter-items/db_external_instance_version" title="Permalink to this option"></a>
@@ -1042,7 +1114,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_cpu_rank"></div>
                     <b>delta_cpu_rank</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_cpu_rank" title="Permalink to this option"></a>
@@ -1058,7 +1130,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_cpu_time"></div>
                     <b>delta_cpu_time</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_cpu_time" title="Permalink to this option"></a>
@@ -1074,7 +1146,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_execs_rank"></div>
                     <b>delta_execs_rank</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_execs_rank" title="Permalink to this option"></a>
@@ -1090,7 +1162,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_execution_count"></div>
                     <b>delta_execution_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_execution_count" title="Permalink to this option"></a>
@@ -1106,7 +1178,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_io_bytes"></div>
                     <b>delta_io_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_io_bytes" title="Permalink to this option"></a>
@@ -1122,7 +1194,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/delta_io_rank"></div>
                     <b>delta_io_rank</b>
                     <a class="ansibleOptionLink" href="#parameter-items/delta_io_rank" title="Permalink to this option"></a>
@@ -1138,7 +1210,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/depth"></div>
                     <b>depth</b>
                     <a class="ansibleOptionLink" href="#parameter-items/depth" title="Permalink to this option"></a>
@@ -1154,7 +1226,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/direct_reads"></div>
                     <b>direct_reads</b>
                     <a class="ansibleOptionLink" href="#parameter-items/direct_reads" title="Permalink to this option"></a>
@@ -1170,7 +1242,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/direct_writes"></div>
                     <b>direct_writes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/direct_writes" title="Permalink to this option"></a>
@@ -1186,7 +1258,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/disk_reads"></div>
                     <b>disk_reads</b>
                     <a class="ansibleOptionLink" href="#parameter-items/disk_reads" title="Permalink to this option"></a>
@@ -1202,7 +1274,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/distribution"></div>
                     <b>distribution</b>
                     <a class="ansibleOptionLink" href="#parameter-items/distribution" title="Permalink to this option"></a>
@@ -1218,7 +1290,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/edition"></div>
                     <b>edition</b>
                     <a class="ansibleOptionLink" href="#parameter-items/edition" title="Permalink to this option"></a>
@@ -1235,7 +1307,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/elapsed_time_in_sec"></div>
                     <b>elapsed_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/elapsed_time_in_sec" title="Permalink to this option"></a>
@@ -1251,7 +1323,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/elapsed_time_in_us"></div>
                     <b>elapsed_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/elapsed_time_in_us" title="Permalink to this option"></a>
@@ -1267,7 +1339,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/end_of_fetch_count"></div>
                     <b>end_of_fetch_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/end_of_fetch_count" title="Permalink to this option"></a>
@@ -1283,7 +1355,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/exact_matching_signature"></div>
                     <b>exact_matching_signature</b>
                     <a class="ansibleOptionLink" href="#parameter-items/exact_matching_signature" title="Permalink to this option"></a>
@@ -1299,7 +1371,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/executions"></div>
                     <b>executions</b>
                     <a class="ansibleOptionLink" href="#parameter-items/executions" title="Permalink to this option"></a>
@@ -1315,7 +1387,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/executions_count"></div>
                     <b>executions_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/executions_count" title="Permalink to this option"></a>
@@ -1331,7 +1403,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/fetches"></div>
                     <b>fetches</b>
                     <a class="ansibleOptionLink" href="#parameter-items/fetches" title="Permalink to this option"></a>
@@ -1347,7 +1419,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/filter_predicates"></div>
                     <b>filter_predicates</b>
                     <a class="ansibleOptionLink" href="#parameter-items/filter_predicates" title="Permalink to this option"></a>
@@ -1363,7 +1435,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/force_matching_signature"></div>
                     <b>force_matching_signature</b>
                     <a class="ansibleOptionLink" href="#parameter-items/force_matching_signature" title="Permalink to this option"></a>
@@ -1379,7 +1451,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/full_plan_hash_value"></div>
                     <b>full_plan_hash_value</b>
                     <a class="ansibleOptionLink" href="#parameter-items/full_plan_hash_value" title="Permalink to this option"></a>
@@ -1395,7 +1467,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/guard_status"></div>
                     <b>guard_status</b>
                     <a class="ansibleOptionLink" href="#parameter-items/guard_status" title="Permalink to this option"></a>
@@ -1412,7 +1484,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/harmonic_sum"></div>
                     <b>harmonic_sum</b>
                     <a class="ansibleOptionLink" href="#parameter-items/harmonic_sum" title="Permalink to this option"></a>
@@ -1428,7 +1500,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/host_memory_capacity"></div>
                     <b>host_memory_capacity</b>
                     <a class="ansibleOptionLink" href="#parameter-items/host_memory_capacity" title="Permalink to this option"></a>
@@ -1445,7 +1517,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/host_name" title="Permalink to this option"></a>
@@ -1462,7 +1534,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/identifier"></div>
                     <b>identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/identifier" title="Permalink to this option"></a>
@@ -1478,7 +1550,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/instance_name"></div>
                     <b>instance_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/instance_name" title="Permalink to this option"></a>
@@ -1495,7 +1567,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/instance_number"></div>
                     <b>instance_number</b>
                     <a class="ansibleOptionLink" href="#parameter-items/instance_number" title="Permalink to this option"></a>
@@ -1512,7 +1584,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/instance_role"></div>
                     <b>instance_role</b>
                     <a class="ansibleOptionLink" href="#parameter-items/instance_role" title="Permalink to this option"></a>
@@ -1529,7 +1601,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/invalidations"></div>
                     <b>invalidations</b>
                     <a class="ansibleOptionLink" href="#parameter-items/invalidations" title="Permalink to this option"></a>
@@ -1545,7 +1617,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_cell_offload_eligible_bytes"></div>
                     <b>io_cell_offload_eligible_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_cell_offload_eligible_bytes" title="Permalink to this option"></a>
@@ -1561,7 +1633,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_cell_offload_returned_bytes"></div>
                     <b>io_cell_offload_returned_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_cell_offload_returned_bytes" title="Permalink to this option"></a>
@@ -1577,7 +1649,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_cell_uncompressed_bytes"></div>
                     <b>io_cell_uncompressed_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_cell_uncompressed_bytes" title="Permalink to this option"></a>
@@ -1593,7 +1665,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_cost"></div>
                     <b>io_cost</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_cost" title="Permalink to this option"></a>
@@ -1609,7 +1681,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_interconnect_bytes"></div>
                     <b>io_interconnect_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_interconnect_bytes" title="Permalink to this option"></a>
@@ -1625,7 +1697,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_time_in_sec"></div>
                     <b>io_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_time_in_sec" title="Permalink to this option"></a>
@@ -1641,7 +1713,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/is_changed"></div>
                     <b>is_changed</b>
                     <a class="ansibleOptionLink" href="#parameter-items/is_changed" title="Permalink to this option"></a>
@@ -1658,7 +1730,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/is_default"></div>
                     <b>is_default</b>
                     <a class="ansibleOptionLink" href="#parameter-items/is_default" title="Permalink to this option"></a>
@@ -1675,7 +1747,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/java_exec_time_in_us"></div>
                     <b>java_exec_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/java_exec_time_in_us" title="Permalink to this option"></a>
@@ -1691,7 +1763,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/last_active_time"></div>
                     <b>last_active_time</b>
                     <a class="ansibleOptionLink" href="#parameter-items/last_active_time" title="Permalink to this option"></a>
@@ -1707,7 +1779,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/loads"></div>
                     <b>loads</b>
                     <a class="ansibleOptionLink" href="#parameter-items/loads" title="Permalink to this option"></a>
@@ -1723,7 +1795,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/log_mode"></div>
                     <b>log_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-items/log_mode" title="Permalink to this option"></a>
@@ -1740,7 +1812,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/logins"></div>
                     <b>logins</b>
                     <a class="ansibleOptionLink" href="#parameter-items/logins" title="Permalink to this option"></a>
@@ -1757,7 +1829,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/metric_name"></div>
                     <b>metric_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/metric_name" title="Permalink to this option"></a>
@@ -1779,7 +1851,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/module"></div>
                     <b>module</b>
                     <a class="ansibleOptionLink" href="#parameter-items/module" title="Permalink to this option"></a>
@@ -1795,7 +1867,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/name" title="Permalink to this option"></a>
@@ -1812,7 +1884,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/num_cp_us"></div>
                     <b>num_cp_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/num_cp_us" title="Permalink to this option"></a>
@@ -1829,7 +1901,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/num_cpu_cores"></div>
                     <b>num_cpu_cores</b>
                     <a class="ansibleOptionLink" href="#parameter-items/num_cpu_cores" title="Permalink to this option"></a>
@@ -1846,7 +1918,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/num_cpu_sockets"></div>
                     <b>num_cpu_sockets</b>
                     <a class="ansibleOptionLink" href="#parameter-items/num_cpu_sockets" title="Permalink to this option"></a>
@@ -1863,7 +1935,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_alias"></div>
                     <b>object_alias</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_alias" title="Permalink to this option"></a>
@@ -1879,7 +1951,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_instance"></div>
                     <b>object_instance</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_instance" title="Permalink to this option"></a>
@@ -1895,7 +1967,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_name" title="Permalink to this option"></a>
@@ -1911,7 +1983,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_node"></div>
                     <b>object_node</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_node" title="Permalink to this option"></a>
@@ -1927,7 +1999,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_owner"></div>
                     <b>object_owner</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_owner" title="Permalink to this option"></a>
@@ -1943,7 +2015,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/object_type"></div>
                     <b>object_type</b>
                     <a class="ansibleOptionLink" href="#parameter-items/object_type" title="Permalink to this option"></a>
@@ -1959,7 +2031,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/obsolete_count"></div>
                     <b>obsolete_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/obsolete_count" title="Permalink to this option"></a>
@@ -1975,7 +2047,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/open_mode"></div>
                     <b>open_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-items/open_mode" title="Permalink to this option"></a>
@@ -1992,7 +2064,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#parameter-items/operation" title="Permalink to this option"></a>
@@ -2008,7 +2080,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/optimizer"></div>
                     <b>optimizer</b>
                     <a class="ansibleOptionLink" href="#parameter-items/optimizer" title="Permalink to this option"></a>
@@ -2024,7 +2096,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/optimizer_cost"></div>
                     <b>optimizer_cost</b>
                     <a class="ansibleOptionLink" href="#parameter-items/optimizer_cost" title="Permalink to this option"></a>
@@ -2040,7 +2112,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/options"></div>
                     <b>options</b>
                     <a class="ansibleOptionLink" href="#parameter-items/options" title="Permalink to this option"></a>
@@ -2056,7 +2128,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/other"></div>
                     <b>other</b>
                     <a class="ansibleOptionLink" href="#parameter-items/other" title="Permalink to this option"></a>
@@ -2072,7 +2144,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/other_tag"></div>
                     <b>other_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-items/other_tag" title="Permalink to this option"></a>
@@ -2088,7 +2160,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/other_wait_time_in_sec"></div>
                     <b>other_wait_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/other_wait_time_in_sec" title="Permalink to this option"></a>
@@ -2104,7 +2176,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/other_xml"></div>
                     <b>other_xml</b>
                     <a class="ansibleOptionLink" href="#parameter-items/other_xml" title="Permalink to this option"></a>
@@ -2120,7 +2192,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/parallel"></div>
                     <b>parallel</b>
                     <a class="ansibleOptionLink" href="#parameter-items/parallel" title="Permalink to this option"></a>
@@ -2137,7 +2209,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/parameter_name"></div>
                     <b>parameter_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/parameter_name" title="Permalink to this option"></a>
@@ -2154,7 +2226,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/parameter_value"></div>
                     <b>parameter_value</b>
                     <a class="ansibleOptionLink" href="#parameter-items/parameter_value" title="Permalink to this option"></a>
@@ -2171,7 +2243,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/parent_identifier"></div>
                     <b>parent_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/parent_identifier" title="Permalink to this option"></a>
@@ -2187,7 +2259,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/parse_calls"></div>
                     <b>parse_calls</b>
                     <a class="ansibleOptionLink" href="#parameter-items/parse_calls" title="Permalink to this option"></a>
@@ -2203,7 +2275,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/partition_identifier"></div>
                     <b>partition_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/partition_identifier" title="Permalink to this option"></a>
@@ -2219,7 +2291,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/partition_start"></div>
                     <b>partition_start</b>
                     <a class="ansibleOptionLink" href="#parameter-items/partition_start" title="Permalink to this option"></a>
@@ -2235,7 +2307,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/partition_stop"></div>
                     <b>partition_stop</b>
                     <a class="ansibleOptionLink" href="#parameter-items/partition_stop" title="Permalink to this option"></a>
@@ -2251,7 +2323,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/physical_memory_bytes"></div>
                     <b>physical_memory_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/physical_memory_bytes" title="Permalink to this option"></a>
@@ -2268,7 +2340,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/physical_read_bytes"></div>
                     <b>physical_read_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/physical_read_bytes" title="Permalink to this option"></a>
@@ -2284,7 +2356,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/physical_read_requests"></div>
                     <b>physical_read_requests</b>
                     <a class="ansibleOptionLink" href="#parameter-items/physical_read_requests" title="Permalink to this option"></a>
@@ -2300,7 +2372,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/physical_write_bytes"></div>
                     <b>physical_write_bytes</b>
                     <a class="ansibleOptionLink" href="#parameter-items/physical_write_bytes" title="Permalink to this option"></a>
@@ -2316,7 +2388,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/physical_write_requests"></div>
                     <b>physical_write_requests</b>
                     <a class="ansibleOptionLink" href="#parameter-items/physical_write_requests" title="Permalink to this option"></a>
@@ -2332,7 +2404,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/plan_hash"></div>
                     <b>plan_hash</b>
                     <a class="ansibleOptionLink" href="#parameter-items/plan_hash" title="Permalink to this option"></a>
@@ -2348,7 +2420,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/plan_hash_value"></div>
                     <b>plan_hash_value</b>
                     <a class="ansibleOptionLink" href="#parameter-items/plan_hash_value" title="Permalink to this option"></a>
@@ -2364,7 +2436,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/platform_name"></div>
                     <b>platform_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/platform_name" title="Permalink to this option"></a>
@@ -2381,7 +2453,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/plsql_exec_time_in_us"></div>
                     <b>plsql_exec_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/plsql_exec_time_in_us" title="Permalink to this option"></a>
@@ -2397,7 +2469,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/position"></div>
                     <b>position</b>
                     <a class="ansibleOptionLink" href="#parameter-items/position" title="Permalink to this option"></a>
@@ -2413,7 +2485,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/projection"></div>
                     <b>projection</b>
                     <a class="ansibleOptionLink" href="#parameter-items/projection" title="Permalink to this option"></a>
@@ -2429,7 +2501,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/px_servers_executions"></div>
                     <b>px_servers_executions</b>
                     <a class="ansibleOptionLink" href="#parameter-items/px_servers_executions" title="Permalink to this option"></a>
@@ -2445,7 +2517,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/qblock_name"></div>
                     <b>qblock_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/qblock_name" title="Permalink to this option"></a>
@@ -2461,7 +2533,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/remark"></div>
                     <b>remark</b>
                     <a class="ansibleOptionLink" href="#parameter-items/remark" title="Permalink to this option"></a>
@@ -2477,7 +2549,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/rows_processed"></div>
                     <b>rows_processed</b>
                     <a class="ansibleOptionLink" href="#parameter-items/rows_processed" title="Permalink to this option"></a>
@@ -2493,7 +2565,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/search_columns"></div>
                     <b>search_columns</b>
                     <a class="ansibleOptionLink" href="#parameter-items/search_columns" title="Permalink to this option"></a>
@@ -2509,7 +2581,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/serializable_aborts"></div>
                     <b>serializable_aborts</b>
                     <a class="ansibleOptionLink" href="#parameter-items/serializable_aborts" title="Permalink to this option"></a>
@@ -2525,7 +2597,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/service"></div>
                     <b>service</b>
                     <a class="ansibleOptionLink" href="#parameter-items/service" title="Permalink to this option"></a>
@@ -2541,7 +2613,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sharable_mem"></div>
                     <b>sharable_mem</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sharable_mem" title="Permalink to this option"></a>
@@ -2557,7 +2629,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sharable_mem_rank"></div>
                     <b>sharable_mem_rank</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sharable_mem_rank" title="Permalink to this option"></a>
@@ -2573,7 +2645,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/snapshot_id"></div>
                     <b>snapshot_id</b>
                     <a class="ansibleOptionLink" href="#parameter-items/snapshot_id" title="Permalink to this option"></a>
@@ -2590,7 +2662,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/snapshot_interval_end"></div>
                     <b>snapshot_interval_end</b>
                     <a class="ansibleOptionLink" href="#parameter-items/snapshot_interval_end" title="Permalink to this option"></a>
@@ -2606,7 +2678,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/snapshot_interval_start"></div>
                     <b>snapshot_interval_start</b>
                     <a class="ansibleOptionLink" href="#parameter-items/snapshot_interval_start" title="Permalink to this option"></a>
@@ -2622,7 +2694,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sorts"></div>
                     <b>sorts</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sorts" title="Permalink to this option"></a>
@@ -2638,7 +2710,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_command"></div>
                     <b>sql_command</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_command" title="Permalink to this option"></a>
@@ -2654,7 +2726,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_full_text"></div>
                     <b>sql_full_text</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_full_text" title="Permalink to this option"></a>
@@ -2670,7 +2742,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_identifier"></div>
                     <b>sql_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_identifier" title="Permalink to this option"></a>
@@ -2686,7 +2758,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_patch"></div>
                     <b>sql_patch</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_patch" title="Permalink to this option"></a>
@@ -2702,7 +2774,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_plan_baseline"></div>
                     <b>sql_plan_baseline</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_plan_baseline" title="Permalink to this option"></a>
@@ -2718,7 +2790,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/sql_profile"></div>
                     <b>sql_profile</b>
                     <a class="ansibleOptionLink" href="#parameter-items/sql_profile" title="Permalink to this option"></a>
@@ -2734,7 +2806,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/startup_time"></div>
                     <b>startup_time</b>
                     <a class="ansibleOptionLink" href="#parameter-items/startup_time" title="Permalink to this option"></a>
@@ -2751,7 +2823,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#parameter-items/status" title="Permalink to this option"></a>
@@ -2768,7 +2840,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/switchover_status"></div>
                     <b>switchover_status</b>
                     <a class="ansibleOptionLink" href="#parameter-items/switchover_status" title="Permalink to this option"></a>
@@ -2785,7 +2857,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/task_identifier"></div>
                     <b>task_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/task_identifier" title="Permalink to this option"></a>
@@ -2801,7 +2873,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/temp_space"></div>
                     <b>temp_space</b>
                     <a class="ansibleOptionLink" href="#parameter-items/temp_space" title="Permalink to this option"></a>
@@ -2817,7 +2889,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/time_collected"></div>
                     <b>time_collected</b>
                     <a class="ansibleOptionLink" href="#parameter-items/time_collected" title="Permalink to this option"></a>
@@ -2833,7 +2905,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/time_interval_end"></div>
                     <b>time_interval_end</b>
                     <a class="ansibleOptionLink" href="#parameter-items/time_interval_end" title="Permalink to this option"></a>
@@ -2849,7 +2921,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/time_interval_start"></div>
                     <b>time_interval_start</b>
                     <a class="ansibleOptionLink" href="#parameter-items/time_interval_start" title="Permalink to this option"></a>
@@ -2865,7 +2937,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/total_sharable_mem"></div>
                     <b>total_sharable_mem</b>
                     <a class="ansibleOptionLink" href="#parameter-items/total_sharable_mem" title="Permalink to this option"></a>
@@ -2881,7 +2953,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/total_sql_count"></div>
                     <b>total_sql_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/total_sql_count" title="Permalink to this option"></a>
@@ -2897,7 +2969,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/total_time_in_sec"></div>
                     <b>total_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/total_time_in_sec" title="Permalink to this option"></a>
@@ -2913,7 +2985,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/type_check_mem"></div>
                     <b>type_check_mem</b>
                     <a class="ansibleOptionLink" href="#parameter-items/type_check_mem" title="Permalink to this option"></a>
@@ -2929,7 +3001,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/user_io_wait_time_in_us"></div>
                     <b>user_io_wait_time_in_us</b>
                     <a class="ansibleOptionLink" href="#parameter-items/user_io_wait_time_in_us" title="Permalink to this option"></a>
@@ -2945,7 +3017,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/users_executing"></div>
                     <b>users_executing</b>
                     <a class="ansibleOptionLink" href="#parameter-items/users_executing" title="Permalink to this option"></a>
@@ -2961,7 +3033,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/users_opening"></div>
                     <b>users_opening</b>
                     <a class="ansibleOptionLink" href="#parameter-items/users_opening" title="Permalink to this option"></a>
@@ -2977,7 +3049,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#parameter-items/version" title="Permalink to this option"></a>
@@ -2993,7 +3065,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/version_count"></div>
                     <b>version_count</b>
                     <a class="ansibleOptionLink" href="#parameter-items/version_count" title="Permalink to this option"></a>
@@ -3009,7 +3081,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-items/wt_harmonic_sum"></div>
                     <b>wt_harmonic_sum</b>
                     <a class="ansibleOptionLink" href="#parameter-items/wt_harmonic_sum" title="Permalink to this option"></a>
@@ -3025,7 +3097,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-opsi_private_endpoint_id"></div>
                     <b>opsi_private_endpoint_id</b>
                     <a class="ansibleOptionLink" href="#parameter-opsi_private_endpoint_id" title="Permalink to this option"></a>
@@ -3042,7 +3114,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -3061,7 +3133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -3076,7 +3148,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-service_name"></div>
                     <b>service_name</b>
                     <a class="ansibleOptionLink" href="#parameter-service_name" title="Permalink to this option"></a>
@@ -3093,7 +3165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-system_tags" title="Permalink to this option"></a>
@@ -3110,7 +3182,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -3125,7 +3197,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -3144,7 +3216,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -3186,16 +3258,20 @@ Examples
     - name: Perform action change_autonomous_database_insight_advanced_features on database_insights
       oci_opsi_database_insights_actions:
         # required
-        connection_details:
-          # required
-          host_name: host_name_example
-          protocol: TCP
-          port: 56
-          service_name: service_name_example
         credential_details:
           # required
           credential_source_name: credential_source_name_example
           credential_type: CREDENTIALS_BY_SOURCE
+        connection_details:
+          # optional
+          host_name: host_name_example
+          port: 56
+          hosts:
+          - # optional
+            host_ip: host_ip_example
+            port: 56
+          protocol: TCP
+          service_name: service_name_example
         database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_autonomous_database_insight_advanced_features
 
@@ -3221,6 +3297,18 @@ Examples
         database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_pe_comanaged
 
+        # optional
+        connection_details:
+          # optional
+          host_name: host_name_example
+          port: 56
+          hosts:
+          - # optional
+            host_ip: host_ip_example
+            port: 56
+          protocol: TCP
+          service_name: service_name_example
+
     - name: Perform action disable_autonomous_database_insight_advanced_features on database_insights
       oci_opsi_database_insights_actions:
         # required
@@ -3236,16 +3324,20 @@ Examples
     - name: Perform action enable_autonomous_database_insight_advanced_features on database_insights
       oci_opsi_database_insights_actions:
         # required
-        connection_details:
-          # required
-          host_name: host_name_example
-          protocol: TCP
-          port: 56
-          service_name: service_name_example
         credential_details:
           # required
           credential_source_name: credential_source_name_example
           credential_type: CREDENTIALS_BY_SOURCE
+        connection_details:
+          # optional
+          host_name: host_name_example
+          port: 56
+          hosts:
+          - # optional
+            host_ip: host_ip_example
+            port: 56
+          protocol: TCP
+          service_name: service_name_example
         database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable_autonomous_database_insight_advanced_features
 
@@ -3270,6 +3362,16 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        connection_details:
+          # optional
+          host_name: host_name_example
+          port: 56
+          hosts:
+          - # optional
+            host_ip: host_ip_example
+            port: 56
+          protocol: TCP
+          service_name: service_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         system_tags: null
@@ -3438,7 +3540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DatabaseInsights resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;connection_details&#x27;: {&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;hosts&#x27;: [{&#x27;host_ip&#x27;: &#x27;host_ip_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;database_connection_status_details&#x27;: &#x27;database_connection_status_details_example&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_resource_type&#x27;: &#x27;database_resource_type_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_additional_details&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;enterprise_manager_bridge_id&#x27;: &#x27;ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enterprise_manager_entity_display_name&#x27;: &#x27;enterprise_manager_entity_display_name_example&#x27;, &#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;entity_source&#x27;: &#x27;AUTONOMOUS_DATABASE&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_advanced_features_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opsi_private_endpoint_id&#x27;: &#x27;ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_id&#x27;: &#x27;ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;processor_count&#x27;: 56, &#x27;root_id&#x27;: &#x27;ocid1.root.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;DISABLED&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;, &#x27;wallet_secret_id&#x27;: &#x27;ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;connection_details&#x27;: {&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;hosts&#x27;: [{&#x27;host_ip&#x27;: &#x27;host_ip_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;role&#x27;: &#x27;NORMAL&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;, &#x27;wallet_secret_id&#x27;: &#x27;ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;database_connection_status_details&#x27;: &#x27;database_connection_status_details_example&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_resource_type&#x27;: &#x27;database_resource_type_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_additional_details&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;enterprise_manager_bridge_id&#x27;: &#x27;ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enterprise_manager_entity_display_name&#x27;: &#x27;enterprise_manager_entity_display_name_example&#x27;, &#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;entity_source&#x27;: &#x27;AUTONOMOUS_DATABASE&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_advanced_features_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opsi_private_endpoint_id&#x27;: &#x27;ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_id&#x27;: &#x27;ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;processor_count&#x27;: 56, &#x27;root_id&#x27;: &#x27;ocid1.root.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;DISABLED&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -3568,6 +3670,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_credential_details/wallet_secret_id"></div>
+                    <b>wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_credential_details/wallet_secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the database keystore contents are stored. This is used for TCPS support in BM/VM/ExaCS cases.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     
@@ -3849,6 +3970,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/credential_details/wallet_secret_id"></div>
+                    <b>wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/credential_details/wallet_secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the database keystore contents are stored. This is used for TCPS support in BM/VM/ExaCS cases.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

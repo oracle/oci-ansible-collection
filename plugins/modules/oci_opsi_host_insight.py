@@ -352,9 +352,9 @@ host_insight:
         platform_type:
             description:
                 - "Platform type.
-                  Supported platformType(s) for MACS-managed external host insight: [LINUX].
+                  Supported platformType(s) for MACS-managed external host insight: [LINUX, SOLARIS, WINDOWS].
                   Supported platformType(s) for MACS-managed cloud host insight: [LINUX].
-                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
+                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX, WINDOWS, AIX]."
             returned: on success
             type: str
             sample: LINUX

@@ -51,35 +51,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    connection_details:
-        description:
-            - ""
-            - Required for I(action=change_autonomous_database_insight_advanced_features), I(action=enable_autonomous_database_insight_advanced_features).
-        type: dict
-        suboptions:
-            host_name:
-                description:
-                    - Name of the listener host that will be used to create the connect string to the database.
-                type: str
-                required: true
-            protocol:
-                description:
-                    - Protocol used for connection requests.
-                type: str
-                choices:
-                    - "TCP"
-                    - "TCPS"
-                required: true
-            port:
-                description:
-                    - Listener port number used for connection requests.
-                type: int
-                required: true
-            service_name:
-                description:
-                    - Database service name used for connection requests.
-                type: str
-                required: true
     entity_source:
         description:
             - Source of the database entity.
@@ -131,6 +102,12 @@ options:
                     - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
                     - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
                 type: str
+            wallet_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents are
+                      stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
             role:
                 description:
                     - database user role.
@@ -138,6 +115,49 @@ options:
                 type: str
                 choices:
                     - "NORMAL"
+    connection_details:
+        description:
+            - ""
+            - Required for I(action=change_autonomous_database_insight_advanced_features), I(action=enable_autonomous_database_insight_advanced_features).
+            - Applicable when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+        type: dict
+        suboptions:
+            host_name:
+                description:
+                    - Name of the listener host that will be used to create the connect string to the database.
+                type: str
+            port:
+                description:
+                    - Listener port number used for connection requests.
+                type: int
+            hosts:
+                description:
+                    - List of hosts and port for private endpoint accessed database resource.
+                    - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+                type: list
+                elements: dict
+                suboptions:
+                    host_ip:
+                        description:
+                            - Host IP used for connection requests for Cloud DB resource.
+                        type: str
+                    port:
+                        description:
+                            - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                        type: int
+            protocol:
+                description:
+                    - Protocol used for connection requests.
+                    - Applicable when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+                type: str
+                choices:
+                    - "TCP"
+                    - "TCPS"
+            service_name:
+                description:
+                    - Database service name used for connection requests.
+                    - Applicable when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+                type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -910,16 +930,20 @@ EXAMPLES = """
 - name: Perform action change_autonomous_database_insight_advanced_features on database_insights
   oci_opsi_database_insights_actions:
     # required
-    connection_details:
-      # required
-      host_name: host_name_example
-      protocol: TCP
-      port: 56
-      service_name: service_name_example
     credential_details:
       # required
       credential_source_name: credential_source_name_example
       credential_type: CREDENTIALS_BY_SOURCE
+    connection_details:
+      # optional
+      host_name: host_name_example
+      port: 56
+      hosts:
+      - # optional
+        host_ip: host_ip_example
+        port: 56
+      protocol: TCP
+      service_name: service_name_example
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_autonomous_database_insight_advanced_features
 
@@ -945,6 +969,18 @@ EXAMPLES = """
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_pe_comanaged
 
+    # optional
+    connection_details:
+      # optional
+      host_name: host_name_example
+      port: 56
+      hosts:
+      - # optional
+        host_ip: host_ip_example
+        port: 56
+      protocol: TCP
+      service_name: service_name_example
+
 - name: Perform action disable_autonomous_database_insight_advanced_features on database_insights
   oci_opsi_database_insights_actions:
     # required
@@ -960,16 +996,20 @@ EXAMPLES = """
 - name: Perform action enable_autonomous_database_insight_advanced_features on database_insights
   oci_opsi_database_insights_actions:
     # required
-    connection_details:
-      # required
-      host_name: host_name_example
-      protocol: TCP
-      port: 56
-      service_name: service_name_example
     credential_details:
       # required
       credential_source_name: credential_source_name_example
       credential_type: CREDENTIALS_BY_SOURCE
+    connection_details:
+      # optional
+      host_name: host_name_example
+      port: 56
+      hosts:
+      - # optional
+        host_ip: host_ip_example
+        port: 56
+      protocol: TCP
+      service_name: service_name_example
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_autonomous_database_insight_advanced_features
 
@@ -994,6 +1034,16 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    connection_details:
+      # optional
+      host_name: host_name_example
+      port: 56
+      hosts:
+      - # optional
+        host_ip: host_ip_example
+        port: 56
+      protocol: TCP
+      service_name: service_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
@@ -1226,6 +1276,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -1419,6 +1476,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -1478,6 +1542,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "db_additional_details": {},
@@ -1512,6 +1577,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1883,15 +1949,6 @@ def main():
     )
     module_args.update(
         dict(
-            connection_details=dict(
-                type="dict",
-                options=dict(
-                    host_name=dict(type="str", required=True),
-                    protocol=dict(type="str", required=True, choices=["TCP", "TCPS"]),
-                    port=dict(type="int", required=True),
-                    service_name=dict(type="str", required=True),
-                ),
-            ),
             entity_source=dict(
                 type="str",
                 choices=["EM_MANAGED_EXTERNAL_DATABASE", "PE_COMANAGED_DATABASE"],
@@ -1909,7 +1966,22 @@ def main():
                     ),
                     user_name=dict(type="str"),
                     password_secret_id=dict(type="str"),
+                    wallet_secret_id=dict(type="str"),
                     role=dict(type="str", choices=["NORMAL"]),
+                ),
+            ),
+            connection_details=dict(
+                type="dict",
+                options=dict(
+                    host_name=dict(type="str"),
+                    port=dict(type="int"),
+                    hosts=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(host_ip=dict(type="str"), port=dict(type="int")),
+                    ),
+                    protocol=dict(type="str", choices=["TCP", "TCPS"]),
+                    service_name=dict(type="str"),
                 ),
             ),
             freeform_tags=dict(type="dict"),

@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_exadata_insights -- Manage an ExadataInsights resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.26.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -83,12 +83,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Parameter</th>
+            <th colspan="5">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -148,7 +148,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -166,7 +166,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -188,7 +188,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -203,7 +203,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -219,7 +219,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -234,7 +234,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -249,7 +249,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -265,7 +265,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_bridge_id"></div>
                     <b>enterprise_manager_bridge_id</b>
                     <a class="ansibleOptionLink" href="#parameter-enterprise_manager_bridge_id" title="Permalink to this option"></a>
@@ -281,7 +281,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_entity_identifier"></div>
                     <b>enterprise_manager_entity_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-enterprise_manager_entity_identifier" title="Permalink to this option"></a>
@@ -297,7 +297,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_identifier"></div>
                     <b>enterprise_manager_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-enterprise_manager_identifier" title="Permalink to this option"></a>
@@ -313,7 +313,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-entity_source"></div>
                     <b>entity_source</b>
                     <a class="ansibleOptionLink" href="#parameter-entity_source" title="Permalink to this option"></a>
@@ -333,7 +333,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-exadata_infra_id"></div>
                     <b>exadata_infra_id</b>
                     <a class="ansibleOptionLink" href="#parameter-exadata_infra_id" title="Permalink to this option"></a>
@@ -349,7 +349,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-exadata_insight_id"></div>
                     <b>exadata_insight_id</b>
                     <a class="ansibleOptionLink" href="#parameter-exadata_insight_id" title="Permalink to this option"></a>
@@ -367,7 +367,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -386,7 +386,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -402,7 +402,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-is_auto_sync_enabled"></div>
                     <b>is_auto_sync_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-is_auto_sync_enabled" title="Permalink to this option"></a>
@@ -423,7 +423,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -438,7 +438,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-member_entity_details"></div>
                     <b>member_entity_details</b>
                     <a class="ansibleOptionLink" href="#parameter-member_entity_details" title="Permalink to this option"></a>
@@ -455,7 +455,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_entity_details/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_entity_details/compartment_id" title="Permalink to this option"></a>
@@ -472,7 +472,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_entity_details/enterprise_manager_entity_identifier"></div>
                     <b>enterprise_manager_entity_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-member_entity_details/enterprise_manager_entity_identifier" title="Permalink to this option"></a>
@@ -489,7 +489,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details"></div>
                     <b>member_vm_cluster_details</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details" title="Permalink to this option"></a>
@@ -506,7 +506,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/compartment_id" title="Permalink to this option"></a>
@@ -523,7 +523,24 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/dbm_private_endpoint_id"></div>
+                    <b>dbm_private_endpoint_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/dbm_private_endpoint_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Management private endpoint</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details"></div>
                     <b>member_database_details</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details" title="Permalink to this option"></a>
@@ -541,7 +558,7 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/compartment_id" title="Permalink to this option"></a>
@@ -559,7 +576,128 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details"></div>
+                    <b>connection_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details/hosts"></div>
+                    <b>hosts</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details/hosts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of hosts and port for private endpoint accessed database resource.</div>
+                                            <div>Required when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details/hosts/host_ip"></div>
+                    <b>host_ip</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details/hosts/host_ip" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Host IP used for connection requests for Cloud DB resource.</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details/hosts/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details/hosts/port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Listener port number used for connection requests for rivate endpoint accessed db resource.</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details/protocol" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TCP</li>
+                                                                                                                                                                                                <li>TCPS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Protocol used for connection requests for private endpoint accssed database resource.</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/connection_details/service_name"></div>
+                    <b>service_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/connection_details/service_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Database service name used for connection requests.</div>
+                                            <div>Applicable when entity_source is &#x27;PE_COMANAGED_EXADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details"></div>
                     <b>credential_details</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details" title="Permalink to this option"></a>
@@ -578,7 +716,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/credential_source_name"></div>
                     <b>credential_source_name</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/credential_source_name" title="Permalink to this option"></a>
@@ -596,7 +734,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/credential_type"></div>
                     <b>credential_type</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/credential_type" title="Permalink to this option"></a>
@@ -618,7 +756,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/password_secret_id"></div>
                     <b>password_secret_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/password_secret_id" title="Permalink to this option"></a>
@@ -637,7 +775,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/role"></div>
                     <b>role</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/role" title="Permalink to this option"></a>
@@ -659,7 +797,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/user_name"></div>
                     <b>user_name</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/user_name" title="Permalink to this option"></a>
@@ -674,11 +812,30 @@ Parameters
                                             <div>Applicable when credential_type is &#x27;CREDENTIALS_BY_VAULT&#x27;</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/credential_details/wallet_secret_id"></div>
+                    <b>wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/credential_details/wallet_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the database keystore contents are stored. This is used for TCPS support in BM/VM/ExaCS cases.</div>
+                                            <div>Applicable when credential_type is &#x27;CREDENTIALS_BY_VAULT&#x27;</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/database_id" title="Permalink to this option"></a>
@@ -696,7 +853,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/database_resource_type"></div>
                     <b>database_resource_type</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/database_resource_type" title="Permalink to this option"></a>
@@ -714,7 +871,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/dbm_private_endpoint_id"></div>
                     <b>dbm_private_endpoint_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/dbm_private_endpoint_id" title="Permalink to this option"></a>
@@ -732,7 +889,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/defined_tags" title="Permalink to this option"></a>
@@ -750,7 +907,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/deployment_type"></div>
                     <b>deployment_type</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/deployment_type" title="Permalink to this option"></a>
@@ -773,7 +930,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/entity_source"></div>
                     <b>entity_source</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/entity_source" title="Permalink to this option"></a>
@@ -795,7 +952,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/freeform_tags" title="Permalink to this option"></a>
@@ -813,7 +970,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/opsi_private_endpoint_id"></div>
                     <b>opsi_private_endpoint_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/opsi_private_endpoint_id" title="Permalink to this option"></a>
@@ -831,7 +988,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/service_name"></div>
                     <b>service_name</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/service_name" title="Permalink to this option"></a>
@@ -849,7 +1006,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/member_database_details/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/member_database_details/system_tags" title="Permalink to this option"></a>
@@ -867,7 +1024,7 @@ Parameters
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/opsi_private_endpoint_id"></div>
                     <b>opsi_private_endpoint_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/opsi_private_endpoint_id" title="Permalink to this option"></a>
@@ -884,7 +1041,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-member_vm_cluster_details/vmcluster_id"></div>
                     <b>vmcluster_id</b>
                     <a class="ansibleOptionLink" href="#parameter-member_vm_cluster_details/vmcluster_id" title="Permalink to this option"></a>
@@ -901,7 +1058,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -920,7 +1077,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -935,7 +1092,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -956,7 +1113,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -971,7 +1128,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -990,7 +1147,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="4">
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -1062,6 +1219,7 @@ Examples
 
           # optional
           opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
           member_database_details:
           - # required
             entity_source: EM_MANAGED_EXTERNAL_DATABASE
@@ -1080,6 +1238,15 @@ Examples
             defined_tags: {'Operations': {'CostCenter': 'US'}}
             opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
             dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+            connection_details:
+              # required
+              hosts:
+              - # optional
+                host_ip: host_ip_example
+                port: 56
+                # optional
+              protocol: TCP
+              service_name: service_name_example
             system_tags: null
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

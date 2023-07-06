@@ -112,6 +112,12 @@ options:
                     - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
                     - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
                 type: str
+            wallet_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents are
+                      stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
             role:
                 description:
                     - database user role.
@@ -119,6 +125,43 @@ options:
                 type: str
                 choices:
                     - "NORMAL"
+    connection_details:
+        description:
+            - ""
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
+        suboptions:
+            hosts:
+                description:
+                    - List of hosts and port for private endpoint accessed database resource.
+                    - Required when entity_source is 'PE_COMANAGED_DATABASE'
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    host_ip:
+                        description:
+                            - Host IP used for connection requests for Cloud DB resource.
+                            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+                        type: str
+                    port:
+                        description:
+                            - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+                        type: int
+            protocol:
+                description:
+                    - Protocol used for connection requests for private endpoint accssed database resource.
+                    - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+                type: str
+                choices:
+                    - "TCP"
+                    - "TCPS"
+            service_name:
+                description:
+                    - Database service name used for connection requests.
+                    - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+                type: str
     deployment_type:
         description:
             - Database Deployment Type
@@ -207,6 +250,15 @@ EXAMPLES = """
     # optional
     opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_details:
+      # required
+      hosts:
+      - # optional
+        host_ip: host_ip_example
+        port: 56
+        # optional
+      protocol: TCP
+      service_name: service_name_example
     system_tags: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -370,6 +422,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -563,6 +622,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -622,6 +688,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "db_additional_details": {},
@@ -656,6 +723,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
@@ -845,7 +913,21 @@ def main():
                     ),
                     user_name=dict(type="str"),
                     password_secret_id=dict(type="str"),
+                    wallet_secret_id=dict(type="str"),
                     role=dict(type="str", choices=["NORMAL"]),
+                ),
+            ),
+            connection_details=dict(
+                type="dict",
+                options=dict(
+                    hosts=dict(
+                        type="list",
+                        elements="dict",
+                        required=True,
+                        options=dict(host_ip=dict(type="str"), port=dict(type="int")),
+                    ),
+                    protocol=dict(type="str", choices=["TCP", "TCPS"]),
+                    service_name=dict(type="str"),
                 ),
             ),
             deployment_type=dict(

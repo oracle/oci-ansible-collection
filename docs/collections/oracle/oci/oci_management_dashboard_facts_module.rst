@@ -30,7 +30,7 @@ oracle.oci.oci_management_dashboard_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.26.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Fetches details about one or multiple ManagementDashboard resources in Oracle Cloud Infrastructure
 - Gets the list of dashboards in a compartment with pagination.  Returned properties are the summary.
+- If *management_dashboard_id* is specified, the details of a single ManagementDashboard will be returned.
 
 
 .. Aliases
@@ -208,12 +209,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The ID of the compartment in which to list resources.</div>
+                                            <div>Required to list multiple management_dashboards.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -260,6 +262,23 @@ Parameters
                                                                 <td>
                                             <div>A filter to return only resources that match the entire display name given.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-management_dashboard_id"></div>
+                    <b>management_dashboard_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-management_dashboard_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A unique dashboard identifier.</div>
+                                            <div>Required to get a specific management_dashboard.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
                                 <tr>
@@ -374,6 +393,11 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Get a specific management_dashboard
+      oci_management_dashboard_facts:
+        # required
+        management_dashboard_id: "ocid1.managementdashboard.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: List management_dashboards
       oci_management_dashboard_facts:
         # required
@@ -401,12 +425,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards"></div>
                     <b>management_dashboards</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards" title="Permalink to this return value"></a>
@@ -419,12 +443,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementDashboard resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_dashboard&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;features_config&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: [], &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/compartment_id" title="Permalink to this return value"></a>
@@ -442,7 +466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/created_by"></div>
                     <b>created_by</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/created_by" title="Permalink to this return value"></a>
@@ -460,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/dashboard_id"></div>
                     <b>dashboard_id</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/dashboard_id" title="Permalink to this return value"></a>
@@ -478,7 +502,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/data_config"></div>
+                    <b>data_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/data_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of JSON that contain data source options.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/defined_tags" title="Permalink to this return value"></a>
@@ -496,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/description" title="Permalink to this return value"></a>
@@ -514,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/display_name" title="Permalink to this return value"></a>
@@ -532,7 +573,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/drilldown_config"></div>
+                    <b>drilldown_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/drilldown_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Drill-down configuration to define the destination of a drill-down action.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/features_config"></div>
                     <b>features_config</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/features_config" title="Permalink to this return value"></a>
@@ -548,7 +606,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/freeform_tags" title="Permalink to this return value"></a>
@@ -566,7 +624,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/id" title="Permalink to this return value"></a>
@@ -584,7 +642,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/is_favorite"></div>
+                    <b>is_favorite</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/is_favorite" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines whether the dashboard is set as favorite.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/is_oob_dashboard"></div>
                     <b>is_oob_dashboard</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/is_oob_dashboard" title="Permalink to this return value"></a>
@@ -602,7 +679,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/is_show_description"></div>
+                    <b>is_show_description</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/is_show_description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines whether the description of the dashboard is displayed.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/is_show_in_home"></div>
+                    <b>is_show_in_home</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/is_show_in_home" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines whether the dashboard will be displayed in Dashboard Home.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/lifecycle_state" title="Permalink to this return value"></a>
@@ -612,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Current lifecycle state of the dashboard.</div>
+                                            <div>State of dashboard.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
@@ -620,7 +735,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/metadata_version"></div>
                     <b>metadata_version</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/metadata_version" title="Permalink to this return value"></a>
@@ -638,7 +753,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/nls"></div>
                     <b>nls</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/nls" title="Permalink to this return value"></a>
@@ -654,7 +769,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/parameters_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines parameters for the dashboard.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/provider_id"></div>
                     <b>provider_id</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/provider_id" title="Permalink to this return value"></a>
@@ -672,7 +804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/provider_name"></div>
                     <b>provider_name</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/provider_name" title="Permalink to this return value"></a>
@@ -682,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user friendly name of the service (for example, Logging Analytics) that owns the dashboard.</div>
+                                            <div>Name of the service (for example, Logging Analytics) that owns the dashboard.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
@@ -690,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/provider_version"></div>
                     <b>provider_version</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/provider_version" title="Permalink to this return value"></a>
@@ -700,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The version of the metadata of the provider. This is useful for provider to version its features and metadata. Any newly created saved search (or dashboard) should use providerVersion 3.0.0.</div>
+                                            <div>Version of the service that owns the dashboard.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_version_example</div>
@@ -708,7 +840,507 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches"></div>
+                    <b>saved_searches</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of saved searches in the dashboard.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCID of the compartment in which the saved search resides.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/created_by"></div>
+                    <b>created_by</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/created_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The principle id of the user that created this saved search. This is automatically managed by the system. In OCI the value is ignored. In EM it can skipped or otherwise it is ignored in both create and update API and system automatically sets its value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/data_config"></div>
+                    <b>data_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/data_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Display name of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/drilldown_config"></div>
+                    <b>drilldown_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/drilldown_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Drill-down configuration to define the destination of a drill-down action.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/features_config"></div>
+                    <b>features_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/features_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Contains configuration for enabling features.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ID of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/is_oob_saved_search"></div>
+                    <b>is_oob_saved_search</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/is_oob_saved_search" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines whether the saved search is an Out-of-the-Box (OOB) saved search. Note that OOB saved searches are only provided by Oracle and cannot be modified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCI lifecycle status. This is automatically managed by the system.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/metadata_version"></div>
+                    <b>metadata_version</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/metadata_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The version of the metadata defined in the API. This is maintained and enforced by dashboard server. Currently it is 2.0.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metadata_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/nls"></div>
+                    <b>nls</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/nls" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>JSON that contains internationalization options.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/parameters_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines parameters for the saved search.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/provider_id"></div>
+                    <b>provider_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/provider_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ID of the service (for example log-analytics) that owns the saved search. Each service has a unique ID.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/provider_name"></div>
+                    <b>provider_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/provider_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the service (for example, Logging Analytics) that owns the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/provider_version"></div>
+                    <b>provider_version</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/provider_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Version of the service that owns this saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/screen_image"></div>
+                    <b>screen_image</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/screen_image" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Screen image of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">screen_image_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Date and time the saved search was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Date and time the saved search was updated.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines how the saved search is displayed in a dashboard.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SEARCH_SHOW_IN_DASHBOARD</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/ui_config"></div>
+                    <b>ui_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/ui_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/updated_by"></div>
+                    <b>updated_by</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/updated_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The principle id of the user that updated this saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">updated_by_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/widget_template"></div>
+                    <b>widget_template</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/widget_template" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The UI template that the saved search uses to render itself.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_template_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/saved_searches/widget_vm"></div>
+                    <b>widget_vm</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/saved_searches/widget_vm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The View Model that the saved search uses to render itself.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">widget_vm_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/screen_image"></div>
                     <b>screen_image</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/screen_image" title="Permalink to this return value"></a>
@@ -726,7 +1358,243 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles"></div>
+                    <b>tiles</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of dashboard tiles.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/column"></div>
+                    <b>column</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/column" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Tile&#x27;s column number.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/data_config"></div>
+                    <b>data_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/data_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>It defines how data is fetched. A functional saved search needs a valid dataConfig. See examples on how it can be constructed for various data sources.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Display name of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/drilldown_config"></div>
+                    <b>drilldown_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/drilldown_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Drill-down configuration to define the destination of a drill-down action.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/height"></div>
+                    <b>height</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/height" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of rows the tile occupies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/nls"></div>
+                    <b>nls</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/nls" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>JSON that contains internationalization options.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/parameters_map"></div>
+                    <b>parameters_map</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/parameters_map" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the saved search parameters values</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/row"></div>
+                    <b>row</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/row" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Tile&#x27;s row number.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/saved_search_id"></div>
+                    <b>saved_search_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/saved_search_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ID of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/state"></div>
+                    <b>state</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Current state of the saved search.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DELETED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/ui_config"></div>
+                    <b>ui_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/ui_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>It defines the visualization type of the widget saved search, the UI options of that visualization type, the binding of data to the visualization.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/tiles/width"></div>
+                    <b>width</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/tiles/width" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of columns the tile occupies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/time_created" title="Permalink to this return value"></a>
@@ -744,7 +1612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/time_updated" title="Permalink to this return value"></a>
@@ -762,7 +1630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/type" title="Permalink to this return value"></a>
@@ -780,7 +1648,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboards/ui_config"></div>
+                    <b>ui_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboards/ui_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>JSON that contains user interface options.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_dashboards/updated_by"></div>
                     <b>updated_by</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboards/updated_by" title="Permalink to this return value"></a>

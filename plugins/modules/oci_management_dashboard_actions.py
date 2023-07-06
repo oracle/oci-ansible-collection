@@ -933,6 +933,15 @@ class ManagementDashboardActionsHelperGen(OCIActionsHelperBase):
         import_dashboard
     """
 
+    def get_get_fn(self):
+        return self.client.get_management_dashboard
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_management_dashboard,
+            management_dashboard_id=self.module.params.get("management_dashboard_id"),
+        )
+
     def export_dashboard(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.export_dashboard,
