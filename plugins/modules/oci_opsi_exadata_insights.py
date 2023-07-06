@@ -91,6 +91,11 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
                     - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
                 type: str
+            dbm_private_endpoint_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Management private endpoint
+                    - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                type: str
             member_database_details:
                 description:
                     - The databases that belong to the VM Cluster
@@ -185,6 +190,12 @@ options:
                                       credentials.
                                     - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
                                 type: str
+                            wallet_secret_id:
+                                description:
+                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database
+                                      keystore contents are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                                type: str
                             role:
                                 description:
                                     - database user role.
@@ -192,6 +203,43 @@ options:
                                 type: str
                                 choices:
                                     - "NORMAL"
+                    connection_details:
+                        description:
+                            - ""
+                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                        type: dict
+                        suboptions:
+                            hosts:
+                                description:
+                                    - List of hosts and port for private endpoint accessed database resource.
+                                    - Required when entity_source is 'PE_COMANAGED_EXADATA'
+                                type: list
+                                elements: dict
+                                required: true
+                                suboptions:
+                                    host_ip:
+                                        description:
+                                            - Host IP used for connection requests for Cloud DB resource.
+                                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                                        type: str
+                                    port:
+                                        description:
+                                            - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                                            - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                                        type: int
+                            protocol:
+                                description:
+                                    - Protocol used for connection requests for private endpoint accssed database resource.
+                                    - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                                type: str
+                                choices:
+                                    - "TCP"
+                                    - "TCPS"
+                            service_name:
+                                description:
+                                    - Database service name used for connection requests.
+                                    - Applicable when entity_source is 'PE_COMANAGED_EXADATA'
+                                type: str
                     deployment_type:
                         description:
                             - Database Deployment Type
@@ -294,6 +342,7 @@ EXAMPLES = """
 
       # optional
       opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
       member_database_details:
       - # required
         entity_source: EM_MANAGED_EXTERNAL_DATABASE
@@ -312,6 +361,15 @@ EXAMPLES = """
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_details:
+          # required
+          hosts:
+          - # optional
+            host_ip: host_ip_example
+            port: 56
+            # optional
+          protocol: TCP
+          service_name: service_name_example
         system_tags: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -711,6 +769,7 @@ def main():
                 options=dict(
                     vmcluster_id=dict(type="str", required=True),
                     opsi_private_endpoint_id=dict(type="str"),
+                    dbm_private_endpoint_id=dict(type="str"),
                     member_database_details=dict(
                         type="list",
                         elements="dict",
@@ -748,7 +807,24 @@ def main():
                                     ),
                                     user_name=dict(type="str"),
                                     password_secret_id=dict(type="str"),
+                                    wallet_secret_id=dict(type="str"),
                                     role=dict(type="str", choices=["NORMAL"]),
+                                ),
+                            ),
+                            connection_details=dict(
+                                type="dict",
+                                options=dict(
+                                    hosts=dict(
+                                        type="list",
+                                        elements="dict",
+                                        required=True,
+                                        options=dict(
+                                            host_ip=dict(type="str"),
+                                            port=dict(type="int"),
+                                        ),
+                                    ),
+                                    protocol=dict(type="str", choices=["TCP", "TCPS"]),
+                                    service_name=dict(type="str"),
                                 ),
                             ),
                             deployment_type=dict(

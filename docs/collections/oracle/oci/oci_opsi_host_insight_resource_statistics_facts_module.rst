@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_statistics_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.26.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -490,10 +490,12 @@ Parameters
                                                                                                                                                                                                 <li>SOLARIS</li>
                                                                                                                                                                                                 <li>SUNOS</li>
                                                                                                                                                                                                 <li>ZLINUX</li>
+                                                                                                                                                                                                <li>WINDOWS</li>
+                                                                                                                                                                                                <li>AIX</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more platform types. Supported platformType(s) for MACS-managed external host insight: [LINUX]. Supported platformType(s) for MACS-managed cloud host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX].</div>
+                                            <div>Filter by one or more platform types. Supported platformType(s) for MACS-managed external host insight: [LINUX, SOLARIS, WINDOWS]. Supported platformType(s) for MACS-managed cloud host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX, WINDOWS, AIX].</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1346,7 +1348,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Platform type. Supported platformType(s) for MACS-managed external host insight: [LINUX]. Supported platformType(s) for MACS-managed cloud host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX].</div>
+                                            <div>Platform type. Supported platformType(s) for MACS-managed external host insight: [LINUX, SOLARIS, WINDOWS]. Supported platformType(s) for MACS-managed cloud host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX, WINDOWS, AIX].</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINUX</div>

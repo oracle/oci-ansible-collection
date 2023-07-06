@@ -1215,6 +1215,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             target_fn=self.identity_client.list_compartments,
                             compartment_id=parent_compartment.id,
                             access_level="ACCESSIBLE",
+                            limit=100,
                         )
                         if self.filter_resource(
                             compartment, lifecycle_state=self.LIFECYCLE_ACTIVE_STATE
@@ -1774,6 +1775,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     for db_system in oci_common_utils.list_all_resources(
                         target_fn=database_client.list_db_systems,
                         compartment_id=compartment_ocid,
+                        limit=100,
                     )
                     if "Exadata" not in db_system.shape
                     for db_node in oci_common_utils.list_all_resources(
@@ -1797,6 +1799,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     for vm_cluster in oci_common_utils.list_all_resources(
                         target_fn=database_client.list_cloud_vm_clusters,
                         compartment_id=compartment_ocid,
+                        limit=100,
                     )
                     for db_node in oci_common_utils.list_all_resources(
                         database_client.list_db_nodes,
@@ -1833,6 +1836,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     target_fn=compute_client.list_instances,
                     compartment_id=compartment_ocid,
                     lifecycle_state="RUNNING",
+                    limit=2000,
                 ),
                 compartment_ocid,
             )

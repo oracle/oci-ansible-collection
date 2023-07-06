@@ -270,6 +270,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -372,6 +379,13 @@ database_insights:
                     returned: on success
                     type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                wallet_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the database keystore contents
+                          are stored. This is used for TCPS support in BM/VM/ExaCS cases.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 role:
                     description:
                         - database user role.
@@ -536,6 +550,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "db_additional_details": {},
@@ -555,6 +570,7 @@ database_insights:
             "credential_type": "CREDENTIALS_BY_SOURCE",
             "user_name": "user_name_example",
             "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "wallet_secret_id": "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx",
             "role": "NORMAL"
         },
         "database_resource_type": "database_resource_type_example",
