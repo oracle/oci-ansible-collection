@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.27.0]
+
+## Fixed
+- NotImplementedError Issue with `oci_loggingsearch_search_facts` module (#228)
+
+## Breaking
+- Changed the response of the module `oci_loggingsearch_search_facts` to list.
+- Changed the response key of the return block of module `oci_loggingsearch_search_facts` from `search` to `searches`.
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.106.0
+
 ## [4.26.0]
 
 ## Added

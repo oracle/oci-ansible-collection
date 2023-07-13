@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_loggingsearch_search_facts -- Fetches details about a Search resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_loggingsearch_search_facts -- Fetches details about one or multiple Search resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.27.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a Search resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple Search resources in Oracle Cloud Infrastructure
 - Submit a query to search logs.
 - See `Using the API <https://docs.cloud.oracle.com/Content/Logging/Concepts/using_the_api_searchlogs.htm>`_ for SDK examples.
 
@@ -370,7 +370,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific search
+    - name: List searches
       oci_loggingsearch_search_facts:
         # required
         time_start: time_start_example
@@ -403,27 +403,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-search"></div>
-                    <b>search</b>
-                    <a class="ansibleOptionLink" href="#return-search" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-searches"></div>
+                    <b>searches</b>
+                    <a class="ansibleOptionLink" href="#return-searches" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Search resource</div>
+                                            <div>List of Search resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;fields&#x27;: [{&#x27;field_name&#x27;: &#x27;field_name_example&#x27;, &#x27;field_type&#x27;: &#x27;STRING&#x27;}], &#x27;results&#x27;: [{&#x27;data&#x27;: {}}], &#x27;summary&#x27;: {&#x27;field_count&#x27;: 56, &#x27;result_count&#x27;: 56}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;fields&#x27;: [{&#x27;field_name&#x27;: &#x27;field_name_example&#x27;, &#x27;field_type&#x27;: &#x27;STRING&#x27;}], &#x27;results&#x27;: [{&#x27;data&#x27;: {}}], &#x27;summary&#x27;: {&#x27;field_count&#x27;: 56, &#x27;result_count&#x27;: 56}}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-search/fields"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/fields"></div>
                     <b>fields</b>
-                    <a class="ansibleOptionLink" href="#return-search/fields" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/fields" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -438,9 +438,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-search/fields/field_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/fields/field_name"></div>
                     <b>field_name</b>
-                    <a class="ansibleOptionLink" href="#return-search/fields/field_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/fields/field_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -457,9 +457,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-search/fields/field_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/fields/field_type"></div>
                     <b>field_type</b>
-                    <a class="ansibleOptionLink" href="#return-search/fields/field_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/fields/field_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -476,9 +476,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-search/results"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/results"></div>
                     <b>results</b>
-                    <a class="ansibleOptionLink" href="#return-search/results" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/results" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -493,9 +493,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-search/results/data"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/results/data"></div>
                     <b>data</b>
-                    <a class="ansibleOptionLink" href="#return-search/results/data" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/results/data" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
@@ -510,9 +510,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-search/summary"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/summary"></div>
                     <b>summary</b>
-                    <a class="ansibleOptionLink" href="#return-search/summary" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/summary" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -527,9 +527,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-search/summary/field_count"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/summary/field_count"></div>
                     <b>field_count</b>
-                    <a class="ansibleOptionLink" href="#return-search/summary/field_count" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/summary/field_count" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -546,9 +546,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-search/summary/result_count"></div>
+                    <div class="ansibleOptionAnchor" id="return-searches/summary/result_count"></div>
                     <b>result_count</b>
-                    <a class="ansibleOptionLink" href="#return-search/summary/result_count" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-searches/summary/result_count" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>

@@ -1183,7 +1183,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_logging_unified_agent_configuration_actions <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_actions_module>` -- Perform actions on an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_logging_unified_agent_configuration_facts <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_facts_module>` -- Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_loggingingestion_log_entry_actions <ansible_collections.oracle.oci.oci_loggingingestion_log_entry_actions_module>` -- Perform actions on a LogEntry resource in Oracle Cloud Infrastructure
-* :ref:`oracle.oci.oci_loggingsearch_search_facts <ansible_collections.oracle.oci.oci_loggingsearch_search_facts_module>` -- Fetches details about a Search resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_loggingsearch_search_facts <ansible_collections.oracle.oci.oci_loggingsearch_search_facts_module>` -- Fetches details about one or multiple Search resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_management_agent <ansible_collections.oracle.oci.oci_management_agent_module>` -- Manage a ManagementAgent resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_management_agent_actions <ansible_collections.oracle.oci.oci_management_agent_actions_module>` -- Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_management_agent_aggregation_facts <ansible_collections.oracle.oci.oci_management_agent_aggregation_facts_module>` -- Fetches details about one or multiple ManagementAgentAggregation resources in Oracle Cloud Infrastructure

@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_loggingsearch_search_facts
-short_description: Fetches details about a Search resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple Search resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a Search resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple Search resources in Oracle Cloud Infrastructure
     - Submit a query to search logs.
     - See L(Using the API,https://docs.cloud.oracle.com/Content/Logging/Concepts/using_the_api_searchlogs.htm) for SDK examples.
 version_added: "2.9.0"
@@ -53,7 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific search
+- name: List searches
   oci_loggingsearch_search_facts:
     # required
     time_start: time_start_example
@@ -66,9 +66,9 @@ EXAMPLES = """
 """
 
 RETURN = """
-search:
+searches:
     description:
-        - Search resource
+        - List of Search resources
     returned: on success
     type: complex
     contains:
@@ -124,7 +124,7 @@ search:
                     returned: on success
                     type: int
                     sample: 56
-    sample: {
+    sample: [{
         "results": [{
             "data": {}
         }],
@@ -136,7 +136,7 @@ search:
             "result_count": 56,
             "field_count": 56
         }
-    }
+    }]
 """
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
@@ -148,6 +148,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.loggingsearch import LogSearchClient
+    from oci.loggingsearch.models import SearchLogsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -155,17 +156,28 @@ except ImportError:
 
 
 class SearchFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
-            "search_logs_details",
+            "time_start",
+            "time_end",
+            "search_query",
         ]
 
-    def get_resource(self):
-        return oci_common_utils.call_with_backoff(
+    def list_resources(self):
+        optional_list_method_params = []
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.list_all_resources(
             self.client.search_logs,
-            search_logs_details=self.module.params.get("search_logs_details"),
+            search_logs_details=oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, SearchLogsDetails
+            ),
+            **optional_kwargs
         )
 
 
@@ -201,12 +213,12 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(search=result)
+    module.exit_json(searches=result)
 
 
 if __name__ == "__main__":
