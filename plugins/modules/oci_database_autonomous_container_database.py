@@ -34,6 +34,11 @@ options:
             - "**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a value
               for this field will cause Terraform operations to fail."
         type: str
+    db_name:
+        description:
+            - The database name for the Autonomous Container Database. The name must be unique within the Cloud Autonomous VM Cluster, must start with an
+              alphabetic character and followed by 1 to 7 alphanumeric characters.
+        type: str
     service_level_agreement_type:
         description:
             - The service level agreement type of the Autonomous Container Database. The default is STANDARD. For an autonomous dataguard Autonomous Container
@@ -402,6 +407,7 @@ EXAMPLES = """
 
     # optional
     db_unique_name: db_unique_name_example
+    db_name: db_name_example
     service_level_agreement_type: STANDARD
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     db_version: db_version_example
@@ -598,6 +604,13 @@ autonomous_container_database:
             returned: on success
             type: str
             sample: db_unique_name_example
+        db_name:
+            description:
+                - The database name for the Autonomous Container Database. The name must be unique within the Cloud Autonomous VM Cluster, must start with an
+                  alphabetic character and followed by 1 to 7 alphanumeric characters.
+            returned: on success
+            type: str
+            sample: db_name_example
         service_level_agreement_type:
             description:
                 - The service level agreement type of the container database. The default is STANDARD.
@@ -993,6 +1006,7 @@ autonomous_container_database:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "db_unique_name": "db_unique_name_example",
+        "db_name": "db_name_example",
         "service_level_agreement_type": "STANDARD",
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1255,6 +1269,7 @@ def main():
     module_args.update(
         dict(
             db_unique_name=dict(type="str"),
+            db_name=dict(type="str"),
             service_level_agreement_type=dict(
                 type="str", choices=["STANDARD", "AUTONOMOUS_DATAGUARD"]
             ),

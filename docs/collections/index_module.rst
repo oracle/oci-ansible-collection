@@ -576,6 +576,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_autonomous_vm_cluster_actions <ansible_collections.oracle.oci.oci_database_autonomous_vm_cluster_actions_module>` -- Perform actions on an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_vm_cluster_facts <ansible_collections.oracle.oci.oci_database_autonomous_vm_cluster_facts_module>` -- Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_backup <ansible_collections.oracle.oci.oci_database_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_backup_actions <ansible_collections.oracle.oci.oci_database_backup_actions_module>` -- Perform actions on a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_backup_destination <ansible_collections.oracle.oci.oci_database_backup_destination_module>` -- Manage a BackupDestination resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_backup_destination_actions <ansible_collections.oracle.oci.oci_database_backup_destination_actions_module>` -- Perform actions on a BackupDestination resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_backup_destination_facts <ansible_collections.oracle.oci.oci_database_backup_destination_facts_module>` -- Fetches details about one or multiple BackupDestination resources in Oracle Cloud Infrastructure
@@ -760,6 +761,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_oneoff_patch <ansible_collections.oracle.oci.oci_database_oneoff_patch_module>` -- Manage an OneoffPatch resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_oneoff_patch_actions <ansible_collections.oracle.oci.oci_database_oneoff_patch_actions_module>` -- Perform actions on an OneoffPatch resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_oneoff_patch_facts <ansible_collections.oracle.oci.oci_database_oneoff_patch_facts_module>` -- Fetches details about one or multiple OneoffPatch resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pdb_conversion_history_entry_facts <ansible_collections.oracle.oci.oci_database_pdb_conversion_history_entry_facts_module>` -- Fetches details about one or multiple PdbConversionHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pluggable_database <ansible_collections.oracle.oci.oci_database_pluggable_database_module>` -- Manage a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` -- Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure

@@ -131,6 +131,46 @@ opa_instances:
             returned: on success
             type: str
             sample: identity_app_opc_service_instance_guid_example
+        attachments:
+            description:
+                - A list of associated attachments to other services
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                target_role:
+                    description:
+                        - "The role of the target attachment.
+                             * `PARENT` - The target instance is the parent of this attachment.
+                             * `CHILD` - The target instance is the child of this attachment."
+                    returned: on success
+                    type: str
+                    sample: PARENT
+                is_implicit:
+                    description:
+                        - "* If role == `PARENT`, the attached instance was created by this service instance
+                          * If role == `CHILD`, this instance was created from attached instance on behalf of a user"
+                    returned: on success
+                    type: bool
+                    sample: true
+                target_id:
+                    description:
+                        - The OCID of the target instance (which could be any other OCI PaaS/SaaS resource), to which this instance is attached.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+                target_instance_url:
+                    description:
+                        - The dataplane instance URL of the attached instance
+                    returned: on success
+                    type: str
+                    sample: target_instance_url_example
+                target_service_type:
+                    description:
+                        - "The type of the target instance, such as \\"FUSION\\"."
+                    returned: on success
+                    type: str
+                    sample: target_service_type_example
         id:
             description:
                 - Unique identifier that is immutable on creation
@@ -229,6 +269,13 @@ opa_instances:
         "identity_app_display_name": "identity_app_display_name_example",
         "identity_domain_url": "identity_domain_url_example",
         "identity_app_opc_service_instance_guid": "identity_app_opc_service_instance_guid_example",
+        "attachments": [{
+            "target_role": "PARENT",
+            "is_implicit": true,
+            "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",
+            "target_instance_url": "target_instance_url_example",
+            "target_service_type": "target_service_type_example"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",

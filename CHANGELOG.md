@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.28.0]
+
+## Added
+- Support for ACD and OKV Wallet Naming for autonomous databases and dedicated autonomous databases on Exadata Cloud at Customer in the Database service
+- Support to create, update, list and download One-Off Patch resource in the Database service
+- Support for canceling backups in the Database service
+- Support for integrating with the Integration Cloud service in the Process Automation service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.108.0
+
 ## [4.27.0]
 
 ## Fixed
