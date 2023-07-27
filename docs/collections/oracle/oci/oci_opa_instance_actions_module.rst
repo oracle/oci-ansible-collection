@@ -30,7 +30,7 @@ oracle.oci.oci_opa_instance_actions -- Perform actions on an OpaInstance resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -412,12 +412,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-opa_instance"></div>
                     <b>opa_instance</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance" title="Permalink to this return value"></a>
@@ -430,12 +430,124 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the OpaInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_app_display_name&#x27;: &#x27;identity_app_display_name_example&#x27;, &#x27;identity_app_guid&#x27;: &#x27;identity_app_guid_example&#x27;, &#x27;identity_app_opc_service_instance_guid&#x27;: &#x27;identity_app_opc_service_instance_guid_example&#x27;, &#x27;identity_domain_url&#x27;: &#x27;identity_domain_url_example&#x27;, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;is_breakglass_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metering_type&#x27;: &#x27;EXECUTION_PACK&#x27;, &#x27;shape_name&#x27;: &#x27;DEVELOPMENT&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_app_display_name&#x27;: &#x27;identity_app_display_name_example&#x27;, &#x27;identity_app_guid&#x27;: &#x27;identity_app_guid_example&#x27;, &#x27;identity_app_opc_service_instance_guid&#x27;: &#x27;identity_app_opc_service_instance_guid_example&#x27;, &#x27;identity_domain_url&#x27;: &#x27;identity_domain_url_example&#x27;, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;is_breakglass_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metering_type&#x27;: &#x27;EXECUTION_PACK&#x27;, &#x27;shape_name&#x27;: &#x27;DEVELOPMENT&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments"></div>
+                    <b>attachments</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of associated attachments to other services</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments/is_implicit"></div>
+                    <b>is_implicit</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments/is_implicit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>* If role == `PARENT`, the attached instance was created by this service instance * If role == `CHILD`, this instance was created from attached instance on behalf of a user</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments/target_id"></div>
+                    <b>target_id</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments/target_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the target instance (which could be any other OCI PaaS/SaaS resource), to which this instance is attached.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.target.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments/target_instance_url"></div>
+                    <b>target_instance_url</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments/target_instance_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dataplane instance URL of the attached instance</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_instance_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments/target_role"></div>
+                    <b>target_role</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments/target_role" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The role of the target attachment. * `PARENT` - The target instance is the parent of this attachment. * `CHILD` - The target instance is the child of this attachment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PARENT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opa_instance/attachments/target_service_type"></div>
+                    <b>target_service_type</b>
+                    <a class="ansibleOptionLink" href="#return-opa_instance/attachments/target_service_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of the target instance, such as &quot;FUSION&quot;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_service_type_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/compartment_id" title="Permalink to this return value"></a>
@@ -453,7 +565,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/consumption_model"></div>
                     <b>consumption_model</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/consumption_model" title="Permalink to this return value"></a>
@@ -471,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/defined_tags" title="Permalink to this return value"></a>
@@ -489,7 +601,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/description" title="Permalink to this return value"></a>
@@ -507,7 +619,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/display_name" title="Permalink to this return value"></a>
@@ -525,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/freeform_tags" title="Permalink to this return value"></a>
@@ -543,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/id" title="Permalink to this return value"></a>
@@ -561,7 +673,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/identity_app_display_name"></div>
                     <b>identity_app_display_name</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/identity_app_display_name" title="Permalink to this return value"></a>
@@ -579,7 +691,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/identity_app_guid"></div>
                     <b>identity_app_guid</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/identity_app_guid" title="Permalink to this return value"></a>
@@ -597,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/identity_app_opc_service_instance_guid"></div>
                     <b>identity_app_opc_service_instance_guid</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/identity_app_opc_service_instance_guid" title="Permalink to this return value"></a>
@@ -615,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/identity_domain_url"></div>
                     <b>identity_domain_url</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/identity_domain_url" title="Permalink to this return value"></a>
@@ -633,7 +745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/instance_url"></div>
                     <b>instance_url</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/instance_url" title="Permalink to this return value"></a>
@@ -651,7 +763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/is_breakglass_enabled"></div>
                     <b>is_breakglass_enabled</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/is_breakglass_enabled" title="Permalink to this return value"></a>
@@ -669,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/lifecycle_state" title="Permalink to this return value"></a>
@@ -687,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/metering_type"></div>
                     <b>metering_type</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/metering_type" title="Permalink to this return value"></a>
@@ -705,7 +817,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/shape_name"></div>
                     <b>shape_name</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/shape_name" title="Permalink to this return value"></a>
@@ -723,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/system_tags" title="Permalink to this return value"></a>
@@ -739,7 +851,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/time_created" title="Permalink to this return value"></a>
@@ -757,7 +869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-opa_instance/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-opa_instance/time_updated" title="Permalink to this return value"></a>

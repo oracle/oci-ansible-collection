@@ -30,7 +30,7 @@ oracle.oci.oci_database_backup -- Manage a Backup resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - This module allows the user to create and delete a Backup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new backup in the specified database based on the request parameters you provide. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_backup_actions <ansible_collections.oracle.oci.oci_database_backup_actions_module>` module: cancel.
 
 
 .. Aliases

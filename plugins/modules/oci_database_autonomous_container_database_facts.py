@@ -165,6 +165,13 @@ autonomous_container_databases:
             returned: on success
             type: str
             sample: db_unique_name_example
+        db_name:
+            description:
+                - The database name for the Autonomous Container Database. The name must be unique within the Cloud Autonomous VM Cluster, must start with an
+                  alphabetic character and followed by 1 to 7 alphanumeric characters.
+            returned: on success
+            type: str
+            sample: db_name_example
         service_level_agreement_type:
             description:
                 - The service level agreement type of the container database. The default is STANDARD.
@@ -560,6 +567,7 @@ autonomous_container_databases:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "db_unique_name": "db_unique_name_example",
+        "db_name": "db_name_example",
         "service_level_agreement_type": "STANDARD",
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",

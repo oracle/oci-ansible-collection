@@ -26,6 +26,7 @@ description:
     - For I(state=present), creates a new backup in the specified database based on the request parameters you provide. If you previously used RMAN or dbcli to
       configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your
       database. This means that you can no longer rely on your previously configured unmanaged backups to work.
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_backup_actions) module: cancel."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
