@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -690,6 +690,68 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_backup_config/auto_full_backup_day"></div>
+                    <b>auto_full_backup_day</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/db_backup_config/auto_full_backup_day" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SUNDAY</li>
+                                                                                                                                                                                                <li>MONDAY</li>
+                                                                                                                                                                                                <li>TUESDAY</li>
+                                                                                                                                                                                                <li>WEDNESDAY</li>
+                                                                                                                                                                                                <li>THURSDAY</li>
+                                                                                                                                                                                                <li>FRIDAY</li>
+                                                                                                                                                                                                <li>SATURDAY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will default to Sunday.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_backup_config/auto_full_backup_window"></div>
+                    <b>auto_full_backup_window</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/db_backup_config/auto_full_backup_window" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SLOT_ONE</li>
+                                                                                                                                                                                                <li>SLOT_TWO</li>
+                                                                                                                                                                                                <li>SLOT_THREE</li>
+                                                                                                                                                                                                <li>SLOT_FOUR</li>
+                                                                                                                                                                                                <li>SLOT_FIVE</li>
+                                                                                                                                                                                                <li>SLOT_SIX</li>
+                                                                                                                                                                                                <li>SLOT_SEVEN</li>
+                                                                                                                                                                                                <li>SLOT_EIGHT</li>
+                                                                                                                                                                                                <li>SLOT_NINE</li>
+                                                                                                                                                                                                <li>SLOT_TEN</li>
+                                                                                                                                                                                                <li>SLOT_ELEVEN</li>
+                                                                                                                                                                                                <li>SLOT_TWELVE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive).</div>
+                                            <div>Example: `SLOT_TWO`</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_backup_config/backup_deletion_policy"></div>
                     <b>backup_deletion_policy</b>
                     <a class="ansibleOptionLink" href="#parameter-db_home/database/db_backup_config/backup_deletion_policy" title="Permalink to this option"></a>
@@ -871,6 +933,29 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_backup_config/run_immediate_full_backup"></div>
+                    <b>run_immediate_full_backup</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/db_backup_config/run_immediate_full_backup" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately.</div>
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -2183,6 +2268,9 @@ Examples
               auto_backup_enabled: true
               recovery_window_in_days: 56
               auto_backup_window: SLOT_ONE
+              auto_full_backup_window: SLOT_ONE
+              auto_full_backup_day: SUNDAY
+              run_immediate_full_backup: true
               backup_destination_details:
               - # required
                 type: NFS
@@ -2293,6 +2381,9 @@ Examples
               auto_backup_enabled: true
               recovery_window_in_days: 56
               auto_backup_window: SLOT_ONE
+              auto_full_backup_window: SLOT_ONE
+              auto_full_backup_day: SUNDAY
+              run_immediate_full_backup: true
               backup_destination_details:
               - # required
                 type: NFS
@@ -2383,6 +2474,9 @@ Examples
               auto_backup_enabled: true
               recovery_window_in_days: 56
               auto_backup_window: SLOT_ONE
+              auto_full_backup_window: SLOT_ONE
+              auto_full_backup_day: SUNDAY
+              run_immediate_full_backup: true
               backup_destination_details:
               - # required
                 type: NFS
@@ -2475,6 +2569,9 @@ Examples
               auto_backup_enabled: true
               recovery_window_in_days: 56
               auto_backup_window: SLOT_ONE
+              auto_full_backup_window: SLOT_ONE
+              auto_full_backup_day: SUNDAY
+              run_immediate_full_backup: true
               backup_destination_details:
               - # required
                 type: NFS

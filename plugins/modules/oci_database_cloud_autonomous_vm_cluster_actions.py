@@ -43,6 +43,29 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    certificate_generation_type:
+        description:
+            - Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.
+            - Required for I(action=rotate_cloud_autonomous_vm_cluster_ords_certs), I(action=rotate_cloud_autonomous_vm_cluster_ssl_certs).
+        type: str
+        choices:
+            - "SYSTEM"
+            - "BYOC"
+    certificate_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate to use.
+            - Applicable only for I(action=rotate_cloud_autonomous_vm_cluster_ords_certs)I(action=rotate_cloud_autonomous_vm_cluster_ssl_certs).
+        type: str
+    certificate_authority_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate authority.
+            - Applicable only for I(action=rotate_cloud_autonomous_vm_cluster_ords_certs)I(action=rotate_cloud_autonomous_vm_cluster_ssl_certs).
+        type: str
+    ca_bundle_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate bundle.
+            - Applicable only for I(action=rotate_cloud_autonomous_vm_cluster_ords_certs)I(action=rotate_cloud_autonomous_vm_cluster_ssl_certs).
+        type: str
     action:
         description:
             - The action to perform on the CloudAutonomousVmCluster.
@@ -67,13 +90,25 @@ EXAMPLES = """
   oci_database_cloud_autonomous_vm_cluster_actions:
     # required
     cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_generation_type: SYSTEM
     action: rotate_cloud_autonomous_vm_cluster_ords_certs
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action rotate_cloud_autonomous_vm_cluster_ssl_certs on cloud_autonomous_vm_cluster
   oci_database_cloud_autonomous_vm_cluster_actions:
     # required
     cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_generation_type: SYSTEM
     action: rotate_cloud_autonomous_vm_cluster_ssl_certs
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -234,6 +269,13 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: str
             sample: ECPU
+        is_mtls_enabled_vm_cluster:
+            description:
+                - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. This is applicable to database TLS Certificates only.
+                  Default is TLS
+            returned: on success
+            type: bool
+            sample: true
         cpu_core_count_per_node:
             description:
                 - The number of CPU cores enabled per VM cluster node.
@@ -363,6 +405,18 @@ cloud_autonomous_vm_cluster:
                     returned: on success
                     type: int
                     sample: 56
+        scan_listener_port_tls:
+            description:
+                - The SCAN Listenenr TLS port. Default is 2484.
+            returned: on success
+            type: int
+            sample: 56
+        scan_listener_port_non_tls:
+            description:
+                - The SCAN Listener Non TLS port. Default is 1521.
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -378,6 +432,18 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        time_database_ssl_certificate_expires:
+            description:
+                - The date and time of Database SSL certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_ords_certificate_expires:
+            description:
+                - The date and time of ORDS certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         available_cpus:
             description:
                 - CPU cores available for allocation to Autonomous Databases.
@@ -455,6 +521,7 @@ cloud_autonomous_vm_cluster:
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
         "compute_model": "ECPU",
+        "is_mtls_enabled_vm_cluster": true,
         "cpu_core_count_per_node": 56,
         "memory_size_in_gbs": 56,
         "license_model": "LICENSE_INCLUDED",
@@ -476,8 +543,12 @@ cloud_autonomous_vm_cluster:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "scan_listener_port_tls": 56,
+        "scan_listener_port_non_tls": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "time_database_ssl_certificate_expires": "2013-10-20T19:20:30+01:00",
+        "time_ords_certificate_expires": "2013-10-20T19:20:30+01:00",
         "available_cpus": 3.4,
         "reclaimable_cpus": 3.4,
         "available_container_databases": 56,
@@ -503,6 +574,8 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import ChangeCloudAutonomousVmClusterCompartmentDetails
+    from oci.database.models import RotateCloudAutonomousVmClusterOrdsCertsDetails
+    from oci.database.models import RotateCloudAutonomousVmClusterSslCertsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -565,6 +638,9 @@ class CloudAutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
         )
 
     def rotate_cloud_autonomous_vm_cluster_ords_certs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RotateCloudAutonomousVmClusterOrdsCertsDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.rotate_cloud_autonomous_vm_cluster_ords_certs,
             call_fn_args=(),
@@ -572,6 +648,7 @@ class CloudAutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
                 cloud_autonomous_vm_cluster_id=self.module.params.get(
                     "cloud_autonomous_vm_cluster_id"
                 ),
+                rotate_cloud_autonomous_vm_cluster_ords_certs_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -584,6 +661,9 @@ class CloudAutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
         )
 
     def rotate_cloud_autonomous_vm_cluster_ssl_certs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RotateCloudAutonomousVmClusterSslCertsDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.rotate_cloud_autonomous_vm_cluster_ssl_certs,
             call_fn_args=(),
@@ -591,6 +671,7 @@ class CloudAutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
                 cloud_autonomous_vm_cluster_id=self.module.params.get(
                     "cloud_autonomous_vm_cluster_id"
                 ),
+                rotate_cloud_autonomous_vm_cluster_ssl_certs_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -625,6 +706,10 @@ def main():
             cloud_autonomous_vm_cluster_id=dict(
                 aliases=["id"], type="str", required=True
             ),
+            certificate_generation_type=dict(type="str", choices=["SYSTEM", "BYOC"]),
+            certificate_id=dict(type="str"),
+            certificate_authority_id=dict(type="str"),
+            ca_bundle_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

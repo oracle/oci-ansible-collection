@@ -254,6 +254,30 @@ databases:
                     returned: on success
                     type: str
                     sample: SLOT_ONE
+                auto_full_backup_window:
+                    description:
+                        - Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no
+                          option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically
+                          chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM
+                          (inclusive) to 4:00 AM (exclusive).
+                        - "Example: `SLOT_TWO`"
+                    returned: on success
+                    type: str
+                    sample: SLOT_ONE
+                auto_full_backup_day:
+                    description:
+                        - Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will
+                          default to Sunday.
+                    returned: on success
+                    type: str
+                    sample: SUNDAY
+                run_immediate_full_backup:
+                    description:
+                        - If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run
+                          immediately.
+                    returned: on success
+                    type: bool
+                    sample: true
                 backup_destination_details:
                     description:
                         - Backup destination details.
@@ -428,6 +452,9 @@ databases:
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
             "auto_backup_window": "SLOT_ONE",
+            "auto_full_backup_window": "SLOT_ONE",
+            "auto_full_backup_day": "SUNDAY",
+            "run_immediate_full_backup": true,
             "backup_destination_details": [{
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

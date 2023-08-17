@@ -30,7 +30,7 @@ oracle.oci.oci_database_database -- Manage a Database resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -425,6 +425,66 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/auto_full_backup_day"></div>
+                    <b>auto_full_backup_day</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/auto_full_backup_day" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SUNDAY</li>
+                                                                                                                                                                                                <li>MONDAY</li>
+                                                                                                                                                                                                <li>TUESDAY</li>
+                                                                                                                                                                                                <li>WEDNESDAY</li>
+                                                                                                                                                                                                <li>THURSDAY</li>
+                                                                                                                                                                                                <li>FRIDAY</li>
+                                                                                                                                                                                                <li>SATURDAY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will default to Sunday.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/auto_full_backup_window"></div>
+                    <b>auto_full_backup_window</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/auto_full_backup_window" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SLOT_ONE</li>
+                                                                                                                                                                                                <li>SLOT_TWO</li>
+                                                                                                                                                                                                <li>SLOT_THREE</li>
+                                                                                                                                                                                                <li>SLOT_FOUR</li>
+                                                                                                                                                                                                <li>SLOT_FIVE</li>
+                                                                                                                                                                                                <li>SLOT_SIX</li>
+                                                                                                                                                                                                <li>SLOT_SEVEN</li>
+                                                                                                                                                                                                <li>SLOT_EIGHT</li>
+                                                                                                                                                                                                <li>SLOT_NINE</li>
+                                                                                                                                                                                                <li>SLOT_TEN</li>
+                                                                                                                                                                                                <li>SLOT_ELEVEN</li>
+                                                                                                                                                                                                <li>SLOT_TWELVE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive).</div>
+                                            <div>Example: `SLOT_TWO`</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/backup_deletion_policy"></div>
                     <b>backup_deletion_policy</b>
                     <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/backup_deletion_policy" title="Permalink to this option"></a>
@@ -598,6 +658,28 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-database/db_backup_config/run_immediate_full_backup"></div>
+                    <b>run_immediate_full_backup</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/db_backup_config/run_immediate_full_backup" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately.</div>
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -901,6 +983,64 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_backup_config/auto_full_backup_day"></div>
+                    <b>auto_full_backup_day</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_backup_config/auto_full_backup_day" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SUNDAY</li>
+                                                                                                                                                                                                <li>MONDAY</li>
+                                                                                                                                                                                                <li>TUESDAY</li>
+                                                                                                                                                                                                <li>WEDNESDAY</li>
+                                                                                                                                                                                                <li>THURSDAY</li>
+                                                                                                                                                                                                <li>FRIDAY</li>
+                                                                                                                                                                                                <li>SATURDAY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will default to Sunday.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_backup_config/auto_full_backup_window"></div>
+                    <b>auto_full_backup_window</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_backup_config/auto_full_backup_window" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SLOT_ONE</li>
+                                                                                                                                                                                                <li>SLOT_TWO</li>
+                                                                                                                                                                                                <li>SLOT_THREE</li>
+                                                                                                                                                                                                <li>SLOT_FOUR</li>
+                                                                                                                                                                                                <li>SLOT_FIVE</li>
+                                                                                                                                                                                                <li>SLOT_SIX</li>
+                                                                                                                                                                                                <li>SLOT_SEVEN</li>
+                                                                                                                                                                                                <li>SLOT_EIGHT</li>
+                                                                                                                                                                                                <li>SLOT_NINE</li>
+                                                                                                                                                                                                <li>SLOT_TEN</li>
+                                                                                                                                                                                                <li>SLOT_ELEVEN</li>
+                                                                                                                                                                                                <li>SLOT_TWELVE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive).</div>
+                                            <div>Example: `SLOT_TWO`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-db_backup_config/backup_deletion_policy"></div>
                     <b>backup_deletion_policy</b>
                     <a class="ansibleOptionLink" href="#parameter-db_backup_config/backup_deletion_policy" title="Permalink to this option"></a>
@@ -1065,6 +1205,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_backup_config/run_immediate_full_backup"></div>
+                    <b>run_immediate_full_backup</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_backup_config/run_immediate_full_backup" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1436,6 +1597,9 @@ Examples
             auto_backup_enabled: true
             recovery_window_in_days: 56
             auto_backup_window: SLOT_ONE
+            auto_full_backup_window: SLOT_ONE
+            auto_full_backup_day: SUNDAY
+            run_immediate_full_backup: true
             backup_destination_details:
             - # required
               type: NFS
@@ -1485,6 +1649,9 @@ Examples
             auto_backup_enabled: true
             recovery_window_in_days: 56
             auto_backup_window: SLOT_ONE
+            auto_full_backup_window: SLOT_ONE
+            auto_full_backup_day: SUNDAY
+            run_immediate_full_backup: true
             backup_destination_details:
             - # required
               type: NFS
@@ -1524,6 +1691,9 @@ Examples
           auto_backup_enabled: true
           recovery_window_in_days: 56
           auto_backup_window: SLOT_ONE
+          auto_full_backup_window: SLOT_ONE
+          auto_full_backup_day: SUNDAY
+          run_immediate_full_backup: true
           backup_destination_details:
           - # required
             type: NFS
@@ -1586,7 +1756,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Database resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;management_type&#x27;: &#x27;BASIC&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_ONE&#x27;, &#x27;backup_deletion_policy&#x27;: &#x27;DELETE_IMMEDIATELY&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;dbrs_policy_id&#x27;: &#x27;ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cdb&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_duration_in_seconds&#x27;: 56, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;last_failed_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;sid_prefix&#x27;: &#x27;sid_prefix_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;management_type&#x27;: &#x27;BASIC&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_ONE&#x27;, &#x27;auto_full_backup_day&#x27;: &#x27;SUNDAY&#x27;, &#x27;auto_full_backup_window&#x27;: &#x27;SLOT_ONE&#x27;, &#x27;backup_deletion_policy&#x27;: &#x27;DELETE_IMMEDIATELY&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;dbrs_policy_id&#x27;: &#x27;ocid1.dbrspolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56, &#x27;run_immediate_full_backup&#x27;: True}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cdb&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_duration_in_seconds&#x27;: 56, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;last_failed_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;sid_prefix&#x27;: &#x27;sid_prefix_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1829,6 +1999,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database/db_backup_config/auto_full_backup_day"></div>
+                    <b>auto_full_backup_day</b>
+                    <a class="ansibleOptionLink" href="#return-database/db_backup_config/auto_full_backup_day" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will default to Sunday.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SUNDAY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database/db_backup_config/auto_full_backup_window"></div>
+                    <b>auto_full_backup_window</b>
+                    <a class="ansibleOptionLink" href="#return-database/db_backup_config/auto_full_backup_window" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive).</div>
+                                            <div>Example: `SLOT_TWO`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SLOT_ONE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database/db_backup_config/backup_deletion_policy"></div>
                     <b>backup_deletion_policy</b>
                     <a class="ansibleOptionLink" href="#return-database/db_backup_config/backup_deletion_policy" title="Permalink to this return value"></a>
@@ -1999,6 +2208,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database/db_backup_config/run_immediate_full_backup"></div>
+                    <b>run_immediate_full_backup</b>
+                    <a class="ansibleOptionLink" href="#return-database/db_backup_config/run_immediate_full_backup" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     

@@ -44,3 +44,18 @@ class FileSystemHelperCustom:
                 source_snapshot_id=create_model_dict.pop("source_snapshot_id", None)
             )
         return create_model_dict
+
+
+class FilesystemSnapshotPolicyActionsHelperCustom:
+    # Pause action operation updates the lifecycle state of the file system snapshot policy
+    # from ACTIVE to INACTIVE.
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            FilesystemSnapshotPolicyActionsHelperCustom, self
+        ).get_action_desired_states(action)
+
+        if action.lower() == "pause":
+            return action_desired_states + [
+                "INACTIVE",
+            ]
+        return action_desired_states

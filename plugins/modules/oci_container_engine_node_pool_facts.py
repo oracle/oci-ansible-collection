@@ -484,6 +484,31 @@ node_pools:
                             returned: on success
                             type: str
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                        preemptible_node_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                preemption_action:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - The type of action to run when the instance is interrupted for eviction.
+                                            returned: on success
+                                            type: str
+                                            sample: TERMINATE
+                                        is_preserve_boot_volume:
+                                            description:
+                                                - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is
+                                                  terminated. Defaults to false if not specified.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
                         fault_domains:
                             description:
                                 - A list of fault domains in which to place nodes.
@@ -565,6 +590,34 @@ node_pools:
                     returned: on success
                     type: bool
                     sample: true
+        node_pool_cycling_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                maximum_unavailable:
+                    description:
+                        - Maximum active nodes that would be terminated from nodepool during the cycling nodepool process.
+                          OKE supports both integer and percentage input.
+                          Defaults to 0, Ranges from 0 to Nodepool size or 0% to 100%
+                    returned: on success
+                    type: str
+                    sample: maximum_unavailable_example
+                maximum_surge:
+                    description:
+                        - Maximum additional new compute instances that would be temporarily created and added to nodepool during the cycling nodepool process.
+                          OKE supports both integer and percentage input.
+                          Defaults to 1, Ranges from 0 to Nodepool size or 0% to 100%
+                    returned: on success
+                    type: str
+                    sample: maximum_surge_example
+                is_node_cycling_enabled:
+                    description:
+                        - If nodes in the nodepool will be cycled to have new changes.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "node_metadata": {},
         "nodes": [{
@@ -631,6 +684,12 @@ node_pools:
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
                 "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+                "preemptible_node_config": {
+                    "preemption_action": {
+                        "type": "TERMINATE",
+                        "is_preserve_boot_volume": true
+                    }
+                },
                 "fault_domains": []
             }],
             "node_pool_pod_network_option_details": {
@@ -646,6 +705,11 @@ node_pools:
         "node_eviction_node_pool_settings": {
             "eviction_grace_duration": "eviction_grace_duration_example",
             "is_force_delete_after_grace_duration": true
+        },
+        "node_pool_cycling_details": {
+            "maximum_unavailable": "maximum_unavailable_example",
+            "maximum_surge": "maximum_surge_example",
+            "is_node_cycling_enabled": true
         }
     }]
 """

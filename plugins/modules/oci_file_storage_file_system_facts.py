@@ -23,7 +23,8 @@ module: oci_file_storage_file_system_facts
 short_description: Fetches details about one or multiple FileSystem resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple FileSystem resources in Oracle Cloud Infrastructure
-    - Lists the file system resources in the specified compartment.
+    - Lists the file system resources in the specified compartment, or by the specified compartment and
+      file system snapshot policy.
     - If I(file_system_id) is specified, the details of a single FileSystem will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -72,6 +73,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source snapshot of a
               cloned file system. See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
         type: str
+    filesystem_snapshot_policy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system snapshot policy
+              that is associated with the file systems.
+        type: str
     sort_by:
         description:
             - The field to sort by. You can provide either value, but not both.
@@ -111,6 +117,7 @@ EXAMPLES = """
     lifecycle_state: CREATING
     source_snapshot_id: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
     parent_file_system_id: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -139,6 +146,14 @@ file_systems:
             returned: on success
             type: str
             sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated file system snapshot policy, which
+                  controls the frequency of snapshot creation and retention period of the taken snapshots.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the file system is in. May be unset
@@ -262,6 +277,7 @@ file_systems:
     sample: [{
         "is_targetable": true,
         "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx",
+        "filesystem_snapshot_policy_id": "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx",
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -323,6 +339,7 @@ class FileSystemFactsHelperGen(OCIResourceFactsHelperBase):
             "lifecycle_state",
             "source_snapshot_id",
             "parent_file_system_id",
+            "filesystem_snapshot_policy_id",
             "sort_by",
             "sort_order",
         ]
@@ -360,6 +377,7 @@ def main():
             ),
             source_snapshot_id=dict(type="str"),
             parent_file_system_id=dict(type="str"),
+            filesystem_snapshot_policy_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

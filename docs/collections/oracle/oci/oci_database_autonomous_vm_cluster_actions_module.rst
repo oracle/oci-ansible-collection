@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_vm_cluster_actions -- Perform actions on an A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,8 @@ Synopsis
 
 - Perform actions on an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, moves an Autonomous VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud@Customer only. For systems in the Oracle cloud, see `ChangeAutonomousVmClusterCompartment <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/AutonomousVmCluster/ChangeAutonomousVmClusterCompartment>`_.
+- For *action=rotate_autonomous_vm_cluster_ords_certs*, rotates the Oracle REST Data Services (ORDS) certificates for Autonomous Exadata VM cluster.
+- For *action=rotate_autonomous_vm_cluster_ssl_certs*, rotates the SSL certificates for Autonomous Exadata VM cluster.
 
 
 .. Aliases
@@ -98,6 +100,8 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>rotate_autonomous_vm_cluster_ords_certs</li>
+                                                                                                                                                                                                <li>rotate_autonomous_vm_cluster_ssl_certs</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -222,6 +226,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ca_bundle_id"></div>
+                    <b>ca_bundle_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-ca_bundle_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the certificate bundle.</div>
+                                            <div>Applicable only for <em>action=rotate_autonomous_vm_cluster_ords_certs</em><em>action=rotate_autonomous_vm_cluster_ssl_certs</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -237,17 +257,70 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-certificate_authority_id"></div>
+                    <b>certificate_authority_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-certificate_authority_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the certificate authority.</div>
+                                            <div>Applicable only for <em>action=rotate_autonomous_vm_cluster_ords_certs</em><em>action=rotate_autonomous_vm_cluster_ssl_certs</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-certificate_generation_type"></div>
+                    <b>certificate_generation_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-certificate_generation_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SYSTEM</li>
+                                                                                                                                                                                                <li>BYOC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.</div>
+                                            <div>Required for <em>action=rotate_autonomous_vm_cluster_ords_certs</em>, <em>action=rotate_autonomous_vm_cluster_ssl_certs</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-certificate_id"></div>
+                    <b>certificate_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-certificate_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the certificate to use.</div>
+                                            <div>Applicable only for <em>action=rotate_autonomous_vm_cluster_ords_certs</em><em>action=rotate_autonomous_vm_cluster_ssl_certs</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the Autonomous VM cluster to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -395,6 +468,30 @@ Examples
         autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
+    - name: Perform action rotate_autonomous_vm_cluster_ords_certs on autonomous_vm_cluster
+      oci_database_autonomous_vm_cluster_actions:
+        # required
+        certificate_generation_type: SYSTEM
+        autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        action: rotate_autonomous_vm_cluster_ords_certs
+
+        # optional
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Perform action rotate_autonomous_vm_cluster_ssl_certs on autonomous_vm_cluster
+      oci_database_autonomous_vm_cluster_actions:
+        # required
+        certificate_generation_type: SYSTEM
+        autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        action: rotate_autonomous_vm_cluster_ssl_certs
+
+        # optional
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+
 
 
 
@@ -430,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousVmCluster resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_container_databases&#x27;: 56, &#x27;available_cpus&#x27;: 56, &#x27;available_data_storage_size_in_tbs&#x27;: 1.2, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;cpu_core_count_per_node&#x27;: 56, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 1.2, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_servers&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_mtls_enabled&#x27;: True, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;ocpus_enabled&#x27;: 3.4, &#x27;reclaimable_cpus&#x27;: 56, &#x27;scan_listener_port_non_tls&#x27;: 56, &#x27;scan_listener_port_tls&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;total_container_databases&#x27;: 56, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_container_databases&#x27;: 56, &#x27;available_cpus&#x27;: 56, &#x27;available_data_storage_size_in_tbs&#x27;: 1.2, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;cpu_core_count_per_node&#x27;: 56, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 1.2, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_servers&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_mtls_enabled&#x27;: True, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;ocpus_enabled&#x27;: 3.4, &#x27;reclaimable_cpus&#x27;: 56, &#x27;scan_listener_port_non_tls&#x27;: 56, &#x27;scan_listener_port_tls&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_database_ssl_certificate_expires&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ords_certificate_expires&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;total_container_databases&#x27;: 56, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1263,6 +1360,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time that the Autonomous VM cluster was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_vm_cluster/time_database_ssl_certificate_expires"></div>
+                    <b>time_database_ssl_certificate_expires</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_vm_cluster/time_database_ssl_certificate_expires" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time of Database SSL certificate expiration.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_vm_cluster/time_ords_certificate_expires"></div>
+                    <b>time_ords_certificate_expires</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_vm_cluster/time_ords_certificate_expires" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time of ORDS certificate expiration.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

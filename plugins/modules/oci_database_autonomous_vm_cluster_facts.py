@@ -423,6 +423,18 @@ autonomous_vm_clusters:
             returned: on success
             type: bool
             sample: true
+        time_database_ssl_certificate_expires:
+            description:
+                - The date and time of Database SSL certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_ords_certificate_expires:
+            description:
+                - The date and time of ORDS certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -475,7 +487,9 @@ autonomous_vm_clusters:
         "available_autonomous_data_storage_size_in_tbs": 1.2,
         "scan_listener_port_tls": 56,
         "scan_listener_port_non_tls": 56,
-        "is_mtls_enabled": true
+        "is_mtls_enabled": true,
+        "time_database_ssl_certificate_expires": "2013-10-20T19:20:30+01:00",
+        "time_ords_certificate_expires": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates an Autonomous VM cluster for Exadata Cloud@Customer. To create an Autonomous VM Cluster in the Oracle cloud, see
       L(CreateCloudAutonomousVmCluster,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/CreateCloudAutonomousVmCluster).
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_vm_cluster_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_vm_cluster_actions) module: change_compartment,
+      rotate_autonomous_vm_cluster_ords_certs, rotate_autonomous_vm_cluster_ssl_certs."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -677,6 +678,18 @@ autonomous_vm_cluster:
             returned: on success
             type: bool
             sample: true
+        time_database_ssl_certificate_expires:
+            description:
+                - The date and time of Database SSL certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_ords_certificate_expires:
+            description:
+                - The date and time of ORDS certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -729,7 +742,9 @@ autonomous_vm_cluster:
         "available_autonomous_data_storage_size_in_tbs": 1.2,
         "scan_listener_port_tls": 56,
         "scan_listener_port_non_tls": 56,
-        "is_mtls_enabled": true
+        "is_mtls_enabled": true,
+        "time_database_ssl_certificate_expires": "2013-10-20T19:20:30+01:00",
+        "time_ords_certificate_expires": "2013-10-20T19:20:30+01:00"
     }
 """
 

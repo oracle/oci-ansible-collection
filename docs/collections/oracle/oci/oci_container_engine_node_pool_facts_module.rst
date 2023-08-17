@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_node_pool_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -467,12 +467,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="6">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-node_pools"></div>
                     <b>node_pools</b>
                     <a class="ansibleOptionLink" href="#return-node_pools" title="Permalink to this return value"></a>
@@ -485,12 +485,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of NodePool resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_pool_pod_network_option_details&#x27;: {&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;, &#x27;max_pods_per_node&#x27;: 56, &#x27;pod_nsg_ids&#x27;: [], &#x27;pod_subnet_ids&#x27;: []}, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domains&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_eviction_node_pool_settings&#x27;: {&#x27;eviction_grace_duration&#x27;: &#x27;eviction_grace_duration_example&#x27;, &#x27;is_force_delete_after_grace_duration&#x27;: True}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_pool_pod_network_option_details&#x27;: {&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;, &#x27;max_pods_per_node&#x27;: 56, &#x27;pod_nsg_ids&#x27;: [], &#x27;pod_subnet_ids&#x27;: []}, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domains&#x27;: [], &#x27;preemptible_node_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;is_preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_eviction_node_pool_settings&#x27;: {&#x27;eviction_grace_duration&#x27;: &#x27;eviction_grace_duration_example&#x27;, &#x27;is_force_delete_after_grace_duration&#x27;: True}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_pool_cycling_details&#x27;: {&#x27;is_node_cycling_enabled&#x27;: True, &#x27;maximum_surge&#x27;: &#x27;maximum_surge_example&#x27;, &#x27;maximum_unavailable&#x27;: &#x27;maximum_unavailable_example&#x27;}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/cluster_id"></div>
                     <b>cluster_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/cluster_id" title="Permalink to this return value"></a>
@@ -508,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/compartment_id" title="Permalink to this return value"></a>
@@ -526,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/defined_tags" title="Permalink to this return value"></a>
@@ -544,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/freeform_tags" title="Permalink to this return value"></a>
@@ -562,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/id" title="Permalink to this return value"></a>
@@ -580,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/initial_node_labels"></div>
                     <b>initial_node_labels</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/initial_node_labels" title="Permalink to this return value"></a>
@@ -597,7 +597,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/initial_node_labels/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/initial_node_labels/key" title="Permalink to this return value"></a>
@@ -616,7 +616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/initial_node_labels/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/initial_node_labels/value" title="Permalink to this return value"></a>
@@ -635,7 +635,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/kubernetes_version"></div>
                     <b>kubernetes_version</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/kubernetes_version" title="Permalink to this return value"></a>
@@ -653,7 +653,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/lifecycle_details" title="Permalink to this return value"></a>
@@ -671,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/lifecycle_state" title="Permalink to this return value"></a>
@@ -689,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/name" title="Permalink to this return value"></a>
@@ -707,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details"></div>
                     <b>node_config_details</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details" title="Permalink to this return value"></a>
@@ -724,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/defined_tags" title="Permalink to this return value"></a>
@@ -743,7 +743,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/freeform_tags" title="Permalink to this return value"></a>
@@ -762,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/is_pv_encryption_in_transit_enabled"></div>
                     <b>is_pv_encryption_in_transit_enabled</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/is_pv_encryption_in_transit_enabled" title="Permalink to this return value"></a>
@@ -781,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/kms_key_id"></div>
                     <b>kms_key_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/kms_key_id" title="Permalink to this return value"></a>
@@ -800,7 +800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/node_pool_pod_network_option_details"></div>
                     <b>node_pool_pod_network_option_details</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/node_pool_pod_network_option_details" title="Permalink to this return value"></a>
@@ -818,7 +818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/node_pool_pod_network_option_details/cni_type"></div>
                     <b>cni_type</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/node_pool_pod_network_option_details/cni_type" title="Permalink to this return value"></a>
@@ -838,7 +838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/node_pool_pod_network_option_details/max_pods_per_node"></div>
                     <b>max_pods_per_node</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/node_pool_pod_network_option_details/max_pods_per_node" title="Permalink to this return value"></a>
@@ -858,7 +858,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/node_pool_pod_network_option_details/pod_nsg_ids"></div>
                     <b>pod_nsg_ids</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/node_pool_pod_network_option_details/pod_nsg_ids" title="Permalink to this return value"></a>
@@ -876,7 +876,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/node_pool_pod_network_option_details/pod_subnet_ids"></div>
                     <b>pod_subnet_ids</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/node_pool_pod_network_option_details/pod_subnet_ids" title="Permalink to this return value"></a>
@@ -894,7 +894,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/nsg_ids" title="Permalink to this return value"></a>
@@ -911,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs"></div>
                     <b>placement_configs</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs" title="Permalink to this return value"></a>
@@ -930,7 +930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/availability_domain" title="Permalink to this return value"></a>
@@ -950,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/capacity_reservation_id"></div>
                     <b>capacity_reservation_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/capacity_reservation_id" title="Permalink to this return value"></a>
@@ -970,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/fault_domains"></div>
                     <b>fault_domains</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/fault_domains" title="Permalink to this return value"></a>
@@ -988,7 +988,90 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/preemptible_node_config"></div>
+                    <b>preemptible_node_config</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/preemptible_node_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action"></div>
+                    <b>preemption_action</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action/is_preserve_boot_volume"></div>
+                    <b>is_preserve_boot_volume</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action/is_preserve_boot_volume" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults to false if not specified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/preemptible_node_config/preemption_action/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of action to run when the instance is interrupted for eviction.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TERMINATE</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/placement_configs/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/placement_configs/subnet_id" title="Permalink to this return value"></a>
@@ -1008,7 +1091,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_config_details/size"></div>
                     <b>size</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_config_details/size" title="Permalink to this return value"></a>
@@ -1027,7 +1110,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_eviction_node_pool_settings"></div>
                     <b>node_eviction_node_pool_settings</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_eviction_node_pool_settings" title="Permalink to this return value"></a>
@@ -1044,7 +1127,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_eviction_node_pool_settings/eviction_grace_duration"></div>
                     <b>eviction_grace_duration</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_eviction_node_pool_settings/eviction_grace_duration" title="Permalink to this return value"></a>
@@ -1063,7 +1146,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_eviction_node_pool_settings/is_force_delete_after_grace_duration"></div>
                     <b>is_force_delete_after_grace_duration</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_eviction_node_pool_settings/is_force_delete_after_grace_duration" title="Permalink to this return value"></a>
@@ -1082,7 +1165,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_image_id"></div>
                     <b>node_image_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_image_id" title="Permalink to this return value"></a>
@@ -1100,7 +1183,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_image_name"></div>
                     <b>node_image_name</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_image_name" title="Permalink to this return value"></a>
@@ -1118,7 +1201,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_metadata"></div>
                     <b>node_metadata</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_metadata" title="Permalink to this return value"></a>
@@ -1135,7 +1218,81 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_pool_cycling_details"></div>
+                    <b>node_pool_cycling_details</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_pool_cycling_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_pool_cycling_details/is_node_cycling_enabled"></div>
+                    <b>is_node_cycling_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_pool_cycling_details/is_node_cycling_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If nodes in the nodepool will be cycled to have new changes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_pool_cycling_details/maximum_surge"></div>
+                    <b>maximum_surge</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_pool_cycling_details/maximum_surge" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Maximum additional new compute instances that would be temporarily created and added to nodepool during the cycling nodepool process. OKE supports both integer and percentage input. Defaults to 1, Ranges from 0 to Nodepool size or 0% to 100%</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">maximum_surge_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_pool_cycling_details/maximum_unavailable"></div>
+                    <b>maximum_unavailable</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_pool_cycling_details/maximum_unavailable" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Maximum active nodes that would be terminated from nodepool during the cycling nodepool process. OKE supports both integer and percentage input. Defaults to 0, Ranges from 0 to Nodepool size or 0% to 100%</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">maximum_unavailable_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_shape"></div>
                     <b>node_shape</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_shape" title="Permalink to this return value"></a>
@@ -1153,7 +1310,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_shape_config"></div>
                     <b>node_shape_config</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_shape_config" title="Permalink to this return value"></a>
@@ -1170,7 +1327,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_shape_config/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_shape_config/memory_in_gbs" title="Permalink to this return value"></a>
@@ -1189,7 +1346,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_shape_config/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_shape_config/ocpus" title="Permalink to this return value"></a>
@@ -1208,7 +1365,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source"></div>
                     <b>node_source</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source" title="Permalink to this return value"></a>
@@ -1225,7 +1382,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source/image_id"></div>
                     <b>image_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source/image_id" title="Permalink to this return value"></a>
@@ -1244,7 +1401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source/source_name"></div>
                     <b>source_name</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source/source_name" title="Permalink to this return value"></a>
@@ -1263,7 +1420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source/source_type"></div>
                     <b>source_type</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source/source_type" title="Permalink to this return value"></a>
@@ -1282,7 +1439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details"></div>
                     <b>node_source_details</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source_details" title="Permalink to this return value"></a>
@@ -1299,7 +1456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/boot_volume_size_in_gbs"></div>
                     <b>boot_volume_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/boot_volume_size_in_gbs" title="Permalink to this return value"></a>
@@ -1318,7 +1475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/image_id"></div>
                     <b>image_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/image_id" title="Permalink to this return value"></a>
@@ -1337,7 +1494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/source_type"></div>
                     <b>source_type</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/source_type" title="Permalink to this return value"></a>
@@ -1356,7 +1513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes"></div>
                     <b>nodes</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes" title="Permalink to this return value"></a>
@@ -1374,7 +1531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/availability_domain" title="Permalink to this return value"></a>
@@ -1393,7 +1550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/defined_tags" title="Permalink to this return value"></a>
@@ -1412,7 +1569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/fault_domain"></div>
                     <b>fault_domain</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/fault_domain" title="Permalink to this return value"></a>
@@ -1431,7 +1588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/freeform_tags" title="Permalink to this return value"></a>
@@ -1450,7 +1607,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/id" title="Permalink to this return value"></a>
@@ -1469,7 +1626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/kubernetes_version"></div>
                     <b>kubernetes_version</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/kubernetes_version" title="Permalink to this return value"></a>
@@ -1488,7 +1645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/lifecycle_details" title="Permalink to this return value"></a>
@@ -1507,7 +1664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/lifecycle_state" title="Permalink to this return value"></a>
@@ -1526,7 +1683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/name" title="Permalink to this return value"></a>
@@ -1545,7 +1702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_error"></div>
                     <b>node_error</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_error" title="Permalink to this return value"></a>
@@ -1563,7 +1720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_error/code"></div>
                     <b>code</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_error/code" title="Permalink to this return value"></a>
@@ -1583,7 +1740,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_error/message"></div>
                     <b>message</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_error/message" title="Permalink to this return value"></a>
@@ -1603,7 +1760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_error/opc_request_id"></div>
                     <b>opc_request_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_error/opc_request_id" title="Permalink to this return value"></a>
@@ -1623,7 +1780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_error/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_error/status" title="Permalink to this return value"></a>
@@ -1643,7 +1800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/node_pool_id"></div>
                     <b>node_pool_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/node_pool_id" title="Permalink to this return value"></a>
@@ -1662,7 +1819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/private_ip"></div>
                     <b>private_ip</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/private_ip" title="Permalink to this return value"></a>
@@ -1681,7 +1838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/public_ip"></div>
                     <b>public_ip</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/public_ip" title="Permalink to this return value"></a>
@@ -1700,7 +1857,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/subnet_id" title="Permalink to this return value"></a>
@@ -1719,7 +1876,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-node_pools/nodes/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/nodes/system_tags" title="Permalink to this return value"></a>
@@ -1736,7 +1893,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/quantity_per_subnet"></div>
                     <b>quantity_per_subnet</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/quantity_per_subnet" title="Permalink to this return value"></a>
@@ -1754,7 +1911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/ssh_public_key"></div>
                     <b>ssh_public_key</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/ssh_public_key" title="Permalink to this return value"></a>
@@ -1772,7 +1929,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/subnet_ids"></div>
                     <b>subnet_ids</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/subnet_ids" title="Permalink to this return value"></a>
@@ -1788,7 +1945,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-node_pools/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/system_tags" title="Permalink to this return value"></a>

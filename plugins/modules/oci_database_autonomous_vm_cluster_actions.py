@@ -26,14 +26,39 @@ description:
     - For I(action=change_compartment), moves an Autonomous VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud@Customer
       only. For systems in the Oracle cloud, see L(ChangeAutonomousVmClusterCompartment,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/AutonomousVmCluster/ChangeAutonomousVmClusterCompartment).
+    - For I(action=rotate_autonomous_vm_cluster_ords_certs), rotates the Oracle REST Data Services (ORDS) certificates for Autonomous Exadata VM cluster.
+    - For I(action=rotate_autonomous_vm_cluster_ssl_certs), rotates the SSL certificates for Autonomous Exadata VM cluster.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the Autonomous VM cluster to.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    certificate_generation_type:
+        description:
+            - Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.
+            - Required for I(action=rotate_autonomous_vm_cluster_ords_certs), I(action=rotate_autonomous_vm_cluster_ssl_certs).
+        type: str
+        choices:
+            - "SYSTEM"
+            - "BYOC"
+    certificate_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate to use.
+            - Applicable only for I(action=rotate_autonomous_vm_cluster_ords_certs)I(action=rotate_autonomous_vm_cluster_ssl_certs).
+        type: str
+    certificate_authority_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate authority.
+            - Applicable only for I(action=rotate_autonomous_vm_cluster_ords_certs)I(action=rotate_autonomous_vm_cluster_ssl_certs).
+        type: str
+    ca_bundle_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the certificate bundle.
+            - Applicable only for I(action=rotate_autonomous_vm_cluster_ords_certs)I(action=rotate_autonomous_vm_cluster_ssl_certs).
+        type: str
     autonomous_vm_cluster_id:
         description:
             - The autonomous VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -47,6 +72,8 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "rotate_autonomous_vm_cluster_ords_certs"
+            - "rotate_autonomous_vm_cluster_ssl_certs"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -57,6 +84,30 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action rotate_autonomous_vm_cluster_ords_certs on autonomous_vm_cluster
+  oci_database_autonomous_vm_cluster_actions:
+    # required
+    certificate_generation_type: SYSTEM
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: rotate_autonomous_vm_cluster_ords_certs
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Perform action rotate_autonomous_vm_cluster_ssl_certs on autonomous_vm_cluster
+  oci_database_autonomous_vm_cluster_actions:
+    # required
+    certificate_generation_type: SYSTEM
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: rotate_autonomous_vm_cluster_ssl_certs
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -384,6 +435,18 @@ autonomous_vm_cluster:
             returned: on success
             type: bool
             sample: true
+        time_database_ssl_certificate_expires:
+            description:
+                - The date and time of Database SSL certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_ords_certificate_expires:
+            description:
+                - The date and time of ORDS certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -436,7 +499,9 @@ autonomous_vm_cluster:
         "available_autonomous_data_storage_size_in_tbs": 1.2,
         "scan_listener_port_tls": 56,
         "scan_listener_port_non_tls": 56,
-        "is_mtls_enabled": true
+        "is_mtls_enabled": true,
+        "time_database_ssl_certificate_expires": "2013-10-20T19:20:30+01:00",
+        "time_ords_certificate_expires": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -454,6 +519,8 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import ChangeAutonomousVmClusterCompartmentDetails
+    from oci.database.models import RotateAutonomousVmClusterOrdsCertsDetails
+    from oci.database.models import RotateAutonomousVmClusterSslCertsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -464,6 +531,8 @@ class AutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        rotate_autonomous_vm_cluster_ords_certs
+        rotate_autonomous_vm_cluster_ssl_certs
     """
 
     def __init__(self, *args, **kwargs):
@@ -511,6 +580,52 @@ class AutonomousVmClusterActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def rotate_autonomous_vm_cluster_ords_certs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RotateAutonomousVmClusterOrdsCertsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_autonomous_vm_cluster_ords_certs,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                rotate_autonomous_vm_cluster_ords_certs_details=action_details,
+                autonomous_vm_cluster_id=self.module.params.get(
+                    "autonomous_vm_cluster_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def rotate_autonomous_vm_cluster_ssl_certs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RotateAutonomousVmClusterSslCertsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_autonomous_vm_cluster_ssl_certs,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                rotate_autonomous_vm_cluster_ssl_certs_details=action_details,
+                autonomous_vm_cluster_id=self.module.params.get(
+                    "autonomous_vm_cluster_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 AutonomousVmClusterActionsHelperCustom = get_custom_class(
     "AutonomousVmClusterActionsHelperCustom"
@@ -529,9 +644,21 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
+            certificate_generation_type=dict(type="str", choices=["SYSTEM", "BYOC"]),
+            certificate_id=dict(type="str"),
+            certificate_authority_id=dict(type="str"),
+            ca_bundle_id=dict(type="str"),
             autonomous_vm_cluster_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "change_compartment",
+                    "rotate_autonomous_vm_cluster_ords_certs",
+                    "rotate_autonomous_vm_cluster_ssl_certs",
+                ],
+            ),
         )
     )
 

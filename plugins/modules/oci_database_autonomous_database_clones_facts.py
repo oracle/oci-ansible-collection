@@ -395,6 +395,12 @@ autonomous_database_clones:
             returned: on success
             type: int
             sample: 56
+        used_data_storage_size_in_gbs:
+            description:
+                - The storage space consumed by Autonomous Database in GBs.
+            returned: on success
+            type: int
+            sample: 56
         infrastructure_type:
             description:
                 - The infrastructure type this resource belongs to.
@@ -1234,6 +1240,7 @@ autonomous_database_clones:
         "data_storage_size_in_tbs": 56,
         "memory_per_oracle_compute_unit_in_gbs": 56,
         "data_storage_size_in_gbs": 56,
+        "used_data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",

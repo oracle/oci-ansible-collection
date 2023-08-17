@@ -102,6 +102,13 @@ options:
               with this file system.
             - This parameter is updatable.
         type: str
+    filesystem_snapshot_policy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated file system snapshot policy, which
+              controls the frequency of snapshot creation and retention period of the taken snapshots.
+            - May be unset as a blank value.
+            - This parameter is updatable.
+        type: str
     file_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
@@ -134,6 +141,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update file_system
   oci_file_storage_file_system:
@@ -145,6 +153,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
@@ -157,6 +166,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete file_system
   oci_file_storage_file_system:
@@ -315,6 +325,13 @@ file_system:
             returned: on success
             type: str
             sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated file system snapshot policy, which
+                  controls the frequency of snapshot creation and retention period of the taken snapshots.
+            returned: on success
+            type: str
+            sample: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -334,7 +351,8 @@ file_system:
         "is_hydrated": true,
         "lifecycle_details": "lifecycle_details_example",
         "is_targetable": true,
-        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
+        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx",
+        "filesystem_snapshot_policy_id": "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -403,7 +421,11 @@ class FileSystemHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name", "source_snapshot_id"]
+        optional_list_method_params = (
+            ["display_name", "source_snapshot_id"]
+            if self._use_name_as_identifier()
+            else ["display_name", "source_snapshot_id", "filesystem_snapshot_policy_id"]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -506,6 +528,7 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
+            filesystem_snapshot_policy_id=dict(type="str"),
             file_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

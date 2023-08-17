@@ -54,8 +54,12 @@ options:
                        {
                           \\"source\\" : \\"0.0.0.0/0\\",
                           \\"requirePrivilegedSourcePort\\" : false,
-                          \\"access\\" : \\"READ_WRITE\\",
-                          \\"identitySquash\\" : \\"NONE\\"
+                          \\"access\\": \\"READ_WRITE\\",
+                          \\"identitySquash\\": \\"NONE\\",
+                          \\"anonymousUid\\": 65534,
+                          \\"anonymousGid\\": 65534,
+                          \\"isAnonymousAccessAllowed\\": false,
+                          \\"allowedAuth\\": [\\"SYS\\"]
                         }
                      ]"
             - " **Note:** Mount targets do not have Internet-routable IP
@@ -88,7 +92,7 @@ options:
             access:
                 description:
                     - Type of access to grant clients using the file system
-                      through this export. If unspecified defaults to `READ_ONLY`.
+                      through this export. If unspecified defaults to `READ_WRITE`.
                 type: str
                 choices:
                     - "READ_WRITE"
@@ -236,7 +240,7 @@ export:
                 access:
                     description:
                         - Type of access to grant clients using the file system
-                          through this export. If unspecified defaults to `READ_ONLY`.
+                          through this export. If unspecified defaults to `READ_WRITE`.
                     returned: on success
                     type: str
                     sample: READ_WRITE

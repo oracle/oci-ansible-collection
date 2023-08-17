@@ -30,7 +30,7 @@ oracle.oci.oci_file_storage_file_system -- Manage a FileSystem resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -329,6 +329,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filesystem_snapshot_policy_id"></div>
+                    <b>filesystem_snapshot_policy_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-filesystem_snapshot_policy_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated file system snapshot policy, which controls the frequency of snapshot creation and retention period of the taken snapshots.</div>
+                                            <div>May be unset as a blank value.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -549,6 +566,7 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update file_system
       oci_file_storage_file_system:
@@ -560,6 +578,7 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_file_system:
@@ -572,6 +591,7 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete file_system
       oci_file_storage_file_system:
@@ -622,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the FileSystem resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_clone_parent&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;is_targetable&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metered_bytes&#x27;: 56, &#x27;replication_target_id&#x27;: &#x27;ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_details&#x27;: {&#x27;parent_file_system_id&#x27;: &#x27;ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_snapshot_id&#x27;: &#x27;ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filesystem_snapshot_policy_id&#x27;: &#x27;ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_clone_parent&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;is_targetable&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metered_bytes&#x27;: 56, &#x27;replication_target_id&#x27;: &#x27;ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_details&#x27;: {&#x27;parent_file_system_id&#x27;: &#x27;ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_snapshot_id&#x27;: &#x27;ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -697,6 +717,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-file_system/filesystem_snapshot_policy_id"></div>
+                    <b>filesystem_snapshot_policy_id</b>
+                    <a class="ansibleOptionLink" href="#return-file_system/filesystem_snapshot_policy_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated file system snapshot policy, which controls the frequency of snapshot creation and retention period of the taken snapshots.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

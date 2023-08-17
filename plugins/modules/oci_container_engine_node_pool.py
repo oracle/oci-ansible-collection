@@ -155,6 +155,29 @@ options:
                         description:
                             - The OCID of the compute capacity reservation in which to place the compute instance.
                         type: str
+                    preemptible_node_config:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            preemption_action:
+                                description:
+                                    - ""
+                                type: dict
+                                required: true
+                                suboptions:
+                                    type:
+                                        description:
+                                            - The type of action to run when the instance is interrupted for eviction.
+                                        type: str
+                                        choices:
+                                            - "TERMINATE"
+                                        required: true
+                                    is_preserve_boot_volume:
+                                        description:
+                                            - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is
+                                              terminated. Defaults to false if not specified.
+                                        type: bool
                     fault_domains:
                         description:
                             - A list of fault domains in which to place nodes.
@@ -279,6 +302,28 @@ options:
                 description:
                     - If the underlying compute instance should be deleted if you cannot evict all the pods in grace period
                 type: bool
+    node_pool_cycling_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            maximum_unavailable:
+                description:
+                    - Maximum active nodes that would be terminated from nodepool during the cycling nodepool process.
+                      OKE supports both integer and percentage input.
+                      Defaults to 0, Ranges from 0 to Nodepool size or 0% to 100%
+                type: str
+            maximum_surge:
+                description:
+                    - Maximum additional new compute instances that would be temporarily created and added to nodepool during the cycling nodepool process.
+                      OKE supports both integer and percentage input.
+                      Defaults to 1, Ranges from 0 to Nodepool size or 0% to 100%
+                type: str
+            is_node_cycling_enabled:
+                description:
+                    - If nodes in the nodepool will be cycled to have new changes.
+                type: bool
     node_pool_id:
         description:
             - The OCID of the node pool.
@@ -342,6 +387,14 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        preemptible_node_config:
+          # required
+          preemption_action:
+            # required
+            type: TERMINATE
+
+            # optional
+            is_preserve_boot_volume: true
         fault_domains: [ "fault_domains_example" ]
       node_pool_pod_network_option_details:
         # required
@@ -370,6 +423,11 @@ EXAMPLES = """
       # optional
       eviction_grace_duration: eviction_grace_duration_example
       is_force_delete_after_grace_duration: true
+    node_pool_cycling_details:
+      # optional
+      maximum_unavailable: maximum_unavailable_example
+      maximum_surge: maximum_surge_example
+      is_node_cycling_enabled: true
 
 - name: Update node_pool
   oci_container_engine_node_pool:
@@ -400,6 +458,14 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        preemptible_node_config:
+          # required
+          preemption_action:
+            # required
+            type: TERMINATE
+
+            # optional
+            is_preserve_boot_volume: true
         fault_domains: [ "fault_domains_example" ]
       node_pool_pod_network_option_details:
         # required
@@ -429,6 +495,11 @@ EXAMPLES = """
       # optional
       eviction_grace_duration: eviction_grace_duration_example
       is_force_delete_after_grace_duration: true
+    node_pool_cycling_details:
+      # optional
+      maximum_unavailable: maximum_unavailable_example
+      maximum_surge: maximum_surge_example
+      is_node_cycling_enabled: true
     override_eviction_grace_duration: override_eviction_grace_duration_example
     is_force_deletion_after_override_grace_duration: true
 
@@ -461,6 +532,14 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        preemptible_node_config:
+          # required
+          preemption_action:
+            # required
+            type: TERMINATE
+
+            # optional
+            is_preserve_boot_volume: true
         fault_domains: [ "fault_domains_example" ]
       node_pool_pod_network_option_details:
         # required
@@ -490,6 +569,11 @@ EXAMPLES = """
       # optional
       eviction_grace_duration: eviction_grace_duration_example
       is_force_delete_after_grace_duration: true
+    node_pool_cycling_details:
+      # optional
+      maximum_unavailable: maximum_unavailable_example
+      maximum_surge: maximum_surge_example
+      is_node_cycling_enabled: true
     override_eviction_grace_duration: override_eviction_grace_duration_example
     is_force_deletion_after_override_grace_duration: true
 
@@ -895,6 +979,31 @@ node_pool:
                             returned: on success
                             type: str
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                        preemptible_node_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                preemption_action:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - The type of action to run when the instance is interrupted for eviction.
+                                            returned: on success
+                                            type: str
+                                            sample: TERMINATE
+                                        is_preserve_boot_volume:
+                                            description:
+                                                - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is
+                                                  terminated. Defaults to false if not specified.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
                         fault_domains:
                             description:
                                 - A list of fault domains in which to place nodes.
@@ -976,6 +1085,34 @@ node_pool:
                     returned: on success
                     type: bool
                     sample: true
+        node_pool_cycling_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                maximum_unavailable:
+                    description:
+                        - Maximum active nodes that would be terminated from nodepool during the cycling nodepool process.
+                          OKE supports both integer and percentage input.
+                          Defaults to 0, Ranges from 0 to Nodepool size or 0% to 100%
+                    returned: on success
+                    type: str
+                    sample: maximum_unavailable_example
+                maximum_surge:
+                    description:
+                        - Maximum additional new compute instances that would be temporarily created and added to nodepool during the cycling nodepool process.
+                          OKE supports both integer and percentage input.
+                          Defaults to 1, Ranges from 0 to Nodepool size or 0% to 100%
+                    returned: on success
+                    type: str
+                    sample: maximum_surge_example
+                is_node_cycling_enabled:
+                    description:
+                        - If nodes in the nodepool will be cycled to have new changes.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "DELETED",
@@ -1042,6 +1179,12 @@ node_pool:
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
                 "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+                "preemptible_node_config": {
+                    "preemption_action": {
+                        "type": "TERMINATE",
+                        "is_preserve_boot_volume": true
+                    }
+                },
                 "fault_domains": []
             }],
             "node_pool_pod_network_option_details": {
@@ -1057,6 +1200,11 @@ node_pool:
         "node_eviction_node_pool_settings": {
             "eviction_grace_duration": "eviction_grace_duration_example",
             "is_force_delete_after_grace_duration": true
+        },
+        "node_pool_cycling_details": {
+            "maximum_unavailable": "maximum_unavailable_example",
+            "maximum_surge": "maximum_surge_example",
+            "is_node_cycling_enabled": true
         }
     }
 """
@@ -1252,6 +1400,23 @@ def main():
                             availability_domain=dict(type="str", required=True),
                             subnet_id=dict(type="str", required=True),
                             capacity_reservation_id=dict(type="str"),
+                            preemptible_node_config=dict(
+                                type="dict",
+                                options=dict(
+                                    preemption_action=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["TERMINATE"],
+                                            ),
+                                            is_preserve_boot_volume=dict(type="bool"),
+                                        ),
+                                    )
+                                ),
+                            ),
                             fault_domains=dict(type="list", elements="str"),
                         ),
                     ),
@@ -1294,6 +1459,14 @@ def main():
                 options=dict(
                     eviction_grace_duration=dict(type="str"),
                     is_force_delete_after_grace_duration=dict(type="bool"),
+                ),
+            ),
+            node_pool_cycling_details=dict(
+                type="dict",
+                options=dict(
+                    maximum_unavailable=dict(type="str"),
+                    maximum_surge=dict(type="str"),
+                    is_node_cycling_enabled=dict(type="bool"),
                 ),
             ),
             node_pool_id=dict(aliases=["id"], type="str"),
