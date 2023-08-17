@@ -23,7 +23,9 @@ module: oci_file_storage_snapshot_facts
 short_description: Fetches details about one or multiple Snapshot resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Snapshot resources in Oracle Cloud Infrastructure
-    - Lists snapshots of the specified file system.
+    - Lists snapshots of the specified file system, or by file system snapshot policy and compartment,
+      or by file system snapshot policy and file system.
+    - If file system ID is not specified, a file system snapshot policy ID and compartment ID must be specified.
     - If I(snapshot_id) is specified, the details of a single Snapshot will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -34,11 +36,6 @@ options:
             - Required to get a specific snapshot.
         type: str
         aliases: ["id"]
-    file_system_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
-            - Required to list multiple snapshots.
-        type: str
     lifecycle_state:
         description:
             - Filter results by the specified lifecycle state. Must be a valid
@@ -50,6 +47,19 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    filesystem_snapshot_policy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system snapshot policy
+              that is used to create the snapshots.
+        type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+        type: str
+    file_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
+        type: str
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc', where 'asc' is
@@ -70,11 +80,12 @@ EXAMPLES = """
 
 - name: List snapshots
   oci_file_storage_snapshot_facts:
-    # required
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     lifecycle_state: CREATING
+    filesystem_snapshot_policy_id: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
 
 """
@@ -86,6 +97,14 @@ snapshots:
     returned: on success
     type: complex
     contains:
+        filesystem_snapshot_policy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system snapshot policy that created this
+                  snapshot.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         file_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system from which the snapshot
@@ -140,6 +159,12 @@ snapshots:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        expiration_time:
+            description:
+                - The time when this snapshot will be deleted.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         provenance_id:
             description:
                 - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
@@ -180,6 +205,7 @@ snapshots:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "filesystem_snapshot_policy_id": "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx",
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
@@ -187,6 +213,7 @@ snapshots:
         "time_created": "2013-10-20T19:20:30+01:00",
         "snapshot_type": "USER",
         "snapshot_time": "2013-10-20T19:20:30+01:00",
+        "expiration_time": "2013-10-20T19:20:30+01:00",
         "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_clone_source": true,
         "lifecycle_details": "lifecycle_details_example",
@@ -219,9 +246,7 @@ class SnapshotFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_required_params_for_list(self):
-        return [
-            "file_system_id",
-        ]
+        return []
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -231,6 +256,9 @@ class SnapshotFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "lifecycle_state",
+            "filesystem_snapshot_policy_id",
+            "compartment_id",
+            "file_system_id",
             "sort_order",
             "name",
         ]
@@ -240,9 +268,7 @@ class SnapshotFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_snapshots,
-            file_system_id=self.module.params.get("file_system_id"),
-            **optional_kwargs
+            self.client.list_snapshots, **optional_kwargs
         )
 
 
@@ -258,11 +284,13 @@ def main():
     module_args.update(
         dict(
             snapshot_id=dict(aliases=["id"], type="str"),
-            file_system_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
             ),
+            filesystem_snapshot_policy_id=dict(type="str"),
+            compartment_id=dict(type="str"),
+            file_system_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             name=dict(type="str"),
         )

@@ -217,6 +217,13 @@ file_system:
             returned: on success
             type: str
             sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
+        filesystem_snapshot_policy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated file system snapshot policy, which
+                  controls the frequency of snapshot creation and retention period of the taken snapshots.
+            returned: on success
+            type: str
+            sample: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -236,7 +243,8 @@ file_system:
         "is_hydrated": true,
         "lifecycle_details": "lifecycle_details_example",
         "is_targetable": true,
-        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
+        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx",
+        "filesystem_snapshot_policy_id": "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

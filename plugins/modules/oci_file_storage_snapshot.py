@@ -32,8 +32,6 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system to take a snapshot of.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     name:
         description:
@@ -60,6 +58,11 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    expiration_time:
+        description:
+            - The time when this snapshot will be deleted.
+            - This parameter is updatable.
+        type: str
     snapshot_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
@@ -89,6 +92,7 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    expiration_time: expiration_time_example
 
 - name: Update snapshot
   oci_file_storage_snapshot:
@@ -98,16 +102,17 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    expiration_time: expiration_time_example
 
 - name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
     # required
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    expiration_time: expiration_time_example
 
 - name: Delete snapshot
   oci_file_storage_snapshot:
@@ -118,7 +123,6 @@ EXAMPLES = """
 - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
     # required
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -224,6 +228,19 @@ snapshot:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        expiration_time:
+            description:
+                - The time when this snapshot will be deleted.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        filesystem_snapshot_policy_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system snapshot policy that created this
+                  snapshot.
+            returned: on success
+            type: str
+            sample: "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -236,7 +253,9 @@ snapshot:
         "is_clone_source": true,
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "expiration_time": "2013-10-20T19:20:30+01:00",
+        "filesystem_snapshot_policy_id": "ocid1.filesystemsnapshotpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -294,16 +313,23 @@ class SnapshotHelperGen(OCIResourceHelperBase):
         )
 
     def get_required_kwargs_for_list(self):
-        required_list_method_params = [
-            "file_system_id",
-        ]
-
-        return dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
+        return dict()
 
     def get_optional_kwargs_for_list(self):
-        return dict()
+        optional_list_method_params = ["file_system_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
 
     def list_resources(self):
 
@@ -383,6 +409,7 @@ def main():
             name=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            expiration_time=dict(type="str"),
             snapshot_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

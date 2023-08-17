@@ -155,7 +155,7 @@ exports:
                 access:
                     description:
                         - Type of access to grant clients using the file system
-                          through this export. If unspecified defaults to `READ_ONLY`.
+                          through this export. If unspecified defaults to `READ_WRITE`.
                     returned: on success
                     type: str
                     sample: READ_WRITE

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.28.0
+Collection version 4.29.0
 
 .. toctree::
     :maxdepth: 1
@@ -930,6 +930,9 @@ Modules
 * :ref:`oci_file_storage_file_system <ansible_collections.oracle.oci.oci_file_storage_file_system_module>` -- Manage a FileSystem resource in Oracle Cloud Infrastructure
 * :ref:`oci_file_storage_file_system_actions <ansible_collections.oracle.oci.oci_file_storage_file_system_actions_module>` -- Perform actions on a FileSystem resource in Oracle Cloud Infrastructure
 * :ref:`oci_file_storage_file_system_facts <ansible_collections.oracle.oci.oci_file_storage_file_system_facts_module>` -- Fetches details about one or multiple FileSystem resources in Oracle Cloud Infrastructure
+* :ref:`oci_file_storage_filesystem_snapshot_policy <ansible_collections.oracle.oci.oci_file_storage_filesystem_snapshot_policy_module>` -- Manage a FilesystemSnapshotPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oci_file_storage_filesystem_snapshot_policy_actions <ansible_collections.oracle.oci.oci_file_storage_filesystem_snapshot_policy_actions_module>` -- Perform actions on a FilesystemSnapshotPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oci_file_storage_filesystem_snapshot_policy_facts <ansible_collections.oracle.oci.oci_file_storage_filesystem_snapshot_policy_facts_module>` -- Fetches details about one or multiple FilesystemSnapshotPolicy resources in Oracle Cloud Infrastructure
 * :ref:`oci_file_storage_mount_target <ansible_collections.oracle.oci.oci_file_storage_mount_target_module>` -- Manage a MountTarget resource in Oracle Cloud Infrastructure
 * :ref:`oci_file_storage_mount_target_actions <ansible_collections.oracle.oci.oci_file_storage_mount_target_actions_module>` -- Perform actions on a MountTarget resource in Oracle Cloud Infrastructure
 * :ref:`oci_file_storage_mount_target_facts <ansible_collections.oracle.oci.oci_file_storage_mount_target_facts_module>` -- Fetches details about one or multiple MountTarget resources in Oracle Cloud Infrastructure
@@ -2869,6 +2872,9 @@ Modules
     oci_file_storage_file_system_module
     oci_file_storage_file_system_actions_module
     oci_file_storage_file_system_facts_module
+    oci_file_storage_filesystem_snapshot_policy_module
+    oci_file_storage_filesystem_snapshot_policy_actions_module
+    oci_file_storage_filesystem_snapshot_policy_facts_module
     oci_file_storage_mount_target_module
     oci_file_storage_mount_target_actions_module
     oci_file_storage_mount_target_facts_module

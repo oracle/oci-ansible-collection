@@ -30,7 +30,7 @@ oracle.oci.oci_file_storage_export -- Manage an Export resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -266,8 +266,12 @@ Parameters
              {
                 \&quot;source\&quot; : \&quot;0.0.0.0/0\&quot;,
                 \&quot;requirePrivilegedSourcePort\&quot; : false,
-                \&quot;access\&quot; : \&quot;READ_WRITE\&quot;,
-                \&quot;identitySquash\&quot; : \&quot;NONE\&quot;
+                \&quot;access\&quot;: \&quot;READ_WRITE\&quot;,
+                \&quot;identitySquash\&quot;: \&quot;NONE\&quot;,
+                \&quot;anonymousUid\&quot;: 65534,
+                \&quot;anonymousGid\&quot;: 65534,
+                \&quot;isAnonymousAccessAllowed\&quot;: false,
+                \&quot;allowedAuth\&quot;: [\&quot;SYS\&quot;]
               }
            ]&quot;</div>
                                             <div>**Note:** Mount targets do not have Internet-routable IP addresses.  Therefore they will not be reachable from the Internet, even if an associated `ClientOptions` item has a source of `0.0.0.0/0`.</div>
@@ -293,7 +297,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of access to grant clients using the file system through this export. If unspecified defaults to `READ_ONLY`.</div>
+                                            <div>Type of access to grant clients using the file system through this export. If unspecified defaults to `READ_WRITE`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -713,7 +717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of access to grant clients using the file system through this export. If unspecified defaults to `READ_ONLY`.</div>
+                                            <div>Type of access to grant clients using the file system through this export. If unspecified defaults to `READ_WRITE`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ_WRITE</div>

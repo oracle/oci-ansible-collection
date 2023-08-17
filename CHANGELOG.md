@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.29.0]
+
+## Added
+- Support for namespace-prefixed domains in the Object Storage service
+- Support for getting the full path to a pre-authenticated request in the Object Storage service
+- Support for rotation of certificates on autonomous VM clusters on Exadata Cloud at Customer in the Database service
+- Support for enabling mTLS authentication with Listener and for providing custom value for TLS port and Non-TLS Port during AVM Cluster Creation in Database service
+- Support for `used_data_storage_size_in_gbs` property for autonomous database in the Database service
+- Support for bring-your-own-license TLS and ORDS certificates in the Database service
+- Support for scheduling automatic backups in the Database service
+- Support for policy-based snapshots in the File Storage service
+- Support for managing on-demand node upgrades in node pools in the Container Engine for Kubernetes service
+- Support for pre-emptible worker nodes in the Container Engine for Kubernetes service
+
+## Fixed
+- Issue with enabling parallel processing in inventory plugin
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.110.1
+
 ## [4.28.0]
 
 ## Added

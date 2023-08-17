@@ -76,6 +76,7 @@ DOCUMENTATION = """
                 - name: OCI_DELEGATION_TOKEN_FILE
         enable_parallel_processing:
               description: Use multiple threads to speedup lookup. Default is set to True
+              default: true
         regions:
              description: A list of regions to search. If not specified, the region is read from config file. Use 'all'
                           to generate inventory from all subscribed regions.
@@ -436,7 +437,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self._identity_client = None
         self._region_subscriptions = None
         self.regions = {}
-        self.enable_parallel_processing = True
         self.compartments_info = None
         self.exclude_compartments_info = None
         self.exclude_compartments = dict()

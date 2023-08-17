@@ -77,11 +77,24 @@ options:
         choices:
             - "ECPU"
             - "OCPU"
+    is_mtls_enabled_vm_cluster:
+        description:
+            - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. This is applicable to database TLS Certificates only.
+              Default is TLS
+        type: bool
     db_servers:
         description:
             - The list of database servers.
         type: list
         elements: str
+    scan_listener_port_tls:
+        description:
+            - The SCAN Listener TLS port. Default is 2484.
+        type: int
+    scan_listener_port_non_tls:
+        description:
+            - The SCAN Listener Non TLS port. Default is 1521.
+        type: int
     description:
         description:
             - User defined description of the cloud Autonomous VM cluster.
@@ -268,7 +281,10 @@ EXAMPLES = """
     autonomous_data_storage_size_in_tbs: 3.4
     cluster_time_zone: cluster_time_zone_example
     compute_model: ECPU
+    is_mtls_enabled_vm_cluster: true
     db_servers: [ "db_servers_example" ]
+    scan_listener_port_tls: 56
+    scan_listener_port_non_tls: 56
     description: description_example
     maintenance_window_details:
       # optional
@@ -521,6 +537,13 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: str
             sample: ECPU
+        is_mtls_enabled_vm_cluster:
+            description:
+                - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. This is applicable to database TLS Certificates only.
+                  Default is TLS
+            returned: on success
+            type: bool
+            sample: true
         cpu_core_count_per_node:
             description:
                 - The number of CPU cores enabled per VM cluster node.
@@ -650,6 +673,18 @@ cloud_autonomous_vm_cluster:
                     returned: on success
                     type: int
                     sample: 56
+        scan_listener_port_tls:
+            description:
+                - The SCAN Listenenr TLS port. Default is 2484.
+            returned: on success
+            type: int
+            sample: 56
+        scan_listener_port_non_tls:
+            description:
+                - The SCAN Listener Non TLS port. Default is 1521.
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -665,6 +700,18 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        time_database_ssl_certificate_expires:
+            description:
+                - The date and time of Database SSL certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_ords_certificate_expires:
+            description:
+                - The date and time of ORDS certificate expiration.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         available_cpus:
             description:
                 - CPU cores available for allocation to Autonomous Databases.
@@ -742,6 +789,7 @@ cloud_autonomous_vm_cluster:
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
         "compute_model": "ECPU",
+        "is_mtls_enabled_vm_cluster": true,
         "cpu_core_count_per_node": 56,
         "memory_size_in_gbs": 56,
         "license_model": "LICENSE_INCLUDED",
@@ -763,8 +811,12 @@ cloud_autonomous_vm_cluster:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "scan_listener_port_tls": 56,
+        "scan_listener_port_non_tls": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "time_database_ssl_certificate_expires": "2013-10-20T19:20:30+01:00",
+        "time_ords_certificate_expires": "2013-10-20T19:20:30+01:00",
         "available_cpus": 3.4,
         "reclaimable_cpus": 3.4,
         "available_container_databases": 56,
@@ -964,7 +1016,10 @@ def main():
             autonomous_data_storage_size_in_tbs=dict(type="float"),
             cluster_time_zone=dict(type="str"),
             compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
+            is_mtls_enabled_vm_cluster=dict(type="bool"),
             db_servers=dict(type="list", elements="str"),
+            scan_listener_port_tls=dict(type="int"),
+            scan_listener_port_non_tls=dict(type="int"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             maintenance_window_details=dict(

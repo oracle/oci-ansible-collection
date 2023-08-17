@@ -156,6 +156,48 @@ options:
                             - "SLOT_TEN"
                             - "SLOT_ELEVEN"
                             - "SLOT_TWELVE"
+                    auto_full_backup_window:
+                        description:
+                            - Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no
+                              option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically
+                              chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM
+                              (inclusive) to 4:00 AM (exclusive).
+                            - "Example: `SLOT_TWO`"
+                            - Applicable when source is 'NONE'
+                        type: str
+                        choices:
+                            - "SLOT_ONE"
+                            - "SLOT_TWO"
+                            - "SLOT_THREE"
+                            - "SLOT_FOUR"
+                            - "SLOT_FIVE"
+                            - "SLOT_SIX"
+                            - "SLOT_SEVEN"
+                            - "SLOT_EIGHT"
+                            - "SLOT_NINE"
+                            - "SLOT_TEN"
+                            - "SLOT_ELEVEN"
+                            - "SLOT_TWELVE"
+                    auto_full_backup_day:
+                        description:
+                            - Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will
+                              default to Sunday.
+                            - Applicable when source is 'NONE'
+                        type: str
+                        choices:
+                            - "SUNDAY"
+                            - "MONDAY"
+                            - "TUESDAY"
+                            - "WEDNESDAY"
+                            - "THURSDAY"
+                            - "FRIDAY"
+                            - "SATURDAY"
+                    run_immediate_full_backup:
+                        description:
+                            - If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run
+                              immediately.
+                            - Applicable when source is 'NONE'
+                        type: bool
                     backup_destination_details:
                         description:
                             - Backup destination details.
@@ -312,6 +354,47 @@ options:
                     - "SLOT_TEN"
                     - "SLOT_ELEVEN"
                     - "SLOT_TWELVE"
+            auto_full_backup_window:
+                description:
+                    - Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no option is
+                      selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For
+                      example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM
+                      (exclusive).
+                    - "Example: `SLOT_TWO`"
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "SLOT_ONE"
+                    - "SLOT_TWO"
+                    - "SLOT_THREE"
+                    - "SLOT_FOUR"
+                    - "SLOT_FIVE"
+                    - "SLOT_SIX"
+                    - "SLOT_SEVEN"
+                    - "SLOT_EIGHT"
+                    - "SLOT_NINE"
+                    - "SLOT_TEN"
+                    - "SLOT_ELEVEN"
+                    - "SLOT_TWELVE"
+            auto_full_backup_day:
+                description:
+                    - Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will default
+                      to Sunday.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "SUNDAY"
+                    - "MONDAY"
+                    - "TUESDAY"
+                    - "WEDNESDAY"
+                    - "THURSDAY"
+                    - "FRIDAY"
+                    - "SATURDAY"
+            run_immediate_full_backup:
+                description:
+                    - If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately.
+                    - This parameter is updatable.
+                type: bool
             backup_destination_details:
                 description:
                     - Backup destination details.
@@ -452,6 +535,9 @@ EXAMPLES = """
         auto_backup_enabled: true
         recovery_window_in_days: 56
         auto_backup_window: SLOT_ONE
+        auto_full_backup_window: SLOT_ONE
+        auto_full_backup_day: SUNDAY
+        run_immediate_full_backup: true
         backup_destination_details:
         - # required
           type: NFS
@@ -501,6 +587,9 @@ EXAMPLES = """
         auto_backup_enabled: true
         recovery_window_in_days: 56
         auto_backup_window: SLOT_ONE
+        auto_full_backup_window: SLOT_ONE
+        auto_full_backup_day: SUNDAY
+        run_immediate_full_backup: true
         backup_destination_details:
         - # required
           type: NFS
@@ -540,6 +629,9 @@ EXAMPLES = """
       auto_backup_enabled: true
       recovery_window_in_days: 56
       auto_backup_window: SLOT_ONE
+      auto_full_backup_window: SLOT_ONE
+      auto_full_backup_day: SUNDAY
+      run_immediate_full_backup: true
       backup_destination_details:
       - # required
         type: NFS
@@ -717,6 +809,30 @@ database:
                     returned: on success
                     type: str
                     sample: SLOT_ONE
+                auto_full_backup_window:
+                    description:
+                        - Time window selected for initiating full backup for the database system. There are twelve available two-hour time windows. If no
+                          option is selected, the value is null and a start time between 12:00 AM to 7:00 AM in the region of the database is automatically
+                          chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM
+                          (inclusive) to 4:00 AM (exclusive).
+                        - "Example: `SLOT_TWO`"
+                    returned: on success
+                    type: str
+                    sample: SLOT_ONE
+                auto_full_backup_day:
+                    description:
+                        - Day of the week the full backup should be applied on the database system. If no option is selected, the value is null and we will
+                          default to Sunday.
+                    returned: on success
+                    type: str
+                    sample: SUNDAY
+                run_immediate_full_backup:
+                    description:
+                        - If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run
+                          immediately.
+                    returned: on success
+                    type: bool
+                    sample: true
                 backup_destination_details:
                     description:
                         - Backup destination details.
@@ -891,6 +1007,9 @@ database:
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
             "auto_backup_window": "SLOT_ONE",
+            "auto_full_backup_window": "SLOT_ONE",
+            "auto_full_backup_day": "SUNDAY",
+            "run_immediate_full_backup": true,
             "backup_destination_details": [{
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1115,6 +1234,36 @@ def main():
                                     "SLOT_TWELVE",
                                 ],
                             ),
+                            auto_full_backup_window=dict(
+                                type="str",
+                                choices=[
+                                    "SLOT_ONE",
+                                    "SLOT_TWO",
+                                    "SLOT_THREE",
+                                    "SLOT_FOUR",
+                                    "SLOT_FIVE",
+                                    "SLOT_SIX",
+                                    "SLOT_SEVEN",
+                                    "SLOT_EIGHT",
+                                    "SLOT_NINE",
+                                    "SLOT_TEN",
+                                    "SLOT_ELEVEN",
+                                    "SLOT_TWELVE",
+                                ],
+                            ),
+                            auto_full_backup_day=dict(
+                                type="str",
+                                choices=[
+                                    "SUNDAY",
+                                    "MONDAY",
+                                    "TUESDAY",
+                                    "WEDNESDAY",
+                                    "THURSDAY",
+                                    "FRIDAY",
+                                    "SATURDAY",
+                                ],
+                            ),
+                            run_immediate_full_backup=dict(type="bool"),
                             backup_destination_details=dict(
                                 type="list",
                                 elements="dict",
@@ -1181,6 +1330,36 @@ def main():
                             "SLOT_TWELVE",
                         ],
                     ),
+                    auto_full_backup_window=dict(
+                        type="str",
+                        choices=[
+                            "SLOT_ONE",
+                            "SLOT_TWO",
+                            "SLOT_THREE",
+                            "SLOT_FOUR",
+                            "SLOT_FIVE",
+                            "SLOT_SIX",
+                            "SLOT_SEVEN",
+                            "SLOT_EIGHT",
+                            "SLOT_NINE",
+                            "SLOT_TEN",
+                            "SLOT_ELEVEN",
+                            "SLOT_TWELVE",
+                        ],
+                    ),
+                    auto_full_backup_day=dict(
+                        type="str",
+                        choices=[
+                            "SUNDAY",
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                        ],
+                    ),
+                    run_immediate_full_backup=dict(type="bool"),
                     backup_destination_details=dict(
                         type="list",
                         elements="dict",
