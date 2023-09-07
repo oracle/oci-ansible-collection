@@ -59,6 +59,13 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    patch_type:
+        description:
+            - The type of a BDS patch history entity.
+        type: str
+        choices:
+            - "ODH"
+            - "OS"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -73,6 +80,7 @@ EXAMPLES = """
     sort_by: timeCreated
     patch_version: patch_version_example
     sort_order: ASC
+    patch_type: ODH
 
 """
 
@@ -101,10 +109,20 @@ patch_histories:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        patch_type:
+            description:
+                - "The type of current patch history.
+                  DP - Data Plane patch(This history type is internal available only)
+                  ODH - Oracle Distribution of Hadoop patch
+                  OS - Operating System patch"
+            returned: on success
+            type: str
+            sample: ODH
     sample: [{
         "version": "version_example",
         "lifecycle_state": "INSTALLING",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "patch_type": "ODH"
     }]
 """
 
@@ -137,6 +155,7 @@ class PatchHistoryFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "patch_version",
             "sort_order",
+            "patch_type",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -168,6 +187,7 @@ def main():
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             patch_version=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            patch_type=dict(type="str", choices=["ODH", "OS"]),
         )
     )
 

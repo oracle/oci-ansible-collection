@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_cluster_network -- Manage a ClusterNetwork res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,10 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ClusterNetwork resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a cluster network. For more information about cluster networks, see `Managing Cluster Networks <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm>`_.
+- For *state=present*, creates a `cluster network with instance pools <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm>`_. A cluster network is a group of high performance computing (HPC), GPU, or optimized bare metal instances that are connected with an ultra low-latency remote direct memory access (RDMA) network. Cluster networks with instance pools use instance pools to manage groups of identical instances.
+- Use cluster networks with instance pools when you want predictable capacity for a specific number of identical instances that are managed as a group.
+- If you want to manage instances in the RDMA network independently of each other or use different types of instances in the network group, create a compute cluster by using the `CreateComputeCluster <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/ComputeCluster/CreateComputeCluster>`_ operation.
+- To determine whether capacity is available for a specific shape before you create a cluster network, use the `CreateComputeCapacityReport <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport>`_ operation.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_compute_management_cluster_network_actions <ansible_collections.oracle.oci.oci_compute_management_cluster_network_actions_module>` module: change_compartment.
 
 
@@ -202,6 +205,54 @@ Parameters
                                             <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-cluster_configuration"></div>
+                    <b>cluster_configuration</b>
+                    <a class="ansibleOptionLink" href="#parameter-cluster_configuration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-cluster_configuration/hpc_island_id"></div>
+                    <b>hpc_island_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-cluster_configuration/hpc_island_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the HPC island.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-cluster_configuration/network_block_ids"></div>
+                    <b>network_block_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-cluster_configuration/network_block_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of network block OCIDs.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cluster_network_id"></div>
@@ -514,6 +565,27 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-placement_configuration/placement_constraint"></div>
+                    <b>placement_constraint</b>
+                    <a class="ansibleOptionLink" href="#parameter-placement_configuration/placement_constraint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SINGLE_TIER</li>
+                                                                                                                                                                                                <li>SINGLE_BLOCK</li>
+                                                                                                                                                                                                <li>PACKED_DISTRIBUTION_MULTI_BLOCK</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The placement constraint when reserving hosts.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-placement_configuration/primary_subnet_id"></div>
                     <b>primary_subnet_id</b>
                     <a class="ansibleOptionLink" href="#parameter-placement_configuration/primary_subnet_id" title="Permalink to this option"></a>
@@ -719,6 +791,7 @@ Examples
           primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional
+          placement_constraint: SINGLE_TIER
           secondary_vnic_subnets:
           - # required
             subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -735,6 +808,12 @@ Examples
           instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        cluster_configuration:
+          # required
+          hpc_island_id: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          network_block_ids: [ "network_block_ids_example" ]
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -823,7 +902,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ClusterNetwork resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hpc_island_id&#x27;: &#x27;ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pools&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;network_block_ids&#x27;: [], &#x27;placement_configuration&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hpc_island_id&#x27;: &#x27;ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pools&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_formatter&#x27;: &#x27;instance_display_name_formatter_example&#x27;, &#x27;instance_hostname_formatter&#x27;: &#x27;instance_hostname_formatter_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;network_block_ids&#x27;: [], &#x27;placement_configuration&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;placement_constraint&#x27;: &#x27;SINGLE_TIER&#x27;, &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -912,7 +991,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the hpc island used by the cluster network.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the HPC island used by the cluster network.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1067,6 +1146,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cluster_network/instance_pools/instance_display_name_formatter"></div>
+                    <b>instance_display_name_formatter</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_network/instance_pools/instance_display_name_formatter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance displaynames follow the format. The formatter does not retroactively change instance&#x27;s displaynames, only instance displaynames in the future follow the format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_display_name_formatter_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cluster_network/instance_pools/instance_hostname_formatter"></div>
+                    <b>instance_hostname_formatter</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_network/instance_pools/instance_hostname_formatter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance hostnames follow the format. The formatter does not retroactively change instance&#x27;s hostnames, only instance hostnames in the future follow the format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_hostname_formatter_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1320,7 +1437,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet in which to place instances.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1495,6 +1612,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cluster_network/placement_configuration/placement_constraint"></div>
+                    <b>placement_constraint</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_network/placement_configuration/placement_constraint" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The placement constraint when reserving hosts.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SINGLE_TIER</div>
                                     </td>
             </tr>
                                 <tr>

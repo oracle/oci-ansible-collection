@@ -23,11 +23,11 @@ module: oci_network_subnet_actions
 short_description: Perform actions on a Subnet resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Subnet resource in Oracle Cloud Infrastructure
-    - For I(action=add_ipv6_subnet_cidr), add an IPv6 CIDR to a subnet.
+    - For I(action=add_ipv6_subnet_cidr), add an IPv6 prefix to a subnet.
     - For I(action=change_compartment), moves a subnet into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-    - For I(action=remove_ipv6_subnet_cidr), remove an IPv6 CIDR from a subnet. At least one IPv6 CIDR should remain.
+    - For I(action=remove_ipv6_subnet_cidr), remove an IPv6 prefix from a subnet. At least one IPv6 CIDR should remain.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -45,7 +45,7 @@ options:
         required: true
     ipv6_cidr_block:
         description:
-            - This field is not required and should only be specified when adding an IPv6 CIDR
+            - This field is not required and should only be specified when adding an IPv6 prefix
               to a subnet's IPv6 address space.
               SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
             - "Example: `2001:0db8:0123::/64`"
@@ -168,7 +168,7 @@ subnet:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_block:
             description:
-                - For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's IP address space.
+                - For an IPv6-enabled subnet, this is the IPv6 prefix for the subnet's IP address space.
                   The subnet size is always /64. See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `2001:0db8:0123:1111::/64`"
             returned: on success
@@ -176,7 +176,7 @@ subnet:
             sample: ipv6_cidr_block_example
         ipv6_cidr_blocks:
             description:
-                - The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.
+                - The list of all IPv6 prefixes (Oracle allocated IPv6 GUA, ULA or private IPv6 prefixes, BYOIPv6 prefixes) for the subnet.
             returned: on success
             type: list
             sample: []

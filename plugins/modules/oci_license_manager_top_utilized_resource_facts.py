@@ -43,6 +43,7 @@ options:
         type: str
         choices:
             - "OCPU"
+            - "ECPU"
     sort_order:
         description:
             - The sort order to use, whether `ASC` or `DESC`.
@@ -187,7 +188,7 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             is_compartment_id_in_subtree=dict(type="bool"),
-            resource_unit_type=dict(type="str", choices=["OCPU"]),
+            resource_unit_type=dict(type="str", choices=["OCPU", "ECPU"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["totalUnits"]),
         )

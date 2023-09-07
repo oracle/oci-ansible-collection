@@ -59,6 +59,9 @@ description:
       with the signature. To get the image ID for the LaunchInstance operation, call
       L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
+    - To determine whether capacity is available for a specific shape before you create an instance,
+      use the L(CreateComputeCapacityReport,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport)
+      operation.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_instance_actions) module: stop, start, softreset, reset, softstop,
       senddiagnosticinterrupt, diagnosticreboot, rebootmigrate."
 version_added: "2.9.0"
@@ -214,8 +217,8 @@ options:
         type: str
     compute_cluster_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(compute
-              cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) that the instance will be created in.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+              L(compute cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) that the instance will be created in.
         type: str
     hostname_label:
         description:
@@ -246,9 +249,9 @@ options:
               over iSCSI the same way as the default iPXE script, use the
               following iSCSI IP address: 169.254.0.2, and boot volume IQN:
               iqn.2015-02.oracle.boot."
-            - If your instance boot volume type is paravirtualized,
+            - If your instance boot volume attachment type is paravirtualized,
               the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
-              If your instance boot volume type is paravirtualized
+              If your instance boot volume attachment type is paravirtualized
               and you use custom iPXE to network boot into your instance,
               the primary boot volume is attached as a data volume through virtio-scsi drive.
             - For more information about the Bring Your Own Image feature of
@@ -292,7 +295,7 @@ options:
             image_id:
                 description:
                     - The OCID of the image used to boot the instance.
-                    - Required when source_type is 'image'
+                    - Applicable when source_type is 'image'
                 type: str
             kms_key_id:
                 description:
@@ -312,6 +315,37 @@ options:
                     - For volumes with the auto-tuned performance feature enabled, this is set to the default (minimum) VPUs/GB.
                     - Applicable when source_type is 'image'
                 type: int
+            instance_source_image_filter_details:
+                description:
+                    - ""
+                    - Applicable when source_type is 'image'
+                type: dict
+                suboptions:
+                    compartment_id:
+                        description:
+                            - The OCID of the compartment containing images to search
+                            - Required when source_type is 'image'
+                        type: str
+                        required: true
+                    defined_tags_filter:
+                        description:
+                            - Filter based on these defined tags. Each key is predefined and scoped to a
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                            - Applicable when source_type is 'image'
+                        type: dict
+                    operating_system:
+                        description:
+                            - The image's operating system.
+                            - "Example: `Oracle Linux`"
+                            - Applicable when source_type is 'image'
+                        type: str
+                    operating_system_version:
+                        description:
+                            - The image's operating system version.
+                            - "Example: `7.2`"
+                            - Applicable when source_type is 'image'
+                        type: str
             source_type:
                 description:
                     - The source type for the instance.
@@ -421,6 +455,11 @@ options:
                     - Whether the input-output memory management unit is enabled.
                     - Applicable when type is one of ['AMD_MILAN_BM', 'AMD_MILAN_BM_GPU', 'AMD_ROME_BM_GPU', 'AMD_ROME_BM', 'INTEL_ICELAKE_BM']
                 type: bool
+    instance_configuration_id:
+        description:
+            - The OCID of the Instance Configuration containing instance launch details. Any other fields supplied in this instance launch request will override
+              the details stored in the Instance Configuration for this instance launch.
+        type: str
     capacity_reservation_id:
         description:
             - The OCID of the compute capacity reservation this instance is launched under.
@@ -577,7 +616,6 @@ options:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
               and other resources allocated to the instance.
             - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     shape_config:
@@ -591,6 +629,13 @@ options:
                     - The total number of OCPUs available to the instance.
                     - This parameter is updatable.
                 type: float
+            vcpus:
+                description:
+                    - The total number of VCPUs available to the instance. This can be used instead of OCPUs,
+                      in which case the actual number of OCPUs will be calculated based on this value
+                      and the actual hardware. This must be a multiple of 2.
+                    - This parameter is updatable.
+                type: int
             memory_in_gbs:
                 description:
                     - The total amount of memory available to the instance, in gigabytes.
@@ -801,7 +846,6 @@ EXAMPLES = """
     # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    shape: shape_example
 
     # optional
     create_vnic_details:
@@ -832,13 +876,21 @@ EXAMPLES = """
         preserve_boot_volume: true
     source_details:
       # required
-      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
       source_type: image
 
       # optional
       boot_volume_size_in_gbs: 56
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
       boot_volume_vpus_per_gb: 56
+      instance_source_image_filter_details:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        defined_tags_filter: null
+        operating_system: operating_system_example
+        operating_system_version: operating_system_version_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_pv_encryption_in_transit_enabled: true
     platform_config:
@@ -855,6 +907,7 @@ EXAMPLES = """
       is_access_control_service_enabled: true
       are_virtual_instructions_enabled: true
       is_input_output_memory_management_unit_enabled: true
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
@@ -870,9 +923,11 @@ EXAMPLES = """
         desired_state: ENABLED
     metadata: null
     extended_metadata: null
+    shape: shape_example
     shape_config:
       # optional
       ocpus: 3.4
+      vcpus: 56
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
       nvmes: 56
@@ -918,6 +973,7 @@ EXAMPLES = """
     shape_config:
       # optional
       ocpus: 3.4
+      vcpus: 56
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
       nvmes: 56
@@ -965,6 +1021,7 @@ EXAMPLES = """
     shape_config:
       # optional
       ocpus: 3.4
+      vcpus: 56
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
       nvmes: 56
@@ -1113,9 +1170,9 @@ instance:
                   over iSCSI the same way as the default iPXE script, use the
                   following iSCSI IP address: 169.254.0.2, and boot volume IQN:
                   iqn.2015-02.oracle.boot."
-                - If your instance boot volume type is paravirtualized,
+                - If your instance boot volume attachment type is paravirtualized,
                   the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
-                  If your instance boot volume type is paravirtualized
+                  If your instance boot volume attachment type is paravirtualized
                   and you use custom iPXE to network boot into your instance,
                   the primary boot volume is attached as a data volume through virtio-scsi drive.
                 - For more information about the Bring Your Own Image feature of
@@ -1371,6 +1428,14 @@ instance:
                     returned: on success
                     type: str
                     sample: local_disk_description_example
+                vcpus:
+                    description:
+                        - The total number of VCPUs available to the instance. This can be used instead of OCPUs,
+                          in which case the actual number of OCPUs will be calculated based on this value
+                          and the actual hardware. This must be a multiple of 2.
+                    returned: on success
+                    type: int
+                    sample: 56
         is_cross_numa_node:
             description:
                 - Whether the instance's OCPUs and memory are distributed across multiple NUMA nodes.
@@ -1429,6 +1494,40 @@ instance:
                     returned: on success
                     type: int
                     sample: 56
+                instance_source_image_filter_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        compartment_id:
+                            description:
+                                - The OCID of the compartment containing images to search
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                        defined_tags_filter:
+                            description:
+                                - Filter based on these defined tags. Each key is predefined and scoped to a
+                                  namespace. For more information, see L(Resource
+                                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                            returned: on success
+                            type: dict
+                            sample: {}
+                        operating_system:
+                            description:
+                                - The image's operating system.
+                                - "Example: `Oracle Linux`"
+                            returned: on success
+                            type: str
+                            sample: operating_system_example
+                        operating_system_version:
+                            description:
+                                - The image's operating system version.
+                                - "Example: `7.2`"
+                            returned: on success
+                            type: str
+                            sample: operating_system_version_example
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -1607,6 +1706,13 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        instance_configuration_id:
+            description:
+                - The OCID of the Instance Configuration used to source launch details for this instance. Any other fields supplied in the instance launch
+                  request override the details stored in the Instance Configuration for this instance launch.
+            returned: on success
+            type: str
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         primary_private_ip:
             description:
                 - The private IP of the primary VNIC attached to this instance
@@ -1669,7 +1775,8 @@ instance:
             "gpu_description": "gpu_description_example",
             "local_disks": 56,
             "local_disks_total_size_in_gbs": 3.4,
-            "local_disk_description": "local_disk_description_example"
+            "local_disk_description": "local_disk_description_example",
+            "vcpus": 56
         },
         "is_cross_numa_node": true,
         "source_details": {
@@ -1678,7 +1785,13 @@ instance:
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-            "boot_volume_vpus_per_gb": 56
+            "boot_volume_vpus_per_gb": 56,
+            "instance_source_image_filter_details": {
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "defined_tags_filter": {},
+                "operating_system": "operating_system_example",
+                "operating_system_version": "operating_system_version_example"
+            }
         },
         "system_tags": {},
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -1705,6 +1818,7 @@ instance:
             "is_measured_boot_enabled": true,
             "is_memory_encryption_enabled": true
         },
+        "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
         "primary_private_ip": "10.0.0.10",
         "primary_public_ip": "140.34.93.209"
     }
@@ -1925,6 +2039,15 @@ def main():
                     image_id=dict(type="str"),
                     kms_key_id=dict(type="str"),
                     boot_volume_vpus_per_gb=dict(type="int"),
+                    instance_source_image_filter_details=dict(
+                        type="dict",
+                        options=dict(
+                            compartment_id=dict(type="str", required=True),
+                            defined_tags_filter=dict(type="dict"),
+                            operating_system=dict(type="str"),
+                            operating_system_version=dict(type="str"),
+                        ),
+                    ),
                     source_type=dict(
                         type="str", required=True, choices=["image", "bootVolume"]
                     ),
@@ -1964,6 +2087,7 @@ def main():
                     is_input_output_memory_management_unit_enabled=dict(type="bool"),
                 ),
             ),
+            instance_configuration_id=dict(type="str"),
             capacity_reservation_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
@@ -1995,6 +2119,7 @@ def main():
                 type="dict",
                 options=dict(
                     ocpus=dict(type="float"),
+                    vcpus=dict(type="int"),
                     memory_in_gbs=dict(type="float"),
                     baseline_ocpu_utilization=dict(
                         type="str",

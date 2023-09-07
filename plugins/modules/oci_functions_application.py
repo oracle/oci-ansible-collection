@@ -50,6 +50,19 @@ options:
             - Required for create using I(state=present).
         type: list
         elements: str
+    shape:
+        description:
+            - "Valid values are `GENERIC_X86`, `GENERIC_ARM` and `GENERIC_X86_ARM`. Default is `GENERIC_X86`. Setting this to `GENERIC_X86`, will run the
+              functions in the application on X86 processor architecture.
+              Setting this to `GENERIC_ARM`, will run the functions in the application on ARM processor architecture.
+              When set to `GENERIC_X86_ARM`, functions in the application are run on either X86 or ARM processor architecture.
+              Accepted values are:
+              `GENERIC_X86`, `GENERIC_ARM`, `GENERIC_X86_ARM`"
+        type: str
+        choices:
+            - "GENERIC_X86"
+            - "GENERIC_ARM"
+            - "GENERIC_X86_ARM"
     config:
         description:
             - Application configuration. These values are passed on to the function as environment variables, functions may override application configuration.
@@ -154,6 +167,7 @@ EXAMPLES = """
     subnet_ids: [ "subnet_ids_example" ]
 
     # optional
+    shape: GENERIC_X86
     config: null
     network_security_group_ids: [ "network_security_group_ids_example" ]
     syslog_url: syslog_url_example
@@ -285,6 +299,17 @@ application:
             returned: on success
             type: list
             sample: []
+        shape:
+            description:
+                - "Valid values are `GENERIC_X86`, `GENERIC_ARM` and `GENERIC_X86_ARM`. Default is `GENERIC_X86`. Setting this to `GENERIC_X86`, will run the
+                  functions in the application on X86 processor architecture.
+                  Setting this to `GENERIC_ARM`, will run the functions in the application on ARM processor architecture.
+                  When set to `GENERIC_X86_ARM`, functions in the application are run on either X86 or ARM processor architecture.
+                  Accepted values are:
+                  `GENERIC_X86`, `GENERIC_ARM`, `GENERIC_X86_ARM`"
+            returned: on success
+            type: str
+            sample: GENERIC_X86
         network_security_group_ids:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the Network Security Groups to add the application
@@ -384,6 +409,7 @@ application:
         "lifecycle_state": "CREATING",
         "config": {},
         "subnet_ids": [],
+        "shape": "GENERIC_X86",
         "network_security_group_ids": [],
         "syslog_url": "syslog_url_example",
         "trace_config": {
@@ -563,6 +589,9 @@ def main():
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             subnet_ids=dict(type="list", elements="str"),
+            shape=dict(
+                type="str", choices=["GENERIC_X86", "GENERIC_ARM", "GENERIC_X86_ARM"]
+            ),
             config=dict(type="dict"),
             network_security_group_ids=dict(type="list", elements="str"),
             syslog_url=dict(type="str"),

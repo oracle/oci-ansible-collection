@@ -124,7 +124,8 @@ instance_pools:
                     sample: Uocm:PHX-AD-1
                 primary_subnet_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to place
+                          instances.
                     returned: on success
                     type: str
                     sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -215,6 +216,22 @@ instance_pools:
                     returned: on success
                     type: str
                     sample: ATTACHING
+        instance_display_name_formatter:
+            description:
+                - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+                  The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: instance_display_name_formatter_example
+        instance_hostname_formatter:
+            description:
+                - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+                  The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: instance_hostname_formatter_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
@@ -304,6 +321,8 @@ instance_pools:
             "vnic_selection": "vnic_selection_example",
             "lifecycle_state": "ATTACHING"
         }],
+        "instance_display_name_formatter": "instance_display_name_formatter_example",
+        "instance_hostname_formatter": "instance_hostname_formatter_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

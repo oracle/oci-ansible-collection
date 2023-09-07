@@ -23,7 +23,7 @@ module: oci_compute_management_cluster_network_instance_facts
 short_description: Fetches details about one or multiple ClusterNetworkInstance resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ClusterNetworkInstance resources in Oracle Cloud Infrastructure
-    - Lists the instances in the specified cluster network.
+    - Lists the instances in a L(cluster network with instance pools,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

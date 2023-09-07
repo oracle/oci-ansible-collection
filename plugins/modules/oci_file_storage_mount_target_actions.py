@@ -23,23 +23,45 @@ module: oci_file_storage_mount_target_actions
 short_description: Perform actions on a MountTarget resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a MountTarget resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a mount target and its associated export set into a different compartment within the same tenancy. For information
-      about moving resources between compartments, see L(Moving Resources to a Different
+    - For I(action=change_compartment), moves a mount target and its associated export set or share set into a different compartment within the same tenancy.
+      For information about moving resources between compartments, see L(Moving Resources to a Different
       Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes)
+    - For I(action=validate_key_tabs), validates keytab contents for the secret details passed on the request or validte keytab contents associated with
+      the mount target passed in the request. The keytabs are deserialized, the contents are validated for compatibility
+      and the principal, key version number and encryption type of each entry is provided as part of the response.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    mount_target_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the mount target to.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    mount_target_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
+            - Required for I(action=change_compartment).
+        type: str
+    key_tab_secret_details:
+        description:
+            - ""
+            - Applicable only for I(action=validate_key_tabs).
+        type: dict
+        suboptions:
+            key_tab_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the keytab secret in the Vault.
+                type: str
+                required: true
+            current_key_tab_secret_version:
+                description:
+                    - Version of the keytab secret in the Vault to use.
+                type: int
+                required: true
+            backup_key_tab_secret_version:
+                description:
+                    - Version of the keytab secret in the Vault to use as a backup.
+                type: int
     action:
         description:
             - The action to perform on the MountTarget.
@@ -47,6 +69,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "validate_key_tabs"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -54,9 +77,24 @@ EXAMPLES = """
 - name: Perform action change_compartment on mount_target
   oci_file_storage_mount_target_actions:
     # required
-    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action validate_key_tabs on mount_target
+  oci_file_storage_mount_target_actions:
+    # required
+    action: validate_key_tabs
+
+    # optional
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
+    key_tab_secret_details:
+      # required
+      key_tab_secret_id: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      current_key_tab_secret_version: 56
+
+      # optional
+      backup_key_tab_secret_version: 56
 
 """
 
@@ -127,6 +165,70 @@ mount_target:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        idmap_type:
+            description:
+                - The method used to map a Unix UID to secondary groups. If NONE, the mount target will not use the Unix UID for ID mapping.
+            returned: on success
+            type: str
+            sample: LDAP
+        ldap_idmap:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                schema_type:
+                    description:
+                        - Schema type of the LDAP account.
+                    returned: on success
+                    type: str
+                    sample: RFC2307
+                cache_refresh_interval_seconds:
+                    description:
+                        - The amount of time that the mount target should allow an entry to persist in its cache before attempting to refresh the entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                cache_lifetime_seconds:
+                    description:
+                        - The maximum amount of time the mount target is allowed to use a cached entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                negative_cache_lifetime_seconds:
+                    description:
+                        - The amount of time that a mount target will maintain information that a user is not found in the ID mapping configuration.
+                    returned: on success
+                    type: int
+                    sample: 56
+                user_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this user.
+                        - "Example: `CN=User,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: user_search_base_example
+                group_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this group.
+                        - "Example: `CN=Group,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: group_search_base_example
+                outbound_connector1_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the first connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+                outbound_connector2_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount
@@ -137,6 +239,42 @@ mount_target:
             returned: on success
             type: list
             sample: []
+        kerberos:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                kerberos_realm:
+                    description:
+                        - The Kerberos realm that the mount target will join.
+                    returned: on success
+                    type: str
+                    sample: kerberos_realm_example
+                key_tab_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the keytab secret in the Vault.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                current_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secret in the Vault to use.
+                    returned: on success
+                    type: int
+                    sample: 56
+                backup_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secert in the Vault to use as a backup.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_kerberos_enabled:
+                    description:
+                        - Specifies whether to enable or disable Kerberos.
+                    returned: on success
+                    type: bool
+                    sample: true
         time_created:
             description:
                 - The date and time the mount target was created, expressed
@@ -172,7 +310,25 @@ mount_target:
         "lifecycle_state": "CREATING",
         "private_ip_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "idmap_type": "LDAP",
+        "ldap_idmap": {
+            "schema_type": "RFC2307",
+            "cache_refresh_interval_seconds": 56,
+            "cache_lifetime_seconds": 56,
+            "negative_cache_lifetime_seconds": 56,
+            "user_search_base": "user_search_base_example",
+            "group_search_base": "group_search_base_example",
+            "outbound_connector1_id": "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx",
+            "outbound_connector2_id": "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "nsg_ids": [],
+        "kerberos": {
+            "kerberos_realm": "kerberos_realm_example",
+            "key_tab_secret_id": "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "current_key_tab_secret_version": 56,
+            "backup_key_tab_secret_version": 56,
+            "is_kerberos_enabled": true
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -192,6 +348,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.file_storage import FileStorageClient
     from oci.file_storage.models import ChangeMountTargetCompartmentDetails
+    from oci.file_storage.models import ValidateKeyTabsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -202,14 +359,8 @@ class MountTargetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        validate_key_tabs
     """
-
-    @staticmethod
-    def get_module_resource_id_param():
-        return "mount_target_id"
-
-    def get_module_resource_id(self):
-        return self.module.params.get("mount_target_id")
 
     def get_get_fn(self):
         return self.client.get_mount_target
@@ -243,6 +394,26 @@ class MountTargetActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def validate_key_tabs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ValidateKeyTabsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.validate_key_tabs,
+            call_fn_args=(),
+            call_fn_kwargs=dict(validate_key_tabs_details=action_details,),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 MountTargetActionsHelperCustom = get_custom_class("MountTargetActionsHelperCustom")
 
@@ -257,9 +428,24 @@ def main():
     )
     module_args.update(
         dict(
-            mount_target_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            compartment_id=dict(type="str"),
+            mount_target_id=dict(type="str"),
+            key_tab_secret_details=dict(
+                type="dict",
+                no_log=False,
+                options=dict(
+                    key_tab_secret_id=dict(type="str", required=True),
+                    current_key_tab_secret_version=dict(
+                        type="int", required=True, no_log=True
+                    ),
+                    backup_key_tab_secret_version=dict(type="int", no_log=True),
+                ),
+            ),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "validate_key_tabs"],
+            ),
         )
     )
 

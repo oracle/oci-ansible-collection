@@ -26,8 +26,7 @@ description:
     - Gets a list of budgets in a compartment.
     - By default, ListBudgets returns budgets of the 'COMPARTMENT' target type, and the budget records with only one target compartment OCID.
     - "To list all budgets, set the targetType query parameter to ALL (for example: 'targetType=ALL')."
-    - Additional targetTypes would be available in future releases. Clients should ignore new targetTypes,
-      or upgrade to the latest version of the client SDK to handle new targetTypes.
+    - Clients should ignore new targetTypes, or upgrade to the latest version of the client SDK to handle new targetTypes.
     - If I(budget_id) is specified, the details of a single Budget will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -167,10 +166,24 @@ budgets:
             sample: 56
         processing_period_type:
             description:
-                - The type of the budget processing period. Valid values are INVOICE and MONTH.
+                - The budget processing period type. Valid values are INVOICE, MONTH, and SINGLE_USE.
             returned: on success
             type: str
             sample: INVOICE
+        start_date:
+            description:
+                - The date when the one-time budget begins. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to the
+                  starting point of the date provided after being converted to UTC time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        end_date:
+            description:
+                - The time when the one-time budget concludes. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to
+                  the starting point of the date provided after being converted to UTC time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         target_type:
             description:
                 - The type of target on which the budget is applied.
@@ -260,6 +273,8 @@ budgets:
         "reset_period": "MONTHLY",
         "budget_processing_period_start_offset": 56,
         "processing_period_type": "INVOICE",
+        "start_date": "2013-10-20T19:20:30+01:00",
+        "end_date": "2013-10-20T19:20:30+01:00",
         "target_type": "COMPARTMENT",
         "targets": [],
         "lifecycle_state": "ACTIVE",

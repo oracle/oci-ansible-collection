@@ -45,6 +45,15 @@ options:
             - "Example: `/mediafiles`"
             - Required for create using I(state=present).
         type: str
+    is_idmap_groups_for_sys_auth:
+        description:
+            - Whether or not the export should use ID mapping for Unix groups rather than the group list provided within an NFS request's RPC header. When this
+              flag is true the Unix UID from the RPC header is used to retrieve the list of secondary groups from a the ID mapping subsystem. The primary GID is
+              always taken from the RPC header. If ID mapping is not configured, incorrectly configured, unavailable, or cannot be used to determine a list of
+              secondary groups then an empty secondary group list is used for authorization. If the number of groups exceeds the limit of 256 groups, the list
+              retrieved from LDAP is truncated to the first 256 groups read.
+            - This parameter is updatable.
+        type: bool
     export_options:
         description:
             - "Export options for the new export. If left unspecified,
@@ -122,6 +131,22 @@ options:
                       identitySquash for more details.) If unspecified defaults
                       to `65534`.
                 type: int
+            is_anonymous_access_allowed:
+                description:
+                    - Whether or not to enable anonymous access to the file system through this export in cases where a user isn't found in the LDAP server used
+                      for ID mapping.
+                      If true, and the user is not found in the LDAP directory, the operation uses the Squash UID and Squash GID.
+                type: bool
+            allowed_auth:
+                description:
+                    - Array of allowed NFS authentication types.
+                type: list
+                elements: str
+                choices:
+                    - "SYS"
+                    - "KRB5"
+                    - "KRB5I"
+                    - "KRB5P"
     export_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export.
@@ -150,6 +175,7 @@ EXAMPLES = """
     path: path_example
 
     # optional
+    is_idmap_groups_for_sys_auth: true
     export_options:
     - # required
       source: source_example
@@ -160,6 +186,8 @@ EXAMPLES = """
       identity_squash: NONE
       anonymous_uid: 56
       anonymous_gid: 56
+      is_anonymous_access_allowed: true
+      allowed_auth: [ "SYS" ]
 
 - name: Update export
   oci_file_storage_export:
@@ -167,6 +195,7 @@ EXAMPLES = """
     export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    is_idmap_groups_for_sys_auth: true
     export_options:
     - # required
       source: source_example
@@ -177,6 +206,8 @@ EXAMPLES = """
       identity_squash: NONE
       anonymous_uid: 56
       anonymous_gid: 56
+      is_anonymous_access_allowed: true
+      allowed_auth: [ "SYS" ]
 
 - name: Delete export
   oci_file_storage_export:
@@ -271,6 +302,20 @@ export:
                     returned: on success
                     type: int
                     sample: 56
+                is_anonymous_access_allowed:
+                    description:
+                        - Whether or not to enable anonymous access to the file system through this export in cases where a user isn't found in the LDAP server
+                          used for ID mapping.
+                          If true, and the user is not found in the LDAP directory, the operation uses the Squash UID and Squash GID.
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_auth:
+                    description:
+                        - Array of allowed NFS authentication types.
+                    returned: on success
+                    type: list
+                    sample: []
         export_set_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
@@ -303,6 +348,16 @@ export:
             returned: on success
             type: str
             sample: path_example
+        is_idmap_groups_for_sys_auth:
+            description:
+                - Whether or not the export should use ID mapping for Unix groups rather than the group list provided within an NFS request's RPC header. When
+                  this flag is true the Unix UID from the RPC header is used to retrieve the list of secondary groups from a the ID mapping subsystem. The
+                  primary GID is always taken from the RPC header. If ID mapping is not configured, incorrectly configured, unavailable, or cannot be used to
+                  determine a list of secondary groups then an empty secondary group list is used for authorization. If the number of groups exceeds the limit
+                  of 256 groups, the list retrieved from LDAP is truncated to the first 256 groups read.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The date and time the export was created, expressed
@@ -318,13 +373,16 @@ export:
             "access": "READ_WRITE",
             "identity_squash": "NONE",
             "anonymous_uid": 56,
-            "anonymous_gid": 56
+            "anonymous_gid": 56,
+            "is_anonymous_access_allowed": true,
+            "allowed_auth": []
         }],
         "export_set_id": "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx",
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "path": "path_example",
+        "is_idmap_groups_for_sys_auth": true,
         "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
@@ -478,6 +536,7 @@ def main():
             export_set_id=dict(type="str"),
             file_system_id=dict(type="str"),
             path=dict(type="str"),
+            is_idmap_groups_for_sys_auth=dict(type="bool"),
             export_options=dict(
                 type="list",
                 elements="dict",
@@ -488,6 +547,12 @@ def main():
                     identity_squash=dict(type="str", choices=["NONE", "ROOT", "ALL"]),
                     anonymous_uid=dict(type="int"),
                     anonymous_gid=dict(type="int"),
+                    is_anonymous_access_allowed=dict(type="bool"),
+                    allowed_auth=dict(
+                        type="list",
+                        elements="str",
+                        choices=["SYS", "KRB5", "KRB5I", "KRB5P"],
+                    ),
                 ),
             ),
             export_id=dict(aliases=["id"], type="str"),

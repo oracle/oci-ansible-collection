@@ -387,6 +387,12 @@ applications:
             returned: on success
             type: str
             sample: owner_user_name_example
+        pool_id:
+            description:
+                - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+            returned: on success
+            type: str
+            sample: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.
@@ -395,14 +401,14 @@ applications:
             sample: spark_version_example
         time_created:
             description:
-                - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
@@ -455,6 +461,7 @@ applications:
         "lifecycle_state": "ACTIVE",
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
+        "pool_id": "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx",
         "spark_version": "spark_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

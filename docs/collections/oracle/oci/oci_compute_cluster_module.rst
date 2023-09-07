@@ -30,7 +30,7 @@ oracle.oci.oci_compute_cluster -- Manage a ComputeCluster resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,10 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ComputeCluster resource in Oracle Cloud Infrastructure
-- For *state=present*, creates an empty compute cluster, which is a remote direct memory access (RDMA) network group. After the compute cluster is created, you can use the compute cluster's OCID with the `LaunchInstance <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance>`_ operation to create instances in the compute cluster. For more information, see `Compute Clusters <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm>`_.
-- To create a cluster network that uses intance pools to manage groups of identical instances, see `CreateClusterNetwork <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ClusterNetwork/CreateClusterNetwork>`_.
+- For *state=present*, creates an empty `compute cluster <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm>`_. A compute cluster is a remote direct memory access (RDMA) network group.
+- After the compute cluster is created, you can use the compute cluster's OCID with the `LaunchInstance <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance>`_ operation to create instances in the compute cluster. The instances must be created in the same compartment and availability domain as the cluster.
+- Use compute clusters when you want to manage instances in the cluster individually, or when you want to use different types of instances in the RDMA network group.
+- If you want predictable capacity for a specific number of identical instances that are managed as a group, create a cluster network that uses instance pools by using the `CreateClusterNetwork <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ClusterNetwork/CreateClusterNetwork>`_ operation.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_compute_cluster_actions <ansible_collections.oracle.oci.oci_compute_cluster_actions_module>` module: change_compartment.
 
 
@@ -200,7 +202,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The availability domain that the compute cluster is running in. Example: `Uocm:PHX-AD-1`</div>
+                                            <div>The availability domain to place the compute cluster in.</div>
+                                            <div>Example: `Uocm:PHX-AD-1`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -231,7 +234,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains this compute cluster.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -249,7 +252,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compute cluster. A compute cluster is a remote direct memory access (RDMA) network group. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm'>Compute Clusters</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compute cluster. A <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm'>compute cluster</a> is a remote direct memory access (RDMA) network group.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -594,7 +597,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The availability domain the compute cluster is running in. Example: `Uocm:PHX-AD-1`</div>
+                                            <div>The availability domain the compute cluster is running in.</div>
+                                            <div>Example: `Uocm:PHX-AD-1`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -612,7 +616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains this compute cluster.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains the compute cluster.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -686,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of this compute cluster.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compute cluster.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -722,7 +726,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the compute cluster was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2016-08-25T21:10:29.600Z`</div>
+                                            <div>The date and time the compute cluster was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

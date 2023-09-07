@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     subscription_id:
         description:
-            - The ID of the subscription to which the tenancy is associated.
+            - OCID of the subscription.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]

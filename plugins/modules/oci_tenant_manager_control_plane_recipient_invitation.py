@@ -55,7 +55,7 @@ options:
         type: dict
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     state:

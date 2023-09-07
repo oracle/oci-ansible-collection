@@ -112,7 +112,7 @@ options:
                 required: true
             count:
                 description:
-                    - ""
+                    - Configuration specifying a constant amount of provisioned concurrency.
                     - Required when strategy is 'CONSTANT'
                 type: int
     trace_config:
@@ -312,6 +312,12 @@ function:
                     returned: on success
                     type: str
                     sample: "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
+        shape:
+            description:
+                - The processor shape (`GENERIC_X86`/`GENERIC_ARM`) on which to run functions in the application, extracted from the image manifest.
+            returned: on success
+            type: str
+            sample: GENERIC_X86
         memory_in_mbs:
             description:
                 - Maximum usable memory for the function (MiB).
@@ -343,7 +349,7 @@ function:
             contains:
                 count:
                     description:
-                        - ""
+                        - Configuration specifying a constant amount of provisioned concurrency.
                     returned: on success
                     type: int
                     sample: 56
@@ -416,6 +422,7 @@ function:
             "source_type": "PRE_BUILT_FUNCTIONS",
             "pbf_listing_id": "ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "shape": "GENERIC_X86",
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,

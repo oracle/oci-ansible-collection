@@ -30,7 +30,7 @@ oracle.oci.oci_bds_auto_scale_config_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1643,7 +1643,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Details of a horizontal scaling schedule.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1681,7 +1681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Time of day and horizontal scaling configuration.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1742,7 +1742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Time of day and vertical scaling configuration</div>
                                         <br/>
                                                         </td>
             </tr>

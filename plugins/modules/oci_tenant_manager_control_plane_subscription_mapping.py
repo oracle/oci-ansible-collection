@@ -34,7 +34,7 @@ options:
         type: str
     subscription_id:
         description:
-            - OCID of subscription.
+            - OCID of Subscription.
             - Required for create using I(state=present).
         type: str
     subscription_mapping_id:

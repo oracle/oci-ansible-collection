@@ -51,7 +51,8 @@ description:
       When you create a resource, you can find its OCID in the response.
       You can also retrieve a resource's OCID by using a List API operation on that resource
       type, or by viewing the resource in the Console.
-    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_mount_target_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_mount_target_actions) module: change_compartment,
+      validate_key_tabs."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -118,6 +119,63 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    idmap_type:
+        description:
+            - The method used to map a Unix UID to secondary groups, if any.
+            - This parameter is updatable.
+        type: str
+    ldap_idmap:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            schema_type:
+                description:
+                    - Schema type of the LDAP account.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "RFC2307"
+            cache_refresh_interval_seconds:
+                description:
+                    - The amount of time that the mount target should allow an entry to persist in its cache before attempting to refresh the entry.
+                    - This parameter is updatable.
+                type: int
+            cache_lifetime_seconds:
+                description:
+                    - The maximum amount of time the mount target is allowed to use a cached entry.
+                    - This parameter is updatable.
+                type: int
+            negative_cache_lifetime_seconds:
+                description:
+                    - The amount of time that a mount target will maintain information that a user is not found in the ID mapping configuration.
+                    - This parameter is updatable.
+                type: int
+            user_search_base:
+                description:
+                    - All LDAP searches are recursive starting at this user.
+                    - "Example: `CN=User,DC=domain,DC=com`"
+                    - This parameter is updatable.
+                type: str
+            group_search_base:
+                description:
+                    - All LDAP searches are recursive starting at this group.
+                    - "Example: `CN=Group,DC=domain,DC=com`"
+                    - This parameter is updatable.
+                type: str
+            outbound_connector1_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the first connector to use to communicate with the
+                      LDAP server.
+                    - This parameter is updatable.
+                type: str
+            outbound_connector2_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second connector to use to communicate with the
+                      LDAP server.
+                    - This parameter is updatable.
+                type: str
     nsg_ids:
         description:
             - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount
@@ -128,6 +186,37 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    kerberos:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            kerberos_realm:
+                description:
+                    - The Kerberos realm that the mount target will join.
+                    - This parameter is updatable.
+                type: str
+            key_tab_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the keytab Secret in the Vault.
+                    - This parameter is updatable.
+                type: str
+            current_key_tab_secret_version:
+                description:
+                    - Version of the keytab Secret in the Vault to use.
+                    - This parameter is updatable.
+                type: int
+            backup_key_tab_secret_version:
+                description:
+                    - Version of the keytab Secret in the Vault to use as a backup.
+                    - This parameter is updatable.
+                type: int
+            is_kerberos_enabled:
+                description:
+                    - Specifies whether to enable or disable Kerberos.
+                    - This parameter is updatable.
+                type: bool
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair
@@ -174,7 +263,25 @@ EXAMPLES = """
     hostname_label: hostname_label_example
     ip_address: ip_address_example
     display_name: display_name_example
+    idmap_type: idmap_type_example
+    ldap_idmap:
+      # optional
+      schema_type: RFC2307
+      cache_refresh_interval_seconds: 56
+      cache_lifetime_seconds: 56
+      negative_cache_lifetime_seconds: 56
+      user_search_base: user_search_base_example
+      group_search_base: group_search_base_example
+      outbound_connector1_id: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+      outbound_connector2_id: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    kerberos:
+      # optional
+      kerberos_realm: kerberos_realm_example
+      key_tab_secret_id: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      current_key_tab_secret_version: 56
+      backup_key_tab_secret_version: 56
+      is_kerberos_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -185,7 +292,25 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
+    idmap_type: idmap_type_example
+    ldap_idmap:
+      # optional
+      schema_type: RFC2307
+      cache_refresh_interval_seconds: 56
+      cache_lifetime_seconds: 56
+      negative_cache_lifetime_seconds: 56
+      user_search_base: user_search_base_example
+      group_search_base: group_search_base_example
+      outbound_connector1_id: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+      outbound_connector2_id: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    kerberos:
+      # optional
+      kerberos_realm: kerberos_realm_example
+      key_tab_secret_id: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      current_key_tab_secret_version: 56
+      backup_key_tab_secret_version: 56
+      is_kerberos_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -197,7 +322,25 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    idmap_type: idmap_type_example
+    ldap_idmap:
+      # optional
+      schema_type: RFC2307
+      cache_refresh_interval_seconds: 56
+      cache_lifetime_seconds: 56
+      negative_cache_lifetime_seconds: 56
+      user_search_base: user_search_base_example
+      group_search_base: group_search_base_example
+      outbound_connector1_id: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+      outbound_connector2_id: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    kerberos:
+      # optional
+      kerberos_realm: kerberos_realm_example
+      key_tab_secret_id: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      current_key_tab_secret_version: 56
+      backup_key_tab_secret_version: 56
+      is_kerberos_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -284,6 +427,70 @@ mount_target:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        idmap_type:
+            description:
+                - The method used to map a Unix UID to secondary groups. If NONE, the mount target will not use the Unix UID for ID mapping.
+            returned: on success
+            type: str
+            sample: LDAP
+        ldap_idmap:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                schema_type:
+                    description:
+                        - Schema type of the LDAP account.
+                    returned: on success
+                    type: str
+                    sample: RFC2307
+                cache_refresh_interval_seconds:
+                    description:
+                        - The amount of time that the mount target should allow an entry to persist in its cache before attempting to refresh the entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                cache_lifetime_seconds:
+                    description:
+                        - The maximum amount of time the mount target is allowed to use a cached entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                negative_cache_lifetime_seconds:
+                    description:
+                        - The amount of time that a mount target will maintain information that a user is not found in the ID mapping configuration.
+                    returned: on success
+                    type: int
+                    sample: 56
+                user_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this user.
+                        - "Example: `CN=User,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: user_search_base_example
+                group_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this group.
+                        - "Example: `CN=Group,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: group_search_base_example
+                outbound_connector1_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the first connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+                outbound_connector2_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount
@@ -294,6 +501,42 @@ mount_target:
             returned: on success
             type: list
             sample: []
+        kerberos:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                kerberos_realm:
+                    description:
+                        - The Kerberos realm that the mount target will join.
+                    returned: on success
+                    type: str
+                    sample: kerberos_realm_example
+                key_tab_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the keytab secret in the Vault.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                current_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secret in the Vault to use.
+                    returned: on success
+                    type: int
+                    sample: 56
+                backup_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secert in the Vault to use as a backup.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_kerberos_enabled:
+                    description:
+                        - Specifies whether to enable or disable Kerberos.
+                    returned: on success
+                    type: bool
+                    sample: true
         time_created:
             description:
                 - The date and time the mount target was created, expressed
@@ -329,7 +572,25 @@ mount_target:
         "lifecycle_state": "CREATING",
         "private_ip_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "idmap_type": "LDAP",
+        "ldap_idmap": {
+            "schema_type": "RFC2307",
+            "cache_refresh_interval_seconds": 56,
+            "cache_lifetime_seconds": 56,
+            "negative_cache_lifetime_seconds": 56,
+            "user_search_base": "user_search_base_example",
+            "group_search_base": "group_search_base_example",
+            "outbound_connector1_id": "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx",
+            "outbound_connector2_id": "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "nsg_ids": [],
+        "kerberos": {
+            "kerberos_realm": "kerberos_realm_example",
+            "key_tab_secret_id": "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "current_key_tab_secret_version": 56,
+            "backup_key_tab_secret_version": 56,
+            "is_kerberos_enabled": true
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -503,7 +764,31 @@ def main():
             ip_address=dict(type="str"),
             subnet_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            idmap_type=dict(type="str"),
+            ldap_idmap=dict(
+                type="dict",
+                options=dict(
+                    schema_type=dict(type="str", choices=["RFC2307"]),
+                    cache_refresh_interval_seconds=dict(type="int"),
+                    cache_lifetime_seconds=dict(type="int"),
+                    negative_cache_lifetime_seconds=dict(type="int"),
+                    user_search_base=dict(type="str"),
+                    group_search_base=dict(type="str"),
+                    outbound_connector1_id=dict(type="str"),
+                    outbound_connector2_id=dict(type="str"),
+                ),
+            ),
             nsg_ids=dict(type="list", elements="str"),
+            kerberos=dict(
+                type="dict",
+                options=dict(
+                    kerberos_realm=dict(type="str"),
+                    key_tab_secret_id=dict(type="str"),
+                    current_key_tab_secret_version=dict(type="int", no_log=True),
+                    backup_key_tab_secret_version=dict(type="int", no_log=True),
+                    is_kerberos_enabled=dict(type="bool"),
+                ),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             mount_target_id=dict(aliases=["id"], type="str"),

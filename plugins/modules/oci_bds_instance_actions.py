@@ -28,6 +28,11 @@ description:
     - For I(action=add_cloud_sql), adds Cloud SQL to your cluster. You can use Cloud SQL to query against non-relational data stored in multiple big data
       sources, including Apache Hive, HDFS, Oracle NoSQL Database, and Apache HBase. Adding Cloud SQL adds a query server node to the cluster and creates cell
       servers on all the worker nodes in the cluster.
+    - For I(action=add_kafka), adds Kafka to a cluster.
+    - For I(action=add_master_nodes), increases the size (scales out) of a cluster by adding master nodes. The added master nodes will have the same shape and
+      will have the same amount of attached block storage as other master nodes in the cluster.
+    - For I(action=add_utility_nodes), increases the size (scales out) of a cluster by adding utility nodes. The added utility nodes will have the same shape
+      and will have the same amount of attached block storage as other utility nodes in the cluster.
     - For I(action=add_worker_nodes), increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same
       shape and will have the same amount of attached block storage as other worker nodes in the cluster.
     - For I(action=change_compartment), moves a Big Data Service cluster into a different compartment.
@@ -35,8 +40,12 @@ description:
       all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD
       shapes can be scaled.
     - For I(action=execute_bootstrap_script), execute bootstrap script.
+    - For I(action=get_os_patch_details), get the details of an os patch
+    - For I(action=install_os_patch), install an os patch on a cluster
     - For I(action=install_patch), install the specified patch to this cluster.
+    - For I(action=list_os_patches), list all available os patches for a given cluster
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
+    - For I(action=remove_kafka), remove Kafka from the cluster.
     - For I(action=remove_node), remove a single node of a Big Data Service cluster
     - For I(action=restart_node), restarts a single node of a Big Data Service cluster
     - For I(action=start), starts the BDS cluster that was stopped earlier.
@@ -44,6 +53,21 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    number_of_kafka_nodes:
+        description:
+            - Number of Kafka nodes for the cluster.
+            - Required for I(action=add_kafka).
+        type: int
+    number_of_master_nodes:
+        description:
+            - Number of additional master nodes for the cluster.
+            - Required for I(action=add_master_nodes).
+        type: int
+    number_of_utility_nodes:
+        description:
+            - Number of additional utility nodes for the cluster.
+            - Required for I(action=add_utility_nodes).
+        type: int
     number_of_worker_nodes:
         description:
             - Number of additional worker nodes for the cluster.
@@ -51,17 +75,18 @@ options:
         type: int
     node_type:
         description:
-            - Worker node types, can either be Worker Data node or Compute only worker node.
+            - Worker node types.
             - Required for I(action=add_block_storage), I(action=add_worker_nodes).
         type: str
         choices:
             - "WORKER"
             - "COMPUTE_ONLY_WORKER"
+            - "KAFKA_BROKER"
             - "EDGE"
     shape:
         description:
             - Shape of the node.
-            - Required for I(action=add_cloud_sql).
+            - Required for I(action=add_cloud_sql), I(action=add_kafka).
         type: str
     block_volume_size_in_gbs:
         description:
@@ -72,7 +97,7 @@ options:
     shape_config:
         description:
             - ""
-            - Applicable only for I(action=add_cloud_sql)I(action=add_worker_nodes).
+            - Applicable only for I(action=add_cloud_sql)I(action=add_kafka)I(action=add_master_nodes)I(action=add_utility_nodes)I(action=add_worker_nodes).
         type: dict
         suboptions:
             ocpus:
@@ -224,16 +249,59 @@ options:
                         description:
                             - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
+            kafka_broker:
+                description:
+                    - Change shape of Kafka Broker nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
+                type: str
+            kafka_broker_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                        type: int
     bootstrap_script_url:
         description:
             - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
             - Applicable only for I(action=execute_bootstrap_script).
+        type: str
+    os_patch_version:
+        description:
+            - The version of the OS patch.
+            - Required for I(action=get_os_patch_details), I(action=install_os_patch).
         type: str
     version:
         description:
             - The version of the patch to be installed.
             - Required for I(action=install_patch).
         type: str
+    sort_by:
+        description:
+            - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
+              ascending. If no value is specified timeCreated is default.
+            - Applicable only for I(action=list_os_patches).
+        type: str
+        choices:
+            - "timeCreated"
+            - "displayName"
+    sort_order:
+        description:
+            - The sort order to use, either 'asc' or 'desc'.
+            - Applicable only for I(action=list_os_patches).
+        type: str
+        choices:
+            - "ASC"
+            - "DESC"
     is_force_remove_enabled:
         description:
             - Boolean flag specifying whether or not to force remove node if graceful
@@ -259,8 +327,9 @@ options:
     cluster_admin_password:
         description:
             - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
-            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape),
-              I(action=execute_bootstrap_script), I(action=install_patch), I(action=remove_cloud_sql), I(action=remove_node), I(action=start), I(action=stop).
+            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_kafka), I(action=add_master_nodes), I(action=add_utility_nodes),
+              I(action=add_worker_nodes), I(action=change_shape), I(action=execute_bootstrap_script), I(action=install_os_patch), I(action=install_patch),
+              I(action=remove_cloud_sql), I(action=remove_kafka), I(action=remove_node), I(action=start), I(action=stop).
         type: str
     action:
         description:
@@ -270,12 +339,19 @@ options:
         choices:
             - "add_block_storage"
             - "add_cloud_sql"
+            - "add_kafka"
+            - "add_master_nodes"
+            - "add_utility_nodes"
             - "add_worker_nodes"
             - "change_compartment"
             - "change_shape"
             - "execute_bootstrap_script"
+            - "get_os_patch_details"
+            - "install_os_patch"
             - "install_patch"
+            - "list_os_patches"
             - "remove_cloud_sql"
+            - "remove_kafka"
             - "remove_node"
             - "restart_node"
             - "start"
@@ -302,6 +378,57 @@ EXAMPLES = """
     action: add_cloud_sql
 
     # optional
+    block_volume_size_in_gbs: 56
+    shape_config:
+      # optional
+      ocpus: 56
+      memory_in_gbs: 56
+      nvmes: 56
+
+- name: Perform action add_kafka on bds_instance
+  oci_bds_instance_actions:
+    # required
+    number_of_kafka_nodes: 56
+    shape: shape_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: add_kafka
+
+    # optional
+    block_volume_size_in_gbs: 56
+    shape_config:
+      # optional
+      ocpus: 56
+      memory_in_gbs: 56
+      nvmes: 56
+
+- name: Perform action add_master_nodes on bds_instance
+  oci_bds_instance_actions:
+    # required
+    number_of_master_nodes: 56
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: add_master_nodes
+
+    # optional
+    shape: shape_example
+    block_volume_size_in_gbs: 56
+    shape_config:
+      # optional
+      ocpus: 56
+      memory_in_gbs: 56
+      nvmes: 56
+
+- name: Perform action add_utility_nodes on bds_instance
+  oci_bds_instance_actions:
+    # required
+    number_of_utility_nodes: 56
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: add_utility_nodes
+
+    # optional
+    shape: shape_example
     block_volume_size_in_gbs: 56
     shape_config:
       # optional
@@ -375,6 +502,12 @@ EXAMPLES = """
         ocpus: 56
         memory_in_gbs: 56
         nvmes: 56
+      kafka_broker: kafka_broker_example
+      kafka_broker_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
+        nvmes: 56
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: example-password
     action: change_shape
@@ -389,6 +522,21 @@ EXAMPLES = """
     # optional
     bootstrap_script_url: bootstrap_script_url_example
 
+- name: Perform action get_os_patch_details on bds_instance
+  oci_bds_instance_actions:
+    # required
+    os_patch_version: os_patch_version_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: get_os_patch_details
+
+- name: Perform action install_os_patch on bds_instance
+  oci_bds_instance_actions:
+    # required
+    os_patch_version: os_patch_version_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: install_os_patch
+
 - name: Perform action install_patch on bds_instance
   oci_bds_instance_actions:
     # required
@@ -397,12 +545,29 @@ EXAMPLES = """
     cluster_admin_password: example-password
     action: install_patch
 
+- name: Perform action list_os_patches on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: list_os_patches
+
+    # optional
+    sort_by: timeCreated
+    sort_order: ASC
+
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
     # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: example-password
     action: remove_cloud_sql
+
+- name: Perform action remove_kafka on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: remove_kafka
 
 - name: Perform action remove_node on bds_instance
   oci_bds_instance_actions:
@@ -493,6 +658,12 @@ bds_instance:
         is_cloud_sql_configured:
             description:
                 - Boolean flag specifying whether or not Cloud SQL should be configured.
+            returned: on success
+            type: bool
+            sample: true
+        is_kafka_configured:
+            description:
+                - Boolean flag specifying whether or not Kafka should be configured.
             returned: on success
             type: bool
             sample: true
@@ -742,6 +913,12 @@ bds_instance:
                     returned: on success
                     type: float
                     sample: 1.2
+                time_maintenance_reboot_due:
+                    description:
+                        - The date and time the instance is expected to be stopped / started, in the format defined by RFC3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         cloud_sql_details:
             description:
                 - ""
@@ -816,6 +993,12 @@ bds_instance:
             returned: on success
             type: int
             sample: 56
+        number_of_nodes_requiring_maintenance_reboot:
+            description:
+                - Number of nodes that require a maintenance reboot
+            returned: on success
+            type: int
+            sample: 56
         bootstrap_script_url:
             description:
                 - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
@@ -857,6 +1040,7 @@ bds_instance:
         "is_high_availability": true,
         "is_secure": true,
         "is_cloud_sql_configured": true,
+        "is_kafka_configured": true,
         "network_config": {
             "is_nat_gateway_required": true,
             "cidr_block": "cidr_block_example"
@@ -900,7 +1084,8 @@ bds_instance:
             "ocpus": 56,
             "memory_in_gbs": 56,
             "nvmes": 56,
-            "local_disks_total_size_in_gbs": 1.2
+            "local_disks_total_size_in_gbs": 1.2,
+            "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00"
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -916,6 +1101,7 @@ bds_instance:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "number_of_nodes": 56,
+        "number_of_nodes_requiring_maintenance_reboot": 56,
         "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -938,12 +1124,17 @@ try:
     from oci.bds import BdsClient
     from oci.bds.models import AddBlockStorageDetails
     from oci.bds.models import AddCloudSqlDetails
+    from oci.bds.models import AddKafkaDetails
+    from oci.bds.models import AddMasterNodesDetails
+    from oci.bds.models import AddUtilityNodesDetails
     from oci.bds.models import AddWorkerNodesDetails
     from oci.bds.models import ChangeBdsInstanceCompartmentDetails
     from oci.bds.models import ChangeShapeDetails
     from oci.bds.models import ExecuteBootstrapScriptDetails
+    from oci.bds.models import InstallOsPatchDetails
     from oci.bds.models import InstallPatchDetails
     from oci.bds.models import RemoveCloudSqlDetails
+    from oci.bds.models import RemoveKafkaDetails
     from oci.bds.models import RemoveNodeDetails
     from oci.bds.models import RestartNodeDetails
     from oci.bds.models import StartBdsInstanceDetails
@@ -959,12 +1150,19 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         add_block_storage
         add_cloud_sql
+        add_kafka
+        add_master_nodes
+        add_utility_nodes
         add_worker_nodes
         change_compartment
         change_shape
         execute_bootstrap_script
+        get_os_patch_details
+        install_os_patch
         install_patch
+        list_os_patches
         remove_cloud_sql
+        remove_kafka
         remove_node
         restart_node
         start
@@ -1018,6 +1216,69 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 add_cloud_sql_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def add_kafka(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddKafkaDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_kafka,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                add_kafka_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def add_master_nodes(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddMasterNodesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_master_nodes,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                add_master_nodes_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def add_utility_nodes(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddUtilityNodesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_utility_nodes,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                add_utility_nodes_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1113,6 +1374,47 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def get_os_patch_details(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.get_os_patch_details,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                os_patch_version=self.module.params.get("os_patch_version"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def install_os_patch(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, InstallOsPatchDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.install_os_patch,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                install_os_patch_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def install_patch(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, InstallPatchDetails
@@ -1134,6 +1436,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def list_os_patches(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.list_os_patches,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                sort_by=self.module.params.get("sort_by"),
+                sort_order=self.module.params.get("sort_order"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def remove_cloud_sql(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveCloudSqlDetails
@@ -1144,6 +1467,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 remove_cloud_sql_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_kafka(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveKafkaDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_kafka,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                remove_kafka_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1253,9 +1597,13 @@ def main():
     )
     module_args.update(
         dict(
+            number_of_kafka_nodes=dict(type="int"),
+            number_of_master_nodes=dict(type="int"),
+            number_of_utility_nodes=dict(type="int"),
             number_of_worker_nodes=dict(type="int"),
             node_type=dict(
-                type="str", choices=["WORKER", "COMPUTE_ONLY_WORKER", "EDGE"]
+                type="str",
+                choices=["WORKER", "COMPUTE_ONLY_WORKER", "KAFKA_BROKER", "EDGE"],
             ),
             shape=dict(type="str"),
             block_volume_size_in_gbs=dict(type="int"),
@@ -1325,10 +1673,22 @@ def main():
                             nvmes=dict(type="int"),
                         ),
                     ),
+                    kafka_broker=dict(type="str"),
+                    kafka_broker_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
+                        ),
+                    ),
                 ),
             ),
             bootstrap_script_url=dict(type="str"),
+            os_patch_version=dict(type="str"),
             version=dict(type="str"),
+            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+            sort_order=dict(type="str", choices=["ASC", "DESC"]),
             is_force_remove_enabled=dict(type="bool"),
             node_id=dict(type="str"),
             bds_instance_id=dict(aliases=["id"], type="str", required=True),
@@ -1340,12 +1700,19 @@ def main():
                 choices=[
                     "add_block_storage",
                     "add_cloud_sql",
+                    "add_kafka",
+                    "add_master_nodes",
+                    "add_utility_nodes",
                     "add_worker_nodes",
                     "change_compartment",
                     "change_shape",
                     "execute_bootstrap_script",
+                    "get_os_patch_details",
+                    "install_os_patch",
                     "install_patch",
+                    "list_os_patches",
                     "remove_cloud_sql",
+                    "remove_kafka",
                     "remove_node",
                     "restart_node",
                     "start",

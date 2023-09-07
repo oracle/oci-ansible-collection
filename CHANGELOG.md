@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.30.0]
+
+## Added
+- Support for updating the envelope key of a volume backup in the Block Volume service
+- Support for capacity reports in the Compute service
+- Support for custom hostname in the Compute service
+- Support for placement constraints and cluster configurations on cluster networks in the Compute service
+- Support for limiting networking diagram ingestion in the Networking Monitoring service
+- Support for Kerberos and LDAP with NFSv3 in the File Storage service
+- Support for OS patching in the Big Data service
+- Support for master and utility nodes in the Big Data service
+- Support for Kafka cluster profiles, including dedicated Kafka broker nodes, in the Big Data service
+- Support for creating single use (non-recurring) budgets in the Budgets service
+- Support for cloud subscription in the Organizations service
+- Support for specifying a shape when creating applications in the Functions service
+- Support for capacity reservation checks for movable compute instances in the Disaster Recovery service
+- Support for ECPU integration in the License Manager service
+- Support for creating and managing pools in the Data Flow service
+- Support for SQL endpoints in the Data Flow service
+
+## Breaking
+- Properties `classic_subscription_id`, `is_classic_subscription`, `payment_model`, `region_assignment`, `lifecycle_state`, `start_date`, `end_date`, `csi_number` are deleted from `list_assigned_subscriptions` operation's response in the `oci_tenant_manager_control_plane_assigned_subscription_facts` module in the Organizations service
+- Properties `is_classic_subscription`, `payment_model`, `region_assignment`, `lifecycle_state`, `start_date`, `end_date`, `classic_subscription_id`, `time_created` are deleted from `list_subscriptions` operation's response in the `oci_tenant_manager_control_plane_subscription_facts` module in the Organizations service
+- Property `function_id` is made required for step_type `INVOKE_FUNCTION` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
+- Properties `object_storage_script_location`, `run_on_instance_id` are made required for step_type `RUN_OBJECTSTORE_SCRIPT` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
+- Properties `script_command`, `run_on_instance_id` are made required for step_type `RUN_LOCAL_SCRIPT` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.0
+
 ## [4.29.0]
 
 ## Added

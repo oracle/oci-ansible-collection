@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,12 +59,19 @@ Synopsis
 - Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
 - For *action=add_block_storage*, adds block storage to existing worker/compute only worker nodes. The same amount of  storage will be added to all worker/compute only worker nodes. No change will be made to storage that is already attached. Block storage cannot be removed.
 - For *action=add_cloud_sql*, adds Cloud SQL to your cluster. You can use Cloud SQL to query against non-relational data stored in multiple big data sources, including Apache Hive, HDFS, Oracle NoSQL Database, and Apache HBase. Adding Cloud SQL adds a query server node to the cluster and creates cell servers on all the worker nodes in the cluster.
+- For *action=add_kafka*, adds Kafka to a cluster.
+- For *action=add_master_nodes*, increases the size (scales out) of a cluster by adding master nodes. The added master nodes will have the same shape and will have the same amount of attached block storage as other master nodes in the cluster.
+- For *action=add_utility_nodes*, increases the size (scales out) of a cluster by adding utility nodes. The added utility nodes will have the same shape and will have the same amount of attached block storage as other utility nodes in the cluster.
 - For *action=add_worker_nodes*, increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same shape and will have the same amount of attached block storage as other worker nodes in the cluster.
 - For *action=change_compartment*, moves a Big Data Service cluster into a different compartment.
 - For *action=change_shape*, changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD shapes can be scaled.
 - For *action=execute_bootstrap_script*, execute bootstrap script.
+- For *action=get_os_patch_details*, get the details of an os patch
+- For *action=install_os_patch*, install an os patch on a cluster
 - For *action=install_patch*, install the specified patch to this cluster.
+- For *action=list_os_patches*, list all available os patches for a given cluster
 - For *action=remove_cloud_sql*, removes Cloud SQL from the cluster.
+- For *action=remove_kafka*, remove Kafka from the cluster.
 - For *action=remove_node*, remove a single node of a Big Data Service cluster
 - For *action=restart_node*, restarts a single node of a Big Data Service cluster
 - For *action=start*, starts the BDS cluster that was stopped earlier.
@@ -110,12 +117,19 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>add_block_storage</li>
                                                                                                                                                                                                 <li>add_cloud_sql</li>
+                                                                                                                                                                                                <li>add_kafka</li>
+                                                                                                                                                                                                <li>add_master_nodes</li>
+                                                                                                                                                                                                <li>add_utility_nodes</li>
                                                                                                                                                                                                 <li>add_worker_nodes</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>change_shape</li>
                                                                                                                                                                                                 <li>execute_bootstrap_script</li>
+                                                                                                                                                                                                <li>get_os_patch_details</li>
+                                                                                                                                                                                                <li>install_os_patch</li>
                                                                                                                                                                                                 <li>install_patch</li>
+                                                                                                                                                                                                <li>list_os_patches</li>
                                                                                                                                                                                                 <li>remove_cloud_sql</li>
+                                                                                                                                                                                                <li>remove_kafka</li>
                                                                                                                                                                                                 <li>remove_node</li>
                                                                                                                                                                                                 <li>restart_node</li>
                                                                                                                                                                                                 <li>start</li>
@@ -302,7 +316,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
-                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=execute_bootstrap_script</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
+                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_kafka</em>, <em>action=add_master_nodes</em>, <em>action=add_utility_nodes</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=execute_bootstrap_script</em>, <em>action=install_os_patch</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_kafka</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -420,11 +434,12 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>WORKER</li>
                                                                                                                                                                                                 <li>COMPUTE_ONLY_WORKER</li>
+                                                                                                                                                                                                <li>KAFKA_BROKER</li>
                                                                                                                                                                                                 <li>EDGE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Worker node types, can either be Worker Data node or Compute only worker node.</div>
+                                            <div>Worker node types.</div>
                                             <div>Required for <em>action=add_block_storage</em>, <em>action=add_worker_nodes</em>.</div>
                                                         </td>
             </tr>
@@ -699,6 +714,90 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/kafka_broker"></div>
+                    <b>kafka_broker</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/kafka_broker" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Change shape of Kafka Broker nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/kafka_broker_shape_config"></div>
+                    <b>kafka_broker_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/kafka_broker_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/kafka_broker_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/kafka_broker_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/kafka_broker_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/kafka_broker_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/kafka_broker_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/kafka_broker_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs available to the node.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nodes/master"></div>
                     <b>master</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/master" title="Permalink to this option"></a>
@@ -951,6 +1050,54 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-number_of_kafka_nodes"></div>
+                    <b>number_of_kafka_nodes</b>
+                    <a class="ansibleOptionLink" href="#parameter-number_of_kafka_nodes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of Kafka nodes for the cluster.</div>
+                                            <div>Required for <em>action=add_kafka</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-number_of_master_nodes"></div>
+                    <b>number_of_master_nodes</b>
+                    <a class="ansibleOptionLink" href="#parameter-number_of_master_nodes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of additional master nodes for the cluster.</div>
+                                            <div>Required for <em>action=add_master_nodes</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-number_of_utility_nodes"></div>
+                    <b>number_of_utility_nodes</b>
+                    <a class="ansibleOptionLink" href="#parameter-number_of_utility_nodes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of additional utility nodes for the cluster.</div>
+                                            <div>Required for <em>action=add_utility_nodes</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-number_of_worker_nodes"></div>
                     <b>number_of_worker_nodes</b>
                     <a class="ansibleOptionLink" href="#parameter-number_of_worker_nodes" title="Permalink to this option"></a>
@@ -963,6 +1110,22 @@ Parameters
                                                                 <td>
                                             <div>Number of additional worker nodes for the cluster.</div>
                                             <div>Required for <em>action=add_worker_nodes</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-os_patch_version"></div>
+                    <b>os_patch_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-os_patch_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The version of the OS patch.</div>
+                                            <div>Required for <em>action=get_os_patch_details</em>, <em>action=install_os_patch</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1012,7 +1175,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Shape of the node.</div>
-                                            <div>Required for <em>action=add_cloud_sql</em>.</div>
+                                            <div>Required for <em>action=add_cloud_sql</em>, <em>action=add_kafka</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1028,7 +1191,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable only for <em>action=add_cloud_sql</em><em>action=add_worker_nodes</em>.</div>
+                                            <div>Applicable only for <em>action=add_cloud_sql</em><em>action=add_kafka</em><em>action=add_master_nodes</em><em>action=add_utility_nodes</em><em>action=add_worker_nodes</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1080,6 +1243,46 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.</div>
+                                            <div>Applicable only for <em>action=list_os_patches</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
+                    <b>sort_order</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ASC</li>
+                                                                                                                                                                                                <li>DESC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
+                                            <div>Applicable only for <em>action=list_os_patches</em>.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
@@ -1195,6 +1398,57 @@ Examples
           memory_in_gbs: 56
           nvmes: 56
 
+    - name: Perform action add_kafka on bds_instance
+      oci_bds_instance_actions:
+        # required
+        number_of_kafka_nodes: 56
+        shape: shape_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: add_kafka
+
+        # optional
+        block_volume_size_in_gbs: 56
+        shape_config:
+          # optional
+          ocpus: 56
+          memory_in_gbs: 56
+          nvmes: 56
+
+    - name: Perform action add_master_nodes on bds_instance
+      oci_bds_instance_actions:
+        # required
+        number_of_master_nodes: 56
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: add_master_nodes
+
+        # optional
+        shape: shape_example
+        block_volume_size_in_gbs: 56
+        shape_config:
+          # optional
+          ocpus: 56
+          memory_in_gbs: 56
+          nvmes: 56
+
+    - name: Perform action add_utility_nodes on bds_instance
+      oci_bds_instance_actions:
+        # required
+        number_of_utility_nodes: 56
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: add_utility_nodes
+
+        # optional
+        shape: shape_example
+        block_volume_size_in_gbs: 56
+        shape_config:
+          # optional
+          ocpus: 56
+          memory_in_gbs: 56
+          nvmes: 56
+
     - name: Perform action add_worker_nodes on bds_instance
       oci_bds_instance_actions:
         # required
@@ -1261,6 +1515,12 @@ Examples
             ocpus: 56
             memory_in_gbs: 56
             nvmes: 56
+          kafka_broker: kafka_broker_example
+          kafka_broker_shape_config:
+            # optional
+            ocpus: 56
+            memory_in_gbs: 56
+            nvmes: 56
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: example-password
         action: change_shape
@@ -1275,6 +1535,21 @@ Examples
         # optional
         bootstrap_script_url: bootstrap_script_url_example
 
+    - name: Perform action get_os_patch_details on bds_instance
+      oci_bds_instance_actions:
+        # required
+        os_patch_version: os_patch_version_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: get_os_patch_details
+
+    - name: Perform action install_os_patch on bds_instance
+      oci_bds_instance_actions:
+        # required
+        os_patch_version: os_patch_version_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: install_os_patch
+
     - name: Perform action install_patch on bds_instance
       oci_bds_instance_actions:
         # required
@@ -1283,12 +1558,29 @@ Examples
         cluster_admin_password: example-password
         action: install_patch
 
+    - name: Perform action list_os_patches on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: list_os_patches
+
+        # optional
+        sort_by: timeCreated
+        sort_order: ASC
+
     - name: Perform action remove_cloud_sql on bds_instance
       oci_bds_instance_actions:
         # required
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: example-password
         action: remove_cloud_sql
+
+    - name: Perform action remove_kafka on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: remove_kafka
 
     - name: Perform action remove_node on bds_instance
       oci_bds_instance_actions:
@@ -1360,7 +1652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BdsInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_profile&#x27;: &#x27;HADOOP_EXTENDED&#x27;, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;local_disks_total_size_in_gbs&#x27;: 1.2, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_profile&#x27;: &#x27;HADOOP_EXTENDED&#x27;, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_kafka_configured&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;local_disks_total_size_in_gbs&#x27;: 1.2, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;number_of_nodes_requiring_maintenance_reboot&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2017,6 +2309,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/is_kafka_configured"></div>
+                    <b>is_kafka_configured</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/is_kafka_configured" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean flag specifying whether or not Kafka should be configured.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/is_secure"></div>
                     <b>is_secure</b>
                     <a class="ansibleOptionLink" href="#return-bds_instance/is_secure" title="Permalink to this return value"></a>
@@ -2524,6 +2834,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/time_maintenance_reboot_due"></div>
+                    <b>time_maintenance_reboot_due</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/nodes/time_maintenance_reboot_due" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the instance is expected to be stopped / started, in the format defined by RFC3339.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-bds_instance/nodes/time_updated" title="Permalink to this return value"></a>
@@ -2553,6 +2882,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Number of nodes that forming the cluster</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/number_of_nodes_requiring_maintenance_reboot"></div>
+                    <b>number_of_nodes_requiring_maintenance_reboot</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/number_of_nodes_requiring_maintenance_reboot" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Number of nodes that require a maintenance reboot</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

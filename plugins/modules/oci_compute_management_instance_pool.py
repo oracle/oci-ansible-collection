@@ -24,6 +24,9 @@ short_description: Manage an InstancePool resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an instance pool.
+    - To determine whether capacity is available for a specific shape before you create an instance pool,
+      use the L(CreateComputeCapacityReport,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport)
+      operation.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_pool_actions) module: attach_load_balancer,
       change_compartment, detach_load_balancer, reset, softreset, softstop, start, stop."
 version_added: "2.9.0"
@@ -131,7 +134,7 @@ options:
                 elements: str
             primary_subnet_id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to place
                       instances.
                     - This parameter is updatable.
                 type: str
@@ -159,6 +162,18 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    instance_display_name_formatter:
+        description:
+            - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+              The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+            - This parameter is updatable.
+        type: str
+    instance_hostname_formatter:
+        description:
+            - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+              The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+            - This parameter is updatable.
+        type: str
     instance_pool_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
@@ -209,6 +224,8 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    instance_display_name_formatter: instance_display_name_formatter_example
+    instance_hostname_formatter: instance_hostname_formatter_example
 
 - name: Update instance_pool
   oci_compute_management_instance_pool:
@@ -234,6 +251,8 @@ EXAMPLES = """
         # optional
         display_name: display_name_example
     size: 56
+    instance_display_name_formatter: instance_display_name_formatter_example
+    instance_hostname_formatter: instance_hostname_formatter_example
 
 - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
@@ -259,6 +278,8 @@ EXAMPLES = """
         # optional
         display_name: display_name_example
     size: 56
+    instance_display_name_formatter: instance_display_name_formatter_example
+    instance_hostname_formatter: instance_hostname_formatter_example
 
 - name: Delete instance_pool
   oci_compute_management_instance_pool:
@@ -347,7 +368,8 @@ instance_pool:
                     sample: Uocm:PHX-AD-1
                 primary_subnet_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to place
+                          instances.
                     returned: on success
                     type: str
                     sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -450,6 +472,20 @@ instance_pool:
                     returned: on success
                     type: str
                     sample: ATTACHING
+        instance_display_name_formatter:
+            description:
+                - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+                  The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+            returned: on success
+            type: str
+            sample: instance_display_name_formatter_example
+        instance_hostname_formatter:
+            description:
+                - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+                  The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+            returned: on success
+            type: str
+            sample: instance_hostname_formatter_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -477,7 +513,9 @@ instance_pool:
             "port": 56,
             "vnic_selection": "vnic_selection_example",
             "lifecycle_state": "ATTACHING"
-        }]
+        }],
+        "instance_display_name_formatter": "instance_display_name_formatter_example",
+        "instance_hostname_formatter": "instance_hostname_formatter_example"
     }
 """
 
@@ -671,6 +709,8 @@ def main():
                 ),
             ),
             size=dict(type="int"),
+            instance_display_name_formatter=dict(type="str"),
+            instance_hostname_formatter=dict(type="str"),
             instance_pool_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

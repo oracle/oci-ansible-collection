@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
             - Required to list multiple domains.
         type: str
     domain_id:

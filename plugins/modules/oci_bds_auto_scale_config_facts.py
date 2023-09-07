@@ -496,7 +496,7 @@ bds_auto_scale_configs:
                     sample: timezone_example
                 schedule_details:
                     description:
-                        - ""
+                        - Details of a horizontal scaling schedule.
                     returned: on success
                     type: complex
                     contains:
@@ -508,7 +508,7 @@ bds_auto_scale_configs:
                             sample: DAY_BASED
                         time_and_horizontal_scaling_config:
                             description:
-                                - ""
+                                - Time of day and horizontal scaling configuration.
                             returned: on success
                             type: complex
                             contains:
@@ -528,7 +528,7 @@ bds_auto_scale_configs:
                                     sample: 56
                         time_and_vertical_scaling_config:
                             description:
-                                - ""
+                                - Time of day and vertical scaling configuration
                             returned: on success
                             type: complex
                             contains:

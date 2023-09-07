@@ -30,7 +30,7 @@ oracle.oci.oci_disaster_recovery_dr_plan_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -510,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the compartment containing the DR Plan.</div>
-                                            <div>Example: `ocid1.compartment.oc1..exampleocid1`</div>
+                                            <div>Example: `ocid1.compartment.oc1..&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -566,7 +566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the DR Protection Group with which this DR Plan is associated.</div>
-                                            <div>Example: `ocid1.drplan.oc1.iad.exampleocid2`</div>
+                                            <div>Example: `ocid1.drplan.oc1.iad.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.drprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -603,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of this DR Plan.</div>
-                                            <div>Example: `ocid1.drplan.oc1.iad.exampleocid2`</div>
+                                            <div>Example: `ocid1.drplan.oc1.iad.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -658,7 +658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the peer (remote) DR Protection Group associated with this plan&#x27;s DR Protection Group.</div>
-                                            <div>Example: `ocid1.drprotectiongroup.oc1.phx.exampleocid1`</div>
+                                            <div>Example: `ocid1.drprotectiongroup.oc1.phx.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.peerdrprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -734,7 +734,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The unique id of this group. Must not be modified by user.</div>
-                                            <div>Example: `sgid1.group..examplegroupsgid`</div>
+                                            <div>Example: `sgid1.group..&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -813,7 +813,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The unique id of the group to which this step belongs. Must not be modified by user.</div>
-                                            <div>Example: `sgid1.group..examplegroupsgid`</div>
+                                            <div>Example: `sgid1.group..&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.group.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -834,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The unique id of this step. Must not be modified by the user.</div>
-                                            <div>Example: `sgid1.step..examplestepsgid`</div>
+                                            <div>Example: `sgid1.step..&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -876,7 +876,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the member associated with this step.</div>
-                                            <div>Example: `ocid1.database.oc1.phx.exampleocid1`</div>
+                                            <div>Example: `ocid1.database.oc1.phx.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.member.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -957,7 +957,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of function to be invoked.</div>
-                                            <div>Example: `ocid1.fnfunc.oc1.iad.exampleocid2`</div>
+                                            <div>Example: `ocid1.fnfunc.oc1.iad.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.function.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1134,7 +1134,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the instance where this script or command should be executed.</div>
-                                            <div>Example: `ocid1.instance.oc1.phx.exampleocid1`</div>
+                                            <div>Example: `ocid1.instance.oc1.phx.&amp;lt;unique_id&amp;gt;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.runoninstance.oc1..xxxxxxEXAMPLExxxxxx</div>

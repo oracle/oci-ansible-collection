@@ -44,6 +44,10 @@ options:
         description:
             - The ID of the application.
         type: str
+    pool_id:
+        description:
+            - The ID of the pool.
+        type: str
     owner_principal_id:
         description:
             - The OCID of the user who created the resource.
@@ -110,6 +114,7 @@ EXAMPLES = """
 
     # optional
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    pool_id: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
     owner_principal_id: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
     display_name_starts_with: display_name_starts_with_example
     lifecycle_state: ACCEPTED
@@ -474,6 +479,12 @@ runs:
             returned: on success
             type: str
             sample: owner_user_name_example
+        pool_id:
+            description:
+                - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+            returned: on success
+            type: str
+            sample: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.
@@ -488,14 +499,14 @@ runs:
             sample: 56
         time_created:
             description:
-                - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
@@ -557,6 +568,7 @@ runs:
         "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
+        "pool_id": "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx",
         "run_duration_in_milliseconds": 56,
         "total_o_cpu": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -601,6 +613,7 @@ class DataFlowRunFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "application_id",
+            "pool_id",
             "owner_principal_id",
             "display_name_starts_with",
             "lifecycle_state",
@@ -635,6 +648,7 @@ def main():
             run_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             application_id=dict(type="str"),
+            pool_id=dict(type="str"),
             owner_principal_id=dict(type="str"),
             display_name_starts_with=dict(type="str"),
             lifecycle_state=dict(

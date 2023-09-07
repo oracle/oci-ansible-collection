@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
             - Required to list multiple organizations.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]

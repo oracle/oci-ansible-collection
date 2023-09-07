@@ -79,10 +79,10 @@ options:
         type: str
     ipv6_private_cidr_blocks:
         description:
-            - "The list of one or more ULA or Private IPv6 CIDR blocks for the vcn that meets the following criteria:
+            - "The list of one or more ULA or Private IPv6 prefixes for the VCN that meets the following criteria:
               - The CIDR blocks must be valid.
-              - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block.
-              - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a vcn."
+              - Multiple CIDR blocks must not overlap each other or the on-premises network prefix.
+              - The number of CIDR blocks must not exceed the limit of IPv6 prefixes allowed to a VCN."
             - "**Important:** Do *not* specify a value for `ipv6CidrBlock`. Use this parameter instead."
         type: list
         elements: str
@@ -93,7 +93,7 @@ options:
         type: bool
     byoipv6_cidr_details:
         description:
-            - The list of BYOIPv6 OCIDs and BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+            - The list of BYOIPv6 OCIDs and BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 address ranges.
         type: list
         elements: dict
         suboptions:
@@ -105,8 +105,7 @@ options:
                 required: true
             ipv6_cidr_block:
                 description:
-                    - "An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a
-                      subrange.
+                    - "An IPv6 prefix required to create a VCN with a BYOIP prefix. It could be the whole prefix identified in `byoipv6RangeId`, or a subrange.
                       Example: `2001:0db8:0123::/48`"
                 type: str
                 required: true
@@ -240,13 +239,13 @@ vcn:
     contains:
         byoipv6_cidr_blocks:
             description:
-                - The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+                - The list of BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 ranges.
             returned: on success
             type: list
             sample: []
         ipv6_private_cidr_blocks:
             description:
-                - For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN's IP address space.
+                - For an IPv6-enabled VCN, this is the list of Private IPv6 prefixes for the VCN's IP address space.
             returned: on success
             type: list
             sample: []
@@ -334,8 +333,8 @@ vcn:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_blocks:
             description:
-                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
-                  The CIDRs are provided by Oracle and the sizes are always /56.
+                - For an IPv6-enabled VCN, this is the list of IPv6 prefixes for the VCN's IP address space.
+                  The prefixes are provided by Oracle and the sizes are always /56.
             returned: on success
             type: list
             sample: []

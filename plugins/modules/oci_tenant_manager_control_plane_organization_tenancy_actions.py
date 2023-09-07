@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
             - Required for I(action=approve_organization_tenancy_for_transfer), I(action=unapprove_organization_tenancy_for_transfer).
         type: str
     organization_tenancy_id:

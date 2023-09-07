@@ -124,7 +124,7 @@ dr_plans:
                 id:
                     description:
                         - The unique id of this group. Must not be modified by user.
-                        - "Example: `sgid1.group..examplegroupsgid`"
+                        - "Example: `sgid1.group..&lt;unique_id&gt;`"
                     returned: on success
                     type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -150,21 +150,21 @@ dr_plans:
                         id:
                             description:
                                 - The unique id of this step. Must not be modified by the user.
-                                - "Example: `sgid1.step..examplestepsgid`"
+                                - "Example: `sgid1.step..&lt;unique_id&gt;`"
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         group_id:
                             description:
                                 - The unique id of the group to which this step belongs. Must not be modified by user.
-                                - "Example: `sgid1.group..examplegroupsgid`"
+                                - "Example: `sgid1.group..&lt;unique_id&gt;`"
                             returned: on success
                             type: str
                             sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
                         member_id:
                             description:
                                 - The OCID of the member associated with this step.
-                                - "Example: `ocid1.database.oc1.phx.exampleocid1`"
+                                - "Example: `ocid1.database.oc1.phx.&lt;unique_id&gt;`"
                             returned: on success
                             type: str
                             sample: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
@@ -210,7 +210,7 @@ dr_plans:
                                 function_id:
                                     description:
                                         - The OCID of function to be invoked.
-                                        - "Example: `ocid1.fnfunc.oc1.iad.exampleocid2`"
+                                        - "Example: `ocid1.fnfunc.oc1.iad.&lt;unique_id&gt;`"
                                     returned: on success
                                     type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
@@ -245,7 +245,7 @@ dr_plans:
                                 run_on_instance_id:
                                     description:
                                         - The OCID of the instance where this script or command should be executed.
-                                        - "Example: `ocid1.instance.oc1.phx.exampleocid1`"
+                                        - "Example: `ocid1.instance.oc1.phx.&lt;unique_id&gt;`"
                                     returned: on success
                                     type: str
                                     sample: "ocid1.runoninstance.oc1..xxxxxxEXAMPLExxxxxx"
@@ -304,14 +304,14 @@ dr_plans:
         id:
             description:
                 - The OCID of this DR Plan.
-                - "Example: `ocid1.drplan.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drplan.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the DR Plan.
-                - "Example: `ocid1.compartment.oc1..exampleocid1`"
+                - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -331,7 +331,7 @@ dr_plans:
         dr_protection_group_id:
             description:
                 - The OCID of the DR Protection Group with which this DR Plan is associated.
-                - "Example: `ocid1.drplan.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drplan.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.drprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -339,7 +339,7 @@ dr_plans:
             description:
                 - The OCID of the peer (remote) DR Protection Group associated with this plan's
                   DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.phx.exampleocid1`"
+                - "Example: `ocid1.drprotectiongroup.oc1.phx.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.peerdrprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx"

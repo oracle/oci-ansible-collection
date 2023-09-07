@@ -30,7 +30,7 @@ oracle.oci.oci_network_ipv6_facts -- Fetches details about one or multiple Ipv6 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -539,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IPv6 address of the `IPv6` object. The address is within the IPv6 CIDR block of the VNIC&#x27;s subnet (see the `ipv6CidrBlock` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Subnet/'>Subnet</a> object.</div>
+                                            <div>The IPv6 address of the `IPv6` object. The address is within the IPv6 prefix of the VNIC&#x27;s subnet (see the `ipv6CidrBlock` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Subnet/'>Subnet</a> object.</div>
                                             <div>Example: `2001:0db8:0123:1111:abcd:ef01:2345:6789`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

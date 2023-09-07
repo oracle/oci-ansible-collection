@@ -32,7 +32,7 @@ options:
     compartment_id:
         description:
             - The OCID of the compartment in which to create the DR Protection Group.
-            - "Example: `ocid1.compartment.oc1..exampleocid1`"
+            - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -45,7 +45,7 @@ options:
             peer_id:
                 description:
                     - The OCID of the peer (remote) DR Protection Group.
-                    - "Example: `ocid1.drprotectiongroup.oc1.iad.exampleocid2`"
+                    - "Example: `ocid1.drprotectiongroup.oc1.iad.&lt;unique_id&gt;`"
                 type: str
             peer_region:
                 description:
@@ -115,43 +115,116 @@ options:
                     source_vnic_id:
                         description:
                             - The OCID of the VNIC.
-                            - "Example: `ocid1.vnic.oc1.phx.exampleocid1`"
+                            - "Example: `ocid1.vnic.oc1.phx.&lt;unique_id&gt;`"
                             - Required when member_type is 'COMPUTE_INSTANCE'
                         type: str
                         required: true
                     destination_subnet_id:
                         description:
                             - The OCID of the destination (remote) subnet to which this VNIC should connect.
-                            - "Example: `ocid1.subnet.oc1.iad.exampleocid2`"
+                            - "Example: `ocid1.subnet.oc1.iad.&lt;unique_id&gt;`"
                             - Required when member_type is 'COMPUTE_INSTANCE'
                         type: str
                         required: true
+                    destination_primary_private_ip_address:
+                        description:
+                            - The primary private IP address to assign. This address must belong to the destination subnet.
+                            - "Example: `10.0.3.3`"
+                            - Applicable when member_type is 'COMPUTE_INSTANCE'
+                        type: str
+                    destination_primary_private_ip_hostname_label:
+                        description:
+                            - The hostname to assign for this primary private IP.
+                              The value is the hostname portion of the private IP's fully qualified domain name (FQDN)
+                              (for example, bminstance1 in FQDN bminstance1.subnet123.vcn1.oraclevcn.com).
+                            - "Example: `bminstance1`"
+                            - Applicable when member_type is 'COMPUTE_INSTANCE'
+                        type: str
                     destination_nsg_id_list:
                         description:
-                            - A list of destination region's network security group (NSG) Ids which this VNIC should use.
-                            - "Example: `[ ocid1.networksecuritygroup.oc1.iad.abcd1, ocid1.networksecuritygroup.oc1.iad.wxyz2 ]`"
+                            - A list of network security group (NSG) IDs in the destination region which this VNIC should use.
+                            - "Example: `[ ocid1.networksecuritygroup.oc1.iad.&lt;unique_id&gt;, ocid1.networksecuritygroup.oc1.iad.&lt;unique_id&gt; ]`"
                             - Applicable when member_type is 'COMPUTE_INSTANCE'
+                        type: list
+                        elements: str
+            is_retain_fault_domain:
+                description:
+                    - A flag indicating if this compute instance should be moved to the same fault domain.
+                      Compute instance launch will fail if this flag is set to true and capacity is not available in that specific fault domain in the
+                      destination region.
+                    - "Example: `false`"
+                    - This parameter is updatable.
+                    - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                type: bool
+            destination_capacity_reservation_id:
+                description:
+                    - The OCID of the capacity reservation in the destination region using which this compute instance
+                      should be launched.
+                    - "Example: `ocid1.capacityreservation.oc1..&lt;unique_id&gt;`"
+                    - This parameter is updatable.
+                    - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                type: str
+            vnic_mappings:
+                description:
+                    - A list of Compute Instance VNIC mappings.
+                    - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                type: list
+                elements: dict
+                suboptions:
+                    source_vnic_id:
+                        description:
+                            - The OCID of the VNIC.
+                            - "Example: `ocid1.vnic.oc1..&lt;unique_id&gt;`"
+                            - Required when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                        type: str
+                        required: true
+                    destination_subnet_id:
+                        description:
+                            - The OCID of the destination (remote) subnet to which this VNIC should connect.
+                            - "Example: `ocid1.subnet.oc1..&lt;unique_id&gt;`"
+                            - Required when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                        type: str
+                        required: true
+                    destination_primary_private_ip_address:
+                        description:
+                            - The primary private IP address to assign. This address must belong to the destination subnet.
+                            - "Example: `10.0.3.3`"
+                            - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                        type: str
+                    destination_primary_private_ip_hostname_label:
+                        description:
+                            - The hostname to assign for this primary private IP.
+                              The value is the hostname portion of the private IP's fully qualified domain name (FQDN)
+                              (for example, bminstance1 in FQDN bminstance1.subnet123.vcn1.oraclevcn.com).
+                            - "Example: `bminstance1`"
+                            - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
+                        type: str
+                    destination_nsg_id_list:
+                        description:
+                            - A list of network security group (NSG) IDs in the destination region which this VNIC should use.
+                            - "Example: `[ ocid1.networksecuritygroup.oc1..&lt;unique_id&gt;, ocid1.networksecuritygroup.oc1..&lt;unique_id&gt; ]`"
+                            - Applicable when member_type is 'COMPUTE_INSTANCE_MOVABLE'
                         type: list
                         elements: str
             destination_compartment_id:
                 description:
                     - The OCID of the compartment for this compute instance in the destination region.
-                    - "Example: `ocid1.compartment.oc1..exampleocid1`"
+                    - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
                     - This parameter is updatable.
-                    - Applicable when member_type is 'COMPUTE_INSTANCE'
+                    - Applicable when member_type is one of ['COMPUTE_INSTANCE', 'COMPUTE_INSTANCE_MOVABLE']
                 type: str
             destination_dedicated_vm_host_id:
                 description:
                     - The OCID of the dedicated VM Host in the destination region where this compute instance
                       should be launched
-                    - "Example: `ocid1.dedicatedvmhost.oc1.iad.exampleocid2`"
+                    - "Example: `ocid1.dedicatedvmhost.oc1..&lt;unique_id&gt;`"
                     - This parameter is updatable.
-                    - Applicable when member_type is 'COMPUTE_INSTANCE'
+                    - Applicable when member_type is one of ['COMPUTE_INSTANCE', 'COMPUTE_INSTANCE_MOVABLE']
                 type: str
             member_id:
                 description:
                     - The OCID of the member.
-                    - "Example: `ocid1.instance.oc1.phx.exampleocid1`"
+                    - "Example: `ocid1.instance.oc1.phx.&lt;unique_id&gt;`"
                     - This parameter is updatable.
                 type: str
                 required: true
@@ -161,6 +234,8 @@ options:
                     - This parameter is updatable.
                 type: str
                 choices:
+                    - "COMPUTE_INSTANCE_MOVABLE"
+                    - "COMPUTE_INSTANCE_NON_MOVABLE"
                     - "COMPUTE_INSTANCE"
                     - "DATABASE"
                     - "AUTONOMOUS_DATABASE"
@@ -169,7 +244,7 @@ options:
             password_vault_secret_id:
                 description:
                     - The OCID of the vault secret where the database password is stored.
-                    - "Example: `ocid1.vaultsecret.oc1.phx.exampleocid1`"
+                    - "Example: `ocid1.vaultsecret.oc1.phx.&lt;unique_id&gt;`"
                     - This parameter is updatable.
                     - Applicable when member_type is 'DATABASE'
                 type: str
@@ -227,16 +302,19 @@ EXAMPLES = """
     members:
     - # required
       member_id: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
-      member_type: COMPUTE_INSTANCE
+      member_type: COMPUTE_INSTANCE_MOVABLE
 
       # optional
-      is_movable: true
-      vnic_mapping:
+      is_retain_fault_domain: true
+      destination_capacity_reservation_id: "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+      vnic_mappings:
       - # required
         source_vnic_id: "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx"
         destination_subnet_id: "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        destination_primary_private_ip_address: destination_primary_private_ip_address_example
+        destination_primary_private_ip_hostname_label: destination_primary_private_ip_hostname_label_example
         destination_nsg_id_list: [ "destination_nsg_id_list_example" ]
       destination_compartment_id: "ocid1.destinationcompartment.oc1..xxxxxxEXAMPLExxxxxx"
       destination_dedicated_vm_host_id: "ocid1.destinationdedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -257,16 +335,19 @@ EXAMPLES = """
     members:
     - # required
       member_id: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
-      member_type: COMPUTE_INSTANCE
+      member_type: COMPUTE_INSTANCE_MOVABLE
 
       # optional
-      is_movable: true
-      vnic_mapping:
+      is_retain_fault_domain: true
+      destination_capacity_reservation_id: "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+      vnic_mappings:
       - # required
         source_vnic_id: "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx"
         destination_subnet_id: "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        destination_primary_private_ip_address: destination_primary_private_ip_address_example
+        destination_primary_private_ip_hostname_label: destination_primary_private_ip_hostname_label_example
         destination_nsg_id_list: [ "destination_nsg_id_list_example" ]
       destination_compartment_id: "ocid1.destinationcompartment.oc1..xxxxxxEXAMPLExxxxxx"
       destination_dedicated_vm_host_id: "ocid1.destinationdedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -287,16 +368,19 @@ EXAMPLES = """
     members:
     - # required
       member_id: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
-      member_type: COMPUTE_INSTANCE
+      member_type: COMPUTE_INSTANCE_MOVABLE
 
       # optional
-      is_movable: true
-      vnic_mapping:
+      is_retain_fault_domain: true
+      destination_capacity_reservation_id: "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+      vnic_mappings:
       - # required
         source_vnic_id: "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx"
         destination_subnet_id: "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        destination_primary_private_ip_address: destination_primary_private_ip_address_example
+        destination_primary_private_ip_hostname_label: destination_primary_private_ip_hostname_label_example
         destination_nsg_id_list: [ "destination_nsg_id_list_example" ]
       destination_compartment_id: "ocid1.destinationcompartment.oc1..xxxxxxEXAMPLExxxxxx"
       destination_dedicated_vm_host_id: "ocid1.destinationdedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
@@ -328,14 +412,14 @@ dr_protection_group:
         id:
             description:
                 - The OCID of the DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.phx.exampleocid1`"
+                - "Example: `ocid1.drprotectiongroup.oc1.phx.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the DR Protection Group.
-                - "Example: `ocid1.compartment.oc1..exampleocid1`"
+                - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -355,7 +439,7 @@ dr_protection_group:
         peer_id:
             description:
                 - The OCID of the peer (remote) DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drprotectiongroup.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -433,6 +517,66 @@ dr_protection_group:
                             returned: on success
                             type: list
                             sample: []
+                is_retain_fault_domain:
+                    description:
+                        - A flag indicating if this compute instance should be moved to the same fault domain.
+                          Compute instance launch will fail if this flag is set to true and capacity is not available in that specific fault domain in the
+                          destination region.
+                        - "Example: `false`"
+                    returned: on success
+                    type: bool
+                    sample: true
+                destination_capacity_reservation_id:
+                    description:
+                        - The OCID of the capacity reservation in the destination region using which this compute instance
+                          should be launched.
+                        - "Example: `ocid1.capacityreservation.oc1..&lt;unique_id&gt;`"
+                    returned: on success
+                    type: str
+                    sample: "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                vnic_mappings:
+                    description:
+                        - A list of compute instance VNIC mappings.
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_vnic_id:
+                            description:
+                                - The OCID of the VNIC.
+                                - "Example: `ocid1.vnic.oc1..&lt;unique_id&gt;`"
+                            returned: on success
+                            type: str
+                            sample: "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx"
+                        destination_subnet_id:
+                            description:
+                                - The OCID of the destination (remote) subnet to which this VNIC should connect.
+                                - "Example: `ocid1.subnet.oc1..&lt;unique_id&gt;`"
+                            returned: on success
+                            type: str
+                            sample: "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+                        destination_primary_private_ip_address:
+                            description:
+                                - The primary private IP address to assign. This address must belong to the destination subnet.
+                                - "Example: `10.0.3.3`"
+                            returned: on success
+                            type: str
+                            sample: destination_primary_private_ip_address_example
+                        destination_primary_private_ip_hostname_label:
+                            description:
+                                - The hostname to assign for this primary private IP.
+                                  The value is the hostname portion of the private IP's fully qualified domain name (FQDN)
+                                  (for example, bminstance1 in FQDN bminstance1.subnet123.vcn1.oraclevcn.com).
+                                - "Example: `bminstance1`"
+                            returned: on success
+                            type: str
+                            sample: destination_primary_private_ip_hostname_label_example
+                        destination_nsg_id_list:
+                            description:
+                                - A list of destination region's network security group (NSG) OCIDs which this VNIC should use.
+                                - "Example: `[ ocid1.networksecuritygroup.oc1..&lt;unique_id&gt;, ocid1.networksecuritygroup.oc1..&lt;unique_id&gt; ]`"
+                            returned: on success
+                            type: list
+                            sample: []
                 destination_compartment_id:
                     description:
                         - The OCID of the compartment for this compute instance in the destination region.
@@ -457,7 +601,7 @@ dr_protection_group:
                 member_id:
                     description:
                         - The OCID of the member.
-                        - "Example: `ocid1.instance.oc1.phx.exampleocid1`"
+                        - "Example: `ocid1.instance.oc1.phx.&lt;unique_id&gt;`"
                     returned: on success
                     type: str
                     sample: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
@@ -531,6 +675,15 @@ dr_protection_group:
             "vnic_mapping": [{
                 "source_vnic_id": "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx",
                 "destination_subnet_id": "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_nsg_id_list": []
+            }],
+            "is_retain_fault_domain": true,
+            "destination_capacity_reservation_id": "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+            "vnic_mappings": [{
+                "source_vnic_id": "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_subnet_id": "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_primary_private_ip_address": "destination_primary_private_ip_address_example",
+                "destination_primary_private_ip_hostname_label": "destination_primary_private_ip_hostname_label_example",
                 "destination_nsg_id_list": []
             }],
             "destination_compartment_id": "ocid1.destinationcompartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -642,7 +795,11 @@ class DrProtectionGroupHelperGen(OCIResourceHelperBase):
         return CreateDrProtectionGroupDetails
 
     def get_exclude_attributes(self):
-        return ["association"]
+        return [
+            "members.vnic_mapping.destination_primary_private_ip_hostname_label",
+            "members.vnic_mapping.destination_primary_private_ip_address",
+            "association",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -736,6 +893,25 @@ def main():
                         options=dict(
                             source_vnic_id=dict(type="str", required=True),
                             destination_subnet_id=dict(type="str", required=True),
+                            destination_primary_private_ip_address=dict(type="str"),
+                            destination_primary_private_ip_hostname_label=dict(
+                                type="str"
+                            ),
+                            destination_nsg_id_list=dict(type="list", elements="str"),
+                        ),
+                    ),
+                    is_retain_fault_domain=dict(type="bool"),
+                    destination_capacity_reservation_id=dict(type="str"),
+                    vnic_mappings=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            source_vnic_id=dict(type="str", required=True),
+                            destination_subnet_id=dict(type="str", required=True),
+                            destination_primary_private_ip_address=dict(type="str"),
+                            destination_primary_private_ip_hostname_label=dict(
+                                type="str"
+                            ),
                             destination_nsg_id_list=dict(type="list", elements="str"),
                         ),
                     ),
@@ -746,6 +922,8 @@ def main():
                         type="str",
                         required=True,
                         choices=[
+                            "COMPUTE_INSTANCE_MOVABLE",
+                            "COMPUTE_INSTANCE_NON_MOVABLE",
                             "COMPUTE_INSTANCE",
                             "DATABASE",
                             "AUTONOMOUS_DATABASE",

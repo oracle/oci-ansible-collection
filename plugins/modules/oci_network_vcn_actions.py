@@ -23,8 +23,8 @@ module: oci_network_vcn_actions
 short_description: Perform actions on a Vcn resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
-    - For I(action=add_ipv6_vcn_cidr), add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle.
-      Once added the IPv6 CIDR block cannot be removed or modified.
+    - For I(action=add_ipv6_vcn_cidr), add an IPv6 prefix to a VCN. The VCN size is always /56 and assigned by Oracle.
+      Once added the IPv6 prefix cannot be removed or modified.
     - "For I(action=add_vcn_cidr), adds a CIDR block to a VCN. The CIDR block you add:
       - Must be valid.
       - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
@@ -44,7 +44,7 @@ description:
       **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets,
       VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could
       take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update."
-    - For I(action=remove_ipv6_vcn_cidr), removing an existing IPv6 CIDR from a VCN.
+    - For I(action=remove_ipv6_vcn_cidr), removing an existing IPv6 prefix from a VCN.
     - "For I(action=remove_vcn_cidr), removes a specified CIDR block from a VCN.
       **Notes:**
       - You cannot remove a CIDR block if an IP address in its range is in use.
@@ -80,8 +80,7 @@ options:
                 required: true
             ipv6_cidr_block:
                 description:
-                    - "An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a
-                      subrange.
+                    - "An IPv6 prefix required to create a VCN with a BYOIP prefix. It could be the whole prefix identified in `byoipv6RangeId`, or a subrange.
                       Example: `2001:0db8:0123::/48`"
                 type: str
                 required: true
@@ -200,13 +199,13 @@ vcn:
     contains:
         byoipv6_cidr_blocks:
             description:
-                - The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+                - The list of BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 ranges.
             returned: on success
             type: list
             sample: []
         ipv6_private_cidr_blocks:
             description:
-                - For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN's IP address space.
+                - For an IPv6-enabled VCN, this is the list of Private IPv6 prefixes for the VCN's IP address space.
             returned: on success
             type: list
             sample: []
@@ -294,8 +293,8 @@ vcn:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_blocks:
             description:
-                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
-                  The CIDRs are provided by Oracle and the sizes are always /56.
+                - For an IPv6-enabled VCN, this is the list of IPv6 prefixes for the VCN's IP address space.
+                  The prefixes are provided by Oracle and the sizes are always /56.
             returned: on success
             type: list
             sample: []

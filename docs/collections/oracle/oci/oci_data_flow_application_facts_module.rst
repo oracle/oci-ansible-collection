@@ -30,7 +30,7 @@ oracle.oci.oci_data_flow_application_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -492,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Application resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;application_log_config&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;driver_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;execute&#x27;: &#x27;execute_example&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;executor_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idle_timeout_in_minutes&#x27;: 56, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;max_duration_in_minutes&#x27;: 56, &#x27;metastore_id&#x27;: &#x27;ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;num_executors&#x27;: 56, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;BATCH&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;application_log_config&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;driver_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;execute&#x27;: &#x27;execute_example&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;executor_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idle_timeout_in_minutes&#x27;: 56, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;max_duration_in_minutes&#x27;: 56, &#x27;metastore_id&#x27;: &#x27;ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;num_executors&#x27;: 56, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;pool_id&#x27;: &#x27;ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;BATCH&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1146,6 +1146,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-applications/pool_id"></div>
+                    <b>pool_id</b>
+                    <a class="ansibleOptionLink" href="#return-applications/pool_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of a pool. Unique Id to indentify a dataflow pool resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-applications/private_endpoint_id"></div>
                     <b>private_endpoint_id</b>
                     <a class="ansibleOptionLink" href="#return-applications/private_endpoint_id" title="Permalink to this return value"></a>
@@ -1192,7 +1210,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time a application was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-04-03T21:10:29.600Z`</div>
+                                            <div>The date and time the resource was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1210,7 +1228,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time a application was updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-04-03T21:10:29.600Z`</div>
+                                            <div>The date and time the resource was updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

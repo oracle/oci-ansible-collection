@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn -- Manage a Vcn resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -207,7 +207,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of BYOIPv6 OCIDs and BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                            <div>The list of BYOIPv6 OCIDs and BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 address ranges.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -239,7 +239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a subrange. Example: `2001:0db8:0123::/48`</div>
+                                            <div>An IPv6 prefix required to create a VCN with a BYOIP prefix. It could be the whole prefix identified in `byoipv6RangeId`, or a subrange. Example: `2001:0db8:0123::/48`</div>
                                                         </td>
             </tr>
                     
@@ -438,7 +438,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of one or more ULA or Private IPv6 CIDR blocks for the vcn that meets the following criteria: - The CIDR blocks must be valid. - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block. - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a vcn.</div>
+                                            <div>The list of one or more ULA or Private IPv6 prefixes for the VCN that meets the following criteria: - The CIDR blocks must be valid. - Multiple CIDR blocks must not overlap each other or the on-premises network prefix. - The number of CIDR blocks must not exceed the limit of IPv6 prefixes allowed to a VCN.</div>
                                             <div>**Important:** Do *not* specify a value for `ipv6CidrBlock`. Use this parameter instead.</div>
                                                         </td>
             </tr>
@@ -746,7 +746,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                            <div>The list of BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 ranges.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -964,7 +964,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 prefixes for the VCN&#x27;s IP address space. The prefixes are provided by Oracle and the sizes are always /56.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -980,7 +980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN&#x27;s IP address space.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 prefixes for the VCN&#x27;s IP address space.</div>
                                         <br/>
                                                         </td>
             </tr>

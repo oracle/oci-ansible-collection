@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,11 +57,11 @@ Synopsis
 .. Description
 
 - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
-- For *action=add_ipv6_vcn_cidr*, add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle. Once added the IPv6 CIDR block cannot be removed or modified.
+- For *action=add_ipv6_vcn_cidr*, add an IPv6 prefix to a VCN. The VCN size is always /56 and assigned by Oracle. Once added the IPv6 prefix cannot be removed or modified.
 - For *action=add_vcn_cidr*, adds a CIDR block to a VCN. The CIDR block you add: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 - For *action=change_compartment*, moves a VCN into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=modify_vcn_cidr*, updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules. - No IP address in an existing subnet should be outside of the new CIDR block range. **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
-- For *action=remove_ipv6_vcn_cidr*, removing an existing IPv6 CIDR from a VCN.
+- For *action=remove_ipv6_vcn_cidr*, removing an existing IPv6 prefix from a VCN.
 - For *action=remove_vcn_cidr*, removes a specified CIDR block from a VCN. **Notes:** - You cannot remove a CIDR block if an IP address in its range is in use. - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 
 
@@ -259,7 +259,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a subrange. Example: `2001:0db8:0123::/48`</div>
+                                            <div>An IPv6 prefix required to create a VCN with a BYOIP prefix. It could be the whole prefix identified in `byoipv6RangeId`, or a subrange. Example: `2001:0db8:0123::/48`</div>
                                                         </td>
             </tr>
                     
@@ -652,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                            <div>The list of BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 ranges.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -870,7 +870,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 prefixes for the VCN&#x27;s IP address space. The prefixes are provided by Oracle and the sizes are always /56.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -886,7 +886,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN&#x27;s IP address space.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 prefixes for the VCN&#x27;s IP address space.</div>
                                         <br/>
                                                         </td>
             </tr>

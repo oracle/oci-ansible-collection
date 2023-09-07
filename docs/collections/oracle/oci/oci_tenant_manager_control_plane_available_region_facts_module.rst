@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_available_region_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -277,7 +277,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the subscription to which the tenancy is associated.</div>
+                                            <div>OCID of the subscription.</div>
                                                         </td>
             </tr>
                                 <tr>
