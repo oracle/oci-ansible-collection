@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
             - Required to list multiple sender_invitations.
         type: str
     recipient_tenancy_id:

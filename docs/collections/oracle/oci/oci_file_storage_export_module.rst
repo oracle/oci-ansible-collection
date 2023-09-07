@@ -30,7 +30,7 @@ oracle.oci.oci_file_storage_export -- Manage an Export resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -303,6 +303,28 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-export_options/allowed_auth"></div>
+                    <b>allowed_auth</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_options/allowed_auth" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SYS</li>
+                                                                                                                                                                                                <li>KRB5</li>
+                                                                                                                                                                                                <li>KRB5I</li>
+                                                                                                                                                                                                <li>KRB5P</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Array of allowed NFS authentication types.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-export_options/anonymous_gid"></div>
                     <b>anonymous_gid</b>
                     <a class="ansibleOptionLink" href="#parameter-export_options/anonymous_gid" title="Permalink to this option"></a>
@@ -351,6 +373,26 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Used when clients accessing the file system through this export have their UID and GID remapped to &#x27;anonymousUid&#x27; and &#x27;anonymousGid&#x27;. If `ALL`, all users and groups are remapped; if `ROOT`, only the root user and group (UID/GID 0) are remapped; if `NONE`, no remapping is done. If unspecified, defaults to `ROOT`.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-export_options/is_anonymous_access_allowed"></div>
+                    <b>is_anonymous_access_allowed</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_options/is_anonymous_access_allowed" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether or not to enable anonymous access to the file system through this export in cases where a user isn&#x27;t found in the LDAP server used for ID mapping. If true, and the user is not found in the LDAP directory, the operation uses the Squash UID and Squash GID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -440,6 +482,26 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_idmap_groups_for_sys_auth"></div>
+                    <b>is_idmap_groups_for_sys_auth</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_idmap_groups_for_sys_auth" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether or not the export should use ID mapping for Unix groups rather than the group list provided within an NFS request&#x27;s RPC header. When this flag is true the Unix UID from the RPC header is used to retrieve the list of secondary groups from a the ID mapping subsystem. The primary GID is always taken from the RPC header. If ID mapping is not configured, incorrectly configured, unavailable, or cannot be used to determine a list of secondary groups then an empty secondary group list is used for authorization. If the number of groups exceeds the limit of 256 groups, the list retrieved from LDAP is truncated to the first 256 groups read.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -612,6 +674,7 @@ Examples
         path: path_example
 
         # optional
+        is_idmap_groups_for_sys_auth: true
         export_options:
         - # required
           source: source_example
@@ -622,6 +685,8 @@ Examples
           identity_squash: NONE
           anonymous_uid: 56
           anonymous_gid: 56
+          is_anonymous_access_allowed: true
+          allowed_auth: [ "SYS" ]
 
     - name: Update export
       oci_file_storage_export:
@@ -629,6 +694,7 @@ Examples
         export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        is_idmap_groups_for_sys_auth: true
         export_options:
         - # required
           source: source_example
@@ -639,6 +705,8 @@ Examples
           identity_squash: NONE
           anonymous_uid: 56
           anonymous_gid: 56
+          is_anonymous_access_allowed: true
+          allowed_auth: [ "SYS" ]
 
     - name: Delete export
       oci_file_storage_export:
@@ -681,7 +749,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Export resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;export_options&#x27;: [{&#x27;access&#x27;: &#x27;READ_WRITE&#x27;, &#x27;anonymous_gid&#x27;: 56, &#x27;anonymous_uid&#x27;: 56, &#x27;identity_squash&#x27;: &#x27;NONE&#x27;, &#x27;require_privileged_source_port&#x27;: True, &#x27;source&#x27;: &#x27;source_example&#x27;}], &#x27;export_set_id&#x27;: &#x27;ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;file_system_id&#x27;: &#x27;ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;export_options&#x27;: [{&#x27;access&#x27;: &#x27;READ_WRITE&#x27;, &#x27;allowed_auth&#x27;: [], &#x27;anonymous_gid&#x27;: 56, &#x27;anonymous_uid&#x27;: 56, &#x27;identity_squash&#x27;: &#x27;NONE&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;require_privileged_source_port&#x27;: True, &#x27;source&#x27;: &#x27;source_example&#x27;}], &#x27;export_set_id&#x27;: &#x27;ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;file_system_id&#x27;: &#x27;ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_idmap_groups_for_sys_auth&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -722,6 +790,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ_WRITE</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-export/export_options/allowed_auth"></div>
+                    <b>allowed_auth</b>
+                    <a class="ansibleOptionLink" href="#return-export/export_options/allowed_auth" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of allowed NFS authentication types.</div>
+                                        <br/>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -778,6 +863,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-export/export_options/is_anonymous_access_allowed"></div>
+                    <b>is_anonymous_access_allowed</b>
+                    <a class="ansibleOptionLink" href="#return-export/export_options/is_anonymous_access_allowed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether or not to enable anonymous access to the file system through this export in cases where a user isn&#x27;t found in the LDAP server used for ID mapping. If true, and the user is not found in the LDAP directory, the operation uses the Squash UID and Squash GID.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -872,6 +976,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-export/is_idmap_groups_for_sys_auth"></div>
+                    <b>is_idmap_groups_for_sys_auth</b>
+                    <a class="ansibleOptionLink" href="#return-export/is_idmap_groups_for_sys_auth" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether or not the export should use ID mapping for Unix groups rather than the group list provided within an NFS request&#x27;s RPC header. When this flag is true the Unix UID from the RPC header is used to retrieve the list of secondary groups from a the ID mapping subsystem. The primary GID is always taken from the RPC header. If ID mapping is not configured, incorrectly configured, unavailable, or cannot be used to determine a list of secondary groups then an empty secondary group list is used for authorization. If the number of groups exceeds the limit of 256 groups, the list retrieved from LDAP is truncated to the first 256 groups read.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

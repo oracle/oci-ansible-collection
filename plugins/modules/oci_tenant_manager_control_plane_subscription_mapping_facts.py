@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     subscription_id:
         description:
-            - The ID of the subscription to which the tenancy is associated.
+            - OCID of the subscription.
             - Required to list multiple subscription_mappings.
         type: str
     subscription_mapping_id:
@@ -41,7 +41,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - OCID of the compartment. Always a tenancy OCID.
+            - The ID of the compartment in which to list resources.
         type: str
     lifecycle_state:
         description:

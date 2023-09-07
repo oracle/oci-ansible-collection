@@ -32,7 +32,7 @@ options:
     plan_id:
         description:
             - The OCID of the DR Plan.
-            - "Example: `ocid1.drplan.oc1.iad.exampleocid2`"
+            - "Example: `ocid1.drplan.oc1.iad.&lt;unique_id&gt;`"
             - Required for create using I(state=present).
         type: str
     execution_options:
@@ -53,13 +53,13 @@ options:
                 required: true
             are_prechecks_enabled:
                 description:
-                    - A flag indicating whether a precheck should be executed before the plan.
+                    - A flag indicating whether prechecks should be executed before the plan execution.
                     - "Example: `false`"
                     - Applicable when plan_execution_type is one of ['SWITCHOVER', 'FAILOVER']
                 type: bool
             are_warnings_ignored:
                 description:
-                    - A flag indicating whether warnigs should be ignored during the switchover.
+                    - A flag indicating whether warnings should be ignored during the switchover precheck.
                     - "Example: `true`"
                 type: bool
     display_name:
@@ -172,14 +172,14 @@ dr_plan_execution:
         id:
             description:
                 - The OCID of the DR Plan Execution.
-                - "Example: `ocid1.drplanexecution.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drplanexecution.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing this DR Plan Execution.
-                - "Example: `ocid1.compartment.oc1..exampleocid1`"
+                - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -193,7 +193,7 @@ dr_plan_execution:
         plan_id:
             description:
                 - The OCID of the DR Plan.
-                - "Example: `ocid1.drplan.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drplan.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.plan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -211,7 +211,7 @@ dr_plan_execution:
             contains:
                 are_prechecks_enabled:
                     description:
-                        - A flag indicating whether a precheck was executed before the plan.
+                        - A flag indicating whether prechecks should be executed before the plan execution.
                         - "Example: `true`"
                     returned: on success
                     type: bool
@@ -224,7 +224,7 @@ dr_plan_execution:
                     sample: SWITCHOVER
                 are_warnings_ignored:
                     description:
-                        - A flag indicating whether warnigs was ignored during the failover.
+                        - A flag indicating whether warnings should be ignored during the plan execution.
                         - "Example: `false`"
                     returned: on success
                     type: bool
@@ -232,7 +232,7 @@ dr_plan_execution:
         dr_protection_group_id:
             description:
                 - The OCID of the DR Protection Group to which this DR Plan Execution belongs.
-                - "Example: `ocid1.drprotectiongroup.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drprotectiongroup.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.drprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -240,7 +240,7 @@ dr_plan_execution:
             description:
                 - The OCID of peer (remote) DR Protection Group associated with this plan's
                   DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.phx.exampleocid1`"
+                - "Example: `ocid1.drprotectiongroup.oc1.phx.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.peerdrprotectiongroup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -323,7 +323,7 @@ dr_plan_execution:
                 group_id:
                     description:
                         - The unique id of the group. Must not be modified by user.
-                        - "Example: `sgid1.group..examplegroupsgid`"
+                        - "Example: `sgid1.group..&lt;unique_id&gt;`"
                     returned: on success
                     type: str
                     sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
@@ -383,7 +383,7 @@ dr_plan_execution:
                         step_id:
                             description:
                                 - The unique id of this step. Must not be modified by user.
-                                - "Example: `sgid1.step..examplestepsgid`"
+                                - "Example: `sgid1.step..&lt;unique_id&gt;`"
                             returned: on success
                             type: str
                             sample: "ocid1.step.oc1..xxxxxxEXAMPLExxxxxx"
@@ -396,7 +396,7 @@ dr_plan_execution:
                         group_id:
                             description:
                                 - The unique id of the group to which this step belongs. Must not be modified by user.
-                                - "Example: `sgid1.group..examplegroupsgid`"
+                                - "Example: `sgid1.group..&lt;unique_id&gt;`"
                             returned: on success
                             type: str
                             sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"

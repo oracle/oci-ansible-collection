@@ -123,6 +123,109 @@ mount_targets:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        idmap_type:
+            description:
+                - The method used to map a Unix UID to secondary groups. If NONE, the mount target will not use the Unix UID for ID mapping.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: LDAP
+        ldap_idmap:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                schema_type:
+                    description:
+                        - Schema type of the LDAP account.
+                    returned: on success
+                    type: str
+                    sample: RFC2307
+                cache_refresh_interval_seconds:
+                    description:
+                        - The amount of time that the mount target should allow an entry to persist in its cache before attempting to refresh the entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                cache_lifetime_seconds:
+                    description:
+                        - The maximum amount of time the mount target is allowed to use a cached entry.
+                    returned: on success
+                    type: int
+                    sample: 56
+                negative_cache_lifetime_seconds:
+                    description:
+                        - The amount of time that a mount target will maintain information that a user is not found in the ID mapping configuration.
+                    returned: on success
+                    type: int
+                    sample: 56
+                user_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this user.
+                        - "Example: `CN=User,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: user_search_base_example
+                group_search_base:
+                    description:
+                        - All LDAP searches are recursive starting at this group.
+                        - "Example: `CN=Group,DC=domain,DC=com`"
+                    returned: on success
+                    type: str
+                    sample: group_search_base_example
+                outbound_connector1_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the first connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx"
+                outbound_connector2_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second connector to use to communicate with
+                          the LDAP server.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
+        kerberos:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                kerberos_realm:
+                    description:
+                        - The Kerberos realm that the mount target will join.
+                    returned: on success
+                    type: str
+                    sample: kerberos_realm_example
+                key_tab_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the keytab secret in the Vault.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                current_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secret in the Vault to use.
+                    returned: on success
+                    type: int
+                    sample: 56
+                backup_key_tab_secret_version:
+                    description:
+                        - Version of the keytab secert in the Vault to use as a backup.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_kerberos_enabled:
+                    description:
+                        - Specifies whether to enable or disable Kerberos.
+                    returned: on success
+                    type: bool
+                    sample: true
         availability_domain:
             description:
                 - The availability domain the mount target is in. May be unset
@@ -214,6 +317,24 @@ mount_targets:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "lifecycle_details": "lifecycle_details_example",
+        "idmap_type": "LDAP",
+        "ldap_idmap": {
+            "schema_type": "RFC2307",
+            "cache_refresh_interval_seconds": 56,
+            "cache_lifetime_seconds": 56,
+            "negative_cache_lifetime_seconds": 56,
+            "user_search_base": "user_search_base_example",
+            "group_search_base": "group_search_base_example",
+            "outbound_connector1_id": "ocid1.outboundconnector1.oc1..xxxxxxEXAMPLExxxxxx",
+            "outbound_connector2_id": "ocid1.outboundconnector2.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "kerberos": {
+            "kerberos_realm": "kerberos_realm_example",
+            "key_tab_secret_id": "ocid1.keytabsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "current_key_tab_secret_version": 56,
+            "backup_key_tab_secret_version": 56,
+            "is_kerberos_enabled": true
+        },
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

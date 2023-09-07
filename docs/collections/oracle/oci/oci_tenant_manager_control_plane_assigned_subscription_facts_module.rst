@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_assigned_subscription_facts -- Fetch
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -159,7 +159,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the assigned subscription.</div>
+                                            <div>OCID of the assigned Oracle Cloud Subscription.</div>
                                             <div>Required to get a specific assigned_subscription.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -231,7 +231,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the compartment. Always a tenancy OCID.</div>
+                                            <div>The ID of the compartment in which to list resources.</div>
                                             <div>Required to list multiple assigned_subscriptions.</div>
                                                         </td>
             </tr>
@@ -263,6 +263,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-entity_version"></div>
+                    <b>entity_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-entity_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>V1</li>
+                                                                                                                                                                                                <li>V2</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The version of the subscription entity.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -406,6 +425,7 @@ Examples
         subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
         sort_order: ASC
         sort_by: timeCreated
+        entity_version: V1
 
 
 
@@ -442,7 +462,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AssignedSubscription resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;classic_subscription_id&#x27;: &#x27;ocid1.classicsubscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cloud_amount_currency&#x27;: &#x27;cloud_amount_currency_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;customer_country_code&#x27;: &#x27;customer_country_code_example&#x27;, &#x27;end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_classic_subscription&#x27;: True, &#x27;is_government_subscription&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;order_ids&#x27;: [], &#x27;program_type&#x27;: &#x27;program_type_example&#x27;, &#x27;promotion&#x27;: [{&#x27;amount&#x27;: 3.4, &#x27;currency_unit&#x27;: &#x27;currency_unit_example&#x27;, &#x27;duration&#x27;: 56, &#x27;duration_unit&#x27;: &#x27;duration_unit_example&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;status&#x27;: &#x27;INITIALIZED&#x27;, &#x27;time_expired&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;purchase_entitlement_id&#x27;: &#x27;ocid1.purchaseentitlement.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;region_assignment&#x27;: &#x27;region_assignment_example&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;skus&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;gsi_order_line_id&#x27;: &#x27;ocid1.gsiorderline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_additional_instance&#x27;: True, &#x27;is_base_service_component&#x27;: True, &#x27;license_part_description&#x27;: &#x27;license_part_description_example&#x27;, &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;quantity&#x27;: 56, &#x27;sku&#x27;: &#x27;sku_example&#x27;, &#x27;start_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;start_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;subscription_tier&#x27;: &#x27;subscription_tier_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;classic_subscription_id&#x27;: &#x27;ocid1.classicsubscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cloud_amount_currency&#x27;: &#x27;cloud_amount_currency_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;customer_country_code&#x27;: &#x27;customer_country_code_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;entity_version&#x27;: &#x27;V1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_classic_subscription&#x27;: True, &#x27;is_government_subscription&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;order_ids&#x27;: [], &#x27;program_type&#x27;: &#x27;program_type_example&#x27;, &#x27;promotion&#x27;: [{&#x27;amount&#x27;: 3.4, &#x27;currency_unit&#x27;: &#x27;currency_unit_example&#x27;, &#x27;duration&#x27;: 56, &#x27;duration_unit&#x27;: &#x27;duration_unit_example&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;status&#x27;: &#x27;INITIALIZED&#x27;, &#x27;time_expired&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;purchase_entitlement_id&#x27;: &#x27;ocid1.purchaseentitlement.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;region_assignment&#x27;: &#x27;region_assignment_example&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;skus&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;gsi_order_line_id&#x27;: &#x27;ocid1.gsiorderline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_additional_instance&#x27;: True, &#x27;is_base_service_component&#x27;: True, &#x27;license_part_description&#x27;: &#x27;license_part_description_example&#x27;, &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;quantity&#x27;: 56, &#x27;sku&#x27;: &#x27;sku_example&#x27;, &#x27;start_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;start_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;subscription_number&#x27;: &#x27;subscription_number_example&#x27;, &#x27;subscription_tier&#x27;: &#x27;subscription_tier_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -458,6 +478,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Subscription ID.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.classicsubscription.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -494,7 +515,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>OCID of the compartment. Always a tenancy OCID.</div>
+                                            <div>The Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>) of the owning compartment. Always a tenancy OCID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -513,9 +534,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Customer service identifier for the customer associated with the subscription.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">csi_number_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/currency_code"></div>
+                    <b>currency_code</b>
+                    <a class="ansibleOptionLink" href="#return-assigned_subscriptions/currency_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Currency code. For example USD, MXN.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">currency_code_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -540,6 +581,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-assigned_subscriptions/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/end_date"></div>
                     <b>end_date</b>
                     <a class="ansibleOptionLink" href="#return-assigned_subscriptions/end_date" title="Permalink to this return value"></a>
@@ -550,9 +609,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Subscription end time.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/entity_version"></div>
+                    <b>entity_version</b>
+                    <a class="ansibleOptionLink" href="#return-assigned_subscriptions/entity_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The entity version of the subscription, whether V1 (the legacy schema version), or V2 (the latest 20230401 API version).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">V1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-assigned_subscriptions/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
                                 <tr>
@@ -567,7 +663,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>OCID of the subscription.</div>
+                                            <div>The Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>) of the subscription.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -585,7 +681,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Denotes if the subscription is legacy or not.</div>
+                                            <div>Specifies whether or not the subscription is legacy.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -603,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Denotes whether or not the subscription is a government subscription.</div>
+                                            <div>Specifies whether or not the subscription is a government subscription.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -623,6 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Lifecycle state of the subscription.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -657,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Denotes any program that is associated with the subscription.</div>
+                                            <div>Specifies any program that is associated with the subscription.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -694,7 +792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If a subscription is present, indicates the total amount of promotional subscription credit.</div>
+                                            <div>If a subscription is present, indicates the total amount of promotional subscription credits.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -866,6 +964,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Region for the subscription.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_assignment_example</div>
@@ -883,7 +982,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of subscription, such as &#x27;CLOUDCM&#x27;, &#x27;SAAS&#x27;, &#x27;ERP&#x27;, or &#x27;CRM&#x27;.</div>
+                                            <div>The type of subscription, such as &#x27;UCM&#x27;, &#x27;SAAS&#x27;, &#x27;ERP&#x27;, &#x27;CRM&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_name_example</div>
@@ -938,7 +1037,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date-time when the SKU ended.</div>
+                                            <div>Date and time when the SKU ended.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -976,7 +1075,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Denotes if an additional test instance can be provisioned by the SAAS application.</div>
+                                            <div>Specifies if an additional test instance can be provisioned by the SaaS application.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -995,7 +1094,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Denotes if the SKU is considered as a parent or child.</div>
+                                            <div>Specifies if the SKU is considered as a parent or child.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1071,7 +1170,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Stock keeping unit ID.</div>
+                                            <div>Stock Keeping Unit (SKU) ID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sku_example</div>
@@ -1090,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date-time when the SKU was created.</div>
+                                            <div>Date and time when the SKU was created.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1110,9 +1209,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Subscription start time.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-assigned_subscriptions/subscription_number"></div>
+                    <b>subscription_number</b>
+                    <a class="ansibleOptionLink" href="#return-assigned_subscriptions/subscription_number" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique Oracle Cloud Subscriptions identifier that is immutable on creation.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">subscription_number_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1127,7 +1246,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tier for the subscription, whether it is a free promotion subscription or a paid subscription.</div>
+                                            <div>Tier for the subscription, whether a free promotion subscription or a paid subscription.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1146,7 +1265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date-time when subscription is created.</div>
+                                            <div>The date and time of creation, as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1164,7 +1283,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date-time when subscription is updated.</div>
+                                            <div>The date and time of update, as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn_facts -- Fetches details about one or multiple Vcn re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -482,7 +482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                            <div>The list of BYOIPv6 prefixes required to create a VCN that uses BYOIPv6 ranges.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -700,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 prefixes for the VCN&#x27;s IP address space. The prefixes are provided by Oracle and the sizes are always /56.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -716,7 +716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN&#x27;s IP address space.</div>
+                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 prefixes for the VCN&#x27;s IP address space.</div>
                                         <br/>
                                                         </td>
             </tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_bds_auto_scale_config -- Manage a BdsAutoScaleConfig resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1424,7 +1424,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Details of a vertical scaling schedule.</div>
                                             <div>Applicable when policy_type is one of [&#x27;SCHEDULE_BASED_VERTICAL_SCALING_POLICY&#x27;, &#x27;SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY&#x27;]</div>
                                                         </td>
             </tr>
@@ -1463,7 +1463,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Time of day and horizontal scaling configuration.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1517,7 +1517,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Time of day and vertical scaling configuration</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -3114,7 +3114,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Details of a horizontal scaling schedule.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3152,7 +3152,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Time of day and horizontal scaling configuration.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3213,7 +3213,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Time of day and vertical scaling configuration</div>
                                         <br/>
                                                         </td>
             </tr>

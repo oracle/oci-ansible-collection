@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an instance pool.
+- To determine whether capacity is available for a specific shape before you create an instance pool, use the `CreateComputeCapacityReport <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport>`_ operation.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_compute_management_instance_pool_actions <ansible_collections.oracle.oci.oci_compute_management_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, softstop, start, stop.
 
 
@@ -340,6 +341,38 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_display_name_formatter"></div>
+                    <b>instance_display_name_formatter</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_display_name_formatter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance displaynames follow the format. The formatter does not retroactively change instance&#x27;s displaynames, only instance displaynames in the future follow the format</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_hostname_formatter"></div>
+                    <b>instance_hostname_formatter</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_hostname_formatter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance hostnames follow the format. The formatter does not retroactively change instance&#x27;s hostnames, only instance hostnames in the future follow the format</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-instance_pool_id"></div>
                     <b>instance_pool_id</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_pool_id" title="Permalink to this option"></a>
@@ -521,7 +554,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet in which to place instances.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -754,6 +787,8 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
+        instance_display_name_formatter: instance_display_name_formatter_example
+        instance_hostname_formatter: instance_hostname_formatter_example
 
     - name: Update instance_pool
       oci_compute_management_instance_pool:
@@ -779,6 +814,8 @@ Examples
             # optional
             display_name: display_name_example
         size: 56
+        instance_display_name_formatter: instance_display_name_formatter_example
+        instance_hostname_formatter: instance_hostname_formatter_example
 
     - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
@@ -804,6 +841,8 @@ Examples
             # optional
             display_name: display_name_example
         size: 56
+        instance_display_name_formatter: instance_display_name_formatter_example
+        instance_hostname_formatter: instance_hostname_formatter_example
 
     - name: Delete instance_pool
       oci_compute_management_instance_pool:
@@ -853,7 +892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the InstancePool resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_formatter&#x27;: &#x27;instance_display_name_formatter_example&#x27;, &#x27;instance_hostname_formatter&#x27;: &#x27;instance_hostname_formatter_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -964,6 +1003,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-instance_pool/instance_display_name_formatter"></div>
+                    <b>instance_display_name_formatter</b>
+                    <a class="ansibleOptionLink" href="#return-instance_pool/instance_display_name_formatter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance displaynames follow the format. The formatter does not retroactively change instance&#x27;s displaynames, only instance displaynames in the future follow the format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_display_name_formatter_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-instance_pool/instance_hostname_formatter"></div>
+                    <b>instance_hostname_formatter</b>
+                    <a class="ansibleOptionLink" href="#return-instance_pool/instance_hostname_formatter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly formatter for the instance pool&#x27;s instances. Instance hostnames follow the format. The formatter does not retroactively change instance&#x27;s hostnames, only instance hostnames in the future follow the format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_hostname_formatter_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1204,7 +1279,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet in which to place instances.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx</div>

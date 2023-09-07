@@ -170,6 +170,14 @@ vcn_topology:
                             returned: on success
                             type: str
                             sample: STATIC
+        limited_entities:
+            description:
+                - "Lists entities that are limited during ingestion.
+                  The values for the items in the list are the entity type names of the limitedEntities.
+                  Example: `vcn`"
+            returned: on success
+            type: list
+            sample: []
         time_created:
             description:
                 - Records when the virtual network topology was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format for date and time.
@@ -199,6 +207,7 @@ vcn_topology:
                 "route_type": "STATIC"
             }
         }],
+        "limited_entities": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }

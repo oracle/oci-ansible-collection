@@ -186,6 +186,20 @@ exports:
                     returned: on success
                     type: int
                     sample: 56
+                is_anonymous_access_allowed:
+                    description:
+                        - Whether or not to enable anonymous access to the file system through this export in cases where a user isn't found in the LDAP server
+                          used for ID mapping.
+                          If true, and the user is not found in the LDAP directory, the operation uses the Squash UID and Squash GID.
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_auth:
+                    description:
+                        - Array of allowed NFS authentication types.
+                    returned: on success
+                    type: list
+                    sample: []
         export_set_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
@@ -218,6 +232,16 @@ exports:
             returned: on success
             type: str
             sample: path_example
+        is_idmap_groups_for_sys_auth:
+            description:
+                - Whether or not the export should use ID mapping for Unix groups rather than the group list provided within an NFS request's RPC header. When
+                  this flag is true the Unix UID from the RPC header is used to retrieve the list of secondary groups from a the ID mapping subsystem. The
+                  primary GID is always taken from the RPC header. If ID mapping is not configured, incorrectly configured, unavailable, or cannot be used to
+                  determine a list of secondary groups then an empty secondary group list is used for authorization. If the number of groups exceeds the limit
+                  of 256 groups, the list retrieved from LDAP is truncated to the first 256 groups read.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The date and time the export was created, expressed
@@ -233,13 +257,16 @@ exports:
             "access": "READ_WRITE",
             "identity_squash": "NONE",
             "anonymous_uid": 56,
-            "anonymous_gid": 56
+            "anonymous_gid": 56,
+            "is_anonymous_access_allowed": true,
+            "allowed_auth": []
         }],
         "export_set_id": "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx",
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "path": "path_example",
+        "is_idmap_groups_for_sys_auth": true,
         "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """

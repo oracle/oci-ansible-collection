@@ -57,8 +57,8 @@ options:
     compute_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
-              A compute cluster is a remote direct memory access (RDMA) network group.
-              For more information, see L(Compute Clusters,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm).
+              A L(compute cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) is a remote direct memory
+              access (RDMA) network group.
         type: str
     display_name:
         description:
@@ -234,9 +234,9 @@ instances:
                   over iSCSI the same way as the default iPXE script, use the
                   following iSCSI IP address: 169.254.0.2, and boot volume IQN:
                   iqn.2015-02.oracle.boot."
-                - If your instance boot volume type is paravirtualized,
+                - If your instance boot volume attachment type is paravirtualized,
                   the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
-                  If your instance boot volume type is paravirtualized
+                  If your instance boot volume attachment type is paravirtualized
                   and you use custom iPXE to network boot into your instance,
                   the primary boot volume is attached as a data volume through virtio-scsi drive.
                 - For more information about the Bring Your Own Image feature of
@@ -492,6 +492,14 @@ instances:
                     returned: on success
                     type: str
                     sample: local_disk_description_example
+                vcpus:
+                    description:
+                        - The total number of VCPUs available to the instance. This can be used instead of OCPUs,
+                          in which case the actual number of OCPUs will be calculated based on this value
+                          and the actual hardware. This must be a multiple of 2.
+                    returned: on success
+                    type: int
+                    sample: 56
         is_cross_numa_node:
             description:
                 - Whether the instance's OCPUs and memory are distributed across multiple NUMA nodes.
@@ -550,6 +558,40 @@ instances:
                     returned: on success
                     type: int
                     sample: 56
+                instance_source_image_filter_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        compartment_id:
+                            description:
+                                - The OCID of the compartment containing images to search
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                        defined_tags_filter:
+                            description:
+                                - Filter based on these defined tags. Each key is predefined and scoped to a
+                                  namespace. For more information, see L(Resource
+                                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                            returned: on success
+                            type: dict
+                            sample: {}
+                        operating_system:
+                            description:
+                                - The image's operating system.
+                                - "Example: `Oracle Linux`"
+                            returned: on success
+                            type: str
+                            sample: operating_system_example
+                        operating_system_version:
+                            description:
+                                - The image's operating system version.
+                                - "Example: `7.2`"
+                            returned: on success
+                            type: str
+                            sample: operating_system_version_example
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -728,6 +770,13 @@ instances:
                     returned: on success
                     type: bool
                     sample: true
+        instance_configuration_id:
+            description:
+                - The OCID of the Instance Configuration used to source launch details for this instance. Any other fields supplied in the instance launch
+                  request override the details stored in the Instance Configuration for this instance launch.
+            returned: on success
+            type: str
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         primary_private_ip:
             description:
                 - The private IP of the primary VNIC attached to this instance
@@ -790,7 +839,8 @@ instances:
             "gpu_description": "gpu_description_example",
             "local_disks": 56,
             "local_disks_total_size_in_gbs": 3.4,
-            "local_disk_description": "local_disk_description_example"
+            "local_disk_description": "local_disk_description_example",
+            "vcpus": 56
         },
         "is_cross_numa_node": true,
         "source_details": {
@@ -799,7 +849,13 @@ instances:
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-            "boot_volume_vpus_per_gb": 56
+            "boot_volume_vpus_per_gb": 56,
+            "instance_source_image_filter_details": {
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "defined_tags_filter": {},
+                "operating_system": "operating_system_example",
+                "operating_system_version": "operating_system_version_example"
+            }
         },
         "system_tags": {},
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -826,6 +882,7 @@ instances:
             "is_measured_boot_enabled": true,
             "is_memory_encryption_enabled": true
         },
+        "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
         "primary_private_ip": "10.0.0.10",
         "primary_public_ip": "140.34.93.209"
     }]

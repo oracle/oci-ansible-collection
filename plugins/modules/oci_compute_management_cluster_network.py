@@ -23,8 +23,20 @@ module: oci_compute_management_cluster_network
 short_description: Manage a ClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ClusterNetwork resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a cluster network. For more information about cluster networks, see
-      L(Managing Cluster Networks,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm).
+    - For I(state=present), creates a L(cluster network with instance
+      pools,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm).
+      A cluster network is a group of high performance computing (HPC), GPU, or optimized bare metal
+      instances that are connected with an ultra low-latency remote direct memory access (RDMA) network.
+      Cluster networks with instance pools use instance pools to manage groups of identical instances.
+    - Use cluster networks with instance pools when you want predictable capacity for a specific number of identical
+      instances that are managed as a group.
+    - If you want to manage instances in the RDMA network independently of each other or use different types of instances
+      in the network group, create a compute cluster by using the L(CreateComputeCluster,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/ComputeCluster/CreateComputeCluster)
+      operation.
+    - To determine whether capacity is available for a specific shape before you create a cluster network,
+      use the L(CreateComputeCapacityReport,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport)
+      operation.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_cluster_network_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -49,6 +61,14 @@ options:
                     - "Example: `Uocm:PHX-AD-1`"
                 type: str
                 required: true
+            placement_constraint:
+                description:
+                    - The placement constraint when reserving hosts.
+                type: str
+                choices:
+                    - "SINGLE_TIER"
+                    - "SINGLE_BLOCK"
+                    - "PACKED_DISTRIBUTION_MULTI_BLOCK"
             primary_subnet_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
@@ -72,6 +92,21 @@ options:
                             - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                         type: str
                         required: true
+    cluster_configuration:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            network_block_ids:
+                description:
+                    - The list of network block OCIDs.
+                type: list
+                elements: str
+            hpc_island_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HPC island.
+                type: str
+                required: true
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -172,6 +207,7 @@ EXAMPLES = """
       primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
+      placement_constraint: SINGLE_TIER
       secondary_vnic_subnets:
       - # required
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -188,6 +224,12 @@ EXAMPLES = """
       instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    cluster_configuration:
+      # required
+      hpc_island_id: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      network_block_ids: [ "network_block_ids_example" ]
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -264,7 +306,7 @@ cluster_network:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         hpc_island_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the hpc island used by the cluster network.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HPC island used by the cluster network.
             returned: on success
             type: str
             sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
@@ -370,8 +412,8 @@ cluster_network:
                             sample: Uocm:PHX-AD-1
                         primary_subnet_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
-                                  instances.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to
+                                  place instances.
                             returned: on success
                             type: str
                             sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -474,6 +516,20 @@ cluster_network:
                             returned: on success
                             type: str
                             sample: ATTACHING
+                instance_display_name_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+                          The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_display_name_formatter_example
+                instance_hostname_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+                          The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_hostname_formatter_example
         placement_configuration:
             description:
                 - ""
@@ -487,6 +543,12 @@ cluster_network:
                     returned: on success
                     type: str
                     sample: Uocm:PHX-AD-1
+                placement_constraint:
+                    description:
+                        - The placement constraint when reserving hosts.
+                    returned: on success
+                    type: str
+                    sample: SINGLE_TIER
                 primary_subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
@@ -568,10 +630,13 @@ cluster_network:
                 "port": 56,
                 "vnic_selection": "vnic_selection_example",
                 "lifecycle_state": "ATTACHING"
-            }]
+            }],
+            "instance_display_name_formatter": "instance_display_name_formatter_example",
+            "instance_hostname_formatter": "instance_hostname_formatter_example"
         }],
         "placement_configuration": {
             "availability_domain": "Uocm:PHX-AD-1",
+            "placement_constraint": "SINGLE_TIER",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
             "secondary_vnic_subnets": [{
                 "display_name": "display_name_example",
@@ -682,6 +747,9 @@ class ClusterNetworkHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateClusterNetworkDetails
 
+    def get_exclude_attributes(self):
+        return ["cluster_configuration"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -749,6 +817,14 @@ def main():
                 type="dict",
                 options=dict(
                     availability_domain=dict(type="str", required=True),
+                    placement_constraint=dict(
+                        type="str",
+                        choices=[
+                            "SINGLE_TIER",
+                            "SINGLE_BLOCK",
+                            "PACKED_DISTRIBUTION_MULTI_BLOCK",
+                        ],
+                    ),
                     primary_subnet_id=dict(type="str", required=True),
                     secondary_vnic_subnets=dict(
                         type="list",
@@ -758,6 +834,13 @@ def main():
                             subnet_id=dict(type="str", required=True),
                         ),
                     ),
+                ),
+            ),
+            cluster_configuration=dict(
+                type="dict",
+                options=dict(
+                    network_block_ids=dict(type="list", elements="str"),
+                    hpc_island_id=dict(type="str", required=True),
                 ),
             ),
             defined_tags=dict(type="dict"),

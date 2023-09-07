@@ -172,6 +172,10 @@ options:
                       Examples: \\"\\" (empty string), \\"10\\", \\"mydata.xml\\", \\"${x}\\""
                 type: str
                 required: true
+    pool_id:
+        description:
+            - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+        type: str
     spark_version:
         description:
             - The Spark version utilized to run the application. This value may be set if applicationId is not since the Spark version will be taken from the
@@ -268,6 +272,7 @@ EXAMPLES = """
     - # required
       name: name_example
       value: value_example
+    pool_id: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
     spark_version: spark_version_example
     type: BATCH
     warehouse_bucket_uri: warehouse_bucket_uri_example
@@ -569,6 +574,12 @@ run:
                     returned: on success
                     type: str
                     sample: value_example
+        pool_id:
+            description:
+                - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+            returned: on success
+            type: str
+            sample: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_dns_zones:
             description:
                 - "An array of DNS zone names.
@@ -617,14 +628,14 @@ run:
             sample: spark_version_example
         time_created:
             description:
-                - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
@@ -705,6 +716,7 @@ run:
             "name": "name_example",
             "value": "value_example"
         }],
+        "pool_id": "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx",
         "private_endpoint_dns_zones": [],
         "private_endpoint_max_host_count": 56,
         "private_endpoint_nsg_ids": [],
@@ -791,7 +803,7 @@ class DataFlowRunHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["application_id", "display_name"]
+        optional_list_method_params = ["application_id", "pool_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])
@@ -905,6 +917,7 @@ def main():
                     value=dict(type="str", required=True),
                 ),
             ),
+            pool_id=dict(type="str"),
             spark_version=dict(type="str"),
             type=dict(type="str", choices=["BATCH", "STREAMING", "SESSION"]),
             warehouse_bucket_uri=dict(type="str"),

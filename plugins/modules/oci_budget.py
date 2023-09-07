@@ -80,12 +80,25 @@ options:
         type: int
     processing_period_type:
         description:
-            - The type of the budget processing period. Valid values are INVOICE and MONTH.
+            - The type of the budget processing period. Valid values are INVOICE, MONTH, and SINGLE_USE.
             - This parameter is updatable.
         type: str
         choices:
             - "INVOICE"
             - "MONTH"
+            - "SINGLE_USE"
+    start_date:
+        description:
+            - The date when the one-time budget begins. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to the
+              starting point of the date provided after being converted to UTC time.
+            - This parameter is updatable.
+        type: str
+    end_date:
+        description:
+            - The date when the one-time budget concludes. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to the
+              starting point of the date provided after being converted to UTC time.
+            - This parameter is updatable.
+        type: str
     reset_period:
         description:
             - The reset period for the budget.
@@ -143,6 +156,8 @@ EXAMPLES = """
     description: description_example
     budget_processing_period_start_offset: 56
     processing_period_type: INVOICE
+    start_date: start_date_example
+    end_date: end_date_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -157,6 +172,8 @@ EXAMPLES = """
     amount: 3.4
     budget_processing_period_start_offset: 56
     processing_period_type: INVOICE
+    start_date: start_date_example
+    end_date: end_date_example
     reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -172,6 +189,8 @@ EXAMPLES = """
     amount: 3.4
     budget_processing_period_start_offset: 56
     processing_period_type: INVOICE
+    start_date: start_date_example
+    end_date: end_date_example
     reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -252,10 +271,24 @@ budget:
             sample: 56
         processing_period_type:
             description:
-                - The type of the budget processing period. Valid values are INVOICE and MONTH.
+                - The budget processing period type. Valid values are INVOICE, MONTH, and SINGLE_USE.
             returned: on success
             type: str
             sample: INVOICE
+        start_date:
+            description:
+                - The date when the one-time budget begins. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to the
+                  starting point of the date provided after being converted to UTC time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        end_date:
+            description:
+                - The time when the one-time budget concludes. For example, `2023-03-23`. The date-time format conforms to RFC 3339, and will be truncated to
+                  the starting point of the date provided after being converted to UTC time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         target_type:
             description:
                 - The type of target on which the budget is applied.
@@ -345,6 +378,8 @@ budget:
         "reset_period": "MONTHLY",
         "budget_processing_period_start_offset": 56,
         "processing_period_type": "INVOICE",
+        "start_date": "2013-10-20T19:20:30+01:00",
+        "end_date": "2013-10-20T19:20:30+01:00",
         "target_type": "COMPARTMENT",
         "targets": [],
         "lifecycle_state": "ACTIVE",
@@ -519,7 +554,11 @@ def main():
             description=dict(type="str"),
             amount=dict(type="float"),
             budget_processing_period_start_offset=dict(type="int"),
-            processing_period_type=dict(type="str", choices=["INVOICE", "MONTH"]),
+            processing_period_type=dict(
+                type="str", choices=["INVOICE", "MONTH", "SINGLE_USE"]
+            ),
+            start_date=dict(type="str"),
+            end_date=dict(type="str"),
             reset_period=dict(type="str", choices=["MONTHLY"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

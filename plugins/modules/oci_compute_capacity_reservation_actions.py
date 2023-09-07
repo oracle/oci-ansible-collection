@@ -143,13 +143,13 @@ compute_capacity_reservation:
                     contains:
                         hpc_island_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HpcIsland.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HPC island.
                             returned: on success
                             type: str
                             sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
                         network_block_ids:
                             description:
-                                - The list of OCID of the network blocks.
+                                - The list of OCIDs of the network blocks.
                             returned: on success
                             type: list
                             sample: []

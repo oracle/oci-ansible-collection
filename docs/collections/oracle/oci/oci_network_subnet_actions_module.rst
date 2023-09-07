@@ -30,7 +30,7 @@ oracle.oci.oci_network_subnet_actions -- Perform actions on a Subnet resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on a Subnet resource in Oracle Cloud Infrastructure
-- For *action=add_ipv6_subnet_cidr*, add an IPv6 CIDR to a subnet.
+- For *action=add_ipv6_subnet_cidr*, add an IPv6 prefix to a subnet.
 - For *action=change_compartment*, moves a subnet into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
-- For *action=remove_ipv6_subnet_cidr*, remove an IPv6 CIDR from a subnet. At least one IPv6 CIDR should remain.
+- For *action=remove_ipv6_subnet_cidr*, remove an IPv6 prefix from a subnet. At least one IPv6 CIDR should remain.
 
 
 .. Aliases
@@ -281,7 +281,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This field is not required and should only be specified when adding an IPv6 CIDR to a subnet&#x27;s IPv6 address space. SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).</div>
+                                            <div>This field is not required and should only be specified when adding an IPv6 prefix to a subnet&#x27;s IPv6 address space. SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).</div>
                                             <div>Example: `2001:0db8:0123::/64`</div>
                                             <div>Required for <em>action=add_ipv6_subnet_cidr</em>, <em>action=remove_ipv6_subnet_cidr</em>.</div>
                                                         </td>
@@ -650,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet&#x27;s IP address space. The subnet size is always /64. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>For an IPv6-enabled subnet, this is the IPv6 prefix for the subnet&#x27;s IP address space. The subnet size is always /64. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `2001:0db8:0123:1111::/64`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -669,7 +669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.</div>
+                                            <div>The list of all IPv6 prefixes (Oracle allocated IPv6 GUA, ULA or private IPv6 prefixes, BYOIPv6 prefixes) for the subnet.</div>
                                         <br/>
                                                         </td>
             </tr>

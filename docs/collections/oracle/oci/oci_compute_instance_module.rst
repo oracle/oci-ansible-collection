@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -65,6 +65,7 @@ Synopsis
 - When you launch an instance, it is automatically attached to a virtual network interface card (VNIC), called the *primary VNIC*. The VNIC has a private IP address from the subnet's CIDR. You can either assign a private IP address of your choice or let Oracle automatically assign one. You can choose whether the instance has a public IP address. To retrieve the addresses, use the `ListVnicAttachments <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments>`_ operation to get the VNIC ID for the instance, and then call `GetVnic <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/GetVnic>`_ with the VNIC ID.
 - You can later add secondary VNICs to an instance. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
 - To launch an instance from a Marketplace image listing, you must provide the image ID of the listing resource version that you want, but you also must subscribe to the listing before you try to launch the instance. To subscribe to the listing, use the `GetAppCatalogListingAgreements <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersionAgreements/GetAppCatalogListingAgreements>`_ operation to get the signature for the terms of use agreement for the desired listing resource version. Then, call `CreateAppCatalogSubscription <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogSubscription/CreateAppCatalogSubscription>`_ with the signature. To get the image ID for the LaunchInstance operation, call `GetAppCatalogListingResourceVersion <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion>`_.
+- To determine whether capacity is available for a specific shape before you create an instance, use the `CreateComputeCapacityReport <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ComputeCapacityReport/CreateComputeCapacityReport>`_ operation.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_compute_instance_actions <ansible_collections.oracle.oci.oci_compute_instance_actions_module>` module: stop, start, softreset, reset, softstop, senddiagnosticinterrupt, diagnosticreboot, rebootmigrate.
 
 
@@ -885,6 +886,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_configuration_id"></div>
+                    <b>instance_configuration_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_configuration_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the Instance Configuration containing instance launch details. Any other fields supplied in this instance launch request will override the details stored in the Instance Configuration for this instance launch.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-instance_id"></div>
                     <b>instance_id</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_id" title="Permalink to this option"></a>
@@ -954,7 +970,7 @@ Parameters
                                             <div>When a bare metal or virtual machine instance boots, the iPXE firmware that runs on the instance is configured to run an iPXE script to continue the boot process.</div>
                                             <div>If you want more control over the boot process, you can provide your own custom iPXE script that will run when the instance boots. Be aware that the same iPXE script will run every time an instance boots, not only after the initial LaunchInstance call.</div>
                                             <div>The default iPXE script connects to the instance&#x27;s local boot volume over iSCSI and performs a network boot. If you use a custom iPXE script and want to network-boot from the instance&#x27;s local boot volume over iSCSI the same way as the default iPXE script, use the following iSCSI IP address: 169.254.0.2, and boot volume IQN: iqn.2015-02.oracle.boot.</div>
-                                            <div>If your instance boot volume type is paravirtualized, the boot volume is attached to the instance through virtio-scsi and no iPXE script is used. If your instance boot volume type is paravirtualized and you use custom iPXE to network boot into your instance, the primary boot volume is attached as a data volume through virtio-scsi drive.</div>
+                                            <div>If your instance boot volume attachment type is paravirtualized, the boot volume is attached to the instance through virtio-scsi and no iPXE script is used. If your instance boot volume attachment type is paravirtualized and you use custom iPXE to network boot into your instance, the primary boot volume is attached as a data volume through virtio-scsi drive.</div>
                                             <div>For more information about the Bring Your Own Image feature of Oracle Cloud Infrastructure, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm'>Bring Your Own Image</a>.</div>
                                             <div>For more information about iPXE, see http://ipxe.org.</div>
                                                         </td>
@@ -1558,7 +1574,6 @@ Parameters
                                                                 <td>
                                             <div>The shape of an instance. The shape determines the number of CPUs, amount of memory, and other resources allocated to the instance.</div>
                                             <div>You can enumerate all available shapes by calling <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes'>ListShapes</a>.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1652,6 +1667,23 @@ Parameters
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-shape_config/vcpus"></div>
+                    <b>vcpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-shape_config/vcpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of VCPUs available to the instance. This can be used instead of OCPUs, in which case the actual number of OCPUs will be calculated based on this value and the actual hardware. This must be a multiple of 2.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                                                 <td colspan="3">
@@ -1738,9 +1770,101 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the image used to boot the instance.</div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-source_details/instance_source_image_filter_details"></div>
+                    <b>instance_source_image_filter_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_details/instance_source_image_filter_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_details/instance_source_image_filter_details/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_details/instance_source_image_filter_details/compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compartment containing images to search</div>
                                             <div>Required when source_type is &#x27;image&#x27;</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_details/instance_source_image_filter_details/defined_tags_filter"></div>
+                    <b>defined_tags_filter</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_details/instance_source_image_filter_details/defined_tags_filter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter based on these defined tags. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_details/instance_source_image_filter_details/operating_system"></div>
+                    <b>operating_system</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_details/instance_source_image_filter_details/operating_system" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The image&#x27;s operating system.</div>
+                                            <div>Example: `Oracle Linux`</div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_details/instance_source_image_filter_details/operating_system_version"></div>
+                    <b>operating_system_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_details/instance_source_image_filter_details/operating_system_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The image&#x27;s operating system version.</div>
+                                            <div>Example: `7.2`</div>
+                                            <div>Applicable when source_type is &#x27;image&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -1935,7 +2059,6 @@ Examples
         # required
         availability_domain: Uocm:PHX-AD-1
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        shape: shape_example
 
         # optional
         create_vnic_details:
@@ -1966,13 +2089,21 @@ Examples
             preserve_boot_volume: true
         source_details:
           # required
-          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
           source_type: image
 
           # optional
           boot_volume_size_in_gbs: 56
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
           boot_volume_vpus_per_gb: 56
+          instance_source_image_filter_details:
+            # required
+            compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            defined_tags_filter: null
+            operating_system: operating_system_example
+            operating_system_version: operating_system_version_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_pv_encryption_in_transit_enabled: true
         platform_config:
@@ -1989,6 +2120,7 @@ Examples
           is_access_control_service_enabled: true
           are_virtual_instructions_enabled: true
           is_input_output_memory_management_unit_enabled: true
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
@@ -2004,9 +2136,11 @@ Examples
             desired_state: ENABLED
         metadata: null
         extended_metadata: null
+        shape: shape_example
         shape_config:
           # optional
           ocpus: 3.4
+          vcpus: 56
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
           nvmes: 56
@@ -2052,6 +2186,7 @@ Examples
         shape_config:
           # optional
           ocpus: 3.4
+          vcpus: 56
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
           nvmes: 56
@@ -2099,6 +2234,7 @@ Examples
         shape_config:
           # optional
           ocpus: 3.4
+          vcpus: 56
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
           nvmes: 56
@@ -2172,7 +2308,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Instance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;is_live_migration_preferred&#x27;: True, &#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_cross_numa_node&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_memory_encryption_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;boot_volume_vpus_per_gb&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;is_live_migration_preferred&#x27;: True, &#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_cross_numa_node&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_memory_encryption_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;vcpus&#x27;: 56}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;boot_volume_vpus_per_gb&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_source_image_filter_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags_filter&#x27;: {}, &#x27;operating_system&#x27;: &#x27;operating_system_example&#x27;, &#x27;operating_system_version&#x27;: &#x27;operating_system_version_example&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2576,6 +2712,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-instance/instance_configuration_id"></div>
+                    <b>instance_configuration_id</b>
+                    <a class="ansibleOptionLink" href="#return-instance/instance_configuration_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the Instance Configuration used to source launch details for this instance. Any other fields supplied in the instance launch request override the details stored in the Instance Configuration for this instance launch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-instance/instance_options"></div>
                     <b>instance_options</b>
                     <a class="ansibleOptionLink" href="#return-instance/instance_options" title="Permalink to this return value"></a>
@@ -2624,7 +2778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When a bare metal or virtual machine instance boots, the iPXE firmware that runs on the instance is configured to run an iPXE script to continue the boot process.</div>
                                             <div>If you want more control over the boot process, you can provide your own custom iPXE script that will run when the instance boots. Be aware that the same iPXE script will run every time an instance boots, not only after the initial LaunchInstance call.</div>
                                             <div>The default iPXE script connects to the instance&#x27;s local boot volume over iSCSI and performs a network boot. If you use a custom iPXE script and want to network-boot from the instance&#x27;s local boot volume over iSCSI the same way as the default iPXE script, use the following iSCSI IP address: 169.254.0.2, and boot volume IQN: iqn.2015-02.oracle.boot.</div>
-                                            <div>If your instance boot volume type is paravirtualized, the boot volume is attached to the instance through virtio-scsi and no iPXE script is used. If your instance boot volume type is paravirtualized and you use custom iPXE to network boot into your instance, the primary boot volume is attached as a data volume through virtio-scsi drive.</div>
+                                            <div>If your instance boot volume attachment type is paravirtualized, the boot volume is attached to the instance through virtio-scsi and no iPXE script is used. If your instance boot volume attachment type is paravirtualized and you use custom iPXE to network boot into your instance, the primary boot volume is attached as a data volume through virtio-scsi drive.</div>
                                             <div>For more information about the Bring Your Own Image feature of Oracle Cloud Infrastructure, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm'>Bring Your Own Image</a>.</div>
                                             <div>For more information about iPXE, see http://ipxe.org.</div>
                                         <br/>
@@ -3439,6 +3593,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">processor_description_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance/shape_config/vcpus"></div>
+                    <b>vcpus</b>
+                    <a class="ansibleOptionLink" href="#return-instance/shape_config/vcpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of VCPUs available to the instance. This can be used instead of OCPUs, in which case the actual number of OCPUs will be calculated based on this value and the actual hardware. This must be a multiple of 2.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -3537,6 +3710,104 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/instance_source_image_filter_details"></div>
+                    <b>instance_source_image_filter_details</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/instance_source_image_filter_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/instance_source_image_filter_details/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/instance_source_image_filter_details/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compartment containing images to search</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/instance_source_image_filter_details/defined_tags_filter"></div>
+                    <b>defined_tags_filter</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/instance_source_image_filter_details/defined_tags_filter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Filter based on these defined tags. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/instance_source_image_filter_details/operating_system"></div>
+                    <b>operating_system</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/instance_source_image_filter_details/operating_system" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The image&#x27;s operating system.</div>
+                                            <div>Example: `Oracle Linux`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">operating_system_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/instance_source_image_filter_details/operating_system_version"></div>
+                    <b>operating_system_version</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/instance_source_image_filter_details/operating_system_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The image&#x27;s operating system version.</div>
+                                            <div>Example: `7.2`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">operating_system_version_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>

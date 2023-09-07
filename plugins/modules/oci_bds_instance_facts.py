@@ -352,6 +352,12 @@ bds_instances:
                     returned: on success
                     type: float
                     sample: 1.2
+                time_maintenance_reboot_due:
+                    description:
+                        - The date and time the instance is expected to be stopped / started, in the format defined by RFC3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         cloud_sql_details:
             description:
                 - ""
@@ -461,6 +467,12 @@ bds_instances:
             returned: on success
             type: int
             sample: 56
+        number_of_nodes_requiring_maintenance_reboot:
+            description:
+                - Number of nodes that require a maintenance reboot
+            returned: on success
+            type: int
+            sample: 56
         cluster_version:
             description:
                 - Version of the Hadoop distribution.
@@ -482,6 +494,12 @@ bds_instances:
         is_cloud_sql_configured:
             description:
                 - Boolean flag specifying whether or not Cloud SQL should be configured.
+            returned: on success
+            type: bool
+            sample: true
+        is_kafka_configured:
+            description:
+                - Boolean flag specifying whether or not Kafka should be configured.
             returned: on success
             type: bool
             sample: true
@@ -555,7 +573,8 @@ bds_instances:
             "ocpus": 56,
             "memory_in_gbs": 56,
             "nvmes": 56,
-            "local_disks_total_size_in_gbs": 1.2
+            "local_disks_total_size_in_gbs": 1.2,
+            "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00"
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -576,10 +595,12 @@ bds_instances:
         "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
         "number_of_nodes": 56,
+        "number_of_nodes_requiring_maintenance_reboot": 56,
         "cluster_version": "CDH5",
         "is_high_availability": true,
         "is_secure": true,
         "is_cloud_sql_configured": true,
+        "is_kafka_configured": true,
         "cluster_profile": "HADOOP_EXTENDED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

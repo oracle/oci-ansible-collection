@@ -23,7 +23,9 @@ module: oci_compute_management_cluster_network_actions
 short_description: Perform actions on a ClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ClusterNetwork resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a cluster network into a different compartment within the same tenancy. For
+    - For I(action=change_compartment), moves a L(cluster network with instance
+      pools,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm)
+      into a different compartment within the same tenancy. For
       information about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
       When you move a cluster network to a different compartment, associated resources such as the instances
@@ -84,7 +86,7 @@ cluster_network:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         hpc_island_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the hpc island used by the cluster network.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HPC island used by the cluster network.
             returned: on success
             type: str
             sample: "ocid1.hpcisland.oc1..xxxxxxEXAMPLExxxxxx"
@@ -190,8 +192,8 @@ cluster_network:
                             sample: Uocm:PHX-AD-1
                         primary_subnet_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
-                                  instances.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to
+                                  place instances.
                             returned: on success
                             type: str
                             sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -294,6 +296,20 @@ cluster_network:
                             returned: on success
                             type: str
                             sample: ATTACHING
+                instance_display_name_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+                          The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_display_name_formatter_example
+                instance_hostname_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+                          The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_hostname_formatter_example
         placement_configuration:
             description:
                 - ""
@@ -307,6 +323,12 @@ cluster_network:
                     returned: on success
                     type: str
                     sample: Uocm:PHX-AD-1
+                placement_constraint:
+                    description:
+                        - The placement constraint when reserving hosts.
+                    returned: on success
+                    type: str
+                    sample: SINGLE_TIER
                 primary_subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
@@ -388,10 +410,13 @@ cluster_network:
                 "port": 56,
                 "vnic_selection": "vnic_selection_example",
                 "lifecycle_state": "ATTACHING"
-            }]
+            }],
+            "instance_display_name_formatter": "instance_display_name_formatter_example",
+            "instance_hostname_formatter": "instance_hostname_formatter_example"
         }],
         "placement_configuration": {
             "availability_domain": "Uocm:PHX-AD-1",
+            "placement_constraint": "SINGLE_TIER",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
             "secondary_vnic_subnets": [{
                 "display_name": "display_name_example",

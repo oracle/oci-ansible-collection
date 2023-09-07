@@ -23,7 +23,8 @@ module: oci_compute_management_cluster_network_facts
 short_description: Fetches details about one or multiple ClusterNetwork resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ClusterNetwork resources in Oracle Cloud Infrastructure
-    - Lists the cluster networks in the specified compartment.
+    - Lists the L(cluster networks with instance pools,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm)
+      in the specified compartment.
     - If I(cluster_network_id) is specified, the details of a single ClusterNetwork will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -110,7 +111,7 @@ cluster_networks:
     contains:
         hpc_island_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the hpc island used by the cluster network.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the HPC island used by the cluster network.
                 - Returned for get operation
             returned: on success
             type: str
@@ -136,6 +137,12 @@ cluster_networks:
                     returned: on success
                     type: str
                     sample: Uocm:PHX-AD-1
+                placement_constraint:
+                    description:
+                        - The placement constraint when reserving hosts.
+                    returned: on success
+                    type: str
+                    sample: SINGLE_TIER
                 primary_subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
@@ -270,8 +277,8 @@ cluster_networks:
                             sample: Uocm:PHX-AD-1
                         primary_subnet_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
-                                  instances.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet in which to
+                                  place instances.
                             returned: on success
                             type: str
                             sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -374,6 +381,20 @@ cluster_networks:
                             returned: on success
                             type: str
                             sample: ATTACHING
+                instance_display_name_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance displaynames follow the format.
+                          The formatter does not retroactively change instance's displaynames, only instance displaynames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_display_name_formatter_example
+                instance_hostname_formatter:
+                    description:
+                        - A user-friendly formatter for the instance pool's instances. Instance hostnames follow the format.
+                          The formatter does not retroactively change instance's hostnames, only instance hostnames in the future follow the format
+                    returned: on success
+                    type: str
+                    sample: instance_hostname_formatter_example
                 availability_domains:
                     description:
                         - The availability domains for the instance pool.
@@ -405,6 +426,7 @@ cluster_networks:
         "network_block_ids": [],
         "placement_configuration": {
             "availability_domain": "Uocm:PHX-AD-1",
+            "placement_constraint": "SINGLE_TIER",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
             "secondary_vnic_subnets": [{
                 "display_name": "display_name_example",
@@ -444,6 +466,8 @@ cluster_networks:
                 "vnic_selection": "vnic_selection_example",
                 "lifecycle_state": "ATTACHING"
             }],
+            "instance_display_name_formatter": "instance_display_name_formatter_example",
+            "instance_hostname_formatter": "instance_hostname_formatter_example",
             "availability_domains": []
         }],
         "lifecycle_state": "PROVISIONING",

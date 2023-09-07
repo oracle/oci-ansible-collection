@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_route_rules_actions -- Perform actions on a DrgRouteR
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -349,7 +349,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>This is the range of IP addresses used for matching when routing traffic. Only CIDR_BLOCK values are allowed.</div>
-                                            <div>Potential values: * IP address range in CIDR notation. This can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`.</div>
+                                            <div>Potential values: * IP address range in CIDR notation. This can be an IPv4 CIDR block or IPv6 prefix. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`.</div>
                                                         </td>
             </tr>
                                 <tr>

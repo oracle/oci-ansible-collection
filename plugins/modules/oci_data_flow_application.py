@@ -240,6 +240,11 @@ options:
                       Examples: \\"\\" (empty string), \\"10\\", \\"mydata.xml\\", \\"${x}\\""
                 type: str
                 required: true
+    pool_id:
+        description:
+            - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+            - This parameter is updatable.
+        type: str
     private_endpoint_id:
         description:
             - The OCID of a private endpoint.
@@ -324,6 +329,7 @@ EXAMPLES = """
     - # required
       name: name_example
       value: value_example
+    pool_id: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     warehouse_bucket_uri: warehouse_bucket_uri_example
     max_duration_in_minutes: 56
@@ -368,6 +374,7 @@ EXAMPLES = """
     - # required
       name: name_example
       value: value_example
+    pool_id: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     warehouse_bucket_uri: warehouse_bucket_uri_example
     max_duration_in_minutes: 56
@@ -412,6 +419,7 @@ EXAMPLES = """
     - # required
       name: name_example
       value: value_example
+    pool_id: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     warehouse_bucket_uri: warehouse_bucket_uri_example
     max_duration_in_minutes: 56
@@ -675,6 +683,12 @@ application:
                     returned: on success
                     type: str
                     sample: value_example
+        pool_id:
+            description:
+                - The OCID of a pool. Unique Id to indentify a dataflow pool resource.
+            returned: on success
+            type: str
+            sample: "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_id:
             description:
                 - The OCID of a private endpoint.
@@ -689,14 +703,14 @@ application:
             sample: spark_version_example
         time_created:
             description:
-                - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                - "The date and time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
@@ -767,6 +781,7 @@ application:
             "name": "name_example",
             "value": "value_example"
         }],
+        "pool_id": "ocid1.pool.oc1..xxxxxxEXAMPLExxxxxx",
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "spark_version": "spark_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -991,6 +1006,7 @@ def main():
                     value=dict(type="str", required=True),
                 ),
             ),
+            pool_id=dict(type="str"),
             private_endpoint_id=dict(type="str"),
             warehouse_bucket_uri=dict(type="str"),
             max_duration_in_minutes=dict(type="int"),

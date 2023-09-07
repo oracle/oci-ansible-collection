@@ -23,7 +23,7 @@ module: oci_disaster_recovery_dr_protection_group_actions
 short_description: Perform actions on a DrProtectionGroup resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DrProtectionGroup resource in Oracle Cloud Infrastructure
-    - "For I(action=associate), create an association the DR Protection Group identified by *drProtectionGroupId* and
+    - "For I(action=associate), create an association between the DR Protection Group identified by *drProtectionGroupId* and
       another DR Protection Group in a different region."
     - "For I(action=change_compartment), move the DR Protection Group identified by *drProtectionGroupId* to a different compartment."
     - "For I(action=disassociate), delete the association between the DR Protection Group identified by *drProtectionGroupId*.
@@ -35,7 +35,7 @@ options:
     peer_id:
         description:
             - The OCID of the peer (remote) DR Protection Group.
-            - "Example: `ocid1.drprotectiongroup.oc1.iad.exampleocid2`"
+            - "Example: `ocid1.drprotectiongroup.oc1.iad.&lt;unique_id&gt;`"
             - Applicable only for I(action=associate).
         type: str
     peer_region:
@@ -47,7 +47,7 @@ options:
     compartment_id:
         description:
             - The OCID of the compartment to which the DR Protection Group should be moved.
-            - "Example: `ocid1.compartment.oc1..exampleocid1`"
+            - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             - Required for I(action=change_compartment).
         type: str
     type:
@@ -129,14 +129,14 @@ dr_protection_group:
         id:
             description:
                 - The OCID of the DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.phx.exampleocid1`"
+                - "Example: `ocid1.drprotectiongroup.oc1.phx.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the DR Protection Group.
-                - "Example: `ocid1.compartment.oc1..exampleocid1`"
+                - "Example: `ocid1.compartment.oc1..&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -156,7 +156,7 @@ dr_protection_group:
         peer_id:
             description:
                 - The OCID of the peer (remote) DR Protection Group.
-                - "Example: `ocid1.drprotectiongroup.oc1.iad.exampleocid2`"
+                - "Example: `ocid1.drprotectiongroup.oc1.iad.&lt;unique_id&gt;`"
             returned: on success
             type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -234,6 +234,66 @@ dr_protection_group:
                             returned: on success
                             type: list
                             sample: []
+                is_retain_fault_domain:
+                    description:
+                        - A flag indicating if this compute instance should be moved to the same fault domain.
+                          Compute instance launch will fail if this flag is set to true and capacity is not available in that specific fault domain in the
+                          destination region.
+                        - "Example: `false`"
+                    returned: on success
+                    type: bool
+                    sample: true
+                destination_capacity_reservation_id:
+                    description:
+                        - The OCID of the capacity reservation in the destination region using which this compute instance
+                          should be launched.
+                        - "Example: `ocid1.capacityreservation.oc1..&lt;unique_id&gt;`"
+                    returned: on success
+                    type: str
+                    sample: "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                vnic_mappings:
+                    description:
+                        - A list of compute instance VNIC mappings.
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_vnic_id:
+                            description:
+                                - The OCID of the VNIC.
+                                - "Example: `ocid1.vnic.oc1..&lt;unique_id&gt;`"
+                            returned: on success
+                            type: str
+                            sample: "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx"
+                        destination_subnet_id:
+                            description:
+                                - The OCID of the destination (remote) subnet to which this VNIC should connect.
+                                - "Example: `ocid1.subnet.oc1..&lt;unique_id&gt;`"
+                            returned: on success
+                            type: str
+                            sample: "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+                        destination_primary_private_ip_address:
+                            description:
+                                - The primary private IP address to assign. This address must belong to the destination subnet.
+                                - "Example: `10.0.3.3`"
+                            returned: on success
+                            type: str
+                            sample: destination_primary_private_ip_address_example
+                        destination_primary_private_ip_hostname_label:
+                            description:
+                                - The hostname to assign for this primary private IP.
+                                  The value is the hostname portion of the private IP's fully qualified domain name (FQDN)
+                                  (for example, bminstance1 in FQDN bminstance1.subnet123.vcn1.oraclevcn.com).
+                                - "Example: `bminstance1`"
+                            returned: on success
+                            type: str
+                            sample: destination_primary_private_ip_hostname_label_example
+                        destination_nsg_id_list:
+                            description:
+                                - A list of destination region's network security group (NSG) OCIDs which this VNIC should use.
+                                - "Example: `[ ocid1.networksecuritygroup.oc1..&lt;unique_id&gt;, ocid1.networksecuritygroup.oc1..&lt;unique_id&gt; ]`"
+                            returned: on success
+                            type: list
+                            sample: []
                 destination_compartment_id:
                     description:
                         - The OCID of the compartment for this compute instance in the destination region.
@@ -258,7 +318,7 @@ dr_protection_group:
                 member_id:
                     description:
                         - The OCID of the member.
-                        - "Example: `ocid1.instance.oc1.phx.exampleocid1`"
+                        - "Example: `ocid1.instance.oc1.phx.&lt;unique_id&gt;`"
                     returned: on success
                     type: str
                     sample: "ocid1.member.oc1..xxxxxxEXAMPLExxxxxx"
@@ -332,6 +392,15 @@ dr_protection_group:
             "vnic_mapping": [{
                 "source_vnic_id": "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx",
                 "destination_subnet_id": "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_nsg_id_list": []
+            }],
+            "is_retain_fault_domain": true,
+            "destination_capacity_reservation_id": "ocid1.destinationcapacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+            "vnic_mappings": [{
+                "source_vnic_id": "ocid1.sourcevnic.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_subnet_id": "ocid1.destinationsubnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "destination_primary_private_ip_address": "destination_primary_private_ip_address_example",
+                "destination_primary_private_ip_hostname_label": "destination_primary_private_ip_hostname_label_example",
                 "destination_nsg_id_list": []
             }],
             "destination_compartment_id": "ocid1.destinationcompartment.oc1..xxxxxxEXAMPLExxxxxx",

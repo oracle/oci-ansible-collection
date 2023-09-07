@@ -24,8 +24,9 @@ short_description: Manage a BdsInstance resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Big Data Service cluster.
-    - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql,
-      add_worker_nodes, change_compartment, change_shape, execute_bootstrap_script, install_patch, remove_cloud_sql, remove_node, restart_node, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql, add_kafka,
+      add_master_nodes, add_utility_nodes, add_worker_nodes, change_compartment, change_shape, execute_bootstrap_script, get_os_patch_details, install_os_patch,
+      install_patch, list_os_patches, remove_cloud_sql, remove_kafka, remove_node, restart_node, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -307,6 +308,12 @@ bds_instance:
             returned: on success
             type: bool
             sample: true
+        is_kafka_configured:
+            description:
+                - Boolean flag specifying whether or not Kafka should be configured.
+            returned: on success
+            type: bool
+            sample: true
         network_config:
             description:
                 - ""
@@ -553,6 +560,12 @@ bds_instance:
                     returned: on success
                     type: float
                     sample: 1.2
+                time_maintenance_reboot_due:
+                    description:
+                        - The date and time the instance is expected to be stopped / started, in the format defined by RFC3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         cloud_sql_details:
             description:
                 - ""
@@ -627,6 +640,12 @@ bds_instance:
             returned: on success
             type: int
             sample: 56
+        number_of_nodes_requiring_maintenance_reboot:
+            description:
+                - Number of nodes that require a maintenance reboot
+            returned: on success
+            type: int
+            sample: 56
         bootstrap_script_url:
             description:
                 - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
@@ -668,6 +687,7 @@ bds_instance:
         "is_high_availability": true,
         "is_secure": true,
         "is_cloud_sql_configured": true,
+        "is_kafka_configured": true,
         "network_config": {
             "is_nat_gateway_required": true,
             "cidr_block": "cidr_block_example"
@@ -711,7 +731,8 @@ bds_instance:
             "ocpus": 56,
             "memory_in_gbs": 56,
             "nvmes": 56,
-            "local_disks_total_size_in_gbs": 1.2
+            "local_disks_total_size_in_gbs": 1.2,
+            "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00"
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -727,6 +748,7 @@ bds_instance:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "number_of_nodes": 56,
+        "number_of_nodes_requiring_maintenance_reboot": 56,
         "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

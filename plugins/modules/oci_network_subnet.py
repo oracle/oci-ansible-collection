@@ -107,7 +107,7 @@ options:
               If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
               subnet cannot have public IP addresses (that is, it's a private
               subnet).
-            - If you intend to use an IPv6 CIDR block, you should use the flag `prohibitInternetIngress` to
+            - If you intend to use an IPv6 prefix, you should use the flag `prohibitInternetIngress` to
               specify ingress internet traffic behavior of the subnet.
             - "Example: `true`"
         type: bool
@@ -182,11 +182,11 @@ options:
         type: str
     ipv6_cidr_blocks:
         description:
-            - "The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet that meets the
-              following criteria:
-              - The CIDR blocks must be valid.
-              - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block.
-              - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a subnet."
+            - "The list of all IPv6 prefixes (Oracle allocated IPv6 GUA, ULA or private IPv6 prefixes, BYOIPv6 prefixes) for the subnet that meets the following
+              criteria:
+              - The prefixes must be valid.
+              - Multiple prefixes must not overlap each other or the on-premises network prefix.
+              - The number of prefixes must not exceed the limit of IPv6 prefixes allowed to a subnet."
             - This parameter is updatable.
         type: list
         elements: str
@@ -359,7 +359,7 @@ subnet:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_block:
             description:
-                - For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's IP address space.
+                - For an IPv6-enabled subnet, this is the IPv6 prefix for the subnet's IP address space.
                   The subnet size is always /64. See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `2001:0db8:0123:1111::/64`"
             returned: on success
@@ -367,7 +367,7 @@ subnet:
             sample: ipv6_cidr_block_example
         ipv6_cidr_blocks:
             description:
-                - The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.
+                - The list of all IPv6 prefixes (Oracle allocated IPv6 GUA, ULA or private IPv6 prefixes, BYOIPv6 prefixes) for the subnet.
             returned: on success
             type: list
             sample: []

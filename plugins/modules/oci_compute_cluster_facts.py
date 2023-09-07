@@ -32,8 +32,8 @@ options:
     compute_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
-              A compute cluster is a remote direct memory access (RDMA) network group.
-              For more information, see L(Compute Clusters,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm).
+              A L(compute cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) is a remote direct memory
+              access (RDMA) network group.
             - Required to get a specific compute_cluster.
         type: str
         aliases: ["id"]
@@ -104,14 +104,14 @@ compute_clusters:
     contains:
         availability_domain:
             description:
-                - "The availability domain the compute cluster is running in.
-                  Example: `Uocm:PHX-AD-1`"
+                - The availability domain the compute cluster is running in.
+                - "Example: `Uocm:PHX-AD-1`"
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains this compute cluster.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the compute cluster.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -124,7 +124,7 @@ compute_clusters:
             sample: display_name_example
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this compute cluster.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -136,9 +136,9 @@ compute_clusters:
             sample: ACTIVE
         time_created:
             description:
-                - "The date and time the compute cluster was created,
+                - The date and time the compute cluster was created,
                   in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: `2016-08-25T21:10:29.600Z`"
+                - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

@@ -30,7 +30,7 @@ oracle.oci.oci_tenant_manager_control_plane_recipient_invitation_facts -- Fetche
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -214,7 +214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the compartment. Always a tenancy OCID.</div>
+                                            <div>The ID of the compartment in which to list resources.</div>
                                             <div>Required to list multiple recipient_invitations.</div>
                                                         </td>
             </tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_functions_function -- Manage a Function resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -450,7 +450,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Configuration specifying a constant amount of provisioned concurrency.</div>
                                             <div>Required when strategy is &#x27;CONSTANT&#x27;</div>
                                                         </td>
             </tr>
@@ -822,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Function resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;image_example&#x27;, &#x27;image_digest&#x27;: &#x27;image_digest_example&#x27;, &#x27;invoke_endpoint&#x27;: &#x27;invoke_endpoint_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_mbs&#x27;: 56, &#x27;provisioned_concurrency_config&#x27;: {&#x27;count&#x27;: 56, &#x27;strategy&#x27;: &#x27;CONSTANT&#x27;}, &#x27;source_details&#x27;: {&#x27;pbf_listing_id&#x27;: &#x27;ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;PRE_BUILT_FUNCTIONS&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;trace_config&#x27;: {&#x27;is_enabled&#x27;: True}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;image_example&#x27;, &#x27;image_digest&#x27;: &#x27;image_digest_example&#x27;, &#x27;invoke_endpoint&#x27;: &#x27;invoke_endpoint_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_mbs&#x27;: 56, &#x27;provisioned_concurrency_config&#x27;: {&#x27;count&#x27;: 56, &#x27;strategy&#x27;: &#x27;CONSTANT&#x27;}, &#x27;shape&#x27;: &#x27;GENERIC_X86&#x27;, &#x27;source_details&#x27;: {&#x27;pbf_listing_id&#x27;: &#x27;ocid1.pbflisting.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;PRE_BUILT_FUNCTIONS&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;trace_config&#x27;: {&#x27;is_enabled&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1072,7 +1072,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Configuration specifying a constant amount of provisioned concurrency.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1098,6 +1098,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-function/shape"></div>
+                    <b>shape</b>
+                    <a class="ansibleOptionLink" href="#return-function/shape" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The processor shape (`GENERIC_X86`/`GENERIC_ARM`) on which to run functions in the application, extracted from the image manifest.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GENERIC_X86</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_facts -- Fetches details about one or multiple BdsIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -471,7 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BdsInstance resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_profile&#x27;: &#x27;HADOOP_EXTENDED&#x27;, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;local_disks_total_size_in_gbs&#x27;: 1.2, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_profile&#x27;: &#x27;HADOOP_EXTENDED&#x27;, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_kafka_configured&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;local_disks_total_size_in_gbs&#x27;: 1.2, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;number_of_nodes_requiring_maintenance_reboot&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1132,6 +1132,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_instances/is_kafka_configured"></div>
+                    <b>is_kafka_configured</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instances/is_kafka_configured" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean flag specifying whether or not Kafka should be configured.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-bds_instances/is_secure"></div>
                     <b>is_secure</b>
                     <a class="ansibleOptionLink" href="#return-bds_instances/is_secure" title="Permalink to this return value"></a>
@@ -1642,6 +1660,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instances/nodes/time_maintenance_reboot_due"></div>
+                    <b>time_maintenance_reboot_due</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instances/nodes/time_maintenance_reboot_due" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the instance is expected to be stopped / started, in the format defined by RFC3339.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-bds_instances/nodes/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-bds_instances/nodes/time_updated" title="Permalink to this return value"></a>
@@ -1671,6 +1708,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Number of nodes that forming the cluster</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_instances/number_of_nodes_requiring_maintenance_reboot"></div>
+                    <b>number_of_nodes_requiring_maintenance_reboot</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instances/number_of_nodes_requiring_maintenance_reboot" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Number of nodes that require a maintenance reboot</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

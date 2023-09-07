@@ -30,7 +30,7 @@ oracle.oci.oci_file_storage_snapshot_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,6 +59,7 @@ Synopsis
 - Fetches details about one or multiple Snapshot resources in Oracle Cloud Infrastructure
 - Lists snapshots of the specified file system, or by file system snapshot policy and compartment, or by file system snapshot policy and file system.
 - If file system ID is not specified, a file system snapshot policy ID and compartment ID must be specified.
+- Users can only sort by time created when listing snapshots by file system snapshot policy ID and compartment ID (sort by name is NOT supported for listing snapshots by policy and compartment).
 - If *snapshot_id* is specified, the details of a single Snapshot will be returned.
 
 

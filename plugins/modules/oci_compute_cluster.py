@@ -23,26 +23,30 @@ module: oci_compute_cluster
 short_description: Manage a ComputeCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ComputeCluster resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates an empty compute cluster, which is a remote direct memory access (RDMA) network group.
-      After the compute cluster is created, you can use the compute cluster's OCID with the
+    - For I(state=present), creates an empty L(compute cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm). A compute cluster
+      is a remote direct memory access (RDMA) network group.
+    - After the compute cluster is created, you can use the compute cluster's OCID with the
       L(LaunchInstance,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance) operation to create instances in the compute
       cluster.
-      For more information, see L(Compute Clusters,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm).
-    - To create a cluster network that uses intance pools to manage groups of identical instances,
-      see L(CreateClusterNetwork,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ClusterNetwork/CreateClusterNetwork).
+      The instances must be created in the same compartment and availability domain as the cluster.
+    - Use compute clusters when you want to manage instances in the cluster individually, or when you want
+      to use different types of instances in the RDMA network group.
+    - If you want predictable capacity for a specific number of identical instances that are managed as a group,
+      create a cluster network that uses instance pools by using the
+      L(CreateClusterNetwork,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ClusterNetwork/CreateClusterNetwork) operation.
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_cluster_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     availability_domain:
         description:
-            - "The availability domain that the compute cluster is running in.
-              Example: `Uocm:PHX-AD-1`"
+            - The availability domain to place the compute cluster in.
+            - "Example: `Uocm:PHX-AD-1`"
             - Required for create using I(state=present).
         type: str
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains this compute cluster.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -73,8 +77,8 @@ options:
     compute_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
-              A compute cluster is a remote direct memory access (RDMA) network group.
-              For more information, see L(Compute Clusters,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm).
+              A L(compute cluster,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/compute-clusters.htm) is a remote direct memory
+              access (RDMA) network group.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -147,14 +151,14 @@ compute_cluster:
     contains:
         availability_domain:
             description:
-                - "The availability domain the compute cluster is running in.
-                  Example: `Uocm:PHX-AD-1`"
+                - The availability domain the compute cluster is running in.
+                - "Example: `Uocm:PHX-AD-1`"
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains this compute cluster.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the compute cluster.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -184,7 +188,7 @@ compute_cluster:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this compute cluster.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute cluster.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -196,9 +200,9 @@ compute_cluster:
             sample: ACTIVE
         time_created:
             description:
-                - "The date and time the compute cluster was created,
+                - The date and time the compute cluster was created,
                   in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: `2016-08-25T21:10:29.600Z`"
+                - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
