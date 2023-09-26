@@ -1136,7 +1136,7 @@ class DatabaseHelperGen(OCIResourceHelperBase):
         return CreateDatabaseBase
 
     def get_exclude_attributes(self):
-        return ["db_version", "database", "source"]
+        return ["database", "source"]
 
     def create_resource(self):
         create_details = self.get_create_model()
