@@ -166,6 +166,13 @@ autonomous_virtual_machines:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        cloud_autonomous_vm_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Cloud Autonomous VM Cluster associated with the
+                  Autonomous Virtual Machine.
+            returned: on success
+            type: str
+            sample: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "vm_name": "vm_name_example",
@@ -179,7 +186,8 @@ autonomous_virtual_machines:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "cloud_autonomous_vm_cluster_id": "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

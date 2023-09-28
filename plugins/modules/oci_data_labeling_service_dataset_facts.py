@@ -112,6 +112,14 @@ datasets:
             returned: on success
             type: str
             sample: description_example
+        lifecycle_substate:
+            description:
+                - "The sub-state of the dataset.
+                  IMPORT_DATASET - The dataset is being imported."
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: IMPORT_DATASET
         dataset_source_details:
             description:
                 - ""
@@ -176,6 +184,62 @@ datasets:
                     returned: on success
                     type: float
                     sample: 10
+        initial_import_dataset_configuration:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                import_format:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of import format
+                            returned: on success
+                            type: str
+                            sample: JSONL_CONSOLIDATED
+                        version:
+                            description:
+                                - Version of import format
+                            returned: on success
+                            type: str
+                            sample: V2003
+                import_metadata_path:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_type:
+                            description:
+                                - "The type of data source.
+                                  OBJECT_STORAGE - The source details for an object storage bucket."
+                            returned: on success
+                            type: str
+                            sample: OBJECT_STORAGE
+                        namespace:
+                            description:
+                                - Bucket namespace name
+                            returned: on success
+                            type: str
+                            sample: namespace_example
+                        bucket:
+                            description:
+                                - Bucket name
+                            returned: on success
+                            type: str
+                            sample: bucket_example
+                        path:
+                            description:
+                                - Path for the metadata file.
+                            returned: on success
+                            type: str
+                            sample: path_example
         labeling_instructions:
             description:
                 - The labeling instructions for human labelers in rich text format
@@ -183,6 +247,14 @@ datasets:
             returned: on success
             type: str
             sample: labeling_instructions_example
+        additional_properties:
+            description:
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         id:
             description:
                 - The OCID of the Dataset.
@@ -317,6 +389,7 @@ datasets:
             sample: {}
     sample: [{
         "description": "description_example",
+        "lifecycle_substate": "IMPORT_DATASET",
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
             "namespace": "namespace_example",
@@ -331,7 +404,20 @@ datasets:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "initial_import_dataset_configuration": {
+            "import_format": {
+                "name": "JSONL_CONSOLIDATED",
+                "version": "V2003"
+            },
+            "import_metadata_path": {
+                "source_type": "OBJECT_STORAGE",
+                "namespace": "namespace_example",
+                "bucket": "bucket_example",
+                "path": "path_example"
+            }
+        },
         "labeling_instructions": "labeling_instructions_example",
+        "additional_properties": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

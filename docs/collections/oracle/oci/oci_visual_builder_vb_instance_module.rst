@@ -30,7 +30,7 @@ oracle.oci.oci_visual_builder_vb_instance -- Manage a VbInstance resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -781,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VbInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_info&#x27;: {&#x27;idcs_app_display_name&#x27;: &#x27;idcs_app_display_name_example&#x27;, &#x27;idcs_app_id&#x27;: &#x27;ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_app_location_url&#x27;: &#x27;idcs_app_location_url_example&#x27;, &#x27;idcs_app_name&#x27;: &#x27;idcs_app_name_example&#x27;, &#x27;instance_primary_audience_url&#x27;: &#x27;instance_primary_audience_url_example&#x27;}, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_count&#x27;: 56, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_info&#x27;: {&#x27;idcs_app_display_name&#x27;: &#x27;idcs_app_display_name_example&#x27;, &#x27;idcs_app_id&#x27;: &#x27;ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_app_location_url&#x27;: &#x27;idcs_app_location_url_example&#x27;, &#x27;idcs_app_name&#x27;: &#x27;idcs_app_name_example&#x27;, &#x27;instance_primary_audience_url&#x27;: &#x27;instance_primary_audience_url_example&#x27;}, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_nat_gateway_ip&#x27;: &#x27;management_nat_gateway_ip_example&#x27;, &#x27;management_vcn_id&#x27;: &#x27;ocid1.managementvcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;service_nat_gateway_ip&#x27;: &#x27;service_nat_gateway_ip_example&#x27;, &#x27;service_vcn_id&#x27;: &#x27;ocid1.servicevcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1321,6 +1321,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vb_instance/management_nat_gateway_ip"></div>
+                    <b>management_nat_gateway_ip</b>
+                    <a class="ansibleOptionLink" href="#return-vb_instance/management_nat_gateway_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The NAT gateway IP address for the VB management VCN</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">management_nat_gateway_ip_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vb_instance/management_vcn_id"></div>
+                    <b>management_vcn_id</b>
+                    <a class="ansibleOptionLink" href="#return-vb_instance/management_vcn_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Oracle Cloud ID (OCID) of the Visual Builder management VCN</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.managementvcn.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vb_instance/node_count"></div>
                     <b>node_count</b>
                     <a class="ansibleOptionLink" href="#return-vb_instance/node_count" title="Permalink to this return value"></a>
@@ -1334,6 +1370,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vb_instance/service_nat_gateway_ip"></div>
+                    <b>service_nat_gateway_ip</b>
+                    <a class="ansibleOptionLink" href="#return-vb_instance/service_nat_gateway_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The NAT gateway IP address for the VB service VCN</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_nat_gateway_ip_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vb_instance/service_vcn_id"></div>
+                    <b>service_vcn_id</b>
+                    <a class="ansibleOptionLink" href="#return-vb_instance/service_vcn_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Oracle Cloud ID (OCID) of the Visual Builder service VCN</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.servicevcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

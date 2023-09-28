@@ -491,6 +491,12 @@ vm_cluster:
             returned: on success
             type: list
             sample: []
+        availability_domain:
+            description:
+                - The name of the availability domain that the VM cluster is located in.
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -566,6 +572,7 @@ vm_cluster:
         "ssh_public_keys": [ ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz... ],
         "license_model": "LICENSE_INCLUDED",
         "db_servers": [],
+        "availability_domain": "Uocm:PHX-AD-1",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "data_collection_options": {

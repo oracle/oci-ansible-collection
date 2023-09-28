@@ -34,6 +34,7 @@ description:
       of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone.
       For Exadata Cloud@Customer instances, the source pluggable database (PDB) must be on the same Exadata Infrastructure as the target container database
       (CDB) to create a remote clone.
+    - For I(action=rotate_pluggable_database_encryption_key), create a new version of the existing encryption key.
     - For I(action=start), starts a stopped pluggable database. The `openMode` value of the pluggable database will be `READ_WRITE` upon completion.
     - For I(action=stop), stops a pluggable database. The `openMode` value of the pluggable database will be `MOUNTED` upon completion.
 version_added: "2.9.0"
@@ -144,6 +145,7 @@ options:
             - "local_clone"
             - "modify_pluggable_database_management"
             - "remote_clone"
+            - "rotate_pluggable_database_encryption_key"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -217,6 +219,12 @@ EXAMPLES = """
     pdb_admin_password: example-password
     target_tde_wallet_password: example-password
     should_pdb_admin_account_be_locked: true
+
+- name: Perform action rotate_pluggable_database_encryption_key on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: rotate_pluggable_database_encryption_key
 
 - name: Perform action start on pluggable_database
   oci_database_pluggable_database_actions:
@@ -402,6 +410,7 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
         local_clone
         modify_pluggable_database_management
         remote_clone
+        rotate_pluggable_database_encryption_key
         start
         stop
     """
@@ -529,6 +538,23 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def rotate_pluggable_database_encryption_key(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_pluggable_database_encryption_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def start(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.start_pluggable_database,
@@ -610,6 +636,7 @@ def main():
                     "local_clone",
                     "modify_pluggable_database_management",
                     "remote_clone",
+                    "rotate_pluggable_database_encryption_key",
                     "start",
                     "stop",
                 ],

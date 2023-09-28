@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Dataset resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Dataset.
     - "This resource has the following action operations in the M(oracle.oci.oci_data_labeling_service_dataset_actions) module: add_dataset_labels,
-      change_compartment, generate_dataset_records, remove_dataset_labels, rename_dataset_labels, snapshot."
+      change_compartment, generate_dataset_records, import_pre_annotated_data, remove_dataset_labels, rename_dataset_labels, snapshot."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -128,6 +128,66 @@ options:
                 description:
                     - The maximum number of records to generate.
                 type: float
+    initial_import_dataset_configuration:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            import_format:
+                description:
+                    - ""
+                type: dict
+                required: true
+                suboptions:
+                    name:
+                        description:
+                            - Name of import format
+                        type: str
+                        choices:
+                            - "JSONL_CONSOLIDATED"
+                            - "JSONL_COMPACT_PLUS_CONTENT"
+                            - "CONLL"
+                            - "SPACY"
+                            - "COCO"
+                            - "YOLO"
+                            - "PASCAL_VOC"
+                        required: true
+                    version:
+                        description:
+                            - Version of import format
+                        type: str
+                        choices:
+                            - "V2003"
+                            - "V5"
+            import_metadata_path:
+                description:
+                    - ""
+                type: dict
+                required: true
+                suboptions:
+                    source_type:
+                        description:
+                            - "The type of data source.
+                              OBJECT_STORAGE - The source details for an object storage bucket."
+                        type: str
+                        choices:
+                            - "OBJECT_STORAGE"
+                        required: true
+                    namespace:
+                        description:
+                            - Bucket namespace name
+                        type: str
+                        required: true
+                    bucket:
+                        description:
+                            - Bucket name
+                        type: str
+                        required: true
+                    path:
+                        description:
+                            - Path for the metadata file.
+                        type: str
+                        required: true
     label_set:
         description:
             - ""
@@ -219,6 +279,20 @@ EXAMPLES = """
     initial_record_generation_configuration:
       # optional
       limit: 3.4
+    initial_import_dataset_configuration:
+      # required
+      import_format:
+        # required
+        name: JSONL_CONSOLIDATED
+
+        # optional
+        version: V2003
+      import_metadata_path:
+        # required
+        source_type: OBJECT_STORAGE
+        namespace: namespace_example
+        bucket: bucket_example
+        path: path_example
     display_name: display_name_example
     description: description_example
     labeling_instructions: labeling_instructions_example
@@ -327,6 +401,13 @@ dataset:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        lifecycle_substate:
+            description:
+                - "The sub-state of the dataset.
+                  IMPORT_DATASET - The dataset is being imported."
+            returned: on success
+            type: str
+            sample: IMPORT_DATASET
         annotation_format:
             description:
                 - The annotation format name required for labeling records.
@@ -449,6 +530,61 @@ dataset:
                     returned: on success
                     type: float
                     sample: 10
+        initial_import_dataset_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                import_format:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of import format
+                            returned: on success
+                            type: str
+                            sample: JSONL_CONSOLIDATED
+                        version:
+                            description:
+                                - Version of import format
+                            returned: on success
+                            type: str
+                            sample: V2003
+                import_metadata_path:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_type:
+                            description:
+                                - "The type of data source.
+                                  OBJECT_STORAGE - The source details for an object storage bucket."
+                            returned: on success
+                            type: str
+                            sample: OBJECT_STORAGE
+                        namespace:
+                            description:
+                                - Bucket namespace name
+                            returned: on success
+                            type: str
+                            sample: namespace_example
+                        bucket:
+                            description:
+                                - Bucket name
+                            returned: on success
+                            type: str
+                            sample: bucket_example
+                        path:
+                            description:
+                                - Path for the metadata file.
+                            returned: on success
+                            type: str
+                            sample: path_example
         labeling_instructions:
             description:
                 - The labeling instructions for human labelers in rich text format
@@ -476,6 +612,13 @@ dataset:
             returned: on success
             type: dict
             sample: {}
+        additional_properties:
+            description:
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -485,6 +628,7 @@ dataset:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "lifecycle_substate": "IMPORT_DATASET",
         "annotation_format": "annotation_format_example",
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
@@ -511,10 +655,23 @@ dataset:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "initial_import_dataset_configuration": {
+            "import_format": {
+                "name": "JSONL_CONSOLIDATED",
+                "version": "V2003"
+            },
+            "import_metadata_path": {
+                "source_type": "OBJECT_STORAGE",
+                "namespace": "namespace_example",
+                "bucket": "bucket_example",
+                "path": "path_example"
+            }
+        },
         "labeling_instructions": "labeling_instructions_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "additional_properties": {}
     }
 """
 
@@ -702,6 +859,43 @@ def main():
             ),
             initial_record_generation_configuration=dict(
                 type="dict", options=dict(limit=dict(type="float"))
+            ),
+            initial_import_dataset_configuration=dict(
+                type="dict",
+                options=dict(
+                    import_format=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "JSONL_CONSOLIDATED",
+                                    "JSONL_COMPACT_PLUS_CONTENT",
+                                    "CONLL",
+                                    "SPACY",
+                                    "COCO",
+                                    "YOLO",
+                                    "PASCAL_VOC",
+                                ],
+                            ),
+                            version=dict(type="str", choices=["V2003", "V5"]),
+                        ),
+                    ),
+                    import_metadata_path=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            source_type=dict(
+                                type="str", required=True, choices=["OBJECT_STORAGE"]
+                            ),
+                            namespace=dict(type="str", required=True),
+                            bucket=dict(type="str", required=True),
+                            path=dict(type="str", required=True),
+                        ),
+                    ),
+                ),
             ),
             label_set=dict(
                 type="dict",

@@ -30,7 +30,7 @@ oracle.oci.oci_data_labeling_service_dataset_actions -- Perform actions on a Dat
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -60,6 +60,7 @@ Synopsis
 - For *action=add_dataset_labels*, add Labels to the Dataset LabelSet until the maximum number of Labels has been reached.
 - For *action=change_compartment*, moves a Dataset resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
 - For *action=generate_dataset_records*, generates Record resources from the Dataset's data source
+- For *action=import_pre_annotated_data*, imports records and annotations from dataset files into existing Dataset.
 - For *action=remove_dataset_labels*, removes the labels from the Dataset Labelset.  Labels can only be removed if there are no Annotations associated with the Dataset that reference the Label names.
 - For *action=rename_dataset_labels*, renames the labels from the Dataset Labelset.  Labels that are renamed will be reflected in Annotations associated with the Dataset that reference the Label names.
 - For *action=snapshot*, writes the dataset records and annotations in a consolidated format out to an object storage reference for consumption. While the snapshot takes place, there may be a time while records and annotations cannot be created to ensure the snapshot is a point in time.
@@ -105,6 +106,7 @@ Parameters
                                                                                                                                                                 <li>add_dataset_labels</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>generate_dataset_records</li>
+                                                                                                                                                                                                <li>import_pre_annotated_data</li>
                                                                                                                                                                                                 <li>remove_dataset_labels</li>
                                                                                                                                                                                                 <li>rename_dataset_labels</li>
                                                                                                                                                                                                 <li>snapshot</li>
@@ -480,6 +482,152 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-import_format"></div>
+                    <b>import_format</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_format" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=import_pre_annotated_data</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_format/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_format/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>JSONL_CONSOLIDATED</li>
+                                                                                                                                                                                                <li>JSONL_COMPACT_PLUS_CONTENT</li>
+                                                                                                                                                                                                <li>CONLL</li>
+                                                                                                                                                                                                <li>SPACY</li>
+                                                                                                                                                                                                <li>COCO</li>
+                                                                                                                                                                                                <li>YOLO</li>
+                                                                                                                                                                                                <li>PASCAL_VOC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Name of import format</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_format/version"></div>
+                    <b>version</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_format/version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>V2003</li>
+                                                                                                                                                                                                <li>V5</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Version of import format</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-import_metadata_path"></div>
+                    <b>import_metadata_path</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_metadata_path" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=import_pre_annotated_data</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_metadata_path/bucket"></div>
+                    <b>bucket</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_metadata_path/bucket" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Bucket name</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_metadata_path/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_metadata_path/namespace" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Bucket namespace name</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_metadata_path/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_metadata_path/path" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Path for the metadata file.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-import_metadata_path/source_type"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_metadata_path/source_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OBJECT_STORAGE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of data source. OBJECT_STORAGE - The source details for an object storage bucket.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-label_set"></div>
                     <b>label_set</b>
                     <a class="ansibleOptionLink" href="#parameter-label_set" title="Permalink to this option"></a>
@@ -784,6 +932,26 @@ Examples
         # optional
         limit: 3.4
 
+    - name: Perform action import_pre_annotated_data on dataset
+      oci_data_labeling_service_dataset_actions:
+        # required
+        dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+        action: import_pre_annotated_data
+
+        # optional
+        import_format:
+          # required
+          name: JSONL_CONSOLIDATED
+
+          # optional
+          version: V2003
+        import_metadata_path:
+          # required
+          source_type: OBJECT_STORAGE
+          namespace: namespace_example
+          bucket: bucket_example
+          path: path_example
+
     - name: Perform action remove_dataset_labels on dataset
       oci_data_labeling_service_dataset_actions:
         # required
@@ -872,10 +1040,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Dataset resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;, &#x27;text_file_type_metadata&#x27;: {&#x27;column_delimiter&#x27;: &#x27;column_delimiter_example&#x27;, &#x27;column_index&#x27;: 56, &#x27;column_name&#x27;: &#x27;column_name_example&#x27;, &#x27;escape_character&#x27;: &#x27;escape_character_example&#x27;, &#x27;format_type&#x27;: &#x27;DELIMITED&#x27;, &#x27;line_delimiter&#x27;: &#x27;line_delimiter_example&#x27;}}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;labeling_instructions&#x27;: &#x27;labeling_instructions_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_properties&#x27;: {}, &#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;, &#x27;text_file_type_metadata&#x27;: {&#x27;column_delimiter&#x27;: &#x27;column_delimiter_example&#x27;, &#x27;column_index&#x27;: 56, &#x27;column_name&#x27;: &#x27;column_name_example&#x27;, &#x27;escape_character&#x27;: &#x27;escape_character_example&#x27;, &#x27;format_type&#x27;: &#x27;DELIMITED&#x27;, &#x27;line_delimiter&#x27;: &#x27;line_delimiter_example&#x27;}}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_import_dataset_configuration&#x27;: {&#x27;import_format&#x27;: {&#x27;name&#x27;: &#x27;JSONL_CONSOLIDATED&#x27;, &#x27;version&#x27;: &#x27;V2003&#x27;}, &#x27;import_metadata_path&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}}, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;labeling_instructions&#x27;: &#x27;labeling_instructions_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_substate&#x27;: &#x27;IMPORT_DATASET&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-dataset/additional_properties"></div>
+                    <b>additional_properties</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/additional_properties" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only. For example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-dataset/annotation_format"></div>
@@ -1271,6 +1455,179 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration"></div>
+                    <b>initial_import_dataset_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_format"></div>
+                    <b>import_format</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_format/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_format/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of import format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JSONL_CONSOLIDATED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_format/version"></div>
+                    <b>version</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_format/version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Version of import format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">V2003</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_metadata_path"></div>
+                    <b>import_metadata_path</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_metadata_path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_metadata_path/bucket"></div>
+                    <b>bucket</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_metadata_path/bucket" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Bucket name</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_metadata_path/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_metadata_path/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Bucket namespace name</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_metadata_path/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_metadata_path/path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Path for the metadata file.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-dataset/initial_import_dataset_configuration/import_metadata_path/source_type"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/initial_import_dataset_configuration/import_metadata_path/source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of data source. OBJECT_STORAGE - The source details for an object storage bucket.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OBJECT_STORAGE</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-dataset/initial_record_generation_configuration"></div>
                     <b>initial_record_generation_configuration</b>
                     <a class="ansibleOptionLink" href="#return-dataset/initial_record_generation_configuration" title="Permalink to this return value"></a>
@@ -1411,6 +1768,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-dataset/lifecycle_substate"></div>
+                    <b>lifecycle_substate</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/lifecycle_substate" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The sub-state of the dataset. IMPORT_DATASET - The dataset is being imported.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IMPORT_DATASET</div>
                                     </td>
             </tr>
                                 <tr>

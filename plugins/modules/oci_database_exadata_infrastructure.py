@@ -293,6 +293,26 @@ options:
               using the UpdateExadatainfrastructure API.
             - This parameter is updatable.
         type: bool
+    network_bonding_mode_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            client_network_bonding_mode:
+                description:
+                    - The network bonding mode for the Exadata infrastructure.
+                type: str
+                choices:
+                    - "ACTIVE_BACKUP"
+                    - "LACP"
+            backup_network_bonding_mode:
+                description:
+                    - The network bonding mode for the Exadata infrastructure.
+                type: str
+                choices:
+                    - "ACTIVE_BACKUP"
+                    - "LACP"
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -374,6 +394,10 @@ EXAMPLES = """
     is_multi_rack_deployment: true
     multi_rack_configuration_file: multi_rack_configuration_file_example
     is_cps_offline_report_enabled: true
+    network_bonding_mode_details:
+      # optional
+      client_network_bonding_mode: ACTIVE_BACKUP
+      backup_network_bonding_mode: ACTIVE_BACKUP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -424,6 +448,10 @@ EXAMPLES = """
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
     is_cps_offline_report_enabled: true
+    network_bonding_mode_details:
+      # optional
+      client_network_bonding_mode: ACTIVE_BACKUP
+      backup_network_bonding_mode: ACTIVE_BACKUP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -475,6 +503,10 @@ EXAMPLES = """
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
     is_cps_offline_report_enabled: true
+    network_bonding_mode_details:
+      # optional
+      client_network_bonding_mode: ACTIVE_BACKUP
+      backup_network_bonding_mode: ACTIVE_BACKUP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -889,6 +921,30 @@ exadata_infrastructure:
             returned: on success
             type: bool
             sample: true
+        network_bonding_mode_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                client_network_bonding_mode:
+                    description:
+                        - The network bonding mode for the Exadata infrastructure.
+                    returned: on success
+                    type: str
+                    sample: ACTIVE_BACKUP
+                backup_network_bonding_mode:
+                    description:
+                        - The network bonding mode for the Exadata infrastructure.
+                    returned: on success
+                    type: str
+                    sample: ACTIVE_BACKUP
+        availability_domain:
+            description:
+                - The name of the availability domain that the Exadata infrastructure is located in.
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -970,6 +1026,11 @@ exadata_infrastructure:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "is_cps_offline_report_enabled": true,
+        "network_bonding_mode_details": {
+            "client_network_bonding_mode": "ACTIVE_BACKUP",
+            "backup_network_bonding_mode": "ACTIVE_BACKUP"
+        },
+        "availability_domain": "Uocm:PHX-AD-1",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -1230,6 +1291,17 @@ def main():
             ntp_server=dict(type="list", elements="str"),
             time_zone=dict(type="str"),
             is_cps_offline_report_enabled=dict(type="bool"),
+            network_bonding_mode_details=dict(
+                type="dict",
+                options=dict(
+                    client_network_bonding_mode=dict(
+                        type="str", choices=["ACTIVE_BACKUP", "LACP"]
+                    ),
+                    backup_network_bonding_mode=dict(
+                        type="str", choices=["ACTIVE_BACKUP", "LACP"]
+                    ),
+                ),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             exadata_infrastructure_id=dict(aliases=["id"], type="str"),

@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.31.0]
+
+## Added
+- Support for the Access Governance service
+- Support for changing the disaster recovery configuration of an autonomous database in remote regions of its disaster recovery association in the Database service
+- Support for creating a remote disaster recovery association clone of an autonomous database in the Database service
+- Support for creating and updating an infrastructure with LACP support in Database service
+- Support for changing the key store type, and rotating keys, on Exadata Cloud at Customer in the Database service
+- Support for retrieving the resource availability domain when getting Exadata infrastructure or VM clusters in the Database service
+- Support for specifying database servers when creating dedicated autonomous databases in the Database service
+- Support for importing datasets in the Data Labeling service
+- Support for returning networking details of instances in the Visual Builder service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.2
+
 ## [4.30.0]
 
 ## Added

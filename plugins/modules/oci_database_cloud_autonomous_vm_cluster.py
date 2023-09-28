@@ -765,6 +765,12 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: int
             sample: 56
+        db_servers:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db servers.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -824,7 +830,8 @@ cloud_autonomous_vm_cluster:
         "available_autonomous_data_storage_size_in_tbs": 1.2,
         "autonomous_data_storage_size_in_tbs": 1.2,
         "db_node_storage_size_in_gbs": 56,
-        "memory_per_oracle_compute_unit_in_gbs": 56
+        "memory_per_oracle_compute_unit_in_gbs": 56,
+        "db_servers": []
     }
 """
 
@@ -935,7 +942,7 @@ class CloudAutonomousVmClusterHelperGen(OCIResourceHelperBase):
         return CreateCloudAutonomousVmClusterDetails
 
     def get_exclude_attributes(self):
-        return ["maintenance_window_details", "db_servers"]
+        return ["maintenance_window_details"]
 
     def create_resource(self):
         create_details = self.get_create_model()
