@@ -261,7 +261,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The device name. To retrieve a list of devices for a given instance, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Device/ListInstanceDevices'>ListInstanceDevices</a>.</div>
+                                            <div>The device name. To retrieve a list of devices for a given instance, see <a href='https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Device'>ListInstanceDevices</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
