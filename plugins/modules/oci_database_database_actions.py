@@ -23,6 +23,7 @@ module: oci_database_database_actions
 short_description: Perform actions on a Database resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
+    - For I(action=change_key_store_type), changes encryption key management type
     - For I(action=disable_database_management), disables the Database Management service for the database.
     - For I(action=enable_database_management), enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This
       service allows the database to access tools including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
@@ -36,6 +37,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    key_store_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            - Required for I(action=change_key_store_type).
+        type: str
     kms_key_id:
         description:
             - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -152,6 +158,7 @@ options:
         type: str
         required: true
         choices:
+            - "change_key_store_type"
             - "disable_database_management"
             - "enable_database_management"
             - "migrate_vault_key"
@@ -209,6 +216,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action change_key_store_type on database
+  oci_database_database_actions:
+    # required
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_key_store_type
+
 - name: Perform action disable_database_management on database
   oci_database_database_actions:
     # required
@@ -654,6 +668,18 @@ database:
             returned: on success
             type: str
             sample: sid_prefix_example
+        key_store_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            returned: on success
+            type: str
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+        key_store_wallet_name:
+            description:
+                - The wallet name for Oracle Key Vault.
+            returned: on success
+            type: str
+            sample: key_store_wallet_name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -706,7 +732,9 @@ database:
             "management_status": "ENABLING",
             "management_type": "BASIC"
         },
-        "sid_prefix": "sid_prefix_example"
+        "sid_prefix": "sid_prefix_example",
+        "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_wallet_name": "key_store_wallet_name_example"
     }
 """
 
@@ -723,6 +751,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ChangeKeyStoreTypeDetails
     from oci.database.models import EnableDatabaseManagementDetails
     from oci.database.models import MigrateVaultKeyDetails
     from oci.database.models import ModifyDatabaseManagementDetails
@@ -737,6 +766,7 @@ except ImportError:
 class DatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_key_store_type
         disable_database_management
         enable_database_management
         migrate_vault_key
@@ -777,6 +807,27 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
             self.module.params["action"] = action.upper()
             return getattr(self, "upgrade", None)
         return super(DatabaseActionsHelperGen, self).get_action_fn(action)
+
+    def change_key_store_type(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeKeyStoreTypeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_key_store_type,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                change_key_store_type_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
 
     def disable_database_management(self):
         return oci_wait_utils.call_and_wait(
@@ -927,6 +978,7 @@ def main():
     )
     module_args.update(
         dict(
+            key_store_id=dict(type="str"),
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
             vault_id=dict(type="str"),
@@ -954,6 +1006,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_key_store_type",
                     "disable_database_management",
                     "enable_database_management",
                     "migrate_vault_key",

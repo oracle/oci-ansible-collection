@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_actions -- Perform actions on an Aut
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,6 +59,7 @@ Synopsis
 - Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
 - For *action=autonomous_database_manual_refresh*, initiates a data refresh for an Autonomous Database refreshable clone. Data is refreshed from the source database to the point of a specified timestamp.
 - For *action=change_compartment*, move the Autonomous Database and its dependent resources to the specified compartment. For more information about moving Autonomous Databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
+- For *action=change_disaster_recovery_configuration*, this operation updates the cross-region disaster recovery (DR) details of the standby Shared Autonomous Database, and must be run on the standby side.
 - For *action=configure_autonomous_database_vault_key*, configures the Autonomous Database Vault service `key <https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts>`_.
 - For *action=deregister_autonomous_database_data_safe*, asynchronously deregisters this Autonomous Database with Data Safe.
 - For *action=disable_autonomous_database_management*, disables Database Management for the Autonomous Database resource.
@@ -116,6 +117,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>autonomous_database_manual_refresh</li>
                                                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>change_disaster_recovery_configuration</li>
                                                                                                                                                                                                 <li>configure_autonomous_database_vault_key</li>
                                                                                                                                                                                                 <li>deregister_autonomous_database_data_safe</li>
                                                                                                                                                                                                 <li>disable_autonomous_database_management</li>
@@ -333,6 +335,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-disaster_recovery_type"></div>
+                    <b>disaster_recovery_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-disaster_recovery_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ADG</li>
+                                                                                                                                                                                                <li>BACKUP_BASED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates the disaster recovery (DR) type of the Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                            <div>Applicable only for <em>action=change_disaster_recovery_configuration</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-force"></div>
                     <b>force</b>
                     <a class="ansibleOptionLink" href="#parameter-force" title="Permalink to this option"></a>
@@ -373,6 +395,26 @@ Parameters
                                             <div>**Shared Exadata infrastructure usage:** * `SINGLE` - used to generate a wallet for a single database * `ALL` - used to generate wallet for all databases in the region</div>
                                             <div>**Dedicated Exadata infrastructure usage:** Value must be `NULL` if attribute is used.</div>
                                             <div>Applicable only for <em>action=generate_autonomous_database_wallet</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_snapshot_standby"></div>
+                    <b>is_snapshot_standby</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_snapshot_standby" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates if user wants to convert to a snapshot standby. For example, true would set a standby database to snapshot standby database. False would set a snapshot standby database back to regular standby database.</div>
+                                            <div>Applicable only for <em>action=change_disaster_recovery_configuration</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -546,6 +588,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_snapshot_standby_enabled_till"></div>
+                    <b>time_snapshot_standby_enabled_till</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_snapshot_standby_enabled_till" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Time and date stored as an RFC 3339 formatted timestamp string. For example, 2022-01-01T12:00:00.000Z would set a limit for the snapshot standby to be converted back to a cross-region standby database.</div>
+                                            <div>Applicable only for <em>action=change_disaster_recovery_configuration</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-timestamp"></div>
                     <b>timestamp</b>
                     <a class="ansibleOptionLink" href="#parameter-timestamp" title="Permalink to this option"></a>
@@ -666,6 +724,17 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action change_disaster_recovery_configuration on autonomous_database
+      oci_database_autonomous_database_actions:
+        # required
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_disaster_recovery_configuration
+
+        # optional
+        disaster_recovery_type: ADG
+        time_snapshot_standby_enabled_till: time_snapshot_standby_enabled_till_example
+        is_snapshot_standby: true
 
     - name: Perform action configure_autonomous_database_vault_key on autonomous_database
       oci_database_autonomous_database_actions:
@@ -822,7 +891,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;backup_retention_period_in_days&#x27;: 56, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 3.4, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;database_transforms_url&#x27;: &#x27;database_transforms_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_notebook_url&#x27;: &#x27;machine_learning_notebook_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;mongo_db_url&#x27;: &#x27;mongo_db_url_example&#x27;, &#x27;ords_url&#x27;: &#x27;ords_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_tools_details&#x27;: [{&#x27;compute_count&#x27;: 3.4, &#x27;is_enabled&#x27;: True, &#x27;max_idle_time_in_minutes&#x27;: 56, &#x27;name&#x27;: &#x27;APEX&#x27;}], &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;long_term_backup_schedule&#x27;: {&#x27;is_disabled&#x27;: True, &#x27;repeat_cadence&#x27;: &#x27;ONE_TIME&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;max_cpu_core_count&#x27;: 56, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;next_long_term_backup_time_stamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_backup_storage_size_in_gbs&#x27;: 1.2, &#x27;used_data_storage_size_in_gbs&#x27;: 56, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;backup_retention_period_in_days&#x27;: 56, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 3.4, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;database_transforms_url&#x27;: &#x27;database_transforms_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_notebook_url&#x27;: &#x27;machine_learning_notebook_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;mongo_db_url&#x27;: &#x27;mongo_db_url_example&#x27;, &#x27;ords_url&#x27;: &#x27;ords_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_tools_details&#x27;: [{&#x27;compute_count&#x27;: 3.4, &#x27;is_enabled&#x27;: True, &#x27;max_idle_time_in_minutes&#x27;: 56, &#x27;name&#x27;: &#x27;APEX&#x27;}], &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disaster_recovery_region_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_disaster_recovery_type&#x27;: &#x27;local_disaster_recovery_type_example&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;long_term_backup_schedule&#x27;: {&#x27;is_disabled&#x27;: True, &#x27;repeat_cadence&#x27;: &#x27;ONE_TIME&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;max_cpu_core_count&#x27;: 56, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;next_long_term_backup_time_stamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;remote_disaster_recovery_configuration&#x27;: {&#x27;disaster_recovery_type&#x27;: &#x27;ADG&#x27;, &#x27;is_snapshot_standby&#x27;: True, &#x27;time_snapshot_standby_enabled_till&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_backup_storage_size_in_gbs&#x27;: 1.2, &#x27;used_data_storage_size_in_gbs&#x27;: 56, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1924,6 +1993,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/disaster_recovery_region_type"></div>
+                    <b>disaster_recovery_region_type</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/disaster_recovery_region_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The disaster recovery (DR) region type of the Autonomous Database. For Shared Autonomous Databases, DR associations have designated primary and standby regions. These region types do not change when the database changes roles. The standby region in DR associations can be the same region as the primary region, or they can be in a remote regions. Some database administration operations may be available only in the primary region of the DR association, and cannot be performed when the database using the primary role is operating in a remote region.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/display_name" title="Permalink to this return value"></a>
@@ -2474,6 +2561,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/local_disaster_recovery_type"></div>
+                    <b>local_disaster_recovery_type</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/local_disaster_recovery_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates the local disaster recovery (DR) type of the Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">local_disaster_recovery_type_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/local_standby_db"></div>
                     <b>local_standby_db</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/local_standby_db" title="Permalink to this return value"></a>
@@ -2558,6 +2663,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/local_standby_db/time_disaster_recovery_role_changed"></div>
+                    <b>time_disaster_recovery_role_changed</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/local_standby_db/time_disaster_recovery_role_changed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the Disaster Recovery role was switched for the standby Autonomous Database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -2948,6 +3072,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/remote_disaster_recovery_configuration"></div>
+                    <b>remote_disaster_recovery_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/remote_disaster_recovery_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/remote_disaster_recovery_configuration/disaster_recovery_type"></div>
+                    <b>disaster_recovery_type</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/remote_disaster_recovery_configuration/disaster_recovery_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates the disaster recovery (DR) type of the Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ADG</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/remote_disaster_recovery_configuration/is_snapshot_standby"></div>
+                    <b>is_snapshot_standby</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/remote_disaster_recovery_configuration/is_snapshot_standby" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if user wants to convert to a snapshot standby. For example, true would set a standby database to snapshot standby database. False would set a snapshot standby database back to regular standby database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/remote_disaster_recovery_configuration/time_snapshot_standby_enabled_till"></div>
+                    <b>time_snapshot_standby_enabled_till</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/remote_disaster_recovery_configuration/time_snapshot_standby_enabled_till" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time and date stored as an RFC 3339 formatted timestamp string. For example, 2022-01-01T12:00:00.000Z would set a limit for the snapshot standby to be converted back to a cross-region standby database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/role"></div>
                     <b>role</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/role" title="Permalink to this return value"></a>
@@ -3185,6 +3383,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/standby_db/time_disaster_recovery_role_changed"></div>
+                    <b>time_disaster_recovery_role_changed</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/standby_db/time_disaster_recovery_role_changed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the Disaster Recovery role was switched for the standby Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -3306,6 +3523,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time the Always Free database will be automatically deleted because of inactivity. If the database is in the STOPPED state and without activity until this time, it will be deleted.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/time_disaster_recovery_role_changed"></div>
+                    <b>time_disaster_recovery_role_changed</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/time_disaster_recovery_role_changed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the Disaster Recovery role was switched for the standby Autonomous Database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

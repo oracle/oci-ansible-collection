@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure_unallocated_resources_facts
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -249,6 +249,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_servers"></div>
+                    <b>db_servers</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_servers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the Db servers.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -325,6 +340,9 @@ Examples
       oci_database_cloud_exadata_infrastructure_unallocated_resources_facts:
         # required
         cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        db_servers: [ "db_servers_example" ]
 
 
 

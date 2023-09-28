@@ -451,6 +451,30 @@ vb_instance:
                     returned: on success
                     type: str
                     sample: target_service_type_example
+        service_nat_gateway_ip:
+            description:
+                - The NAT gateway IP address for the VB service VCN
+            returned: on success
+            type: str
+            sample: service_nat_gateway_ip_example
+        management_nat_gateway_ip:
+            description:
+                - The NAT gateway IP address for the VB management VCN
+            returned: on success
+            type: str
+            sample: management_nat_gateway_ip_example
+        service_vcn_id:
+            description:
+                - The Oracle Cloud ID (OCID) of the Visual Builder service VCN
+            returned: on success
+            type: str
+            sample: "ocid1.servicevcn.oc1..xxxxxxEXAMPLExxxxxx"
+        management_vcn_id:
+            description:
+                - The Oracle Cloud ID (OCID) of the Visual Builder management VCN
+            returned: on success
+            type: str
+            sample: "ocid1.managementvcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -489,7 +513,11 @@ vb_instance:
             "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",
             "target_instance_url": "target_instance_url_example",
             "target_service_type": "target_service_type_example"
-        }]
+        }],
+        "service_nat_gateway_ip": "service_nat_gateway_ip_example",
+        "management_nat_gateway_ip": "management_nat_gateway_ip_example",
+        "service_vcn_id": "ocid1.servicevcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_vcn_id": "ocid1.managementvcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

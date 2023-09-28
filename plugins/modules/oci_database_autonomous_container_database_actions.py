@@ -51,6 +51,7 @@ options:
             - "PRIMARY"
             - "STANDBY"
             - "DISABLED_STANDBY"
+            - "BACKUP_COPY"
             - "SNAPSHOT_STANDBY"
     autonomous_container_database_dataguard_association_id:
         description:
@@ -782,7 +783,13 @@ def main():
             compartment_id=dict(type="str"),
             role=dict(
                 type="str",
-                choices=["PRIMARY", "STANDBY", "DISABLED_STANDBY", "SNAPSHOT_STANDBY"],
+                choices=[
+                    "PRIMARY",
+                    "STANDBY",
+                    "DISABLED_STANDBY",
+                    "BACKUP_COPY",
+                    "SNAPSHOT_STANDBY",
+                ],
             ),
             autonomous_container_database_dataguard_association_id=dict(type="str"),
             connection_strings_type=dict(

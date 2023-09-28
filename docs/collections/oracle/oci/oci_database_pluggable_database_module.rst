@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database -- Manage a PluggableDatabase resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a PluggableDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, creates and starts a pluggable database in the specified container database. Use the `StartPluggableDatabase <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StartPluggableDatabase>`_ and `StopPluggableDatabase <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase>`_ APIs to start and stop the pluggable database.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` module: disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone, start, stop.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` module: disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone, rotate_pluggable_database_encryption_key, start, stop.
 
 
 .. Aliases

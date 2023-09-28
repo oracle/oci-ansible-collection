@@ -171,6 +171,18 @@ backups:
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_store_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            returned: on success
+            type: str
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+        key_store_wallet_name:
+            description:
+                - The wallet name for Oracle Key Vault.
+            returned: on success
+            type: str
+            sample: key_store_wallet_name_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -188,7 +200,9 @@ backups:
         "version": "version_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_wallet_name": "key_store_wallet_name_example"
     }]
 """
 

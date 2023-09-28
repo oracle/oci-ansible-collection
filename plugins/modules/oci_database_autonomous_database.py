@@ -25,10 +25,10 @@ description:
     - This module allows the user to create, update and delete an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database.
     - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_database_actions) module:
-      autonomous_database_manual_refresh, change_compartment, configure_autonomous_database_vault_key, deregister_autonomous_database_data_safe,
-      disable_autonomous_database_management, disable_autonomous_database_operations_insights, enable_autonomous_database_management,
-      enable_autonomous_database_operations_insights, fail_over, generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore,
-      rotate_autonomous_database_encryption_key, shrink, start, stop, switchover."
+      autonomous_database_manual_refresh, change_compartment, change_disaster_recovery_configuration, configure_autonomous_database_vault_key,
+      deregister_autonomous_database_data_safe, disable_autonomous_database_management, disable_autonomous_database_operations_insights,
+      enable_autonomous_database_management, enable_autonomous_database_operations_insights, fail_over, generate_autonomous_database_wallet,
+      register_autonomous_database_data_safe, restart, restore, rotate_autonomous_database_encryption_key, shrink, start, stop, switchover."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -42,6 +42,13 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database Backup that you will clone to
               create a new Autonomous Database.
             - Required when source is 'BACKUP_FROM_ID'
+        type: str
+    remote_disaster_recovery_type:
+        description:
+            - Indicates the cross-region disaster recovery (DR) type of the standby Shared Autonomous Database.
+              Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover.
+              Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.
+            - Required when source is 'CROSS_REGION_DISASTER_RECOVERY'
         type: str
     timestamp:
         description:
@@ -65,7 +72,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
               a new Autonomous Database.
-            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE', 'CROSS_REGION_DATAGUARD']
+            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE', 'CROSS_REGION_DISASTER_RECOVERY', 'CROSS_REGION_DATAGUARD']
         type: str
     compartment_id:
         description:
@@ -142,6 +149,7 @@ options:
             - "DATABASE"
             - "CLONE_TO_REFRESHABLE"
             - "BACKUP_FROM_ID"
+            - "CROSS_REGION_DISASTER_RECOVERY"
             - "BACKUP_FROM_TIMESTAMP"
             - "CROSS_REGION_DATAGUARD"
             - "NONE"
@@ -782,6 +790,76 @@ EXAMPLES = """
     clone_type: FULL
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source: BACKUP_FROM_ID
+
+    # optional
+    character_set: character_set_example
+    ncharacter_set: ncharacter_set_example
+    compute_model: ECPU
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    is_preview_version_with_service_terms_accepted: true
+    is_dedicated: true
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    compute_count: 3.4
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    db_name: db_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
+    is_access_control_enabled: true
+    whitelisted_ips: [ "whitelisted_ips_example" ]
+    are_primary_whitelisted_ips_used: true
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
+    is_local_data_guard_enabled: true
+    is_data_guard_enabled: true
+    db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    private_endpoint_ip: private_endpoint_ip_example
+    nsg_ids: [ "nsg_ids_example" ]
+    customer_contacts:
+    - # optional
+      email: email_example
+    is_mtls_connection_required: true
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
+    db_tools_details:
+    - # required
+      name: APEX
+
+      # optional
+      is_enabled: true
+      compute_count: 3.4
+      max_idle_time_in_minutes: 56
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: 56
+
+- name: Create autonomous_database with source = CROSS_REGION_DISASTER_RECOVERY
+  oci_database_autonomous_database:
+    # required
+    remote_disaster_recovery_type: remote_disaster_recovery_type_example
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: CROSS_REGION_DISASTER_RECOVERY
 
     # optional
     character_set: character_set_example
@@ -2031,6 +2109,12 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+                time_disaster_recovery_role_changed:
+                    description:
+                        - The date and time the Disaster Recovery role was switched for the standby Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         is_local_data_guard_enabled:
             description:
                 - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
@@ -2073,6 +2157,12 @@ autonomous_database:
                 time_data_guard_role_changed:
                     description:
                         - The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_disaster_recovery_role_changed:
+                    description:
+                        - The date and time the Disaster Recovery role was switched for the standby Autonomous Database.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
@@ -2294,6 +2384,58 @@ autonomous_database:
                     returned: on success
                     type: int
                     sample: 56
+        local_disaster_recovery_type:
+            description:
+                - Indicates the local disaster recovery (DR) type of the Shared Autonomous Database.
+                  Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover.
+                  Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.
+            returned: on success
+            type: str
+            sample: local_disaster_recovery_type_example
+        disaster_recovery_region_type:
+            description:
+                - The disaster recovery (DR) region type of the Autonomous Database. For Shared Autonomous Databases, DR associations have designated primary
+                  and standby regions. These region types do not change when the database changes roles. The standby region in DR associations can be the same
+                  region as the primary region, or they can be in a remote regions. Some database administration operations may be available only in the primary
+                  region of the DR association, and cannot be performed when the database using the primary role is operating in a remote region.
+            returned: on success
+            type: str
+            sample: PRIMARY
+        time_disaster_recovery_role_changed:
+            description:
+                - The date and time the Disaster Recovery role was switched for the standby Autonomous Database.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        remote_disaster_recovery_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                disaster_recovery_type:
+                    description:
+                        - Indicates the disaster recovery (DR) type of the Shared Autonomous Database.
+                          Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or
+                          switchover.
+                          Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.
+                    returned: on success
+                    type: str
+                    sample: ADG
+                time_snapshot_standby_enabled_till:
+                    description:
+                        - Time and date stored as an RFC 3339 formatted timestamp string. For example, 2022-01-01T12:00:00.000Z would set a limit for the
+                          snapshot standby to be converted back to a cross-region standby database.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                is_snapshot_standby:
+                    description:
+                        - Indicates if user wants to convert to a snapshot standby. For example, true would set a standby database to snapshot standby database.
+                          False would set a snapshot standby database back to regular standby database.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -2414,7 +2556,8 @@ autonomous_database:
             "lag_time_in_seconds": 56,
             "lifecycle_state": "PROVISIONING",
             "lifecycle_details": "lifecycle_details_example",
-            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00"
+            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
+            "time_disaster_recovery_role_changed": "2013-10-20T19:20:30+01:00"
         },
         "is_local_data_guard_enabled": true,
         "is_remote_data_guard_enabled": true,
@@ -2422,7 +2565,8 @@ autonomous_database:
             "lag_time_in_seconds": 56,
             "lifecycle_state": "PROVISIONING",
             "lifecycle_details": "lifecycle_details_example",
-            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00"
+            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
+            "time_disaster_recovery_role_changed": "2013-10-20T19:20:30+01:00"
         },
         "role": "PRIMARY",
         "available_upgrade_versions": [],
@@ -2457,7 +2601,15 @@ autonomous_database:
             "is_enabled": true,
             "compute_count": 3.4,
             "max_idle_time_in_minutes": 56
-        }]
+        }],
+        "local_disaster_recovery_type": "local_disaster_recovery_type_example",
+        "disaster_recovery_region_type": "PRIMARY",
+        "time_disaster_recovery_role_changed": "2013-10-20T19:20:30+01:00",
+        "remote_disaster_recovery_configuration": {
+            "disaster_recovery_type": "ADG",
+            "time_snapshot_standby_enabled_till": "2013-10-20T19:20:30+01:00",
+            "is_snapshot_standby": true
+        }
     }
 """
 
@@ -2577,6 +2729,7 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
             "use_latest_available_backup_time_stamp",
             "secret_id",
             "secret_version_number",
+            "remote_disaster_recovery_type",
             "autonomous_database_backup_id",
             "source",
             "clone_type",
@@ -2648,6 +2801,7 @@ def main():
         dict(
             source_autonomous_database_id=dict(type="str"),
             autonomous_database_backup_id=dict(type="str"),
+            remote_disaster_recovery_type=dict(type="str"),
             timestamp=dict(type="str"),
             clone_type=dict(type="str", choices=["FULL", "METADATA"]),
             use_latest_available_backup_time_stamp=dict(type="bool"),
@@ -2668,6 +2822,7 @@ def main():
                     "DATABASE",
                     "CLONE_TO_REFRESHABLE",
                     "BACKUP_FROM_ID",
+                    "CROSS_REGION_DISASTER_RECOVERY",
                     "BACKUP_FROM_TIMESTAMP",
                     "CROSS_REGION_DATAGUARD",
                     "NONE",

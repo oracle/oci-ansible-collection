@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -371,6 +371,7 @@ Parameters
                                                                                                                                                                 <li>PRIMARY</li>
                                                                                                                                                                                                 <li>STANDBY</li>
                                                                                                                                                                                                 <li>DISABLED_STANDBY</li>
+                                                                                                                                                                                                <li>BACKUP_COPY</li>
                                                                                                                                                                                                 <li>SNAPSHOT_STANDBY</li>
                                                                                     </ul>
                                                                             </td>

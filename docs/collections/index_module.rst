@@ -8,6 +8,11 @@ Index of all Modules
 oracle.oci
 ----------
 
+* :ref:`oracle.oci.oci_access_governance_cp_governance_instance <ansible_collections.oracle.oci.oci_access_governance_cp_governance_instance_module>` -- Manage a GovernanceInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_access_governance_cp_governance_instance_actions <ansible_collections.oracle.oci.oci_access_governance_cp_governance_instance_actions_module>` -- Perform actions on a GovernanceInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_access_governance_cp_governance_instance_configuration <ansible_collections.oracle.oci.oci_access_governance_cp_governance_instance_configuration_module>` -- Manage a GovernanceInstanceConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_access_governance_cp_governance_instance_configuration_facts <ansible_collections.oracle.oci.oci_access_governance_cp_governance_instance_configuration_facts_module>` -- Fetches details about a GovernanceInstanceConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_access_governance_cp_governance_instance_facts <ansible_collections.oracle.oci.oci_access_governance_cp_governance_instance_facts_module>` -- Fetches details about one or multiple GovernanceInstance resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_adm_application_dependency_vulnerability_facts <ansible_collections.oracle.oci.oci_adm_application_dependency_vulnerability_facts_module>` -- Fetches details about one or multiple ApplicationDependencyVulnerability resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_adm_knowledge_base <ansible_collections.oracle.oci.oci_adm_knowledge_base_module>` -- Manage a KnowledgeBase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_adm_knowledge_base_actions <ansible_collections.oracle.oci.oci_adm_knowledge_base_actions_module>` -- Perform actions on a KnowledgeBase resource in Oracle Cloud Infrastructure
@@ -629,6 +634,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_module>` -- Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_actions_module>` -- Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_exadata_infrastructure_un_allocated_resources_facts <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_un_allocated_resources_facts_module>` -- Fetches details about a ExadataInfrastructureUnAllocatedResources resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_external_container_database <ansible_collections.oracle.oci.oci_database_external_container_database_module>` -- Manage an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_external_container_database_actions <ansible_collections.oracle.oci.oci_database_external_container_database_actions_module>` -- Perform actions on an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_external_container_database_facts <ansible_collections.oracle.oci.oci_database_external_container_database_facts_module>` -- Fetches details about one or multiple ExternalContainerDatabase resources in Oracle Cloud Infrastructure

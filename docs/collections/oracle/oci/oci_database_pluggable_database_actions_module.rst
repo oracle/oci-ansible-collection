@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -62,6 +62,7 @@ Synopsis
 - For *action=local_clone*, clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the `READ_WRITE` openMode to perform the clone operation.
 - For *action=modify_pluggable_database_management*, updates one or more attributes of the Database Management service for the pluggable database.
 - For *action=remote_clone*, clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone. For Exadata Cloud@Customer instances, the source pluggable database (PDB) must be on the same Exadata Infrastructure as the target container database (CDB) to create a remote clone.
+- For *action=rotate_pluggable_database_encryption_key*, create a new version of the existing encryption key.
 - For *action=start*, starts a stopped pluggable database. The `openMode` value of the pluggable database will be `READ_WRITE` upon completion.
 - For *action=stop*, stops a pluggable database. The `openMode` value of the pluggable database will be `MOUNTED` upon completion.
 
@@ -108,6 +109,7 @@ Parameters
                                                                                                                                                                                                 <li>local_clone</li>
                                                                                                                                                                                                 <li>modify_pluggable_database_management</li>
                                                                                                                                                                                                 <li>remote_clone</li>
+                                                                                                                                                                                                <li>rotate_pluggable_database_encryption_key</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                     </ul>
@@ -705,6 +707,12 @@ Examples
         pdb_admin_password: example-password
         target_tde_wallet_password: example-password
         should_pdb_admin_account_be_locked: true
+
+    - name: Perform action rotate_pluggable_database_encryption_key on pluggable_database
+      oci_database_pluggable_database_actions:
+        # required
+        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: rotate_pluggable_database_encryption_key
 
     - name: Perform action start on pluggable_database
       oci_database_pluggable_database_actions:

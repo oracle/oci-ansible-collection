@@ -27,6 +27,7 @@ description:
     - For I(action=change_compartment), moves a Dataset resource from one compartment identifier to another. When provided, If-Match is checked against ETag
       values of the resource.
     - For I(action=generate_dataset_records), generates Record resources from the Dataset's data source
+    - For I(action=import_pre_annotated_data), imports records and annotations from dataset files into existing Dataset.
     - For I(action=remove_dataset_labels), removes the labels from the Dataset Labelset.  Labels can only be removed if there are no Annotations associated with
       the Dataset that reference the Label names.
     - For I(action=rename_dataset_labels), renames the labels from the Dataset Labelset.  Labels that are renamed will be reflected in Annotations associated
@@ -46,6 +47,61 @@ options:
             - the maximum number of records to generate.
             - Applicable only for I(action=generate_dataset_records).
         type: float
+    import_format:
+        description:
+            - ""
+            - Applicable only for I(action=import_pre_annotated_data).
+        type: dict
+        suboptions:
+            name:
+                description:
+                    - Name of import format
+                type: str
+                choices:
+                    - "JSONL_CONSOLIDATED"
+                    - "JSONL_COMPACT_PLUS_CONTENT"
+                    - "CONLL"
+                    - "SPACY"
+                    - "COCO"
+                    - "YOLO"
+                    - "PASCAL_VOC"
+                required: true
+            version:
+                description:
+                    - Version of import format
+                type: str
+                choices:
+                    - "V2003"
+                    - "V5"
+    import_metadata_path:
+        description:
+            - ""
+            - Applicable only for I(action=import_pre_annotated_data).
+        type: dict
+        suboptions:
+            source_type:
+                description:
+                    - "The type of data source.
+                      OBJECT_STORAGE - The source details for an object storage bucket."
+                type: str
+                choices:
+                    - "OBJECT_STORAGE"
+                required: true
+            namespace:
+                description:
+                    - Bucket namespace name
+                type: str
+                required: true
+            bucket:
+                description:
+                    - Bucket name
+                type: str
+                required: true
+            path:
+                description:
+                    - Path for the metadata file.
+                type: str
+                required: true
     label_set:
         description:
             - ""
@@ -172,6 +228,7 @@ options:
             - "add_dataset_labels"
             - "change_compartment"
             - "generate_dataset_records"
+            - "import_pre_annotated_data"
             - "remove_dataset_labels"
             - "rename_dataset_labels"
             - "snapshot"
@@ -207,6 +264,26 @@ EXAMPLES = """
 
     # optional
     limit: 3.4
+
+- name: Perform action import_pre_annotated_data on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    action: import_pre_annotated_data
+
+    # optional
+    import_format:
+      # required
+      name: JSONL_CONSOLIDATED
+
+      # optional
+      version: V2003
+    import_metadata_path:
+      # required
+      source_type: OBJECT_STORAGE
+      namespace: namespace_example
+      bucket: bucket_example
+      path: path_example
 
 - name: Perform action remove_dataset_labels on dataset
   oci_data_labeling_service_dataset_actions:
@@ -326,6 +403,13 @@ dataset:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        lifecycle_substate:
+            description:
+                - "The sub-state of the dataset.
+                  IMPORT_DATASET - The dataset is being imported."
+            returned: on success
+            type: str
+            sample: IMPORT_DATASET
         annotation_format:
             description:
                 - The annotation format name required for labeling records.
@@ -448,6 +532,61 @@ dataset:
                     returned: on success
                     type: float
                     sample: 10
+        initial_import_dataset_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                import_format:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of import format
+                            returned: on success
+                            type: str
+                            sample: JSONL_CONSOLIDATED
+                        version:
+                            description:
+                                - Version of import format
+                            returned: on success
+                            type: str
+                            sample: V2003
+                import_metadata_path:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_type:
+                            description:
+                                - "The type of data source.
+                                  OBJECT_STORAGE - The source details for an object storage bucket."
+                            returned: on success
+                            type: str
+                            sample: OBJECT_STORAGE
+                        namespace:
+                            description:
+                                - Bucket namespace name
+                            returned: on success
+                            type: str
+                            sample: namespace_example
+                        bucket:
+                            description:
+                                - Bucket name
+                            returned: on success
+                            type: str
+                            sample: bucket_example
+                        path:
+                            description:
+                                - Path for the metadata file.
+                            returned: on success
+                            type: str
+                            sample: path_example
         labeling_instructions:
             description:
                 - The labeling instructions for human labelers in rich text format
@@ -475,6 +614,13 @@ dataset:
             returned: on success
             type: dict
             sample: {}
+        additional_properties:
+            description:
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -484,6 +630,7 @@ dataset:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "lifecycle_substate": "IMPORT_DATASET",
         "annotation_format": "annotation_format_example",
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
@@ -510,10 +657,23 @@ dataset:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "initial_import_dataset_configuration": {
+            "import_format": {
+                "name": "JSONL_CONSOLIDATED",
+                "version": "V2003"
+            },
+            "import_metadata_path": {
+                "source_type": "OBJECT_STORAGE",
+                "namespace": "namespace_example",
+                "bucket": "bucket_example",
+                "path": "path_example"
+            }
+        },
         "labeling_instructions": "labeling_instructions_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "additional_properties": {}
     }
 """
 
@@ -532,6 +692,7 @@ try:
     from oci.data_labeling_service.models import AddDatasetLabelsDetails
     from oci.data_labeling_service.models import ChangeDatasetCompartmentDetails
     from oci.data_labeling_service.models import GenerateDatasetRecordsDetails
+    from oci.data_labeling_service.models import ImportPreAnnotatedDataDetails
     from oci.data_labeling_service.models import RemoveDatasetLabelsDetails
     from oci.data_labeling_service.models import RenameDatasetLabelsDetails
     from oci.data_labeling_service.models import SnapshotDatasetDetails
@@ -547,6 +708,7 @@ class DatasetActionsHelperGen(OCIActionsHelperBase):
         add_dataset_labels
         change_compartment
         generate_dataset_records
+        import_pre_annotated_data
         remove_dataset_labels
         rename_dataset_labels
         snapshot
@@ -619,6 +781,27 @@ class DatasetActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 dataset_id=self.module.params.get("dataset_id"),
                 generate_dataset_records_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def import_pre_annotated_data(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ImportPreAnnotatedDataDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.import_pre_annotated_data,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                import_pre_annotated_data_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -709,6 +892,36 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             limit=dict(type="float"),
+            import_format=dict(
+                type="dict",
+                options=dict(
+                    name=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "JSONL_CONSOLIDATED",
+                            "JSONL_COMPACT_PLUS_CONTENT",
+                            "CONLL",
+                            "SPACY",
+                            "COCO",
+                            "YOLO",
+                            "PASCAL_VOC",
+                        ],
+                    ),
+                    version=dict(type="str", choices=["V2003", "V5"]),
+                ),
+            ),
+            import_metadata_path=dict(
+                type="dict",
+                options=dict(
+                    source_type=dict(
+                        type="str", required=True, choices=["OBJECT_STORAGE"]
+                    ),
+                    namespace=dict(type="str", required=True),
+                    bucket=dict(type="str", required=True),
+                    path=dict(type="str", required=True),
+                ),
+            ),
             label_set=dict(
                 type="dict",
                 options=dict(
@@ -779,6 +992,7 @@ def main():
                     "add_dataset_labels",
                     "change_compartment",
                     "generate_dataset_records",
+                    "import_pre_annotated_data",
                     "remove_dataset_labels",
                     "rename_dataset_labels",
                     "snapshot",

@@ -28,8 +28,8 @@ description:
       L(StopPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase) APIs to start and stop
       the pluggable database.
     - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module:
-      disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone, start,
-      stop."
+      disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone,
+      rotate_pluggable_database_encryption_key, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

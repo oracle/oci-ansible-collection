@@ -30,7 +30,7 @@ oracle.oci.oci_database_backup_actions -- Perform actions on a Backup resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -414,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Backup resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_size_in_gbs&#x27;: 1.2, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_size_in_gbs&#x27;: 1.2, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -541,6 +541,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-backup/key_store_id"></div>
+                    <b>key_store_id</b>
+                    <a class="ansibleOptionLink" href="#return-backup/key_store_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the key store.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-backup/key_store_wallet_name"></div>
+                    <b>key_store_wallet_name</b>
+                    <a class="ansibleOptionLink" href="#return-backup/key_store_wallet_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The wallet name for Oracle Key Vault.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_store_wallet_name_example</div>
                                     </td>
             </tr>
                                 <tr>

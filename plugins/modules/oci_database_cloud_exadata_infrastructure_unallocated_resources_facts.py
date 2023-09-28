@@ -33,6 +33,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    db_servers:
+        description:
+            - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Db servers.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -41,6 +46,9 @@ EXAMPLES = """
   oci_database_cloud_exadata_infrastructure_unallocated_resources_facts:
     # required
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_servers: [ "db_servers_example" ]
 
 """
 
@@ -145,11 +153,20 @@ class CloudExadataInfrastructureUnallocatedResourcesFactsHelperGen(
         ]
 
     def get_resource(self):
+        optional_get_method_params = [
+            "db_servers",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_cloud_exadata_infrastructure_unallocated_resources,
             cloud_exadata_infrastructure_id=self.module.params.get(
                 "cloud_exadata_infrastructure_id"
             ),
+            **optional_kwargs
         )
 
 
@@ -172,6 +189,7 @@ def main():
             cloud_exadata_infrastructure_id=dict(
                 aliases=["id"], type="str", required=True
             ),
+            db_servers=dict(type="list", elements="str"),
         )
     )
 
