@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_autonomous_vm_cluster_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -271,7 +271,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.</div>
+                                            <div>Specify SYSTEM to use Oracle-managed certificates. Specify BYOC when you want to bring your own certificate.</div>
                                             <div>Required for <em>action=rotate_cloud_autonomous_vm_cluster_ords_certs</em>, <em>action=rotate_cloud_autonomous_vm_cluster_ssl_certs</em>.</div>
                                                         </td>
             </tr>
@@ -1288,7 +1288,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The amount of memory (in GBs) enabled per each CPU core.</div>
+                                            <div>The amount of memory (in GBs) enabled per OCPU or ECPU. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

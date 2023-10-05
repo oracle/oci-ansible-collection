@@ -30,7 +30,7 @@ oracle.oci.oci_data_labeling_service_dataplane_record -- Manage a Record resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -440,6 +440,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-record_metadata/job_id"></div>
+                    <b>job_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-record_metadata/job_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Job id ocid of OCR batch call.</div>
+                                            <div>Applicable when record_type is &#x27;DOCUMENT_METADATA&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-record_metadata/record_type"></div>
                     <b>record_type</b>
                     <a class="ansibleOptionLink" href="#parameter-record_metadata/record_type" title="Permalink to this option"></a>
@@ -692,6 +709,9 @@ Examples
           # required
           record_type: DOCUMENT_METADATA
 
+          # optional
+          job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Update record
       oci_data_labeling_service_dataplane_record:
         # required
@@ -703,6 +723,9 @@ Examples
         record_metadata:
           # required
           record_type: DOCUMENT_METADATA
+
+          # optional
+          job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update record using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_labeling_service_dataplane_record:
@@ -717,6 +740,9 @@ Examples
         record_metadata:
           # required
           record_type: DOCUMENT_METADATA
+
+          # optional
+          job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete record
       oci_data_labeling_service_dataplane_record:
@@ -767,7 +793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Record resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_labeled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;lifetime_logical_clock&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;record_metadata&#x27;: {&#x27;depth&#x27;: 56, &#x27;height&#x27;: 56, &#x27;record_type&#x27;: &#x27;IMAGE_METADATA&#x27;, &#x27;width&#x27;: 56}, &#x27;source_details&#x27;: {&#x27;length&#x27;: 10, &#x27;offset&#x27;: 10, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;relative_path&#x27;: &#x27;relative_path_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_labeled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;record_metadata&#x27;: {&#x27;depth&#x27;: 56, &#x27;height&#x27;: 56, &#x27;job_id&#x27;: &#x27;ocid1.job.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;record_type&#x27;: &#x27;IMAGE_METADATA&#x27;, &#x27;width&#x27;: 56}, &#x27;source_details&#x27;: {&#x27;length&#x27;: 10, &#x27;offset&#x27;: 10, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;relative_path&#x27;: &#x27;relative_path_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -899,24 +925,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-record/lifetime_logical_clock"></div>
-                    <b>lifetime_logical_clock</b>
-                    <a class="ansibleOptionLink" href="#return-record/lifetime_logical_clock" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>An integer value used in achieving concurrency control, this field will be used to generate eTags.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-record/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-record/name" title="Permalink to this return value"></a>
@@ -984,6 +992,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-record/record_metadata/job_id"></div>
+                    <b>job_id</b>
+                    <a class="ansibleOptionLink" href="#return-record/record_metadata/job_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Job id ocid of OCR batch call.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.job.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

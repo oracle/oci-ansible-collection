@@ -64,7 +64,7 @@ db_system_storage_performances:
     contains:
         shape_type:
             description:
-                - ShapeType of the DbSystems INTEL , AMD or INTEL_FLEX_X9
+                - ShapeType of the DbSystems INTEL , AMD, INTEL_FLEX_X9 or AMPERE_FLEX_A1
             returned: on success
             type: str
             sample: AMD

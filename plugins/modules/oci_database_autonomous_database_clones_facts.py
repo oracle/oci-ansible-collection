@@ -326,6 +326,13 @@ autonomous_database_clones:
             returned: on success
             type: int
             sample: 56
+        local_adg_auto_failover_max_data_loss_limit:
+            description:
+                - Parameter that allows users to select an acceptable maximum data loss limit in seconds, up to which Automatic Failover will be triggered when
+                  necessary for a Local Autonomous Data Guard
+            returned: on success
+            type: int
+            sample: 56
         compute_model:
             description:
                 - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an
@@ -385,7 +392,8 @@ autonomous_database_clones:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56
@@ -1295,6 +1303,7 @@ autonomous_database_clones:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "local_adg_auto_failover_max_data_loss_limit": 56,
         "compute_model": "ECPU",
         "compute_count": 3.4,
         "backup_retention_period_in_days": 56,

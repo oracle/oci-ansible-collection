@@ -104,14 +104,6 @@ options:
               For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are:
               AL16UTF16 or UTF8."
         type: str
-    compute_model:
-        description:
-            - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error
-              to specify `computeModel` to a non-null value.
-        type: str
-        choices:
-            - "ECPU"
-            - "OCPU"
     kms_key_id:
         description:
             - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -164,6 +156,26 @@ options:
         choices:
             - "EARLY"
             - "REGULAR"
+    backup_retention_period_in_days:
+        description:
+            - Retention period, in days, for long-term backups
+            - This parameter is updatable.
+        type: int
+    compute_model:
+        description:
+            - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error
+              to specify `computeModel` to a non-null value.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ECPU"
+            - "OCPU"
+    local_adg_auto_failover_max_data_loss_limit:
+        description:
+            - Parameter that allows users to select an acceptable maximum data loss limit in seconds, up to which Automatic Failover will be triggered when
+              necessary for a Local Autonomous Data Guard
+            - This parameter is updatable.
+        type: int
     cpu_core_count:
         description:
             - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of
@@ -234,6 +246,7 @@ options:
               Autonomous Databases on dedicated Exadata infrastructure, the maximum storage value is determined by the infrastructure shape. See
               L(Characteristics of Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
               GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
+              A full Exadata service is allocated when the Autonomous Database size is set to the upper limit (384 TB).
             - "**Note:** This parameter cannot be used with the `dataStorageSizeInGBs` parameter."
             - This parameter is updatable.
         type: int
@@ -654,13 +667,14 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -723,13 +737,14 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -794,13 +809,14 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -864,13 +880,14 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -936,13 +953,14 @@ EXAMPLES = """
     use_latest_available_backup_time_stamp: true
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1005,13 +1023,14 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1072,7 +1091,6 @@ EXAMPLES = """
     # optional
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
-    compute_model: ECPU
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     is_preview_version_with_service_terms_accepted: true
@@ -1080,6 +1098,8 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     source: NONE
     autonomous_maintenance_schedule_type: EARLY
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1138,6 +1158,9 @@ EXAMPLES = """
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
+    local_adg_auto_failover_max_data_loss_limit: 56
     cpu_core_count: 56
     long_term_backup_schedule:
       # optional
@@ -1208,6 +1231,9 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    backup_retention_period_in_days: 56
+    compute_model: ECPU
+    local_adg_auto_failover_max_data_loss_limit: 56
     cpu_core_count: 56
     long_term_backup_schedule:
       # optional
@@ -1501,6 +1527,13 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        local_adg_auto_failover_max_data_loss_limit:
+            description:
+                - Parameter that allows users to select an acceptable maximum data loss limit in seconds, up to which Automatic Failover will be triggered when
+                  necessary for a Local Autonomous Data Guard
+            returned: on success
+            type: int
+            sample: 56
         compute_model:
             description:
                 - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an
@@ -1560,7 +1593,8 @@ autonomous_database:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56
@@ -2470,6 +2504,7 @@ autonomous_database:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "local_adg_auto_failover_max_data_loss_limit": 56,
         "compute_model": "ECPU",
         "compute_count": 3.4,
         "backup_retention_period_in_days": 56,
@@ -2809,7 +2844,6 @@ def main():
             compartment_id=dict(type="str"),
             character_set=dict(type="str"),
             ncharacter_set=dict(type="str"),
-            compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
             kms_key_id=dict(type="str"),
             vault_id=dict(type="str"),
             is_preview_version_with_service_terms_accepted=dict(type="bool"),
@@ -2831,6 +2865,9 @@ def main():
             autonomous_maintenance_schedule_type=dict(
                 type="str", choices=["EARLY", "REGULAR"]
             ),
+            backup_retention_period_in_days=dict(type="int"),
+            compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
+            local_adg_auto_failover_max_data_loss_limit=dict(type="int"),
             cpu_core_count=dict(type="int"),
             long_term_backup_schedule=dict(
                 type="dict",

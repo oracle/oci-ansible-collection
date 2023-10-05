@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.32.0]
+
+## Added
+- Support for backup retention on autonomous database create operations in the Database service
+- Support for launching VM database systems using Ampere A1 shapes in the Database service
+- Support for adding and updating auto failover maximum data loss limits for local autonomous data guards in the Database service
+- Support for an increased storage size limit of up to 384 TBs in the Database service
+- Support for improved labeling of key/value pairs in the Data Labeling service
+- Support for importing datasets in the Data Labeling service
+- Support for document classification on documents of more than one page in the Data Labeling service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.3
+
 ## [4.31.0]
 
 ## Added

@@ -38,7 +38,7 @@ options:
         type: str
     certificate_generation_type:
         description:
-            - Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.
+            - Specify SYSTEM to use Oracle-managed certificates. Specify BYOC when you want to bring your own certificate.
             - Required for I(action=rotate_autonomous_vm_cluster_ords_certs), I(action=rotate_autonomous_vm_cluster_ssl_certs).
         type: str
         choices:
@@ -213,7 +213,8 @@ autonomous_vm_cluster:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) to be enabled per each CPU core.
+                - The amount of memory (in GBs) to be enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56
@@ -437,13 +438,13 @@ autonomous_vm_cluster:
             sample: true
         time_database_ssl_certificate_expires:
             description:
-                - The date and time of Database SSL certificate expiration.
+                - The date and time of the Database SSL certificate expiration.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_ords_certificate_expires:
             description:
-                - The date and time of ORDS certificate expiration.
+                - The date and time of the ORDS certificate expiration.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
