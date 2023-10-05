@@ -167,8 +167,8 @@ autonomous_container_databases:
             sample: db_unique_name_example
         db_name:
             description:
-                - The database name for the Autonomous Container Database. The name must be unique within the Cloud Autonomous VM Cluster, must start with an
-                  alphabetic character and followed by 1 to 7 alphanumeric characters.
+                - The Database name for the Autonomous Container Database. The name must be unique within the Cloud Autonomous VM Cluster, starting with an
+                  alphabetic character, followed by 1 to 7 alphanumeric characters.
             returned: on success
             type: str
             sample: db_name_example

@@ -45,6 +45,18 @@ options:
         type: list
         elements: dict
         suboptions:
+            document_entity_metadata:
+                description:
+                    - ""
+                    - Applicable when entity_type is 'GENERIC'
+                type: dict
+                suboptions:
+                    page_number:
+                        description:
+                            - This stores page number of document.
+                            - Required when entity_type is 'GENERIC'
+                        type: float
+                        required: true
             text:
                 description:
                     - Entity Name.
@@ -85,6 +97,11 @@ options:
                 description:
                     - float value, score from OCR.
                     - Required when entity_type is 'KEYVALUESELECTION'
+                type: float
+            page_number:
+                description:
+                    - Integer value.
+                    - Applicable when entity_type is 'KEYVALUESELECTION'
                 type: float
             entity_type:
                 description:
@@ -279,6 +296,18 @@ annotation:
             returned: on success
             type: complex
             contains:
+                document_entity_metadata:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        page_number:
+                            description:
+                                - This stores page number of document.
+                            returned: on success
+                            type: float
+                            sample: 10
                 text:
                     description:
                         - Entity Name.
@@ -321,6 +350,12 @@ annotation:
                     returned: on success
                     type: float
                     sample: 3.4
+                page_number:
+                    description:
+                        - Integer value.
+                    returned: on success
+                    type: float
+                    sample: 10
                 entity_type:
                     description:
                         - "The entity type described in the annotation.
@@ -384,12 +419,6 @@ annotation:
             returned: on success
             type: str
             sample: ACTIVE
-        lifetime_logical_clock:
-            description:
-                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
-            returned: on success
-            type: int
-            sample: 56
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -412,6 +441,9 @@ annotation:
         "updated_by": "updated_by_example",
         "record_id": "ocid1.record.oc1..xxxxxxEXAMPLExxxxxx",
         "entities": [{
+            "document_entity_metadata": {
+                "page_number": 10
+            },
             "text": "text_example",
             "bounding_polygon": {
                 "normalized_vertices": [{
@@ -421,6 +453,7 @@ annotation:
             },
             "rotation": 10,
             "confidence": 3.4,
+            "page_number": 10,
             "entity_type": "GENERIC",
             "labels": [{
                 "label": "label_example"
@@ -433,7 +466,6 @@ annotation:
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
-        "lifetime_logical_clock": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -607,6 +639,10 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
+                    document_entity_metadata=dict(
+                        type="dict",
+                        options=dict(page_number=dict(type="float", required=True)),
+                    ),
                     text=dict(type="str"),
                     bounding_polygon=dict(
                         type="dict",
@@ -624,6 +660,7 @@ def main():
                     ),
                     rotation=dict(type="float"),
                     confidence=dict(type="float"),
+                    page_number=dict(type="float"),
                     entity_type=dict(
                         type="str",
                         required=True,

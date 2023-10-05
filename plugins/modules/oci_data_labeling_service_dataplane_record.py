@@ -92,6 +92,11 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            job_id:
+                description:
+                    - Job id ocid of OCR batch call.
+                    - Applicable when record_type is 'DOCUMENT_METADATA'
+                type: str
             height:
                 description:
                     - Height of the image record.
@@ -161,6 +166,9 @@ EXAMPLES = """
       # required
       record_type: DOCUMENT_METADATA
 
+      # optional
+      job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Update record
   oci_data_labeling_service_dataplane_record:
     # required
@@ -172,6 +180,9 @@ EXAMPLES = """
     record_metadata:
       # required
       record_type: DOCUMENT_METADATA
+
+      # optional
+      job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update record using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_labeling_service_dataplane_record:
@@ -186,6 +197,9 @@ EXAMPLES = """
     record_metadata:
       # required
       record_type: DOCUMENT_METADATA
+
+      # optional
+      job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete record
   oci_data_labeling_service_dataplane_record:
@@ -298,18 +312,18 @@ record:
             returned: on success
             type: str
             sample: ACTIVE
-        lifetime_logical_clock:
-            description:
-                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
-            returned: on success
-            type: int
-            sample: 56
         record_metadata:
             description:
                 - ""
             returned: on success
             type: complex
             contains:
+                job_id:
+                    description:
+                        - Job id ocid of OCR batch call.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
                 height:
                     description:
                         - Height of the image record.
@@ -367,8 +381,8 @@ record:
         },
         "is_labeled": true,
         "lifecycle_state": "ACTIVE",
-        "lifetime_logical_clock": 56,
         "record_metadata": {
+            "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
             "height": 56,
             "width": 56,
             "depth": 56,
@@ -557,6 +571,7 @@ def main():
             record_metadata=dict(
                 type="dict",
                 options=dict(
+                    job_id=dict(type="str"),
                     height=dict(type="int"),
                     width=dict(type="int"),
                     depth=dict(type="int"),

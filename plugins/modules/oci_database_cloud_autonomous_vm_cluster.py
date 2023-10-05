@@ -58,7 +58,8 @@ options:
         type: int
     memory_per_oracle_compute_unit_in_gbs:
         description:
-            - The amount of memory (in GBs) to be enabled per each CPU core.
+            - The amount of memory (in GBs) to be enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+              Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
         type: int
     autonomous_data_storage_size_in_tbs:
         description:
@@ -761,7 +762,8 @@ cloud_autonomous_vm_cluster:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each CPU core.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56

@@ -45,7 +45,7 @@ options:
         required: true
     certificate_generation_type:
         description:
-            - Specify SYSTEM for using Oracle managed certificates. Specify BYOC when you want to bring your own certificate.
+            - Specify SYSTEM to use Oracle-managed certificates. Specify BYOC when you want to bring your own certificate.
             - Required for I(action=rotate_cloud_autonomous_vm_cluster_ords_certs), I(action=rotate_cloud_autonomous_vm_cluster_ssl_certs).
         type: str
         choices:
@@ -493,7 +493,8 @@ cloud_autonomous_vm_cluster:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each CPU core.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
+                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
             returned: on success
             type: int
             sample: 56

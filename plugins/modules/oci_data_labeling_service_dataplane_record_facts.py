@@ -150,47 +150,6 @@ records:
                     returned: on success
                     type: float
                     sample: 10
-        lifetime_logical_clock:
-            description:
-                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        record_metadata:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                height:
-                    description:
-                        - Height of the image record.
-                    returned: on success
-                    type: int
-                    sample: 56
-                width:
-                    description:
-                        - Width of the image record.
-                    returned: on success
-                    type: int
-                    sample: 56
-                depth:
-                    description:
-                        - Depth of the image record.
-                    returned: on success
-                    type: int
-                    sample: 56
-                record_type:
-                    description:
-                        - "The record type based on dataset format details.
-                          IMAGE_METADATA  - Collection of metadata related to image record.
-                          TEXT_METADATA - Collection of metadata related to text record.
-                          DOCUMENT_METADATA - Collection of metadata related to document record."
-                    returned: on success
-                    type: str
-                    sample: IMAGE_METADATA
         id:
             description:
                 - The OCID of the record.
@@ -242,6 +201,45 @@ records:
             returned: on success
             type: str
             sample: ACTIVE
+        record_metadata:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                job_id:
+                    description:
+                        - Job id ocid of OCR batch call.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+                height:
+                    description:
+                        - Height of the image record.
+                    returned: on success
+                    type: int
+                    sample: 56
+                width:
+                    description:
+                        - Width of the image record.
+                    returned: on success
+                    type: int
+                    sample: 56
+                depth:
+                    description:
+                        - Depth of the image record.
+                    returned: on success
+                    type: int
+                    sample: 56
+                record_type:
+                    description:
+                        - "The record type based on dataset format details.
+                          IMAGE_METADATA  - Collection of metadata related to image record.
+                          TEXT_METADATA - Collection of metadata related to text record.
+                          DOCUMENT_METADATA - Collection of metadata related to document record."
+                    returned: on success
+                    type: str
+                    sample: IMAGE_METADATA
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -264,13 +262,6 @@ records:
             "offset": 10,
             "length": 10
         },
-        "lifetime_logical_clock": 56,
-        "record_metadata": {
-            "height": 56,
-            "width": 56,
-            "depth": 56,
-            "record_type": "IMAGE_METADATA"
-        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -279,6 +270,13 @@ records:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "is_labeled": true,
         "lifecycle_state": "ACTIVE",
+        "record_metadata": {
+            "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
+            "height": 56,
+            "width": 56,
+            "depth": 56,
+            "record_type": "IMAGE_METADATA"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

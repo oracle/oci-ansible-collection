@@ -107,18 +107,19 @@ dataset:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        lifecycle_substate:
+            description:
+                - "The sub-state of the dataset.
+                  IMPORT_DATASET - The dataset is being imported."
+            returned: on success
+            type: str
+            sample: IMPORT_DATASET
         annotation_format:
             description:
                 - The annotation format name required for labeling records.
             returned: on success
             type: str
             sample: annotation_format_example
-        lifetime_logical_clock:
-            description:
-                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
-            returned: on success
-            type: int
-            sample: 56
         dataset_source_details:
             description:
                 - ""
@@ -235,6 +236,61 @@ dataset:
                     returned: on success
                     type: float
                     sample: 10
+        initial_import_dataset_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                import_format:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of import format
+                            returned: on success
+                            type: str
+                            sample: JSONL_CONSOLIDATED
+                        version:
+                            description:
+                                - Version of import format
+                            returned: on success
+                            type: str
+                            sample: V2003
+                import_metadata_path:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_type:
+                            description:
+                                - "The type of data source.
+                                  OBJECT_STORAGE - The source details for an object storage bucket."
+                            returned: on success
+                            type: str
+                            sample: OBJECT_STORAGE
+                        namespace:
+                            description:
+                                - Bucket namespace name
+                            returned: on success
+                            type: str
+                            sample: namespace_example
+                        bucket:
+                            description:
+                                - Bucket name
+                            returned: on success
+                            type: str
+                            sample: bucket_example
+                        path:
+                            description:
+                                - Path for the metadata file.
+                            returned: on success
+                            type: str
+                            sample: path_example
         labeling_instructions:
             description:
                 - The labeling instructions for human labelers in rich text format
@@ -262,6 +318,13 @@ dataset:
             returned: on success
             type: dict
             sample: {}
+        additional_properties:
+            description:
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -271,8 +334,8 @@ dataset:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "lifecycle_substate": "IMPORT_DATASET",
         "annotation_format": "annotation_format_example",
-        "lifetime_logical_clock": 56,
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
             "namespace": "namespace_example",
@@ -298,10 +361,23 @@ dataset:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "initial_import_dataset_configuration": {
+            "import_format": {
+                "name": "JSONL_CONSOLIDATED",
+                "version": "V2003"
+            },
+            "import_metadata_path": {
+                "source_type": "OBJECT_STORAGE",
+                "namespace": "namespace_example",
+                "bucket": "bucket_example",
+                "path": "path_example"
+            }
+        },
         "labeling_instructions": "labeling_instructions_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "additional_properties": {}
     }
 """
 

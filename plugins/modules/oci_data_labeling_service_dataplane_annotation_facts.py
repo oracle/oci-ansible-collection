@@ -137,6 +137,18 @@ annotations:
             returned: on success
             type: complex
             contains:
+                document_entity_metadata:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        page_number:
+                            description:
+                                - This stores page number of document.
+                            returned: on success
+                            type: float
+                            sample: 10
                 text:
                     description:
                         - Entity Name.
@@ -179,6 +191,12 @@ annotations:
                     returned: on success
                     type: float
                     sample: 3.4
+                page_number:
+                    description:
+                        - Integer value.
+                    returned: on success
+                    type: float
+                    sample: 10
                 entity_type:
                     description:
                         - "The entity type described in the annotation.
@@ -227,13 +245,6 @@ annotations:
                     returned: on success
                     type: dict
                     sample: {}
-        lifetime_logical_clock:
-            description:
-                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
         id:
             description:
                 - The OCID of the annotation.
@@ -291,6 +302,9 @@ annotations:
         "created_by": "created_by_example",
         "updated_by": "updated_by_example",
         "entities": [{
+            "document_entity_metadata": {
+                "page_number": 10
+            },
             "text": "text_example",
             "bounding_polygon": {
                 "normalized_vertices": [{
@@ -300,6 +314,7 @@ annotations:
             },
             "rotation": 10,
             "confidence": 3.4,
+            "page_number": 10,
             "entity_type": "GENERIC",
             "labels": [{
                 "label": "label_example"
@@ -310,7 +325,6 @@ annotations:
             },
             "extended_metadata": {}
         }],
-        "lifetime_logical_clock": 56,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
