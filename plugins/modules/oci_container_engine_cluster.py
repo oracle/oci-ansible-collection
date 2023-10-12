@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Cluster resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new cluster.
     - "This resource has the following action operations in the M(oracle.oci.oci_container_engine_cluster_actions) module: cluster_migrate_to_native_vcn,
-      update_cluster_endpoint_config."
+      complete_credential_rotation, start_credential_rotation, update_cluster_endpoint_config."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -640,6 +640,12 @@ cluster:
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+                time_credential_expiration:
+                    description:
+                        - The time until which the cluster credential is valid.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the cluster masters.
@@ -778,7 +784,8 @@ cluster:
             "deleted_by_work_request_id": "ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "updated_by_user_id": "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx",
-            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_credential_expiration": "2013-10-20T19:20:30+01:00"
         },
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

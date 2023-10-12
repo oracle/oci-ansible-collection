@@ -71,7 +71,7 @@ options:
         type: dict
     log_saved_search_id:
         description:
-            - OCID of the logSavedSearch
+            - OCID of the logSavedSearch.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

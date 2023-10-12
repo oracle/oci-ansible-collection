@@ -54,7 +54,7 @@ options:
         type: str
     display_name:
         description:
-            - Resource name
+            - Resource name.
         type: str
         aliases: ["name"]
     lifecycle_state:
@@ -130,13 +130,13 @@ unified_agent_configurations:
                     sample: LOGGING
                 sources:
                     description:
-                        - ""
+                        - Logging source object.
                     returned: on success
                     type: complex
                     contains:
                         paths:
                             description:
-                                - ""
+                                - Absolute paths for log source files. Wildcard can be used.
                             returned: on success
                             type: list
                             sample: []
@@ -146,45 +146,135 @@ unified_agent_configurations:
                             returned: on success
                             type: complex
                             contains:
+                                is_merge_cri_fields:
+                                    description:
+                                        - If you don't need stream/logtag fields, set this to false.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                nested_parser:
+                                    description:
+                                        - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        parser_type:
+                                            description:
+                                                - Type of fluent parser.
+                                            returned: on success
+                                            type: str
+                                            sample: AUDITD
+                                        field_time_key:
+                                            description:
+                                                - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                            returned: on success
+                                            type: str
+                                            sample: field_time_key_example
+                                        types:
+                                            description:
+                                                - "Specify types for converting a field into another type.
+                                                  For example,
+                                                    With this configuration:
+                                                        <parse>
+                                                          @type csv
+                                                          keys time,host,req_id,user
+                                                          time_key time
+                                                        </parse>"
+                                                - " This incoming event:
+                                                      \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                                - " is parsed as:
+                                                      1362020400 (2013/02/28/ 12:00:00)"
+                                                - |
+                                                  "   record:
+                                                      {
+                                                        \\"host\\"   : \\"192.168.0.1\\",
+                                                        \\"req_id\\" : \\"111\\",
+                                                        \\"user\\"   : \\"-\\"
+                                                      }"
+                                            returned: on success
+                                            type: dict
+                                            sample: {}
+                                        null_value_pattern:
+                                            description:
+                                                - Specify the null value pattern.
+                                            returned: on success
+                                            type: str
+                                            sample: null_value_pattern_example
+                                        is_null_empty_string:
+                                            description:
+                                                - If true, an empty string field is replaced with nil.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_estimate_current_event:
+                                            description:
+                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_keep_time_key:
+                                            description:
+                                                - If true, keep time field in the record.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        timeout_in_milliseconds:
+                                            description:
+                                                - Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        time_type:
+                                            description:
+                                                - Time type of JSON parser.
+                                            returned: on success
+                                            type: str
+                                            sample: FLOAT
+                                        time_format:
+                                            description:
+                                                - Process time value using the specified format.
+                                            returned: on success
+                                            type: str
+                                            sample: time_format_example
                                 time_type:
                                     description:
-                                        - ""
+                                        - Time type of JSON parser.
                                     returned: on success
                                     type: str
                                     sample: FLOAT
                                 format_firstline:
                                     description:
-                                        - ""
+                                        - First line pattern format.
                                     returned: on success
                                     type: str
                                     sample: format_firstline_example
                                 format:
                                     description:
-                                        - ""
+                                        - Mutiline pattern format.
                                     returned: on success
                                     type: list
                                     sample: []
                                 grok_name_key:
                                     description:
-                                        - ""
+                                        - grok name key.
                                     returned: on success
                                     type: str
                                     sample: grok_name_key_example
                                 grok_failure_key:
                                     description:
-                                        - ""
+                                        - grok failure key.
                                     returned: on success
                                     type: str
                                     sample: grok_failure_key_example
                                 multi_line_start_regexp:
                                     description:
-                                        - ""
+                                        - Multiline start regexp pattern.
                                     returned: on success
                                     type: str
                                     sample: multi_line_start_regexp_example
                                 patterns:
                                     description:
-                                        - ""
+                                        - grok pattern object.
                                     returned: on success
                                     type: complex
                                     contains:
@@ -220,49 +310,49 @@ unified_agent_configurations:
                                             sample: field_time_zone_example
                                 message_key:
                                     description:
-                                        - ""
+                                        - Specifies the field name to contain logs.
                                     returned: on success
                                     type: str
                                     sample: message_key_example
                                 expression:
                                     description:
-                                        - ""
+                                        - Regex pattern.
                                     returned: on success
                                     type: str
                                     sample: expression_example
                                 time_format:
                                     description:
-                                        - ""
+                                        - Process time value using the specified format.
                                     returned: on success
                                     type: str
                                     sample: time_format_example
                                 rfc5424_time_format:
                                     description:
-                                        - ""
+                                        - rfc5424 time format.
                                     returned: on success
                                     type: str
                                     sample: rfc5424_time_format_example
                                 message_format:
                                     description:
-                                        - ""
+                                        - Message format of syslog.
                                     returned: on success
                                     type: str
                                     sample: RFC3164
                                 is_with_priority:
                                     description:
-                                        - ""
+                                        - With priority or not.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_support_colonless_ident:
                                     description:
-                                        - ""
+                                        - Support colonless ident or not.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 syslog_parser_type:
                                     description:
-                                        - ""
+                                        - Syslog parser type.
                                     returned: on success
                                     type: str
                                     sample: STRING
@@ -280,7 +370,25 @@ unified_agent_configurations:
                                     sample: field_time_key_example
                                 types:
                                     description:
-                                        - Specify types for converting a field into another type.
+                                        - "Specify types for converting a field into another type.
+                                          For example,
+                                            With this configuration:
+                                                <parse>
+                                                  @type csv
+                                                  keys time,host,req_id,user
+                                                  time_key time
+                                                </parse>"
+                                        - " This incoming event:
+                                              \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                        - " is parsed as:
+                                              1362020400 (2013/02/28/ 12:00:00)"
+                                        - |
+                                          "   record:
+                                              {
+                                                \\"host\\"   : \\"192.168.0.1\\",
+                                                \\"req_id\\" : \\"111\\",
+                                                \\"user\\"   : \\"-\\"
+                                              }"
                                     returned: on success
                                     type: dict
                                     sample: {}
@@ -316,13 +424,13 @@ unified_agent_configurations:
                                     sample: 56
                                 delimiter:
                                     description:
-                                        - ""
+                                        - csv delimiter.
                                     returned: on success
                                     type: str
                                     sample: delimiter_example
                                 keys:
                                     description:
-                                        - ""
+                                        - csv keys.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -340,7 +448,7 @@ unified_agent_configurations:
                             sample: LOG_TAIL
                         channels:
                             description:
-                                - ""
+                                - Windows event log channels.
                             returned: on success
                             type: list
                             sample: []
@@ -454,6 +562,19 @@ unified_agent_configurations:
             "sources": [{
                 "paths": [],
                 "parser": {
+                    "is_merge_cri_fields": true,
+                    "nested_parser": {
+                        "parser_type": "AUDITD",
+                        "field_time_key": "field_time_key_example",
+                        "types": {},
+                        "null_value_pattern": "null_value_pattern_example",
+                        "is_null_empty_string": true,
+                        "is_estimate_current_event": true,
+                        "is_keep_time_key": true,
+                        "timeout_in_milliseconds": 56,
+                        "time_type": "FLOAT",
+                        "time_format": "time_format_example"
+                    },
                     "time_type": "FLOAT",
                     "format_firstline": "format_firstline_example",
                     "format": [],

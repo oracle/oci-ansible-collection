@@ -24,6 +24,9 @@ short_description: Perform actions on a Cluster resource in Oracle Cloud Infrast
 description:
     - Perform actions on a Cluster resource in Oracle Cloud Infrastructure
     - For I(action=cluster_migrate_to_native_vcn), initiates cluster migration to use native VCN.
+    - For I(action=complete_credential_rotation), complete cluster credential rotation. Retire old credentials from kubernetes components.
+    - For I(action=start_credential_rotation), start cluster credential rotation by adding new credentials, old credentials will still work after this
+      operation.
     - For I(action=update_cluster_endpoint_config), update the details of the cluster endpoint configuration.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -54,6 +57,11 @@ options:
             - The optional override of the non-native endpoint decommission time after migration is complete. Defaults to 30 days.
             - Applicable only for I(action=cluster_migrate_to_native_vcn).
         type: str
+    auto_completion_delay_duration:
+        description:
+            - The duration in days(in ISO 8601 notation eg. P5D) after which the old credentials should be retired. Maximum delay duration is 14 days.
+            - Required for I(action=start_credential_rotation).
+        type: str
     cluster_id:
         description:
             - The OCID of the cluster.
@@ -79,6 +87,8 @@ options:
         required: true
         choices:
             - "cluster_migrate_to_native_vcn"
+            - "complete_credential_rotation"
+            - "start_credential_rotation"
             - "update_cluster_endpoint_config"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -97,6 +107,19 @@ EXAMPLES = """
 
     # optional
     decommission_delay_duration: decommission_delay_duration_example
+
+- name: Perform action complete_credential_rotation on cluster
+  oci_container_engine_cluster_actions:
+    # required
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: complete_credential_rotation
+
+- name: Perform action start_credential_rotation on cluster
+  oci_container_engine_cluster_actions:
+    # required
+    auto_completion_delay_duration: auto_completion_delay_duration_example
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: start_credential_rotation
 
 - name: Perform action update_cluster_endpoint_config on cluster
   oci_container_engine_cluster_actions:
@@ -366,6 +389,12 @@ cluster:
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+                time_credential_expiration:
+                    description:
+                        - The time until which the cluster credential is valid.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the cluster masters.
@@ -504,7 +533,8 @@ cluster:
             "deleted_by_work_request_id": "ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "updated_by_user_id": "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx",
-            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_credential_expiration": "2013-10-20T19:20:30+01:00"
         },
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
@@ -541,6 +571,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.container_engine import ContainerEngineClient
     from oci.container_engine.models import ClusterMigrateToNativeVcnDetails
+    from oci.container_engine.models import StartCredentialRotationDetails
     from oci.container_engine.models import UpdateClusterEndpointConfigDetails
 
     HAS_OCI_PY_SDK = True
@@ -552,6 +583,8 @@ class ClusterActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         cluster_migrate_to_native_vcn
+        complete_credential_rotation
+        start_credential_rotation
         update_cluster_endpoint_config
     """
 
@@ -580,6 +613,42 @@ class ClusterActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 cluster_id=self.module.params.get("cluster_id"),
                 cluster_migrate_to_native_vcn_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def complete_credential_rotation(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.complete_credential_rotation,
+            call_fn_args=(),
+            call_fn_kwargs=dict(cluster_id=self.module.params.get("cluster_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def start_credential_rotation(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, StartCredentialRotationDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.start_credential_rotation,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                cluster_id=self.module.params.get("cluster_id"),
+                start_credential_rotation_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -635,6 +704,7 @@ def main():
                 ),
             ),
             decommission_delay_duration=dict(type="str"),
+            auto_completion_delay_duration=dict(type="str"),
             cluster_id=dict(aliases=["id"], type="str", required=True),
             nsg_ids=dict(type="list", elements="str"),
             is_public_ip_enabled=dict(type="bool"),
@@ -643,6 +713,8 @@ def main():
                 required=True,
                 choices=[
                     "cluster_migrate_to_native_vcn",
+                    "complete_credential_rotation",
+                    "start_credential_rotation",
                     "update_cluster_endpoint_config",
                 ],
             ),

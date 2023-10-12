@@ -23,13 +23,13 @@ module: oci_container_instances_container_instance_shape_facts
 short_description: Fetches details about one or multiple ContainerInstanceShape resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ContainerInstanceShape resources in Oracle Cloud Infrastructure
-    - Get a list of shapes for creating Container Instances and their details.
+    - Lists the shapes that can be used to create container instances.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
         type: str
         required: true
     availability_domain:
@@ -66,7 +66,7 @@ container_instance_shapes:
             sample: name_example
         processor_description:
             description:
-                - A short description of the Instance's processor (CPU).
+                - A short description of the container instance's processor (CPU).
             returned: on success
             type: str
             sample: processor_description_example
@@ -96,31 +96,31 @@ container_instance_shapes:
             contains:
                 min_in_gbs:
                     description:
-                        - The minimum amount of memory, in gigabytes.
+                        - The minimum amount of memory (GB).
                     returned: on success
                     type: float
                     sample: 3.4
                 max_in_gbs:
                     description:
-                        - The maximum amount of memory, in gigabytes.
+                        - The maximum amount of memory (GB).
                     returned: on success
                     type: float
                     sample: 3.4
                 default_per_ocpu_in_gbs:
                     description:
-                        - The default amount of memory per OCPU available for this shape, in gigabytes.
+                        - The default amount of memory per OCPU available for this shape (GB).
                     returned: on success
                     type: float
                     sample: 3.4
                 min_per_ocpu_in_gbs:
                     description:
-                        - The minimum amount of memory per OCPU available for this shape, in gigabytes.
+                        - The minimum amount of memory per OCPU available for this shape (GB).
                     returned: on success
                     type: float
                     sample: 3.4
                 max_per_ocpu_in_gbs:
                     description:
-                        - The maximum amount of memory per OCPU available for this shape, in gigabytes.
+                        - The maximum amount of memory per OCPU available for this shape (GB).
                     returned: on success
                     type: float
                     sample: 3.4

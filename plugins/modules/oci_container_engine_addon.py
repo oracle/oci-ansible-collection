@@ -234,6 +234,12 @@ class AddonHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(AddonHelperGen, self).get_possible_entity_types() + [
+            "cluster",
+            "clusters",
+            "containerEnginecluster",
+            "containerEngineclusters",
+            "clusterresource",
+            "clustersresource",
             "addon",
             "addons",
             "containerEngineaddon",

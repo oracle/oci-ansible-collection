@@ -23,7 +23,7 @@ module: oci_container_instances_container_instance_actions
 short_description: Perform actions on a ContainerInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ContainerInstance resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a ContainerInstance resource from one compartment identifier to another. When provided, If-Match is checked
+    - For I(action=change_compartment), moves a container instance resource from one compartment identifier to another. When provided, If-Match is checked
       against ETag values of the resource.
     - For I(action=restart), restarts a container instance. When provided, If-Match is checked against ETag values of the container instance.
     - "For I(action=start), starts a container instance if it is \\"inactive\\". No effect otherwise. When provided, If-Match is checked against ETag values of
@@ -35,13 +35,12 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
-              into which the resource should be moved.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the container instance to.
             - Required for I(action=change_compartment).
         type: str
     container_instance_id:
         description:
-            - The system-generated unique identifier for the ContainerInstance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container instance.
         type: str
         aliases: ["id"]
         required: true
@@ -95,19 +94,19 @@ container_instance:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - An OCID that cannot be changed.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Display name for the ContainerInstance. Can be renamed.
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -121,46 +120,46 @@ container_instance:
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`."
             returned: on success
             type: dict
             sample: {}
         availability_domain:
             description:
-                - Availability Domain where the ContainerInstance is running.
+                - The availability domain to place the container instance.
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
-                - Fault Domain where the ContainerInstance is running.
+                - The fault domain to place the container instance.
             returned: on success
             type: str
             sample: FAULT-DOMAIN-1
         lifecycle_state:
             description:
-                - The current state of the ContainerInstance.
+                - The current state of the container instance.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide
-                  actionable information for a resource in Failed state.
+                - A message that describes the current state of the container in more detail. Can be used to provide
+                  actionable information.
             returned: on success
             type: str
             sample: lifecycle_details_example
         volumes:
             description:
-                - A Volume represents a directory with data that is accessible across multiple containers in a
-                  ContainerInstance.
+                - A volume is a directory with data that is accessible across multiple containers in a
+                  container instance.
             returned: on success
             type: complex
             contains:
@@ -194,7 +193,7 @@ container_instance:
                             sample: path_example
                 name:
                     description:
-                        - The name of the volume. This has be unique cross single ContainerInstance.
+                        - The name of the volume. This must be unique within a single container instance.
                     returned: on success
                     type: str
                     sample: name_example
@@ -206,25 +205,25 @@ container_instance:
                     sample: EMPTYDIR
                 backing_store:
                     description:
-                        - Volume type that we are using for empty dir where it could be either File Storage or Memory
+                        - The volume type of the empty directory, can be either File Storage or Memory.
                     returned: on success
                     type: str
                     sample: EPHEMERAL_STORAGE
         volume_count:
             description:
-                - The number of volumes that attached to this Instance
+                - The number of volumes that are attached to the container instance.
             returned: on success
             type: int
             sample: 56
         containers:
             description:
-                - The Containers on this Instance
+                - The containers on the container instance.
             returned: on success
             type: complex
             contains:
                 container_id:
                     description:
-                        - The ID of the Container on this Instance.
+                        - The OCID of the container.
                     returned: on success
                     type: str
                     sample: "ocid1.container.oc1..xxxxxxEXAMPLExxxxxx"
@@ -236,25 +235,26 @@ container_instance:
                     sample: display_name_example
         container_count:
             description:
-                - The number of containers on this Instance
+                - The number of containers on the container instance.
             returned: on success
             type: int
             sample: 56
         time_created:
             description:
-                - The time the the ContainerInstance was created. An RFC3339 formatted datetime string
+                - The time the container instance was created, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the ContainerInstance was updated. An RFC3339 formatted datetime string
+                - The time the container instance was updated, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         shape:
             description:
-                - The shape of the Container Instance. The shape determines the resources available to the Container Instance.
+                - The shape of the container instance. The shape determines the number of OCPUs, amount of memory, and other resources that are allocated to a
+                  container instance.
             returned: on success
             type: str
             sample: shape_example
@@ -266,39 +266,39 @@ container_instance:
             contains:
                 ocpus:
                     description:
-                        - The total number of OCPUs available to the instance.
+                        - The total number of OCPUs available to the container instance.
                     returned: on success
                     type: float
                     sample: 3.4
                 memory_in_gbs:
                     description:
-                        - The total amount of memory available to the instance, in gigabytes.
+                        - The total amount of memory available to the container instance, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
                 processor_description:
                     description:
-                        - A short description of the instance's processor (CPU).
+                        - A short description of the container instance's processor (CPU).
                     returned: on success
                     type: str
                     sample: processor_description_example
                 networking_bandwidth_in_gbps:
                     description:
-                        - The networking bandwidth available to the instance, in gigabits per second.
+                        - The networking bandwidth available to the container instance, in gigabits per second.
                     returned: on success
                     type: float
                     sample: 3.4
         vnics:
             description:
-                - The virtual networks available to containers running on this Container Instance.
+                - The virtual networks available to the containers in the container instance.
             returned: on success
             type: complex
             contains:
                 vnic_id:
                     description:
-                        - The ID of the Virtual Network Interface Card (VNIC) over which
-                          Containers accessing this network can communicate with the
-                          larger Virtual Client Network.
+                        - The identifier of the virtual network interface card (VNIC) over which
+                          the containers accessing this network can communicate with the
+                          larger virtual cloud network.
                     returned: on success
                     type: str
                     sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
@@ -310,13 +310,13 @@ container_instance:
             contains:
                 nameservers:
                     description:
-                        - Name server IP address
+                        - "IP address of the name server.."
                     returned: on success
                     type: list
                     sample: []
                 searches:
                     description:
-                        - Search list for host-name lookup.
+                        - Search list for hostname lookup.
                     returned: on success
                     type: list
                     sample: []
@@ -328,15 +328,14 @@ container_instance:
                     sample: []
         graceful_shutdown_timeout_in_seconds:
             description:
-                - Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when
-                  the Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be
-                  sent a termination signal.
+                - The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a
+                  container instance. After the timeout is reached, the processes are sent a signal to be deleted.
             returned: on success
             type: int
             sample: 56
         image_pull_secrets:
             description:
-                - The image pull secrets for accessing private registry to pull images for containers
+                - The image pulls secrets so you can access private registry to pull container images.
             returned: on success
             type: complex
             contains:

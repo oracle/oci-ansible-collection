@@ -257,7 +257,7 @@ network_sources:
             sample: []
         time_created:
             description:
-                - Date and time the group was created, in the format defined by RFC3339.
+                - Date and time the network source was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str

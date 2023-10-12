@@ -197,6 +197,12 @@ domains:
                     returned: on success
                     type: str
                     sample: url_example
+                regional_url:
+                    description:
+                        - Region-specific identity domain URL.
+                    returned: on success
+                    type: str
+                    sample: regional_url_example
                 state:
                     description:
                         - The IDCS-replicated region state.
@@ -267,6 +273,7 @@ domains:
         "replica_regions": [{
             "region": "us-phoenix-1",
             "url": "url_example",
+            "regional_url": "regional_url_example",
             "state": "ENABLING_REPLICATION"
         }],
         "type": "DEFAULT",

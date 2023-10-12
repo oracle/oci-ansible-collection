@@ -23,7 +23,7 @@ module: oci_container_instances_container_instance
 short_description: Manage a ContainerInstance resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ContainerInstance resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new ContainerInstance.
+    - For I(state=present), creates a container instance and deploys the containers on it.
     - "This resource has the following action operations in the M(oracle.oci.oci_container_instances_container_instance_actions) module: change_compartment,
       restart, start, stop."
 version_added: "2.9.0"
@@ -31,23 +31,23 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - Compartment Identifier
+            - The compartment OCID.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     availability_domain:
         description:
-            - Availability Domain where the ContainerInstance should be created.
+            - The availability domain where the container instance runs.
             - Required for create using I(state=present).
         type: str
     fault_domain:
         description:
-            - Fault Domain where the ContainerInstance should run.
+            - The fault domain where the container instance runs.
         type: str
     shape:
         description:
-            - The shape of the Container Instance. The shape determines the resources available to the Container Instance.
+            - The shape of the container instance. The shape determines the resources available to the container instance.
             - Required for create using I(state=present).
         type: str
     shape_config:
@@ -58,18 +58,18 @@ options:
         suboptions:
             ocpus:
                 description:
-                    - The total number of OCPUs available to the instance.
+                    - The total number of OCPUs available to the container instance.
                 type: float
                 required: true
             memory_in_gbs:
                 description:
-                    - The total amount of memory available to the instance, in gigabytes.
+                    - The total amount of memory available to the container instance (GB).
                 type: float
     volumes:
         description:
-            - A Volume represents a directory with data that is accessible across multiple containers in a
-              ContainerInstance.
-              Up to 32 volumes can be attached to single container instance.
+            - A volume is a directory with data that is accessible across multiple containers in a
+              container instance.
+            - You can attach up to 32 volumes to single container instance.
         type: list
         elements: dict
         suboptions:
@@ -102,7 +102,7 @@ options:
                         type: str
             name:
                 description:
-                    - The name of the volume. This has be unique cross single ContainerInstance.
+                    - The name of the volume. This must be unique within a single container instance.
                 type: str
                 required: true
             volume_type:
@@ -116,66 +116,57 @@ options:
                 required: true
             backing_store:
                 description:
-                    - Volume type that we are using for empty dir where it could be either File Storage or Memory
+                    - The volume type of the empty directory, can be either File Storage or Memory.
                     - Applicable when volume_type is 'EMPTYDIR'
                 type: str
     containers:
         description:
-            - The Containers to create on this Instance.
+            - The containers to create on this container instance.
             - Required for create using I(state=present).
         type: list
         elements: dict
         suboptions:
             display_name:
                 description:
-                    - Display name for the Container. There are no guarantees of uniqueness
-                      for this name. If none is provided, it will be calculated automatically.
+                    - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                      If you don't provide a name, a name is generated automatically.
                 type: str
                 aliases: ["name"]
             image_url:
                 description:
-                    - The container image information. Currently only support public docker registry. Can be either image name,
-                      e.g `containerImage`, image name with version, e.g `containerImage:v1` or complete docker image Url e.g
-                      `docker.io/library/containerImage:latest`.
-                      If no registry is provided, will default the registry to public docker hub `docker.io/library`.
-                      The registry used for container image must be reachable over the Container Instance's VNIC.
+                    - A URL identifying the image that the container runs in, such as docker.io/library/busybox:latest. If you do not provide a tag, the tag
+                      will default to latest.
+                    - If no registry is provided, will default the registry to public docker hub `docker.io/library`.
+                    - The registry used for container image must be reachable over the Container Instance's VNIC.
                 type: str
                 required: true
             command:
                 description:
-                    - This command will override the container's entrypoint process.
-                      If not specified, the existing entrypoint process defined in the image will be used.
+                    - An optional command that overrides the ENTRYPOINT process.
+                      If you do not provide a value, the existing ENTRYPOINT process defined in the image is used.
                 type: list
                 elements: str
             arguments:
                 description:
-                    - A list of string arguments for a container's entrypoint process.
-                    - Many containers use an entrypoint process pointing to a shell,
-                      for example /bin/bash. For such containers, this argument list
-                      can also be used to specify the main command in the container process.
-                    - All arguments together must be 64KB or smaller.
+                    - A list of string arguments for a container's ENTRYPOINT process.
+                    - Many containers use an ENTRYPOINT process pointing to a shell
+                      (/bin/bash). For those containers, this argument list
+                      specifies the main command in the container process.
+                    - The total size of all arguments combined must be 64 KB or smaller.
                 type: list
                 elements: str
-            additional_capabilities:
-                description:
-                    - A list of additional capabilities for the container.
-                type: list
-                elements: str
-                choices:
-                    - "CAP_NET_ADMIN"
-                    - "CAP_NET_RAW"
             working_directory:
                 description:
-                    - The working directory within the Container's filesystem for
-                      the Container process. If none is set, the Container will run in the
-                      working directory set by the container image.
+                    - The working directory within the container's filesystem for
+                      the container process. If not specified, the default
+                      working directory from the image is used.
                 type: str
             environment_variables:
                 description:
                     - A map of additional environment variables to set in the environment of the container's
-                      entrypoint process. These variables are in addition to any variables already defined
+                      ENTRYPOINT process. These variables are in addition to any variables already defined
                       in the container's image.
-                    - All environment variables together, name and values, must be 64KB or smaller.
+                    - The total size of all environment variables combined, name and values, must be 64 KB or smaller.
                 type: dict
             volume_mounts:
                 description:
@@ -185,37 +176,36 @@ options:
                 suboptions:
                     mount_path:
                         description:
-                            - mountPath describes the volume access path.
+                            - The volume access path.
                         type: str
                         required: true
                     volume_name:
                         description:
-                            - The name of the volume.
+                            - The name of the volume. Avoid entering confidential information.
                         type: str
                         required: true
                     sub_path:
                         description:
-                            - specifies a sub-path inside the referenced volume instead of its root
+                            - A subpath inside the referenced volume.
                         type: str
                     is_read_only:
                         description:
-                            - Whether the volume was mounted in read-only mode. Defaults to false if not specified.
+                            - Whether the volume was mounted in read-only mode. By default, the volume is not read-only.
                         type: bool
                     partition:
                         description:
-                            - "If there is more than 1 partitions in the volume, this is the number of partition which be referenced.
-                              Here is a example:
+                            - "If there is more than one partition in the volume, reference this number of partitions.
+                              Here is an example:
                               Number  Start   End     Size    File system  Name                  Flags
-                               1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp
-                               2      106MB   1180MB  1074MB  xfs
-                               3      1180MB  50.0GB  48.8GB                                     lvm"
+                              1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp
+                              2      106MB   1180MB  1074MB  xfs
+                              3      1180MB  50.0GB  48.8GB                                     lvm"
                         type: int
             is_resource_principal_disabled:
                 description:
-                    - Determines if the Container will have access to the Container Instance Resource Principal.
-                      This method utilizes resource principal version 2.2. Please refer to
-                      https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal
-                      for detailed explanation of how to leverage the exposed resource principal elements.
+                    - Determines if the container will have access to the container instance resource principal.
+                    - This method utilizes resource principal version 2.2. For information on how to use the exposed resource principal elements, see
+                      https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal.
                 type: bool
             resource_config:
                 description:
@@ -224,18 +214,21 @@ options:
                 suboptions:
                     vcpus_limit:
                         description:
-                            - "The maximum amount of CPU utilization which may be consumed by the Container's process.
-                              If no value is provided, then the process may consume all CPU resources on the Instance.
-                              CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on
+                            - The maximum amount of CPUs that can be consumed by the container's process.
+                            - If you do not set a value, then the process
+                              can use all available CPU resources on the instance.
+                            - CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on
                               an E3 ContainerInstance with 1 OCPU is 2.0.
-                              A Container with that vcpusLimit could consume up to 100% of the CPU resources available on the Instance.
-                              Values may be fractional. A value of \\"1.5\\" means that the Container
-                              may consume at most the equivalent of 1 and a half logical CPUs worth of CPU capacity"
+                            - "A container with a 2.0 vcpusLimit could consume up to 100% of the CPU resources available on the container instance.
+                              Values can be fractional. A value of \\"1.5\\" means that the container
+                              can consume at most the equivalent of 1 and a half logical CPUs worth of CPU capacity."
                         type: float
                     memory_limit_in_gbs:
                         description:
-                            - The maximum amount of memory which may be consumed by the Container's process.
-                              If no value is provided, then the process may use all available memory on the Instance.
+                            - The maximum amount of memory that can be consumed by the container's
+                              process.
+                            - If you do not set a value, then the process
+                              may use all available memory on the instance.
                         type: float
             health_checks:
                 description:
@@ -246,7 +239,7 @@ options:
                 suboptions:
                     path:
                         description:
-                            - Container health check Http's path.
+                            - Container health check HTTP path.
                             - Required when health_check_type is 'HTTP'
                         type: str
                     port:
@@ -256,20 +249,20 @@ options:
                         type: int
                     headers:
                         description:
-                            - Container health check Http's headers.
+                            - Container health check HTTP headers.
                             - Applicable when health_check_type is 'HTTP'
                         type: list
                         elements: dict
                         suboptions:
                             name:
                                 description:
-                                    - Container Http header Key.
+                                    - Container HTTP header Key.
                                     - Required when health_check_type is 'HTTP'
                                 type: str
                                 required: true
                             value:
                                 description:
-                                    - Container Http header value.
+                                    - Container HTTP header value.
                                     - Required when health_check_type is 'HTTP'
                                 type: str
                                 required: true
@@ -316,10 +309,40 @@ options:
                             - "NONE"
                     command:
                         description:
-                            - The list of strings which will be concatenated to a single command for checking container's status.
+                            - The list of strings that will be simplified to a single command for checking the status of the container.
                             - Required when health_check_type is 'COMMAND'
                         type: list
                         elements: str
+            security_context:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    security_context_type:
+                        description:
+                            - The type of security context
+                        type: str
+                        choices:
+                            - "LINUX"
+                        default: "LINUX"
+                    run_as_user:
+                        description:
+                            - The user ID (UID) to run the entrypoint process of the container. Defaults to user specified UID in container image metadata if
+                              not provided. This must be provided if runAsGroup is provided.
+                        type: int
+                    run_as_group:
+                        description:
+                            - The group ID (GID) to run the entrypoint process of the container. Uses runtime default if not provided.
+                        type: int
+                    is_non_root_user_check_enabled:
+                        description:
+                            - Indicates if the container must run as a non-root user. If true, the service validates the container image at runtime to ensure
+                              that it is not going to run with UID 0 (root) and fails the container instance creation if the validation fails.
+                        type: bool
+                    is_root_file_system_readonly:
+                        description:
+                            - Determines if the container will have a read-only root file system. Default value is false.
+                        type: bool
             freeform_tags:
                 description:
                     - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -328,11 +351,11 @@ options:
             defined_tags:
                 description:
                     - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                      Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                      Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
                 type: dict
     vnics:
         description:
-            - The networks to make available to containers on this Instance.
+            - The networks available to containers on this container instance.
             - Required for create using I(state=present).
         type: list
         elements: dict
@@ -345,7 +368,7 @@ options:
                 aliases: ["name"]
             hostname_label:
                 description:
-                    - The hostname for the VNIC's primary private IP.
+                    - The hostname for the VNIC's primary private IP. Used for DNS.
                 type: str
             is_public_ip_assigned:
                 description:
@@ -378,7 +401,7 @@ options:
             defined_tags:
                 description:
                     - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                      Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                      Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
                 type: dict
     dns_config:
         description:
@@ -388,7 +411,7 @@ options:
             nameservers:
                 description:
                     - IP address of a name server that the resolver should query, either an IPv4 address
-                      (in dot notation), or an IPv6 address in colon (and possibly dot) notation. If null, we will use
+                      (in dot notation), or an IPv6 address in colon (and possibly dot) notation. If null, uses
                       nameservers from subnet dhcpDnsOptions.
                 type: list
                 elements: str
@@ -400,18 +423,17 @@ options:
             options:
                 description:
                     - "Options allows certain internal resolver variables to be modified. Options are a list of objects in
-                      https://man7.org/linux/man-pages/man5/resolv.conf.5.html. Examples: [\\"ndots:n\\", \\"edns0\\"]"
+                      https://man7.org/linux/man-pages/man5/resolv.conf.5.html. Examples: [\\"ndots:n\\", \\"edns0\\"]."
                 type: list
                 elements: str
     graceful_shutdown_timeout_in_seconds:
         description:
-            - Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when the
-              Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be sent a
-              termination signal.
+            - The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a
+              container instance. After the timeout is reached, the processes are sent a signal to be deleted.
         type: int
     image_pull_secrets:
         description:
-            - The image pull secrets for accessing private registry to pull images for containers
+            - The image pulls secrets so you can access private registry to pull container images.
         type: list
         elements: dict
         suboptions:
@@ -449,8 +471,8 @@ options:
         type: str
     display_name:
         description:
-            - Human-readable name for the ContainerInstance. If none is provided,
-              OCI will select one for you.
+            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. If you don't provide a name, a
+              name is generated automatically.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -464,12 +486,12 @@ options:
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
             - This parameter is updatable.
         type: dict
     container_instance_id:
         description:
-            - The system-generated unique identifier for the ContainerInstance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container instance.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -507,7 +529,6 @@ EXAMPLES = """
       display_name: display_name_example
       command: [ "command_example" ]
       arguments: [ "arguments_example" ]
-      additional_capabilities: [ "CAP_NET_ADMIN" ]
       working_directory: working_directory_example
       environment_variables: null
       volume_mounts:
@@ -537,6 +558,13 @@ EXAMPLES = """
         success_threshold: 56
         timeout_in_seconds: 56
         failure_action: KILL
+      security_context:
+        # optional
+        security_context_type: LINUX
+        run_as_user: 56
+        run_as_group: 56
+        is_non_root_user_check_enabled: true
+        is_root_file_system_readonly: true
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
     vnics:
@@ -628,19 +656,19 @@ container_instance:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - An OCID that cannot be changed.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Display name for the ContainerInstance. Can be renamed.
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -654,46 +682,46 @@ container_instance:
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`."
             returned: on success
             type: dict
             sample: {}
         availability_domain:
             description:
-                - Availability Domain where the ContainerInstance is running.
+                - The availability domain to place the container instance.
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
-                - Fault Domain where the ContainerInstance is running.
+                - The fault domain to place the container instance.
             returned: on success
             type: str
             sample: FAULT-DOMAIN-1
         lifecycle_state:
             description:
-                - The current state of the ContainerInstance.
+                - The current state of the container instance.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide
-                  actionable information for a resource in Failed state.
+                - A message that describes the current state of the container in more detail. Can be used to provide
+                  actionable information.
             returned: on success
             type: str
             sample: lifecycle_details_example
         volumes:
             description:
-                - A Volume represents a directory with data that is accessible across multiple containers in a
-                  ContainerInstance.
+                - A volume is a directory with data that is accessible across multiple containers in a
+                  container instance.
             returned: on success
             type: complex
             contains:
@@ -727,7 +755,7 @@ container_instance:
                             sample: path_example
                 name:
                     description:
-                        - The name of the volume. This has be unique cross single ContainerInstance.
+                        - The name of the volume. This must be unique within a single container instance.
                     returned: on success
                     type: str
                     sample: name_example
@@ -739,25 +767,25 @@ container_instance:
                     sample: EMPTYDIR
                 backing_store:
                     description:
-                        - Volume type that we are using for empty dir where it could be either File Storage or Memory
+                        - The volume type of the empty directory, can be either File Storage or Memory.
                     returned: on success
                     type: str
                     sample: EPHEMERAL_STORAGE
         volume_count:
             description:
-                - The number of volumes that attached to this Instance
+                - The number of volumes that are attached to the container instance.
             returned: on success
             type: int
             sample: 56
         containers:
             description:
-                - The Containers on this Instance
+                - The containers on the container instance.
             returned: on success
             type: complex
             contains:
                 container_id:
                     description:
-                        - The ID of the Container on this Instance.
+                        - The OCID of the container.
                     returned: on success
                     type: str
                     sample: "ocid1.container.oc1..xxxxxxEXAMPLExxxxxx"
@@ -769,25 +797,26 @@ container_instance:
                     sample: display_name_example
         container_count:
             description:
-                - The number of containers on this Instance
+                - The number of containers on the container instance.
             returned: on success
             type: int
             sample: 56
         time_created:
             description:
-                - The time the the ContainerInstance was created. An RFC3339 formatted datetime string
+                - The time the container instance was created, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the ContainerInstance was updated. An RFC3339 formatted datetime string
+                - The time the container instance was updated, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         shape:
             description:
-                - The shape of the Container Instance. The shape determines the resources available to the Container Instance.
+                - The shape of the container instance. The shape determines the number of OCPUs, amount of memory, and other resources that are allocated to a
+                  container instance.
             returned: on success
             type: str
             sample: shape_example
@@ -799,39 +828,39 @@ container_instance:
             contains:
                 ocpus:
                     description:
-                        - The total number of OCPUs available to the instance.
+                        - The total number of OCPUs available to the container instance.
                     returned: on success
                     type: float
                     sample: 3.4
                 memory_in_gbs:
                     description:
-                        - The total amount of memory available to the instance, in gigabytes.
+                        - The total amount of memory available to the container instance, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
                 processor_description:
                     description:
-                        - A short description of the instance's processor (CPU).
+                        - A short description of the container instance's processor (CPU).
                     returned: on success
                     type: str
                     sample: processor_description_example
                 networking_bandwidth_in_gbps:
                     description:
-                        - The networking bandwidth available to the instance, in gigabits per second.
+                        - The networking bandwidth available to the container instance, in gigabits per second.
                     returned: on success
                     type: float
                     sample: 3.4
         vnics:
             description:
-                - The virtual networks available to containers running on this Container Instance.
+                - The virtual networks available to the containers in the container instance.
             returned: on success
             type: complex
             contains:
                 vnic_id:
                     description:
-                        - The ID of the Virtual Network Interface Card (VNIC) over which
-                          Containers accessing this network can communicate with the
-                          larger Virtual Client Network.
+                        - The identifier of the virtual network interface card (VNIC) over which
+                          the containers accessing this network can communicate with the
+                          larger virtual cloud network.
                     returned: on success
                     type: str
                     sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
@@ -843,13 +872,13 @@ container_instance:
             contains:
                 nameservers:
                     description:
-                        - Name server IP address
+                        - "IP address of the name server.."
                     returned: on success
                     type: list
                     sample: []
                 searches:
                     description:
-                        - Search list for host-name lookup.
+                        - Search list for hostname lookup.
                     returned: on success
                     type: list
                     sample: []
@@ -861,15 +890,14 @@ container_instance:
                     sample: []
         graceful_shutdown_timeout_in_seconds:
             description:
-                - Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when
-                  the Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be
-                  sent a termination signal.
+                - The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a
+                  container instance. After the timeout is reached, the processes are sent a signal to be deleted.
             returned: on success
             type: int
             sample: 56
         image_pull_secrets:
             description:
-                - The image pull secrets for accessing private registry to pull images for containers
+                - The image pulls secrets so you can access private registry to pull container images.
             returned: on success
             type: complex
             contains:
@@ -1051,12 +1079,12 @@ class ContainerInstanceHelperGen(OCIResourceHelperBase):
             "containers.freeform_tags",
             "vnics.defined_tags",
             "vnics.private_ip",
-            "containers.additional_capabilities",
             "vnics.nsg_ids",
             "containers.arguments",
             "vnics.is_public_ip_assigned",
             "vnics.display_name",
             "containers.health_checks",
+            "containers.security_context",
             "containers.environment_variables",
             "containers.is_resource_principal_disabled",
             "vnics.skip_source_dest_check",
@@ -1170,11 +1198,6 @@ def main():
                     image_url=dict(type="str", required=True),
                     command=dict(type="list", elements="str"),
                     arguments=dict(type="list", elements="str"),
-                    additional_capabilities=dict(
-                        type="list",
-                        elements="str",
-                        choices=["CAP_NET_ADMIN", "CAP_NET_RAW"],
-                    ),
                     working_directory=dict(type="str"),
                     environment_variables=dict(type="dict"),
                     volume_mounts=dict(
@@ -1223,6 +1246,18 @@ def main():
                             timeout_in_seconds=dict(type="int"),
                             failure_action=dict(type="str", choices=["KILL", "NONE"]),
                             command=dict(type="list", elements="str"),
+                        ),
+                    ),
+                    security_context=dict(
+                        type="dict",
+                        options=dict(
+                            security_context_type=dict(
+                                type="str", default="LINUX", choices=["LINUX"]
+                            ),
+                            run_as_user=dict(type="int"),
+                            run_as_group=dict(type="int"),
+                            is_non_root_user_check_enabled=dict(type="bool"),
+                            is_root_file_system_readonly=dict(type="bool"),
                         ),
                     ),
                     freeform_tags=dict(type="dict"),

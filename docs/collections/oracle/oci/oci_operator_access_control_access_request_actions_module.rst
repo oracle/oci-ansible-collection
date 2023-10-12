@@ -30,7 +30,7 @@ oracle.oci.oci_operator_access_control_access_request_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -544,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AccessRequest resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_reason_summary&#x27;: &#x27;access_reason_summary_example&#x27;, &#x27;action_requests_list&#x27;: [], &#x27;approver_comment&#x27;: &#x27;approver_comment_example&#x27;, &#x27;audit_type&#x27;: [], &#x27;closure_comment&#x27;: &#x27;closure_comment_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;duration&#x27;: 56, &#x27;extend_duration&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_approved&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATED&#x27;, &#x27;opctl_additional_message&#x27;: &#x27;opctl_additional_message_example&#x27;, &#x27;opctl_id&#x27;: &#x27;ocid1.opctl.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opctl_name&#x27;: &#x27;opctl_name_example&#x27;, &#x27;operator_id&#x27;: &#x27;ocid1.operator.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;reason&#x27;: &#x27;reason_example&#x27;, &#x27;request_id&#x27;: &#x27;ocid1.request.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;resource_type&#x27;: &#x27;EXACC&#x27;, &#x27;severity&#x27;: &#x27;S1&#x27;, &#x27;system_message&#x27;: &#x27;system_message_example&#x27;, &#x27;time_of_creation&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_modification&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_user_creation&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workflow_id&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_reason_summary&#x27;: &#x27;access_reason_summary_example&#x27;, &#x27;action_requests_list&#x27;: [], &#x27;approver_comment&#x27;: &#x27;approver_comment_example&#x27;, &#x27;audit_type&#x27;: [], &#x27;closure_comment&#x27;: &#x27;closure_comment_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;duration&#x27;: 56, &#x27;extend_duration&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_approved&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATED&#x27;, &#x27;opctl_additional_message&#x27;: &#x27;opctl_additional_message_example&#x27;, &#x27;opctl_id&#x27;: &#x27;ocid1.opctl.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;opctl_name&#x27;: &#x27;opctl_name_example&#x27;, &#x27;operator_id&#x27;: &#x27;ocid1.operator.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;reason&#x27;: &#x27;reason_example&#x27;, &#x27;request_id&#x27;: &#x27;ocid1.request.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;resource_type&#x27;: &#x27;EXACC&#x27;, &#x27;severity&#x27;: &#x27;S1&#x27;, &#x27;sub_resource_list&#x27;: [], &#x27;system_message&#x27;: &#x27;system_message_example&#x27;, &#x27;time_of_creation&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_modification&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_user_creation&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workflow_id&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -974,6 +974,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">S1</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-access_request/sub_resource_list"></div>
+                    <b>sub_resource_list</b>
+                    <a class="ansibleOptionLink" href="#return-access_request/sub_resource_list" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The subresources requested for approval.</div>
+                                        <br/>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

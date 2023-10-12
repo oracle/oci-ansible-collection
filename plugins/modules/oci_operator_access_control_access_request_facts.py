@@ -260,6 +260,12 @@ access_requests:
             returned: on success
             type: str
             sample: resource_name_example
+        sub_resource_list:
+            description:
+                - The subresources requested for approval.
+            returned: on success
+            type: list
+            sample: []
         resource_type:
             description:
                 - resourceType for which the AccessRequest is applicable
@@ -354,6 +360,7 @@ access_requests:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_name": "resource_name_example",
+        "sub_resource_list": [],
         "resource_type": "EXACC",
         "lifecycle_state": "CREATED",
         "lifecycle_details": "lifecycle_details_example",

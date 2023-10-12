@@ -154,6 +154,13 @@ operator_controls:
             returned: on success
             type: str
             sample: system_message_example
+        is_default_operator_control:
+            description:
+                - Whether the operator control is a default Operator Control.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         last_modified_info:
             description:
                 - Description associated with the latest modification of the operator control.
@@ -241,6 +248,7 @@ operator_controls:
         "approval_required_op_action_list": [],
         "email_id_list": [],
         "system_message": "system_message_example",
+        "is_default_operator_control": true,
         "last_modified_info": "last_modified_info_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "operator_control_name": "operator_control_name_example",

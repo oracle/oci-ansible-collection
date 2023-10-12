@@ -60,6 +60,7 @@ options:
             - "APPLIED"
             - "APPLYFAILED"
             - "UPDATING"
+            - "UPDATEFAILED"
             - "DELETING"
             - "DELETED"
             - "DELETIONFAILED"
@@ -169,6 +170,13 @@ operator_control_assignments:
         is_auto_approve_during_maintenance:
             description:
                 - The boolean if true would autoApprove during maintenance.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        is_default_assignment:
+            description:
+                - Whether the assignment is a default assignment.
                 - Returned for get operation
             returned: on success
             type: bool
@@ -296,6 +304,7 @@ operator_control_assignments:
         "detachment_description": "detachment_description_example",
         "remote_syslog_server_ca_cert": "remote_syslog_server_ca_cert_example",
         "is_auto_approve_during_maintenance": true,
+        "is_default_assignment": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "operator_control_id": "ocid1.operatorcontrol.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -401,6 +410,7 @@ def main():
                     "APPLIED",
                     "APPLYFAILED",
                     "UPDATING",
+                    "UPDATEFAILED",
                     "DELETING",
                     "DELETED",
                     "DELETIONFAILED",
