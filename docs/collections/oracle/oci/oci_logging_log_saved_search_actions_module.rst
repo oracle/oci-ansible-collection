@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log_saved_search_actions -- Perform actions on a LogSaved
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -276,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the logSavedSearch</div>
+                                            <div>OCID of the logSavedSearch.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>

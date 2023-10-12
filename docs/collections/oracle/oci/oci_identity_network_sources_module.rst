@@ -30,7 +30,7 @@ oracle.oci.oci_identity_network_sources -- Manage a NetworkSources resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -871,7 +871,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the group was created, in the format defined by RFC3339.</div>
+                                            <div>Date and time the network source was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

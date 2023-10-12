@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.32.0
+Collection version 4.33.0
 
 .. toctree::
     :maxdepth: 1
@@ -421,6 +421,7 @@ Modules
 * :ref:`oci_container_engine_cluster_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_facts_module>` -- Fetches details about one or multiple Cluster resources in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_cluster_migrate_to_native_vcn_status_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_migrate_to_native_vcn_status_facts_module>` -- Fetches details about a ClusterMigrateToNativeVcnStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_cluster_options_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_options_facts_module>` -- Fetches details about a ClusterOptions resource in Oracle Cloud Infrastructure
+* :ref:`oci_container_engine_credential_rotation_status_facts <ansible_collections.oracle.oci.oci_container_engine_credential_rotation_status_facts_module>` -- Fetches details about a CredentialRotationStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_kubeconfig <ansible_collections.oracle.oci.oci_container_engine_kubeconfig_module>` -- Manage a Kubeconfig resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node <ansible_collections.oracle.oci.oci_container_engine_node_module>` -- Manage a Node resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node_pool <ansible_collections.oracle.oci.oci_container_engine_node_pool_module>` -- Manage a NodePool resource in Oracle Cloud Infrastructure
@@ -430,6 +431,8 @@ Modules
 * :ref:`oci_container_engine_virtual_node_facts <ansible_collections.oracle.oci.oci_container_engine_virtual_node_facts_module>` -- Fetches details about one or multiple VirtualNode resources in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_virtual_node_pool <ansible_collections.oracle.oci.oci_container_engine_virtual_node_pool_module>` -- Manage a VirtualNodePool resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_virtual_node_pool_facts <ansible_collections.oracle.oci.oci_container_engine_virtual_node_pool_facts_module>` -- Fetches details about one or multiple VirtualNodePool resources in Oracle Cloud Infrastructure
+* :ref:`oci_container_engine_workload_mapping <ansible_collections.oracle.oci.oci_container_engine_workload_mapping_module>` -- Manage a WorkloadMapping resource in Oracle Cloud Infrastructure
+* :ref:`oci_container_engine_workload_mapping_facts <ansible_collections.oracle.oci.oci_container_engine_workload_mapping_facts_module>` -- Fetches details about one or multiple WorkloadMapping resources in Oracle Cloud Infrastructure
 * :ref:`oci_container_instances_container <ansible_collections.oracle.oci.oci_container_instances_container_module>` -- Manage a Container resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_instances_container_actions <ansible_collections.oracle.oci.oci_container_instances_container_actions_module>` -- Perform actions on a Container resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_instances_container_facts <ansible_collections.oracle.oci.oci_container_instances_container_facts_module>` -- Fetches details about one or multiple Container resources in Oracle Cloud Infrastructure
@@ -1292,11 +1295,6 @@ Modules
 * :ref:`oci_monitoring_metric_actions <ansible_collections.oracle.oci.oci_monitoring_metric_actions_module>` -- Perform actions on a Metric resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_metric_data <ansible_collections.oracle.oci.oci_monitoring_metric_data_module>` -- Manage a MetricData resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` -- Perform actions on a MetricData resource in Oracle Cloud Infrastructure
-* :ref:`oci_mysql_analytics_cluster <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_module>` -- Manage an AnalyticsCluster resource in Oracle Cloud Infrastructure
-* :ref:`oci_mysql_analytics_cluster_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_actions_module>` -- Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
-* :ref:`oci_mysql_analytics_cluster_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_facts_module>` -- Fetches details about a AnalyticsCluster resource in Oracle Cloud Infrastructure
-* :ref:`oci_mysql_analytics_cluster_memory_estimate_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_actions_module>` -- Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
-* :ref:`oci_mysql_analytics_cluster_memory_estimate_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts_module>` -- Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_backup <ansible_collections.oracle.oci.oci_mysql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_backup_actions <ansible_collections.oracle.oci.oci_mysql_backup_actions_module>` -- Perform actions on a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_backup_facts <ansible_collections.oracle.oci.oci_mysql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
@@ -2381,6 +2379,7 @@ Modules
     oci_container_engine_cluster_facts_module
     oci_container_engine_cluster_migrate_to_native_vcn_status_facts_module
     oci_container_engine_cluster_options_facts_module
+    oci_container_engine_credential_rotation_status_facts_module
     oci_container_engine_kubeconfig_module
     oci_container_engine_node_module
     oci_container_engine_node_pool_module
@@ -2390,6 +2389,8 @@ Modules
     oci_container_engine_virtual_node_facts_module
     oci_container_engine_virtual_node_pool_module
     oci_container_engine_virtual_node_pool_facts_module
+    oci_container_engine_workload_mapping_module
+    oci_container_engine_workload_mapping_facts_module
     oci_container_instances_container_module
     oci_container_instances_container_actions_module
     oci_container_instances_container_facts_module
@@ -3252,11 +3253,6 @@ Modules
     oci_monitoring_metric_actions_module
     oci_monitoring_metric_data_module
     oci_monitoring_metric_data_actions_module
-    oci_mysql_analytics_cluster_module
-    oci_mysql_analytics_cluster_actions_module
-    oci_mysql_analytics_cluster_facts_module
-    oci_mysql_analytics_cluster_memory_estimate_actions_module
-    oci_mysql_analytics_cluster_memory_estimate_facts_module
     oci_mysql_backup_module
     oci_mysql_backup_actions_module
     oci_mysql_backup_facts_module

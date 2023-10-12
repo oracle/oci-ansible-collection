@@ -349,6 +349,12 @@ clusters:
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+                time_credential_expiration:
+                    description:
+                        - The time until which the cluster credential is valid.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the cluster masters.
@@ -487,7 +493,8 @@ clusters:
             "deleted_by_work_request_id": "ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "updated_by_user_id": "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx",
-            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
+            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_credential_expiration": "2013-10-20T19:20:30+01:00"
         },
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

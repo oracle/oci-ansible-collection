@@ -286,6 +286,20 @@ channels:
                             returned: on success
                             type: str
                             sample: value_example
+                tables_without_primary_key_handling:
+                    description:
+                        - Specifies how a replication channel handles the creation and alteration of tables
+                          that do not have a primary key.
+                    returned: on success
+                    type: str
+                    sample: RAISE_ERROR
+                delay_in_seconds:
+                    description:
+                        - Specifies the amount of time, in seconds, that the channel waits before
+                          applying a transaction received from the source.
+                    returned: on success
+                    type: int
+                    sample: 56
         lifecycle_state:
             description:
                 - The state of the Channel.
@@ -360,7 +374,9 @@ channels:
             "filters": [{
                 "type": "REPLICATE_DO_DB",
                 "value": "value_example"
-            }]
+            }],
+            "tables_without_primary_key_handling": "RAISE_ERROR",
+            "delay_in_seconds": 56
         },
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

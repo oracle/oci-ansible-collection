@@ -48,15 +48,15 @@ options:
             - "SERVICE"
     source_service:
         description:
-            - Service that created the log object.
+            - Service that created the log object, which is a field of LogSummary.Configuration.Source.
         type: str
     source_resource:
         description:
-            - Log object resource.
+            - Log object resource, which is a field of LogSummary.Configuration.Source.
         type: str
     display_name:
         description:
-            - Resource name
+            - Resource name.
         type: str
         aliases: ["name"]
     lifecycle_state:
@@ -219,7 +219,7 @@ logs:
                     contains:
                         is_enabled:
                             description:
-                                - True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.
+                                - True if archiving enabled. This field is now deprecated, you should use Service Connector Hub to enable archiving.
                             returned: on success
                             type: bool
                             sample: true
@@ -254,7 +254,7 @@ logs:
             sample: "2013-10-20T19:20:30+01:00"
         retention_duration:
             description:
-                - Log retention duration in 30-day increments (30, 60, 90 and so on).
+                - Log retention duration in 30-day increments (30, 60, 90 and so on until 180).
             returned: on success
             type: int
             sample: 56

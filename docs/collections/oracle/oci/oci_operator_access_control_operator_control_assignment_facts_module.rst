@@ -30,7 +30,7 @@ oracle.oci.oci_operator_access_control_operator_control_assignment_facts -- Fetc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -263,6 +263,7 @@ Parameters
                                                                                                                                                                                                 <li>APPLIED</li>
                                                                                                                                                                                                 <li>APPLYFAILED</li>
                                                                                                                                                                                                 <li>UPDATING</li>
+                                                                                                                                                                                                <li>UPDATEFAILED</li>
                                                                                                                                                                                                 <li>DELETING</li>
                                                                                                                                                                                                 <li>DELETED</li>
                                                                                                                                                                                                 <li>DELETIONFAILED</li>
@@ -499,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of OperatorControlAssignment resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;assigner_id&#x27;: &#x27;ocid1.assigner.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;comment&#x27;: &#x27;comment_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;detachment_description&#x27;: &#x27;detachment_description_example&#x27;, &#x27;error_code&#x27;: 56, &#x27;error_message&#x27;: &#x27;error_message_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_approve_during_maintenance&#x27;: True, &#x27;is_enforced_always&#x27;: True, &#x27;is_log_forwarded&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATED&#x27;, &#x27;operator_control_id&#x27;: &#x27;ocid1.operatorcontrol.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;remote_syslog_server_address&#x27;: &#x27;remote_syslog_server_address_example&#x27;, &#x27;remote_syslog_server_ca_cert&#x27;: &#x27;remote_syslog_server_ca_cert_example&#x27;, &#x27;remote_syslog_server_port&#x27;: 56, &#x27;resource_compartment_id&#x27;: &#x27;ocid1.resourcecompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;resource_type&#x27;: &#x27;EXACC&#x27;, &#x27;time_assignment_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_assignment_to&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_assignment&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unassigner_id&#x27;: &#x27;ocid1.unassigner.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;assigner_id&#x27;: &#x27;ocid1.assigner.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;comment&#x27;: &#x27;comment_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;detachment_description&#x27;: &#x27;detachment_description_example&#x27;, &#x27;error_code&#x27;: 56, &#x27;error_message&#x27;: &#x27;error_message_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_approve_during_maintenance&#x27;: True, &#x27;is_default_assignment&#x27;: True, &#x27;is_enforced_always&#x27;: True, &#x27;is_log_forwarded&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATED&#x27;, &#x27;operator_control_id&#x27;: &#x27;ocid1.operatorcontrol.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;remote_syslog_server_address&#x27;: &#x27;remote_syslog_server_address_example&#x27;, &#x27;remote_syslog_server_ca_cert&#x27;: &#x27;remote_syslog_server_ca_cert_example&#x27;, &#x27;remote_syslog_server_port&#x27;: 56, &#x27;resource_compartment_id&#x27;: &#x27;ocid1.resourcecompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;resource_type&#x27;: &#x27;EXACC&#x27;, &#x27;time_assignment_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_assignment_to&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_assignment&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unassigner_id&#x27;: &#x27;ocid1.unassigner.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -680,6 +681,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The boolean if true would autoApprove during maintenance.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-operator_control_assignments/is_default_assignment"></div>
+                    <b>is_default_assignment</b>
+                    <a class="ansibleOptionLink" href="#return-operator_control_assignments/is_default_assignment" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the assignment is a default assignment.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

@@ -38,6 +38,7 @@ options:
             - "EXADATAINFRASTRUCTURE"
             - "AUTONOMOUSVMCLUSTER"
             - "CLOUDAUTONOMOUSVMCLUSTER"
+            - "CCCINFRASTRUCTURE"
     compartment_id:
         description:
             - The OCID of the compartment that contains this operator control.
@@ -269,6 +270,12 @@ operator_control:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        is_default_operator_control:
+            description:
+                - Whether the operator control is a default Operator Control.
+            returned: on success
+            type: bool
+            sample: true
         time_of_deletion:
             description:
                 - "Time when deleted expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)timestamp format. Example: '2020-05-22T21:10:29.600Z'.
@@ -311,6 +318,7 @@ operator_control:
         "lifecycle_state": "CREATED",
         "time_of_creation": "2013-10-20T19:20:30+01:00",
         "time_of_modification": "2013-10-20T19:20:30+01:00",
+        "is_default_operator_control": true,
         "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "last_modified_info": "last_modified_info_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -483,6 +491,7 @@ def main():
                     "EXADATAINFRASTRUCTURE",
                     "AUTONOMOUSVMCLUSTER",
                     "CLOUDAUTONOMOUSVMCLUSTER",
+                    "CCCINFRASTRUCTURE",
                 ],
             ),
             compartment_id=dict(type="str"),

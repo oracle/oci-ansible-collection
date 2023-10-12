@@ -105,14 +105,6 @@ network_sources:
     returned: on success
     type: complex
     contains:
-        lifecycle_state:
-            description:
-                - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
-                  ACTIVE before using it.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: CREATING
         inactive_status:
             description:
                 - The detailed status of INACTIVE lifecycleState.
@@ -176,9 +168,16 @@ network_sources:
             returned: on success
             type: list
             sample: []
+        lifecycle_state:
+            description:
+                - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
+                  ACTIVE before using it.
+            returned: on success
+            type: str
+            sample: CREATING
         time_created:
             description:
-                - Date and time the group was created, in the format defined by RFC3339.
+                - Date and time the network source was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
@@ -200,7 +199,6 @@ network_sources:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -212,6 +210,7 @@ network_sources:
             "ip_ranges": []
         }],
         "services": [],
+        "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

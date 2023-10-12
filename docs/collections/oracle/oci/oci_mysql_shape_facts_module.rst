@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_shape_facts -- Fetches details about one or multiple Shape 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -273,7 +273,6 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>DBSYSTEM</li>
-                                                                                                                                                                                                <li>ANALYTICSCLUSTER</li>
                                                                                                                                                                                                 <li>HEATWAVECLUSTER</li>
                                                                                     </ul>
                                                                             </td>

@@ -30,7 +30,7 @@ oracle.oci.oci_container_instances_container_instance_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a ContainerInstance resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a ContainerInstance resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
+- For *action=change_compartment*, moves a container instance resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
 - For *action=restart*, restarts a container instance. When provided, If-Match is checked against ETag values of the container instance.
 - For *action=start*, starts a container instance if it is "inactive". No effect otherwise. When provided, If-Match is checked against ETag values of the container instance.
 - For *action=stop*, stops a container instance if it is "active". No effect otherwise. When provided, If-Match is checked against ETag values of the container instance.
@@ -237,7 +237,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment into which the resource should be moved.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the container instance to.</div>
                                             <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
@@ -283,7 +283,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The system-generated unique identifier for the ContainerInstance.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container instance.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -470,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Availability Domain where the ContainerInstance is running.</div>
+                                            <div>The availability domain to place the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -488,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier</div>
+                                            <div>The OCID of the compartment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -506,7 +506,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of containers on this Instance</div>
+                                            <div>The number of containers on the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -542,7 +542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Containers on this Instance</div>
+                                            <div>The containers on the container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -559,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the Container on this Instance.</div>
+                                            <div>The OCID of the container.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.container.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -597,7 +597,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -615,7 +615,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Display name for the ContainerInstance. Can be renamed.</div>
+                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -650,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name server IP address</div>
+                                            <div>IP address of the name server..</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -684,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Search list for host-name lookup.</div>
+                                            <div>Search list for hostname lookup.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -701,7 +701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Fault Domain where the ContainerInstance is running.</div>
+                                            <div>The fault domain to place the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FAULT-DOMAIN-1</div>
@@ -737,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when the Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be sent a termination signal.</div>
+                                            <div>The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a container instance. After the timeout is reached, the processes are sent a signal to be deleted.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -755,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>An OCID that cannot be changed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -773,7 +773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The image pull secrets for accessing private registry to pull images for containers</div>
+                                            <div>The image pulls secrets so you can access private registry to pull container images.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -847,7 +847,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message that describes the current state of the container in more detail. Can be used to provide actionable information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
@@ -865,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the ContainerInstance.</div>
+                                            <div>The current state of the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -883,7 +883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape of the Container Instance. The shape determines the resources available to the Container Instance.</div>
+                                            <div>The shape of the container instance. The shape determines the number of OCPUs, amount of memory, and other resources that are allocated to a container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
@@ -918,7 +918,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                            <div>The total amount of memory available to the container instance, in gigabytes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -937,7 +937,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The networking bandwidth available to the instance, in gigabits per second.</div>
+                                            <div>The networking bandwidth available to the container instance, in gigabits per second.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -956,7 +956,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The total number of OCPUs available to the instance.</div>
+                                            <div>The total number of OCPUs available to the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -975,7 +975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the instance&#x27;s processor (CPU).</div>
+                                            <div>A short description of the container instance&#x27;s processor (CPU).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">processor_description_example</div>
@@ -994,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1010,7 +1010,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the ContainerInstance was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container instance was created, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1028,7 +1028,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the ContainerInstance was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container instance was updated, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1046,7 +1046,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The virtual networks available to containers running on this Container Instance.</div>
+                                            <div>The virtual networks available to the containers in the container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1063,7 +1063,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the Virtual Network Interface Card (VNIC) over which Containers accessing this network can communicate with the larger Virtual Client Network.</div>
+                                            <div>The identifier of the virtual network interface card (VNIC) over which the containers accessing this network can communicate with the larger virtual cloud network.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1082,7 +1082,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of volumes that attached to this Instance</div>
+                                            <div>The number of volumes that are attached to the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1100,7 +1100,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A Volume represents a directory with data that is accessible across multiple containers in a ContainerInstance.</div>
+                                            <div>A volume is a directory with data that is accessible across multiple containers in a container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1117,7 +1117,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Volume type that we are using for empty dir where it could be either File Storage or Memory</div>
+                                            <div>The volume type of the empty directory, can be either File Storage or Memory.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EPHEMERAL_STORAGE</div>
@@ -1214,7 +1214,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the volume. This has be unique cross single ContainerInstance.</div>
+                                            <div>The name of the volume. This must be unique within a single container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

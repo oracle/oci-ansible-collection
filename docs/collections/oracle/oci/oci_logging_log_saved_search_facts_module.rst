@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log_saved_search_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple LogSavedSearch resources in Oracle Cloud Infrastructure
-- Lists Logging Saved Searches for this compartment.
+- Lists LogSavedSearches for this compartment.
 - If *log_saved_search_id* is specified, the details of a single LogSavedSearch will be returned.
 
 
@@ -260,7 +260,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the logSavedSearch</div>
+                                            <div>OCID of the logSavedSearch.</div>
                                             <div>Required to get a specific log_saved_search.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -277,7 +277,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Resource name</div>
+                                            <div>Resource name.</div>
                                                         </td>
             </tr>
                                 <tr>

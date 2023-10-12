@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     log_saved_search_id:
         description:
-            - OCID of the logSavedSearch
+            - OCID of the logSavedSearch.
         type: str
         aliases: ["id"]
         required: true

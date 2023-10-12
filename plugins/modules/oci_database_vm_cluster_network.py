@@ -60,9 +60,9 @@ options:
                 required: true
             port:
                 description:
-                    - The SCAN TCPIP port. Default is 1521.
+                    - "**Deprecated.** This field is deprecated. You may use 'scanListenerPortTcp' to specify the port.
+                      The SCAN TCPIP port. Default is 1521."
                 type: int
-                required: true
             scan_listener_port_tcp:
                 description:
                     - The SCAN TCPIP port. Default is 1521.
@@ -108,6 +108,7 @@ options:
                 choices:
                     - "CLIENT"
                     - "BACKUP"
+                    - "DISASTER_RECOVERY"
                 required: true
             netmask:
                 description:
@@ -175,6 +176,29 @@ options:
                         description:
                             - The Db server associated with the node.
                         type: str
+    dr_scans:
+        description:
+            - The SCAN details for DR network
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            hostname:
+                description:
+                    - The Disaster recovery SCAN hostname.
+                type: str
+                required: true
+            scan_listener_port_tcp:
+                description:
+                    - The Disaster recovery SCAN TCPIP port. Default is 1521.
+                type: int
+                required: true
+            ips:
+                description:
+                    - The list of Disaster recovery SCAN IP addresses. Three addresses should be provided.
+                type: list
+                elements: str
+                required: true
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -221,10 +245,10 @@ EXAMPLES = """
     scans:
     - # required
       hostname: hostname_example
-      port: 56
       ips: [ "ips_example" ]
 
       # optional
+      port: 56
       scan_listener_port_tcp: 56
       scan_listener_port_tcp_ssl: 56
     vm_networks:
@@ -251,6 +275,11 @@ EXAMPLES = """
     # optional
     dns: [ "dns_example" ]
     ntp: [ "ntp_example" ]
+    dr_scans:
+    - # required
+      hostname: hostname_example
+      scan_listener_port_tcp: 56
+      ips: [ "ips_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -264,10 +293,10 @@ EXAMPLES = """
     scans:
     - # required
       hostname: hostname_example
-      port: 56
       ips: [ "ips_example" ]
 
       # optional
+      port: 56
       scan_listener_port_tcp: 56
       scan_listener_port_tcp_ssl: 56
     dns: [ "dns_example" ]
@@ -291,6 +320,11 @@ EXAMPLES = """
       netmask: netmask_example
       gateway: gateway_example
       domain_name: domain_name_example
+    dr_scans:
+    - # required
+      hostname: hostname_example
+      scan_listener_port_tcp: 56
+      ips: [ "ips_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -305,10 +339,10 @@ EXAMPLES = """
     scans:
     - # required
       hostname: hostname_example
-      port: 56
       ips: [ "ips_example" ]
 
       # optional
+      port: 56
       scan_listener_port_tcp: 56
       scan_listener_port_tcp_ssl: 56
     dns: [ "dns_example" ]
@@ -332,6 +366,11 @@ EXAMPLES = """
       netmask: netmask_example
       gateway: gateway_example
       domain_name: domain_name_example
+    dr_scans:
+    - # required
+      hostname: hostname_example
+      scan_listener_port_tcp: 56
+      ips: [ "ips_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -403,7 +442,8 @@ vm_cluster_network:
                     sample: hostname_example
                 port:
                     description:
-                        - The SCAN TCPIP port. Default is 1521.
+                        - "**Deprecated.** This field is deprecated. You may use 'scanListenerPortTcp' to specify the port.
+                          The SCAN TCPIP port. Default is 1521."
                     returned: on success
                     type: int
                     sample: 56
@@ -525,6 +565,30 @@ vm_cluster_network:
                             returned: on success
                             type: str
                             sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+        dr_scans:
+            description:
+                - The SCAN details for DR network
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - The Disaster recovery SCAN hostname.
+                    returned: on success
+                    type: str
+                    sample: hostname_example
+                scan_listener_port_tcp:
+                    description:
+                        - The Disaster recovery SCAN TCPIP port. Default is 1521.
+                    returned: on success
+                    type: int
+                    sample: 56
+                ips:
+                    description:
+                        - The list of Disaster recovery SCAN IP addresses. Three addresses should be provided.
+                    returned: on success
+                    type: list
+                    sample: []
         lifecycle_state:
             description:
                 - "The current state of the VM cluster network.
@@ -599,6 +663,11 @@ vm_cluster_network:
                 "lifecycle_state": "CREATING",
                 "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
             }]
+        }],
+        "dr_scans": [{
+            "hostname": "hostname_example",
+            "scan_listener_port_tcp": 56,
+            "ips": []
         }],
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -792,7 +861,7 @@ def main():
                 elements="dict",
                 options=dict(
                     hostname=dict(type="str", required=True),
-                    port=dict(type="int", required=True),
+                    port=dict(type="int"),
                     scan_listener_port_tcp=dict(type="int"),
                     scan_listener_port_tcp_ssl=dict(type="int"),
                     ips=dict(type="list", elements="str", required=True),
@@ -806,7 +875,9 @@ def main():
                 options=dict(
                     vlan_id=dict(type="str"),
                     network_type=dict(
-                        type="str", required=True, choices=["CLIENT", "BACKUP"]
+                        type="str",
+                        required=True,
+                        choices=["CLIENT", "BACKUP", "DISASTER_RECOVERY"],
                     ),
                     netmask=dict(type="str"),
                     gateway=dict(type="str"),
@@ -838,6 +909,15 @@ def main():
                             db_server_id=dict(type="str"),
                         ),
                     ),
+                ),
+            ),
+            dr_scans=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    hostname=dict(type="str", required=True),
+                    scan_listener_port_tcp=dict(type="int", required=True),
+                    ips=dict(type="list", elements="str", required=True),
                 ),
             ),
             freeform_tags=dict(type="dict"),

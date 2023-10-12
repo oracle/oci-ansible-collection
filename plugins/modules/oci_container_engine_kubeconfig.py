@@ -106,6 +106,12 @@ class KubeconfigHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(KubeconfigHelperGen, self).get_possible_entity_types() + [
+            "cluster",
+            "clusters",
+            "containerEnginecluster",
+            "containerEngineclusters",
+            "clusterresource",
+            "clustersresource",
             "kubeconfig",
             "kubeconfigs",
             "containerEnginekubeconfig",

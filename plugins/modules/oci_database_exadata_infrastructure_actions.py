@@ -516,6 +516,12 @@ exadata_infrastructure:
                     returned: on success
                     type: str
                     sample: ACTIVE_BACKUP
+                dr_network_bonding_mode:
+                    description:
+                        - The network bonding mode for the Exadata infrastructure.
+                    returned: on success
+                    type: str
+                    sample: ACTIVE_BACKUP
         availability_domain:
             description:
                 - The name of the availability domain that the Exadata infrastructure is located in.
@@ -605,7 +611,8 @@ exadata_infrastructure:
         "is_cps_offline_report_enabled": true,
         "network_bonding_mode_details": {
             "client_network_bonding_mode": "ACTIVE_BACKUP",
-            "backup_network_bonding_mode": "ACTIVE_BACKUP"
+            "backup_network_bonding_mode": "ACTIVE_BACKUP",
+            "dr_network_bonding_mode": "ACTIVE_BACKUP"
         },
         "availability_domain": "Uocm:PHX-AD-1",
         "freeform_tags": {'Department': 'Finance'},

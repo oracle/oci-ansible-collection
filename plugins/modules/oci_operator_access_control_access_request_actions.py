@@ -177,6 +177,12 @@ access_request:
             returned: on success
             type: str
             sample: resource_name_example
+        sub_resource_list:
+            description:
+                - The subresources requested for approval.
+            returned: on success
+            type: list
+            sample: []
         compartment_id:
             description:
                 - The OCID of the compartment that contains the access request.
@@ -334,6 +340,7 @@ access_request:
         "operator_id": "ocid1.operator.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_name": "resource_name_example",
+        "sub_resource_list": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_type": "EXACC",
         "action_requests_list": [],

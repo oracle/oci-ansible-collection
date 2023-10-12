@@ -83,14 +83,15 @@ options:
                 required: true
             sources:
                 description:
-                    - ""
+                    - Logging source object.
                 type: list
                 elements: dict
+                required: true
                 suboptions:
                     channels:
                         description:
-                            - ""
-                            - Applicable when source_type is 'WINDOWS_EVENT_LOG'
+                            - Windows event log channels.
+                            - Required when source_type is 'WINDOWS_EVENT_LOG'
                         type: list
                         elements: str
                     name:
@@ -108,8 +109,8 @@ options:
                         required: true
                     paths:
                         description:
-                            - ""
-                            - Applicable when source_type is 'LOG_TAIL'
+                            - Absolute paths for log source files. Wildcard can be used.
+                            - Required when source_type is 'LOG_TAIL'
                         type: list
                         elements: str
                     parser:
@@ -120,12 +121,12 @@ options:
                         suboptions:
                             multi_line_start_regexp:
                                 description:
-                                    - ""
+                                    - Multiline start regexp pattern.
                                     - Applicable when parser_type is 'MULTILINE_GROK'
                                 type: str
                             time_type:
                                 description:
-                                    - ""
+                                    - Time type of JSON parser.
                                     - Applicable when parser_type is 'JSON'
                                 type: str
                                 choices:
@@ -134,18 +135,18 @@ options:
                                     - "STRING"
                             grok_name_key:
                                 description:
-                                    - ""
+                                    - grok name key.
                                     - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: str
                             grok_failure_key:
                                 description:
-                                    - ""
+                                    - grok failure key.
                                     - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: str
                             patterns:
                                 description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
+                                    - grok pattern object.
+                                    - Required when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: list
                                 elements: dict
                                 suboptions:
@@ -177,17 +178,17 @@ options:
                                         type: str
                             message_key:
                                 description:
-                                    - ""
+                                    - Specifies the field name to contain logs.
                                     - Applicable when parser_type is 'NONE'
                                 type: str
                             rfc5424_time_format:
                                 description:
-                                    - ""
+                                    - rfc5424 time format.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: str
                             message_format:
                                 description:
-                                    - ""
+                                    - Message format of syslog.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: str
                                 choices:
@@ -196,17 +197,17 @@ options:
                                     - "AUTO"
                             is_with_priority:
                                 description:
-                                    - ""
+                                    - With priority or not.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: bool
                             is_support_colonless_ident:
                                 description:
-                                    - ""
+                                    - Support colonless ident or not.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: bool
                             syslog_parser_type:
                                 description:
-                                    - ""
+                                    - Syslog parser type.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: str
                                 choices:
@@ -214,25 +215,124 @@ options:
                                     - "REGEXP"
                             expression:
                                 description:
-                                    - ""
-                                    - Applicable when parser_type is 'REGEXP'
+                                    - Regex pattern.
+                                    - Required when parser_type is 'REGEXP'
                                 type: str
                             time_format:
                                 description:
-                                    - ""
+                                    - Process time value using the specified format.
                                     - Applicable when parser_type is one of ['REGEXP', 'SYSLOG', 'JSON']
                                 type: str
                             format_firstline:
                                 description:
-                                    - ""
+                                    - First line pattern format.
                                     - Applicable when parser_type is 'MULTILINE'
                                 type: str
                             format:
                                 description:
-                                    - ""
-                                    - Applicable when parser_type is 'MULTILINE'
+                                    - Mutiline pattern format.
+                                    - Required when parser_type is 'MULTILINE'
                                 type: list
                                 elements: str
+                            is_merge_cri_fields:
+                                description:
+                                    - If you don't need stream/logtag fields, set this to false.
+                                    - Applicable when parser_type is 'CRI'
+                                type: bool
+                            nested_parser:
+                                description:
+                                    - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                    - Applicable when parser_type is 'CRI'
+                                type: dict
+                                suboptions:
+                                    parser_type:
+                                        description:
+                                            - Type of fluent parser.
+                                            - Required when parser_type is 'CRI'
+                                        type: str
+                                        choices:
+                                            - "AUDITD"
+                                            - "CRI"
+                                            - "JSON"
+                                            - "TSV"
+                                            - "CSV"
+                                            - "NONE"
+                                            - "SYSLOG"
+                                            - "APACHE2"
+                                            - "APACHE_ERROR"
+                                            - "MSGPACK"
+                                            - "REGEXP"
+                                            - "MULTILINE"
+                                            - "GROK"
+                                            - "MULTILINE_GROK"
+                                        required: true
+                                    field_time_key:
+                                        description:
+                                            - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: str
+                                    types:
+                                        description:
+                                            - "Specify types for converting a field into another type.
+                                              For example,
+                                                With this configuration:
+                                                    <parse>
+                                                      @type csv
+                                                      keys time,host,req_id,user
+                                                      time_key time
+                                                    </parse>"
+                                            - " This incoming event:
+                                                  \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                            - " is parsed as:
+                                                  1362020400 (2013/02/28/ 12:00:00)"
+                                            - |
+                                              "   record:
+                                                  {
+                                                    \\"host\\"   : \\"192.168.0.1\\",
+                                                    \\"req_id\\" : \\"111\\",
+                                                    \\"user\\"   : \\"-\\"
+                                                  }"
+                                            - Applicable when parser_type is 'CRI'
+                                        type: dict
+                                    null_value_pattern:
+                                        description:
+                                            - Specify the null value pattern.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: str
+                                    is_null_empty_string:
+                                        description:
+                                            - If true, an empty string field is replaced with nil.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: bool
+                                    is_estimate_current_event:
+                                        description:
+                                            - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: bool
+                                    is_keep_time_key:
+                                        description:
+                                            - If true, keep time field in the record.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: bool
+                                    timeout_in_milliseconds:
+                                        description:
+                                            - Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: int
+                                    time_type:
+                                        description:
+                                            - Time type of JSON parser.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: str
+                                        choices:
+                                            - "FLOAT"
+                                            - "UNIXTIME"
+                                            - "STRING"
+                                    time_format:
+                                        description:
+                                            - Process time value using the specified format.
+                                            - Applicable when parser_type is 'CRI'
+                                        type: str
                             parser_type:
                                 description:
                                     - Type of fluent parser.
@@ -248,6 +348,7 @@ options:
                                     - "REGEXP"
                                     - "MULTILINE"
                                     - "TSV"
+                                    - "CRI"
                                     - "APACHE_ERROR"
                                     - "MSGPACK"
                                     - "CSV"
@@ -258,7 +359,25 @@ options:
                                 type: str
                             types:
                                 description:
-                                    - Specify types for converting a field into another type.
+                                    - "Specify types for converting a field into another type.
+                                      For example,
+                                        With this configuration:
+                                            <parse>
+                                              @type csv
+                                              keys time,host,req_id,user
+                                              time_key time
+                                            </parse>"
+                                    - " This incoming event:
+                                          \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                    - " is parsed as:
+                                          1362020400 (2013/02/28/ 12:00:00)"
+                                    - |
+                                      "   record:
+                                          {
+                                            \\"host\\"   : \\"192.168.0.1\\",
+                                            \\"req_id\\" : \\"111\\",
+                                            \\"user\\"   : \\"-\\"
+                                          }"
                                 type: dict
                             null_value_pattern:
                                 description:
@@ -282,19 +401,20 @@ options:
                                 type: int
                             delimiter:
                                 description:
-                                    - ""
+                                    - tsv delimiter.
                                     - Applicable when parser_type is one of ['TSV', 'CSV']
                                 type: str
                             keys:
                                 description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['TSV', 'CSV']
+                                    - tsv keys.
+                                    - Required when parser_type is one of ['TSV', 'CSV']
                                 type: list
                                 elements: str
             destination:
                 description:
                     - ""
                 type: dict
+                required: true
                 suboptions:
                     log_object_id:
                         description:
@@ -340,15 +460,11 @@ EXAMPLES = """
     service_configuration:
       # required
       configuration_type: LOGGING
-
-      # optional
       sources:
       - # required
+        channels: [ "channels_example" ]
         name: name_example
         source_type: WINDOWS_EVENT_LOG
-
-        # optional
-        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -370,15 +486,11 @@ EXAMPLES = """
     service_configuration:
       # required
       configuration_type: LOGGING
-
-      # optional
       sources:
       - # required
+        channels: [ "channels_example" ]
         name: name_example
         source_type: WINDOWS_EVENT_LOG
-
-        # optional
-        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -406,15 +518,11 @@ EXAMPLES = """
     service_configuration:
       # required
       configuration_type: LOGGING
-
-      # optional
       sources:
       - # required
+        channels: [ "channels_example" ]
         name: name_example
         source_type: WINDOWS_EVENT_LOG
-
-        # optional
-        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -530,13 +638,13 @@ unified_agent_configuration:
                     sample: LOGGING
                 sources:
                     description:
-                        - ""
+                        - Logging source object.
                     returned: on success
                     type: complex
                     contains:
                         paths:
                             description:
-                                - ""
+                                - Absolute paths for log source files. Wildcard can be used.
                             returned: on success
                             type: list
                             sample: []
@@ -546,45 +654,135 @@ unified_agent_configuration:
                             returned: on success
                             type: complex
                             contains:
+                                is_merge_cri_fields:
+                                    description:
+                                        - If you don't need stream/logtag fields, set this to false.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                nested_parser:
+                                    description:
+                                        - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        parser_type:
+                                            description:
+                                                - Type of fluent parser.
+                                            returned: on success
+                                            type: str
+                                            sample: AUDITD
+                                        field_time_key:
+                                            description:
+                                                - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                            returned: on success
+                                            type: str
+                                            sample: field_time_key_example
+                                        types:
+                                            description:
+                                                - "Specify types for converting a field into another type.
+                                                  For example,
+                                                    With this configuration:
+                                                        <parse>
+                                                          @type csv
+                                                          keys time,host,req_id,user
+                                                          time_key time
+                                                        </parse>"
+                                                - " This incoming event:
+                                                      \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                                - " is parsed as:
+                                                      1362020400 (2013/02/28/ 12:00:00)"
+                                                - |
+                                                  "   record:
+                                                      {
+                                                        \\"host\\"   : \\"192.168.0.1\\",
+                                                        \\"req_id\\" : \\"111\\",
+                                                        \\"user\\"   : \\"-\\"
+                                                      }"
+                                            returned: on success
+                                            type: dict
+                                            sample: {}
+                                        null_value_pattern:
+                                            description:
+                                                - Specify the null value pattern.
+                                            returned: on success
+                                            type: str
+                                            sample: null_value_pattern_example
+                                        is_null_empty_string:
+                                            description:
+                                                - If true, an empty string field is replaced with nil.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_estimate_current_event:
+                                            description:
+                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_keep_time_key:
+                                            description:
+                                                - If true, keep time field in the record.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        timeout_in_milliseconds:
+                                            description:
+                                                - Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        time_type:
+                                            description:
+                                                - Time type of JSON parser.
+                                            returned: on success
+                                            type: str
+                                            sample: FLOAT
+                                        time_format:
+                                            description:
+                                                - Process time value using the specified format.
+                                            returned: on success
+                                            type: str
+                                            sample: time_format_example
                                 time_type:
                                     description:
-                                        - ""
+                                        - Time type of JSON parser.
                                     returned: on success
                                     type: str
                                     sample: FLOAT
                                 format_firstline:
                                     description:
-                                        - ""
+                                        - First line pattern format.
                                     returned: on success
                                     type: str
                                     sample: format_firstline_example
                                 format:
                                     description:
-                                        - ""
+                                        - Mutiline pattern format.
                                     returned: on success
                                     type: list
                                     sample: []
                                 grok_name_key:
                                     description:
-                                        - ""
+                                        - grok name key.
                                     returned: on success
                                     type: str
                                     sample: grok_name_key_example
                                 grok_failure_key:
                                     description:
-                                        - ""
+                                        - grok failure key.
                                     returned: on success
                                     type: str
                                     sample: grok_failure_key_example
                                 multi_line_start_regexp:
                                     description:
-                                        - ""
+                                        - Multiline start regexp pattern.
                                     returned: on success
                                     type: str
                                     sample: multi_line_start_regexp_example
                                 patterns:
                                     description:
-                                        - ""
+                                        - grok pattern object.
                                     returned: on success
                                     type: complex
                                     contains:
@@ -620,49 +818,49 @@ unified_agent_configuration:
                                             sample: field_time_zone_example
                                 message_key:
                                     description:
-                                        - ""
+                                        - Specifies the field name to contain logs.
                                     returned: on success
                                     type: str
                                     sample: message_key_example
                                 expression:
                                     description:
-                                        - ""
+                                        - Regex pattern.
                                     returned: on success
                                     type: str
                                     sample: expression_example
                                 time_format:
                                     description:
-                                        - ""
+                                        - Process time value using the specified format.
                                     returned: on success
                                     type: str
                                     sample: time_format_example
                                 rfc5424_time_format:
                                     description:
-                                        - ""
+                                        - rfc5424 time format.
                                     returned: on success
                                     type: str
                                     sample: rfc5424_time_format_example
                                 message_format:
                                     description:
-                                        - ""
+                                        - Message format of syslog.
                                     returned: on success
                                     type: str
                                     sample: RFC3164
                                 is_with_priority:
                                     description:
-                                        - ""
+                                        - With priority or not.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_support_colonless_ident:
                                     description:
-                                        - ""
+                                        - Support colonless ident or not.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 syslog_parser_type:
                                     description:
-                                        - ""
+                                        - Syslog parser type.
                                     returned: on success
                                     type: str
                                     sample: STRING
@@ -680,7 +878,25 @@ unified_agent_configuration:
                                     sample: field_time_key_example
                                 types:
                                     description:
-                                        - Specify types for converting a field into another type.
+                                        - "Specify types for converting a field into another type.
+                                          For example,
+                                            With this configuration:
+                                                <parse>
+                                                  @type csv
+                                                  keys time,host,req_id,user
+                                                  time_key time
+                                                </parse>"
+                                        - " This incoming event:
+                                              \\"2013/02/28 12:00:00,192.168.0.1,111,-\\""
+                                        - " is parsed as:
+                                              1362020400 (2013/02/28/ 12:00:00)"
+                                        - |
+                                          "   record:
+                                              {
+                                                \\"host\\"   : \\"192.168.0.1\\",
+                                                \\"req_id\\" : \\"111\\",
+                                                \\"user\\"   : \\"-\\"
+                                              }"
                                     returned: on success
                                     type: dict
                                     sample: {}
@@ -716,13 +932,13 @@ unified_agent_configuration:
                                     sample: 56
                                 delimiter:
                                     description:
-                                        - ""
+                                        - csv delimiter.
                                     returned: on success
                                     type: str
                                     sample: delimiter_example
                                 keys:
                                     description:
-                                        - ""
+                                        - csv keys.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -740,7 +956,7 @@ unified_agent_configuration:
                             sample: LOG_TAIL
                         channels:
                             description:
-                                - ""
+                                - Windows event log channels.
                             returned: on success
                             type: list
                             sample: []
@@ -785,6 +1001,19 @@ unified_agent_configuration:
             "sources": [{
                 "paths": [],
                 "parser": {
+                    "is_merge_cri_fields": true,
+                    "nested_parser": {
+                        "parser_type": "AUDITD",
+                        "field_time_key": "field_time_key_example",
+                        "types": {},
+                        "null_value_pattern": "null_value_pattern_example",
+                        "is_null_empty_string": true,
+                        "is_estimate_current_event": true,
+                        "is_keep_time_key": true,
+                        "timeout_in_milliseconds": 56,
+                        "time_type": "FLOAT",
+                        "time_format": "time_format_example"
+                    },
                     "time_type": "FLOAT",
                     "format_firstline": "format_firstline_example",
                     "format": [],
@@ -1012,6 +1241,7 @@ def main():
                     sources=dict(
                         type="list",
                         elements="dict",
+                        required=True,
                         options=dict(
                             channels=dict(type="list", elements="str"),
                             name=dict(type="str", required=True),
@@ -1059,6 +1289,48 @@ def main():
                                     time_format=dict(type="str"),
                                     format_firstline=dict(type="str"),
                                     format=dict(type="list", elements="str"),
+                                    is_merge_cri_fields=dict(type="bool"),
+                                    nested_parser=dict(
+                                        type="dict",
+                                        options=dict(
+                                            parser_type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "AUDITD",
+                                                    "CRI",
+                                                    "JSON",
+                                                    "TSV",
+                                                    "CSV",
+                                                    "NONE",
+                                                    "SYSLOG",
+                                                    "APACHE2",
+                                                    "APACHE_ERROR",
+                                                    "MSGPACK",
+                                                    "REGEXP",
+                                                    "MULTILINE",
+                                                    "GROK",
+                                                    "MULTILINE_GROK",
+                                                ],
+                                            ),
+                                            field_time_key=dict(
+                                                type="str", no_log=True
+                                            ),
+                                            types=dict(type="dict"),
+                                            null_value_pattern=dict(type="str"),
+                                            is_null_empty_string=dict(type="bool"),
+                                            is_estimate_current_event=dict(type="bool"),
+                                            is_keep_time_key=dict(
+                                                type="bool", no_log=True
+                                            ),
+                                            timeout_in_milliseconds=dict(type="int"),
+                                            time_type=dict(
+                                                type="str",
+                                                choices=["FLOAT", "UNIXTIME", "STRING"],
+                                            ),
+                                            time_format=dict(type="str"),
+                                        ),
+                                    ),
                                     parser_type=dict(
                                         type="str",
                                         required=True,
@@ -1073,6 +1345,7 @@ def main():
                                             "REGEXP",
                                             "MULTILINE",
                                             "TSV",
+                                            "CRI",
                                             "APACHE_ERROR",
                                             "MSGPACK",
                                             "CSV",
@@ -1093,6 +1366,7 @@ def main():
                     ),
                     destination=dict(
                         type="dict",
+                        required=True,
                         options=dict(log_object_id=dict(type="str", required=True)),
                     ),
                 ),

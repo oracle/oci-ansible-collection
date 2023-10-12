@@ -68,7 +68,7 @@ options:
         type: dict
     retention_duration:
         description:
-            - Log retention duration in 30-day increments (30, 60, 90 and so on).
+            - Log retention duration in 30-day increments (30, 60, 90 and so on until 180).
             - This parameter is updatable.
         type: int
     configuration:
@@ -118,7 +118,7 @@ options:
                 suboptions:
                     is_enabled:
                         description:
-                            - True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.
+                            - True if archiving enabled. This field is now deprecated, you should use Service Connector Hub to enable archiving.
                         type: bool
     log_group_id:
         description:
@@ -368,7 +368,7 @@ log:
                     contains:
                         is_enabled:
                             description:
-                                - True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.
+                                - True if archiving enabled. This field is now deprecated, you should use Service Connector Hub to enable archiving.
                             returned: on success
                             type: bool
                             sample: true
@@ -392,7 +392,7 @@ log:
             sample: "2013-10-20T19:20:30+01:00"
         retention_duration:
             description:
-                - Log retention duration in 30-day increments (30, 60, 90 and so on).
+                - Log retention duration in 30-day increments (30, 60, 90 and so on until 180).
             returned: on success
             type: int
             sample: 56

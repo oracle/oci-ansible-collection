@@ -75,6 +75,7 @@ options:
                 choices:
                     - "CLIENT"
                     - "BACKUP"
+                    - "DISASTER_RECOVERY"
                 required: true
             netmask:
                 description:
@@ -285,7 +286,8 @@ vm_cluster_network:
                     sample: hostname_example
                 port:
                     description:
-                        - The SCAN TCPIP port. Default is 1521.
+                        - "**Deprecated.** This field is deprecated. You may use 'scanListenerPortTcp' to specify the port.
+                          The SCAN TCPIP port. Default is 1521."
                     returned: on success
                     type: int
                     sample: 56
@@ -407,6 +409,30 @@ vm_cluster_network:
                             returned: on success
                             type: str
                             sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+        dr_scans:
+            description:
+                - The SCAN details for DR network
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - The Disaster recovery SCAN hostname.
+                    returned: on success
+                    type: str
+                    sample: hostname_example
+                scan_listener_port_tcp:
+                    description:
+                        - The Disaster recovery SCAN TCPIP port. Default is 1521.
+                    returned: on success
+                    type: int
+                    sample: 56
+                ips:
+                    description:
+                        - The list of Disaster recovery SCAN IP addresses. Three addresses should be provided.
+                    returned: on success
+                    type: list
+                    sample: []
         lifecycle_state:
             description:
                 - "The current state of the VM cluster network.
@@ -481,6 +507,11 @@ vm_cluster_network:
                 "lifecycle_state": "CREATING",
                 "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
             }]
+        }],
+        "dr_scans": [{
+            "hostname": "hostname_example",
+            "scan_listener_port_tcp": 56,
+            "ips": []
         }],
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -692,7 +723,9 @@ def main():
                 options=dict(
                     vlan_id=dict(type="str"),
                     network_type=dict(
-                        type="str", required=True, choices=["CLIENT", "BACKUP"]
+                        type="str",
+                        required=True,
+                        choices=["CLIENT", "BACKUP", "DISASTER_RECOVERY"],
                     ),
                     netmask=dict(type="str"),
                     gateway=dict(type="str"),

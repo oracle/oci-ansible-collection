@@ -30,7 +30,7 @@ oracle.oci.oci_logging_unified_agent_configuration_actions -- Perform actions on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -432,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the UnifiedAgentConfiguration resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_merge_cri_fields&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;nested_parser&#x27;: {&#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -718,7 +718,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Logging source object.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -736,7 +736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Windows event log channels.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -793,7 +793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>csv delimiter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">delimiter_example</div>
@@ -814,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Regex pattern.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">expression_example</div>
@@ -856,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Mutiline pattern format.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -875,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>First line pattern format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">format_firstline_example</div>
@@ -896,7 +896,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>grok failure key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">grok_failure_key_example</div>
@@ -917,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>grok name key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">grok_name_key_example</div>
@@ -971,6 +971,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/is_merge_cri_fields"></div>
+                    <b>is_merge_cri_fields</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/is_merge_cri_fields" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If you don&#x27;t need stream/logtag fields, set this to false.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/is_null_empty_string"></div>
                     <b>is_null_empty_string</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/is_null_empty_string" title="Permalink to this return value"></a>
@@ -1001,7 +1022,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Support colonless ident or not.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1022,7 +1043,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>With priority or not.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1043,7 +1064,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>csv keys.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1062,7 +1083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Message format of syslog.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RFC3164</div>
@@ -1083,7 +1104,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Specifies the field name to contain logs.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_key_example</div>
@@ -1104,12 +1125,258 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Multiline start regexp pattern.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">multi_line_start_regexp_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser"></div>
+                    <b>nested_parser</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/field_time_key"></div>
+                    <b>field_time_key</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/field_time_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specify time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_estimate_current_event"></div>
+                    <b>is_estimate_current_event</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_estimate_current_event" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_keep_time_key"></div>
+                    <b>is_keep_time_key</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_keep_time_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, keep time field in the record.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_null_empty_string"></div>
+                    <b>is_null_empty_string</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/is_null_empty_string" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, an empty string field is replaced with nil.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/null_value_pattern"></div>
+                    <b>null_value_pattern</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/null_value_pattern" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specify the null value pattern.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">null_value_pattern_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/parser_type"></div>
+                    <b>parser_type</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/parser_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of fluent parser.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUDITD</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/time_format"></div>
+                    <b>time_format</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/time_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Process time value using the specified format.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_format_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/time_type"></div>
+                    <b>time_type</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/time_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time type of JSON parser.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FLOAT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/timeout_in_milliseconds"></div>
+                    <b>timeout_in_milliseconds</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/timeout_in_milliseconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/types"></div>
+                    <b>types</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configuration/service_configuration/sources/parser/nested_parser/types" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specify types for converting a field into another type. For example, With this configuration: &lt;parse&gt; @type csv keys time,host,req_id,user time_key time &lt;/parse&gt;</div>
+                                            <div>This incoming event: &quot;2013/02/28 12:00:00,192.168.0.1,111,-&quot;</div>
+                                            <div>is parsed as: 1362020400 (2013/02/28/ 12:00:00)</div>
+                                            <div>&quot;   record:
+        {
+          \&quot;host\&quot;   : \&quot;192.168.0.1\&quot;,
+          \&quot;req_id\&quot; : \&quot;111\&quot;,
+          \&quot;user\&quot;   : \&quot;-\&quot;
+        }&quot;</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1167,7 +1434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>grok pattern object.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1297,7 +1564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>rfc5424 time format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rfc5424_time_format_example</div>
@@ -1318,7 +1585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Syslog parser type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STRING</div>
@@ -1339,7 +1606,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Process time value using the specified format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_format_example</div>
@@ -1360,7 +1627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Time type of JSON parser.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FLOAT</div>
@@ -1402,7 +1669,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify types for converting a field into another type.</div>
+                                            <div>Specify types for converting a field into another type. For example, With this configuration: &lt;parse&gt; @type csv keys time,host,req_id,user time_key time &lt;/parse&gt;</div>
+                                            <div>This incoming event: &quot;2013/02/28 12:00:00,192.168.0.1,111,-&quot;</div>
+                                            <div>is parsed as: 1362020400 (2013/02/28/ 12:00:00)</div>
+                                            <div>&quot;   record:
+        {
+          \&quot;host\&quot;   : \&quot;192.168.0.1\&quot;,
+          \&quot;req_id\&quot; : \&quot;111\&quot;,
+          \&quot;user\&quot;   : \&quot;-\&quot;
+        }&quot;</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1421,7 +1696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Absolute paths for log source files. Wildcard can be used.</div>
                                         <br/>
                                                         </td>
             </tr>

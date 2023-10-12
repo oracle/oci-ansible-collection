@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.33.0]
+
+## Added
+- Support for creating and updating a VM cluster network with disaster recovery network support in the Database service
+- Support for region-specific identity domain URL in Identity Service
+- Support for MySQL HeatWave Lakehouse in the MySQL Database service
+- Support for setting replication delays on channels in the MySQL Database service
+- Support for setting how channels handle replicated tables with no primary key in the MySQL Database service
+- Support for processing workload mappings in the Container Engine for Kubernetes service
+- Support for Kubernetes cluster credential rotation in the Container Engine for Kubernetes service
+- Support for container security contexts in the Container Instances service
+- Support for CRI-O parsing in the Logging service
+- Support for Compute Cloud at Customer resource type in the Operator Access Control service
+
+## Breaking
+- `oci_mysql_analytics_cluster_actions`, `oci_mysql_analytics_cluster_facts`, `oci_mysql_analytics_cluster_memory_estimate_actions`, `oci_mysql_analytics_cluster_memory_estimate_facts` and `oci_mysql_analytics_cluster` modules are removed from MySQL Database service. Corresponding APIs are removed by service team in SDKs 
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.4
+
 ## [4.32.0]
 
 ## Added

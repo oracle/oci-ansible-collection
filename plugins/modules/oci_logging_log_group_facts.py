@@ -46,7 +46,7 @@ options:
         type: bool
     display_name:
         description:
-            - Resource name
+            - Resource name.
         type: str
         aliases: ["name"]
     sort_by:

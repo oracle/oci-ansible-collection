@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log_group_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -260,7 +260,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Resource name</div>
+                                            <div>Resource name.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
