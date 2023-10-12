@@ -196,6 +196,18 @@ options:
                               L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)."
                         type: str
                         required: true
+            tables_without_primary_key_handling:
+                description:
+                    - Specifies how a replication channel handles the creation and alteration of tables
+                      that do not have a primary key. The default value is set to ALLOW.
+                    - This parameter is updatable.
+                type: str
+            delay_in_seconds:
+                description:
+                    - Specifies the amount of time, in seconds, that the channel waits before
+                      applying a transaction received from the source.
+                    - This parameter is updatable.
+                type: int
     display_name:
         description:
             - The user-friendly name for the Channel. It does not have to be unique.
@@ -279,6 +291,8 @@ EXAMPLES = """
       - # required
         type: REPLICATE_DO_DB
         value: value_example
+      tables_without_primary_key_handling: tables_without_primary_key_handling_example
+      delay_in_seconds: 56
 
     # optional
     display_name: display_name_example
@@ -322,6 +336,8 @@ EXAMPLES = """
       - # required
         type: REPLICATE_DO_DB
         value: value_example
+      tables_without_primary_key_handling: tables_without_primary_key_handling_example
+      delay_in_seconds: 56
     display_name: display_name_example
     is_enabled: true
     description: description_example
@@ -364,6 +380,8 @@ EXAMPLES = """
       - # required
         type: REPLICATE_DO_DB
         value: value_example
+      tables_without_primary_key_handling: tables_without_primary_key_handling_example
+      delay_in_seconds: 56
     is_enabled: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -563,6 +581,20 @@ channel:
                             returned: on success
                             type: str
                             sample: value_example
+                tables_without_primary_key_handling:
+                    description:
+                        - Specifies how a replication channel handles the creation and alteration of tables
+                          that do not have a primary key.
+                    returned: on success
+                    type: str
+                    sample: RAISE_ERROR
+                delay_in_seconds:
+                    description:
+                        - Specifies the amount of time, in seconds, that the channel waits before
+                          applying a transaction received from the source.
+                    returned: on success
+                    type: int
+                    sample: 56
         description:
             description:
                 - User provided description of the Channel.
@@ -637,7 +669,9 @@ channel:
             "filters": [{
                 "type": "REPLICATE_DO_DB",
                 "value": "value_example"
-            }]
+            }],
+            "tables_without_primary_key_handling": "RAISE_ERROR",
+            "delay_in_seconds": 56
         },
         "description": "description_example",
         "lifecycle_state": "CREATING",
@@ -872,6 +906,8 @@ def main():
                             value=dict(type="str", required=True),
                         ),
                     ),
+                    tables_without_primary_key_handling=dict(type="str", no_log=True),
+                    delay_in_seconds=dict(type="int"),
                 ),
             ),
             display_name=dict(aliases=["name"], type="str"),

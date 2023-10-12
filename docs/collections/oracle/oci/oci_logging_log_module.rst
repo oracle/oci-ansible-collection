@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log -- Manage a Log resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -282,7 +282,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.</div>
+                                            <div>True if archiving enabled. This field is now deprecated, you should use Service Connector Hub to enable archiving.</div>
                                                         </td>
             </tr>
                     
@@ -614,7 +614,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Log retention duration in 30-day increments (30, 60, 90 and so on).</div>
+                                            <div>Log retention duration in 30-day increments (30, 60, 90 and so on until 180).</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -919,7 +919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.</div>
+                                            <div>True if archiving enabled. This field is now deprecated, you should use Service Connector Hub to enable archiving.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1219,7 +1219,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Log retention duration in 30-day increments (30, 60, 90 and so on).</div>
+                                            <div>Log retention duration in 30-day increments (30, 60, 90 and so on until 180).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -30,7 +30,7 @@ oracle.oci.oci_container_instances_container_instance -- Manage a ContainerInsta
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ContainerInstance resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new ContainerInstance.
+- For *state=present*, creates a container instance and deploys the containers on it.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_container_instances_container_instance_actions <ansible_collections.oracle.oci.oci_container_instances_container_instance_actions_module>` module: change_compartment, restart, start, stop.
 
 
@@ -199,7 +199,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Availability Domain where the ContainerInstance should be created.</div>
+                                            <div>The availability domain where the container instance runs.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -230,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Compartment Identifier</div>
+                                            <div>The compartment OCID.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -278,7 +278,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The system-generated unique identifier for the ContainerInstance.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container instance.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -311,31 +311,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Containers to create on this Instance.</div>
+                                            <div>The containers to create on this container instance.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
-                                                    <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="parameter-containers/additional_capabilities"></div>
-                    <b>additional_capabilities</b>
-                    <a class="ansibleOptionLink" href="#parameter-containers/additional_capabilities" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
-                                                        </td>
-                                <td>
-                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>CAP_NET_ADMIN</li>
-                                                                                                                                                                                                <li>CAP_NET_RAW</li>
-                                                                                    </ul>
-                                                                            </td>
-                                                                <td>
-                                            <div>A list of additional capabilities for the container.</div>
-                                                        </td>
-            </tr>
-                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-containers/arguments"></div>
@@ -348,9 +328,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of string arguments for a container&#x27;s entrypoint process.</div>
-                                            <div>Many containers use an entrypoint process pointing to a shell, for example /bin/bash. For such containers, this argument list can also be used to specify the main command in the container process.</div>
-                                            <div>All arguments together must be 64KB or smaller.</div>
+                                            <div>A list of string arguments for a container&#x27;s ENTRYPOINT process.</div>
+                                            <div>Many containers use an ENTRYPOINT process pointing to a shell (/bin/bash). For those containers, this argument list specifies the main command in the container process.</div>
+                                            <div>The total size of all arguments combined must be 64 KB or smaller.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -366,7 +346,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This command will override the container&#x27;s entrypoint process. If not specified, the existing entrypoint process defined in the image will be used.</div>
+                                            <div>An optional command that overrides the ENTRYPOINT process. If you do not provide a value, the existing ENTRYPOINT process defined in the image is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -382,7 +362,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -398,7 +378,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Display name for the Container. There are no guarantees of uniqueness for this name. If none is provided, it will be calculated automatically.</div>
+                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information. If you don&#x27;t provide a name, a name is generated automatically.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -415,8 +395,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A map of additional environment variables to set in the environment of the container&#x27;s entrypoint process. These variables are in addition to any variables already defined in the container&#x27;s image.</div>
-                                            <div>All environment variables together, name and values, must be 64KB or smaller.</div>
+                                            <div>A map of additional environment variables to set in the environment of the container&#x27;s ENTRYPOINT process. These variables are in addition to any variables already defined in the container&#x27;s image.</div>
+                                            <div>The total size of all environment variables combined, name and values, must be 64 KB or smaller.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -465,7 +445,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of strings which will be concatenated to a single command for checking container&#x27;s status.</div>
+                                            <div>The list of strings that will be simplified to a single command for checking the status of the container.</div>
                                             <div>Required when health_check_type is &#x27;COMMAND&#x27;</div>
                                                         </td>
             </tr>
@@ -521,7 +501,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Container health check Http&#x27;s headers.</div>
+                                            <div>Container health check HTTP headers.</div>
                                             <div>Applicable when health_check_type is &#x27;HTTP&#x27;</div>
                                                         </td>
             </tr>
@@ -540,7 +520,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Container Http header Key.</div>
+                                            <div>Container HTTP header Key.</div>
                                             <div>Required when health_check_type is &#x27;HTTP&#x27;</div>
                                                         </td>
             </tr>
@@ -559,7 +539,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Container Http header value.</div>
+                                            <div>Container HTTP header value.</div>
                                             <div>Required when health_check_type is &#x27;HTTP&#x27;</div>
                                                         </td>
             </tr>
@@ -651,7 +631,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Container health check Http&#x27;s path.</div>
+                                            <div>Container health check HTTP path.</div>
                                             <div>Required when health_check_type is &#x27;HTTP&#x27;</div>
                                                         </td>
             </tr>
@@ -721,7 +701,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The container image information. Currently only support public docker registry. Can be either image name, e.g `containerImage`, image name with version, e.g `containerImage:v1` or complete docker image Url e.g `docker.io/library/containerImage:latest`. If no registry is provided, will default the registry to public docker hub `docker.io/library`. The registry used for container image must be reachable over the Container Instance&#x27;s VNIC.</div>
+                                            <div>A URL identifying the image that the container runs in, such as docker.io/library/busybox:latest. If you do not provide a tag, the tag will default to latest.</div>
+                                            <div>If no registry is provided, will default the registry to public docker hub `docker.io/library`.</div>
+                                            <div>The registry used for container image must be reachable over the Container Instance&#x27;s VNIC.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -741,7 +723,8 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Determines if the Container will have access to the Container Instance Resource Principal. This method utilizes resource principal version 2.2. Please refer to https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal for detailed explanation of how to leverage the exposed resource principal elements.</div>
+                                            <div>Determines if the container will have access to the container instance resource principal.</div>
+                                            <div>This method utilizes resource principal version 2.2. For information on how to use the exposed resource principal elements, see https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -774,7 +757,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The maximum amount of memory which may be consumed by the Container&#x27;s process. If no value is provided, then the process may use all available memory on the Instance.</div>
+                                            <div>The maximum amount of memory that can be consumed by the container&#x27;s process.</div>
+                                            <div>If you do not set a value, then the process may use all available memory on the instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -791,7 +775,123 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The maximum amount of CPU utilization which may be consumed by the Container&#x27;s process. If no value is provided, then the process may consume all CPU resources on the Instance. CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on an E3 ContainerInstance with 1 OCPU is 2.0. A Container with that vcpusLimit could consume up to 100% of the CPU resources available on the Instance. Values may be fractional. A value of &quot;1.5&quot; means that the Container may consume at most the equivalent of 1 and a half logical CPUs worth of CPU capacity</div>
+                                            <div>The maximum amount of CPUs that can be consumed by the container&#x27;s process.</div>
+                                            <div>If you do not set a value, then the process can use all available CPU resources on the instance.</div>
+                                            <div>CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on an E3 ContainerInstance with 1 OCPU is 2.0.</div>
+                                            <div>A container with a 2.0 vcpusLimit could consume up to 100% of the CPU resources available on the container instance. Values can be fractional. A value of &quot;1.5&quot; means that the container can consume at most the equivalent of 1 and a half logical CPUs worth of CPU capacity.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context"></div>
+                    <b>security_context</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context/is_non_root_user_check_enabled"></div>
+                    <b>is_non_root_user_check_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context/is_non_root_user_check_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates if the container must run as a non-root user. If true, the service validates the container image at runtime to ensure that it is not going to run with UID 0 (root) and fails the container instance creation if the validation fails.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context/is_root_file_system_readonly"></div>
+                    <b>is_root_file_system_readonly</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context/is_root_file_system_readonly" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Determines if the container will have a read-only root file system. Default value is false.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context/run_as_group"></div>
+                    <b>run_as_group</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context/run_as_group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The group ID (GID) to run the entrypoint process of the container. Uses runtime default if not provided.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context/run_as_user"></div>
+                    <b>run_as_user</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context/run_as_user" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The user ID (UID) to run the entrypoint process of the container. Defaults to user specified UID in container image metadata if not provided. This must be provided if runAsGroup is provided.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-containers/security_context/security_context_type"></div>
+                    <b>security_context_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-containers/security_context/security_context_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>LINUX</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of security context</div>
                                                         </td>
             </tr>
                     
@@ -829,7 +929,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether the volume was mounted in read-only mode. Defaults to false if not specified.</div>
+                                            <div>Whether the volume was mounted in read-only mode. By default, the volume is not read-only.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -846,7 +946,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>mountPath describes the volume access path.</div>
+                                            <div>The volume access path.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -863,7 +963,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>If there is more than 1 partitions in the volume, this is the number of partition which be referenced. Here is a example: Number  Start   End     Size    File system  Name                  Flags 1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp 2      106MB   1180MB  1074MB  xfs 3      1180MB  50.0GB  48.8GB                                     lvm</div>
+                                            <div>If there is more than one partition in the volume, reference this number of partitions. Here is an example: Number  Start   End     Size    File system  Name                  Flags 1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp 2      106MB   1180MB  1074MB  xfs 3      1180MB  50.0GB  48.8GB                                     lvm</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -880,7 +980,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>specifies a sub-path inside the referenced volume instead of its root</div>
+                                            <div>A subpath inside the referenced volume.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -897,7 +997,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the volume.</div>
+                                            <div>The name of the volume. Avoid entering confidential information.</div>
                                                         </td>
             </tr>
                     
@@ -914,7 +1014,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The working directory within the Container&#x27;s filesystem for the Container process. If none is set, the Container will run in the working directory set by the container image.</div>
+                                            <div>The working directory within the container&#x27;s filesystem for the container process. If not specified, the default working directory from the image is used.</div>
                                                         </td>
             </tr>
                     
@@ -930,7 +1030,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -946,7 +1046,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Human-readable name for the ContainerInstance. If none is provided, OCI will select one for you.</div>
+                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information. If you don&#x27;t provide a name, a name is generated automatically.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -980,7 +1080,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>IP address of a name server that the resolver should query, either an IPv4 address (in dot notation), or an IPv6 address in colon (and possibly dot) notation. If null, we will use nameservers from subnet dhcpDnsOptions.</div>
+                                            <div>IP address of a name server that the resolver should query, either an IPv4 address (in dot notation), or an IPv6 address in colon (and possibly dot) notation. If null, uses nameservers from subnet dhcpDnsOptions.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -996,7 +1096,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Options allows certain internal resolver variables to be modified. Options are a list of objects in https://man7.org/linux/man-pages/man5/resolv.conf.5.html. Examples: [&quot;ndots:n&quot;, &quot;edns0&quot;]</div>
+                                            <div>Options allows certain internal resolver variables to be modified. Options are a list of objects in https://man7.org/linux/man-pages/man5/resolv.conf.5.html. Examples: [&quot;ndots:n&quot;, &quot;edns0&quot;].</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1028,7 +1128,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Fault Domain where the ContainerInstance should run.</div>
+                                            <div>The fault domain where the container instance runs.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1078,7 +1178,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when the Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be sent a termination signal.</div>
+                                            <div>The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a container instance. After the timeout is reached, the processes are sent a signal to be deleted.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1093,7 +1193,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The image pull secrets for accessing private registry to pull images for containers</div>
+                                            <div>The image pulls secrets so you can access private registry to pull container images.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1245,7 +1345,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The shape of the Container Instance. The shape determines the resources available to the Container Instance.</div>
+                                            <div>The shape of the container instance. The shape determines the resources available to the container instance.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1278,7 +1378,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                            <div>The total amount of memory available to the container instance (GB).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1294,7 +1394,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total number of OCPUs available to the instance.</div>
+                                            <div>The total number of OCPUs available to the container instance.</div>
                                                         </td>
             </tr>
                     
@@ -1346,7 +1446,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The networks to make available to containers on this Instance.</div>
+                                            <div>The networks available to containers on this container instance.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1363,7 +1463,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1412,7 +1512,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The hostname for the VNIC&#x27;s primary private IP.</div>
+                                            <div>The hostname for the VNIC&#x27;s primary private IP. Used for DNS.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1516,7 +1616,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A Volume represents a directory with data that is accessible across multiple containers in a ContainerInstance. Up to 32 volumes can be attached to single container instance.</div>
+                                            <div>A volume is a directory with data that is accessible across multiple containers in a container instance.</div>
+                                            <div>You can attach up to 32 volumes to single container instance.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1532,7 +1633,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Volume type that we are using for empty dir where it could be either File Storage or Memory</div>
+                                            <div>The volume type of the empty directory, can be either File Storage or Memory.</div>
                                             <div>Applicable when volume_type is &#x27;EMPTYDIR&#x27;</div>
                                                         </td>
             </tr>
@@ -1621,7 +1722,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the volume. This has be unique cross single ContainerInstance.</div>
+                                            <div>The name of the volume. This must be unique within a single container instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1725,7 +1826,6 @@ Examples
           display_name: display_name_example
           command: [ "command_example" ]
           arguments: [ "arguments_example" ]
-          additional_capabilities: [ "CAP_NET_ADMIN" ]
           working_directory: working_directory_example
           environment_variables: null
           volume_mounts:
@@ -1755,6 +1855,13 @@ Examples
             success_threshold: 56
             timeout_in_seconds: 56
             failure_action: KILL
+          security_context:
+            # optional
+            security_context_type: LINUX
+            run_as_user: 56
+            run_as_group: 56
+            is_non_root_user_check_enabled: true
+            is_root_file_system_readonly: true
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
         vnics:
@@ -1885,7 +1992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Availability Domain where the ContainerInstance is running.</div>
+                                            <div>The availability domain to place the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -1903,7 +2010,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier</div>
+                                            <div>The OCID of the compartment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1921,7 +2028,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of containers on this Instance</div>
+                                            <div>The number of containers on the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1957,7 +2064,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Containers on this Instance</div>
+                                            <div>The containers on the container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1974,7 +2081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the Container on this Instance.</div>
+                                            <div>The OCID of the container.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.container.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2012,7 +2119,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -2030,7 +2137,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Display name for the ContainerInstance. Can be renamed.</div>
+                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -2065,7 +2172,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name server IP address</div>
+                                            <div>IP address of the name server..</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2099,7 +2206,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Search list for host-name lookup.</div>
+                                            <div>Search list for hostname lookup.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2116,7 +2223,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Fault Domain where the ContainerInstance is running.</div>
+                                            <div>The fault domain to place the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FAULT-DOMAIN-1</div>
@@ -2152,7 +2259,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Duration in seconds processes within a Container have to gracefully terminate. This applies whenever a Container must be halted, such as when the Container Instance is deleted. Processes will first be sent a termination signal. After this timeout is reached, the processes will be sent a termination signal.</div>
+                                            <div>The amount of time that processes in a container have to gracefully end when the container must be stopped. For example, when you delete a container instance. After the timeout is reached, the processes are sent a signal to be deleted.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2170,7 +2277,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>An OCID that cannot be changed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2188,7 +2295,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The image pull secrets for accessing private registry to pull images for containers</div>
+                                            <div>The image pulls secrets so you can access private registry to pull container images.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2262,7 +2369,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message that describes the current state of the container in more detail. Can be used to provide actionable information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
@@ -2280,7 +2387,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the ContainerInstance.</div>
+                                            <div>The current state of the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -2298,7 +2405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape of the Container Instance. The shape determines the resources available to the Container Instance.</div>
+                                            <div>The shape of the container instance. The shape determines the number of OCPUs, amount of memory, and other resources that are allocated to a container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
@@ -2333,7 +2440,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                            <div>The total amount of memory available to the container instance, in gigabytes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -2352,7 +2459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The networking bandwidth available to the instance, in gigabits per second.</div>
+                                            <div>The networking bandwidth available to the container instance, in gigabits per second.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -2371,7 +2478,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The total number of OCPUs available to the instance.</div>
+                                            <div>The total number of OCPUs available to the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -2390,7 +2497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the instance&#x27;s processor (CPU).</div>
+                                            <div>A short description of the container instance&#x27;s processor (CPU).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">processor_description_example</div>
@@ -2409,7 +2516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2425,7 +2532,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the ContainerInstance was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container instance was created, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -2443,7 +2550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the ContainerInstance was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container instance was updated, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -2461,7 +2568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The virtual networks available to containers running on this Container Instance.</div>
+                                            <div>The virtual networks available to the containers in the container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2478,7 +2585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the Virtual Network Interface Card (VNIC) over which Containers accessing this network can communicate with the larger Virtual Client Network.</div>
+                                            <div>The identifier of the virtual network interface card (VNIC) over which the containers accessing this network can communicate with the larger virtual cloud network.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2497,7 +2604,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of volumes that attached to this Instance</div>
+                                            <div>The number of volumes that are attached to the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2515,7 +2622,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A Volume represents a directory with data that is accessible across multiple containers in a ContainerInstance.</div>
+                                            <div>A volume is a directory with data that is accessible across multiple containers in a container instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2532,7 +2639,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Volume type that we are using for empty dir where it could be either File Storage or Memory</div>
+                                            <div>The volume type of the empty directory, can be either File Storage or Memory.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EPHEMERAL_STORAGE</div>
@@ -2629,7 +2736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the volume. This has be unique cross single ContainerInstance.</div>
+                                            <div>The name of the volume. This must be unique within a single container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

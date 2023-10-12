@@ -222,6 +222,12 @@ operator_control_assignment:
             returned: on success
             type: str
             sample: error_message_example
+        is_default_assignment:
+            description:
+                - Whether the assignment is a default assignment.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -260,6 +266,7 @@ operator_control_assignment:
         "is_auto_approve_during_maintenance": true,
         "error_code": 56,
         "error_message": "error_message_example",
+        "is_default_assignment": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

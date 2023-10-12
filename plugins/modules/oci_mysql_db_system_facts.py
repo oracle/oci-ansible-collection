@@ -34,13 +34,6 @@ options:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to list multiple db_systems.
         type: str
-    is_analytics_cluster_attached:
-        description:
-            - "DEPRECATED -- please use HeatWave API instead.
-              If true, return only DB Systems with an Analytics Cluster attached, if false
-              return only DB Systems with no Analytics Cluster attached. If not
-              present, return all DB Systems."
-        type: bool
     is_heat_wave_cluster_attached:
         description:
             - If true, return only DB Systems with a HeatWave cluster attached, if false
@@ -109,7 +102,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    is_analytics_cluster_attached: true
     is_heat_wave_cluster_attached: true
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
@@ -393,6 +385,20 @@ db_systems:
                                     returned: on success
                                     type: str
                                     sample: value_example
+                        tables_without_primary_key_handling:
+                            description:
+                                - Specifies how a replication channel handles the creation and alteration of tables
+                                  that do not have a primary key.
+                            returned: on success
+                            type: str
+                            sample: RAISE_ERROR
+                        delay_in_seconds:
+                            description:
+                                - Specifies the amount of time, in seconds, that the channel waits before
+                                  applying a transaction received from the source.
+                            returned: on success
+                            type: int
+                            sample: 56
                 lifecycle_state:
                     description:
                         - The state of the Channel.
@@ -530,51 +536,6 @@ db_systems:
                     returned: on success
                     type: str
                     sample: FAULT-DOMAIN-1
-        is_analytics_cluster_attached:
-            description:
-                - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
-                  If the DB System has an Analytics Cluster attached."
-            returned: on success
-            type: bool
-            sample: true
-        analytics_cluster:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                shape_name:
-                    description:
-                        - "The shape determines resources to allocate to the Analytics
-                          Cluster nodes - CPU cores, memory."
-                    returned: on success
-                    type: str
-                    sample: shape_name_example
-                cluster_size:
-                    description:
-                        - The number of analytics-processing compute instances, of the
-                          specified shape, in the Analytics Cluster.
-                    returned: on success
-                    type: int
-                    sample: 56
-                lifecycle_state:
-                    description:
-                        - The current state of the MySQL Analytics Cluster.
-                    returned: on success
-                    type: str
-                    sample: lifecycle_state_example
-                time_created:
-                    description:
-                        - The date and time the Analytics Cluster was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_updated:
-                    description:
-                        - The time the Analytics Cluster was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
         is_heat_wave_cluster_attached:
             description:
                 - If the DB System has a HeatWave Cluster attached.
@@ -601,6 +562,12 @@ db_systems:
                     returned: on success
                     type: int
                     sample: 56
+                is_lakehouse_enabled:
+                    description:
+                        - Lakehouse enabled status for the HeatWave cluster.
+                    returned: on success
+                    type: bool
+                    sample: true
                 lifecycle_state:
                     description:
                         - The current state of the MySQL HeatWave cluster.
@@ -887,7 +854,9 @@ db_systems:
                 "filters": [{
                     "type": "REPLICATE_DO_DB",
                     "value": "value_example"
-                }]
+                }],
+                "tables_without_primary_key_handling": "RAISE_ERROR",
+                "delay_in_seconds": 56
             },
             "lifecycle_state": "lifecycle_state_example",
             "lifecycle_details": "lifecycle_details_example",
@@ -914,18 +883,11 @@ db_systems:
             "availability_domain": "Uocm:PHX-AD-1",
             "fault_domain": "FAULT-DOMAIN-1"
         },
-        "is_analytics_cluster_attached": true,
-        "analytics_cluster": {
-            "shape_name": "shape_name_example",
-            "cluster_size": 56,
-            "lifecycle_state": "lifecycle_state_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
-        },
         "is_heat_wave_cluster_attached": true,
         "heat_wave_cluster": {
             "shape_name": "shape_name_example",
             "cluster_size": 56,
+            "is_lakehouse_enabled": true,
             "lifecycle_state": "lifecycle_state_example",
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00"
@@ -1005,7 +967,6 @@ class MysqlDbSystemFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "is_analytics_cluster_attached",
             "is_heat_wave_cluster_attached",
             "db_system_id",
             "display_name",
@@ -1039,7 +1000,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            is_analytics_cluster_attached=dict(type="bool"),
             is_heat_wave_cluster_attached=dict(type="bool"),
             db_system_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),

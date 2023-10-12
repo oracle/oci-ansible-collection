@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster_network_actions -- Perform actions on a VmClu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -446,6 +446,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>CLIENT</li>
                                                                                                                                                                                                 <li>BACKUP</li>
+                                                                                                                                                                                                <li>DISASTER_RECOVERY</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -769,7 +770,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VmClusterNetwork resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns&#x27;: [], &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;ntp&#x27;: [], &#x27;scans&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ips&#x27;: [], &#x27;port&#x27;: 56, &#x27;scan_listener_port_tcp&#x27;: 56, &#x27;scan_listener_port_tcp_ssl&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_networks&#x27;: [{&#x27;domain_name&#x27;: &#x27;domain_name_example&#x27;, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;network_type&#x27;: &#x27;CLIENT&#x27;, &#x27;nodes&#x27;: [{&#x27;db_server_id&#x27;: &#x27;ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip&#x27;: &#x27;ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;vip&#x27;: &#x27;vip_example&#x27;, &#x27;vip_hostname&#x27;: &#x27;vip_hostname_example&#x27;}], &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns&#x27;: [], &#x27;dr_scans&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ips&#x27;: [], &#x27;scan_listener_port_tcp&#x27;: 56}], &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;ntp&#x27;: [], &#x27;scans&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ips&#x27;: [], &#x27;port&#x27;: 56, &#x27;scan_listener_port_tcp&#x27;: 56, &#x27;scan_listener_port_tcp_ssl&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_networks&#x27;: [{&#x27;domain_name&#x27;: &#x27;domain_name_example&#x27;, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;network_type&#x27;: &#x27;CLIENT&#x27;, &#x27;nodes&#x27;: [{&#x27;db_server_id&#x27;: &#x27;ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip&#x27;: &#x27;ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;vip&#x27;: &#x27;vip_example&#x27;, &#x27;vip_hostname&#x27;: &#x27;vip_hostname_example&#x27;}], &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -842,6 +843,78 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                         </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/dr_scans"></div>
+                    <b>dr_scans</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/dr_scans" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The SCAN details for DR network</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/dr_scans/hostname"></div>
+                    <b>hostname</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/dr_scans/hostname" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Disaster recovery SCAN hostname.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/dr_scans/ips"></div>
+                    <b>ips</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/dr_scans/ips" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of Disaster recovery SCAN IP addresses. Three addresses should be provided.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/dr_scans/scan_listener_port_tcp"></div>
+                    <b>scan_listener_port_tcp</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/dr_scans/scan_listener_port_tcp" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Disaster recovery SCAN TCPIP port. Default is 1521.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -1014,7 +1087,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The SCAN TCPIP port. Default is 1521.</div>
+                                            <div>**Deprecated.** This field is deprecated. You may use &#x27;scanListenerPortTcp&#x27; to specify the port. The SCAN TCPIP port. Default is 1521.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

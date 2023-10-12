@@ -29,14 +29,13 @@ author: Oracle (@oracle)
 options:
     container_id:
         description:
-            - The unique identifier for the Container.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
     display_name:
         description:
-            - Display name for the Container. There are no guarantees of uniqueness
-              for this name.
+            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -50,12 +49,12 @@ options:
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
             - This parameter is updatable.
         type: dict
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     state:
@@ -101,19 +100,19 @@ container:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Display name for the Container. Can be renamed.
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment that contains the container.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -127,116 +126,110 @@ container:
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`."
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`."
             returned: on success
             type: dict
             sample: {}
         availability_domain:
             description:
-                - Availability Domain where the Container's Instance is running.
+                - The availability domain where the container instance that hosts the container runs.
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
-                - Fault Domain where the Container's Instance is running.
+                - The fault domain of the container instance that hosts the container runs.
             returned: on success
             type: str
             sample: FAULT-DOMAIN-1
         lifecycle_state:
             description:
-                - The current state of the Container.
+                - The current state of the container.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide
-                  actionable information for a resource in Failed state.
+                - A message that describes the current state of the container in more detail. Can be used to provide
+                  actionable information.
             returned: on success
             type: str
             sample: lifecycle_details_example
         exit_code:
             description:
-                - The exit code of the container process if it has stopped executing.
+                - The exit code of the container process when it stopped running.
             returned: on success
             type: int
             sample: 56
         time_terminated:
             description:
-                - Time at which the container last terminated. An RFC3339 formatted datetime string
+                - The time when the container last deleted (terminated), in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
-                - The time the the Container was created. An RFC3339 formatted datetime string
+                - The time the container was created, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Container was updated. An RFC3339 formatted datetime string
+                - The time the container was updated, in the format defined by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         container_instance_id:
             description:
-                - The identifier of the Container Instance on which this container is running.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container instance that the container is
+                  running on.
             returned: on success
             type: str
             sample: "ocid1.containerinstance.oc1..xxxxxxEXAMPLExxxxxx"
         image_url:
             description:
-                - The container image information. Currently only support public docker registry. Can be either image name,
-                  e.g `containerImage`, image name with version, e.g `containerImage:v1` or complete docker image Url e.g
+                - The container image information. Currently only supports public Docker registry.
+                - You can provide either the image name (containerImage), image name with version (containerImagev1), or complete Docker image URL
                   `docker.io/library/containerImage:latest`.
-                  If no registry is provided, will default the registry to public docker hub `docker.io/library`.
-                  The registry used for container image must be reachable over the Container Instance's VNIC.
+                - If you do not provide a registry, the registry defaults to public Docker hub `docker.io/library`.
+                  The registry used for the container image must be reachable over the VNIC of the container instance.
             returned: on success
             type: str
             sample: image_url_example
         command:
             description:
-                - This command will override the container's entrypoint process.
-                  If not specified, the existing entrypoint process defined in the image will be used.
+                - This command overrides ENTRYPOINT process of the container.
+                  If you do not specify this command, the existing ENTRYPOINT process defined in the image is the default.
             returned: on success
             type: list
             sample: []
         arguments:
             description:
-                - A list of string arguments for a Container's entrypoint process.
-                - Many containers use an entrypoint process pointing to a shell,
-                  for example /bin/bash. For such containers, this argument list
-                  can also be used to specify the main command in the container process.
-            returned: on success
-            type: list
-            sample: []
-        additional_capabilities:
-            description:
-                - A list of additional configurable container capabilities
+                - A list of string arguments for the ENTRYPOINT process of the container.
+                - Many containers use an ENTRYPOINT process pointing to a shell
+                  `/bin/bash`. For those containers, you can use the argument list to specify the main command in the container process.
             returned: on success
             type: list
             sample: []
         working_directory:
             description:
-                - The working directory within the Container's filesystem for
-                  the Container process. If this is not present, the default
-                  working directory from the image will be used.
+                - The working directory within the container's filesystem for
+                  the container process. If not specified, the default
+                  working directory from the image is used.
             returned: on success
             type: str
             sample: working_directory_example
         environment_variables:
             description:
-                - A map of additional environment variables to set in the environment of the container's
-                  entrypoint process. These variables are in addition to any variables already defined
+                - A map of additional environment variables to set in the environment of the
+                  ENTRYPOINT process of the container. These variables are in addition to any variables already defined
                   in the container's image.
             returned: on success
             type: dict
@@ -249,7 +242,7 @@ container:
             contains:
                 mount_path:
                     description:
-                        - mountPath describes the volume access path.
+                        - Describes the volume access path.
                     returned: on success
                     type: str
                     sample: mount_path_example
@@ -261,24 +254,24 @@ container:
                     sample: volume_name_example
                 sub_path:
                     description:
-                        - specifies a sub-path inside the referenced volume instead of its root
+                        - A sub-path inside the referenced volume.
                     returned: on success
                     type: str
                     sample: sub_path_example
                 is_read_only:
                     description:
-                        - Whether the volume was mounted in read-only mode. Defaults to false if not specified.
+                        - Whether the volume was mounted in read-only mode. By default, the volume is mounted with write access.
                     returned: on success
                     type: bool
                     sample: true
                 partition:
                     description:
-                        - "If there is more than 1 partitions in the volume, this is the number of partition which be referenced.
-                          Here is a example:
+                        - "If there is more than one partition in the volume, reference this number of partitions.
+                          Here is an example:
                           Number  Start   End     Size    File system  Name                  Flags
-                           1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp
-                           2      106MB   1180MB  1074MB  xfs
-                           3      1180MB  50.0GB  48.8GB                                     lvm"
+                          1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp
+                          2      106MB   1180MB  1074MB  xfs
+                          3      1180MB  50.0GB  48.8GB                                     lvm"
                     returned: on success
                     type: int
                     sample: 56
@@ -290,31 +283,31 @@ container:
             contains:
                 command:
                     description:
-                        - The list of strings which will be concatenated to a single command for checking container's status.
+                        - The list of strings that will be simplified to a single command for checking the status of the container.
                     returned: on success
                     type: list
                     sample: []
                 path:
                     description:
-                        - Container health check Http's path
+                        - Container health check HTTP path.
                     returned: on success
                     type: str
                     sample: path_example
                 headers:
                     description:
-                        - Container health check Http's headers.
+                        - Container health check HTTP headers.
                     returned: on success
                     type: complex
                     contains:
                         name:
                             description:
-                                - Container Http header Key.
+                                - Container HTTP header Key.
                             returned: on success
                             type: str
                             sample: name_example
                         value:
                             description:
-                                - Container Http header value.
+                                - Container HTTP header value.
                             returned: on success
                             type: str
                             sample: value_example
@@ -381,16 +374,15 @@ container:
                     sample: KILL
                 port:
                     description:
-                        - Container health check Http's port
+                        - Container health check HTTP port.
                     returned: on success
                     type: int
                     sample: 56
         is_resource_principal_disabled:
             description:
-                - Determines if the Container will have access to the Container Instance Resource Principal.
-                  This method utilizes resource principal version 2.2. Please refer to
-                  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal
-                  for detailed explanation of how to leverage the exposed resource principal elements.
+                - Determines if the container will have access to the container instance resource principal.
+                - This method utilizes resource principal version 2.2. For more information on how to use the exposed resource principal elements, see
+                  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal.
             returned: on success
             type: bool
             sample: true
@@ -402,29 +394,67 @@ container:
             contains:
                 vcpus_limit:
                     description:
-                        - The maximum amount of CPU utilization which may be consumed by the Container's
-                          process. If no value is provided, then the process may consume
-                          all CPU resources on the Instance.
-                          CPU usage is defined in terms of logical CPUs. This means that the
+                        - The maximum amount of CPUs that can be consumed by the container's process.
+                        - If you do not set a value, then the process
+                          may use all available CPU resources on the container instance.
+                        - CPU usage is defined in terms of logical CPUs. This means that the
                           maximum possible value on an E3 ContainerInstance with 1 OCPU is 2.0.
                     returned: on success
                     type: float
                     sample: 3.4
                 memory_limit_in_gbs:
                     description:
-                        - The maximum amount of memory which may be consumed by the Container's
-                          process. If no value is provided, then the process
-                          may use all available memory on the Instance.
+                        - The maximum amount of memory that can be consumed by the container's
+                          process. If you do not set a value, then the process
+                          may use all available memory on the instance.
                     returned: on success
                     type: float
                     sample: 3.4
         container_restart_attempt_count:
             description:
-                - The number of container restart attempts. A restart may be attempted after a health check failure or a container exit, based on the restart
-                  policy.
+                - The number of container restart attempts. Depending on the restart policy, a restart might be attempted after a health check failure or a
+                  container exit.
             returned: on success
             type: int
             sample: 56
+        security_context:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                security_context_type:
+                    description:
+                        - The type of security context
+                    returned: on success
+                    type: str
+                    sample: LINUX
+                run_as_user:
+                    description:
+                        - The user ID (UID) to run the entrypoint process of the container. Defaults to user specified UID in container image metadata if not
+                          provided. This must be provided if runAsGroup is provided.
+                    returned: on success
+                    type: int
+                    sample: 56
+                run_as_group:
+                    description:
+                        - The group ID (GID) to run the entrypoint process of the container. Uses runtime default if not provided.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_non_root_user_check_enabled:
+                    description:
+                        - Indicates if the container must run as a non-root user. If true, the service validates the container image at runtime to ensure that
+                          it is not going to run with UID 0 (root) and fails the container instance creation if the validation fails.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_root_file_system_readonly:
+                    description:
+                        - Determines if the container will have a read-only root file system. Default value is false.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -444,7 +474,6 @@ container:
         "image_url": "image_url_example",
         "command": [],
         "arguments": [],
-        "additional_capabilities": [],
         "working_directory": "working_directory_example",
         "environment_variables": {},
         "volume_mounts": [{
@@ -478,7 +507,14 @@ container:
             "vcpus_limit": 3.4,
             "memory_limit_in_gbs": 3.4
         },
-        "container_restart_attempt_count": 56
+        "container_restart_attempt_count": 56,
+        "security_context": {
+            "security_context_type": "LINUX",
+            "run_as_user": 56,
+            "run_as_group": 56,
+            "is_non_root_user_check_enabled": true,
+            "is_root_file_system_readonly": true
+        }
     }
 """
 

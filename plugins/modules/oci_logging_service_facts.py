@@ -26,13 +26,20 @@ description:
     - Lists all services that support logging.
 version_added: "2.9.0"
 author: Oracle (@oracle)
-options: {}
+options:
+    service_stage:
+        description:
+            - "Service stage of a service. The allowed values are \\"ProductionStage\\", \\"DevStage\\" and \\"LAStage\\"."
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
 - name: List services
   oci_logging_service_facts:
+
+    # optional
+    service_stage: service_stage_example
 
 """
 
@@ -105,7 +112,7 @@ services:
                             sample: name_example
                         display_name:
                             description:
-                                - Category display name.
+                                - Category display name. Avoid entering confidential information.
                             returned: on success
                             type: str
                             sample: display_name_example
@@ -121,12 +128,25 @@ services:
                                     returned: on success
                                     type: str
                                     sample: name_example
+                                display_name:
+                                    description:
+                                        - The user-friendly display name. This must be unique within the enclosing resource,
+                                          and it's changeable. Avoid entering confidential information.
+                                    returned: on success
+                                    type: str
+                                    sample: display_name_example
                                 type:
                                     description:
-                                        - Parameter type. One of integer, string, boolean.
+                                        - Parameter type.
                                     returned: on success
                                     type: str
                                     sample: integer
+                                rqs_type:
+                                    description:
+                                        - Parameter rqsType if applicable.
+                                    returned: on success
+                                    type: str
+                                    sample: rqs_type_example
                                 pattern:
                                     description:
                                         - Java regex pattern to validate a parameter value.
@@ -147,7 +167,9 @@ services:
                 "display_name": "display_name_example",
                 "parameters": [{
                     "name": "name_example",
+                    "display_name": "display_name_example",
                     "type": "integer",
+                    "rqs_type": "rqs_type_example",
                     "pattern": "pattern_example"
                 }]
             }]
@@ -178,6 +200,7 @@ class ServiceFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "service_stage",
             "name",
         ]
         optional_kwargs = dict(
@@ -199,7 +222,7 @@ class ResourceFactsHelper(ServiceFactsHelperCustom, ServiceFactsHelperGen):
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(name=dict(type="str"),))
+    module_args.update(dict(service_stage=dict(type="str"), name=dict(type="str"),))
 
     module = OCIAnsibleModule(argument_spec=module_args)
 

@@ -71,6 +71,12 @@ heat_wave_cluster:
             returned: on success
             type: int
             sample: 56
+        is_lakehouse_enabled:
+            description:
+                - Lakehouse enabled status for the HeatWave cluster.
+            returned: on success
+            type: bool
+            sample: true
         cluster_nodes:
             description:
                 - A HeatWave node is a compute host that is part of a HeatWave cluster.
@@ -133,6 +139,7 @@ heat_wave_cluster:
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "shape_name": "shape_name_example",
         "cluster_size": 56,
+        "is_lakehouse_enabled": true,
         "cluster_nodes": [{
             "node_id": "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx",
             "lifecycle_state": "CREATING",

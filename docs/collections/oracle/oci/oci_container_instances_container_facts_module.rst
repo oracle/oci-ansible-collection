@@ -30,7 +30,7 @@ oracle.oci.oci_container_instances_container_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Container resources in Oracle Cloud Infrastructure
-- Return a list of Containers.
+- Returns a list of containers in a compartment.
 - If *container_id* is specified, the details of a single Container will be returned.
 
 
@@ -230,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment in which to list resources.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which to list resources.</div>
                                             <div>Required to list multiple containers.</div>
                                                         </td>
             </tr>
@@ -276,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique identifier for the Container.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container.</div>
                                             <div>Required to get a specific container.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -293,7 +293,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique ContainerInstance identifier</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -333,7 +333,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources whose lifecycleState matches the given lifecycleState.</div>
+                                            <div>A filter to only return resources that match the given lifecycle state.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -386,7 +386,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.</div>
+                                            <div>The field to sort by. You can provide one sort order. Default order for timeCreated is descending. Default order for displayName is ascending. If you don&#x27;t specify a value, timeCreated is the default.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -405,7 +405,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
+                                            <div>The sort order to use (ASC) or (DESC).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -501,27 +501,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Container resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_capabilities&#x27;: [], &#x27;arguments&#x27;: [], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;command&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_instance_id&#x27;: &#x27;ocid1.containerinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_restart_attempt_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;environment_variables&#x27;: {}, &#x27;exit_code&#x27;: 56, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;health_checks&#x27;: [{&#x27;command&#x27;: [], &#x27;failure_action&#x27;: &#x27;KILL&#x27;, &#x27;failure_threshold&#x27;: 56, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;health_check_type&#x27;: &#x27;HTTP&#x27;, &#x27;initial_delay_in_seconds&#x27;: 56, &#x27;interval_in_seconds&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 56, &#x27;status&#x27;: &#x27;HEALTHY&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;, &#x27;success_threshold&#x27;: 56, &#x27;timeout_in_seconds&#x27;: 56}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_url&#x27;: &#x27;image_url_example&#x27;, &#x27;is_resource_principal_disabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;resource_config&#x27;: {&#x27;memory_limit_in_gbs&#x27;: 3.4, &#x27;vcpus_limit&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_terminated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_mounts&#x27;: [{&#x27;is_read_only&#x27;: True, &#x27;mount_path&#x27;: &#x27;mount_path_example&#x27;, &#x27;partition&#x27;: 56, &#x27;sub_path&#x27;: &#x27;sub_path_example&#x27;, &#x27;volume_name&#x27;: &#x27;volume_name_example&#x27;}], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;arguments&#x27;: [], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;command&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_instance_id&#x27;: &#x27;ocid1.containerinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;container_restart_attempt_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;environment_variables&#x27;: {}, &#x27;exit_code&#x27;: 56, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;health_checks&#x27;: [{&#x27;command&#x27;: [], &#x27;failure_action&#x27;: &#x27;KILL&#x27;, &#x27;failure_threshold&#x27;: 56, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;health_check_type&#x27;: &#x27;HTTP&#x27;, &#x27;initial_delay_in_seconds&#x27;: 56, &#x27;interval_in_seconds&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 56, &#x27;status&#x27;: &#x27;HEALTHY&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;, &#x27;success_threshold&#x27;: 56, &#x27;timeout_in_seconds&#x27;: 56}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_url&#x27;: &#x27;image_url_example&#x27;, &#x27;is_resource_principal_disabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;resource_config&#x27;: {&#x27;memory_limit_in_gbs&#x27;: 3.4, &#x27;vcpus_limit&#x27;: 3.4}, &#x27;security_context&#x27;: {&#x27;is_non_root_user_check_enabled&#x27;: True, &#x27;is_root_file_system_readonly&#x27;: True, &#x27;run_as_group&#x27;: 56, &#x27;run_as_user&#x27;: 56, &#x27;security_context_type&#x27;: &#x27;LINUX&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_terminated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_mounts&#x27;: [{&#x27;is_read_only&#x27;: True, &#x27;mount_path&#x27;: &#x27;mount_path_example&#x27;, &#x27;partition&#x27;: 56, &#x27;sub_path&#x27;: &#x27;sub_path_example&#x27;, &#x27;volume_name&#x27;: &#x27;volume_name_example&#x27;}], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-containers/additional_capabilities"></div>
-                    <b>additional_capabilities</b>
-                    <a class="ansibleOptionLink" href="#return-containers/additional_capabilities" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                       / <span style="color: purple">elements=string</span>                    </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A list of additional configurable container capabilities</div>
-                                            <div>Returned for get operation</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-containers/arguments"></div>
@@ -533,8 +516,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of string arguments for a Container&#x27;s entrypoint process.</div>
-                                            <div>Many containers use an entrypoint process pointing to a shell, for example /bin/bash. For such containers, this argument list can also be used to specify the main command in the container process.</div>
+                                            <div>A list of string arguments for the ENTRYPOINT process of the container.</div>
+                                            <div>Many containers use an ENTRYPOINT process pointing to a shell `/bin/bash`. For those containers, you can use the argument list to specify the main command in the container process.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -551,7 +534,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Availability Domain where the Container&#x27;s Instance is running.</div>
+                                            <div>The availability domain where the container instance that hosts the container runs.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -569,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>This command will override the container&#x27;s entrypoint process. If not specified, the existing entrypoint process defined in the image will be used.</div>
+                                            <div>This command overrides ENTRYPOINT process of the container. If you do not specify this command, the existing ENTRYPOINT process defined in the image is the default.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -586,7 +569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier</div>
+                                            <div>The OCID of the compartment that contains the container.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -604,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The identifier of the Container Instance on which this container is running.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container instance that the container is running on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerinstance.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -622,7 +605,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of container restart attempts. A restart may be attempted after a health check failure or a container exit, based on the restart policy.</div>
+                                            <div>The number of container restart attempts. Depending on the restart policy, a restart might be attempted after a health check failure or a container exit.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -641,7 +624,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -659,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Display name for the Container. Can be renamed.</div>
+                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -677,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A map of additional environment variables to set in the environment of the container&#x27;s entrypoint process. These variables are in addition to any variables already defined in the container&#x27;s image.</div>
+                                            <div>A map of additional environment variables to set in the environment of the ENTRYPOINT process of the container. These variables are in addition to any variables already defined in the container&#x27;s image.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -694,7 +677,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The exit code of the container process if it has stopped executing.</div>
+                                            <div>The exit code of the container process when it stopped running.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -713,7 +696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Fault Domain where the Container&#x27;s Instance is running.</div>
+                                            <div>The fault domain of the container instance that hosts the container runs.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FAULT-DOMAIN-1</div>
@@ -767,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of strings which will be concatenated to a single command for checking container&#x27;s status.</div>
+                                            <div>The list of strings that will be simplified to a single command for checking the status of the container.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -822,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Container health check Http&#x27;s headers.</div>
+                                            <div>Container health check HTTP headers.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -840,7 +823,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Container Http header Key.</div>
+                                            <div>Container HTTP header Key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -860,7 +843,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Container Http header value.</div>
+                                            <div>Container HTTP header value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -956,7 +939,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Container health check Http&#x27;s path</div>
+                                            <div>Container health check HTTP path.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
@@ -975,7 +958,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Container health check Http&#x27;s port</div>
+                                            <div>Container health check HTTP port.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1070,7 +1053,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the container.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1088,7 +1071,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The container image information. Currently only support public docker registry. Can be either image name, e.g `containerImage`, image name with version, e.g `containerImage:v1` or complete docker image Url e.g `docker.io/library/containerImage:latest`. If no registry is provided, will default the registry to public docker hub `docker.io/library`. The registry used for container image must be reachable over the Container Instance&#x27;s VNIC.</div>
+                                            <div>The container image information. Currently only supports public Docker registry.</div>
+                                            <div>You can provide either the image name (containerImage), image name with version (containerImagev1), or complete Docker image URL `docker.io/library/containerImage:latest`.</div>
+                                            <div>If you do not provide a registry, the registry defaults to public Docker hub `docker.io/library`. The registry used for the container image must be reachable over the VNIC of the container instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">image_url_example</div>
@@ -1106,7 +1091,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Determines if the Container will have access to the Container Instance Resource Principal. This method utilizes resource principal version 2.2. Please refer to https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal for detailed explanation of how to leverage the exposed resource principal elements.</div>
+                                            <div>Determines if the container will have access to the container instance resource principal.</div>
+                                            <div>This method utilizes resource principal version 2.2. For more information on how to use the exposed resource principal elements, see https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm#sdk_authentication_methods_resource_principal.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1124,7 +1110,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message that describes the current state of the container in more detail. Can be used to provide actionable information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
@@ -1142,7 +1128,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the Container.</div>
+                                            <div>The current state of the container.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1177,7 +1163,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum amount of memory which may be consumed by the Container&#x27;s process. If no value is provided, then the process may use all available memory on the Instance.</div>
+                                            <div>The maximum amount of memory that can be consumed by the container&#x27;s process. If you do not set a value, then the process may use all available memory on the instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1196,10 +1182,124 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum amount of CPU utilization which may be consumed by the Container&#x27;s process. If no value is provided, then the process may consume all CPU resources on the Instance. CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on an E3 ContainerInstance with 1 OCPU is 2.0.</div>
+                                            <div>The maximum amount of CPUs that can be consumed by the container&#x27;s process.</div>
+                                            <div>If you do not set a value, then the process may use all available CPU resources on the container instance.</div>
+                                            <div>CPU usage is defined in terms of logical CPUs. This means that the maximum possible value on an E3 ContainerInstance with 1 OCPU is 2.0.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context"></div>
+                    <b>security_context</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context/is_non_root_user_check_enabled"></div>
+                    <b>is_non_root_user_check_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context/is_non_root_user_check_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the container must run as a non-root user. If true, the service validates the container image at runtime to ensure that it is not going to run with UID 0 (root) and fails the container instance creation if the validation fails.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context/is_root_file_system_readonly"></div>
+                    <b>is_root_file_system_readonly</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context/is_root_file_system_readonly" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines if the container will have a read-only root file system. Default value is false.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context/run_as_group"></div>
+                    <b>run_as_group</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context/run_as_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The group ID (GID) to run the entrypoint process of the container. Uses runtime default if not provided.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context/run_as_user"></div>
+                    <b>run_as_user</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context/run_as_user" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The user ID (UID) to run the entrypoint process of the container. Defaults to user specified UID in container image metadata if not provided. This must be provided if runAsGroup is provided.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-containers/security_context/security_context_type"></div>
+                    <b>security_context_type</b>
+                    <a class="ansibleOptionLink" href="#return-containers/security_context/security_context_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of security context</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINUX</div>
                                     </td>
             </tr>
                     
@@ -1215,7 +1315,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1231,7 +1331,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the Container was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container was created, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1249,7 +1349,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Time at which the container last terminated. An RFC3339 formatted datetime string</div>
+                                            <div>The time when the container last deleted (terminated), in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1268,7 +1368,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the Container was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the container was updated, in the format defined by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1304,7 +1404,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the volume was mounted in read-only mode. Defaults to false if not specified.</div>
+                                            <div>Whether the volume was mounted in read-only mode. By default, the volume is mounted with write access.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1323,7 +1423,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>mountPath describes the volume access path.</div>
+                                            <div>Describes the volume access path.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mount_path_example</div>
@@ -1342,7 +1442,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If there is more than 1 partitions in the volume, this is the number of partition which be referenced. Here is a example: Number  Start   End     Size    File system  Name                  Flags 1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp 2      106MB   1180MB  1074MB  xfs 3      1180MB  50.0GB  48.8GB                                     lvm</div>
+                                            <div>If there is more than one partition in the volume, reference this number of partitions. Here is an example: Number  Start   End     Size    File system  Name                  Flags 1      1049kB  106MB   105MB   fat16        EFI System Partition  boot, esp 2      106MB   1180MB  1074MB  xfs 3      1180MB  50.0GB  48.8GB                                     lvm</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1361,7 +1461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>specifies a sub-path inside the referenced volume instead of its root</div>
+                                            <div>A sub-path inside the referenced volume.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sub_path_example</div>
@@ -1399,7 +1499,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The working directory within the Container&#x27;s filesystem for the Container process. If this is not present, the default working directory from the image will be used.</div>
+                                            <div>The working directory within the container&#x27;s filesystem for the container process. If not specified, the default working directory from the image is used.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

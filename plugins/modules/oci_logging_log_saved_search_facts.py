@@ -23,7 +23,7 @@ module: oci_logging_log_saved_search_facts
 short_description: Fetches details about one or multiple LogSavedSearch resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple LogSavedSearch resources in Oracle Cloud Infrastructure
-    - Lists Logging Saved Searches for this compartment.
+    - Lists LogSavedSearches for this compartment.
     - If I(log_saved_search_id) is specified, the details of a single LogSavedSearch will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -36,13 +36,13 @@ options:
         type: str
     log_saved_search_id:
         description:
-            - OCID of the logSavedSearch
+            - OCID of the logSavedSearch.
             - Required to get a specific log_saved_search.
         type: str
         aliases: ["id"]
     name:
         description:
-            - Resource name
+            - Resource name.
         type: str
     sort_by:
         description:
