@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_job_actions -- Perform actions on a Job resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -350,11 +350,13 @@ Parameters
                                                                                                                                                                                                 <li>ODMS_VALIDATE_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_PREMIGRATION_ADVISOR</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_GG_HUB</li>
+                                                                                                                                                                                                <li>ODMS_VALIDATE_GG_SERVICE</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC</li>
+                                                                                                                                                                                                <li>ODMS_INITIALIZE_GGS</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE</li>
                                                                                                                                                                                                 <li>ODMS_PREPARE</li>
                                                                                                                                                                                                 <li>ODMS_INITIAL_LOAD_EXPORT</li>

@@ -183,6 +183,19 @@ connections:
                     returned: on success
                     type: str
                     sample: username_example
+        replication_credentials:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                username:
+                    description:
+                        - Administrator username
+                    returned: on success
+                    type: str
+                    sample: username_example
         private_endpoint:
             description:
                 - ""
@@ -351,6 +364,9 @@ connections:
             "sudo_location": "sudo_location_example"
         },
         "admin_credentials": {
+            "username": "username_example"
+        },
+        "replication_credentials": {
             "username": "username_example"
         },
         "private_endpoint": {

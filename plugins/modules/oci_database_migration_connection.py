@@ -154,6 +154,22 @@ options:
                     - Administrator password
                     - This parameter is updatable.
                 type: str
+    replication_credentials:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            username:
+                description:
+                    - Administrator username
+                    - This parameter is updatable.
+                type: str
+            password:
+                description:
+                    - Administrator password
+                    - This parameter is updatable.
+                type: str
     private_endpoint:
         description:
             - ""
@@ -272,6 +288,10 @@ EXAMPLES = """
       sshkey: sshkey_example
       user: user_example
       sudo_location: sudo_location_example
+    replication_credentials:
+      # optional
+      username: username_example
+      password: example-password
     private_endpoint:
       # optional
       compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -305,6 +325,10 @@ EXAMPLES = """
       user: user_example
       sudo_location: sudo_location_example
     admin_credentials:
+      # optional
+      username: username_example
+      password: example-password
+    replication_credentials:
       # optional
       username: username_example
       password: example-password
@@ -346,6 +370,10 @@ EXAMPLES = """
       user: user_example
       sudo_location: sudo_location_example
     admin_credentials:
+      # optional
+      username: username_example
+      password: example-password
+    replication_credentials:
       # optional
       username: username_example
       password: example-password
@@ -505,6 +533,18 @@ connection:
                     returned: on success
                     type: str
                     sample: username_example
+        replication_credentials:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                username:
+                    description:
+                        - Administrator username
+                    returned: on success
+                    type: str
+                    sample: username_example
         private_endpoint:
             description:
                 - ""
@@ -638,6 +678,9 @@ connection:
         "admin_credentials": {
             "username": "username_example"
         },
+        "replication_credentials": {
+            "username": "username_example"
+        },
         "private_endpoint": {
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
@@ -759,6 +802,7 @@ class ConnectionHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
+            "replication_credentials.password",
             "admin_credentials.password",
             "tls_keystore",
             "tls_wallet",
@@ -852,6 +896,12 @@ def main():
                 ),
             ),
             admin_credentials=dict(
+                type="dict",
+                options=dict(
+                    username=dict(type="str"), password=dict(type="str", no_log=True)
+                ),
+            ),
+            replication_credentials=dict(
                 type="dict",
                 options=dict(
                     username=dict(type="str"), password=dict(type="str", no_log=True)
