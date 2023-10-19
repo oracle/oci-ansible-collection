@@ -76,7 +76,8 @@ options:
             - "THREE_YEARS"
     is_hcx_enabled:
         description:
-            - Indicates whether to enable HCX for this SDDC.
+            - For SDDC with dense compute shapes, this parameter indicates whether to enable HCX Advanced for this SDDC.
+              For SDDC with standard compute shapes, this parameter is equivalent to `isHcxEnterpriseEnabled`.
         type: bool
     is_hcx_enterprise_enabled:
         description:
@@ -114,6 +115,27 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
         type: str
+    datastores:
+        description:
+            - A list of datastore info for the SDDC.
+              This value is required only when `initialHostShapeName` is a standard shape.
+        type: list
+        elements: dict
+        suboptions:
+            block_volume_ids:
+                description:
+                    - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)s of Block Storage Volumes.
+                type: list
+                elements: str
+                required: true
+            datastore_type:
+                description:
+                    - Type of the datastore.
+                type: str
+                choices:
+                    - "MANAGEMENT"
+                    - "WORKLOAD"
+                required: true
     display_name:
         description:
             - "A descriptive name for the SDDC.
@@ -272,6 +294,10 @@ EXAMPLES = """
     initial_host_ocpu_count: 3.4
     is_shielded_instance_enabled: true
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    datastores:
+    - # required
+      block_volume_ids: [ "block_volume_ids_example" ]
+      datastore_type: MANAGEMENT
     display_name: display_name_example
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -775,7 +801,7 @@ sddc:
             sample: CREATING
         upgrade_licenses:
             description:
-                - The vSphere licenses to be used when upgrade SDDC.
+                - The vSphere licenses to use when upgrading the SDDC.
             returned: on success
             type: complex
             contains:
@@ -793,13 +819,13 @@ sddc:
                     sample: license_key_example
         vsphere_upgrade_guide:
             description:
-                - The link of guidance to upgrade vSphere.
+                - The link to guidance for upgrading vSphere.
             returned: on success
             type: str
             sample: vsphere_upgrade_guide_example
         vsphere_upgrade_objects:
             description:
-                - The links of binary objects needed for upgrade vSphere.
+                - The links to binary objects needed to upgrade vSphere.
             returned: on success
             type: complex
             contains:
@@ -840,6 +866,30 @@ sddc:
             returned: on success
             type: str
             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        datastores:
+            description:
+                - Datastores used for the Sddc.
+            returned: on success
+            type: complex
+            contains:
+                block_volume_ids:
+                    description:
+                        - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)s of Block Storage Volumes.
+                    returned: on success
+                    type: list
+                    sample: []
+                datastore_type:
+                    description:
+                        - Type of the datastore.
+                    returned: on success
+                    type: str
+                    sample: MANAGEMENT
+                capacity:
+                    description:
+                        - Size of the Block Storage Volume in GB.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -920,6 +970,11 @@ sddc:
         "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+        "datastores": [{
+            "block_volume_ids": [],
+            "datastore_type": "MANAGEMENT",
+            "capacity": 1.2
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -1103,6 +1158,16 @@ def main():
             initial_host_ocpu_count=dict(type="float"),
             is_shielded_instance_enabled=dict(type="bool"),
             capacity_reservation_id=dict(type="str"),
+            datastores=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    block_volume_ids=dict(type="list", elements="str", required=True),
+                    datastore_type=dict(
+                        type="str", required=True, choices=["MANAGEMENT", "WORKLOAD"]
+                    ),
+                ),
+            ),
             display_name=dict(aliases=["name"], type="str"),
             vmware_software_version=dict(type="str"),
             ssh_authorized_keys=dict(type="str", no_log=True),

@@ -1476,6 +1476,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_oce_instance_actions <ansible_collections.oracle.oci.oci_oce_instance_actions_module>` -- Perform actions on an OceInstance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_oce_instance_facts <ansible_collections.oracle.oci.oci_oce_instance_facts_module>` -- Fetches details about one or multiple OceInstance resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ocvp_esxi_host <ansible_collections.oracle.oci.oci_ocvp_esxi_host_module>` -- Manage an EsxiHost resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_ocvp_esxi_host_actions <ansible_collections.oracle.oci.oci_ocvp_esxi_host_actions_module>` -- Perform actions on an EsxiHost resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ocvp_esxi_host_facts <ansible_collections.oracle.oci.oci_ocvp_esxi_host_facts_module>` -- Fetches details about one or multiple EsxiHost resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ocvp_sddc <ansible_collections.oracle.oci.oci_ocvp_sddc_module>` -- Manage a Sddc resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ocvp_sddc_actions <ansible_collections.oracle.oci.oci_ocvp_sddc_actions_module>` -- Perform actions on a Sddc resource in Oracle Cloud Infrastructure

@@ -86,6 +86,18 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    is_billing_donors_only:
+        description:
+            - If this flag/param is set to True, we return only deleted hosts with LeftOver billingCycle.
+        type: bool
+    is_swap_billing_only:
+        description:
+            - If this flag/param is set to True, we return only active hosts.
+        type: bool
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment as optional parameter.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -105,6 +117,9 @@ EXAMPLES = """
     sort_order: ASC
     sort_by: timeCreated
     lifecycle_state: CREATING
+    is_billing_donors_only: true
+    is_swap_billing_only: true
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -224,7 +239,7 @@ esxi_hosts:
             sample: "2013-10-20T19:20:30+01:00"
         vmware_software_version:
             description:
-                - The version of VMware software that the Oracle Cloud VMware Solution installed on the ESXi hosts.
+                - The version of VMware software that Oracle Cloud VMware Solution installed on the ESXi hosts.
             returned: on success
             type: str
             sample: vmware_software_version_example
@@ -261,6 +276,30 @@ esxi_hosts:
             returned: on success
             type: float
             sample: 3.4
+        billing_donor_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deleted ESXi Host with LeftOver billing cycle.
+            returned: on success
+            type: str
+            sample: "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx"
+        swap_billing_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the active ESXi Host to swap billing with current host.
+            returned: on success
+            type: str
+            sample: "ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx"
+        is_billing_continuation_in_progress:
+            description:
+                - Indicates whether this host is in the progress of billing continuation.
+            returned: on success
+            type: bool
+            sample: true
+        is_billing_swapping_in_progress:
+            description:
+                - Indicates whether this host is in the progress of swapping billing.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -300,6 +339,10 @@ esxi_hosts:
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "host_shape_name": "host_shape_name_example",
         "host_ocpu_count": 3.4,
+        "billing_donor_host_id": "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx",
+        "swap_billing_host_id": "ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_billing_continuation_in_progress": true,
+        "is_billing_swapping_in_progress": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
@@ -345,6 +388,9 @@ class EsxiHostFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "sort_by",
             "lifecycle_state",
+            "is_billing_donors_only",
+            "is_swap_billing_only",
+            "compartment_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -384,6 +430,9 @@ def main():
                     "FAILED",
                 ],
             ),
+            is_billing_donors_only=dict(type="bool"),
+            is_swap_billing_only=dict(type="bool"),
+            compartment_id=dict(type="str"),
         )
     )
 

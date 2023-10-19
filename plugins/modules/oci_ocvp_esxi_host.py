@@ -28,6 +28,7 @@ description:
       by the ESXi host.
     - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/) operations to track the
       creation of the ESXi host.
+    - "This resource has the following action operations in the M(oracle.oci.oci_ocvp_esxi_host_actions) module: swap_billing."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -77,9 +78,9 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
               will be upgraded. This is an optional parameter. If this parameter
-              is specified, an ESXi host with new version will be created to replace the
-              original one, and the `nonUpgradedEsxiHostId` field will be updated in the newly
-              created Esxi host.
+              is specified, an ESXi host with the new software version is created to replace the
+              original one, and the `nonUpgradedEsxiHostId` field is updated in the newly
+              created Esxi host. See L(Upgrading VMware Software,https://docs.cloud.oracle.com/Content/VMware/Concepts/upgrade.htm) for more information.
         type: str
     display_name:
         description:
@@ -107,6 +108,11 @@ options:
             - "MONTH"
             - "ONE_YEAR"
             - "THREE_YEARS"
+    billing_donor_host_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deleted ESXi Host with LeftOver billing cycle.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -157,6 +163,7 @@ EXAMPLES = """
     non_upgraded_esxi_host_id: "ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     next_sku: HOUR
+    billing_donor_host_id: "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -168,6 +175,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     next_sku: HOUR
+    billing_donor_host_id: "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -178,6 +186,7 @@ EXAMPLES = """
 
     # optional
     next_sku: HOUR
+    billing_donor_host_id: "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -258,6 +267,30 @@ esxi_host:
             returned: on success
             type: str
             sample: CREATING
+        billing_donor_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deleted ESXi Host with LeftOver billing cycle.
+            returned: on success
+            type: str
+            sample: "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx"
+        swap_billing_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the active ESXi Host to swap billing with current host.
+            returned: on success
+            type: str
+            sample: "ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx"
+        is_billing_continuation_in_progress:
+            description:
+                - Indicates whether this host is in the progress of billing continuation.
+            returned: on success
+            type: bool
+            sample: true
+        is_billing_swapping_in_progress:
+            description:
+                - Indicates whether this host is in the progress of swapping billing.
+            returned: on success
+            type: bool
+            sample: true
         current_sku:
             description:
                 - The billing option currently used by the ESXi host.
@@ -304,7 +337,7 @@ esxi_host:
             sample: "2013-10-20T19:20:30+01:00"
         vmware_software_version:
             description:
-                - The version of VMware software that the Oracle Cloud VMware Solution installed on the ESXi hosts.
+                - The version of VMware software that Oracle Cloud VMware Solution installed on the ESXi hosts.
             returned: on success
             type: str
             sample: vmware_software_version_example
@@ -373,6 +406,10 @@ esxi_host:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "billing_donor_host_id": "ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx",
+        "swap_billing_host_id": "ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_billing_continuation_in_progress": true,
+        "is_billing_swapping_in_progress": true,
         "current_sku": "HOUR",
         "next_sku": "HOUR",
         "billing_contract_end_date": "2013-10-20T19:20:30+01:00",
@@ -558,6 +595,7 @@ def main():
             next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
             ),
+            billing_donor_host_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

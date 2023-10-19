@@ -467,7 +467,7 @@ sddcs:
             sample: "2013-10-20T19:20:30+01:00"
         upgrade_licenses:
             description:
-                - The vSphere licenses to be used when upgrade SDDC.
+                - The vSphere licenses to use when upgrading the SDDC.
                 - Returned for get operation
             returned: on success
             type: complex
@@ -486,14 +486,14 @@ sddcs:
                     sample: license_key_example
         vsphere_upgrade_guide:
             description:
-                - The link of guidance to upgrade vSphere.
+                - The link to guidance for upgrading vSphere.
                 - Returned for get operation
             returned: on success
             type: str
             sample: vsphere_upgrade_guide_example
         vsphere_upgrade_objects:
             description:
-                - The links of binary objects needed for upgrade vSphere.
+                - The links to binary objects needed to upgrade vSphere.
                 - Returned for get operation
             returned: on success
             type: complex
@@ -517,6 +517,31 @@ sddcs:
             returned: on success
             type: str
             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        datastores:
+            description:
+                - Datastores used for the Sddc.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                block_volume_ids:
+                    description:
+                        - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)s of Block Storage Volumes.
+                    returned: on success
+                    type: list
+                    sample: []
+                datastore_type:
+                    description:
+                        - Type of the datastore.
+                    returned: on success
+                    type: str
+                    sample: MANAGEMENT
+                capacity:
+                    description:
+                        - Size of the Block Storage Volume in GB.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
@@ -705,6 +730,11 @@ sddcs:
             "link_description": "link_description_example"
         }],
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+        "datastores": [{
+            "block_volume_ids": [],
+            "datastore_type": "MANAGEMENT",
+            "capacity": 1.2
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "display_name": "display_name_example",

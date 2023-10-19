@@ -38,6 +38,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    csv_text:
+        description:
+            - Database objects to exclude/include from migration in CSV format. The excludeObjects and includeObjects fields will be ignored if this field is
+              not null.
+        type: str
     type:
         description:
             - Migration type.
@@ -77,6 +82,64 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    data_transfer_medium_details_v2:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            object_storage_bucket:
+                description:
+                    - ""
+                    - Applicable when type is one of ['OBJECT_STORAGE', 'DBLINK']
+                type: dict
+                suboptions:
+                    namespace_name:
+                        description:
+                            - Namespace name of the object store bucket.
+                            - Required when type is 'OBJECT_STORAGE'
+                        type: str
+                        required: true
+                    bucket_name:
+                        description:
+                            - Bucket name.
+                            - Required when type is 'OBJECT_STORAGE'
+                        type: str
+                        required: true
+            type:
+                description:
+                    - Type of the data transfer medium to use for the datapump
+                type: str
+                choices:
+                    - "NFS"
+                    - "OBJECT_STORAGE"
+                    - "DBLINK"
+                    - "AWS_S3"
+                required: true
+            name:
+                description:
+                    - Name of database link from OCI database to on-premise database. ODMS will create link, if the link does not already exist.
+                    - Applicable when type is one of ['DBLINK', 'AWS_S3']
+                type: str
+            region:
+                description:
+                    - "AWS region code where the S3 bucket is located.
+                      Region code should match the documented available regions:
+                      https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                    - Applicable when type is 'AWS_S3'
+                type: str
+            access_key_id:
+                description:
+                    - "AWS access key credentials identifier
+                      Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    - Applicable when type is 'AWS_S3'
+                type: str
+            secret_access_key:
+                description:
+                    - "AWS secret access key credentials
+                      Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    - Applicable when type is 'AWS_S3'
+                type: str
     data_transfer_medium_details:
         description:
             - ""
@@ -163,6 +226,11 @@ options:
                     - ""
                 type: dict
                 suboptions:
+                    wallet_location:
+                        description:
+                            - Directory path to OCI SSL wallet location on Db server node.
+                            - This parameter is updatable.
+                        type: str
                     kind:
                         description:
                             - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -182,6 +250,11 @@ options:
                     - ""
                 type: dict
                 suboptions:
+                    wallet_location:
+                        description:
+                            - Directory path to OCI SSL wallet location on Db server node.
+                            - This parameter is updatable.
+                        type: str
                     kind:
                         description:
                             - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -196,6 +269,11 @@ options:
                             - This parameter is updatable.
                             - Required when kind is 'OCI_CLI'
                         type: str
+            shared_storage_mount_target_id:
+                description:
+                    - OCID of the shared storage mount target
+                    - This parameter is updatable.
+                type: str
     datapump_settings:
         description:
             - ""
@@ -318,6 +396,15 @@ options:
                             - This parameter is updatable.
                             - Applicable when target_type is one of ['ADB_D_AUTOCREATE', 'NON_ADB_AUTOCREATE']
                         type: int
+                    block_size_in_kbs:
+                        description:
+                            - Size of Oracle database blocks in KB.
+                            - This parameter is updatable.
+                            - Applicable when target_type is one of ['ADB_D_AUTOCREATE', 'NON_ADB_AUTOCREATE']
+                        type: str
+                        choices:
+                            - "SIZE_8K"
+                            - "SIZE_16K"
                     target_type:
                         description:
                             - Type of Database Base Migration Target.
@@ -400,6 +487,11 @@ options:
                     - Type of object to exclude.
                       If not specified, matching owners and object names of type TABLE would be excluded.
                 type: str
+            is_omit_excluded_table_from_replication:
+                description:
+                    - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                      included in the exludeObjects.
+                type: bool
     include_objects:
         description:
             - Database objects to include from migration, cannot be specified alongside 'excludeObjects'
@@ -422,6 +514,121 @@ options:
                     - Type of object to exclude.
                       If not specified, matching owners and object names of type TABLE would be excluded.
                 type: str
+            is_omit_excluded_table_from_replication:
+                description:
+                    - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                      included in the exludeObjects.
+                type: bool
+    golden_gate_service_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            source_db_credentials:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    username:
+                        description:
+                            - Database username
+                        type: str
+                        required: true
+                    password:
+                        description:
+                            - Database  password
+                        type: str
+                        required: true
+            source_container_db_credentials:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    username:
+                        description:
+                            - Database username
+                        type: str
+                        required: true
+                    password:
+                        description:
+                            - Database  password
+                        type: str
+                        required: true
+            target_db_credentials:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    username:
+                        description:
+                            - Database username
+                        type: str
+                        required: true
+                    password:
+                        description:
+                            - Database  password
+                        type: str
+                        required: true
+            settings:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    extract:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            performance_profile:
+                                description:
+                                    - Extract performance.
+                                    - This parameter is updatable.
+                                type: str
+                                choices:
+                                    - "LOW"
+                                    - "MEDIUM"
+                                    - "HIGH"
+                            long_trans_duration:
+                                description:
+                                    - Length of time (in seconds) that a transaction can be open before Extract generates a warning message that the transaction
+                                      is long-running.
+                                      If not specified, Extract will not generate a warning on long-running transactions.
+                                    - This parameter is updatable.
+                                type: int
+                    replicat:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            performance_profile:
+                                description:
+                                    - Replicat performance.
+                                    - This parameter is updatable.
+                                type: str
+                                choices:
+                                    - "LOW"
+                                    - "HIGH"
+                            map_parallelism:
+                                description:
+                                    - Number of threads used to read trail files (valid for Parallel Replicat)
+                                    - This parameter is updatable.
+                                type: int
+                            min_apply_parallelism:
+                                description:
+                                    - Defines the range in which the Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    - This parameter is updatable.
+                                type: int
+                            max_apply_parallelism:
+                                description:
+                                    - Defines the range in which the Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    - This parameter is updatable.
+                                type: int
+                    acceptable_lag:
+                        description:
+                            - ODMS will monitor GoldenGate end-to-end latency until the lag time is lower than the specified value in seconds.
+                            - This parameter is updatable.
+                        type: int
     golden_gate_details:
         description:
             - ""
@@ -546,6 +753,14 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            performance_profile:
+                                description:
+                                    - Replicat performance.
+                                    - This parameter is updatable.
+                                type: str
+                                choices:
+                                    - "LOW"
+                                    - "HIGH"
                             map_parallelism:
                                 description:
                                     - Number of threads used to read trail files (valid for Parallel Replicat)
@@ -628,9 +843,13 @@ EXAMPLES = """
     target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    csv_text: csv_text_example
     display_name: display_name_example
     agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
     source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details_v2:
+      # required
+      type: NFS
     data_transfer_medium_details:
       # optional
       database_link_details:
@@ -656,10 +875,17 @@ EXAMPLES = """
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
       target:
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
+      shared_storage_mount_target_id: "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     datapump_settings:
       # optional
       job_mode: FULL
@@ -684,6 +910,7 @@ EXAMPLES = """
         is_auto_create: true
         is_big_file: true
         extend_size_in_mbs: 56
+        block_size_in_kbs: SIZE_8K
       export_directory_object:
         # optional
         name: name_example
@@ -703,6 +930,7 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
     include_objects:
     - # required
       owner: owner_example
@@ -710,6 +938,34 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
+    golden_gate_service_details:
+      # optional
+      source_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      source_container_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      target_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          performance_profile: LOW
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
     golden_gate_details:
       # optional
       hub:
@@ -742,6 +998,7 @@ EXAMPLES = """
           long_trans_duration: 56
         replicat:
           # optional
+          performance_profile: LOW
           map_parallelism: 56
           min_apply_parallelism: 56
           max_apply_parallelism: 56
@@ -766,6 +1023,9 @@ EXAMPLES = """
     source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details_v2:
+      # required
+      type: NFS
     data_transfer_medium_details:
       # optional
       database_link_details:
@@ -791,10 +1051,17 @@ EXAMPLES = """
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
       target:
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
+      shared_storage_mount_target_id: "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     datapump_settings:
       # optional
       job_mode: FULL
@@ -819,6 +1086,7 @@ EXAMPLES = """
         is_auto_create: true
         is_big_file: true
         extend_size_in_mbs: 56
+        block_size_in_kbs: SIZE_8K
       export_directory_object:
         # optional
         name: name_example
@@ -838,6 +1106,7 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
     include_objects:
     - # required
       owner: owner_example
@@ -845,6 +1114,34 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
+    golden_gate_service_details:
+      # optional
+      source_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      source_container_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      target_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          performance_profile: LOW
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
     golden_gate_details:
       # optional
       hub:
@@ -877,6 +1174,7 @@ EXAMPLES = """
           long_trans_duration: 56
         replicat:
           # optional
+          performance_profile: LOW
           map_parallelism: 56
           min_apply_parallelism: 56
           max_apply_parallelism: 56
@@ -901,6 +1199,9 @@ EXAMPLES = """
     source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details_v2:
+      # required
+      type: NFS
     data_transfer_medium_details:
       # optional
       database_link_details:
@@ -926,10 +1227,17 @@ EXAMPLES = """
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
       target:
         # required
         kind: OCI_CLI
         oci_home: oci_home_example
+
+        # optional
+        wallet_location: wallet_location_example
+      shared_storage_mount_target_id: "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     datapump_settings:
       # optional
       job_mode: FULL
@@ -954,6 +1262,7 @@ EXAMPLES = """
         is_auto_create: true
         is_big_file: true
         extend_size_in_mbs: 56
+        block_size_in_kbs: SIZE_8K
       export_directory_object:
         # optional
         name: name_example
@@ -973,6 +1282,7 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
     include_objects:
     - # required
       owner: owner_example
@@ -980,6 +1290,34 @@ EXAMPLES = """
 
       # optional
       type: type_example
+      is_omit_excluded_table_from_replication: true
+    golden_gate_service_details:
+      # optional
+      source_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      source_container_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      target_db_credentials:
+        # required
+        username: username_example
+        password: example-password
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          performance_profile: LOW
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
     golden_gate_details:
       # optional
       hub:
@@ -1012,6 +1350,7 @@ EXAMPLES = """
           long_trans_duration: 56
         replicat:
           # optional
+          performance_profile: LOW
           map_parallelism: 56
           min_apply_parallelism: 56
           max_apply_parallelism: 56
@@ -1113,6 +1452,64 @@ migration:
             returned: on success
             type: str
             sample: "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx"
+        data_transfer_medium_details_v2:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - "AWS region code where the S3 bucket is located.
+                          Region code should match the documented available regions:
+                          https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                access_key_id:
+                    description:
+                        - "AWS access key credentials identifier
+                          Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    returned: on success
+                    type: str
+                    sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+                secret_access_key:
+                    description:
+                        - "AWS secret access key credentials
+                          Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    returned: on success
+                    type: str
+                    sample: secret_access_key_example
+                name:
+                    description:
+                        - S3 bucket name.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                type:
+                    description:
+                        - Type of the data transfer medium to use for the datapump
+                    returned: on success
+                    type: str
+                    sample: DBLINK
+                object_storage_bucket:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        namespace_name:
+                            description:
+                                - Namespace name of the object store bucket.
+                            returned: on success
+                            type: str
+                            sample: namespace_name_example
+                        bucket_name:
+                            description:
+                                - Bucket name.
+                            returned: on success
+                            type: str
+                            sample: bucket_name_example
         data_transfer_medium_details:
             description:
                 - ""
@@ -1199,6 +1596,12 @@ migration:
                     returned: on success
                     type: complex
                     contains:
+                        wallet_location:
+                            description:
+                                - Directory path to OCI SSL wallet location on Db server node.
+                            returned: on success
+                            type: str
+                            sample: wallet_location_example
                         kind:
                             description:
                                 - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -1217,6 +1620,12 @@ migration:
                     returned: on success
                     type: complex
                     contains:
+                        wallet_location:
+                            description:
+                                - Directory path to OCI SSL wallet location on Db server node.
+                            returned: on success
+                            type: str
+                            sample: wallet_location_example
                         kind:
                             description:
                                 - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -1229,6 +1638,12 @@ migration:
                             returned: on success
                             type: str
                             sample: oci_home_example
+                shared_storage_mount_target_id:
+                    description:
+                        - OCID of the shared storage mount target
+                    returned: on success
+                    type: str
+                    sample: "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
         datapump_settings:
             description:
                 - ""
@@ -1337,6 +1752,12 @@ migration:
                             returned: on success
                             type: int
                             sample: 56
+                        block_size_in_kbs:
+                            description:
+                                - Size of Oracle database blocks in KB.
+                            returned: on success
+                            type: str
+                            sample: SIZE_8K
                         target_type:
                             description:
                                 - Type of Database Base Migration Target.
@@ -1429,6 +1850,13 @@ migration:
                     returned: on success
                     type: str
                     sample: type_example
+                is_omit_excluded_table_from_replication:
+                    description:
+                        - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                          included in the exludeObjects.
+                    returned: on success
+                    type: bool
+                    sample: true
         include_objects:
             description:
                 - Database objects to include from migration.
@@ -1454,6 +1882,99 @@ migration:
                     returned: on success
                     type: str
                     sample: type_example
+                is_omit_excluded_table_from_replication:
+                    description:
+                        - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                          included in the exludeObjects.
+                    returned: on success
+                    type: bool
+                    sample: true
+        golden_gate_service_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ggs_deployment:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        deployment_id:
+                            description:
+                                - OCID of a GoldenGate Deployment
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+                        ggs_admin_credentials_secret_id:
+                            description:
+                                - OCID of a VaultSecret containing the Admin Credentials for the GGS Deployment
+                            returned: on success
+                            type: str
+                            sample: "ocid1.ggsadmincredentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
+                settings:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        extract:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                performance_profile:
+                                    description:
+                                        - Extract performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
+                                long_trans_duration:
+                                    description:
+                                        - Length of time (in seconds) that a transaction can be open before Extract generates a warning message that the
+                                          transaction is long-running.
+                                          If not specified, Extract will not generate a warning on long-running transactions.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        replicat:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                performance_profile:
+                                    description:
+                                        - Replicat performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
+                                map_parallelism:
+                                    description:
+                                        - Number of threads used to read trail files (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                min_apply_parallelism:
+                                    description:
+                                        - Defines the range in which Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                max_apply_parallelism:
+                                    description:
+                                        - Defines the range in which Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        acceptable_lag:
+                            description:
+                                - ODMS will monitor GoldenGate end-to-end latency until the lag time is lower than the specified value in seconds.
+                            returned: on success
+                            type: int
+                            sample: 56
         golden_gate_details:
             description:
                 - ""
@@ -1572,6 +2093,12 @@ migration:
                             returned: on success
                             type: complex
                             contains:
+                                performance_profile:
+                                    description:
+                                        - Replicat performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
                                 map_parallelism:
                                     description:
                                         - Number of threads used to read trail files (valid for Parallel Replicat)
@@ -1683,6 +2210,17 @@ migration:
         "source_container_database_connection_id": "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
         "target_database_connection_id": "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
         "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
+        "data_transfer_medium_details_v2": {
+            "region": "us-phoenix-1",
+            "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
+            "secret_access_key": "secret_access_key_example",
+            "name": "name_example",
+            "type": "DBLINK",
+            "object_storage_bucket": {
+                "namespace_name": "namespace_name_example",
+                "bucket_name": "bucket_name_example"
+            }
+        },
         "data_transfer_medium_details": {
             "database_link_details": {
                 "name": "name_example",
@@ -1702,13 +2240,16 @@ migration:
         },
         "dump_transfer_details": {
             "source": {
+                "wallet_location": "wallet_location_example",
                 "kind": "CURL",
                 "oci_home": "oci_home_example"
             },
             "target": {
+                "wallet_location": "wallet_location_example",
                 "kind": "CURL",
                 "oci_home": "oci_home_example"
-            }
+            },
+            "shared_storage_mount_target_id": "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "datapump_settings": {
             "job_mode": "FULL",
@@ -1729,6 +2270,7 @@ migration:
                 "is_auto_create": true,
                 "is_big_file": true,
                 "extend_size_in_mbs": 56,
+                "block_size_in_kbs": "SIZE_8K",
                 "target_type": "ADB_S_REMAP",
                 "remap_target": "remap_target_example"
             },
@@ -1748,13 +2290,34 @@ migration:
         "exclude_objects": [{
             "owner": "owner_example",
             "object_name": "object_name_example",
-            "type": "type_example"
+            "type": "type_example",
+            "is_omit_excluded_table_from_replication": true
         }],
         "include_objects": [{
             "owner": "owner_example",
             "object_name": "object_name_example",
-            "type": "type_example"
+            "type": "type_example",
+            "is_omit_excluded_table_from_replication": true
         }],
+        "golden_gate_service_details": {
+            "ggs_deployment": {
+                "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+                "ggs_admin_credentials_secret_id": "ocid1.ggsadmincredentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
+            },
+            "settings": {
+                "extract": {
+                    "performance_profile": "LOW",
+                    "long_trans_duration": 56
+                },
+                "replicat": {
+                    "performance_profile": "LOW",
+                    "map_parallelism": 56,
+                    "min_apply_parallelism": 56,
+                    "max_apply_parallelism": 56
+                },
+                "acceptable_lag": 56
+            }
+        },
         "golden_gate_details": {
             "hub": {
                 "rest_admin_credentials": {
@@ -1780,6 +2343,7 @@ migration:
                     "long_trans_duration": 56
                 },
                 "replicat": {
+                    "performance_profile": "LOW",
                     "map_parallelism": 56,
                     "min_apply_parallelism": 56,
                     "max_apply_parallelism": 56
@@ -1903,10 +2467,14 @@ class MigrationHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "data_transfer_medium_details.aws_s3_details.secret_access_key",
+            "golden_gate_service_details.source_db_credentials",
             "golden_gate_details.hub.source_container_db_admin_credentials.password",
+            "golden_gate_service_details.target_db_credentials",
             "golden_gate_details.hub.target_db_admin_credentials.password",
             "data_transfer_medium_details.aws_s3_details.access_key_id",
             "golden_gate_details.hub.source_db_admin_credentials.password",
+            "csv_text",
+            "golden_gate_service_details.source_container_db_credentials",
             "golden_gate_details.hub.rest_admin_credentials.password",
         ]
 
@@ -1969,12 +2537,34 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            csv_text=dict(type="str"),
             type=dict(type="str", choices=["ONLINE", "OFFLINE"]),
             display_name=dict(aliases=["name"], type="str"),
             agent_id=dict(type="str"),
             source_database_connection_id=dict(type="str"),
             source_container_database_connection_id=dict(type="str"),
             target_database_connection_id=dict(type="str"),
+            data_transfer_medium_details_v2=dict(
+                type="dict",
+                options=dict(
+                    object_storage_bucket=dict(
+                        type="dict",
+                        options=dict(
+                            namespace_name=dict(type="str", required=True),
+                            bucket_name=dict(type="str", required=True),
+                        ),
+                    ),
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=["NFS", "OBJECT_STORAGE", "DBLINK", "AWS_S3"],
+                    ),
+                    name=dict(type="str"),
+                    region=dict(type="str"),
+                    access_key_id=dict(type="str"),
+                    secret_access_key=dict(type="str", no_log=True),
+                ),
+            ),
             data_transfer_medium_details=dict(
                 type="dict",
                 options=dict(
@@ -2015,6 +2605,7 @@ def main():
                     source=dict(
                         type="dict",
                         options=dict(
+                            wallet_location=dict(type="str"),
                             kind=dict(type="str", choices=["OCI_CLI", "CURL"]),
                             oci_home=dict(type="str"),
                         ),
@@ -2022,10 +2613,12 @@ def main():
                     target=dict(
                         type="dict",
                         options=dict(
+                            wallet_location=dict(type="str"),
                             kind=dict(type="str", choices=["OCI_CLI", "CURL"]),
                             oci_home=dict(type="str"),
                         ),
                     ),
+                    shared_storage_mount_target_id=dict(type="str"),
                 ),
             ),
             datapump_settings=dict(
@@ -2075,6 +2668,9 @@ def main():
                             is_auto_create=dict(type="bool"),
                             is_big_file=dict(type="bool"),
                             extend_size_in_mbs=dict(type="int"),
+                            block_size_in_kbs=dict(
+                                type="str", choices=["SIZE_8K", "SIZE_16K"]
+                            ),
                             target_type=dict(
                                 type="str",
                                 required=True,
@@ -2114,6 +2710,7 @@ def main():
                     owner=dict(type="str", required=True),
                     object_name=dict(type="str", required=True),
                     type=dict(type="str"),
+                    is_omit_excluded_table_from_replication=dict(type="bool"),
                 ),
             ),
             include_objects=dict(
@@ -2123,6 +2720,59 @@ def main():
                     owner=dict(type="str", required=True),
                     object_name=dict(type="str", required=True),
                     type=dict(type="str"),
+                    is_omit_excluded_table_from_replication=dict(type="bool"),
+                ),
+            ),
+            golden_gate_service_details=dict(
+                type="dict",
+                options=dict(
+                    source_db_credentials=dict(
+                        type="dict",
+                        options=dict(
+                            username=dict(type="str", required=True),
+                            password=dict(type="str", required=True, no_log=True),
+                        ),
+                    ),
+                    source_container_db_credentials=dict(
+                        type="dict",
+                        options=dict(
+                            username=dict(type="str", required=True),
+                            password=dict(type="str", required=True, no_log=True),
+                        ),
+                    ),
+                    target_db_credentials=dict(
+                        type="dict",
+                        options=dict(
+                            username=dict(type="str", required=True),
+                            password=dict(type="str", required=True, no_log=True),
+                        ),
+                    ),
+                    settings=dict(
+                        type="dict",
+                        options=dict(
+                            extract=dict(
+                                type="dict",
+                                options=dict(
+                                    performance_profile=dict(
+                                        type="str", choices=["LOW", "MEDIUM", "HIGH"]
+                                    ),
+                                    long_trans_duration=dict(type="int"),
+                                ),
+                            ),
+                            replicat=dict(
+                                type="dict",
+                                options=dict(
+                                    performance_profile=dict(
+                                        type="str", choices=["LOW", "HIGH"]
+                                    ),
+                                    map_parallelism=dict(type="int"),
+                                    min_apply_parallelism=dict(type="int"),
+                                    max_apply_parallelism=dict(type="int"),
+                                ),
+                            ),
+                            acceptable_lag=dict(type="int"),
+                        ),
+                    ),
                 ),
             ),
             golden_gate_details=dict(
@@ -2180,6 +2830,9 @@ def main():
                             replicat=dict(
                                 type="dict",
                                 options=dict(
+                                    performance_profile=dict(
+                                        type="str", choices=["LOW", "HIGH"]
+                                    ),
                                     map_parallelism=dict(type="int"),
                                     min_apply_parallelism=dict(type="int"),
                                     max_apply_parallelism=dict(type="int"),

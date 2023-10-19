@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_esxi_host_facts -- Fetches details about one or multiple Esx
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -205,6 +205,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment as optional parameter.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compute_instance_id"></div>
                     <b>compute_instance_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compute_instance_id" title="Permalink to this option"></a>
@@ -280,6 +295,44 @@ Parameters
                                             <div>Required to get a specific esxi_host.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_billing_donors_only"></div>
+                    <b>is_billing_donors_only</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_billing_donors_only" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If this flag/param is set to True, we return only deleted hosts with LeftOver billingCycle.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_swap_billing_only"></div>
+                    <b>is_swap_billing_only</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_swap_billing_only" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If this flag/param is set to True, we return only active hosts.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -447,6 +500,9 @@ Examples
         sort_order: ASC
         sort_by: timeCreated
         lifecycle_state: CREATING
+        is_billing_donors_only: true
+        is_swap_billing_only: true
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -483,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of EsxiHost resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;billing_contract_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compute_instance_id&#x27;: &#x27;ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_sku&#x27;: &#x27;HOUR&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_esxi_host_id&#x27;: &#x27;ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;grace_period_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;host_ocpu_count&#x27;: 3.4, &#x27;host_shape_name&#x27;: &#x27;host_shape_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;next_sku&#x27;: &#x27;HOUR&#x27;, &#x27;non_upgraded_esxi_host_id&#x27;: &#x27;ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replacement_esxi_host_id&#x27;: &#x27;ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sddc_id&#x27;: &#x27;ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgraded_replacement_esxi_host_id&#x27;: &#x27;ocid1.upgradedreplacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;billing_contract_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;billing_donor_host_id&#x27;: &#x27;ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compute_instance_id&#x27;: &#x27;ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_sku&#x27;: &#x27;HOUR&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_esxi_host_id&#x27;: &#x27;ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;grace_period_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;host_ocpu_count&#x27;: 3.4, &#x27;host_shape_name&#x27;: &#x27;host_shape_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_billing_continuation_in_progress&#x27;: True, &#x27;is_billing_swapping_in_progress&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;next_sku&#x27;: &#x27;HOUR&#x27;, &#x27;non_upgraded_esxi_host_id&#x27;: &#x27;ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replacement_esxi_host_id&#x27;: &#x27;ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sddc_id&#x27;: &#x27;ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;swap_billing_host_id&#x27;: &#x27;ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgraded_replacement_esxi_host_id&#x27;: &#x27;ocid1.upgradedreplacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -502,6 +558,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_hosts/billing_donor_host_id"></div>
+                    <b>billing_donor_host_id</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_hosts/billing_donor_host_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the deleted ESXi Host with LeftOver billing cycle.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.billingdonorhost.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -744,6 +818,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_hosts/is_billing_continuation_in_progress"></div>
+                    <b>is_billing_continuation_in_progress</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_hosts/is_billing_continuation_in_progress" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether this host is in the progress of billing continuation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_hosts/is_billing_swapping_in_progress"></div>
+                    <b>is_billing_swapping_in_progress</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_hosts/is_billing_swapping_in_progress" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether this host is in the progress of swapping billing.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-esxi_hosts/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-esxi_hosts/lifecycle_state" title="Permalink to this return value"></a>
@@ -834,6 +944,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_hosts/swap_billing_host_id"></div>
+                    <b>swap_billing_host_id</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_hosts/swap_billing_host_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the active ESXi Host to swap billing with current host.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.swapbillinghost.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-esxi_hosts/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-esxi_hosts/time_created" title="Permalink to this return value"></a>
@@ -898,7 +1026,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The version of VMware software that the Oracle Cloud VMware Solution installed on the ESXi hosts.</div>
+                                            <div>The version of VMware software that Oracle Cloud VMware Solution installed on the ESXi hosts.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vmware_software_version_example</div>

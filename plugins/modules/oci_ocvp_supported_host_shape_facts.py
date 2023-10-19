@@ -119,6 +119,12 @@ supported_host_shapes:
             returned: on success
             type: bool
             sample: true
+        is_support_monthly_sku:
+            description:
+                - "Whether the shape supports \\"MONTH\\" SKU."
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "name": "name_example",
         "supported_operations": [],
@@ -128,7 +134,8 @@ supported_host_shapes:
         "supported_sddc_types": [],
         "supported_vmware_software_versions": [],
         "description": "description_example",
-        "is_support_shielded_instances": true
+        "is_support_shielded_instances": true,
+        "is_support_monthly_sku": true
     }]
 """
 
