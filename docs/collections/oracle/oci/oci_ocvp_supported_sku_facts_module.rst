@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_supported_sku_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -248,6 +248,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_shape_name"></div>
+                    <b>host_shape_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_shape_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match or support the given ESXi host shape.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
@@ -339,6 +354,9 @@ Examples
       oci_ocvp_supported_sku_facts:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        host_shape_name: host_shape_name_example
 
 
 

@@ -69,6 +69,16 @@ options:
                 choices:
                     - "EXCLUDE"
                     - "INCLUDE"
+            is_omit_excluded_table_from_replication:
+                description:
+                    - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and object
+                      status EXCLUDE.
+                type: bool
+    csv_text:
+        description:
+            - Database objects to exclude/include from migration in CSV format. The items field will be ignored if this field is not null.
+            - Applicable only for I(action=add_migration_objects)I(action=remove_migration_objects).
+        type: str
     action:
         description:
             - The action to perform on the Migration.
@@ -94,7 +104,11 @@ EXAMPLES = """
       # optional
       type: type_example
       object_status: EXCLUDE
+      is_omit_excluded_table_from_replication: true
     action: add_migration_objects
+
+    # optional
+    csv_text: csv_text_example
 
 - name: Perform action change_compartment on migration
   oci_database_migration_migration_actions:
@@ -115,7 +129,11 @@ EXAMPLES = """
       # optional
       type: type_example
       object_status: EXCLUDE
+      is_omit_excluded_table_from_replication: true
     action: remove_migration_objects
+
+    # optional
+    csv_text: csv_text_example
 
 """
 
@@ -193,6 +211,64 @@ migration:
             returned: on success
             type: str
             sample: "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx"
+        data_transfer_medium_details_v2:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - "AWS region code where the S3 bucket is located.
+                          Region code should match the documented available regions:
+                          https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                access_key_id:
+                    description:
+                        - "AWS access key credentials identifier
+                          Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    returned: on success
+                    type: str
+                    sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+                secret_access_key:
+                    description:
+                        - "AWS secret access key credentials
+                          Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                    returned: on success
+                    type: str
+                    sample: secret_access_key_example
+                name:
+                    description:
+                        - S3 bucket name.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                type:
+                    description:
+                        - Type of the data transfer medium to use for the datapump
+                    returned: on success
+                    type: str
+                    sample: DBLINK
+                object_storage_bucket:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        namespace_name:
+                            description:
+                                - Namespace name of the object store bucket.
+                            returned: on success
+                            type: str
+                            sample: namespace_name_example
+                        bucket_name:
+                            description:
+                                - Bucket name.
+                            returned: on success
+                            type: str
+                            sample: bucket_name_example
         data_transfer_medium_details:
             description:
                 - ""
@@ -279,6 +355,12 @@ migration:
                     returned: on success
                     type: complex
                     contains:
+                        wallet_location:
+                            description:
+                                - Directory path to OCI SSL wallet location on Db server node.
+                            returned: on success
+                            type: str
+                            sample: wallet_location_example
                         kind:
                             description:
                                 - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -297,6 +379,12 @@ migration:
                     returned: on success
                     type: complex
                     contains:
+                        wallet_location:
+                            description:
+                                - Directory path to OCI SSL wallet location on Db server node.
+                            returned: on success
+                            type: str
+                            sample: wallet_location_example
                         kind:
                             description:
                                 - Type of dump transfer to use during migration in source or target host. Default kind is CURL
@@ -309,6 +397,12 @@ migration:
                             returned: on success
                             type: str
                             sample: oci_home_example
+                shared_storage_mount_target_id:
+                    description:
+                        - OCID of the shared storage mount target
+                    returned: on success
+                    type: str
+                    sample: "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
         datapump_settings:
             description:
                 - ""
@@ -417,6 +511,12 @@ migration:
                             returned: on success
                             type: int
                             sample: 56
+                        block_size_in_kbs:
+                            description:
+                                - Size of Oracle database blocks in KB.
+                            returned: on success
+                            type: str
+                            sample: SIZE_8K
                         target_type:
                             description:
                                 - Type of Database Base Migration Target.
@@ -509,6 +609,13 @@ migration:
                     returned: on success
                     type: str
                     sample: type_example
+                is_omit_excluded_table_from_replication:
+                    description:
+                        - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                          included in the exludeObjects.
+                    returned: on success
+                    type: bool
+                    sample: true
         include_objects:
             description:
                 - Database objects to include from migration.
@@ -534,6 +641,99 @@ migration:
                     returned: on success
                     type: str
                     sample: type_example
+                is_omit_excluded_table_from_replication:
+                    description:
+                        - Whether an excluded table should be omitted from replication. Only valid for database objects that have are of type TABLE and that are
+                          included in the exludeObjects.
+                    returned: on success
+                    type: bool
+                    sample: true
+        golden_gate_service_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ggs_deployment:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        deployment_id:
+                            description:
+                                - OCID of a GoldenGate Deployment
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+                        ggs_admin_credentials_secret_id:
+                            description:
+                                - OCID of a VaultSecret containing the Admin Credentials for the GGS Deployment
+                            returned: on success
+                            type: str
+                            sample: "ocid1.ggsadmincredentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
+                settings:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        extract:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                performance_profile:
+                                    description:
+                                        - Extract performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
+                                long_trans_duration:
+                                    description:
+                                        - Length of time (in seconds) that a transaction can be open before Extract generates a warning message that the
+                                          transaction is long-running.
+                                          If not specified, Extract will not generate a warning on long-running transactions.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        replicat:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                performance_profile:
+                                    description:
+                                        - Replicat performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
+                                map_parallelism:
+                                    description:
+                                        - Number of threads used to read trail files (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                min_apply_parallelism:
+                                    description:
+                                        - Defines the range in which Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                max_apply_parallelism:
+                                    description:
+                                        - Defines the range in which Replicat automatically adjusts its apply parallelism (valid for Parallel Replicat)
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        acceptable_lag:
+                            description:
+                                - ODMS will monitor GoldenGate end-to-end latency until the lag time is lower than the specified value in seconds.
+                            returned: on success
+                            type: int
+                            sample: 56
         golden_gate_details:
             description:
                 - ""
@@ -652,6 +852,12 @@ migration:
                             returned: on success
                             type: complex
                             contains:
+                                performance_profile:
+                                    description:
+                                        - Replicat performance.
+                                    returned: on success
+                                    type: str
+                                    sample: LOW
                                 map_parallelism:
                                     description:
                                         - Number of threads used to read trail files (valid for Parallel Replicat)
@@ -763,6 +969,17 @@ migration:
         "source_container_database_connection_id": "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
         "target_database_connection_id": "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
         "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
+        "data_transfer_medium_details_v2": {
+            "region": "us-phoenix-1",
+            "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
+            "secret_access_key": "secret_access_key_example",
+            "name": "name_example",
+            "type": "DBLINK",
+            "object_storage_bucket": {
+                "namespace_name": "namespace_name_example",
+                "bucket_name": "bucket_name_example"
+            }
+        },
         "data_transfer_medium_details": {
             "database_link_details": {
                 "name": "name_example",
@@ -782,13 +999,16 @@ migration:
         },
         "dump_transfer_details": {
             "source": {
+                "wallet_location": "wallet_location_example",
                 "kind": "CURL",
                 "oci_home": "oci_home_example"
             },
             "target": {
+                "wallet_location": "wallet_location_example",
                 "kind": "CURL",
                 "oci_home": "oci_home_example"
-            }
+            },
+            "shared_storage_mount_target_id": "ocid1.sharedstoragemounttarget.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "datapump_settings": {
             "job_mode": "FULL",
@@ -809,6 +1029,7 @@ migration:
                 "is_auto_create": true,
                 "is_big_file": true,
                 "extend_size_in_mbs": 56,
+                "block_size_in_kbs": "SIZE_8K",
                 "target_type": "ADB_S_REMAP",
                 "remap_target": "remap_target_example"
             },
@@ -828,13 +1049,34 @@ migration:
         "exclude_objects": [{
             "owner": "owner_example",
             "object_name": "object_name_example",
-            "type": "type_example"
+            "type": "type_example",
+            "is_omit_excluded_table_from_replication": true
         }],
         "include_objects": [{
             "owner": "owner_example",
             "object_name": "object_name_example",
-            "type": "type_example"
+            "type": "type_example",
+            "is_omit_excluded_table_from_replication": true
         }],
+        "golden_gate_service_details": {
+            "ggs_deployment": {
+                "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+                "ggs_admin_credentials_secret_id": "ocid1.ggsadmincredentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
+            },
+            "settings": {
+                "extract": {
+                    "performance_profile": "LOW",
+                    "long_trans_duration": 56
+                },
+                "replicat": {
+                    "performance_profile": "LOW",
+                    "map_parallelism": 56,
+                    "min_apply_parallelism": 56,
+                    "max_apply_parallelism": 56
+                },
+                "acceptable_lag": 56
+            }
+        },
         "golden_gate_details": {
             "hub": {
                 "rest_admin_credentials": {
@@ -860,6 +1102,7 @@ migration:
                     "long_trans_duration": 56
                 },
                 "replicat": {
+                    "performance_profile": "LOW",
                     "map_parallelism": 56,
                     "min_apply_parallelism": 56,
                     "max_apply_parallelism": 56
@@ -1020,8 +1263,10 @@ def main():
                     object_name=dict(type="str", required=True),
                     type=dict(type="str"),
                     object_status=dict(type="str", choices=["EXCLUDE", "INCLUDE"]),
+                    is_omit_excluded_table_from_replication=dict(type="bool"),
                 ),
             ),
+            csv_text=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

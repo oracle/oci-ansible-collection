@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.34.0]
+
+## Added
+- Support for bulk include/exclude of migration objects in the Database Migration service
+- Support for File System Service (FSS) as transfer medium for data export and import in the Database Migration service
+- Support for integration of GoldenGate service for replication in the Database Migration Service
+- Support for exclude tables for replication in the Database Migration service
+- Support for provisioning Software-Defined Data Centers (SDDCs) using standard bare metal shapes, with Block Storage as the datastore in the VMWare Solution service
+- Support for allowing users to select the billing interval of deleted ESXi hosts while adding new ESXi hosts in the VMWare Solution service
+
+## Fixed
+- Issue with idempotence behaviour of create operation of `oci_database_database` module (#242)
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.113.0
+
 ## [4.33.0]
 
 ## Added

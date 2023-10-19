@@ -672,6 +672,22 @@ class VmClusterHelperCustom:
 
 
 class DatabaseHelperCustom:
+    # Parent method returns the attribute_map of create model which has only database attribute in it.
+    # Due to that, child params of database attibute are not considered for create idempotence. So overriding
+    # this method to include child params of database attribute to be considered for idempotence.
+    def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
+        attributes_to_consider = super(
+            DatabaseHelperCustom, self
+        ).get_attributes_to_consider_for_create_idempotency_check(create_model)
+        attributes_to_consider.pop("database", None)
+
+        database_attribute_map = create_model.database.attribute_map
+
+        for attr in database_attribute_map:
+            if attr not in ["backup_id", "backup_tde_password", "admin_password"]:
+                attributes_to_consider[attr] = database_attribute_map[attr]
+        return attributes_to_consider
+
     def get_create_model_dict_for_idempotence_check(self, create_model):
         create_model_dict = super(
             DatabaseHelperCustom, self

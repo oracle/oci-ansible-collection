@@ -9,7 +9,7 @@ namespace: oracle
 name: oci
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 4.33.0
+version: 4.34.0
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md

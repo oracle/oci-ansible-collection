@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_connection -- Manage a Connection resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -681,6 +681,57 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-replication_credentials"></div>
+                    <b>replication_credentials</b>
+                    <a class="ansibleOptionLink" href="#parameter-replication_credentials" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-replication_credentials/password"></div>
+                    <b>password</b>
+                    <a class="ansibleOptionLink" href="#parameter-replication_credentials/password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Administrator password</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-replication_credentials/username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#parameter-replication_credentials/username" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Administrator username</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-ssh_details"></div>
                     <b>ssh_details</b>
                     <a class="ansibleOptionLink" href="#parameter-ssh_details" title="Permalink to this option"></a>
@@ -994,6 +1045,10 @@ Examples
           sshkey: sshkey_example
           user: user_example
           sudo_location: sudo_location_example
+        replication_credentials:
+          # optional
+          username: username_example
+          password: example-password
         private_endpoint:
           # optional
           compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1027,6 +1082,10 @@ Examples
           user: user_example
           sudo_location: sudo_location_example
         admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        replication_credentials:
           # optional
           username: username_example
           password: example-password
@@ -1068,6 +1127,10 @@ Examples
           user: user_example
           sudo_location: sudo_location_example
         admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        replication_credentials:
           # optional
           username: username_example
           password: example-password
@@ -1133,7 +1196,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;certificate_tdn&#x27;: &#x27;certificate_tdn_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connect_descriptor&#x27;: {&#x27;connect_string&#x27;: &#x27;connect_string_example&#x27;, &#x27;database_service_name&#x27;: &#x27;database_service_name_example&#x27;, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56}, &#x27;credentials_secret_id&#x27;: &#x27;ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_type&#x27;: &#x27;MANUAL&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_dedicated&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;manual_database_sub_type&#x27;: &#x27;ORACLE&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_endpoint&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;ssh_details&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;sudo_location&#x27;: &#x27;sudo_location_example&#x27;, &#x27;user&#x27;: &#x27;user_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;certificate_tdn&#x27;: &#x27;certificate_tdn_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connect_descriptor&#x27;: {&#x27;connect_string&#x27;: &#x27;connect_string_example&#x27;, &#x27;database_service_name&#x27;: &#x27;database_service_name_example&#x27;, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56}, &#x27;credentials_secret_id&#x27;: &#x27;ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_type&#x27;: &#x27;MANUAL&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_dedicated&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;manual_database_sub_type&#x27;: &#x27;ORACLE&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_endpoint&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;replication_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;ssh_details&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;sudo_location&#x27;: &#x27;sudo_location_example&#x27;, &#x27;user&#x27;: &#x27;user_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1605,6 +1668,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/replication_credentials"></div>
+                    <b>replication_credentials</b>
+                    <a class="ansibleOptionLink" href="#return-connection/replication_credentials" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/replication_credentials/username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#return-connection/replication_credentials/username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Administrator username</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
                                     </td>
             </tr>
                     

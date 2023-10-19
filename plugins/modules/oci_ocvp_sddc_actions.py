@@ -28,6 +28,7 @@ description:
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=downgrade_hcx), downgrade the specified SDDC from HCX Enterprise to HCX Advanced.
+      SDDC with standard compute shapes will always use HCX Enterprise if HCX is enabled and cannot be downgraded.
       Downgrading from HCX Enterprise to HCX Advanced reduces the number of provided license keys from 10 to 3.
       Downgrade remains in a `PENDING` state until the end of the current billing cycle. You can use L(cancelDowngradeHcx,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/vmware/20200501/Sddc/CancelDowngradeHcx/)
@@ -541,7 +542,7 @@ sddc:
             sample: CREATING
         upgrade_licenses:
             description:
-                - The vSphere licenses to be used when upgrade SDDC.
+                - The vSphere licenses to use when upgrading the SDDC.
             returned: on success
             type: complex
             contains:
@@ -559,13 +560,13 @@ sddc:
                     sample: license_key_example
         vsphere_upgrade_guide:
             description:
-                - The link of guidance to upgrade vSphere.
+                - The link to guidance for upgrading vSphere.
             returned: on success
             type: str
             sample: vsphere_upgrade_guide_example
         vsphere_upgrade_objects:
             description:
-                - The links of binary objects needed for upgrade vSphere.
+                - The links to binary objects needed to upgrade vSphere.
             returned: on success
             type: complex
             contains:
@@ -606,6 +607,30 @@ sddc:
             returned: on success
             type: str
             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        datastores:
+            description:
+                - Datastores used for the Sddc.
+            returned: on success
+            type: complex
+            contains:
+                block_volume_ids:
+                    description:
+                        - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)s of Block Storage Volumes.
+                    returned: on success
+                    type: list
+                    sample: []
+                datastore_type:
+                    description:
+                        - Type of the datastore.
+                    returned: on success
+                    type: str
+                    sample: MANAGEMENT
+                capacity:
+                    description:
+                        - Size of the Block Storage Volume in GB.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -686,6 +711,11 @@ sddc:
         "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+        "datastores": [{
+            "block_volume_ids": [],
+            "datastore_type": "MANAGEMENT",
+            "capacity": 1.2
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

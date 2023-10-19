@@ -32,6 +32,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
+    host_shape_name:
+        description:
+            - A filter to return only resources that match or support the given ESXi host shape.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
@@ -40,6 +44,9 @@ EXAMPLES = """
   oci_ocvp_supported_sku_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    host_shape_name: host_shape_name_example
 
 """
 
@@ -86,6 +93,7 @@ class SupportedSkuFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "host_shape_name",
             "name",
         ]
         optional_kwargs = dict(
@@ -110,7 +118,11 @@ class ResourceFactsHelper(SupportedSkuFactsHelperCustom, SupportedSkuFactsHelper
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(compartment_id=dict(type="str", required=True), name=dict(type="str"),)
+        dict(
+            compartment_id=dict(type="str", required=True),
+            host_shape_name=dict(type="str"),
+            name=dict(type="str"),
+        )
     )
 
     module = OCIAnsibleModule(argument_spec=module_args)
