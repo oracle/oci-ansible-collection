@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_model_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -484,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Model resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;evaluation_results&#x27;: {&#x27;class_metrics&#x27;: [{&#x27;f1&#x27;: 3.4, &#x27;label&#x27;: &#x27;label_example&#x27;, &#x27;precision&#x27;: 3.4, &#x27;recall&#x27;: 3.4}], &#x27;confusion_matrix&#x27;: {&#x27;matrix&#x27;: {}}, &#x27;entity_metrics&#x27;: [{&#x27;f1&#x27;: 3.4, &#x27;label&#x27;: &#x27;label_example&#x27;, &#x27;precision&#x27;: 3.4, &#x27;recall&#x27;: 3.4}], &#x27;labels&#x27;: [], &#x27;metrics&#x27;: {&#x27;accuracy&#x27;: 3.4, &#x27;macro_f1&#x27;: 3.4, &#x27;macro_precision&#x27;: 3.4, &#x27;macro_recall&#x27;: 3.4, &#x27;micro_f1&#x27;: 3.4, &#x27;micro_precision&#x27;: 3.4, &#x27;micro_recall&#x27;: 3.4, &#x27;weighted_f1&#x27;: 3.4, &#x27;weighted_precision&#x27;: 3.4, &#x27;weighted_recall&#x27;: 3.4}, &#x27;model_type&#x27;: &#x27;NAMED_ENTITY_RECOGNITION&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETING&#x27;, &#x27;model_details&#x27;: {&#x27;classification_mode&#x27;: {&#x27;classification_mode&#x27;: &#x27;MULTI_CLASS&#x27;}, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;model_type&#x27;: &#x27;NAMED_ENTITY_RECOGNITION&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;test_strategy&#x27;: {&#x27;strategy_type&#x27;: &#x27;TEST_AND_VALIDATION_DATASET&#x27;, &#x27;testing_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}, &#x27;validation_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;training_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;evaluation_results&#x27;: {&#x27;class_metrics&#x27;: [{&#x27;f1&#x27;: 3.4, &#x27;label&#x27;: &#x27;label_example&#x27;, &#x27;precision&#x27;: 3.4, &#x27;recall&#x27;: 3.4, &#x27;support&#x27;: 3.4}], &#x27;confusion_matrix&#x27;: {&#x27;matrix&#x27;: {}}, &#x27;entity_metrics&#x27;: [{&#x27;f1&#x27;: 3.4, &#x27;label&#x27;: &#x27;label_example&#x27;, &#x27;precision&#x27;: 3.4, &#x27;recall&#x27;: 3.4}], &#x27;labels&#x27;: [], &#x27;metrics&#x27;: {&#x27;accuracy&#x27;: 3.4, &#x27;macro_f1&#x27;: 3.4, &#x27;macro_precision&#x27;: 3.4, &#x27;macro_recall&#x27;: 3.4, &#x27;micro_f1&#x27;: 3.4, &#x27;micro_precision&#x27;: 3.4, &#x27;micro_recall&#x27;: 3.4, &#x27;weighted_f1&#x27;: 3.4, &#x27;weighted_precision&#x27;: 3.4, &#x27;weighted_recall&#x27;: 3.4}, &#x27;model_type&#x27;: &#x27;NAMED_ENTITY_RECOGNITION&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETING&#x27;, &#x27;model_details&#x27;: {&#x27;classification_mode&#x27;: {&#x27;classification_mode&#x27;: &#x27;MULTI_CLASS&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;model_type&#x27;: &#x27;NAMED_ENTITY_RECOGNITION&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;test_strategy&#x27;: {&#x27;strategy_type&#x27;: &#x27;TEST_AND_VALIDATION_DATASET&#x27;, &#x27;testing_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}, &#x27;validation_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;training_dataset&#x27;: {&#x27;dataset_id&#x27;: &#x27;ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;location_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_LIST&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}}, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -668,6 +668,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Measures the model&#x27;s ability to predict actual positive classes. It is the ratio between the predicted true positives and what was actually tagged. The recall metric reveals how many of the predicted classes are correct.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/evaluation_results/class_metrics/support"></div>
+                    <b>support</b>
+                    <a class="ansibleOptionLink" href="#return-models/evaluation_results/class_metrics/support" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>number of samples in the test set</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1188,6 +1208,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MULTI_CLASS</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-models/model_details/classification_mode/version"></div>
+                    <b>version</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_details/classification_mode/version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Optional if nothing specified latest base model will be used for training. Supported versions can be found at /modelTypes/{modelType}</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1225,6 +1265,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NAMED_ENTITY_RECOGNITION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-models/model_details/version"></div>
+                    <b>version</b>
+                    <a class="ansibleOptionLink" href="#return-models/model_details/version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Optional if nothing specified latest base model will be used for training. Supported versions can be found at /modelTypes/{modelType}</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
                                     </td>
             </tr>
                     
@@ -1818,7 +1877,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Identifying the model by model id is difficult. This param provides ease of use for end customer. &lt;&lt;service&gt;&gt;::&lt;&lt;service-name&gt;&gt;_&lt;&lt;model-type-version&gt;&gt;::&lt;&lt;custom model on which this training has to be done&gt;&gt; ex: ai-lang::NER_V1::CUSTOM-V0</div>
+                                            <div>For pre trained models this will identify model type version used for model creation For custom identifying the model by model id is difficult. This param provides ease of use for end customer. &lt;&lt;service&gt;&gt;::&lt;&lt;service-name&gt;&gt;_&lt;&lt;model-type-version&gt;&gt;::&lt;&lt;custom model on which this training has to be done&gt;&gt; ex: ai-lang::NER_V1::CUSTOM-V0</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>

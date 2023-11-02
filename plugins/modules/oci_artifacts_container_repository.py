@@ -71,6 +71,21 @@ options:
                     - "TEXT_MARKDOWN"
                     - "TEXT_PLAIN"
                 required: true
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     repository_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container repository.
@@ -105,6 +120,8 @@ EXAMPLES = """
       # required
       content: content_example
       format: TEXT_MARKDOWN
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update container_repository
   oci_artifacts_container_repository:
@@ -118,6 +135,8 @@ EXAMPLES = """
       # required
       content: content_example
       format: TEXT_MARKDOWN
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_artifacts_container_repository:
@@ -132,6 +151,8 @@ EXAMPLES = """
       # required
       content: content_example
       format: TEXT_MARKDOWN
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete container_repository
   oci_artifacts_container_repository:
@@ -252,6 +273,36 @@ container_repository:
             returned: on success
             type: int
             sample: 56
+        namespace:
+            description:
+                - The tenancy namespace used in the container repository path.
+            returned: on success
+            type: str
+            sample: namespace_example
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "The system tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -269,7 +320,11 @@ container_repository:
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_last_pushed": "2013-10-20T19:20:30+01:00",
-        "billable_size_in_gbs": 56
+        "billable_size_in_gbs": 56,
+        "namespace": "namespace_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 
@@ -453,6 +508,8 @@ def main():
                     ),
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             repository_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -30,7 +30,7 @@ oracle.oci.oci_identity_data_plane_security_token_actions -- Perform actions on 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,8 @@ Synopsis
 .. Description
 
 - Perform actions on a SecurityToken resource in Oracle Cloud Infrastructure
-- For *action=generate_scoped_access_token*, based on the calling principal and the input payload, derive the claims and create a security token.
+- For *action=generate_scoped_access_token*, based on the calling Principal and the input payload, derive the claims, and generate a scoped-access token for specific resources. For example, set scope to urn:oracle:db::id::<compartment-id> for access to a database in a compartment.
+- For *action=generate_user*, exchanges a valid user token-based signature (API key and UPST) for a short-lived UPST of the authenticated user principal. When not specified, the user session duration is set to a default of 60 minutes in all realms. Resulting UPSTs are refreshable while the user session has not expired.
 
 
 .. Aliases
@@ -98,6 +99,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>generate_scoped_access_token</li>
+                                                                                                                                                                                                <li>generate_user</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -261,7 +263,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A temporary public key, owned by the service. The service also owns the corresponding private key. This public key will by put inside the security token by the auth service after successful validation of the certificate.</div>
+                                            <div>A temporary public key, owned by the service. The service also owns the corresponding private key. This public key will be put inside the security token by the auth service after successful validation of the certificate.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,12 +307,29 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-scope" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Scope definition for the scoped access token</div>
+                                            <div>Required for <em>action=generate_scoped_access_token</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-session_expiration_in_minutes"></div>
+                    <b>session_expiration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-session_expiration_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>User session expiration in minutes to which the requested user principal session token (UPST) is bounded. Valid values are from 5 to 60 for all realms.</div>
+                                            <div>Applicable only for <em>action=generate_user</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -359,6 +378,15 @@ Examples
         scope: scope_example
         public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         action: generate_scoped_access_token
+
+    - name: Perform action generate_user on security_token
+      oci_identity_data_plane_security_token_actions:
+        # required
+        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        action: generate_user
+
+        # optional
+        session_expiration_in_minutes: 56
 
 
 

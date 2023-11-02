@@ -57,6 +57,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_ai_language_model <ansible_collections.oracle.oci.oci_ai_language_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ai_language_model_actions <ansible_collections.oracle.oci.oci_ai_language_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ai_language_model_facts <ansible_collections.oracle.oci.oci_ai_language_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_ai_language_model_type_info_facts <ansible_collections.oracle.oci.oci_ai_language_model_type_info_facts_module>` -- Fetches details about a ModelTypeInfo resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ai_language_project <ansible_collections.oracle.oci.oci_ai_language_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ai_language_project_actions <ansible_collections.oracle.oci.oci_ai_language_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ai_language_project_facts <ansible_collections.oracle.oci.oci_ai_language_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
@@ -1601,6 +1602,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_opsi_importable_agent_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_agent_entity_facts_module>` -- Fetches details about one or multiple ImportableAgentEntity resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_opsi_importable_compute_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_compute_entity_facts_module>` -- Fetches details about one or multiple ImportableComputeEntity resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts_module>` -- Fetches details about one or multiple ImportableEnterpriseManagerEntity resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_opsi_news_reports <ansible_collections.oracle.oci.oci_opsi_news_reports_module>` -- Manage a NewsReports resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_opsi_news_reports_actions <ansible_collections.oracle.oci.oci_opsi_news_reports_actions_module>` -- Perform actions on a NewsReports resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_opsi_news_reports_facts <ansible_collections.oracle.oci.oci_opsi_news_reports_facts_module>` -- Fetches details about one or multiple NewsReports resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_opsi_operations_insights_private_endpoint <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_module>` -- Manage an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_opsi_operations_insights_private_endpoint_actions <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_actions_module>` -- Perform actions on an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_opsi_operations_insights_private_endpoint_facts <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_facts_module>` -- Fetches details about one or multiple OperationsInsightsPrivateEndpoint resources in Oracle Cloud Infrastructure
@@ -1685,6 +1689,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_os_management_software_source_facts <ansible_collections.oracle.oci.oci_os_management_software_source_facts_module>` -- Fetches details about one or multiple SoftwareSource resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_os_management_upcoming_scheduled_job_facts <ansible_collections.oracle.oci.oci_os_management_upcoming_scheduled_job_facts_module>` -- Fetches details about one or multiple UpcomingScheduledJob resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_os_management_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_windows_update_facts_module>` -- Fetches details about one or multiple WindowsUpdate resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_osp_gateway_address_facts <ansible_collections.oracle.oci.oci_osp_gateway_address_facts_module>` -- Fetches details about a Address resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_osp_gateway_address_rule_facts <ansible_collections.oracle.oci.oci_osp_gateway_address_rule_facts_module>` -- Fetches details about a AddressRule resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_osp_gateway_invoice_actions <ansible_collections.oracle.oci.oci_osp_gateway_invoice_actions_module>` -- Perform actions on an Invoice resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_osp_gateway_invoice_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_facts_module>` -- Fetches details about one or multiple Invoice resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_osp_gateway_invoice_line_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_line_facts_module>` -- Fetches details about one or multiple InvoiceLine resources in Oracle Cloud Infrastructure

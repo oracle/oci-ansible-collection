@@ -22,7 +22,7 @@ DOCUMENTATION = """
 module: oci_artifacts_container_image_signature
 short_description: Manage a ContainerImageSignature resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create and delete a ContainerImageSignature resource in Oracle Cloud Infrastructure
+    - This module allows the user to create, update and delete a ContainerImageSignature resource in Oracle Cloud Infrastructure
     - For I(state=present), upload a signature to an image.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -71,23 +71,39 @@ options:
             - "SHA_256_RSA_PKCS_PSS"
             - "SHA_384_RSA_PKCS_PSS"
             - "SHA_512_RSA_PKCS_PSS"
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     image_signature_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container image signature.
             - "Example: `ocid1.containersignature.oc1..exampleuniqueID`"
+            - Required for update using I(state=present).
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
     state:
         description:
             - The state of the ContainerImageSignature.
-            - Use I(state=present) to create a ContainerImageSignature.
+            - Use I(state=present) to create or update a ContainerImageSignature.
             - Use I(state=absent) to delete a ContainerImageSignature.
         type: str
         required: false
         default: 'present'
         choices: ["present", "absent"]
-extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
@@ -101,6 +117,19 @@ EXAMPLES = """
     msg: msg_example
     signature: signature_example
     signing_algorithm: SHA_224_RSA_PKCS_PSS
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update container_image_signature
+  oci_artifacts_container_image_signature:
+    # required
+    image_signature_id: "ocid1.imagesignature.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete container_image_signature
   oci_artifacts_container_image_signature:
@@ -190,6 +219,36 @@ container_image_signature:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the container image signature.
+            returned: on success
+            type: str
+            sample: AVAILABLE
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "The system tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -201,7 +260,11 @@ container_image_signature:
         "message": "message_example",
         "signature": "signature_example",
         "signing_algorithm": "SHA_224_RSA_PKCS_PSS",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "AVAILABLE",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 
@@ -218,6 +281,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.artifacts import ArtifactsClient
     from oci.artifacts.models import CreateContainerImageSignatureDetails
+    from oci.artifacts.models import UpdateContainerImageSignatureDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -225,7 +289,7 @@ except ImportError:
 
 
 class ContainerImageSignatureHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, get, list and delete"""
+    """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
         return super(
@@ -322,12 +386,33 @@ class ContainerImageSignatureHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 create_container_image_signature_details=create_details,
             ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_wait_for_states_for_operation(
                 oci_common_utils.CREATE_OPERATION_KEY,
+            ),
+        )
+
+    def get_update_model_class(self):
+        return UpdateContainerImageSignatureDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_container_image_signature,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                image_signature_id=self.module.params.get("image_signature_id"),
+                update_container_image_signature_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY,
             ),
         )
 
@@ -338,7 +423,7 @@ class ContainerImageSignatureHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 image_signature_id=self.module.params.get("image_signature_id"),
             ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
@@ -361,7 +446,7 @@ class ResourceHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=True, supports_wait=False
+        supports_create=True, supports_wait=True
     )
     module_args.update(
         dict(
@@ -380,6 +465,8 @@ def main():
                     "SHA_512_RSA_PKCS_PSS",
                 ],
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             image_signature_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
@@ -401,6 +488,8 @@ def main():
 
     if resource_helper.is_delete():
         result = resource_helper.delete()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
     elif resource_helper.is_create():
         result = resource_helper.create()
 

@@ -474,6 +474,24 @@ invoices:
             returned: on success
             type: complex
             contains:
+                card_type:
+                    description:
+                        - Echeck card type
+                    returned: on success
+                    type: str
+                    sample: SAVING
+                account_number:
+                    description:
+                        - Account number of the card owner
+                    returned: on success
+                    type: str
+                    sample: account_number_example
+                routing_number:
+                    description:
+                        - Routing number of the echeck card
+                    returned: on success
+                    type: str
+                    sample: routing_number_example
                 echeck_routing:
                     description:
                         - Last four routing digits of the card
@@ -609,6 +627,9 @@ invoices:
         "is_display_view_pdf": true,
         "is_display_download_pdf": true,
         "last_payment_detail": {
+            "card_type": "SAVING",
+            "account_number": "account_number_example",
+            "routing_number": "routing_number_example",
             "echeck_routing": "echeck_routing_example",
             "name_on_card": "name_on_card_example",
             "credit_card_type": "VISA",

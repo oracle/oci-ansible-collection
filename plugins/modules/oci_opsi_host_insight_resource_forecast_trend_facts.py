@@ -279,6 +279,12 @@ host_insight_resource_forecast_trend:
             returned: on success
             type: str
             sample: CORES
+        selected_forecast_algorithm:
+            description:
+                - Auto-ML algorithm leveraged for the forecast. Only applicable for Auto-ML forecast.
+            returned: on success
+            type: str
+            sample: selected_forecast_algorithm_example
         pattern:
             description:
                 - Time series patterns used in the forecasting.
@@ -340,6 +346,7 @@ host_insight_resource_forecast_trend:
         "low_utilization_threshold": 56,
         "resource_metric": "CPU",
         "usage_unit": "CORES",
+        "selected_forecast_algorithm": "selected_forecast_algorithm_example",
         "pattern": "LINEAR",
         "historical_data": [{
             "end_timestamp": "2013-10-20T19:20:30+01:00",

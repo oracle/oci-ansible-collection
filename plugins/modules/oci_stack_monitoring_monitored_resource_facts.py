@@ -23,7 +23,7 @@ module: oci_stack_monitoring_monitored_resource_facts
 short_description: Fetches details about a MonitoredResource resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a MonitoredResource resource in Oracle Cloud Infrastructure
-    - Gets a monitored resource by identifier
+    - Get monitored resource for the given identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -53,7 +53,7 @@ monitored_resource:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
+                - Monitored resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -71,19 +71,19 @@ monitored_resource:
             sample: display_name_example
         type:
             description:
-                - Monitored resource type
+                - Monitored Resource Type.
             returned: on success
             type: str
             sample: type_example
         compartment_id:
             description:
-                - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tenant_id:
             description:
-                - Tenancy Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                - Tenancy Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
@@ -95,10 +95,10 @@ monitored_resource:
             sample: host_name_example
         external_id:
             description:
-                - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
-                  which is not a Stack Monitoring service resource.
-                  Currently supports only following resource type identifiers - externalcontainerdatabase,
-                  externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+                - "The external resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                  External resource is any OCI resource which is not a Stack Monitoring service resource.
+                  Currently supports only following resource types - Container database, non-container database,
+                  pluggable database and OCI compute instance."
             returned: on success
             type: str
             sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
@@ -116,13 +116,15 @@ monitored_resource:
             sample: resource_time_zone_example
         time_created:
             description:
-                - The time the the resource was created. An RFC3339 formatted datetime string
+                - The date and time when the monitored resource was created, expressed in
+                  L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the the resource was updated. An RFC3339 formatted datetime string
+                - The date and time when the monitored resource was last updated, expressed in
+                  L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -134,19 +136,19 @@ monitored_resource:
             sample: CREATING
         properties:
             description:
-                - List of monitored resource properties
+                - List of monitored resource properties.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - property name
+                        - Property Name.
                     returned: on success
                     type: str
                     sample: name_example
                 value:
                     description:
-                        - property value
+                        - Property Value.
                     returned: on success
                     type: str
                     sample: value_example
@@ -170,7 +172,7 @@ monitored_resource:
                     sample: 56
                 connector_id:
                     description:
-                        - Database connector Identifier
+                        - Database connector Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
@@ -188,13 +190,13 @@ monitored_resource:
                     sample: db_unique_name_example
                 db_id:
                     description:
-                        - dbId of the database
+                        - dbId of the database.
                     returned: on success
                     type: str
                     sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
                 ssl_secret_id:
                     description:
-                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
@@ -206,15 +208,15 @@ monitored_resource:
             contains:
                 key_id:
                     description:
-                        - The master key OCID and applicable only for property value type ENCRYPTION. Key OCID is passed as input to Key management service
-                          decrypt API to retrieve the encrypted property value text.
+                        - The master key should be created in OCI Vault owned by the client of this API.
+                          The user should have permission to access the vault key.
                     returned: on success
                     type: str
                     sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
                 source:
                     description:
-                        - The source type and source name combination,delimited with (.) separator. {source type}.{source name} and source type max char limit
-                          is 63.
+                        - The source type and source name combination, delimited with (.) separator.
+                          {source type}.{source name} and source type max char limit is 63.
                     returned: on success
                     type: str
                     sample: source_example
@@ -238,11 +240,15 @@ monitored_resource:
                     sample: description_example
                 credential_type:
                     description:
-                        - "Type of credentials specified in the credentials element. Three possible values - EXISTING, PLAINTEXT and ENCRYPTED. * EXISTING  -
-                          Credential is already stored in agent and only credential name need to be passed for existing credential. * PLAINTEXT - The credential
-                          properties will have credentials in plain text format. * ENCRYPTED - The credential properties will have credentials stored in vault
-                          in encrypted format using KMS client which uses master key for encryption. The same master key will be used to decrypt the credentials
-                          before passing on to the management agent."
+                        - "Type of credentials specified in the credentials element.
+                          Three possible values - EXISTING, PLAINTEXT and ENCRYPTED.
+                          * EXISTING  - Credential is already stored in agent and only credential name need
+                                  to be passed for existing credential.
+                          * PLAINTEXT - The credential properties will have credentials in plain text format.
+                          * ENCRYPTED - The credential properties will have credentials stored in vault in
+                                  encrypted format using KMS client which uses master key for encryption.
+                                  The same master key will be used to decrypt the credentials before passing
+                                  on to the management agent."
                     returned: on success
                     type: str
                     sample: EXISTING
@@ -254,15 +260,15 @@ monitored_resource:
                     contains:
                         name:
                             description:
-                                - The name of the credential property, should confirm with names of properties of this credential's type. Ex. For JMXCreds type
-                                  , credential property name for weblogic user is 'Username'.
+                                - "The name of the credential property, should confirm with names of properties of this credential's type.
+                                  Example: For JMXCreds type, credential property name for weblogic user is 'Username'."
                             returned: on success
                             type: str
                             sample: name_example
                         value:
                             description:
-                                - The value of the credential property name. Ex. For JMXCreds type, credential property value for 'Username' property is
-                                  'weblogic'.
+                                - "The value of the credential property name.
+                                  Example: For JMXCreds type, credential property value for 'Username' property is 'weblogic'."
                             returned: on success
                             type: str
                             sample: value_example
@@ -274,8 +280,8 @@ monitored_resource:
             contains:
                 source:
                     description:
-                        - The source type and source name combination,delimited with (.) separator. Ex. {source type}.{source name} and source type max char
-                          limit is 63.
+                        - "The source type and source name combination,delimited with (.) separator.
+                          Example: {source type}.{source name} and source type max char limit is 63."
                     returned: on success
                     type: str
                     sample: source_example
@@ -293,21 +299,23 @@ monitored_resource:
                     contains:
                         source:
                             description:
-                                - The source type and source name combination,delimited with (.) separator. This refers to the pre-existing source which alias
-                                  cred should point to. Ex. {source type}.{source name} and source type max char limit is 63.
+                                - The source type and source name combination,delimited with (.) separator.
+                                  This refers to the pre-existing source which alias cred should point to.
+                                  Ex. {source type}.{source name} and source type max char limit is 63.
                             returned: on success
                             type: str
                             sample: source_example
                         name:
                             description:
-                                - The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source
-                                  attribute binded credential name.
+                                - The name of the pre-existing source credential which alias cred should point to.
+                                  This should refer to the pre-existing source attribute which is bound to credential name.
                             returned: on success
                             type: str
                             sample: name_example
                         service:
                             description:
-                                - The name of the service owning the credential. Ex stack-monitoring or dbmgmt
+                                - "The name of the service owning the credential.
+                                  Example: stack-monitoring or dbmgmt"
                             returned: on success
                             type: str
                             sample: service_example

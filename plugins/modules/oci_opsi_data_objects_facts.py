@@ -117,7 +117,7 @@ opsi_data_objects:
                     sample: DIMENSION
                 data_type_name:
                     description:
-                        - Type of a data object column.
+                        - Type name of a data object column.
                     returned: on success
                     type: str
                     sample: NUMBER

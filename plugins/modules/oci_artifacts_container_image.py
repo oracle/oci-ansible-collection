@@ -22,11 +22,26 @@ DOCUMENTATION = """
 module: oci_artifacts_container_image
 short_description: Manage a ContainerImage resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to delete a ContainerImage resource in Oracle Cloud Infrastructure
+    - This module allows the user to update and delete a ContainerImage resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oracle.oci.oci_artifacts_container_image_actions) module: remove_container_version, restore."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     image_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container image.
@@ -37,15 +52,25 @@ options:
     state:
         description:
             - The state of the ContainerImage.
+            - Use I(state=present) to update an existing a ContainerImage.
             - Use I(state=absent) to delete a ContainerImage.
         type: str
         required: false
         default: 'present'
-        choices: ["absent"]
+        choices: ["present", "absent"]
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Update container_image
+  oci_artifacts_container_image:
+    # required
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Delete container_image
   oci_artifacts_container_image:
     # required
@@ -197,6 +222,30 @@ container_image:
                     returned: on success
                     type: str
                     sample: version_example
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "The system tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -221,7 +270,10 @@ container_image:
             "created_by": "created_by_example",
             "time_created": "2013-10-20T19:20:30+01:00",
             "version": "version_example"
-        }]
+        }],
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 
@@ -237,6 +289,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.artifacts import ArtifactsClient
+    from oci.artifacts.models import UpdateContainerImageDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -244,7 +297,7 @@ except ImportError:
 
 
 class ContainerImageHelperGen(OCIResourceHelperBase):
-    """Supported operations: get, list and delete"""
+    """Supported operations: update, get, list and delete"""
 
     def get_possible_entity_types(self):
         return super(ContainerImageHelperGen, self).get_possible_entity_types() + [
@@ -317,6 +370,27 @@ class ContainerImageHelperGen(OCIResourceHelperBase):
             self.client.list_container_images, **kwargs
         )
 
+    def get_update_model_class(self):
+        return UpdateContainerImageDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_container_image,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                image_id=self.module.params.get("image_id"),
+                update_container_image_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY,
+            ),
+        )
+
     def delete_resource(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_container_image,
@@ -345,8 +419,10 @@ def main():
     )
     module_args.update(
         dict(
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             image_id=dict(aliases=["id"], type="str", required=True),
-            state=dict(type="str", default="present", choices=["absent"]),
+            state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )
 
@@ -366,6 +442,8 @@ def main():
 
     if resource_helper.is_delete():
         result = resource_helper.delete()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
 
     module.exit_json(**result)
 

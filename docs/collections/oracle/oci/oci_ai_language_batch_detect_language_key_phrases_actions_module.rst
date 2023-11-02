@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_batch_detect_language_key_phrases_actions -- Perform 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -308,7 +308,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Language code supported Automatically detect language - auto Arabic - ar Brazilian Portuguese - pt-BR Czech - cs Danish - da Dutch - nl English - en Finnish - fi French - fr Canadian French - fr-CA German - de Italian - it Japanese - ja Korean - ko Norwegian - no Polish - pl Romanian - ro Simplified Chinese - zh-CN Spanish - es Swedish - sv Traditional Chinese - zh-TW Turkish - tr Greek - el Hebrew - he</div>
+                                            <div>Language code of the document. Please refer to respective model <a href='https://docs.cloud.oracle.com/iaas/language/using/overview.htm'>API documentation</a> for supported languages.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,7 +561,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Language code supported Automatically detect language - auto Arabic - ar Brazilian Portuguese -  pt-BR Czech - cs Danish - da Dutch - nl English - en Finnish - fi French - fr Canadian French - fr-CA German - de Italian - it Japanese - ja Korean - ko Norwegian - no Polish - pl Romanian - ro Simplified Chinese - zh-CN Spanish - es Swedish - sv Traditional Chinese - zh-TW Turkish - tr Greek - el Hebrew - he</div>
+                                            <div>Language code supported - auto : Automatically detect language - ar : Arabic - pt-BR : Brazilian Portuguese - cs : Czech - da : Danish - nl : Dutch - en : English - fi : Finnish - fr : French - fr-CA : Canadian French - de : German - it : Italian - ja : Japanese - ko : Korean - no : Norwegian - pl : Polish - ro : Romanian - zh-CN : Simplified Chinese - es : Spanish - sv : Swedish - zh-TW : Traditional Chinese - tr : Turkish - el : Greek - he : Hebrew</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">language_code_example</div>

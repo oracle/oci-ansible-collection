@@ -30,7 +30,7 @@ oracle.oci.oci_osp_gateway_subscription -- Manage a Subscription resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -346,6 +346,28 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/account_type"></div>
+                    <b>account_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/account_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>PERSONAL</li>
+                                                                                                                                                                                                <li>CORPORATE</li>
+                                                                                                                                                                                                <li>CORPORATE_SUBMITTED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Account type.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/bill_to_cust_account_id"></div>
                     <b>bill_to_cust_account_id</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/bill_to_cust_account_id" title="Permalink to this option"></a>
@@ -434,6 +456,24 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/contributor_class"></div>
+                    <b>contributor_class</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/contributor_class" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Contributor class of the customer company.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/country"></div>
                     <b>country</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/country" title="Permalink to this option"></a>
@@ -445,6 +485,42 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Country of the address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/county"></div>
+                    <b>county</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/county" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>County of the address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/department_name"></div>
+                    <b>department_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/department_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Department name of the customer company.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -481,6 +557,42 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>First name of the contact person.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/internal_number"></div>
+                    <b>internal_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/internal_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Internal number of the customer company.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/job_title"></div>
+                    <b>job_title</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/job_title" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Job title of the contact person.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -542,6 +654,114 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/line3"></div>
+                    <b>line3</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/line3" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Address line 3.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/line4"></div>
+                    <b>line4</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/line4" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Address line 4.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/middle_name"></div>
+                    <b>middle_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/middle_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Middle name of the contact person.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/municipal_inscription"></div>
+                    <b>municipal_inscription</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/municipal_inscription" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Municipal Inscription.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/phone_country_code"></div>
+                    <b>phone_country_code</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/phone_country_code" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Phone country code of the contact person.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/phone_number"></div>
+                    <b>phone_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/phone_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Phone number of the contact person.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/postal_code"></div>
                     <b>postal_code</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/postal_code" title="Permalink to this option"></a>
@@ -560,6 +780,24 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/province"></div>
+                    <b>province</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/province" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Province of the address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/state" title="Permalink to this option"></a>
@@ -571,6 +809,60 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>State of the address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/state_inscription"></div>
+                    <b>state_inscription</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/state_inscription" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>State Inscription.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/street_name"></div>
+                    <b>street_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/street_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Street name of the address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/billing_address/street_number"></div>
+                    <b>street_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/billing_address/street_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Street number of the address.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1172,6 +1464,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/time_personal_to_corporate_conv"></div>
+                    <b>time_personal_to_corporate_conv</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/time_personal_to_corporate_conv" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Date of upgrade/conversion when account type changed from PERSONAL to CORPORATE</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/time_plan_upgrade"></div>
                     <b>time_plan_upgrade</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/time_plan_upgrade" title="Permalink to this option"></a>
@@ -1328,6 +1637,7 @@ Examples
           organization_id: "ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx"
           upgrade_state: PROMO
           upgrade_state_details: TAX_ERROR
+          account_type: PERSONAL
           tax_info:
             # optional
             tax_payer_id: "ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1357,15 +1667,31 @@ Examples
             address_key: address_key_example
             line1: line1_example
             line2: line2_example
+            line3: line3_example
+            line4: line4_example
+            street_name: street_name_example
+            street_number: street_number_example
             city: city_example
+            county: county_example
             country: country_example
+            province: province_example
             postal_code: postal_code_example
             state: state_example
             email_address: email_address_example
             company_name: company_name_example
             first_name: first_name_example
+            middle_name: middle_name_example
             last_name: last_name_example
+            phone_country_code: phone_country_code_example
+            phone_number: phone_number_example
+            job_title: job_title_example
+            department_name: department_name_example
+            internal_number: internal_number_example
+            contributor_class: contributor_class_example
+            state_inscription: state_inscription_example
+            municipal_inscription: municipal_inscription_example
           time_plan_upgrade: time_plan_upgrade_example
+          time_personal_to_corporate_conv: time_personal_to_corporate_conv_example
         email: email_example
 
 
@@ -1403,10 +1729,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Subscription resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bill_to_cust_account_id&#x27;: &#x27;ocid1.billtocustaccount.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;billing_address&#x27;: {&#x27;address_key&#x27;: &#x27;address_key_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;line1&#x27;: &#x27;line1_example&#x27;, &#x27;line2&#x27;: &#x27;line2_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;}, &#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;gsi_org_code&#x27;: &#x27;gsi_org_code_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;organization_id&#x27;: &#x27;ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;payment_gateway&#x27;: {&#x27;merchant_defined_data&#x27;: {&#x27;cloud_account_name&#x27;: &#x27;cloud_account_name_example&#x27;, &#x27;promo_type&#x27;: &#x27;promo_type_example&#x27;}}, &#x27;payment_options&#x27;: [{&#x27;credit_card_type&#x27;: &#x27;VISA&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;ext_billing_agreement_id&#x27;: &#x27;ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_digits&#x27;: &#x27;last_digits_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;name_on_card&#x27;: &#x27;name_on_card_example&#x27;, &#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;time_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;wallet_instrument_id&#x27;: &#x27;ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;wallet_transaction_id&#x27;: &#x27;ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;plan_type&#x27;: &#x27;FREE_TIER&#x27;, &#x27;ship_to_cust_acct_role_id&#x27;: &#x27;ocid1.shiptocustacctrole.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ship_to_cust_acct_site_id&#x27;: &#x27;ocid1.shiptocustacctsite.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subscription_plan_number&#x27;: &#x27;subscription_plan_number_example&#x27;, &#x27;tax_info&#x27;: {&#x27;no_tax_reason_code&#x27;: &#x27;no_tax_reason_code_example&#x27;, &#x27;no_tax_reason_code_details&#x27;: &#x27;no_tax_reason_code_details_example&#x27;, &#x27;tax_cnpj&#x27;: &#x27;tax_cnpj_example&#x27;, &#x27;tax_payer_id&#x27;: &#x27;ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tax_reg_number&#x27;: &#x27;tax_reg_number_example&#x27;}, &#x27;time_plan_upgrade&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_state&#x27;: &#x27;PROMO&#x27;, &#x27;upgrade_state_details&#x27;: &#x27;TAX_ERROR&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;account_type&#x27;: &#x27;PERSONAL&#x27;, &#x27;bill_to_cust_account_id&#x27;: &#x27;ocid1.billtocustaccount.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;billing_address&#x27;: {&#x27;address_key&#x27;: &#x27;address_key_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;contributor_class&#x27;: &#x27;contributor_class_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;county&#x27;: &#x27;county_example&#x27;, &#x27;department_name&#x27;: &#x27;department_name_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;internal_number&#x27;: &#x27;internal_number_example&#x27;, &#x27;job_title&#x27;: &#x27;job_title_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;line1&#x27;: &#x27;line1_example&#x27;, &#x27;line2&#x27;: &#x27;line2_example&#x27;, &#x27;line3&#x27;: &#x27;line3_example&#x27;, &#x27;line4&#x27;: &#x27;line4_example&#x27;, &#x27;middle_name&#x27;: &#x27;middle_name_example&#x27;, &#x27;municipal_inscription&#x27;: &#x27;municipal_inscription_example&#x27;, &#x27;phone_country_code&#x27;: &#x27;phone_country_code_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;province&#x27;: &#x27;province_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;, &#x27;state_inscription&#x27;: &#x27;state_inscription_example&#x27;, &#x27;street_name&#x27;: &#x27;street_name_example&#x27;, &#x27;street_number&#x27;: &#x27;street_number_example&#x27;}, &#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;gsi_org_code&#x27;: &#x27;gsi_org_code_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;organization_id&#x27;: &#x27;ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;payment_gateway&#x27;: {&#x27;merchant_defined_data&#x27;: {&#x27;cloud_account_name&#x27;: &#x27;cloud_account_name_example&#x27;, &#x27;promo_type&#x27;: &#x27;promo_type_example&#x27;}}, &#x27;payment_options&#x27;: [{&#x27;credit_card_type&#x27;: &#x27;VISA&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;ext_billing_agreement_id&#x27;: &#x27;ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_digits&#x27;: &#x27;last_digits_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;name_on_card&#x27;: &#x27;name_on_card_example&#x27;, &#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;time_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;wallet_instrument_id&#x27;: &#x27;ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;wallet_transaction_id&#x27;: &#x27;ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;plan_type&#x27;: &#x27;FREE_TIER&#x27;, &#x27;ship_to_cust_acct_role_id&#x27;: &#x27;ocid1.shiptocustacctrole.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ship_to_cust_acct_site_id&#x27;: &#x27;ocid1.shiptocustacctsite.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subscription_plan_number&#x27;: &#x27;subscription_plan_number_example&#x27;, &#x27;tax_info&#x27;: {&#x27;no_tax_reason_code&#x27;: &#x27;no_tax_reason_code_example&#x27;, &#x27;no_tax_reason_code_details&#x27;: &#x27;no_tax_reason_code_details_example&#x27;, &#x27;tax_cnpj&#x27;: &#x27;tax_cnpj_example&#x27;, &#x27;tax_payer_id&#x27;: &#x27;ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tax_reg_number&#x27;: &#x27;tax_reg_number_example&#x27;}, &#x27;time_personal_to_corporate_conv&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_plan_upgrade&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_state&#x27;: &#x27;PROMO&#x27;, &#x27;upgrade_state_details&#x27;: &#x27;TAX_ERROR&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-subscription/account_type"></div>
+                    <b>account_type</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/account_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Account type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PERSONAL</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-subscription/bill_to_cust_account_id"></div>
@@ -1501,6 +1845,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/contributor_class"></div>
+                    <b>contributor_class</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/contributor_class" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Contributor class of the customer company.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">contributor_class_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-subscription/billing_address/country"></div>
                     <b>country</b>
                     <a class="ansibleOptionLink" href="#return-subscription/billing_address/country" title="Permalink to this return value"></a>
@@ -1514,6 +1877,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/county"></div>
+                    <b>county</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/county" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>County of the address.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">county_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/department_name"></div>
+                    <b>department_name</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/department_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Department name of the customer company.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">department_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1552,6 +1953,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">first_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/internal_number"></div>
+                    <b>internal_number</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/internal_number" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Internal number of the customer company.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">internal_number_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/job_title"></div>
+                    <b>job_title</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/job_title" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Job title of the contact person.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">job_title_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1615,6 +2054,120 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/line3"></div>
+                    <b>line3</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/line3" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Address line 3.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">line3_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/line4"></div>
+                    <b>line4</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/line4" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Address line 4.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">line4_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/middle_name"></div>
+                    <b>middle_name</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/middle_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Middle name of the contact person.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">middle_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/municipal_inscription"></div>
+                    <b>municipal_inscription</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/municipal_inscription" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Municipal Inscription.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">municipal_inscription_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/phone_country_code"></div>
+                    <b>phone_country_code</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/phone_country_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Phone country code of the contact person.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">phone_country_code_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/phone_number"></div>
+                    <b>phone_number</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/phone_number" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Phone number of the contact person.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">phone_number_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-subscription/billing_address/postal_code"></div>
                     <b>postal_code</b>
                     <a class="ansibleOptionLink" href="#return-subscription/billing_address/postal_code" title="Permalink to this return value"></a>
@@ -1634,6 +2187,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/province"></div>
+                    <b>province</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/province" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Province of the address.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">province_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-subscription/billing_address/state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#return-subscription/billing_address/state" title="Permalink to this return value"></a>
@@ -1647,6 +2219,63 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/state_inscription"></div>
+                    <b>state_inscription</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/state_inscription" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>State Inscription.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_inscription_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/street_name"></div>
+                    <b>street_name</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/street_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Street name of the address.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">street_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/billing_address/street_number"></div>
+                    <b>street_number</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/billing_address/street_number" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Street number of the address.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">street_number_example</div>
                                     </td>
             </tr>
                     
@@ -2243,6 +2872,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-subscription/time_personal_to_corporate_conv"></div>
+                    <b>time_personal_to_corporate_conv</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/time_personal_to_corporate_conv" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Date of upgrade/conversion when account type changed from PERSONAL to CORPORATE</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

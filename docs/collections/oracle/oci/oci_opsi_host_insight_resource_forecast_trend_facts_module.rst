@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_forecast_trend_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -773,7 +773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>HostInsightResourceForecastTrend resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;high_utilization_threshold&#x27;: 56, &#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage&#x27;: 1.2}], &#x27;low_utilization_threshold&#x27;: 56, &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 1.2}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;high_utilization_threshold&#x27;: 56, &#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage&#x27;: 1.2}], &#x27;low_utilization_threshold&#x27;: 56, &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 1.2}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;selected_forecast_algorithm&#x27;: &#x27;selected_forecast_algorithm_example&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -994,6 +994,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_forecast_trend/selected_forecast_algorithm"></div>
+                    <b>selected_forecast_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_forecast_trend/selected_forecast_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Auto-ML algorithm leveraged for the forecast. Only applicable for Auto-ML forecast.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">selected_forecast_algorithm_example</div>
                                     </td>
             </tr>
                                 <tr>
