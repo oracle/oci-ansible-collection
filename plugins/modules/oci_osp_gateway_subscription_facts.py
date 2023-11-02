@@ -179,6 +179,12 @@ subscriptions:
             returned: on success
             type: str
             sample: TAX_ERROR
+        account_type:
+            description:
+                - Account type.
+            returned: on success
+            type: str
+            sample: PERSONAL
         tax_info:
             description:
                 - ""
@@ -335,18 +341,54 @@ subscriptions:
                     returned: on success
                     type: str
                     sample: line2_example
+                line3:
+                    description:
+                        - Address line 3.
+                    returned: on success
+                    type: str
+                    sample: line3_example
+                line4:
+                    description:
+                        - Address line 4.
+                    returned: on success
+                    type: str
+                    sample: line4_example
+                street_name:
+                    description:
+                        - Street name of the address.
+                    returned: on success
+                    type: str
+                    sample: street_name_example
+                street_number:
+                    description:
+                        - Street number of the address.
+                    returned: on success
+                    type: str
+                    sample: street_number_example
                 city:
                     description:
                         - Name of the city.
                     returned: on success
                     type: str
                     sample: city_example
+                county:
+                    description:
+                        - County of the address.
+                    returned: on success
+                    type: str
+                    sample: county_example
                 country:
                     description:
                         - Country of the address.
                     returned: on success
                     type: str
                     sample: country_example
+                province:
+                    description:
+                        - Province of the address.
+                    returned: on success
+                    type: str
+                    sample: province_example
                 postal_code:
                     description:
                         - Post code of the address.
@@ -377,15 +419,75 @@ subscriptions:
                     returned: on success
                     type: str
                     sample: first_name_example
+                middle_name:
+                    description:
+                        - Middle name of the contact person.
+                    returned: on success
+                    type: str
+                    sample: middle_name_example
                 last_name:
                     description:
                         - Last name of the contact person.
                     returned: on success
                     type: str
                     sample: last_name_example
+                phone_country_code:
+                    description:
+                        - Phone country code of the contact person.
+                    returned: on success
+                    type: str
+                    sample: phone_country_code_example
+                phone_number:
+                    description:
+                        - Phone number of the contact person.
+                    returned: on success
+                    type: str
+                    sample: phone_number_example
+                job_title:
+                    description:
+                        - Job title of the contact person.
+                    returned: on success
+                    type: str
+                    sample: job_title_example
+                department_name:
+                    description:
+                        - Department name of the customer company.
+                    returned: on success
+                    type: str
+                    sample: department_name_example
+                internal_number:
+                    description:
+                        - Internal number of the customer company.
+                    returned: on success
+                    type: str
+                    sample: internal_number_example
+                contributor_class:
+                    description:
+                        - Contributor class of the customer company.
+                    returned: on success
+                    type: str
+                    sample: contributor_class_example
+                state_inscription:
+                    description:
+                        - State Inscription.
+                    returned: on success
+                    type: str
+                    sample: state_inscription_example
+                municipal_inscription:
+                    description:
+                        - Municipal Inscription.
+                    returned: on success
+                    type: str
+                    sample: municipal_inscription_example
         time_plan_upgrade:
             description:
                 - Date of upgrade/conversion when planType changed from FREE_TIER to PAYG
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_personal_to_corporate_conv:
+            description:
+                - Date of upgrade/conversion when account type changed from PERSONAL to CORPORATE
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -404,6 +506,7 @@ subscriptions:
         "organization_id": "ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx",
         "upgrade_state": "PROMO",
         "upgrade_state_details": "TAX_ERROR",
+        "account_type": "PERSONAL",
         "tax_info": {
             "tax_payer_id": "ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx",
             "tax_reg_number": "tax_reg_number_example",
@@ -434,16 +537,32 @@ subscriptions:
             "address_key": "address_key_example",
             "line1": "line1_example",
             "line2": "line2_example",
+            "line3": "line3_example",
+            "line4": "line4_example",
+            "street_name": "street_name_example",
+            "street_number": "street_number_example",
             "city": "city_example",
+            "county": "county_example",
             "country": "country_example",
+            "province": "province_example",
             "postal_code": "postal_code_example",
             "state": "state_example",
             "email_address": "email_address_example",
             "company_name": "company_name_example",
             "first_name": "first_name_example",
-            "last_name": "last_name_example"
+            "middle_name": "middle_name_example",
+            "last_name": "last_name_example",
+            "phone_country_code": "phone_country_code_example",
+            "phone_number": "phone_number_example",
+            "job_title": "job_title_example",
+            "department_name": "department_name_example",
+            "internal_number": "internal_number_example",
+            "contributor_class": "contributor_class_example",
+            "state_inscription": "state_inscription_example",
+            "municipal_inscription": "municipal_inscription_example"
         },
-        "time_plan_upgrade": "2013-10-20T19:20:30+01:00"
+        "time_plan_upgrade": "2013-10-20T19:20:30+01:00",
+        "time_personal_to_corporate_conv": "2013-10-20T19:20:30+01:00"
     }]
 """
 

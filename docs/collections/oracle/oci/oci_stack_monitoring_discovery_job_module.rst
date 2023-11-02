@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_discovery_job -- Manage a DiscoveryJob resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -490,6 +490,7 @@ Parameters
                                                                                                                                                                                                 <li>OCI_ORACLE_PDB</li>
                                                                                                                                                                                                 <li>HOST</li>
                                                                                                                                                                                                 <li>ORACLE_PSFT</li>
+                                                                                                                                                                                                <li>ORACLE_MFT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -653,6 +654,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-should_propagate_tags_to_discovered_resources"></div>
+                    <b>should_propagate_tags_to_discovered_resources</b>
+                    <a class="ansibleOptionLink" href="#parameter-should_propagate_tags_to_discovered_resources" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If this parameter set to true, the specified tags will be applied to all resources discovered in the current request. Default is true.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -775,6 +795,7 @@ Examples
         # optional
         discovery_type: ADD
         discovery_client: discovery_client_example
+        should_propagate_tags_to_discovered_resources: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

@@ -46,18 +46,6 @@ options:
             - Required for create using I(state=present).
         type: dict
         suboptions:
-            language_code:
-                description:
-                    - supported language default value is en
-                type: str
-            model_type:
-                description:
-                    - Model type
-                type: str
-                choices:
-                    - "NAMED_ENTITY_RECOGNITION"
-                    - "TEXT_CLASSIFICATION"
-                required: true
             classification_mode:
                 description:
                     - ""
@@ -72,10 +60,44 @@ options:
                             - "MULTI_CLASS"
                             - "MULTI_LABEL"
                         required: true
+                    version:
+                        description:
+                            - Optional if nothing specified latest base model will be used for training. Supported versions can be found at
+                              /modelTypes/{modelType}
+                        type: str
+            language_code:
+                description:
+                    - supported language default value is en
+                type: str
+            model_type:
+                description:
+                    - Model type
+                type: str
+                choices:
+                    - "PRE_TRAINED_KEYPHRASE_EXTRACTION"
+                    - "PRE_TRAINED_HEALTH_NLU"
+                    - "PRE_TRAINED_UNIVERSAL"
+                    - "NAMED_ENTITY_RECOGNITION"
+                    - "PRE_TRAINED_LANGUAGE_DETECTION"
+                    - "PRE_TRAINED_NAMED_ENTITY_RECOGNITION"
+                    - "PRE_TRAINED_SENTIMENT_ANALYSIS"
+                    - "PRE_TRAINED_PHI"
+                    - "PRE_TRAINED_TEXT_CLASSIFICATION"
+                    - "TEXT_CLASSIFICATION"
+                    - "PRE_TRAINED_SUMMARIZATION"
+                    - "PRE_TRAINED_PII"
+                required: true
+            version:
+                description:
+                    - Optional pre trained model version. if nothing specified latest pre trained model will be used.
+                      Supported versions can be found at /modelTypes/{modelType}
+                    - Applicable when model_type is one of ['NAMED_ENTITY_RECOGNITION', 'PRE_TRAINED_PII', 'PRE_TRAINED_PHI', 'PRE_TRAINED_TEXT_CLASSIFICATION',
+                      'PRE_TRAINED_NAMED_ENTITY_RECOGNITION', 'PRE_TRAINED_HEALTH_NLU', 'PRE_TRAINED_LANGUAGE_DETECTION', 'PRE_TRAINED_KEYPHRASE_EXTRACTION',
+                      'PRE_TRAINED_SENTIMENT_ANALYSIS', 'PRE_TRAINED_SUMMARIZATION', 'PRE_TRAINED_UNIVERSAL']
+                type: str
     training_dataset:
         description:
             - ""
-            - Required for create using I(state=present).
         type: dict
         suboptions:
             dataset_id:
@@ -279,16 +301,17 @@ EXAMPLES = """
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     model_details:
       # required
-      model_type: NAMED_ENTITY_RECOGNITION
+      model_type: PRE_TRAINED_KEYPHRASE_EXTRACTION
 
       # optional
       language_code: language_code_example
+      version: version_example
+
+    # optional
     training_dataset:
       # required
       dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
       dataset_type: DATA_SCIENCE_LABELING
-
-    # optional
     test_strategy:
       # required
       strategy_type: TEST_AND_VALIDATION_DATASET
@@ -387,6 +410,12 @@ model:
             returned: on success
             type: complex
             contains:
+                version:
+                    description:
+                        - Optional if nothing specified latest base model will be used for training. Supported versions can be found at /modelTypes/{modelType}
+                    returned: on success
+                    type: str
+                    sample: version_example
                 language_code:
                     description:
                         - supported language default value is en
@@ -411,6 +440,13 @@ model:
                             returned: on success
                             type: str
                             sample: MULTI_CLASS
+                        version:
+                            description:
+                                - Optional if nothing specified latest base model will be used for training. Supported versions can be found at
+                                  /modelTypes/{modelType}
+                            returned: on success
+                            type: str
+                            sample: version_example
         time_created:
             description:
                 - The time the the model was created. An RFC3339 formatted datetime string.
@@ -632,6 +668,12 @@ model:
                             returned: on success
                             type: float
                             sample: 3.4
+                        support:
+                            description:
+                                - number of samples in the test set
+                            returned: on success
+                            type: float
+                            sample: 3.4
                 confusion_matrix:
                     description:
                         - class level confusion matrix
@@ -761,7 +803,8 @@ model:
                                     sample: []
         version:
             description:
-                - "Identifying the model by model id is difficult. This param provides ease of use for end customer.
+                - "For pre trained models this will identify model type version used for model creation
+                  For custom identifying the model by model id is difficult. This param provides ease of use for end customer.
                   <<service>>::<<service-name>>_<<model-type-version>>::<<custom model on which this training has to be done>>
                   ex: ai-lang::NER_V1::CUSTOM-V0"
             returned: on success
@@ -795,10 +838,12 @@ model:
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "model_details": {
+            "version": "version_example",
             "language_code": "language_code_example",
             "model_type": "NAMED_ENTITY_RECOGNITION",
             "classification_mode": {
-                "classification_mode": "MULTI_CLASS"
+                "classification_mode": "MULTI_CLASS",
+                "version": "version_example"
             }
         },
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -839,7 +884,8 @@ model:
                 "label": "label_example",
                 "f1": 3.4,
                 "precision": 3.4,
-                "recall": 3.4
+                "recall": 3.4,
+                "support": 3.4
             }],
             "confusion_matrix": {
                 "matrix": {}
@@ -1033,12 +1079,6 @@ def main():
             model_details=dict(
                 type="dict",
                 options=dict(
-                    language_code=dict(type="str"),
-                    model_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["NAMED_ENTITY_RECOGNITION", "TEXT_CLASSIFICATION"],
-                    ),
                     classification_mode=dict(
                         type="dict",
                         options=dict(
@@ -1046,9 +1086,30 @@ def main():
                                 type="str",
                                 required=True,
                                 choices=["MULTI_CLASS", "MULTI_LABEL"],
-                            )
+                            ),
+                            version=dict(type="str"),
                         ),
                     ),
+                    language_code=dict(type="str"),
+                    model_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "PRE_TRAINED_KEYPHRASE_EXTRACTION",
+                            "PRE_TRAINED_HEALTH_NLU",
+                            "PRE_TRAINED_UNIVERSAL",
+                            "NAMED_ENTITY_RECOGNITION",
+                            "PRE_TRAINED_LANGUAGE_DETECTION",
+                            "PRE_TRAINED_NAMED_ENTITY_RECOGNITION",
+                            "PRE_TRAINED_SENTIMENT_ANALYSIS",
+                            "PRE_TRAINED_PHI",
+                            "PRE_TRAINED_TEXT_CLASSIFICATION",
+                            "TEXT_CLASSIFICATION",
+                            "PRE_TRAINED_SUMMARIZATION",
+                            "PRE_TRAINED_PII",
+                        ],
+                    ),
+                    version=dict(type="str"),
                 ),
             ),
             training_dataset=dict(

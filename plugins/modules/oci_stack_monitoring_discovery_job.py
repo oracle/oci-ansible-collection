@@ -71,6 +71,7 @@ options:
                     - "OCI_ORACLE_PDB"
                     - "HOST"
                     - "ORACLE_PSFT"
+                    - "ORACLE_MFT"
                 required: true
             resource_name:
                 description:
@@ -128,6 +129,12 @@ options:
                         description:
                             - Key/Value pair of Property
                         type: dict
+    should_propagate_tags_to_discovered_resources:
+        description:
+            - If this parameter set to true, the specified tags will be applied
+              to all resources discovered in the current request.
+              Default is true.
+        type: bool
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -186,6 +193,7 @@ EXAMPLES = """
     # optional
     discovery_type: ADD
     discovery_client: discovery_client_example
+    should_propagate_tags_to_discovered_resources: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -490,6 +498,9 @@ class DiscoveryJobHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateDiscoveryJobDetails
 
+    def get_exclude_attributes(self):
+        return ["should_propagate_tags_to_discovered_resources"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -558,6 +569,7 @@ def main():
                             "OCI_ORACLE_PDB",
                             "HOST",
                             "ORACLE_PSFT",
+                            "ORACLE_MFT",
                         ],
                     ),
                     resource_name=dict(type="str", required=True),
@@ -590,6 +602,7 @@ def main():
                     ),
                 ),
             ),
+            should_propagate_tags_to_discovered_resources=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             discovery_job_id=dict(aliases=["id"], type="str"),

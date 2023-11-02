@@ -23,71 +23,74 @@ module: oci_stack_monitoring_monitored_resource_actions
 short_description: Perform actions on a MonitoredResource resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a MonitoredResource resource in Oracle Cloud Infrastructure
-    - For I(action=associate), create an association between two monitored resources.
-    - For I(action=change_compartment), moves a MonitoredResource resource from one compartment identifier to another. When provided, If-Match is checked
-      against ETag values of the resource.
-    - For I(action=disable_external_database), disable external database resource monitoring.
+    - For I(action=associate), create an association between two monitored resources. Associations can be created
+      between resources from different compartments as long they are in same tenancy.
+      User should have required access in both the compartments.
+    - For I(action=change_compartment), moves a monitored resource from one compartment to another.
+      When provided, If-Match is checked against ETag values of the resource.
+    - For I(action=disable_external_database), disable external database resource monitoring. All the references in DBaaS,
+      DBM and resource service will be deleted as part of this operation.
     - For I(action=disassociate), removes associations between two monitored resources.
-    - For I(action=search_monitored_resource_associations), returns a list of monitored resource associations.
-    - For I(action=search_monitored_resource_members), list resources which are members of the given monitored resource
-    - For I(action=search), returns a list of monitored resources.
+    - For I(action=search_monitored_resource_associations), search associations in the given compartment based on the search criteria.
+    - For I(action=search_monitored_resource_members), list the member resources for the given monitored resource identifier
+      L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+    - For I(action=search), gets a list of all monitored resources in a compartment for the given search criteria.
+    - For I(action=update_and_propagate_tags), provided tags will be added or updated in the existing list of tags for the affected resources.
+      Resources to be updated are identified based on association types specified.
+      If association types not specified, then tags will be updated only for the resource identified by
+      the given monitored resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     source_resource_id:
         description:
-            - Source Monitored Resource Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            - Source Monitored Resource Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for I(action=associate).
         type: str
     source_resource_name:
         description:
-            - Source Monitored Resource Name
+            - Source Monitored Resource Name.
             - Applicable only for I(action=search_monitored_resource_associations).
         type: str
     source_resource_type:
         description:
-            - Source Monitored Resource Type
+            - Source Monitored Resource Type.
             - Applicable only for I(action=search_monitored_resource_associations).
         type: str
     destination_resource_name:
         description:
-            - Source Monitored Resource Name
+            - Source Monitored Resource Name.
             - Applicable only for I(action=search_monitored_resource_associations).
         type: str
     destination_resource_type:
         description:
-            - Source Monitored Resource Type
+            - Source Monitored Resource Type.
             - Applicable only for I(action=search_monitored_resource_associations).
         type: str
     association_type:
         description:
-            - Association type to be created between source and destination resources
+            - Association type to be created between source and destination resources.
             - Required for I(action=associate).
-        type: str
-    monitored_resource_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
-            - Required for I(action=change_compartment), I(action=disable_external_database), I(action=search_monitored_resource_members).
         type: str
     destination_resource_id:
         description:
-            - Destination Monitored Resource Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            - Destination Monitored Resource Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for I(action=associate).
         type: str
     limit_level:
         description:
-            - The field which determines the depth of hierarchy while searching for members
+            - The field which determines the depth of hierarchy while searching for members.
             - Applicable only for I(action=search_monitored_resource_members).
         type: int
     compartment_id:
         description:
-            - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for I(action=associate), I(action=change_compartment), I(action=disassociate), I(action=search_monitored_resource_associations),
               I(action=search).
         type: str
     name:
         description:
-            - A filter to return resources that match exact resource name
+            - A filter to return resources that match exact resource name.
             - Applicable only for I(action=search).
         type: str
     name_contains:
@@ -97,25 +100,25 @@ options:
         type: str
     type:
         description:
-            - A filter to return resources that match resource type
+            - A filter to return resources that match resource type.
             - Applicable only for I(action=search).
         type: str
     host_name:
         description:
-            - A filter to return resources with host name match
+            - A filter to return resources with host name match.
             - Applicable only for I(action=search).
         type: str
     external_id:
         description:
             - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
               which is not a Stack Monitoring service resource.
-              Currently supports only following resource type identifiers - externalcontainerdatabase,
-              externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+              Currently supports only following resource types - Container database, non-container database,
+              pluggable database and OCI compute instance."
             - Applicable only for I(action=search).
         type: str
     host_name_contains:
         description:
-            - A filter to return resources with host name pattern
+            - A filter to return resources with host name pattern.
             - Applicable only for I(action=search).
         type: str
     management_agent_id:
@@ -181,7 +184,9 @@ options:
         type: str
     resource_time_zone:
         description:
-            - Time zone in the form of tz database canonical zone ID.
+            - "Time zone in the form of tz database canonical zone ID. Specifies the preference with
+              a value that uses the IANA Time Zone Database format (x-obmcs-time-zone).
+              For example - America/Los_Angeles"
             - Applicable only for I(action=search).
         type: str
     sort_order:
@@ -240,6 +245,34 @@ options:
             - Applicable only for I(action=search).
         type: list
         elements: str
+    monitored_resource_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
+            - Required for I(action=change_compartment), I(action=disable_external_database), I(action=search_monitored_resource_members),
+              I(action=update_and_propagate_tags).
+        type: str
+        aliases: ["id"]
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Applicable only for I(action=update_and_propagate_tags).
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - Applicable only for I(action=update_and_propagate_tags).
+        type: dict
+    association_types:
+        description:
+            - Association types that will be traversed recursively starting from the current resource,
+              to identify resources for which the tags will be updated.
+              If no association type is specified, only current resource will be updated.
+              Default is empty list, which means no related resources will be updated.
+            - Applicable only for I(action=update_and_propagate_tags).
+        type: list
+        elements: str
     action:
         description:
             - The action to perform on the MonitoredResource.
@@ -253,6 +286,7 @@ options:
             - "search_monitored_resource_associations"
             - "search_monitored_resource_members"
             - "search"
+            - "update_and_propagate_tags"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -269,8 +303,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on monitored_resource
   oci_stack_monitoring_monitored_resource_actions:
     # required
-    monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action disable_external_database on monitored_resource
@@ -345,6 +379,17 @@ EXAMPLES = """
     fields: [ "fields_example" ]
     exclude_fields: [ "exclude_fields_example" ]
 
+- name: Perform action update_and_propagate_tags on monitored_resource
+  oci_stack_monitoring_monitored_resource_actions:
+    # required
+    monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
+    action: update_and_propagate_tags
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    association_types: [ "association_types_example" ]
+
 """
 
 RETURN = """
@@ -356,7 +401,7 @@ monitored_resource:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
+                - Monitored resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -374,19 +419,19 @@ monitored_resource:
             sample: display_name_example
         type:
             description:
-                - Monitored resource type
+                - Monitored Resource Type.
             returned: on success
             type: str
             sample: type_example
         compartment_id:
             description:
-                - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tenant_id:
             description:
-                - Tenancy Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                - Tenancy Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
@@ -398,10 +443,10 @@ monitored_resource:
             sample: host_name_example
         external_id:
             description:
-                - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
-                  which is not a Stack Monitoring service resource.
-                  Currently supports only following resource type identifiers - externalcontainerdatabase,
-                  externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+                - "The external resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                  External resource is any OCI resource which is not a Stack Monitoring service resource.
+                  Currently supports only following resource types - Container database, non-container database,
+                  pluggable database and OCI compute instance."
             returned: on success
             type: str
             sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
@@ -419,13 +464,15 @@ monitored_resource:
             sample: resource_time_zone_example
         time_created:
             description:
-                - The time the the resource was created. An RFC3339 formatted datetime string
+                - The date and time when the monitored resource was created, expressed in
+                  L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the the resource was updated. An RFC3339 formatted datetime string
+                - The date and time when the monitored resource was last updated, expressed in
+                  L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -437,19 +484,19 @@ monitored_resource:
             sample: CREATING
         properties:
             description:
-                - List of monitored resource properties
+                - List of monitored resource properties.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - property name
+                        - Property Name.
                     returned: on success
                     type: str
                     sample: name_example
                 value:
                     description:
-                        - property value
+                        - Property Value.
                     returned: on success
                     type: str
                     sample: value_example
@@ -473,7 +520,7 @@ monitored_resource:
                     sample: 56
                 connector_id:
                     description:
-                        - Database connector Identifier
+                        - Database connector Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
@@ -491,13 +538,13 @@ monitored_resource:
                     sample: db_unique_name_example
                 db_id:
                     description:
-                        - dbId of the database
+                        - dbId of the database.
                     returned: on success
                     type: str
                     sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
                 ssl_secret_id:
                     description:
-                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
@@ -509,15 +556,15 @@ monitored_resource:
             contains:
                 key_id:
                     description:
-                        - The master key OCID and applicable only for property value type ENCRYPTION. Key OCID is passed as input to Key management service
-                          decrypt API to retrieve the encrypted property value text.
+                        - The master key should be created in OCI Vault owned by the client of this API.
+                          The user should have permission to access the vault key.
                     returned: on success
                     type: str
                     sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
                 source:
                     description:
-                        - The source type and source name combination,delimited with (.) separator. {source type}.{source name} and source type max char limit
-                          is 63.
+                        - The source type and source name combination, delimited with (.) separator.
+                          {source type}.{source name} and source type max char limit is 63.
                     returned: on success
                     type: str
                     sample: source_example
@@ -541,11 +588,15 @@ monitored_resource:
                     sample: description_example
                 credential_type:
                     description:
-                        - "Type of credentials specified in the credentials element. Three possible values - EXISTING, PLAINTEXT and ENCRYPTED. * EXISTING  -
-                          Credential is already stored in agent and only credential name need to be passed for existing credential. * PLAINTEXT - The credential
-                          properties will have credentials in plain text format. * ENCRYPTED - The credential properties will have credentials stored in vault
-                          in encrypted format using KMS client which uses master key for encryption. The same master key will be used to decrypt the credentials
-                          before passing on to the management agent."
+                        - "Type of credentials specified in the credentials element.
+                          Three possible values - EXISTING, PLAINTEXT and ENCRYPTED.
+                          * EXISTING  - Credential is already stored in agent and only credential name need
+                                  to be passed for existing credential.
+                          * PLAINTEXT - The credential properties will have credentials in plain text format.
+                          * ENCRYPTED - The credential properties will have credentials stored in vault in
+                                  encrypted format using KMS client which uses master key for encryption.
+                                  The same master key will be used to decrypt the credentials before passing
+                                  on to the management agent."
                     returned: on success
                     type: str
                     sample: EXISTING
@@ -557,15 +608,15 @@ monitored_resource:
                     contains:
                         name:
                             description:
-                                - The name of the credential property, should confirm with names of properties of this credential's type. Ex. For JMXCreds type
-                                  , credential property name for weblogic user is 'Username'.
+                                - "The name of the credential property, should confirm with names of properties of this credential's type.
+                                  Example: For JMXCreds type, credential property name for weblogic user is 'Username'."
                             returned: on success
                             type: str
                             sample: name_example
                         value:
                             description:
-                                - The value of the credential property name. Ex. For JMXCreds type, credential property value for 'Username' property is
-                                  'weblogic'.
+                                - "The value of the credential property name.
+                                  Example: For JMXCreds type, credential property value for 'Username' property is 'weblogic'."
                             returned: on success
                             type: str
                             sample: value_example
@@ -577,8 +628,8 @@ monitored_resource:
             contains:
                 source:
                     description:
-                        - The source type and source name combination,delimited with (.) separator. Ex. {source type}.{source name} and source type max char
-                          limit is 63.
+                        - "The source type and source name combination,delimited with (.) separator.
+                          Example: {source type}.{source name} and source type max char limit is 63."
                     returned: on success
                     type: str
                     sample: source_example
@@ -596,21 +647,23 @@ monitored_resource:
                     contains:
                         source:
                             description:
-                                - The source type and source name combination,delimited with (.) separator. This refers to the pre-existing source which alias
-                                  cred should point to. Ex. {source type}.{source name} and source type max char limit is 63.
+                                - The source type and source name combination,delimited with (.) separator.
+                                  This refers to the pre-existing source which alias cred should point to.
+                                  Ex. {source type}.{source name} and source type max char limit is 63.
                             returned: on success
                             type: str
                             sample: source_example
                         name:
                             description:
-                                - The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source
-                                  attribute binded credential name.
+                                - The name of the pre-existing source credential which alias cred should point to.
+                                  This should refer to the pre-existing source attribute which is bound to credential name.
                             returned: on success
                             type: str
                             sample: name_example
                         service:
                             description:
-                                - The name of the service owning the credential. Ex stack-monitoring or dbmgmt
+                                - "The name of the service owning the credential.
+                                  Example: stack-monitoring or dbmgmt"
                             returned: on success
                             type: str
                             sample: service_example
@@ -707,6 +760,7 @@ try:
     from oci.stack_monitoring.models import SearchMonitoredResourceAssociationsDetails
     from oci.stack_monitoring.models import SearchMonitoredResourceMembersDetails
     from oci.stack_monitoring.models import SearchMonitoredResourcesDetails
+    from oci.stack_monitoring.models import UpdateAndPropagateTagsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -723,7 +777,15 @@ class MonitoredResourceActionsHelperGen(OCIActionsHelperBase):
         search_monitored_resource_associations
         search_monitored_resource_members
         search
+        update_and_propagate_tags
     """
+
+    @staticmethod
+    def get_module_resource_id_param():
+        return "monitored_resource_id"
+
+    def get_module_resource_id(self):
+        return self.module.params.get("monitored_resource_id")
 
     def get_get_fn(self):
         return self.client.get_monitored_resource
@@ -885,6 +947,27 @@ class MonitoredResourceActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def update_and_propagate_tags(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, UpdateAndPropagateTagsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_and_propagate_tags,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                monitored_resource_id=self.module.params.get("monitored_resource_id"),
+                update_and_propagate_tags_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 MonitoredResourceActionsHelperCustom = get_custom_class(
     "MonitoredResourceActionsHelperCustom"
@@ -909,7 +992,6 @@ def main():
             destination_resource_name=dict(type="str"),
             destination_resource_type=dict(type="str"),
             association_type=dict(type="str"),
-            monitored_resource_id=dict(type="str"),
             destination_resource_id=dict(type="str"),
             limit_level=dict(type="int"),
             compartment_id=dict(type="str"),
@@ -951,6 +1033,10 @@ def main():
             property_equals=dict(type="dict"),
             fields=dict(type="list", elements="str"),
             exclude_fields=dict(type="list", elements="str"),
+            monitored_resource_id=dict(aliases=["id"], type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            association_types=dict(type="list", elements="str"),
             action=dict(
                 type="str",
                 required=True,
@@ -962,6 +1048,7 @@ def main():
                     "search_monitored_resource_associations",
                     "search_monitored_resource_members",
                     "search",
+                    "update_and_propagate_tags",
                 ],
             ),
         )

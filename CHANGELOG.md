@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.35.0]
+
+## Added
+- Support for news reports in the Operations Insights service
+- Support to generate user security token in Identity Data Plane service
+- Support for tags in the Stack Monitoring service
+- Support for Oracle MFT monitoring in the Stack Monitoring service
+- Support for address rules, address verification, and requesting addresses in the OSP Gateway service
+- Support for getting model type information and base model versions while creating language custom models in the AI Language service
+- Support for support field in class metric in the AI Language service
+- Support for freeform and defined tags on resources in the Generic Artifacts service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.115.0
+
 ## [4.34.0]
 
 ## Added

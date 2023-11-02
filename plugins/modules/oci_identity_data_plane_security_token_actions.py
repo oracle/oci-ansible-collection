@@ -23,21 +23,31 @@ module: oci_identity_data_plane_security_token_actions
 short_description: Perform actions on a SecurityToken resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a SecurityToken resource in Oracle Cloud Infrastructure
-    - For I(action=generate_scoped_access_token), based on the calling principal and the input payload, derive the claims and create a security token.
+    - For I(action=generate_scoped_access_token), based on the calling Principal and the input payload, derive the claims, and generate a scoped-access token
+      for specific resources. For example, set scope to urn:oracle:db::id::<compartment-id> for access to a database in a compartment.
+    - For I(action=generate_user), exchanges a valid user token-based signature (API key and UPST) for a short-lived UPST of the authenticated
+      user principal. When not specified, the user session duration is set to a default of 60 minutes in all realms. Resulting UPSTs
+      are refreshable while the user session has not expired.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     scope:
         description:
             - Scope definition for the scoped access token
+            - Required for I(action=generate_scoped_access_token).
         type: str
-        required: true
     public_key:
         description:
             - A temporary public key, owned by the service. The service also owns the corresponding private key. This public
-              key will by put inside the security token by the auth service after successful validation of the certificate.
+              key will be put inside the security token by the auth service after successful validation of the certificate.
         type: str
         required: true
+    session_expiration_in_minutes:
+        description:
+            - User session expiration in minutes to which the requested user principal session token (UPST) is bounded.
+              Valid values are from 5 to 60 for all realms.
+            - Applicable only for I(action=generate_user).
+        type: int
     action:
         description:
             - The action to perform on the SecurityToken.
@@ -45,6 +55,7 @@ options:
         required: true
         choices:
             - "generate_scoped_access_token"
+            - "generate_user"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -55,6 +66,15 @@ EXAMPLES = """
     scope: scope_example
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     action: generate_scoped_access_token
+
+- name: Perform action generate_user on security_token
+  oci_identity_data_plane_security_token_actions:
+    # required
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    action: generate_user
+
+    # optional
+    session_expiration_in_minutes: 56
 
 """
 
@@ -89,6 +109,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.identity_data_plane import DataplaneClient
     from oci.identity_data_plane.models import GenerateScopedAccessTokenDetails
+    from oci.identity_data_plane.models import GenerateUserSecurityTokenDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -99,6 +120,7 @@ class SecurityTokenActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         generate_scoped_access_token
+        generate_user
     """
 
     def generate_scoped_access_token(self):
@@ -109,6 +131,26 @@ class SecurityTokenActionsHelperGen(OCIActionsHelperBase):
             call_fn=self.client.generate_scoped_access_token,
             call_fn_args=(),
             call_fn_kwargs=dict(generate_scoped_access_token_details=action_details,),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def generate_user(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, GenerateUserSecurityTokenDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.generate_user_security_token,
+            call_fn_args=(),
+            call_fn_kwargs=dict(generate_user_security_token_details=action_details,),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -135,10 +177,13 @@ def main():
     )
     module_args.update(
         dict(
-            scope=dict(type="str", required=True),
+            scope=dict(type="str"),
             public_key=dict(type="str", required=True),
+            session_expiration_in_minutes=dict(type="int"),
             action=dict(
-                type="str", required=True, choices=["generate_scoped_access_token"]
+                type="str",
+                required=True,
+                choices=["generate_scoped_access_token", "generate_user"],
             ),
         )
     )

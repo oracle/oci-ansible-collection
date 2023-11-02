@@ -23,13 +23,14 @@ module: oci_stack_monitoring_associated_resources_facts
 short_description: Fetches details about one or multiple AssociatedResources resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AssociatedResources resources in Oracle Cloud Infrastructure
-    - List associated monitored resources.
+    - List all associated resources recursively up-to a specified level,
+      for the monitored resources of type specified.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
         required: true
     resource_type:
@@ -50,7 +51,7 @@ options:
         type: int
     association_types:
         description:
-            - List of association types to be searched for finding associated resources
+            - Association types filter to be searched for finding associated resources.
         type: list
         elements: str
     fields:
@@ -109,13 +110,13 @@ associated_resources:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
+                - Monitored resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - Name of the monitored resource
+                - Monitored Resource Name.
             returned: on success
             type: str
             sample: name_example
@@ -127,13 +128,19 @@ associated_resources:
             sample: display_name_example
         type:
             description:
-                - Type of the monitored resource
+                - Monitored Resource Type.
             returned: on success
             type: str
             sample: type_example
+        compartment_id:
+            description:
+                - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         host_name:
             description:
-                - Resource Host Name
+                - Monitored Resource Host Name.
             returned: on success
             type: str
             sample: host_name_example
@@ -141,8 +148,8 @@ associated_resources:
             description:
                 - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
                   which is not a Stack Monitoring service resource.
-                  Currently supports only following resource type identifiers - externalcontainerdatabase,
-                  externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+                  Currently supports only following resource types - Container database, non-container database,
+                  pluggable database and OCI compute instance."
             returned: on success
             type: str
             sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
@@ -160,19 +167,19 @@ associated_resources:
             sample: CREATING
         associated_resources:
             description:
-                - List of associated monitored resources
+                - List of associated monitored resources.
             returned: on success
             type: complex
             contains:
                 id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored resource.
+                        - Monitored resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
-                        - Name of the monitored resource
+                        - Monitored Resource Name.
                     returned: on success
                     type: str
                     sample: name_example
@@ -184,13 +191,19 @@ associated_resources:
                     sample: display_name_example
                 type:
                     description:
-                        - Type of the monitored resource
+                        - Monitored Resource Type.
                     returned: on success
                     type: str
                     sample: type_example
+                compartment_id:
+                    description:
+                        - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 host_name:
                     description:
-                        - Resource Host Name
+                        - Monitored Resource Host Name.
                     returned: on success
                     type: str
                     sample: host_name_example
@@ -198,8 +211,8 @@ associated_resources:
                     description:
                         - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
                           which is not a Stack Monitoring service resource.
-                          Currently supports only following resource type identifiers - externalcontainerdatabase,
-                          externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+                          Currently supports only following resource types - Container database, non-container database,
+                          pluggable database and OCI compute instance."
                     returned: on success
                     type: str
                     sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
@@ -217,7 +230,7 @@ associated_resources:
                     sample: CREATING
                 association:
                     description:
-                        - Association details of the resource
+                        - Association details of the resource.
                     returned: on success
                     type: dict
                     sample: {}
@@ -226,6 +239,7 @@ associated_resources:
         "name": "name_example",
         "display_name": "display_name_example",
         "type": "type_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "host_name": "host_name_example",
         "external_id": "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
@@ -235,6 +249,7 @@ associated_resources:
             "name": "name_example",
             "display_name": "display_name_example",
             "type": "type_example",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "host_name": "host_name_example",
             "external_id": "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx",
             "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",

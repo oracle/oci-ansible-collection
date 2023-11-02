@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_monitored_resource_actions -- Perform actions on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,13 +57,14 @@ Synopsis
 .. Description
 
 - Perform actions on a MonitoredResource resource in Oracle Cloud Infrastructure
-- For *action=associate*, create an association between two monitored resources.
-- For *action=change_compartment*, moves a MonitoredResource resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
-- For *action=disable_external_database*, disable external database resource monitoring.
+- For *action=associate*, create an association between two monitored resources. Associations can be created between resources from different compartments as long they are in same tenancy. User should have required access in both the compartments.
+- For *action=change_compartment*, moves a monitored resource from one compartment to another. When provided, If-Match is checked against ETag values of the resource.
+- For *action=disable_external_database*, disable external database resource monitoring. All the references in DBaaS, DBM and resource service will be deleted as part of this operation.
 - For *action=disassociate*, removes associations between two monitored resources.
-- For *action=search_monitored_resource_associations*, returns a list of monitored resource associations.
-- For *action=search_monitored_resource_members*, list resources which are members of the given monitored resource
-- For *action=search*, returns a list of monitored resources.
+- For *action=search_monitored_resource_associations*, search associations in the given compartment based on the search criteria.
+- For *action=search_monitored_resource_members*, list the member resources for the given monitored resource identifier `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *action=search*, gets a list of all monitored resources in a compartment for the given search criteria.
+- For *action=update_and_propagate_tags*, provided tags will be added or updated in the existing list of tags for the affected resources. Resources to be updated are identified based on association types specified. If association types not specified, then tags will be updated only for the resource identified by the given monitored resource identifier `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 
 
 .. Aliases
@@ -110,6 +111,7 @@ Parameters
                                                                                                                                                                                                 <li>search_monitored_resource_associations</li>
                                                                                                                                                                                                 <li>search_monitored_resource_members</li>
                                                                                                                                                                                                 <li>search</li>
+                                                                                                                                                                                                <li>update_and_propagate_tags</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -188,8 +190,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Association type to be created between source and destination resources</div>
+                                            <div>Association type to be created between source and destination resources.</div>
                                             <div>Required for <em>action=associate</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-association_types"></div>
+                    <b>association_types</b>
+                    <a class="ansibleOptionLink" href="#parameter-association_types" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Association types that will be traversed recursively starting from the current resource, to identify resources for which the tags will be updated. If no association type is specified, only current resource will be updated. Default is empty list, which means no related resources will be updated.</div>
+                                            <div>Applicable only for <em>action=update_and_propagate_tags</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -259,7 +277,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required for <em>action=associate</em>, <em>action=change_compartment</em>, <em>action=disassociate</em>, <em>action=search_monitored_resource_associations</em>, <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -295,6 +313,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Applicable only for <em>action=update_and_propagate_tags</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-destination_resource_id"></div>
                     <b>destination_resource_id</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_resource_id" title="Permalink to this option"></a>
@@ -305,7 +339,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Destination Monitored Resource Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Destination Monitored Resource Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required for <em>action=associate</em>.</div>
                                                         </td>
             </tr>
@@ -321,7 +355,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source Monitored Resource Name</div>
+                                            <div>Source Monitored Resource Name.</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_associations</em>.</div>
                                                         </td>
             </tr>
@@ -337,7 +371,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source Monitored Resource Type</div>
+                                            <div>Source Monitored Resource Type.</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_associations</em>.</div>
                                                         </td>
             </tr>
@@ -369,7 +403,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource types - Container database, non-container database, pluggable database and OCI compute instance.</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -391,6 +425,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Applicable only for <em>action=update_and_propagate_tags</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-host_name" title="Permalink to this option"></a>
@@ -401,7 +451,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return resources with host name match</div>
+                                            <div>A filter to return resources with host name match.</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -417,7 +467,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return resources with host name pattern</div>
+                                            <div>A filter to return resources with host name pattern.</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -457,7 +507,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The field which determines the depth of hierarchy while searching for members</div>
+                                            <div>The field which determines the depth of hierarchy while searching for members.</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_members</em>.</div>
                                                         </td>
             </tr>
@@ -490,8 +540,9 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of monitored resource.</div>
-                                            <div>Required for <em>action=change_compartment</em>, <em>action=disable_external_database</em>, <em>action=search_monitored_resource_members</em>.</div>
-                                                        </td>
+                                            <div>Required for <em>action=change_compartment</em>, <em>action=disable_external_database</em>, <em>action=search_monitored_resource_members</em>, <em>action=update_and_propagate_tags</em>.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -505,7 +556,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return resources that match exact resource name</div>
+                                            <div>A filter to return resources that match exact resource name.</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -587,7 +638,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Time zone in the form of tz database canonical zone ID.</div>
+                                            <div>Time zone in the form of tz database canonical zone ID. Specifies the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example - America/Los_Angeles</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -647,7 +698,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source Monitored Resource Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Source Monitored Resource Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required for <em>action=associate</em>.</div>
                                                         </td>
             </tr>
@@ -663,7 +714,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source Monitored Resource Name</div>
+                                            <div>Source Monitored Resource Name.</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_associations</em>.</div>
                                                         </td>
             </tr>
@@ -679,7 +730,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source Monitored Resource Type</div>
+                                            <div>Source Monitored Resource Type.</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_associations</em>.</div>
                                                         </td>
             </tr>
@@ -778,7 +829,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return resources that match resource type</div>
+                                            <div>A filter to return resources that match resource type.</div>
                                             <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
@@ -853,8 +904,8 @@ Examples
     - name: Perform action change_compartment on monitored_resource
       oci_stack_monitoring_monitored_resource_actions:
         # required
-        monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action disable_external_database on monitored_resource
@@ -928,6 +979,17 @@ Examples
         property_equals: null
         fields: [ "fields_example" ]
         exclude_fields: [ "exclude_fields_example" ]
+
+    - name: Perform action update_and_propagate_tags on monitored_resource
+      oci_stack_monitoring_monitored_resource_actions:
+        # required
+        monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
+        action: update_and_propagate_tags
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        association_types: [ "association_types_example" ]
 
 
 
@@ -1014,7 +1076,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute binded credential name.</div>
+                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute which is bound to credential name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1034,7 +1096,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the service owning the credential. Ex stack-monitoring or dbmgmt</div>
+                                            <div>The name of the service owning the credential. Example: stack-monitoring or dbmgmt</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_example</div>
@@ -1093,7 +1155,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. Ex. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination,delimited with (.) separator. Example: {source type}.{source name} and source type max char limit is 63.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_example</div>
@@ -1112,7 +1174,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1185,7 +1247,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The master key OCID and applicable only for property value type ENCRYPTION. Key OCID is passed as input to Key management service decrypt API to retrieve the encrypted property value text.</div>
+                                            <div>The master key should be created in OCI Vault owned by the client of this API. The user should have permission to access the vault key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1241,7 +1303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Ex. For JMXCreds type , credential property name for weblogic user is &#x27;Username&#x27;.</div>
+                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Example: For JMXCreds type, credential property name for weblogic user is &#x27;Username&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1261,7 +1323,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value of the credential property name. Ex. For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
+                                            <div>The value of the credential property name. Example: For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -1281,7 +1343,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination, delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_example</div>
@@ -1336,7 +1398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database connector Identifier</div>
+                                            <div>Database connector Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1355,7 +1417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>dbId of the database</div>
+                                            <div>dbId of the database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.db.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1450,7 +1512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)</div>
+                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1505,7 +1567,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                            <div>The external resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. External resource is any OCI resource which is not a Stack Monitoring service resource. Currently supports only following resource types - Container database, non-container database, pluggable database and OCI compute instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.external.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1559,7 +1621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of monitored resource.</div>
+                                            <div>Monitored resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1631,7 +1693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of monitored resource properties</div>
+                                            <div>List of monitored resource properties.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1648,7 +1710,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>property name</div>
+                                            <div>Property Name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1667,7 +1729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>property value</div>
+                                            <div>Property Value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -1720,7 +1782,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tenancy Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Tenancy Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1738,7 +1800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the resource was created. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time when the monitored resource was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1756,7 +1818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the resource was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time when the monitored resource was last updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1774,7 +1836,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Monitored resource type</div>
+                                            <div>Monitored Resource Type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>

@@ -40,30 +40,30 @@ options:
     target_language_code:
         description:
             - "Language code supported
-              Automatically detect language - auto
-              Arabic - ar
-              Brazilian Portuguese -  pt-BR
-              Czech - cs
-              Danish - da
-              Dutch - nl
-              English - en
-              Finnish - fi
-              French - fr
-              Canadian French - fr-CA
-              German - de
-              Italian - it
-              Japanese - ja
-              Korean - ko
-              Norwegian - no
-              Polish - pl
-              Romanian - ro
-              Simplified Chinese - zh-CN
-              Spanish - es
-              Swedish - sv
-              Traditional Chinese - zh-TW
-              Turkish - tr
-              Greek - el
-              Hebrew - he"
+              - auto : Automatically detect language
+              - ar : Arabic
+              - pt-BR : Brazilian Portuguese
+              - cs : Czech
+              - da : Danish
+              - nl : Dutch
+              - en : English
+              - fi : Finnish
+              - fr : French
+              - fr-CA : Canadian French
+              - de : German
+              - it : Italian
+              - ja : Japanese
+              - ko : Korean
+              - no : Norwegian
+              - pl : Polish
+              - ro : Romanian
+              - zh-CN : Simplified Chinese
+              - es : Spanish
+              - sv : Swedish
+              - zh-TW : Traditional Chinese
+              - tr : Turkish
+              - el : Greek
+              - he : Hebrew"
         type: str
     documents:
         description:
@@ -84,31 +84,8 @@ options:
                 required: true
             language_code:
                 description:
-                    - "Language code supported
-                      Automatically detect language - auto
-                      Arabic - ar
-                      Brazilian Portuguese - pt-BR
-                      Czech - cs
-                      Danish - da
-                      Dutch - nl
-                      English - en
-                      Finnish - fi
-                      French - fr
-                      Canadian French - fr-CA
-                      German - de
-                      Italian - it
-                      Japanese - ja
-                      Korean - ko
-                      Norwegian - no
-                      Polish - pl
-                      Romanian - ro
-                      Simplified Chinese - zh-CN
-                      Spanish - es
-                      Swedish - sv
-                      Traditional Chinese - zh-TW
-                      Turkish - tr
-                      Greek - el
-                      Hebrew - he"
+                    - Language code of the document. Please refer to respective model L(API
+                      documentation,https://docs.cloud.oracle.com/iaas/language/using/overview.htm) for supported languages.
                 type: str
     action:
         description:
@@ -167,60 +144,60 @@ batch_language_translation_result:
                 source_language_code:
                     description:
                         - "Language code supported
-                          Automatically detect language - auto
-                          Arabic - ar
-                          Brazilian Portuguese -  pt-BR
-                          Czech - cs
-                          Danish - da
-                          Dutch - nl
-                          English - en
-                          Finnish - fi
-                          French - fr
-                          Canadian French - fr-CA
-                          German - de
-                          Italian - it
-                          Japanese - ja
-                          Korean - ko
-                          Norwegian - no
-                          Polish - pl
-                          Romanian - ro
-                          Simplified Chinese - zh-CN
-                          Spanish - es
-                          Swedish - sv
-                          Traditional Chinese - zh-TW
-                          Turkish - tr
-                          Greek - el
-                          Hebrew - he"
+                          - auto : Automatically detect language
+                          - ar : Arabic
+                          - pt-BR : Brazilian Portuguese
+                          - cs : Czech
+                          - da : Danish
+                          - nl : Dutch
+                          - en : English
+                          - fi : Finnish
+                          - fr : French
+                          - fr-CA : Canadian French
+                          - de : German
+                          - it : Italian
+                          - ja : Japanese
+                          - ko : Korean
+                          - no : Norwegian
+                          - pl : Polish
+                          - ro : Romanian
+                          - zh-CN : Simplified Chinese
+                          - es : Spanish
+                          - sv : Swedish
+                          - zh-TW : Traditional Chinese
+                          - tr : Turkish
+                          - el : Greek
+                          - he : Hebrew"
                     returned: on success
                     type: str
                     sample: source_language_code_example
                 target_language_code:
                     description:
                         - "Language code supported
-                          Automatically detect language - auto
-                          Arabic - ar
-                          Brazilian Portuguese -  pt-BR
-                          Czech - cs
-                          Danish - da
-                          Dutch - nl
-                          English - en
-                          Finnish - fi
-                          French - fr
-                          Canadian French - fr-CA
-                          German - de
-                          Italian - it
-                          Japanese - ja
-                          Korean - ko
-                          Norwegian - no
-                          Polish - pl
-                          Romanian - ro
-                          Simplified Chinese - zh-CN
-                          Spanish - es
-                          Swedish - sv
-                          Traditional Chinese - zh-TW
-                          Turkish - tr
-                          Greek - el
-                          Hebrew - he"
+                          - auto : Automatically detect language
+                          - ar : Arabic
+                          - pt-BR : Brazilian Portuguese
+                          - cs : Czech
+                          - da : Danish
+                          - nl : Dutch
+                          - en : English
+                          - fi : Finnish
+                          - fr : French
+                          - fr-CA : Canadian French
+                          - de : German
+                          - it : Italian
+                          - ja : Japanese
+                          - ko : Korean
+                          - no : Norwegian
+                          - pl : Polish
+                          - ro : Romanian
+                          - zh-CN : Simplified Chinese
+                          - es : Spanish
+                          - sv : Swedish
+                          - zh-TW : Traditional Chinese
+                          - tr : Turkish
+                          - el : Greek
+                          - he : Hebrew"
                     returned: on success
                     type: str
                     sample: target_language_code_example

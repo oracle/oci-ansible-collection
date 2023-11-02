@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_monitored_resource -- Manage a MonitoredResource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a MonitoredResource resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new monitored resource for the given resource type
-- This resource has the following action operations in the :ref:`oracle.oci.oci_stack_monitoring_monitored_resource_actions <ansible_collections.oracle.oci.oci_stack_monitoring_monitored_resource_actions_module>` module: associate, change_compartment, disable_external_database, disassociate, search_monitored_resource_associations, search_monitored_resource_members, search.
+- For *state=present*, creates a new monitored resource for the given resource type with the details and submits a work request for promoting the resource to agent. Once the resource is successfully added to agent, resource state will be marked active.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_stack_monitoring_monitored_resource_actions <ansible_collections.oracle.oci.oci_stack_monitoring_monitored_resource_actions_module>` module: associate, change_compartment, disable_external_database, disassociate, search_monitored_resource_associations, search_monitored_resource_members, search, update_and_propagate_tags.
 
 
 .. Aliases
@@ -88,6 +88,296 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases"></div>
+                    <b>additional_aliases</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of MonitoredResourceAliasCredentials. This property complements the existing &quot;aliases&quot; property by allowing user to specify more than one credential alias. If both &quot;aliases&quot; and &quot;additionalAliases&quot; are specified, union of the values is used as list of aliases applicable for this resource. If any duplicate found in the combined list of &quot;alias&quot; and &quot;additionalAliases&quot;, an error will be thrown.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/credential"></div>
+                    <b>credential</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/credential" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/credential/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/credential/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute which is bound to credential name.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/credential/service"></div>
+                    <b>service</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/credential/service" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the service owning the credential. Example: stack-monitoring or dbmgmt</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/credential/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/credential/source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The source type and source name combination,delimited with (.) separator. This refers to the pre-existing source which alias cred should point to. Ex. {source type}.{source name} and source type max char limit is 63.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the alias, within the context of the source.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_aliases/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_aliases/source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The source type and source name combination,delimited with (.) separator. Example: {source type}.{source name} and source type max char limit is 63.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials"></div>
+                    <b>additional_credentials</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of MonitoredResourceCredentials. This property complements the existing &quot;credentials&quot; property by allowing user to specify more than one credential. If both &quot;credential&quot; and &quot;additionalCredentials&quot; are specified, union of the values is used as list of credentials applicable for this resource. If any duplicate found in the combined list of &quot;credentials&quot; and &quot;additionalCredentials&quot;, an error will be thrown.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/credential_type"></div>
+                    <b>credential_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/credential_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>EXISTING</li>
+                                                                                                                                                                                                <li>ENCRYPTED</li>
+                                                                                                                                                                                                <li>PLAINTEXT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of credentials specified in the credentials element. Three possible values - EXISTING, PLAINTEXT and ENCRYPTED. * EXISTING  - Credential is already stored in agent and only credential name need to be passed for existing credential. * PLAINTEXT - The credential properties will have credentials in plain text format. * ENCRYPTED - The credential properties will have credentials stored in vault in encrypted format using KMS client which uses master key for encryption. The same master key will be used to decrypt the credentials before passing on to the management agent.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/description" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The user-specified textual description of the credential.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/key_id"></div>
+                    <b>key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The master key should be created in OCI Vault owned by the client of this API. The user should have permission to access the vault key.</div>
+                                            <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the credential, within the context of the source.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/properties"></div>
+                    <b>properties</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/properties" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The credential properties list. Credential property values will be encrypted format.</div>
+                                            <div>Required when credential_type is one of [&#x27;PLAINTEXT&#x27;, &#x27;ENCRYPTED&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/properties/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/properties/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Example: For JMXCreds type, credential property name for weblogic user is &#x27;Username&#x27;.</div>
+                                            <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/properties/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/properties/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The value of the credential property name. Example: For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
+                                            <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The source type and source name combination, delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_credentials/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_credentials/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The type of the credential ( ex. JMXCreds,DBCreds).</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-aliases"></div>
                     <b>aliases</b>
@@ -133,7 +423,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute binded credential name.</div>
+                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute which is bound to credential name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -150,7 +440,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the service owning the credential. Ex stack-monitoring or dbmgmt</div>
+                                            <div>The name of the service owning the credential. Example: stack-monitoring or dbmgmt</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -200,7 +490,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. Ex. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination,delimited with (.) separator. Example: {source type}.{source name} and source type max char limit is 63.</div>
                                                         </td>
             </tr>
                     
@@ -331,7 +621,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -431,7 +721,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The master key OCID and applicable only for property value type ENCRYPTION. Key OCID is passed as input to Key management service decrypt API to retrieve the encrypted property value text.</div>
+                                            <div>The master key should be created in OCI Vault owned by the client of this API. The user should have permission to access the vault key.</div>
                                             <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
                                                         </td>
             </tr>
@@ -482,7 +772,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Ex. For JMXCreds type , credential property name for weblogic user is &#x27;Username&#x27;.</div>
+                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Example: For JMXCreds type, credential property name for weblogic user is &#x27;Username&#x27;.</div>
                                             <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
                                                         </td>
             </tr>
@@ -500,7 +790,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The value of the credential property name. Ex. For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
+                                            <div>The value of the credential property name. Example: For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
                                             <div>Required when credential_type is &#x27;ENCRYPTED&#x27;</div>
                                                         </td>
             </tr>
@@ -518,7 +808,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination, delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -567,7 +857,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Database connector Identifier</div>
+                                            <div>Database connector Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -583,7 +873,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>dbId of the database</div>
+                                            <div>dbId of the database.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -667,10 +957,26 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)</div>
+                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).</div>
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
@@ -738,6 +1044,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-host_name"></div>
                     <b>host_name</b>
                     <a class="ansibleOptionLink" href="#parameter-host_name" title="Permalink to this option"></a>
@@ -748,7 +1070,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Host name of the monitored resource</div>
+                                            <div>Host name of the monitored resource.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -768,7 +1090,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to delete the associated children or not for given resource.</div>
+                                            <div>If this query parameter is specified and set to true, all the member resources will be deleted before deleting the specified resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -831,7 +1153,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Monitored resource name</div>
+                                            <div>Monitored Resource Name.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -847,7 +1169,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of monitored resource properties</div>
+                                            <div>List of monitored resource properties.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -864,7 +1186,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>property name</div>
+                                            <div>Property Name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -880,7 +1202,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>property value</div>
+                                            <div>Property Value.</div>
                                                         </td>
             </tr>
                     
@@ -930,7 +1252,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Time zone in the form of tz database canonical zone ID.</div>
+                                            <div>Time zone in the form of tz database canonical zone ID. Specifies the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example - America/Los_Angeles</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -982,7 +1304,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Monitored resource type</div>
+                                            <div>Monitored Resource Type.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1092,6 +1414,26 @@ Examples
             source: source_example
             name: name_example
             service: service_example
+        additional_credentials:
+        - # required
+          credential_type: EXISTING
+
+          # optional
+          source: source_example
+          name: name_example
+          type: type_example
+          description: description_example
+        additional_aliases:
+        - # required
+          source: source_example
+          name: name_example
+          credential:
+            # required
+            source: source_example
+            name: name_example
+            service: service_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update monitored_resource
       oci_stack_monitoring_monitored_resource:
@@ -1135,6 +1477,26 @@ Examples
             source: source_example
             name: name_example
             service: service_example
+        additional_credentials:
+        - # required
+          credential_type: EXISTING
+
+          # optional
+          source: source_example
+          name: name_example
+          type: type_example
+          description: description_example
+        additional_aliases:
+        - # required
+          source: source_example
+          name: name_example
+          credential:
+            # required
+            source: source_example
+            name: name_example
+            service: service_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete monitored_resource
       oci_stack_monitoring_monitored_resource:
@@ -1230,7 +1592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute binded credential name.</div>
+                                            <div>The name of the pre-existing source credential which alias cred should point to. This should refer to the pre-existing source attribute which is bound to credential name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1250,7 +1612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the service owning the credential. Ex stack-monitoring or dbmgmt</div>
+                                            <div>The name of the service owning the credential. Example: stack-monitoring or dbmgmt</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_example</div>
@@ -1309,7 +1671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. Ex. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination,delimited with (.) separator. Example: {source type}.{source name} and source type max char limit is 63.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_example</div>
@@ -1328,7 +1690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Compartment Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1401,7 +1763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The master key OCID and applicable only for property value type ENCRYPTION. Key OCID is passed as input to Key management service decrypt API to retrieve the encrypted property value text.</div>
+                                            <div>The master key should be created in OCI Vault owned by the client of this API. The user should have permission to access the vault key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1457,7 +1819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Ex. For JMXCreds type , credential property name for weblogic user is &#x27;Username&#x27;.</div>
+                                            <div>The name of the credential property, should confirm with names of properties of this credential&#x27;s type. Example: For JMXCreds type, credential property name for weblogic user is &#x27;Username&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1477,7 +1839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value of the credential property name. Ex. For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
+                                            <div>The value of the credential property name. Example: For JMXCreds type, credential property value for &#x27;Username&#x27; property is &#x27;weblogic&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -1497,7 +1859,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source type and source name combination,delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
+                                            <div>The source type and source name combination, delimited with (.) separator. {source type}.{source name} and source type max char limit is 63.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_example</div>
@@ -1552,7 +1914,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database connector Identifier</div>
+                                            <div>Database connector Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1571,7 +1933,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>dbId of the database</div>
+                                            <div>dbId of the database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.db.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1666,7 +2028,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)</div>
+                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1721,7 +2083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                            <div>The external resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. External resource is any OCI resource which is not a Stack Monitoring service resource. Currently supports only following resource types - Container database, non-container database, pluggable database and OCI compute instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.external.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1775,7 +2137,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of monitored resource.</div>
+                                            <div>Monitored resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1847,7 +2209,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of monitored resource properties</div>
+                                            <div>List of monitored resource properties.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1864,7 +2226,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>property name</div>
+                                            <div>Property Name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1883,7 +2245,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>property value</div>
+                                            <div>Property Value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -1936,7 +2298,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tenancy Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Tenancy Identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1954,7 +2316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the resource was created. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time when the monitored resource was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1972,7 +2334,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the resource was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time when the monitored resource was last updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1990,7 +2352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Monitored resource type</div>
+                                            <div>Monitored Resource Type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
