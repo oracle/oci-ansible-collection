@@ -132,6 +132,10 @@ DOCUMENTATION = """
             type: bool
             env:
                 - name: OCI_PRIMARY_VNIC_ONLY
+        enable_ipv6:
+            description: Fetch IPv6 address information from VNICs. Default value set to True.
+            type: bool
+            default: true
         debug:
             description: Parameter to enable logs while running the inventory plugin. Default value is set to False
             type: boolean
@@ -353,6 +357,9 @@ fetch_compute_hosts: True
 
 # Process only the primary vnic of a compute instance
 primary_vnic_only: True
+
+# Fetch IPv6 address information from VNICs.
+enable_ipv6: True
 
 # Select compartment by ocid or name
 exclude_compartments:
@@ -581,6 +588,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self.get_option("primary_vnic_only"):
             return self.get_option("primary_vnic_only")
         return False
+
+    def _get_enable_ipv6(self):
+        # get_option takes care of Preference order: .oci.yml > environment variable
+        if self.get_option("enable_ipv6") is not None:
+            return self.get_option("enable_ipv6")
+        return True
 
     def read_oci_config_file(self):
         self._get_config_file_path()
@@ -1430,22 +1443,24 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         )
                         continue
 
-                    try:
-                        ipv6_ip_addresses = [
-                            ipv6.ip_address
-                            for ipv6 in oci_common_utils.call_with_backoff(
-                                virtual_nw_client.list_ipv6s, vnic_id=vnic.id
-                            ).data
-                        ]
-                    except ServiceError as ex:
-                        if ex.status != 404:
-                            raise
-                        else:
-                            self.debug(
-                                "Skipped Ipv6 information because we got 404 unauthorized error. Please check the "
-                                "relevant permissions. Please refer to "
-                                "https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/inventory_plugin/index.html"
-                            )
+                    ipv6_ip_addresses = []
+                    if self._get_enable_ipv6():
+                        try:
+                            ipv6_ip_addresses = [
+                                ipv6.ip_address
+                                for ipv6 in oci_common_utils.call_with_backoff(
+                                    virtual_nw_client.list_ipv6s, vnic_id=vnic.id
+                                ).data
+                            ]
+                        except ServiceError as ex:
+                            if ex.status != 404:
+                                raise
+                            else:
+                                self.debug(
+                                    "Skipped Ipv6 information because we got 404 unauthorized error. Please check the "
+                                    "relevant permissions. Please refer to "
+                                    "https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/inventory_plugin/index.html"
+                                )
 
                     if instance_vars.get("id") == vnic_attachment.instance_id:
 
@@ -1943,7 +1958,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
             self.debug(
                 "Check the trouble shooting guidelines for common failures "
-                "https://oci-ansible-collection.readthedocs.io/en/latest/guides/troubleshooting-guide.html#inventory-plugin-errors"
+                "https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/guides/troubleshooting-guide.html#inventory-plugin-errors"
             )
             raise
 

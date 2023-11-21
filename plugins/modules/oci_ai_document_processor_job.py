@@ -141,6 +141,16 @@ options:
                 elements: dict
                 required: true
                 suboptions:
+                    model_id:
+                        description:
+                            - The custom model ID.
+                            - Applicable when feature_type is one of ['KEY_VALUE_EXTRACTION', 'DOCUMENT_CLASSIFICATION']
+                        type: str
+                    tenancy_id:
+                        description:
+                            - The custom model tenancy ID when modelId represents aliasName.
+                            - Applicable when feature_type is one of ['KEY_VALUE_EXTRACTION', 'DOCUMENT_CLASSIFICATION']
+                        type: str
                     max_results:
                         description:
                             - The maximum number of results to return.
@@ -209,6 +219,8 @@ EXAMPLES = """
         feature_type: DOCUMENT_CLASSIFICATION
 
         # optional
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+        tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         max_results: 56
 
         # optional
@@ -270,6 +282,18 @@ processor_job:
                     returned: on success
                     type: complex
                     contains:
+                        model_id:
+                            description:
+                                - The custom model ID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+                        tenancy_id:
+                            description:
+                                - The custom model tenancy ID when modelId represents aliasName.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
                         max_results:
                             description:
                                 - The maximum number of results to return.
@@ -420,6 +444,8 @@ processor_job:
             "processor_type": "GENERAL",
             "document_type": "INVOICE",
             "features": [{
+                "model_id": "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx",
+                "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
                 "max_results": 56,
                 "feature_type": "LANGUAGE_CLASSIFICATION",
                 "generate_searchable_pdf": true
@@ -469,11 +495,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProcessorJobHelperGen(OCIResourceHelperBase):
+class AiDocumentProcessorJobHelperGen(OCIResourceHelperBase):
     """Supported operations: create and get"""
 
     def get_possible_entity_types(self):
-        return super(ProcessorJobHelperGen, self).get_possible_entity_types() + [
+        return super(
+            AiDocumentProcessorJobHelperGen, self
+        ).get_possible_entity_types() + [
             "processorjob",
             "processorjobs",
             "aiDocumentprocessorjob",
@@ -511,10 +539,14 @@ class ProcessorJobHelperGen(OCIResourceHelperBase):
         )
 
 
-ProcessorJobHelperCustom = get_custom_class("ProcessorJobHelperCustom")
+AiDocumentProcessorJobHelperCustom = get_custom_class(
+    "AiDocumentProcessorJobHelperCustom"
+)
 
 
-class ResourceHelper(ProcessorJobHelperCustom, ProcessorJobHelperGen):
+class ResourceHelper(
+    AiDocumentProcessorJobHelperCustom, AiDocumentProcessorJobHelperGen
+):
     pass
 
 
@@ -581,6 +613,8 @@ def main():
                         elements="dict",
                         required=True,
                         options=dict(
+                            model_id=dict(type="str"),
+                            tenancy_id=dict(type="str"),
                             max_results=dict(type="int"),
                             generate_searchable_pdf=dict(type="bool"),
                             feature_type=dict(

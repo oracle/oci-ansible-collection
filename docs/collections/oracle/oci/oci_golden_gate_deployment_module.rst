@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment -- Manage a Deployment resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -507,6 +507,112 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration"></div>
+                    <b>maintenance_configuration</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration/bundle_release_upgrade_period_in_days"></div>
+                    <b>bundle_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration/bundle_release_upgrade_period_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle releases. This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the service default.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration/interim_release_upgrade_period_in_days"></div>
+                    <b>interim_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration/interim_release_upgrade_period_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration/is_interim_release_auto_upgrade_enabled"></div>
+                    <b>is_interim_release_auto_upgrade_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration/is_interim_release_auto_upgrade_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release, you have to specify interimReleaseUpgradePeriodInDays too.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration/major_release_upgrade_period_in_days"></div>
+                    <b>major_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration/major_release_upgrade_period_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major releases. Not passing this field during create will equate to using the service default.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration/security_patch_upgrade_period_in_days"></div>
+                    <b>security_patch_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_configuration/security_patch_upgrade_period_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period for security releases. Not passing this field during create will equate to using the service default.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_window"></div>
                     <b>maintenance_window</b>
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window" title="Permalink to this option"></a>
@@ -610,7 +716,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as &#x27;$&#x27;, &#x27;^&#x27;, or &#x27;?&#x27; are not allowed.</div>
+                                            <div>The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as &#x27;$&#x27;, &#x27;^&#x27;, or &#x27;?&#x27; are not allowed. This field will be deprecated and replaced by &quot;passwordSecretId&quot;.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -651,6 +757,27 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ogg_data/credential_store"></div>
+                    <b>credential_store</b>
+                    <a class="ansibleOptionLink" href="#parameter-ogg_data/credential_store" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GOLDENGATE</li>
+                                                                                                                                                                                                <li>IAM</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of credential store for OGG.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-ogg_data/deployment_name"></div>
                     <b>deployment_name</b>
                     <a class="ansibleOptionLink" href="#parameter-ogg_data/deployment_name" title="Permalink to this option"></a>
@@ -662,6 +789,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ogg_data/identity_domain_id"></div>
+                    <b>identity_domain_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-ogg_data/identity_domain_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Identity Domain when IAM credential store is used.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -695,6 +839,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Version of OGG</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ogg_data/password_secret_id"></div>
+                    <b>password_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-ogg_data/password_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the deployment password is stored.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -867,6 +1028,9 @@ Examples
           # optional
           deployment_name: deployment_name_example
           ogg_version: ogg_version_example
+          credential_store: GOLDENGATE
+          identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           admin_username: admin_username_example
           admin_password: example-password
           certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -875,6 +1039,13 @@ Examples
           # required
           day: MONDAY
           start_hour: 56
+        maintenance_configuration:
+          # optional
+          is_interim_release_auto_upgrade_enabled: true
+          interim_release_upgrade_period_in_days: 56
+          bundle_release_upgrade_period_in_days: 56
+          major_release_upgrade_period_in_days: 56
+          security_patch_upgrade_period_in_days: 56
 
     - name: Update deployment
       oci_golden_gate_deployment:
@@ -897,6 +1068,9 @@ Examples
           # optional
           deployment_name: deployment_name_example
           ogg_version: ogg_version_example
+          credential_store: GOLDENGATE
+          identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           admin_username: admin_username_example
           admin_password: example-password
           certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -905,6 +1079,13 @@ Examples
           # required
           day: MONDAY
           start_hour: 56
+        maintenance_configuration:
+          # optional
+          is_interim_release_auto_upgrade_enabled: true
+          interim_release_upgrade_period_in_days: 56
+          bundle_release_upgrade_period_in_days: 56
+          major_release_upgrade_period_in_days: 56
+          security_patch_upgrade_period_in_days: 56
 
     - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment:
@@ -927,6 +1108,9 @@ Examples
           # optional
           deployment_name: deployment_name_example
           ogg_version: ogg_version_example
+          credential_store: GOLDENGATE
+          identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           admin_username: admin_username_example
           admin_password: example-password
           certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -935,6 +1119,13 @@ Examples
           # required
           day: MONDAY
           start_hour: 56
+        maintenance_configuration:
+          # optional
+          is_interim_release_auto_upgrade_enabled: true
+          interim_release_upgrade_period_in_days: 56
+          bundle_release_upgrade_period_in_days: 56
+          major_release_upgrade_period_in_days: 56
+          security_patch_upgrade_period_in_days: 56
 
     - name: Delete deployment
       oci_golden_gate_deployment:
@@ -984,7 +1175,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_diagnostic_data&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;diagnostic_state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_diagnostic_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_diagnostic_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;day&#x27;: &#x27;MONDAY&#x27;, &#x27;start_hour&#x27;: 56}, &#x27;next_maintenance_action_type&#x27;: &#x27;UPGRADE&#x27;, &#x27;next_maintenance_description&#x27;: &#x27;next_maintenance_description_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_diagnostic_data&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;diagnostic_state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_diagnostic_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_diagnostic_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;maintenance_configuration&#x27;: {&#x27;bundle_release_upgrade_period_in_days&#x27;: 56, &#x27;interim_release_upgrade_period_in_days&#x27;: 56, &#x27;is_interim_release_auto_upgrade_enabled&#x27;: True, &#x27;major_release_upgrade_period_in_days&#x27;: 56, &#x27;security_patch_upgrade_period_in_days&#x27;: 56}, &#x27;maintenance_window&#x27;: {&#x27;day&#x27;: &#x27;MONDAY&#x27;, &#x27;start_hour&#x27;: 56}, &#x27;next_maintenance_action_type&#x27;: &#x27;UPGRADE&#x27;, &#x27;next_maintenance_description&#x27;: &#x27;next_maintenance_description_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;credential_store&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;identity_domain_id&#x27;: &#x27;ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ogg_version_supported_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1483,6 +1674,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration"></div>
+                    <b>maintenance_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration/bundle_release_upgrade_period_in_days"></div>
+                    <b>bundle_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration/bundle_release_upgrade_period_in_days" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle releases. This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the service default.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration/interim_release_upgrade_period_in_days"></div>
+                    <b>interim_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration/interim_release_upgrade_period_in_days" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration/is_interim_release_auto_upgrade_enabled"></div>
+                    <b>is_interim_release_auto_upgrade_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration/is_interim_release_auto_upgrade_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release, you have to specify interimReleaseUpgradePeriodInDays too.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration/major_release_upgrade_period_in_days"></div>
+                    <b>major_release_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration/major_release_upgrade_period_in_days" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major releases. Not passing this field during create will equate to using the service default.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/maintenance_configuration/security_patch_upgrade_period_in_days"></div>
+                    <b>security_patch_upgrade_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/maintenance_configuration/security_patch_upgrade_period_in_days" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period for security releases. Not passing this field during create will equate to using the service default.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment/maintenance_window"></div>
                     <b>maintenance_window</b>
                     <a class="ansibleOptionLink" href="#return-deployment/maintenance_window" title="Permalink to this return value"></a>
@@ -1645,6 +1948,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/ogg_data/credential_store"></div>
+                    <b>credential_store</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/ogg_data/credential_store" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of credential store for OGG.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GOLDENGATE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-deployment/ogg_data/deployment_name"></div>
                     <b>deployment_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/ogg_data/deployment_name" title="Permalink to this return value"></a>
@@ -1664,6 +1986,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/ogg_data/identity_domain_id"></div>
+                    <b>identity_domain_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/ogg_data/identity_domain_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Identity Domain when IAM credential store is used.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-deployment/ogg_data/ogg_version"></div>
                     <b>ogg_version</b>
                     <a class="ansibleOptionLink" href="#return-deployment/ogg_data/ogg_version" title="Permalink to this return value"></a>
@@ -1677,6 +2018,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ogg_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/ogg_data/password_secret_id"></div>
+                    <b>password_secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/ogg_data/password_secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Secret where the deployment password is stored.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     
@@ -1800,6 +2160,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The time of next maintenance schedule. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/time_ogg_version_supported_until"></div>
+                    <b>time_ogg_version_supported_until</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/time_ogg_version_supported_until" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time until OGG version is supported. After this date has passed OGG version will not be available anymore. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

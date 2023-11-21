@@ -24,6 +24,7 @@ short_description: Manage a ConnectionAssignment resource in Oracle Cloud Infras
 description:
     - This module allows the user to create and delete a ConnectionAssignment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Connection Assignment.
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_connection_assignment_actions) module: test."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

@@ -28,6 +28,7 @@ description:
       If-Match is checked against ETag values of the resource.  For information about moving
       resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=copy), creates a copy of a Deployment Backup.
     - For I(action=restore_deployment), restores a Deployment from a Deployment Backup created from the same Deployment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -37,6 +38,29 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             - Required for I(action=change_compartment).
         type: str
+    namespace_name:
+        description:
+            - Name of namespace that serves as a container for all of your buckets
+            - Required for I(action=copy).
+        type: str
+    bucket_name:
+        description:
+            - Name of the bucket where the object is to be uploaded in the object storage
+            - Required for I(action=copy).
+        type: str
+    freeform_tags:
+        description:
+            - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+              for cross-compatibility only.
+            - "Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Applicable only for I(action=copy).
+        type: dict
+    defined_tags:
+        description:
+            - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+            - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - Applicable only for I(action=copy).
+        type: dict
     deployment_backup_id:
         description:
             - A unique DeploymentBackup identifier.
@@ -58,6 +82,7 @@ options:
         choices:
             - "cancel"
             - "change_compartment"
+            - "copy"
             - "restore_deployment"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -74,6 +99,18 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action copy on deployment_backup
+  oci_golden_gate_deployment_backup_actions:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    action: copy
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Perform action restore_deployment on deployment_backup with type = DEFAULT
   oci_golden_gate_deployment_backup_actions:
@@ -150,8 +187,8 @@ deployment_backup:
             description:
                 - The size of the backup stored in object storage (in bytes)
             returned: on success
-            type: float
-            sample: 10
+            type: int
+            sample: 56
         backup_type:
             description:
                 - Possible Deployment backup types.
@@ -230,7 +267,7 @@ deployment_backup:
         "lifecycle_details": "lifecycle_details_example",
         "time_of_backup": "2013-10-20T19:20:30+01:00",
         "time_backup_finished": "2013-10-20T19:20:30+01:00",
-        "size_in_bytes": 10,
+        "size_in_bytes": 56,
         "backup_type": "INCREMENTAL",
         "ogg_version": "ogg_version_example",
         "namespace_name": "namespace_name_example",
@@ -258,6 +295,7 @@ try:
     from oci.golden_gate import GoldenGateClient
     from oci.golden_gate.models import CancelDeploymentBackupDetails
     from oci.golden_gate.models import ChangeDeploymentBackupCompartmentDetails
+    from oci.golden_gate.models import CopyDeploymentBackupDetails
     from oci.golden_gate.models import RestoreDeploymentDetails
 
     HAS_OCI_PY_SDK = True
@@ -270,6 +308,7 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         cancel
         change_compartment
+        copy
         restore_deployment
     """
 
@@ -333,6 +372,27 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def copy(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CopyDeploymentBackupDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.copy_deployment_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_backup_id=self.module.params.get("deployment_backup_id"),
+                copy_deployment_backup_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def restore_deployment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RestoreDeploymentDetails
@@ -373,12 +433,16 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            namespace_name=dict(type="str"),
+            bucket_name=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             deployment_backup_id=dict(aliases=["id"], type="str", required=True),
             type=dict(type="str", choices=["DEFAULT"]),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cancel", "change_compartment", "restore_deployment"],
+                choices=["cancel", "change_compartment", "copy", "restore_deployment"],
             ),
         )
     )

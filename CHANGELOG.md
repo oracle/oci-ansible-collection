@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.36.0]
+
+## Added
+- Support to enable/disable IPv6 details in Inventory Plugin
+- Support for custom key/value pairs and custom document classification in the AI Document service
+- Support for synchronous operations in the AI Document service
+- Support for composing multiple document service custom key value models into one single model in the AI Document service
+- Support for connectivity testing in the GoldenGate service
+- Support for credential stores, including Single Sign-On support, for deployments in the GoldenGate service
+- Support for new operations for deployment upgrades in the GoldenGate service
+- Support for automatic backup download in the GoldenGate service
+
+## Breaking
+- The type of property `size_in_bytes` was changed from `float` to `int` in `oci_golden_gate_trail_file_facts`, `oci_golden_gate_trail_sequence_facts`, `oci_golden_gate_deployment_backup`, `oci_golden_gate_deployment_backup_facts` modules
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.116.0
+
 ## [4.35.0]
 
 ## Added

@@ -9,7 +9,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-class ProcessorJobHelperCustom:
+class AiDocumentProcessorJobHelperCustom:
     def get_module_resource_id_param(self):
         # this is required other fetch_fun() fails. So overriding it
         return "processor_job_id"

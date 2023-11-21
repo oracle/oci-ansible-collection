@@ -281,6 +281,33 @@ deployment_upgrades:
             returned: on success
             type: bool
             sample: true
+        time_ogg_version_supported_until:
+            description:
+                - The time until OGG version is supported. After this date has passed OGG version will not be available anymore. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        is_cancel_allowed:
+            description:
+                - Indicates if cancel is allowed. Scheduled upgrade can be cancelled only if target version is not forced by service,
+                  otherwise only reschedule allowed.
+            returned: on success
+            type: bool
+            sample: true
+        is_reschedule_allowed:
+            description:
+                - Indicates if reschedule is allowed. Upgrade can be rescheduled postponed until the end of the service defined auto-upgrade period.
+            returned: on success
+            type: bool
+            sample: true
+        time_schedule_max:
+            description:
+                - Indicates the latest time until the deployment upgrade could be rescheduled. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -306,7 +333,11 @@ deployment_upgrades:
         "time_released": "2013-10-20T19:20:30+01:00",
         "release_type": "MAJOR",
         "is_security_fix": true,
-        "is_rollback_allowed": true
+        "is_rollback_allowed": true,
+        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00",
+        "is_cancel_allowed": true,
+        "is_reschedule_allowed": true,
+        "time_schedule_max": "2013-10-20T19:20:30+01:00"
     }]
 """
 
