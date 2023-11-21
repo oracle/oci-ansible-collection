@@ -103,8 +103,8 @@ trail_sequences:
             description:
                 - The size of the backup stored in object storage (in bytes)
             returned: on success
-            type: float
-            sample: 10
+            type: int
+            sample: 56
         time_last_updated:
             description:
                 - The time the resource was last updated. The format is defined by
@@ -115,7 +115,7 @@ trail_sequences:
     sample: [{
         "sequence_id": "ocid1.sequence.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "size_in_bytes": 10,
+        "size_in_bytes": 56,
         "time_last_updated": "2013-10-20T19:20:30+01:00"
     }]
 """

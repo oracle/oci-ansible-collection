@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection_assignment -- Manage a ConnectionAssignmen
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - This module allows the user to create and delete a ConnectionAssignment resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Connection Assignment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_connection_assignment_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_actions_module>` module: test.
 
 
 .. Aliases

@@ -176,8 +176,8 @@ deployment_backups:
             description:
                 - The size of the backup stored in object storage (in bytes)
             returned: on success
-            type: float
-            sample: 10
+            type: int
+            sample: 56
         backup_type:
             description:
                 - Possible Deployment backup types.
@@ -256,7 +256,7 @@ deployment_backups:
         "lifecycle_details": "lifecycle_details_example",
         "time_of_backup": "2013-10-20T19:20:30+01:00",
         "time_backup_finished": "2013-10-20T19:20:30+01:00",
-        "size_in_bytes": 10,
+        "size_in_bytes": 56,
         "backup_type": "INCREMENTAL",
         "ogg_version": "ogg_version_example",
         "namespace_name": "namespace_name_example",

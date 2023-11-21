@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DeploymentBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DeploymentBackup.
     - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_backup_actions) module: cancel, change_compartment,
-      restore_deployment."
+      copy, restore_deployment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -212,8 +212,8 @@ deployment_backup:
             description:
                 - The size of the backup stored in object storage (in bytes)
             returned: on success
-            type: float
-            sample: 10
+            type: int
+            sample: 56
         backup_type:
             description:
                 - Possible Deployment backup types.
@@ -292,7 +292,7 @@ deployment_backup:
         "lifecycle_details": "lifecycle_details_example",
         "time_of_backup": "2013-10-20T19:20:30+01:00",
         "time_backup_finished": "2013-10-20T19:20:30+01:00",
-        "size_in_bytes": 10,
+        "size_in_bytes": 56,
         "backup_type": "INCREMENTAL",
         "ogg_version": "ogg_version_example",
         "namespace_name": "namespace_name_example",

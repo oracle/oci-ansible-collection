@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -510,6 +510,8 @@ Parameters
                                                                                                                                                                                                 <li>MONGODB</li>
                                                                                                                                                                                                 <li>MYSQL_SERVER</li>
                                                                                                                                                                                                 <li>POSTGRESQL_SERVER</li>
+                                                                                                                                                                                                <li>SINGLESTOREDB</li>
+                                                                                                                                                                                                <li>SINGLESTOREDB_CLOUD</li>
                                                                                                                                                                                                 <li>SNOWFLAKE</li>
                                                                                     </ul>
                                                                             </td>

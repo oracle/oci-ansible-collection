@@ -93,6 +93,18 @@ processor_job:
                     returned: on success
                     type: complex
                     contains:
+                        model_id:
+                            description:
+                                - The custom model ID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+                        tenancy_id:
+                            description:
+                                - The custom model tenancy ID when modelId represents aliasName.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
                         max_results:
                             description:
                                 - The maximum number of results to return.
@@ -243,6 +255,8 @@ processor_job:
             "processor_type": "GENERAL",
             "document_type": "INVOICE",
             "features": [{
+                "model_id": "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx",
+                "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
                 "max_results": 56,
                 "feature_type": "LANGUAGE_CLASSIFICATION",
                 "generate_searchable_pdf": true
@@ -288,7 +302,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProcessorJobFactsHelperGen(OCIResourceFactsHelperBase):
+class AiDocumentProcessorJobFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get"""
 
     def get_required_params_for_get(self):
@@ -303,10 +317,14 @@ class ProcessorJobFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-ProcessorJobFactsHelperCustom = get_custom_class("ProcessorJobFactsHelperCustom")
+AiDocumentProcessorJobFactsHelperCustom = get_custom_class(
+    "AiDocumentProcessorJobFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(ProcessorJobFactsHelperCustom, ProcessorJobFactsHelperGen):
+class ResourceFactsHelper(
+    AiDocumentProcessorJobFactsHelperCustom, AiDocumentProcessorJobFactsHelperGen
+):
     pass
 
 

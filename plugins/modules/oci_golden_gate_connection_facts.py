@@ -85,6 +85,8 @@ options:
             - "MONGODB"
             - "MYSQL_SERVER"
             - "POSTGRESQL_SERVER"
+            - "SINGLESTOREDB"
+            - "SINGLESTOREDB_CLOUD"
             - "SNOWFLAKE"
     connection_type:
         description:
@@ -801,6 +803,8 @@ def main():
                     "MONGODB",
                     "MYSQL_SERVER",
                     "POSTGRESQL_SERVER",
+                    "SINGLESTOREDB",
+                    "SINGLESTOREDB_CLOUD",
                     "SNOWFLAKE",
                 ],
             ),

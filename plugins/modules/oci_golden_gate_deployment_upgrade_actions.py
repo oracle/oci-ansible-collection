@@ -23,13 +23,23 @@ module: oci_golden_gate_deployment_upgrade_actions
 short_description: Perform actions on a DeploymentUpgrade resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DeploymentUpgrade resource in Oracle Cloud Infrastructure
+    - For I(action=cancel), cancels a DeploymentUpgrade, applicable only for DeploymentUpgrade in Waiting state. When provided, If-Match is checked against ETag
+      values of the resource.
     - For I(action=cancel_snooze), cancel snooze of a DeploymentUpgrade. When provided, If-Match is checked against ETag values of the resource.
+    - For I(action=reschedule), reschedules a DeploymentUpgrade, applicable only for DeploymentUpgrade in Waiting state. When provided, If-Match is checked
+      against ETag values of the resource.
     - For I(action=rollback), rollback a deployment to it's previous version. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=snooze), snooze a DeploymentUpgrade. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=upgrade), upgrade a deployment. When provided, If-Match is checked against ETag values of the resource.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    time_schedule:
+        description:
+            - The time of upgrade schedule. The format is defined by
+              L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            - Required for I(action=reschedule).
+        type: str
     deployment_upgrade_id:
         description:
             - A unique Deployment Upgrade identifier.
@@ -38,10 +48,11 @@ options:
         required: true
     type:
         description:
-            - The type of a deploymentUpgrade cancel snooze.
+            - The type of a deploymentUpgrade cancel.
         type: str
         choices:
             - "DEFAULT"
+            - "RESCHEDULE_TO_DATE"
         required: true
     action:
         description:
@@ -49,7 +60,9 @@ options:
         type: str
         required: true
         choices:
+            - "cancel"
             - "cancel_snooze"
+            - "reschedule"
             - "rollback"
             - "snooze"
             - "upgrade"
@@ -57,25 +70,66 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action cancel on deployment_upgrade with type = DEFAULT
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: DEFAULT
+
+- name: Perform action cancel on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: RESCHEDULE_TO_DATE
+
 - name: Perform action cancel_snooze on deployment_upgrade with type = DEFAULT
   oci_golden_gate_deployment_upgrade_actions:
     # required
     type: DEFAULT
+
+- name: Perform action cancel_snooze on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: RESCHEDULE_TO_DATE
+
+- name: Perform action reschedule on deployment_upgrade with type = DEFAULT
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: DEFAULT
+
+- name: Perform action reschedule on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    time_schedule: time_schedule_example
+    type: RESCHEDULE_TO_DATE
 
 - name: Perform action rollback on deployment_upgrade with type = DEFAULT
   oci_golden_gate_deployment_upgrade_actions:
     # required
     type: DEFAULT
 
+- name: Perform action rollback on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: RESCHEDULE_TO_DATE
+
 - name: Perform action snooze on deployment_upgrade with type = DEFAULT
   oci_golden_gate_deployment_upgrade_actions:
     # required
     type: DEFAULT
 
+- name: Perform action snooze on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: RESCHEDULE_TO_DATE
+
 - name: Perform action upgrade on deployment_upgrade with type = DEFAULT
   oci_golden_gate_deployment_upgrade_actions:
     # required
     type: DEFAULT
+
+- name: Perform action upgrade on deployment_upgrade with type = RESCHEDULE_TO_DATE
+  oci_golden_gate_deployment_upgrade_actions:
+    # required
+    type: RESCHEDULE_TO_DATE
 
 """
 
@@ -252,6 +306,33 @@ deployment_upgrade:
             returned: on success
             type: bool
             sample: true
+        time_ogg_version_supported_until:
+            description:
+                - The time until OGG version is supported. After this date has passed OGG version will not be available anymore. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        is_cancel_allowed:
+            description:
+                - Indicates if cancel is allowed. Scheduled upgrade can be cancelled only if target version is not forced by service,
+                  otherwise only reschedule allowed.
+            returned: on success
+            type: bool
+            sample: true
+        is_reschedule_allowed:
+            description:
+                - Indicates if reschedule is allowed. Upgrade can be rescheduled postponed until the end of the service defined auto-upgrade period.
+            returned: on success
+            type: bool
+            sample: true
+        time_schedule_max:
+            description:
+                - Indicates the latest time until the deployment upgrade could be rescheduled. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -277,7 +358,11 @@ deployment_upgrade:
         "time_released": "2013-10-20T19:20:30+01:00",
         "release_type": "MAJOR",
         "is_security_fix": true,
-        "is_rollback_allowed": true
+        "is_rollback_allowed": true,
+        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00",
+        "is_cancel_allowed": true,
+        "is_reschedule_allowed": true,
+        "time_schedule_max": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -293,7 +378,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.golden_gate import GoldenGateClient
+    from oci.golden_gate.models import CancelDeploymentUpgradeDetails
     from oci.golden_gate.models import CancelSnoozeDeploymentUpgradeDetails
+    from oci.golden_gate.models import RescheduleDeploymentUpgradeDetails
     from oci.golden_gate.models import RollbackDeploymentUpgradeDetails
     from oci.golden_gate.models import SnoozeDeploymentUpgradeDetails
     from oci.golden_gate.models import UpgradeDeploymentUpgradeDetails
@@ -306,7 +393,9 @@ except ImportError:
 class DeploymentUpgradeActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        cancel
         cancel_snooze
+        reschedule
         rollback
         snooze
         upgrade
@@ -328,6 +417,29 @@ class DeploymentUpgradeActionsHelperGen(OCIActionsHelperBase):
             deployment_upgrade_id=self.module.params.get("deployment_upgrade_id"),
         )
 
+    def cancel(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CancelDeploymentUpgradeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.cancel_deployment_upgrade,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_upgrade_id=self.module.params.get("deployment_upgrade_id"),
+                cancel_deployment_upgrade_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def cancel_snooze(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, CancelSnoozeDeploymentUpgradeDetails
@@ -340,6 +452,29 @@ class DeploymentUpgradeActionsHelperGen(OCIActionsHelperBase):
                 cancel_snooze_deployment_upgrade_details=action_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def reschedule(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RescheduleDeploymentUpgradeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.reschedule_deployment_upgrade,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_upgrade_id=self.module.params.get("deployment_upgrade_id"),
+                reschedule_deployment_upgrade_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -434,12 +569,22 @@ def main():
     )
     module_args.update(
         dict(
+            time_schedule=dict(type="str"),
             deployment_upgrade_id=dict(aliases=["id"], type="str", required=True),
-            type=dict(type="str", required=True, choices=["DEFAULT"]),
+            type=dict(
+                type="str", required=True, choices=["DEFAULT", "RESCHEDULE_TO_DATE"]
+            ),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cancel_snooze", "rollback", "snooze", "upgrade"],
+                choices=[
+                    "cancel",
+                    "cancel_snooze",
+                    "reschedule",
+                    "rollback",
+                    "snooze",
+                    "upgrade",
+                ],
             ),
         )
     )

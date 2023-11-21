@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.35.0
+Collection version 4.36.0
 
 .. toctree::
     :maxdepth: 1
@@ -51,9 +51,16 @@ Modules
 * :ref:`oci_ai_anomaly_detection_project <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_analyze_document_result_actions <ansible_collections.oracle.oci.oci_ai_document_analyze_document_result_actions_module>` -- Perform actions on an AnalyzeDocumentResult resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_model <ansible_collections.oracle.oci.oci_ai_document_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_model_actions <ansible_collections.oracle.oci.oci_ai_document_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_model_facts <ansible_collections.oracle.oci.oci_ai_document_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_document_processor_job <ansible_collections.oracle.oci.oci_ai_document_processor_job_module>` -- Manage a ProcessorJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_document_processor_job_actions <ansible_collections.oracle.oci.oci_ai_document_processor_job_actions_module>` -- Perform actions on a ProcessorJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_document_processor_job_facts <ansible_collections.oracle.oci.oci_ai_document_processor_job_facts_module>` -- Fetches details about a ProcessorJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_project <ansible_collections.oracle.oci.oci_ai_document_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_project_actions <ansible_collections.oracle.oci.oci_ai_document_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_project_facts <ansible_collections.oracle.oci.oci_ai_document_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_dominant_language_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_dominant_language_actions_module>` -- Perform actions on a BatchDetectDominantLanguage resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_entities_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_entities_actions_module>` -- Perform actions on a BatchDetectLanguageEntities resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_key_phrases_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_key_phrases_actions_module>` -- Perform actions on a BatchDetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
@@ -992,6 +999,7 @@ Modules
 * :ref:`oci_golden_gate_connection <ansible_collections.oracle.oci.oci_golden_gate_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_connection_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_connection_assignment <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_module>` -- Manage a ConnectionAssignment resource in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection_assignment_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_actions_module>` -- Perform actions on a ConnectionAssignment resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_connection_assignment_facts <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_facts_module>` -- Fetches details about one or multiple ConnectionAssignment resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_connection_facts <ansible_collections.oracle.oci.oci_golden_gate_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration <ansible_collections.oracle.oci.oci_golden_gate_database_registration_module>` -- Manage a DatabaseRegistration resource in Oracle Cloud Infrastructure
@@ -2016,9 +2024,16 @@ Modules
     oci_ai_anomaly_detection_project_module
     oci_ai_anomaly_detection_project_actions_module
     oci_ai_anomaly_detection_project_facts_module
+    oci_ai_document_analyze_document_result_actions_module
+    oci_ai_document_model_module
+    oci_ai_document_model_actions_module
+    oci_ai_document_model_facts_module
     oci_ai_document_processor_job_module
     oci_ai_document_processor_job_actions_module
     oci_ai_document_processor_job_facts_module
+    oci_ai_document_project_module
+    oci_ai_document_project_actions_module
+    oci_ai_document_project_facts_module
     oci_ai_language_batch_detect_dominant_language_actions_module
     oci_ai_language_batch_detect_language_entities_actions_module
     oci_ai_language_batch_detect_language_key_phrases_actions_module
@@ -2957,6 +2972,7 @@ Modules
     oci_golden_gate_connection_module
     oci_golden_gate_connection_actions_module
     oci_golden_gate_connection_assignment_module
+    oci_golden_gate_connection_assignment_actions_module
     oci_golden_gate_connection_assignment_facts_module
     oci_golden_gate_connection_facts_module
     oci_golden_gate_database_registration_module

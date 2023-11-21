@@ -138,6 +138,25 @@ options:
                 description:
                     - Version of OGG
                 type: str
+            credential_store:
+                description:
+                    - The type of credential store for OGG.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "GOLDENGATE"
+                    - "IAM"
+            identity_domain_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Identity Domain when IAM credential store is
+                      used.
+                    - This parameter is updatable.
+                type: str
+            password_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the deployment password is stored.
+                    - This parameter is updatable.
+                type: str
             admin_username:
                 description:
                     - The GoldenGate deployment console username.
@@ -145,9 +164,10 @@ options:
                 type: str
             admin_password:
                 description:
-                    - The password associated with the GoldenGate deployment console username.
+                    - "The password associated with the GoldenGate deployment console username.
                       The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric,
                       and 1 special character. Special characters such as '$', '^', or '?' are not allowed.
+                      This field will be deprecated and replaced by \\"passwordSecretId\\"."
                     - This parameter is updatable.
                 type: str
             certificate:
@@ -186,6 +206,45 @@ options:
                     - This parameter is updatable.
                 type: int
                 required: true
+    maintenance_configuration:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_interim_release_auto_upgrade_enabled:
+                description:
+                    - By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release,
+                      you have to specify interimReleaseUpgradePeriodInDays too.
+                    - This parameter is updatable.
+                type: bool
+            interim_release_upgrade_period_in_days:
+                description:
+                    - Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.
+                    - This parameter is updatable.
+                type: int
+            bundle_release_upgrade_period_in_days:
+                description:
+                    - Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle
+                      releases.
+                      This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the
+                      service default.
+                    - This parameter is updatable.
+                type: int
+            major_release_upgrade_period_in_days:
+                description:
+                    - Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major
+                      releases.
+                      Not passing this field during create will equate to using the service default.
+                    - This parameter is updatable.
+                type: int
+            security_patch_upgrade_period_in_days:
+                description:
+                    - Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period for
+                      security releases.
+                      Not passing this field during create will equate to using the service default.
+                    - This parameter is updatable.
+                type: int
     deployment_id:
         description:
             - A unique Deployment identifier.
@@ -229,6 +288,9 @@ EXAMPLES = """
       # optional
       deployment_name: deployment_name_example
       ogg_version: ogg_version_example
+      credential_store: GOLDENGATE
+      identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -237,6 +299,13 @@ EXAMPLES = """
       # required
       day: MONDAY
       start_hour: 56
+    maintenance_configuration:
+      # optional
+      is_interim_release_auto_upgrade_enabled: true
+      interim_release_upgrade_period_in_days: 56
+      bundle_release_upgrade_period_in_days: 56
+      major_release_upgrade_period_in_days: 56
+      security_patch_upgrade_period_in_days: 56
 
 - name: Update deployment
   oci_golden_gate_deployment:
@@ -259,6 +328,9 @@ EXAMPLES = """
       # optional
       deployment_name: deployment_name_example
       ogg_version: ogg_version_example
+      credential_store: GOLDENGATE
+      identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -267,6 +339,13 @@ EXAMPLES = """
       # required
       day: MONDAY
       start_hour: 56
+    maintenance_configuration:
+      # optional
+      is_interim_release_auto_upgrade_enabled: true
+      interim_release_upgrade_period_in_days: 56
+      bundle_release_upgrade_period_in_days: 56
+      major_release_upgrade_period_in_days: 56
+      security_patch_upgrade_period_in_days: 56
 
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
@@ -289,6 +368,9 @@ EXAMPLES = """
       # optional
       deployment_name: deployment_name_example
       ogg_version: ogg_version_example
+      credential_store: GOLDENGATE
+      identity_domain_id: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       admin_username: admin_username_example
       admin_password: example-password
       certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -297,6 +379,13 @@ EXAMPLES = """
       # required
       day: MONDAY
       start_hour: 56
+    maintenance_configuration:
+      # optional
+      is_interim_release_auto_upgrade_enabled: true
+      interim_release_upgrade_period_in_days: 56
+      bundle_release_upgrade_period_in_days: 56
+      major_release_upgrade_period_in_days: 56
+      security_patch_upgrade_period_in_days: 56
 
 - name: Delete deployment
   oci_golden_gate_deployment:
@@ -544,6 +633,26 @@ deployment:
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+                credential_store:
+                    description:
+                        - The type of credential store for OGG.
+                    returned: on success
+                    type: str
+                    sample: GOLDENGATE
+                identity_domain_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Identity Domain when IAM credential store is
+                          used.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx"
+                password_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret where the deployment password is
+                          stored.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_diagnostic_data:
             description:
                 - ""
@@ -625,6 +734,57 @@ deployment:
             returned: on success
             type: str
             sample: next_maintenance_description_example
+        maintenance_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_interim_release_auto_upgrade_enabled:
+                    description:
+                        - By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release,
+                          you have to specify interimReleaseUpgradePeriodInDays too.
+                    returned: on success
+                    type: bool
+                    sample: true
+                interim_release_upgrade_period_in_days:
+                    description:
+                        - Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.
+                    returned: on success
+                    type: int
+                    sample: 56
+                bundle_release_upgrade_period_in_days:
+                    description:
+                        - Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle
+                          releases.
+                          This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the
+                          service default.
+                    returned: on success
+                    type: int
+                    sample: 56
+                major_release_upgrade_period_in_days:
+                    description:
+                        - Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major
+                          releases.
+                          Not passing this field during create will equate to using the service default.
+                    returned: on success
+                    type: int
+                    sample: 56
+                security_patch_upgrade_period_in_days:
+                    description:
+                        - Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period
+                          for security releases.
+                          Not passing this field during create will equate to using the service default.
+                    returned: on success
+                    type: int
+                    sample: 56
+        time_ogg_version_supported_until:
+            description:
+                - The time until OGG version is supported. After this date has passed OGG version will not be available anymore. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -659,7 +819,10 @@ deployment:
             "deployment_name": "deployment_name_example",
             "admin_username": "admin_username_example",
             "ogg_version": "ogg_version_example",
-            "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+            "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
+            "credential_store": "GOLDENGATE",
+            "identity_domain_id": "ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "deployment_diagnostic_data": {
             "namespace_name": "namespace_name_example",
@@ -675,7 +838,15 @@ deployment:
         },
         "time_of_next_maintenance": "2013-10-20T19:20:30+01:00",
         "next_maintenance_action_type": "UPGRADE",
-        "next_maintenance_description": "next_maintenance_description_example"
+        "next_maintenance_description": "next_maintenance_description_example",
+        "maintenance_configuration": {
+            "is_interim_release_auto_upgrade_enabled": true,
+            "interim_release_upgrade_period_in_days": 56,
+            "bundle_release_upgrade_period_in_days": 56,
+            "major_release_upgrade_period_in_days": 56,
+            "security_patch_upgrade_period_in_days": 56
+        },
+        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -869,6 +1040,9 @@ def main():
                 options=dict(
                     deployment_name=dict(type="str"),
                     ogg_version=dict(type="str"),
+                    credential_store=dict(type="str", choices=["GOLDENGATE", "IAM"]),
+                    identity_domain_id=dict(type="str"),
+                    password_secret_id=dict(type="str"),
                     admin_username=dict(type="str"),
                     admin_password=dict(type="str", no_log=True),
                     certificate=dict(type="str"),
@@ -892,6 +1066,16 @@ def main():
                         ],
                     ),
                     start_hour=dict(type="int", required=True),
+                ),
+            ),
+            maintenance_configuration=dict(
+                type="dict",
+                options=dict(
+                    is_interim_release_auto_upgrade_enabled=dict(type="bool"),
+                    interim_release_upgrade_period_in_days=dict(type="int"),
+                    bundle_release_upgrade_period_in_days=dict(type="int"),
+                    major_release_upgrade_period_in_days=dict(type="int"),
+                    security_patch_upgrade_period_in_days=dict(type="int"),
                 ),
             ),
             deployment_id=dict(aliases=["id"], type="str"),

@@ -21,7 +21,7 @@ Also, the new modules are renamed to use the service name as a prefix.
 
 #### Currently Supported Services 
 We support almost all the of [OCI Cloud services](https://docs.cloud.oracle.com/en-us/iaas/Content/services.htm) with very few exceptions.
-For the complete list of supported services, please check the [modules list](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html).
+For the complete list of supported services, please check the [modules list](https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/collections/oracle/oci/index.html).
 
 ## Installation
 
@@ -58,7 +58,8 @@ Begin by reviewing the Readme.md file that you will find in each sample's root d
 * The solutions are available under [the solutions directory on GitHub](https://github.com/oracle/oci-ansible-collections/tree/master/solutions)
 
 ## Documentation
-Module HTML documentation is available on [readthedocs.io](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html).
+
+Module HTML documentation is available on [Oracle Docs](https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/collections/oracle/oci/index.html).
 
 To view the module documentation, use this command:
   ``` bash

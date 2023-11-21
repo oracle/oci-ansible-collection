@@ -123,12 +123,20 @@ deployment_versions:
             returned: on success
             type: bool
             sample: true
+        time_supported_until:
+            description:
+                - The time until OGG version is supported. After this date has passed OGG version will not be available anymore. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "ogg_version": "ogg_version_example",
         "deployment_type": "OGG",
         "time_released": "2013-10-20T19:20:30+01:00",
         "release_type": "MAJOR",
-        "is_security_fix": true
+        "is_security_fix": true,
+        "time_supported_until": "2013-10-20T19:20:30+01:00"
     }]
 """
 

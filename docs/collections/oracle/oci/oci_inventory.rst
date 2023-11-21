@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -891,6 +891,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-enable_ipv6"></div>
+                    <b>enable_ipv6</b>
+                    <a class="ansibleOptionLink" href="#parameter-enable_ipv6" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>Fetch IPv6 address information from VNICs. Default value set to True.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-enable_parallel_processing"></div>
                     <b>enable_parallel_processing</b>
                     <a class="ansibleOptionLink" href="#parameter-enable_parallel_processing" title="Permalink to this option"></a>
@@ -1603,6 +1625,9 @@ Examples
 
     # Process only the primary vnic of a compute instance
     primary_vnic_only: True
+
+    # Fetch IPv6 address information from VNICs.
+    enable_ipv6: True
 
     # Select compartment by ocid or name
     exclude_compartments:
