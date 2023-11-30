@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_recalled_data_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -434,10 +434,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of RecalledData resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;recall_count&#x27;: 56, &#x27;status&#x27;: &#x27;RECALLED&#x27;, &#x27;storage_usage_in_bytes&#x27;: 56, &#x27;time_data_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;log_sets&#x27;: &#x27;log_sets_example&#x27;, &#x27;not_recalled_data_in_bytes&#x27;: 56, &#x27;purpose&#x27;: &#x27;purpose_example&#x27;, &#x27;query_string&#x27;: &#x27;query_string_example&#x27;, &#x27;recall_count&#x27;: 56, &#x27;status&#x27;: &#x27;RECALLED&#x27;, &#x27;storage_usage_in_bytes&#x27;: 56, &#x27;time_data_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-recalled_data/created_by"></div>
+                    <b>created_by</b>
+                    <a class="ansibleOptionLink" href="#return-recalled_data/created_by" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This is the user who initiated the recall request</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-recalled_data/log_sets"></div>
+                    <b>log_sets</b>
+                    <a class="ansibleOptionLink" href="#return-recalled_data/log_sets" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This is the list of logsets associated with the recall</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">log_sets_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-recalled_data/not_recalled_data_in_bytes"></div>
+                    <b>not_recalled_data_in_bytes</b>
+                    <a class="ansibleOptionLink" href="#return-recalled_data/not_recalled_data_in_bytes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This is the size of the archival data not recalled yet within the specified time range</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-recalled_data/purpose"></div>
+                    <b>purpose</b>
+                    <a class="ansibleOptionLink" href="#return-recalled_data/purpose" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This is the purpose of the recall</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">purpose_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-recalled_data/query_string"></div>
+                    <b>query_string</b>
+                    <a class="ansibleOptionLink" href="#return-recalled_data/query_string" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This is the query associated with the recall</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_string_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-recalled_data/recall_count"></div>

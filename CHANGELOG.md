@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.37.0]
+
+## Added
+- Support for Java migration analysis, performance tuning recommendations in the Java Management service
+- Support for Additional options and information on recall data in the Logging Analytics service
+
+## Fixed
+- An issue with WorkRequest Waiter client when custom ssl certificate bundle is passed for Gov/ONSR regions
+
+## Breaking
+- Allowed value `ACCELERATION_MAINTENANCE` was removed from the parameter `task_type` in operation `list_scheduled_tasks` in the Logging Analytics service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.116.0
+
 ## [4.36.0]
 
 ## Added

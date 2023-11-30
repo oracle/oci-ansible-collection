@@ -103,6 +103,7 @@ options:
         elements: str
         choices:
             - "EM_BRIDGE"
+            - "BULK_DISCOVERY"
             - "SERVICE_CONNECTOR_HUB"
             - "DISCOVERY"
             - "NONE"
@@ -443,7 +444,13 @@ def main():
             creation_source_type=dict(
                 type="list",
                 elements="str",
-                choices=["EM_BRIDGE", "SERVICE_CONNECTOR_HUB", "DISCOVERY", "NONE"],
+                choices=[
+                    "EM_BRIDGE",
+                    "BULK_DISCOVERY",
+                    "SERVICE_CONNECTOR_HUB",
+                    "DISCOVERY",
+                    "NONE",
+                ],
             ),
             creation_source_details=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

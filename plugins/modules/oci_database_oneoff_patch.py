@@ -267,6 +267,7 @@ oneoff_patch:
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
@@ -290,8 +291,8 @@ class OneoffPatchHelperGen(OCIResourceHelperBase):
 
     def __init__(self, *args, **kwargs):
         super(OneoffPatchHelperGen, self).__init__(*args, **kwargs)
-        self.work_request_client = WorkRequestClient(
-            self.client._config, **self.client._kwargs
+        self.work_request_client = oci_config_utils.create_service_client(
+            self.module, WorkRequestClient
         )
 
     def get_possible_entity_types(self):
