@@ -23,7 +23,7 @@ module: oci_log_analytics_preferences_management_facts
 short_description: Fetches details about one or multiple PreferencesManagement resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PreferencesManagement resources in Oracle Cloud Infrastructure
-    - "Lists the preferences of the tenant. Currently, only \\"DEFAULT_HOMEPAGE\\" is supported."
+    - Lists the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -69,7 +69,7 @@ log_analytics_preference_collection:
     contains:
         name:
             description:
-                - "The preference name. Currently, only \\"DEFAULT_HOMEPAGE\\" is supported."
+                - The preference name.
             returned: on success
             type: str
             sample: name_example

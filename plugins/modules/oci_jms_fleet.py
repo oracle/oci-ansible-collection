@@ -30,7 +30,7 @@ description:
       See the L(Service Change Notice,https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm#JMS) for more details.
       Migrate existing fleets using the `UpdateFleet` API to set the `inventoryLog` parameter."
     - "This resource has the following action operations in the M(oracle.oci.oci_jms_fleet_actions) module: change_compartment, generate_agent_deploy_script,
-      request_crypto_analyses, request_jfr_recordings."
+      request_crypto_analyses, request_java_migration_analyses, request_jfr_recordings, request_performance_tuning_analyses."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -87,8 +87,8 @@ options:
                 required: true
     is_advanced_features_enabled:
         description:
-            - Whether or not advanced features are enabled in this fleet.
-              Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
+            - Whether or not advanced features are enabled in this Fleet.
+              Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.
             - This parameter is updatable.
         type: bool
     defined_tags:
@@ -100,7 +100,7 @@ options:
         type: dict
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+            - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`. (See L(Managing Tags and Tag
               Namespaces,https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm).)"
             - This parameter is updatable.
@@ -232,35 +232,35 @@ fleet:
         approximate_jre_count:
             description:
                 - The approximate count of all unique Java Runtimes in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_installation_count:
             description:
                 - The approximate count of all unique Java installations in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_application_count:
             description:
                 - The approximate count of all unique applications in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_managed_instance_count:
             description:
                 - The approximate count of all unique managed instances in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_java_server_count:
             description:
                 - The approximate count of all unique Java servers in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
@@ -302,8 +302,8 @@ fleet:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         is_advanced_features_enabled:
             description:
-                - Whether or not advanced features are enabled in this fleet.
-                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
+                - Whether or not advanced features are enabled in this Fleet.
+                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.
             returned: on success
             type: bool
             sample: true
@@ -329,7 +329,7 @@ fleet:
             sample: {'Operations': {'CostCenter': 'US'}}
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`. (See L(Managing Tags and Tag
                   Namespaces,https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm).)"
             returned: on success

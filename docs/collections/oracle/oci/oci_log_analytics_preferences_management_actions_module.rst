@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_preferences_management_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,8 @@ Synopsis
 .. Description
 
 - Perform actions on a PreferencesManagement resource in Oracle Cloud Infrastructure
-- For *action=remove_preferences*, removes the tenant preferences. Currently, only "DEFAULT_HOMEPAGE" is supported.
-- For *action=update_preferences*, updates the tenant preferences. Currently, only "DEFAULT_HOMEPAGE" is supported.
+- For *action=remove_preferences*, removes the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
+- For *action=update_preferences*, updates the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
 
 
 .. Aliases
@@ -279,7 +279,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The preference name. Currently, only &quot;DEFAULT_HOMEPAGE&quot; is supported.</div>
+                                            <div>The preference name.</div>
                                                         </td>
             </tr>
                                 <tr>

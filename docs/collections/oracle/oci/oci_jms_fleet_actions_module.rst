@@ -30,7 +30,7 @@ oracle.oci.oci_jms_fleet_actions -- Perform actions on a Fleet resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,8 +59,10 @@ Synopsis
 - Perform actions on a Fleet resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag values of the resource.
 - For *action=generate_agent_deploy_script*, generates Agent Deploy Script for Fleet using the information provided.
-- For *action=request_crypto_analyses*, request to perform crypto analyses. The result of crypto analysis will be uploaded to the object storage bucket desiginated when enable Crypto Event Analysis feature.
-- For *action=request_jfr_recordings*, request to collect the JFR recordings on the selected target. The JFR files are uploaded to the object storage bucket that you designated when you enabled the recording feature.
+- For *action=request_crypto_analyses*, request to perform crypto analysis on one or more selected targets in the Fleet. The result of the crypto analysis will be uploaded to the object storage bucket created by JMS on enabling the Crypto Event Analysis feature in the Fleet.
+- For *action=request_java_migration_analyses*, request to perform a Java migration analysis. The results of the Java migration analysis will be uploaded to the Object Storage bucket that you designate when you enable the Java Migration Analysis feature.
+- For *action=request_jfr_recordings*, request to collect the JFR recordings on the selected target in the Fleet. The JFR files are uploaded to the object storage bucket created by JMS on enabling Generic JFR feature in the Fleet.
+- For *action=request_performance_tuning_analyses*, request to perform performance tuning analyses. The result of performance tuning analysis will be uploaded to the object storage bucket that you designated when you enabled the recording feature.
 
 
 .. Aliases
@@ -103,7 +105,9 @@ Parameters
                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>generate_agent_deploy_script</li>
                                                                                                                                                                                                 <li>request_crypto_analyses</li>
+                                                                                                                                                                                                <li>request_java_migration_analyses</li>
                                                                                                                                                                                                 <li>request_jfr_recordings</li>
+                                                                                                                                                                                                <li>request_performance_tuning_analyses</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -441,7 +445,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Duration of the JFR recording in minutes.</div>
-                                            <div>Applicable only for <em>action=request_crypto_analyses</em><em>action=request_jfr_recordings</em>.</div>
+                                            <div>Required for <em>action=request_performance_tuning_analyses</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -488,10 +492,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The attachment targets to start JFR.</div>
-                                            <div>Applicable only for <em>action=request_crypto_analyses</em><em>action=request_jfr_recordings</em>.</div>
+                                            <div>Required for <em>action=request_java_migration_analyses</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-targets/application_installation_key"></div>
+                    <b>application_installation_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-targets/application_installation_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Unique key that identifies the application installation for JFR data collection.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-targets/application_key"></div>
@@ -504,7 +524,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Unique key that identify the application for JFR data collection.</div>
+                                            <div>Unique key that identifies the application for JFR data collection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -537,6 +557,38 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of the Managed Instance to collect JFR data.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-targets/source_jdk_version"></div>
+                    <b>source_jdk_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-targets/source_jdk_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The JDK version the application is currently running on.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-targets/target_jdk_version"></div>
+                    <b>target_jdk_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-targets/target_jdk_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The JDK version against which the migration analysis was performed to identify effort required to move from source JDK.</div>
                                                         </td>
             </tr>
                     
@@ -587,6 +639,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-waiting_period_in_minutes"></div>
+                    <b>waiting_period_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-waiting_period_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Period to looking for JVMs. In addition to attach to running JVMs when given the command, JVM started within the waiting period will also be attached for JFR. The value should be larger than the agent polling interval setting for the fleet to ensure agent can get the instructions. If not specified, the agent polling interval for the fleet is used.</div>
+                                            <div>Applicable only for <em>action=request_crypto_analyses</em><em>action=request_jfr_recordings</em><em>action=request_performance_tuning_analyses</em>.</div>
                                                         </td>
             </tr>
                         </table>
@@ -645,14 +713,58 @@ Examples
           # optional
           application_key: application_key_example
           jre_key: jre_key_example
+          application_installation_key: application_installation_key_example
+          source_jdk_version: source_jdk_version_example
+          target_jdk_version: target_jdk_version_example
         recording_duration_in_minutes: 56
+        waiting_period_in_minutes: 56
+
+    - name: Perform action request_java_migration_analyses on fleet
+      oci_jms_fleet_actions:
+        # required
+        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+        targets:
+        - # required
+          managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          application_key: application_key_example
+          jre_key: jre_key_example
+          application_installation_key: application_installation_key_example
+          source_jdk_version: source_jdk_version_example
+          target_jdk_version: target_jdk_version_example
+        action: request_java_migration_analyses
 
     - name: Perform action request_jfr_recordings on fleet
       oci_jms_fleet_actions:
         # required
-        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
         jfc_profile_name: jfc_profile_name_example
+        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
         action: request_jfr_recordings
+
+        # optional
+        jfc_v1: jfc_v1_example
+        jfc_v2: jfc_v2_example
+        recording_size_in_mb: 56
+        targets:
+        - # required
+          managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          application_key: application_key_example
+          jre_key: jre_key_example
+          application_installation_key: application_installation_key_example
+          source_jdk_version: source_jdk_version_example
+          target_jdk_version: target_jdk_version_example
+        recording_duration_in_minutes: 56
+        waiting_period_in_minutes: 56
+
+    - name: Perform action request_performance_tuning_analyses on fleet
+      oci_jms_fleet_actions:
+        # required
+        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+        recording_duration_in_minutes: 56
+        action: request_performance_tuning_analyses
 
         # optional
         targets:
@@ -662,10 +774,10 @@ Examples
           # optional
           application_key: application_key_example
           jre_key: jre_key_example
-        jfc_v1: jfc_v1_example
-        jfc_v2: jfc_v2_example
-        recording_duration_in_minutes: 56
-        recording_size_in_mb: 56
+          application_installation_key: application_installation_key_example
+          source_jdk_version: source_jdk_version_example
+          target_jdk_version: target_jdk_version_example
+        waiting_period_in_minutes: 56
 
 
 
@@ -717,7 +829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique applications in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique applications in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -735,7 +847,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java installations in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java installations in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -753,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java servers in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java servers in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -771,7 +883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java Runtimes in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java Runtimes in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -789,7 +901,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique managed instances in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique managed instances in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -879,7 +991,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -970,7 +1082,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether or not advanced features are enabled in this fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.</div>
+                                            <div>Whether or not advanced features are enabled in this Fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

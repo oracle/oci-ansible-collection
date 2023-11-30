@@ -40,7 +40,6 @@ options:
             - "SAVED_SEARCH"
             - "ACCELERATION"
             - "PURGE"
-            - "ACCELERATION_MAINTENANCE"
     compartment_id:
         description:
             - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -917,13 +916,7 @@ def main():
     module_args.update(
         dict(
             task_type=dict(
-                type="str",
-                choices=[
-                    "SAVED_SEARCH",
-                    "ACCELERATION",
-                    "PURGE",
-                    "ACCELERATION_MAINTENANCE",
-                ],
+                type="str", choices=["SAVED_SEARCH", "ACCELERATION", "PURGE"]
             ),
             compartment_id=dict(type="str"),
             saved_search_id=dict(type="str"),

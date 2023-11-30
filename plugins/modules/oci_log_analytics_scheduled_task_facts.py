@@ -49,7 +49,6 @@ options:
             - "SAVED_SEARCH"
             - "ACCELERATION"
             - "PURGE"
-            - "ACCELERATION_MAINTENANCE"
     compartment_id:
         description:
             - The ID of the compartment in which to list resources.
@@ -519,13 +518,7 @@ def main():
             scheduled_task_id=dict(aliases=["id"], type="str"),
             namespace_name=dict(type="str", required=True),
             task_type=dict(
-                type="str",
-                choices=[
-                    "SAVED_SEARCH",
-                    "ACCELERATION",
-                    "PURGE",
-                    "ACCELERATION_MAINTENANCE",
-                ],
+                type="str", choices=["SAVED_SEARCH", "ACCELERATION", "PURGE"]
             ),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),

@@ -1689,6 +1689,7 @@ from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
@@ -1739,8 +1740,8 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
 
     def __init__(self, *args, **kwargs):
         super(AutonomousDatabaseActionsHelperGen, self).__init__(*args, **kwargs)
-        self.work_request_client = WorkRequestClient(
-            self.client._config, **self.client._kwargs
+        self.work_request_client = oci_config_utils.create_service_client(
+            self.module, WorkRequestClient
         )
 
     @staticmethod

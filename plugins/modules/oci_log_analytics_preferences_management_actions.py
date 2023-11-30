@@ -23,8 +23,8 @@ module: oci_log_analytics_preferences_management_actions
 short_description: Perform actions on a PreferencesManagement resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a PreferencesManagement resource in Oracle Cloud Infrastructure
-    - "For I(action=remove_preferences), removes the tenant preferences. Currently, only \\"DEFAULT_HOMEPAGE\\" is supported."
-    - "For I(action=update_preferences), updates the tenant preferences. Currently, only \\"DEFAULT_HOMEPAGE\\" is supported."
+    - For I(action=remove_preferences), removes the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
+    - For I(action=update_preferences), updates the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -41,7 +41,7 @@ options:
         suboptions:
             name:
                 description:
-                    - "The preference name. Currently, only \\"DEFAULT_HOMEPAGE\\" is supported."
+                    - The preference name.
                 type: str
             value:
                 description:

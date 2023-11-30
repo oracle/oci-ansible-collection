@@ -116,13 +116,48 @@ recalled_data:
             returned: on success
             type: int
             sample: 56
+        not_recalled_data_in_bytes:
+            description:
+                - This is the size of the archival data not recalled yet within the specified time range
+            returned: on success
+            type: int
+            sample: 56
+        purpose:
+            description:
+                - This is the purpose of the recall
+            returned: on success
+            type: str
+            sample: purpose_example
+        query_string:
+            description:
+                - This is the query associated with the recall
+            returned: on success
+            type: str
+            sample: query_string_example
+        log_sets:
+            description:
+                - This is the list of logsets associated with the recall
+            returned: on success
+            type: str
+            sample: log_sets_example
+        created_by:
+            description:
+                - This is the user who initiated the recall request
+            returned: on success
+            type: str
+            sample: created_by_example
     sample: [{
         "time_data_ended": "2013-10-20T19:20:30+01:00",
         "time_data_started": "2013-10-20T19:20:30+01:00",
         "time_started": "2013-10-20T19:20:30+01:00",
         "status": "RECALLED",
         "recall_count": 56,
-        "storage_usage_in_bytes": 56
+        "storage_usage_in_bytes": 56,
+        "not_recalled_data_in_bytes": 56,
+        "purpose": "purpose_example",
+        "query_string": "query_string_example",
+        "log_sets": "log_sets_example",
+        "created_by": "created_by_example"
     }]
 """
 

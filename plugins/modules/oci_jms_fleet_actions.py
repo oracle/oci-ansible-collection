@@ -26,10 +26,16 @@ description:
     - For I(action=change_compartment), move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag
       values of the resource.
     - For I(action=generate_agent_deploy_script), generates Agent Deploy Script for Fleet using the information provided.
-    - For I(action=request_crypto_analyses), request to perform crypto analyses. The result of crypto analysis will be uploaded to the
-      object storage bucket desiginated when enable Crypto Event Analysis feature.
-    - For I(action=request_jfr_recordings), request to collect the JFR recordings on the selected target. The JFR files are uploaded
-      to the object storage bucket that you designated when you enabled the recording feature.
+    - For I(action=request_crypto_analyses), request to perform crypto analysis on one or more selected targets in the Fleet. The result of the crypto analysis
+      will be uploaded to the object storage bucket created by JMS on enabling the Crypto Event Analysis feature in the Fleet.
+    - For I(action=request_java_migration_analyses), request to perform a Java migration analysis. The results of the Java migration analysis will be uploaded
+      to the
+      Object Storage bucket that you designate when you enable the Java Migration Analysis feature.
+    - For I(action=request_jfr_recordings), request to collect the JFR recordings on the selected target in the Fleet. The JFR files are uploaded to the object
+      storage bucket created by JMS on enabling Generic JFR feature in the Fleet.
+    - For I(action=request_performance_tuning_analyses), request to perform performance tuning analyses. The result of performance tuning analysis will be
+      uploaded to the
+      object storage bucket that you designated when you enabled the recording feature.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -64,32 +70,6 @@ options:
             - Enable/disable user name collection on agent.
             - Required for I(action=generate_agent_deploy_script).
         type: bool
-    fleet_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
-        type: str
-        aliases: ["id"]
-        required: true
-    targets:
-        description:
-            - The attachment targets to start JFR.
-            - Applicable only for I(action=request_crypto_analyses)I(action=request_jfr_recordings).
-        type: list
-        elements: dict
-        suboptions:
-            managed_instance_id:
-                description:
-                    - OCID of the Managed Instance to collect JFR data.
-                type: str
-                required: true
-            application_key:
-                description:
-                    - Unique key that identify the application for JFR data collection.
-                type: str
-            jre_key:
-                description:
-                    - Unique key that identify the JVM for JFR data collection.
-                type: str
     jfc_profile_name:
         description:
             - The profile used for JFR events selection. If the name isn't recognized, the settings from jfcV1 or jfcV2
@@ -108,15 +88,61 @@ options:
               after,https://raw.githubusercontent.com/openjdk/jdk/master/src/jdk.jfr/share/classes/jdk/jfr/internal/jfc/jfc.xsd).
             - Applicable only for I(action=request_jfr_recordings).
         type: str
-    recording_duration_in_minutes:
-        description:
-            - Duration of the JFR recording in minutes.
-            - Applicable only for I(action=request_crypto_analyses)I(action=request_jfr_recordings).
-        type: int
     recording_size_in_mb:
         description:
             - The maximum size limit for the JFR file collected.
             - Applicable only for I(action=request_jfr_recordings).
+        type: int
+    fleet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
+        type: str
+        aliases: ["id"]
+        required: true
+    targets:
+        description:
+            - The attachment targets to start JFR.
+            - Required for I(action=request_java_migration_analyses).
+        type: list
+        elements: dict
+        suboptions:
+            application_key:
+                description:
+                    - Unique key that identifies the application for JFR data collection.
+                type: str
+            jre_key:
+                description:
+                    - Unique key that identify the JVM for JFR data collection.
+                type: str
+            managed_instance_id:
+                description:
+                    - OCID of the Managed Instance to collect JFR data.
+                type: str
+                required: true
+            application_installation_key:
+                description:
+                    - Unique key that identifies the application installation for JFR data collection.
+                type: str
+            source_jdk_version:
+                description:
+                    - The JDK version the application is currently running on.
+                type: str
+            target_jdk_version:
+                description:
+                    - The JDK version against which the migration analysis was performed to identify effort required to move from source JDK.
+                type: str
+    recording_duration_in_minutes:
+        description:
+            - Duration of the JFR recording in minutes.
+            - Required for I(action=request_performance_tuning_analyses).
+        type: int
+    waiting_period_in_minutes:
+        description:
+            - Period to looking for JVMs. In addition to attach to running JVMs when given the command,
+              JVM started within the waiting period will also be attached for JFR. The value should be
+              larger than the agent polling interval setting for the fleet to ensure agent can get the
+              instructions. If not specified, the agent polling interval for the fleet is used.
+            - Applicable only for I(action=request_crypto_analyses)I(action=request_jfr_recordings)I(action=request_performance_tuning_analyses).
         type: int
     action:
         description:
@@ -127,7 +153,9 @@ options:
             - "change_compartment"
             - "generate_agent_deploy_script"
             - "request_crypto_analyses"
+            - "request_java_migration_analyses"
             - "request_jfr_recordings"
+            - "request_performance_tuning_analyses"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -163,14 +191,58 @@ EXAMPLES = """
       # optional
       application_key: application_key_example
       jre_key: jre_key_example
+      application_installation_key: application_installation_key_example
+      source_jdk_version: source_jdk_version_example
+      target_jdk_version: target_jdk_version_example
     recording_duration_in_minutes: 56
+    waiting_period_in_minutes: 56
+
+- name: Perform action request_java_migration_analyses on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    targets:
+    - # required
+      managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      application_key: application_key_example
+      jre_key: jre_key_example
+      application_installation_key: application_installation_key_example
+      source_jdk_version: source_jdk_version_example
+      target_jdk_version: target_jdk_version_example
+    action: request_java_migration_analyses
 
 - name: Perform action request_jfr_recordings on fleet
   oci_jms_fleet_actions:
     # required
-    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     jfc_profile_name: jfc_profile_name_example
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     action: request_jfr_recordings
+
+    # optional
+    jfc_v1: jfc_v1_example
+    jfc_v2: jfc_v2_example
+    recording_size_in_mb: 56
+    targets:
+    - # required
+      managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      application_key: application_key_example
+      jre_key: jre_key_example
+      application_installation_key: application_installation_key_example
+      source_jdk_version: source_jdk_version_example
+      target_jdk_version: target_jdk_version_example
+    recording_duration_in_minutes: 56
+    waiting_period_in_minutes: 56
+
+- name: Perform action request_performance_tuning_analyses on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    recording_duration_in_minutes: 56
+    action: request_performance_tuning_analyses
 
     # optional
     targets:
@@ -180,10 +252,10 @@ EXAMPLES = """
       # optional
       application_key: application_key_example
       jre_key: jre_key_example
-    jfc_v1: jfc_v1_example
-    jfc_v2: jfc_v2_example
-    recording_duration_in_minutes: 56
-    recording_size_in_mb: 56
+      application_installation_key: application_installation_key_example
+      source_jdk_version: source_jdk_version_example
+      target_jdk_version: target_jdk_version_example
+    waiting_period_in_minutes: 56
 
 """
 
@@ -221,35 +293,35 @@ fleet:
         approximate_jre_count:
             description:
                 - The approximate count of all unique Java Runtimes in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_installation_count:
             description:
                 - The approximate count of all unique Java installations in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_application_count:
             description:
                 - The approximate count of all unique applications in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_managed_instance_count:
             description:
                 - The approximate count of all unique managed instances in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_java_server_count:
             description:
                 - The approximate count of all unique Java servers in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
@@ -291,8 +363,8 @@ fleet:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         is_advanced_features_enabled:
             description:
-                - Whether or not advanced features are enabled in this fleet.
-                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
+                - Whether or not advanced features are enabled in this Fleet.
+                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.
             returned: on success
             type: bool
             sample: true
@@ -318,7 +390,7 @@ fleet:
             sample: {'Operations': {'CostCenter': 'US'}}
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`. (See L(Managing Tags and Tag
                   Namespaces,https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm).)"
             returned: on success
@@ -376,7 +448,9 @@ try:
     from oci.jms.models import ChangeFleetCompartmentDetails
     from oci.jms.models import GenerateAgentDeployScriptDetails
     from oci.jms.models import RequestCryptoAnalysesDetails
+    from oci.jms.models import RequestJavaMigrationAnalysesDetails
     from oci.jms.models import RequestJfrRecordingsDetails
+    from oci.jms.models import RequestPerformanceTuningAnalysesDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -389,7 +463,9 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
         change_compartment
         generate_agent_deploy_script
         request_crypto_analyses
+        request_java_migration_analyses
         request_jfr_recordings
+        request_performance_tuning_analyses
     """
 
     @staticmethod
@@ -478,6 +554,27 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def request_java_migration_analyses(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RequestJavaMigrationAnalysesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.request_java_migration_analyses,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                request_java_migration_analyses_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def request_jfr_recordings(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RequestJfrRecordingsDetails
@@ -488,6 +585,27 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 fleet_id=self.module.params.get("fleet_id"),
                 request_jfr_recordings_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def request_performance_tuning_analyses(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RequestPerformanceTuningAnalysesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.request_performance_tuning_analyses,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                request_performance_tuning_analyses_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -520,21 +638,25 @@ def main():
                 type="str", choices=["LINUX", "WINDOWS", "MACOS", "UNKNOWN"]
             ),
             is_user_name_enabled=dict(type="bool"),
+            jfc_profile_name=dict(type="str"),
+            jfc_v1=dict(type="str"),
+            jfc_v2=dict(type="str"),
+            recording_size_in_mb=dict(type="int"),
             fleet_id=dict(aliases=["id"], type="str", required=True),
             targets=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    managed_instance_id=dict(type="str", required=True),
                     application_key=dict(type="str", no_log=True),
                     jre_key=dict(type="str", no_log=True),
+                    managed_instance_id=dict(type="str", required=True),
+                    application_installation_key=dict(type="str", no_log=True),
+                    source_jdk_version=dict(type="str"),
+                    target_jdk_version=dict(type="str"),
                 ),
             ),
-            jfc_profile_name=dict(type="str"),
-            jfc_v1=dict(type="str"),
-            jfc_v2=dict(type="str"),
             recording_duration_in_minutes=dict(type="int"),
-            recording_size_in_mb=dict(type="int"),
+            waiting_period_in_minutes=dict(type="int"),
             action=dict(
                 type="str",
                 required=True,
@@ -542,7 +664,9 @@ def main():
                     "change_compartment",
                     "generate_agent_deploy_script",
                     "request_crypto_analyses",
+                    "request_java_migration_analyses",
                     "request_jfr_recordings",
+                    "request_performance_tuning_analyses",
                 ],
             ),
         )

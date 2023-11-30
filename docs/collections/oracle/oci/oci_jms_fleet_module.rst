@@ -30,7 +30,7 @@ oracle.oci.oci_jms_fleet -- Manage a Fleet resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,7 +59,7 @@ Synopsis
 - This module allows the user to create, update and delete a Fleet resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new Fleet using the information provided.
 - `inventoryLog` is now a required parameter for CreateFleet API. Update existing applications using this API before July 15, 2022 to ensure the applications continue to work. See the `Service Change Notice <https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm#JMS>`_ for more details. Migrate existing fleets using the `UpdateFleet` API to set the `inventoryLog` parameter.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_jms_fleet_actions <ansible_collections.oracle.oci.oci_jms_fleet_actions_module>` module: change_compartment, generate_agent_deploy_script, request_crypto_analyses, request_jfr_recordings.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_jms_fleet_actions <ansible_collections.oracle.oci.oci_jms_fleet_actions_module>` module: change_compartment, generate_agent_deploy_script, request_crypto_analyses, request_java_migration_analyses, request_jfr_recordings, request_performance_tuning_analyses.
 
 
 .. Aliases
@@ -349,7 +349,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -419,7 +419,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether or not advanced features are enabled in this fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.</div>
+                                            <div>Whether or not advanced features are enabled in this Fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -737,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique applications in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique applications in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -755,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java installations in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java installations in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -773,7 +773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java servers in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java servers in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -791,7 +791,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique Java Runtimes in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique Java Runtimes in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -809,7 +809,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The approximate count of all unique managed instances in the Fleet in the past seven days. This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.</div>
+                                            <div>The approximate count of all unique managed instances in the Fleet in the past seven days. This metric is provided on a best-effort manner, and isn&#x27;t taken into account when computing the resource ETag.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -899,7 +899,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`. (See <a href='https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm'>Managing Tags and Tag Namespaces</a>.)</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -990,7 +990,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether or not advanced features are enabled in this fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.</div>
+                                            <div>Whether or not advanced features are enabled in this Fleet. Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

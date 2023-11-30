@@ -134,35 +134,35 @@ fleets:
         approximate_jre_count:
             description:
                 - The approximate count of all unique Java Runtimes in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_installation_count:
             description:
                 - The approximate count of all unique Java installations in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_application_count:
             description:
                 - The approximate count of all unique applications in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_managed_instance_count:
             description:
                 - The approximate count of all unique managed instances in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
         approximate_java_server_count:
             description:
                 - The approximate count of all unique Java servers in the Fleet in the past seven days.
-                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+                  This metric is provided on a best-effort manner, and isn't taken into account when computing the resource ETag.
             returned: on success
             type: int
             sample: 56
@@ -204,8 +204,8 @@ fleets:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         is_advanced_features_enabled:
             description:
-                - Whether or not advanced features are enabled in this fleet.
-                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
+                - Whether or not advanced features are enabled in this Fleet.
+                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` API instead.
             returned: on success
             type: bool
             sample: true
@@ -231,7 +231,7 @@ fleets:
             sample: {'Operations': {'CostCenter': 'US'}}
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`. (See L(Managing Tags and Tag
                   Namespaces,https://docs.cloud.oracle.com/Content/Tagging/Concepts/understandingfreeformtags.htm).)"
             returned: on success

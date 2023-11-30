@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_preferences_management_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple PreferencesManagement resources in Oracle Cloud Infrastructure
-- Lists the preferences of the tenant. Currently, only "DEFAULT_HOMEPAGE" is supported.
+- Lists the tenant preferences such as DEFAULT_HOMEPAGE and collection properties.
 
 
 .. Aliases
@@ -431,7 +431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The preference name. Currently, only &quot;DEFAULT_HOMEPAGE&quot; is supported.</div>
+                                            <div>The preference name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
