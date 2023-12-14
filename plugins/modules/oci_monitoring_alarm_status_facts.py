@@ -27,9 +27,10 @@ description:
       Status is collective, across all metric streams in the alarm.
       To list alarm status for each metric stream, use L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
-      The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`.
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For more information, see
+      L(Listing Alarm Statuses,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status.htm).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
@@ -74,6 +75,34 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    resource_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a resource that is monitored by the
+              metric that you are searching for.
+            - "Example: `ocid1.instance.oc1.phx.exampleuniqueID`"
+        type: str
+    service_name:
+        description:
+            - "A filter to return only resources that match the given service name exactly.
+              Use this filter to list all alarms containing metric streams that match the *exact* service-name dimension."
+            - "Example: `logging-analytics`"
+        type: str
+    entity_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entity monitored by the
+              metric that you are searching for.
+            - "Example: `ocid1.instance.oc1.phx.exampleuniqueID`"
+        type: str
+    status:
+        description:
+            - "The status of the metric stream to use for alarm filtering. For example, set `StatusQueryParam` to
+              \\"FIRING\\" to filter results to metric streams of the alarm with that status. Default behaviour is to return
+              alarms irrespective of metric streams' status."
+            - "Example: `FIRING`"
+        type: str
+        choices:
+            - "FIRING"
+            - "OK"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -88,6 +117,10 @@ EXAMPLES = """
     display_name: display_name_example
     sort_by: displayName
     sort_order: ASC
+    resource_id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+    status: FIRING
 
 """
 
@@ -128,12 +161,11 @@ alarm_statuses:
             sample: "2013-10-20T19:20:30+01:00"
         status:
             description:
-                - The status of this alarm.
+                - "The status of this alarm.
                   Status is collective, across all metric streams in the alarm.
                   To list alarm status for each metric stream, use L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
-                  The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`.
-                - "Example: `FIRING`"
+                  Example: `FIRING`"
             returned: on success
             type: str
             sample: FIRING
@@ -211,6 +243,10 @@ class AlarmStatusFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "sort_by",
             "sort_order",
+            "resource_id",
+            "service_name",
+            "entity_id",
+            "status",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -240,6 +276,10 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["displayName", "severity"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            resource_id=dict(type="str"),
+            service_name=dict(type="str"),
+            entity_id=dict(type="str"),
+            status=dict(type="str", choices=["FIRING", "OK"]),
         )
     )
 

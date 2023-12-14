@@ -94,6 +94,13 @@ options:
         choices:
             - "DEVELOPMENT"
             - "PRODUCTION"
+    domain_id:
+        description:
+            - "The OCID of the identity domain, that will be used to determine the
+              corresponding Idcs Stripe and create an Idcs application within the stripe.
+              This parameter is mutually exclusive with parameter: idcsAt, i.e only one of
+              two parameters should be specified."
+        type: str
     display_name:
         description:
             - Integration Instance Identifier.
@@ -237,6 +244,7 @@ EXAMPLES = """
         allowlisted_ips: [ "allowlisted_ips_example" ]
       is_integration_vcn_allowlisted: true
     shape: DEVELOPMENT
+    domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_file_server_enabled: true
@@ -797,7 +805,7 @@ class IntegrationInstanceHelperGen(OCIResourceHelperBase):
         return CreateIntegrationInstanceDetails
 
     def get_exclude_attributes(self):
-        return ["idcs_at"]
+        return ["domain_id", "idcs_at"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -885,6 +893,7 @@ def main():
                 ),
             ),
             shape=dict(type="str", choices=["DEVELOPMENT", "PRODUCTION"]),
+            domain_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             integration_instance_type=dict(
                 type="str",

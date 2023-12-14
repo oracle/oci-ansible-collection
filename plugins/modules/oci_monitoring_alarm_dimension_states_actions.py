@@ -26,13 +26,13 @@ description:
     - For I(action=retrieve_dimension_states), lists the current alarm status of each metric stream, where status is derived from the metric stream's last
       associated transition.
       Optionally filter by status value and one or more dimension key-value pairs.
-      This operation is only valid for alarms that have notifications per dimension enabled (`isNotificationsPerMetricDimensionEnabled=true`).
-       If `isNotificationsPerMetricDimensionEnabled` for the alarm is false or null, then no results are returned.
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
-       This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
-       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
-       or transactions, per second (TPS) for a given tenancy.
+      For more information, see
+      L(Listing Metric Stream Status in an Alarm,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status-metric-stream.htm).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+      This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
+      Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
+      or transactions, per second (TPS) for a given tenancy.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

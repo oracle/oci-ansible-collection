@@ -144,14 +144,15 @@ announcement_subscription:
                     sample: name_example
                 filters:
                     description:
-                        - A list of filters against which the Announcements service matches announcements. You cannot have more than one of any given filter
-                          type within a filter group. You also cannot combine the RESOURCE_ID filter with any other type of filter within a given filter group.
+                        - A list of filters against which the Announcements service matches announcements. You cannot combine the RESOURCE_ID filter with any
+                          other type of filter within a given filter group. For filter types that support multiple values, specify the values individually.
                     returned: on success
                     type: complex
                     contains:
                         type:
                             description:
-                                - The type of filter.
+                                - The type of filter. You cannot combine the RESOURCE_ID filter with any other type of filter within a given filter group. For
+                                  filter types that support multiple values, specify the values individually.
                             returned: on success
                             type: str
                             sample: COMPARTMENT_ID
@@ -163,16 +164,16 @@ announcement_subscription:
                             sample: value_example
         preferred_language:
             description:
-                - (For announcement subscriptions with Oracle Fusion Applications configured as the service only) The language in which the user prefers to
-                  receive emailed announcements. Specify the preference with a value that uses the language tag format (x-obmcs-human-language). For example fr-
-                  FR.
+                - (For announcement subscriptions with SaaS configured as the platform type or Oracle Fusion Applications as the service, or both, only) The
+                  language in which the user prefers to receive emailed announcements. Specify the preference with a value that uses the x-obmcs-human-language
+                  format. For example fr-FR.
             returned: on success
             type: str
             sample: preferred_language_example
         preferred_time_zone:
             description:
-                - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database
-                  format (x-obmcs-time-zone). For example America/Los_Angeles.
+                - "The time zone in which the user prefers to receive announcements. Specify the preference with a value that uses the IANA Time Zone Database
+                  format (x-obmcs-time-zone). For example - America/Los_Angeles"
             returned: on success
             type: str
             sample: preferred_time_zone_example

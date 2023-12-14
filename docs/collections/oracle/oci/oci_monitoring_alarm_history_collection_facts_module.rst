@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_history_collection_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a AlarmHistoryCollection resource in Oracle Cloud Infrastructure
-- Get the history of the specified alarm. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
+- Get the history of the specified alarm. For more information, see `Getting History of an Alarm <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/get-alarm-history.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_.
 - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
 
@@ -434,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the alarm for which to retrieve history.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the alarm to retrieve history for.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx</div>

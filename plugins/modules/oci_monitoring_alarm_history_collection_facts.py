@@ -24,8 +24,10 @@ short_description: Fetches details about a AlarmHistoryCollection resource in Or
 description:
     - Fetches details about a AlarmHistoryCollection resource in Oracle Cloud Infrastructure
     - Get the history of the specified alarm.
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For more information, see
+      L(Getting History of an Alarm,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/get-alarm-history.htm).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
@@ -82,7 +84,7 @@ alarm_history_collection:
     contains:
         alarm_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm for which to retrieve history.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm to retrieve history for.
             returned: on success
             type: str
             sample: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"

@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,11 +57,12 @@ Synopsis
 .. Description
 
 - This module allows the user to create a MetricData resource in Oracle Cloud Infrastructure
-- For *state=present*, publishes raw metric data points to the Monitoring service. For more information about publishing metrics, see `Publishing Custom Metrics <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
+- For *state=present*, publishes raw metric data points to the Monitoring service. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).
+- For more information about publishing metrics, see `Publishing Custom Metrics <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm>`_ and `Custom Metrics Walkthrough <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/custom-metrics-walkthrough.htm>`_. For information about developing a metric-posting client, see `Developer Guide <https://docs.cloud.oracle.com/iaas/Content/API/Concepts/devtoolslanding.htm>`_. For an example client, see `MonitoringMetricPostExample.java <https://github.com/oracle/oci-java-sdk/blob/master/bmc-examples/src/main/java/MonitoringMetricPostExample.java>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_.
 - Per-call limits information follows.
 - * Dimensions per metric group*. Maximum: 20. Minimum: 1. * Unique metric streams*. Maximum: 50. * Transactions Per Second (TPS) per-tenancy limit for this operation: 50.
 - *A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric with zero or more dimension values. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
-- The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
+- **Note:** The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
 - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
 - This resource has the following action operations in the :ref:`oracle.oci.oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` module: summarize_metrics_data.
 
@@ -350,7 +351,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of metric values with timestamps. At least one data point is required per call.</div>
+                                            <div>A list of metric values with timestamps. At least one data point is required per call. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -385,7 +386,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Timestamp for this metric value. Format defined by RFC3339.</div>
+                                            <div>Timestamp for this metric value. Format defined by RFC3339. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                                         </td>
             </tr>
@@ -738,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of metric values with timestamps. At least one data point is required per call.</div>
+                                            <div>A list of metric values with timestamps. At least one data point is required per call. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -779,7 +780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Timestamp for this metric value. Format defined by RFC3339.</div>
+                                            <div>Timestamp for this metric value. Format defined by RFC3339. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

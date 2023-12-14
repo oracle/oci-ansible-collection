@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_target_alert_policy_association -- Manage a TargetAlert
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -353,7 +353,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates if the target-alert policy association is enabled or disabled.</div>
+                                            <div>Indicates if the target-alert policy association is enabled or disabled by user.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -763,7 +763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates if the target-alert policy association is enabled or disabled.</div>
+                                            <div>Indicates if the target-alert policy association is enabled or disabled by user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

@@ -23,23 +23,40 @@ module: oci_database_pluggable_database_actions
 short_description: Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
+    - For I(action=convert_to_regular), converts a Refreshable clone to Regular pluggable database (PDB).
+      Pluggable Database will be in `READ_WRITE` openmode after conversion.
     - For I(action=disable_pluggable_database_management), disables the Database Management service for the pluggable database.
     - For I(action=enable_pluggable_database_management), enables the Database Management service for an Oracle Pluggable Database located in Oracle Cloud
       Infrastructure. This service allows the pluggable database to access tools including Metrics and Performance hub. Database Management is enabled at the
       pluggable database (PDB) level.
-    - For I(action=local_clone), clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the
-      `READ_WRITE` openMode to perform the clone operation.
+    - "For I(action=local_clone), **Deprecated.** Use L(CreatePluggableDatabase,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/PluggableDatabase/CreatePluggableDatabase) for Pluggable Database LocalClone Operation.
+      Clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the `READ_WRITE` openMode to perform
+      the clone operation."
     - For I(action=modify_pluggable_database_management), updates one or more attributes of the Database Management service for the pluggable database.
-    - For I(action=remote_clone), clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion
-      of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone.
+    - For I(action=refresh), refreshes a pluggable database (PDB) Refreshable clone.
+    - "For I(action=remote_clone), **Deprecated.** Use L(CreatePluggableDatabase,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/PluggableDatabase/CreatePluggableDatabase) for Pluggable Database RemoteClone Operation.
+      Clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion of the clone operation. The
+      source PDB must be in the `READ_WRITE` openMode when performing the clone.
       For Exadata Cloud@Customer instances, the source pluggable database (PDB) must be on the same Exadata Infrastructure as the target container database
-      (CDB) to create a remote clone.
+      (CDB) to create a remote clone."
     - For I(action=rotate_pluggable_database_encryption_key), create a new version of the existing encryption key.
     - For I(action=start), starts a stopped pluggable database. The `openMode` value of the pluggable database will be `READ_WRITE` upon completion.
     - For I(action=stop), stops a pluggable database. The `openMode` value of the pluggable database will be `MOUNTED` upon completion.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    should_create_pdb_backup:
+        description:
+            - Indicates whether to take Pluggable Database Backup after the operation.
+            - Applicable only for I(action=convert_to_regular).
+        type: bool
+    container_database_admin_password:
+        description:
+            - The DB system administrator password of the Container Database.
+            - Applicable only for I(action=convert_to_regular).
+        type: str
     credential_details:
         description:
             - ""
@@ -140,10 +157,12 @@ options:
         type: str
         required: true
         choices:
+            - "convert_to_regular"
             - "disable_pluggable_database_management"
             - "enable_pluggable_database_management"
             - "local_clone"
             - "modify_pluggable_database_management"
+            - "refresh"
             - "remote_clone"
             - "rotate_pluggable_database_encryption_key"
             - "start"
@@ -152,6 +171,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action convert_to_regular on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: convert_to_regular
+
+    # optional
+    should_create_pdb_backup: true
+    container_database_admin_password: example-password
+
 - name: Perform action disable_pluggable_database_management on pluggable_database
   oci_database_pluggable_database_actions:
     # required
@@ -205,6 +234,12 @@ EXAMPLES = """
     port: 56
     ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
     role: SYSDBA
+
+- name: Perform action refresh on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: refresh
 
 - name: Perform action remote_clone on pluggable_database
   oci_database_pluggable_database_actions:
@@ -311,8 +346,10 @@ pluggable_database:
                     sample: {}
         open_mode:
             description:
-                - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
-                  Database software).
+                - "**Deprecated.** Use L(PluggableDatabaseNodeLevelDetails,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/database/latest/datatypes/PluggableDatabaseNodeLevelDetails) for OpenMode details.
+                  The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
+                  Database software)."
             returned: on success
             type: str
             sample: READ_ONLY
@@ -356,6 +393,39 @@ pluggable_database:
                     returned: on success
                     type: str
                     sample: ENABLING
+        refreshable_clone_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_refreshable_clone:
+                    description:
+                        - Indicates whether the Pluggable Database is a refreshable clone.
+                    returned: on success
+                    type: bool
+                    sample: true
+        pdb_node_level_details:
+            description:
+                - "Pluggable Database Node Level Details.
+                  Example: [{\\"nodeName\\" : \\"node1\\", \\"openMode\\" : \\"READ_WRITE\\"}, {\\"nodeName\\" : \\"node2\\", \\"openMode\\" :
+                  \\"READ_ONLY\\"}]"
+            returned: on success
+            type: complex
+            contains:
+                node_name:
+                    description:
+                        - The Node name of the Database Instance.
+                    returned: on success
+                    type: str
+                    sample: node_name_example
+                open_mode:
+                    description:
+                        - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the
+                          Oracle Database software).
+                    returned: on success
+                    type: str
+                    sample: READ_ONLY
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -375,7 +445,14 @@ pluggable_database:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "pluggable_database_management_config": {
             "management_status": "ENABLING"
-        }
+        },
+        "refreshable_clone_config": {
+            "is_refreshable_clone": true
+        },
+        "pdb_node_level_details": [{
+            "node_name": "node_name_example",
+            "open_mode": "READ_ONLY"
+        }]
     }
 """
 
@@ -393,6 +470,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ConvertToRegularPluggableDatabaseDetails
     from oci.database.models import EnablePluggableDatabaseManagementDetails
     from oci.database.models import LocalClonePluggableDatabaseDetails
     from oci.database.models import ModifyPluggableDatabaseManagementDetails
@@ -406,10 +484,12 @@ except ImportError:
 class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        convert_to_regular
         disable_pluggable_database_management
         enable_pluggable_database_management
         local_clone
         modify_pluggable_database_management
+        refresh
         remote_clone
         rotate_pluggable_database_encryption_key
         start
@@ -436,6 +516,27 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_pluggable_database,
             pluggable_database_id=self.module.params.get("pluggable_database_id"),
+        )
+
+    def convert_to_regular(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ConvertToRegularPluggableDatabaseDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.convert_to_regular_pluggable_database,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                convert_to_regular_pluggable_database_details=action_details,
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def disable_pluggable_database_management(self):
@@ -507,6 +608,23 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 pluggable_database_id=self.module.params.get("pluggable_database_id"),
                 modify_pluggable_database_management_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def refresh(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.refresh_pluggable_database,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -608,6 +726,8 @@ def main():
     )
     module_args.update(
         dict(
+            should_create_pdb_backup=dict(type="bool"),
+            container_database_admin_password=dict(type="str", no_log=True),
             credential_details=dict(
                 type="dict",
                 options=dict(
@@ -632,10 +752,12 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "convert_to_regular",
                     "disable_pluggable_database_management",
                     "enable_pluggable_database_management",
                     "local_clone",
                     "modify_pluggable_database_management",
+                    "refresh",
                     "remote_clone",
                     "rotate_pluggable_database_encryption_key",
                     "start",

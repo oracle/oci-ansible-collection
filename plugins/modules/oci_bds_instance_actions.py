@@ -35,10 +35,13 @@ description:
       and will have the same amount of attached block storage as other utility nodes in the cluster.
     - For I(action=add_worker_nodes), increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same
       shape and will have the same amount of attached block storage as other worker nodes in the cluster.
+    - For I(action=certificate_service_info), a list of services and their certificate details.
     - For I(action=change_compartment), moves a Big Data Service cluster into a different compartment.
     - For I(action=change_shape), changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of
       all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD
       shapes can be scaled.
+    - For I(action=disable_certificate), disabling TLS/SSL for various ODH services running on the BDS cluster.
+    - For I(action=enable_certificate), configuring TLS/SSL for various ODH services running on the BDS cluster.
     - For I(action=execute_bootstrap_script), execute bootstrap script.
     - For I(action=get_os_patch_details), get the details of an os patch
     - For I(action=install_os_patch), install an os patch on a cluster
@@ -47,6 +50,7 @@ description:
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
     - For I(action=remove_kafka), remove Kafka from the cluster.
     - For I(action=remove_node), remove a single node of a Big Data Service cluster
+    - For I(action=renew_certificate), renewing TLS/SSL for various ODH services running on the BDS cluster.
     - For I(action=restart_node), restarts a single node of a Big Data Service cluster
     - For I(action=start), starts the BDS cluster that was stopped earlier.
     - For I(action=stop), stops the BDS cluster that can be started at later point of time.
@@ -308,6 +312,45 @@ options:
               removal fails.
             - Applicable only for I(action=remove_node).
         type: bool
+    services:
+        description:
+            - List of services for which TLS/SSL needs to be enabled.
+            - Required for I(action=certificate_service_info), I(action=disable_certificate), I(action=enable_certificate).
+        type: list
+        elements: str
+    root_certificate:
+        description:
+            - Plain text certificate/s in order, separated by new line character. If not provided in request a self-signed root certificate is generated inside
+              the cluster. In case hostCertDetails is provided, root certificate is mandatory.
+            - Applicable only for I(action=enable_certificate)I(action=renew_certificate).
+        type: str
+    host_cert_details:
+        description:
+            - List of leaf certificates to use for services on each host. If custom host certificate is provided the root certificate becomes required.
+            - Applicable only for I(action=enable_certificate)I(action=renew_certificate).
+        type: list
+        elements: dict
+        suboptions:
+            host_name:
+                description:
+                    - Fully qualified domain name (FQDN) of the host
+                type: str
+                required: true
+            certificate:
+                description:
+                    - Certificate value in string format
+                type: str
+                required: true
+            private_key:
+                description:
+                    - Private key of the provided certificate
+                type: str
+                required: true
+    server_key_password:
+        description:
+            - Base-64 encoded password for CA certificate's private key. This value can be empty.
+            - Applicable only for I(action=enable_certificate)I(action=renew_certificate).
+        type: str
     node_id:
         description:
             - OCID of the node to be removed.
@@ -328,8 +371,9 @@ options:
         description:
             - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
             - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_kafka), I(action=add_master_nodes), I(action=add_utility_nodes),
-              I(action=add_worker_nodes), I(action=change_shape), I(action=execute_bootstrap_script), I(action=install_os_patch), I(action=install_patch),
-              I(action=remove_cloud_sql), I(action=remove_kafka), I(action=remove_node), I(action=start), I(action=stop).
+              I(action=add_worker_nodes), I(action=change_shape), I(action=disable_certificate), I(action=enable_certificate),
+              I(action=execute_bootstrap_script), I(action=install_os_patch), I(action=install_patch), I(action=remove_cloud_sql), I(action=remove_kafka),
+              I(action=remove_node), I(action=renew_certificate), I(action=start), I(action=stop).
         type: str
     action:
         description:
@@ -343,8 +387,11 @@ options:
             - "add_master_nodes"
             - "add_utility_nodes"
             - "add_worker_nodes"
+            - "certificate_service_info"
             - "change_compartment"
             - "change_shape"
+            - "disable_certificate"
+            - "enable_certificate"
             - "execute_bootstrap_script"
             - "get_os_patch_details"
             - "install_os_patch"
@@ -353,6 +400,7 @@ options:
             - "remove_cloud_sql"
             - "remove_kafka"
             - "remove_node"
+            - "renew_certificate"
             - "restart_node"
             - "start"
             - "stop"
@@ -454,6 +502,13 @@ EXAMPLES = """
       memory_in_gbs: 56
       nvmes: 56
 
+- name: Perform action certificate_service_info on bds_instance
+  oci_bds_instance_actions:
+    # required
+    services: [ "services_example" ]
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: certificate_service_info
+
 - name: Perform action change_compartment on bds_instance
   oci_bds_instance_actions:
     # required
@@ -511,6 +566,31 @@ EXAMPLES = """
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: example-password
     action: change_shape
+
+- name: Perform action disable_certificate on bds_instance
+  oci_bds_instance_actions:
+    # required
+    services: [ "services_example" ]
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: disable_certificate
+
+- name: Perform action enable_certificate on bds_instance
+  oci_bds_instance_actions:
+    # required
+    services: [ "services_example" ]
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: enable_certificate
+
+    # optional
+    root_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    host_cert_details:
+    - # required
+      host_name: host_name_example
+      certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+      private_key: private_key_example
+    server_key_password: example-password
 
 - name: Perform action execute_bootstrap_script on bds_instance
   oci_bds_instance_actions:
@@ -579,6 +659,23 @@ EXAMPLES = """
 
     # optional
     is_force_remove_enabled: true
+
+- name: Perform action renew_certificate on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: renew_certificate
+
+    # optional
+    services: [ "services_example" ]
+    root_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    host_cert_details:
+    - # required
+      host_name: host_name_example
+      certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+      private_key: private_key_example
+    server_key_password: example-password
 
 - name: Perform action restart_node on bds_instance
   oci_bds_instance_actions:
@@ -1108,6 +1205,164 @@ bds_instance:
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "cluster_profile": "HADOOP_EXTENDED"
     }
+
+certificate_service_info_summary:
+    description:
+        - Details of the BdsInstance resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        service:
+            description:
+                - Name of the service
+            returned: on success
+            type: str
+            sample: ZOOKEEPER
+        service_certificate_status:
+            description:
+                - Whether certificate is enabled or disabled
+            returned: on success
+            type: str
+            sample: ENABLED
+        host_specific_certificate_details:
+            description:
+                - List of Host specific certificate details
+            returned: on success
+            type: complex
+            contains:
+                host_name:
+                    description:
+                        - Name of the host.
+                    returned: on success
+                    type: str
+                    sample: host_name_example
+                certificate_type:
+                    description:
+                        - Type of certificate self signed or CA signed
+                    returned: on success
+                    type: str
+                    sample: CUSTOM_SIGNED
+                time_expiry:
+                    description:
+                        - The time the certificate expires, shown as an RFC 3339 formatted datetime string.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+    sample: {
+        "service": "ZOOKEEPER",
+        "service_certificate_status": "ENABLED",
+        "host_specific_certificate_details": [{
+            "host_name": "host_name_example",
+            "certificate_type": "CUSTOM_SIGNED",
+            "time_expiry": "2013-10-20T19:20:30+01:00"
+        }]
+    }
+
+os_patch_details:
+    description:
+        - Details of the BdsInstance resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        os_patch_version:
+            description:
+                - Version of the os patch.
+            returned: on success
+            type: str
+            sample: os_patch_version_example
+        min_bds_version:
+            description:
+                - Minimum BDS version required to install current OS patch.
+            returned: on success
+            type: str
+            sample: min_bds_version_example
+        min_compatible_odh_version_map:
+            description:
+                - "Map of major ODH version to minimum ODH version required to install current OS patch. e.g. {ODH0.9: 0.9.1}"
+            returned: on success
+            type: dict
+            sample: {}
+        target_packages:
+            description:
+                - List of summaries of individual target packages.
+            returned: on success
+            type: complex
+            contains:
+                package_name:
+                    description:
+                        - The package's name.
+                    returned: on success
+                    type: str
+                    sample: package_name_example
+                target_version:
+                    description:
+                        - The target version of the package.
+                    returned: on success
+                    type: str
+                    sample: target_version_example
+                update_type:
+                    description:
+                        - The action that current package will be executed on the cluster.
+                    returned: on success
+                    type: str
+                    sample: INSTALL
+                related_cv_es:
+                    description:
+                        - Related CVEs of the package update.
+                    returned: on success
+                    type: list
+                    sample: []
+        release_date:
+            description:
+                - Released date of the OS patch.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        patch_type:
+            description:
+                - Type of a specific os patch.
+                  REGULAR means standard released os patches.
+                  CUSTOM means os patches with some customizations.
+                  EMERGENT means os patches with some emergency fixes that should be prioritized.
+            returned: on success
+            type: str
+            sample: REGULAR
+    sample: {
+        "os_patch_version": "os_patch_version_example",
+        "min_bds_version": "min_bds_version_example",
+        "min_compatible_odh_version_map": {},
+        "target_packages": [{
+            "package_name": "package_name_example",
+            "target_version": "target_version_example",
+            "update_type": "INSTALL",
+            "related_cv_es": []
+        }],
+        "release_date": "2013-10-20T19:20:30+01:00",
+        "patch_type": "REGULAR"
+    }
+
+os_patch_summary:
+    description:
+        - Details of the BdsInstance resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        os_patch_version:
+            description:
+                - Patch version of the os patch.
+            returned: on success
+            type: str
+            sample: os_patch_version_example
+        release_date:
+            description:
+                - The time when the OS patch was released.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+    sample: {
+        "os_patch_version": "os_patch_version_example",
+        "release_date": "2013-10-20T19:20:30+01:00"
+    }
 """
 
 from ansible_collections.oracle.oci.plugins.module_utils import (
@@ -1128,14 +1383,18 @@ try:
     from oci.bds.models import AddMasterNodesDetails
     from oci.bds.models import AddUtilityNodesDetails
     from oci.bds.models import AddWorkerNodesDetails
+    from oci.bds.models import CertificateServiceInfoDetails
     from oci.bds.models import ChangeBdsInstanceCompartmentDetails
     from oci.bds.models import ChangeShapeDetails
+    from oci.bds.models import DisableCertificateDetails
+    from oci.bds.models import EnableCertificateDetails
     from oci.bds.models import ExecuteBootstrapScriptDetails
     from oci.bds.models import InstallOsPatchDetails
     from oci.bds.models import InstallPatchDetails
     from oci.bds.models import RemoveCloudSqlDetails
     from oci.bds.models import RemoveKafkaDetails
     from oci.bds.models import RemoveNodeDetails
+    from oci.bds.models import RenewCertificateDetails
     from oci.bds.models import RestartNodeDetails
     from oci.bds.models import StartBdsInstanceDetails
     from oci.bds.models import StopBdsInstanceDetails
@@ -1154,8 +1413,11 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         add_master_nodes
         add_utility_nodes
         add_worker_nodes
+        certificate_service_info
         change_compartment
         change_shape
+        disable_certificate
+        enable_certificate
         execute_bootstrap_script
         get_os_patch_details
         install_os_patch
@@ -1164,6 +1426,7 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         remove_cloud_sql
         remove_kafka
         remove_node
+        renew_certificate
         restart_node
         start
         stop
@@ -1184,6 +1447,34 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             self.client.get_bds_instance,
             bds_instance_id=self.module.params.get("bds_instance_id"),
         )
+
+    def get_response_field_name(self, action):
+        response_fields = dict(
+            stop="bds_instance",
+            start="bds_instance",
+            add_block_storage="bds_instance",
+            add_cloud_sql="bds_instance",
+            add_kafka="bds_instance",
+            add_master_nodes="bds_instance",
+            add_utility_nodes="bds_instance",
+            add_worker_nodes="bds_instance",
+            certificate_service_info="certificate_service_info_summary",
+            change_shape="bds_instance",
+            disable_certificate="bds_instance",
+            enable_certificate="bds_instance",
+            execute_bootstrap_script="bds_instance",
+            get_os_patch_details="os_patch_details",
+            install_os_patch="bds_instance",
+            install_patch="bds_instance",
+            list_os_patches="os_patch_summary",
+            remove_cloud_sql="bds_instance",
+            remove_kafka="bds_instance",
+            remove_node="bds_instance",
+            renew_certificate="bds_instance",
+            restart_node="bds_instance",
+            change_compartment="bds_instance",
+        )
+        return response_fields.get(action, "bds_instance")
 
     def add_block_storage(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
@@ -1311,6 +1602,29 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def certificate_service_info(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CertificateServiceInfoDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.certificate_service_info,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                certificate_service_info_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeBdsInstanceCompartmentDetails
@@ -1342,6 +1656,48 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 change_shape_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def disable_certificate(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DisableCertificateDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_certificate,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                disable_certificate_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_certificate(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableCertificateDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_certificate,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                enable_certificate_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1509,6 +1865,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 remove_node_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def renew_certificate(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RenewCertificateDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.renew_certificate,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                renew_certificate_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1690,6 +2067,18 @@ def main():
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             is_force_remove_enabled=dict(type="bool"),
+            services=dict(type="list", elements="str"),
+            root_certificate=dict(type="str"),
+            host_cert_details=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    host_name=dict(type="str", required=True),
+                    certificate=dict(type="str", required=True),
+                    private_key=dict(type="str", required=True, no_log=True),
+                ),
+            ),
+            server_key_password=dict(type="str", no_log=True),
             node_id=dict(type="str"),
             bds_instance_id=dict(aliases=["id"], type="str", required=True),
             is_force_stop_jobs=dict(type="bool"),
@@ -1704,8 +2093,11 @@ def main():
                     "add_master_nodes",
                     "add_utility_nodes",
                     "add_worker_nodes",
+                    "certificate_service_info",
                     "change_compartment",
                     "change_shape",
+                    "disable_certificate",
+                    "enable_certificate",
                     "execute_bootstrap_script",
                     "get_os_patch_details",
                     "install_os_patch",
@@ -1714,6 +2106,7 @@ def main():
                     "remove_cloud_sql",
                     "remove_kafka",
                     "remove_node",
+                    "renew_certificate",
                     "restart_node",
                     "start",
                     "stop",

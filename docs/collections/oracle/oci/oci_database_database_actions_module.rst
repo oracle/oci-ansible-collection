@@ -30,7 +30,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -358,7 +358,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Restores using the backup with the System Change Number (SCN) specified.</div>
+                                            <div>Restores using the backup with the System Change Number (SCN) specified. This field is applicable for both use cases - Restoring Container Database or Restoring specific Pluggable Database.</div>
                                             <div>Applicable only for <em>action=restore</em>.</div>
                                                         </td>
             </tr>
@@ -554,6 +554,22 @@ Parameters
                                                                 <td>
                                             <div>The Database Management type.</div>
                                             <div>Applicable only for <em>action=enable_database_management</em><em>action=modify_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-pluggable_database_name"></div>
+                    <b>pluggable_database_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-pluggable_database_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Restores only the Pluggable Database (if specified) using the inputs provided in request.</div>
+                                            <div>Applicable only for <em>action=restore</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -890,6 +906,7 @@ Examples
         database_scn: database_scn_example
         timestamp: timestamp_example
         latest: true
+        pluggable_database_name: pluggable_database_name_example
 
     - name: Perform action rotate_vault_key on database
       oci_database_database_actions:

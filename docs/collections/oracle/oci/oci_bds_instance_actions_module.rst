@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -63,8 +63,11 @@ Synopsis
 - For *action=add_master_nodes*, increases the size (scales out) of a cluster by adding master nodes. The added master nodes will have the same shape and will have the same amount of attached block storage as other master nodes in the cluster.
 - For *action=add_utility_nodes*, increases the size (scales out) of a cluster by adding utility nodes. The added utility nodes will have the same shape and will have the same amount of attached block storage as other utility nodes in the cluster.
 - For *action=add_worker_nodes*, increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same shape and will have the same amount of attached block storage as other worker nodes in the cluster.
+- For *action=certificate_service_info*, a list of services and their certificate details.
 - For *action=change_compartment*, moves a Big Data Service cluster into a different compartment.
 - For *action=change_shape*, changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD shapes can be scaled.
+- For *action=disable_certificate*, disabling TLS/SSL for various ODH services running on the BDS cluster.
+- For *action=enable_certificate*, configuring TLS/SSL for various ODH services running on the BDS cluster.
 - For *action=execute_bootstrap_script*, execute bootstrap script.
 - For *action=get_os_patch_details*, get the details of an os patch
 - For *action=install_os_patch*, install an os patch on a cluster
@@ -73,6 +76,7 @@ Synopsis
 - For *action=remove_cloud_sql*, removes Cloud SQL from the cluster.
 - For *action=remove_kafka*, remove Kafka from the cluster.
 - For *action=remove_node*, remove a single node of a Big Data Service cluster
+- For *action=renew_certificate*, renewing TLS/SSL for various ODH services running on the BDS cluster.
 - For *action=restart_node*, restarts a single node of a Big Data Service cluster
 - For *action=start*, starts the BDS cluster that was stopped earlier.
 - For *action=stop*, stops the BDS cluster that can be started at later point of time.
@@ -121,8 +125,11 @@ Parameters
                                                                                                                                                                                                 <li>add_master_nodes</li>
                                                                                                                                                                                                 <li>add_utility_nodes</li>
                                                                                                                                                                                                 <li>add_worker_nodes</li>
+                                                                                                                                                                                                <li>certificate_service_info</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>change_shape</li>
+                                                                                                                                                                                                <li>disable_certificate</li>
+                                                                                                                                                                                                <li>enable_certificate</li>
                                                                                                                                                                                                 <li>execute_bootstrap_script</li>
                                                                                                                                                                                                 <li>get_os_patch_details</li>
                                                                                                                                                                                                 <li>install_os_patch</li>
@@ -131,6 +138,7 @@ Parameters
                                                                                                                                                                                                 <li>remove_cloud_sql</li>
                                                                                                                                                                                                 <li>remove_kafka</li>
                                                                                                                                                                                                 <li>remove_node</li>
+                                                                                                                                                                                                <li>renew_certificate</li>
                                                                                                                                                                                                 <li>restart_node</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
@@ -316,7 +324,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
-                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_kafka</em>, <em>action=add_master_nodes</em>, <em>action=add_utility_nodes</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=execute_bootstrap_script</em>, <em>action=install_os_patch</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_kafka</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
+                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_kafka</em>, <em>action=add_master_nodes</em>, <em>action=add_utility_nodes</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=disable_certificate</em>, <em>action=enable_certificate</em>, <em>action=execute_bootstrap_script</em>, <em>action=install_os_patch</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_kafka</em>, <em>action=remove_node</em>, <em>action=renew_certificate</em>, <em>action=start</em>, <em>action=stop</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -365,6 +373,71 @@ Parameters
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-host_cert_details"></div>
+                    <b>host_cert_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_cert_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of leaf certificates to use for services on each host. If custom host certificate is provided the root certificate becomes required.</div>
+                                            <div>Applicable only for <em>action=enable_certificate</em><em>action=renew_certificate</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-host_cert_details/certificate"></div>
+                    <b>certificate</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_cert_details/certificate" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Certificate value in string format</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-host_cert_details/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_cert_details/host_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Fully qualified domain name (FQDN) of the host</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-host_cert_details/private_key"></div>
+                    <b>private_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_cert_details/private_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Private key of the provided certificate</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-is_force_remove_enabled"></div>
@@ -1164,6 +1237,54 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-root_certificate"></div>
+                    <b>root_certificate</b>
+                    <a class="ansibleOptionLink" href="#parameter-root_certificate" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Plain text certificate/s in order, separated by new line character. If not provided in request a self-signed root certificate is generated inside the cluster. In case hostCertDetails is provided, root certificate is mandatory.</div>
+                                            <div>Applicable only for <em>action=enable_certificate</em><em>action=renew_certificate</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-server_key_password"></div>
+                    <b>server_key_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-server_key_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Base-64 encoded password for CA certificate&#x27;s private key. This value can be empty.</div>
+                                            <div>Applicable only for <em>action=enable_certificate</em><em>action=renew_certificate</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-services"></div>
+                    <b>services</b>
+                    <a class="ansibleOptionLink" href="#parameter-services" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of services for which TLS/SSL needs to be enabled.</div>
+                                            <div>Required for <em>action=certificate_service_info</em>, <em>action=disable_certificate</em>, <em>action=enable_certificate</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#parameter-shape" title="Permalink to this option"></a>
@@ -1467,6 +1588,13 @@ Examples
           memory_in_gbs: 56
           nvmes: 56
 
+    - name: Perform action certificate_service_info on bds_instance
+      oci_bds_instance_actions:
+        # required
+        services: [ "services_example" ]
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: certificate_service_info
+
     - name: Perform action change_compartment on bds_instance
       oci_bds_instance_actions:
         # required
@@ -1524,6 +1652,31 @@ Examples
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: example-password
         action: change_shape
+
+    - name: Perform action disable_certificate on bds_instance
+      oci_bds_instance_actions:
+        # required
+        services: [ "services_example" ]
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: disable_certificate
+
+    - name: Perform action enable_certificate on bds_instance
+      oci_bds_instance_actions:
+        # required
+        services: [ "services_example" ]
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: enable_certificate
+
+        # optional
+        root_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        host_cert_details:
+        - # required
+          host_name: host_name_example
+          certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+          private_key: private_key_example
+        server_key_password: example-password
 
     - name: Perform action execute_bootstrap_script on bds_instance
       oci_bds_instance_actions:
@@ -1592,6 +1745,23 @@ Examples
 
         # optional
         is_force_remove_enabled: true
+
+    - name: Perform action renew_certificate on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: renew_certificate
+
+        # optional
+        services: [ "services_example" ]
+        root_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        host_cert_details:
+        - # required
+          host_name: host_name_example
+          certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+          private_key: private_key_example
+        server_key_password: example-password
 
     - name: Perform action restart_node on bds_instance
       oci_bds_instance_actions:
@@ -2936,6 +3106,385 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The time the cluster was updated, shown as an RFC 3339 formatted datetime string.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary"></div>
+                    <b>certificate_service_info_summary</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details of the BdsInstance resource acted upon by the current operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;host_specific_certificate_details&#x27;: [{&#x27;certificate_type&#x27;: &#x27;CUSTOM_SIGNED&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;time_expiry&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;service&#x27;: &#x27;ZOOKEEPER&#x27;, &#x27;service_certificate_status&#x27;: &#x27;ENABLED&#x27;}</div>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/host_specific_certificate_details"></div>
+                    <b>host_specific_certificate_details</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/host_specific_certificate_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of Host specific certificate details</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/host_specific_certificate_details/certificate_type"></div>
+                    <b>certificate_type</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/host_specific_certificate_details/certificate_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of certificate self signed or CA signed</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOM_SIGNED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/host_specific_certificate_details/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/host_specific_certificate_details/host_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the host.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/host_specific_certificate_details/time_expiry"></div>
+                    <b>time_expiry</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/host_specific_certificate_details/time_expiry" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the certificate expires, shown as an RFC 3339 formatted datetime string.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/service"></div>
+                    <b>service</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/service" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the service</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ZOOKEEPER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-certificate_service_info_summary/service_certificate_status"></div>
+                    <b>service_certificate_status</b>
+                    <a class="ansibleOptionLink" href="#return-certificate_service_info_summary/service_certificate_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether certificate is enabled or disabled</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details"></div>
+                    <b>os_patch_details</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details of the BdsInstance resource acted upon by the current operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;min_bds_version&#x27;: &#x27;min_bds_version_example&#x27;, &#x27;min_compatible_odh_version_map&#x27;: {}, &#x27;os_patch_version&#x27;: &#x27;os_patch_version_example&#x27;, &#x27;patch_type&#x27;: &#x27;REGULAR&#x27;, &#x27;release_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;target_packages&#x27;: [{&#x27;package_name&#x27;: &#x27;package_name_example&#x27;, &#x27;related_cv_es&#x27;: [], &#x27;target_version&#x27;: &#x27;target_version_example&#x27;, &#x27;update_type&#x27;: &#x27;INSTALL&#x27;}]}</div>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/min_bds_version"></div>
+                    <b>min_bds_version</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/min_bds_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Minimum BDS version required to install current OS patch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">min_bds_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/min_compatible_odh_version_map"></div>
+                    <b>min_compatible_odh_version_map</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/min_compatible_odh_version_map" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Map of major ODH version to minimum ODH version required to install current OS patch. e.g. {ODH0.9: 0.9.1}</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/os_patch_version"></div>
+                    <b>os_patch_version</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/os_patch_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Version of the os patch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_patch_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/patch_type"></div>
+                    <b>patch_type</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/patch_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of a specific os patch. REGULAR means standard released os patches. CUSTOM means os patches with some customizations. EMERGENT means os patches with some emergency fixes that should be prioritized.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">REGULAR</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/release_date"></div>
+                    <b>release_date</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/release_date" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Released date of the OS patch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/target_packages"></div>
+                    <b>target_packages</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/target_packages" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of summaries of individual target packages.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/target_packages/package_name"></div>
+                    <b>package_name</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/target_packages/package_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The package&#x27;s name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">package_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/target_packages/related_cv_es"></div>
+                    <b>related_cv_es</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/target_packages/related_cv_es" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Related CVEs of the package update.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/target_packages/target_version"></div>
+                    <b>target_version</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/target_packages/target_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The target version of the package.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_details/target_packages/update_type"></div>
+                    <b>update_type</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_details/target_packages/update_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The action that current package will be executed on the cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INSTALL</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_summary"></div>
+                    <b>os_patch_summary</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details of the BdsInstance resource acted upon by the current operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;os_patch_version&#x27;: &#x27;os_patch_version_example&#x27;, &#x27;release_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_summary/os_patch_version"></div>
+                    <b>os_patch_version</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_summary/os_patch_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Patch version of the os patch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_patch_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-os_patch_summary/release_date"></div>
+                    <b>release_date</b>
+                    <a class="ansibleOptionLink" href="#return-os_patch_summary/release_date" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time when the OS patch was released.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

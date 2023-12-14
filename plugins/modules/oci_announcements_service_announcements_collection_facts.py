@@ -96,6 +96,14 @@ options:
             - Exclude The type of announcement.
         type: list
         elements: str
+    should_show_only_latest_in_chain:
+        description:
+            - A filter to display only the latest announcement in a chain.
+        type: bool
+    chain_id:
+        description:
+            - A filter to return only announcements belonging to the specified announcement chain ID.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -117,6 +125,8 @@ EXAMPLES = """
     service: service_example
     platform_type: IAAS
     exclude_announcement_types: [ "exclude_announcement_types_example" ]
+    should_show_only_latest_in_chain: true
+    chain_id: "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -258,6 +268,13 @@ announcements_collection:
                     returned: on success
                     type: str
                     sample: IAAS
+                chain_id:
+                    description:
+                        - The sequence of connected announcements, or announcement chain, that this announcement belongs to. Related announcements share the
+                          same chain ID.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx"
         user_statuses:
             description:
                 - The user-specific status for found announcements.
@@ -303,7 +320,8 @@ announcements_collection:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "environment_name": "environment_name_example",
-            "platform_type": "IAAS"
+            "platform_type": "IAAS",
+            "chain_id": "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "user_statuses": [{
             "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
@@ -349,6 +367,8 @@ class AnnouncementsCollectionFactsHelperGen(OCIResourceFactsHelperBase):
             "service",
             "platform_type",
             "exclude_announcement_types",
+            "should_show_only_latest_in_chain",
+            "chain_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -399,6 +419,8 @@ def main():
             service=dict(type="str"),
             platform_type=dict(type="str", choices=["IAAS", "SAAS"]),
             exclude_announcement_types=dict(type="list", elements="str"),
+            should_show_only_latest_in_chain=dict(type="bool"),
+            chain_id=dict(type="str"),
         )
     )
 

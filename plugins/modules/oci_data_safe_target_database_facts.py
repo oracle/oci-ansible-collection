@@ -50,7 +50,7 @@ options:
         aliases: ["name"]
     lifecycle_state:
         description:
-            - A filter to return the target databases that matches the current state of the target database.
+            - A filter to return only target databases that match the specified lifecycle state.
         type: str
         choices:
             - "CREATING"
@@ -63,7 +63,7 @@ options:
             - "FAILED"
     database_type:
         description:
-            - A filter to return target databases that match the database type of the target database.
+            - A filter to return only target databases that match the specified database type.
         type: str
         choices:
             - "DATABASE_CLOUD_SERVICE"
@@ -71,7 +71,7 @@ options:
             - "INSTALLED_DATABASE"
     infrastructure_type:
         description:
-            - A filter to return target databases that match the infrastructure type of the target database.
+            - A filter to return only target databases that match the specified infrastructure type.
         type: str
         choices:
             - "ORACLE_CLOUD"
@@ -154,7 +154,7 @@ target_databases:
             contains:
                 autonomous_database_id:
                     description:
-                        - The OCID of the autonomous database registered as a target database in Data Safe.
+                        - The OCID of the Autonomous Database registered as a target database in Data Safe.
                     returned: on success
                     type: str
                     sample: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
@@ -166,7 +166,7 @@ target_databases:
                     sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
                 db_system_id:
                     description:
-                        - The OCID of the cloud database system registered as a target database in Data Safe.
+                        - The OCID of the cloud database registered as a target database in Data Safe.
                     returned: on success
                     type: str
                     sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -344,7 +344,7 @@ target_databases:
             sample: DATABASE_CLOUD_SERVICE
         associated_resource_ids:
             description:
-                - The OCIDs of associated resources like Database, Data Safe private endpoint etc.
+                - The OCIDs of associated resources like database, Data Safe private endpoint etc.
             returned: on success
             type: list
             sample: []
@@ -362,7 +362,7 @@ target_databases:
             sample: lifecycle_details_example
         time_created:
             description:
-                - The date and time of target database registration and creation in Data Safe.
+                - The date and time of the target database registration and creation in Data Safe.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

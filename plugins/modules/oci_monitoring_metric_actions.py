@@ -24,10 +24,12 @@ short_description: Perform actions on a Metric resource in Oracle Cloud Infrastr
 description:
     - Perform actions on a Metric resource in Oracle Cloud Infrastructure
     - "For I(action=list), returns metric definitions that match the criteria specified in the request. Compartment OCID required.
-      For information about metrics, see L(Metrics
-      Overview,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For more information, see
+      L(Listing Metric Definitions,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-metric.htm).
+      For information about metrics, see
+      L(Metrics Overview,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
       Transactions Per Second (TPS) per-tenancy limit for this operation: 10."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -67,7 +69,8 @@ options:
     group_by:
         description:
             - "Group metrics by these fields in the response. For example, to list all metric namespaces available
-                        in a compartment, groupBy the \\"namespace\\" field. Supported fields: namespace, name, resourceGroup."
+                        in a compartment, groupBy the \\"namespace\\" field. Supported fields: namespace, name, resourceGroup.
+              If `groupBy` is used, then `dimensionFilters` is ignored."
             - "Example - group by namespace:
               `[ \\"namespace\\" ]`"
         type: list

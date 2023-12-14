@@ -24,8 +24,10 @@ short_description: Fetches details about one or multiple Alarm resources in Orac
 description:
     - Fetches details about one or multiple Alarm resources in Oracle Cloud Infrastructure
     - Lists the alarms for the specified compartment.
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For more information, see
+      L(Listing Alarms,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm.htm).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
@@ -165,7 +167,7 @@ alarms:
             sample: pending_duration_example
         body:
             description:
-                - The human-readable content of the notification delivered. Oracle recommends providing guidance
+                - The human-readable content of the delivered alarm notification. Oracle recommends providing guidance
                   to operators for resolving the alarm condition. Consider adding links to standard runbook
                   practices.
                 - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
@@ -175,26 +177,26 @@ alarms:
             sample: body_example
         is_notifications_per_metric_dimension_enabled:
             description:
-                - "When set to `true`, splits notifications per metric stream. When set to `false`, groups notifications across metric streams.
-                  Example: `true`"
+                - When set to `true`, splits alarm notifications per metric stream.
+                  When set to `false`, groups alarm notifications across metric streams.
                 - Returned for get operation
             returned: on success
             type: bool
             sample: true
         message_format:
             description:
-                - "The format to use for notification messages sent from this alarm. The formats are:
-                  * `RAW` - Raw JSON blob. Default value.
-                  * `PRETTY_JSON`: JSON with new lines and indents.
-                  * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following
-                  subscription types: Email."
+                - "The format to use for alarm notifications. The formats are:
+                  * `RAW` - Raw JSON blob. Default value. When the `destinations` attribute specifies `Streaming`, all alarm notifications use this format.
+                  * `PRETTY_JSON`: JSON with new lines and indents. Available when the `destinations` attribute specifies `Notifications` only.
+                  * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Available when the `destinations` attribute specifies `Notifications` only. Applies to
+                  Email subscription types only."
                 - Returned for get operation
             returned: on success
             type: str
             sample: RAW
         repeat_notification_duration:
             description:
-                - "The frequency at which notifications are re-submitted, if the alarm keeps firing without
+                - "The frequency for re-submitting alarm notifications, if the alarm keeps firing without
                   interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours.
                   Minimum: PT1M. Maximum: P30D."
                 - "Default value: null (notifications are not re-submitted)."
@@ -228,7 +230,7 @@ alarms:
         display_name:
             description:
                 - A user-friendly name for the alarm. It does not have to be unique, and it's changeable.
-                - This name is sent as the title for notifications related to this alarm.
+                - This value determines the title of each alarm notification.
                 - "Example: `High CPU Utilization`"
             returned: on success
             type: str
@@ -262,10 +264,12 @@ alarms:
                   rule (threshold or absence). Supported values for interval depend on the specified time range. More
                   interval values are supported for smaller time ranges. You can optionally
                   specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-                  For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL)
-                  Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
-                  For available dimensions, review the metric definition for the supported service.
-                  See L(Supported Services,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices)."
+                  For information about writing MQL expressions, see
+                  L(Editing the MQL Expression for a Query,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm).
+                  For details about MQL, see
+                  L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
+                  For available dimensions, review the metric definition for the supported service. See
+                  L(Supported Services,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices)."
                 - "Example of threshold alarm:"
                 -   -----
                 - "   CpuUtilization[1m]{availabilityDomain=\\"cumS:PHX-AD-1\\"}.groupBy(availabilityDomain).percentile(0.9) > 85"
@@ -286,11 +290,12 @@ alarms:
             sample: CRITICAL
         destinations:
             description:
-                - "A list of destinations to which the notifications for this alarm will be delivered.
-                  Each destination is represented by an L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the
-                  supported destination service.
-                  For example, a destination using the Notifications service is represented by a topic OCID.
-                  Supported destination services: Notifications Service. Limit: One destination per supported destination service."
+                - "A list of destinations for alarm notifications.
+                  Each destination is represented by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)
+                  of a related resource, such as a L(topic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic).
+                  Supported destination services: Notifications
+                  , Streaming.
+                  Limit: One destination per supported destination service."
             returned: on success
             type: list
             sample: []

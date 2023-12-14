@@ -179,6 +179,13 @@ announcement:
             returned: on success
             type: str
             sample: IAAS
+        chain_id:
+            description:
+                - The sequence of connected announcements, or announcement chain, that this announcement belongs to. Related announcements share the same chain
+                  ID.
+            returned: on success
+            type: str
+            sample: "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - A detailed explanation of the event, expressed by using Markdown language. Avoid entering
@@ -256,6 +263,7 @@ announcement:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "environment_name": "environment_name_example",
         "platform_type": "IAAS",
+        "chain_id": "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "additional_information": "additional_information_example",
         "affected_resources": [{

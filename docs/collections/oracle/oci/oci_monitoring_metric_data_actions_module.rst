@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data_actions -- Perform actions on a MetricData
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a MetricData resource in Oracle Cloud Infrastructure
-- For *action=summarize_metrics_data*, returns aggregated data that match the criteria specified in the request. Compartment OCID required. For information on metric queries, see `Building Metric Queries <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/buildingqueries.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
+- For *action=summarize_metrics_data*, returns aggregated data that match the criteria specified in the request. Compartment OCID required. For more information, see `Querying Metric Data <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-landing.htm>`_ and `Creating a Query <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
 
 
 .. Aliases
@@ -380,7 +380,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The time between calculated aggregation windows. Use with the query interval to vary the frequency at which aggregated data points are returned. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`.</div>
+                                            <div>The time between calculated aggregation windows. Use with the query interval to vary the frequency for returning aggregated data points. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`.</div>
                                             <div>Example: `5m`</div>
                                                         </td>
             </tr>
@@ -578,7 +578,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the resources from which the aggregated data was returned.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the resources that the aggregated data was returned from.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -668,7 +668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time between calculated aggregation windows. Use with the query interval to vary the frequency at which aggregated data points are returned. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`.</div>
+                                            <div>The time between calculated aggregation windows. Use with the query interval to vary the frequency for returning aggregated data points. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`.</div>
                                             <div>Example: `5m`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

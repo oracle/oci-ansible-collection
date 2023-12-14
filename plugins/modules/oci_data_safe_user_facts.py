@@ -208,7 +208,7 @@ users:
             sample: CRITICAL
         account_status:
             description:
-                - The user account status.
+                - The status of the user account.
             returned: on success
             type: str
             sample: OPEN
@@ -220,13 +220,13 @@ users:
             sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         time_last_login:
             description:
-                - The date and time when the user last logged in, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the user last logged in, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_user_created:
             description:
-                - The date and time when the user was created in the database, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the user was created in the database, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -244,7 +244,7 @@ users:
             sample: user_profile_example
         time_password_changed:
             description:
-                - The date and time when the user password was last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the user password was last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

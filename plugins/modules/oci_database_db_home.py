@@ -107,6 +107,12 @@ options:
                     - The password to open the TDE wallet.
                     - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
                 type: str
+            pluggable_databases:
+                description:
+                    - The list of pluggable databases that needs to be restored into new database.
+                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
+                type: list
+                elements: str
             db_name:
                 description:
                     - The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of
@@ -426,6 +432,7 @@ EXAMPLES = """
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      pluggable_databases: [ "pluggable_databases_example" ]
       db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -481,6 +488,7 @@ EXAMPLES = """
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      pluggable_databases: [ "pluggable_databases_example" ]
       db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -536,6 +544,7 @@ EXAMPLES = """
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      pluggable_databases: [ "pluggable_databases_example" ]
       db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -599,6 +608,7 @@ EXAMPLES = """
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      pluggable_databases: [ "pluggable_databases_example" ]
       db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -655,6 +665,7 @@ EXAMPLES = """
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      pluggable_databases: [ "pluggable_databases_example" ]
       db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1036,6 +1047,7 @@ def main():
                     time_stamp_for_point_in_time_recovery=dict(type="str"),
                     backup_id=dict(type="str"),
                     backup_tde_password=dict(type="str", no_log=True),
+                    pluggable_databases=dict(type="list", elements="str"),
                     db_name=dict(type="str"),
                     db_unique_name=dict(type="str"),
                     database_software_image_id=dict(type="str"),

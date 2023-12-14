@@ -111,8 +111,8 @@ announcements_preferences:
             sample: preference_type_example
         preferred_time_zone:
             description:
-                - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database
-                  format (x-obmcs-time-zone). For example America/Los_Angeles.
+                - "The time zone in which the user prefers to receive announcements. Specify the preference with a value that uses the IANA Time Zone Database
+                  format (x-obmcs-time-zone). For example - America/Los_Angeles"
             returned: on success
             type: str
             sample: preferred_time_zone_example

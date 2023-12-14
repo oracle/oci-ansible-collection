@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_status_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AlarmStatus resources in Oracle Cloud Infrastructure
-- List the status of each alarm in the specified compartment. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use `RetrieveDimensionStates <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates>`_. The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
+- List the status of each alarm in the specified compartment. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use `RetrieveDimensionStates <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates>`_. For more information, see `Listing Alarm Statuses <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_.
 - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
 
@@ -285,6 +285,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-entity_id"></div>
+                    <b>entity_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-entity_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the entity monitored by the metric that you are searching for.</div>
+                                            <div>Example: `ocid1.instance.oc1.phx.exampleuniqueID`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -315,6 +331,38 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-resource_id"></div>
+                    <b>resource_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-resource_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a resource that is monitored by the metric that you are searching for.</div>
+                                            <div>Example: `ocid1.instance.oc1.phx.exampleuniqueID`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-service_name"></div>
+                    <b>service_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-service_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match the given service name exactly. Use this filter to list all alarms containing metric streams that match the *exact* service-name dimension.</div>
+                                            <div>Example: `logging-analytics`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -355,6 +403,26 @@ Parameters
                                                                 <td>
                                             <div>The sort order to use when sorting returned alarm definitions. Ascending (ASC) or descending (DESC).</div>
                                             <div>Example: `ASC`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-status"></div>
+                    <b>status</b>
+                    <a class="ansibleOptionLink" href="#parameter-status" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>FIRING</li>
+                                                                                                                                                                                                <li>OK</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The status of the metric stream to use for alarm filtering. For example, set `StatusQueryParam` to &quot;FIRING&quot; to filter results to metric streams of the alarm with that status. Default behaviour is to return alarms irrespective of metric streams&#x27; status.</div>
+                                            <div>Example: `FIRING`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -407,6 +475,10 @@ Examples
         display_name: display_name_example
         sort_by: displayName
         sort_order: ASC
+        resource_id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        service_name: service_name_example
+        entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+        status: FIRING
 
 
 
@@ -514,8 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The status of this alarm. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>. The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`.</div>
-                                            <div>Example: `FIRING`</div>
+                                            <div>The status of this alarm. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>. Example: `FIRING`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FIRING</div>

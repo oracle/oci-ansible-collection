@@ -23,7 +23,7 @@ module: oci_data_safe_user_aggregation_facts
 short_description: Fetches details about one or multiple UserAggregation resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple UserAggregation resources in Oracle Cloud Infrastructure
-    - Gets a list of aggregated user details from the specified user assessment. This provides information about the overall state
+    - Gets a list of aggregated user details from the specified user assessment. This provides information about the overall state.
       of database user security.  For example, the user details include how many users have the DBA role and how many users are in
       the critical category. This data is especially useful content for dashboards or to support analytics.
     - "When you perform the ListUserAnalytics operation, if the parameter compartmentIdInSubtree is set to \\"true,\\" and if the

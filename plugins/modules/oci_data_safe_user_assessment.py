@@ -286,25 +286,25 @@ user_assessment:
             sample: "2013-10-20T19:20:30+01:00"
         time_last_assessed:
             description:
-                - The date and time the user assessment was last run, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the user assessment was last executed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         triggered_by:
             description:
-                - Indicates whether the user assessment was created by system or user.
+                - Indicates whether the user assessment was created by the system or the user.
             returned: on success
             type: str
             sample: USER
         type:
             description:
-                - "Type of user assessment. Type can be:"
-                - "LATEST: The most up-to-date assessment that is running automatically for a target. It is system generated.
-                  SAVED: A saved user assessment. LATEST assessments will always be saved to maintain the history of runs. A SAVED assessment is also generated
-                  by a 'refresh' action (triggered by the user).
-                  SAVE_SCHEDULE: A schedule to periodically save LATEST assessments.
-                  COMPARTMENT: An automatic managed assessment type that stores all details of targets in one compartment. This will keep an up-to-date status
-                  of all potential risks identified in the compartment.
+                - "The type of the user assessment. The possible types are:"
+                - "LATEST: The latest assessment that was executed for a target. It can either be system generated as part of the scheduled assessments or user
+                  driven by refreshing the latest assessment.
+                  SAVED: A saved user assessment. All user assessments are saved in the user assessment history.
+                  SAVE_SCHEDULE: The schedule to periodically save the LATEST assessment of a target database.
+                  COMPARTMENT: An automatic managed assessment type that stores all details of the targets in one compartment. This will keep an up-to-date
+                  status of all potential risks identified in the compartment.
                          It also keeps track of user count and target count for each profile available on the targets in a given compartment.
                          It is automatically updated once the latest assessment or refresh action is executed, as well as when a target is deleted or moved to a
                          different compartment."

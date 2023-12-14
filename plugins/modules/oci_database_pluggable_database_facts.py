@@ -68,6 +68,13 @@ options:
             - "TERMINATED"
             - "UPDATING"
             - "FAILED"
+            - "RELOCATING"
+            - "RELOCATED"
+            - "REFRESHING"
+            - "RESTORE_IN_PROGRESS"
+            - "RESTORE_FAILED"
+            - "BACKUP_IN_PROGRESS"
+            - "DISABLED"
     pdb_name:
         description:
             - A filter to return only pluggable databases that match the entire name given. The match is not case sensitive.
@@ -165,8 +172,10 @@ pluggable_databases:
                     sample: {}
         open_mode:
             description:
-                - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
-                  Database software).
+                - "**Deprecated.** Use L(PluggableDatabaseNodeLevelDetails,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/database/latest/datatypes/PluggableDatabaseNodeLevelDetails) for OpenMode details.
+                  The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
+                  Database software)."
             returned: on success
             type: str
             sample: READ_ONLY
@@ -210,6 +219,39 @@ pluggable_databases:
                     returned: on success
                     type: str
                     sample: ENABLING
+        refreshable_clone_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_refreshable_clone:
+                    description:
+                        - Indicates whether the Pluggable Database is a refreshable clone.
+                    returned: on success
+                    type: bool
+                    sample: true
+        pdb_node_level_details:
+            description:
+                - "Pluggable Database Node Level Details.
+                  Example: [{\\"nodeName\\" : \\"node1\\", \\"openMode\\" : \\"READ_WRITE\\"}, {\\"nodeName\\" : \\"node2\\", \\"openMode\\" :
+                  \\"READ_ONLY\\"}]"
+            returned: on success
+            type: complex
+            contains:
+                node_name:
+                    description:
+                        - The Node name of the Database Instance.
+                    returned: on success
+                    type: str
+                    sample: node_name_example
+                open_mode:
+                    description:
+                        - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the
+                          Oracle Database software).
+                    returned: on success
+                    type: str
+                    sample: READ_ONLY
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -229,7 +271,14 @@ pluggable_databases:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "pluggable_database_management_config": {
             "management_status": "ENABLING"
-        }
+        },
+        "refreshable_clone_config": {
+            "is_refreshable_clone": true
+        },
+        "pdb_node_level_details": [{
+            "node_name": "node_name_example",
+            "open_mode": "READ_ONLY"
+        }]
     }]
 """
 
@@ -313,6 +362,13 @@ def main():
                     "TERMINATED",
                     "UPDATING",
                     "FAILED",
+                    "RELOCATING",
+                    "RELOCATED",
+                    "REFRESHING",
+                    "RESTORE_IN_PROGRESS",
+                    "RESTORE_FAILED",
+                    "BACKUP_IN_PROGRESS",
+                    "DISABLED",
                 ],
             ),
             pdb_name=dict(type="str"),
