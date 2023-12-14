@@ -263,6 +263,7 @@ options:
             - "X8"
             - "X8M"
             - "X9M"
+            - "X10M"
     dns_server:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
@@ -1303,7 +1304,7 @@ def main():
             multi_rack_configuration_file=dict(type="str"),
             additional_compute_count=dict(type="int"),
             additional_compute_system_model=dict(
-                type="str", choices=["X7", "X8", "X8M", "X9M"]
+                type="str", choices=["X7", "X8", "X8M", "X9M", "X10M"]
             ),
             dns_server=dict(type="list", elements="str"),
             ntp_server=dict(type="list", elements="str"),

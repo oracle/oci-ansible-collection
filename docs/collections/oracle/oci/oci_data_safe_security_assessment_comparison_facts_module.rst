@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_security_assessment_comparison_facts -- Fetches details
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a SecurityAssessmentComparison resource in Oracle Cloud Infrastructure
-- Gets the details of the comparison report on the security assessments submitted for comparison.
+- Gets the details of the comparison report for the security assessments submitted for comparison.
 
 
 .. Aliases
@@ -213,7 +213,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the baseline security assessment.</div>
+                                            <div>The OCID of the security assessment baseline.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>

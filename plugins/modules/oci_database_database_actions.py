@@ -133,7 +133,8 @@ options:
             - "NORMAL"
     database_scn:
         description:
-            - Restores using the backup with the System Change Number (SCN) specified.
+            - "Restores using the backup with the System Change Number (SCN) specified.
+              This field is applicable for both use cases - Restoring Container Database or Restoring specific Pluggable Database."
             - Applicable only for I(action=restore).
         type: str
     timestamp:
@@ -146,6 +147,11 @@ options:
             - Restores to the last known good state with the least possible data loss.
             - Applicable only for I(action=restore).
         type: bool
+    pluggable_database_name:
+        description:
+            - Restores only the Pluggable Database (if specified) using the inputs provided in request.
+            - Applicable only for I(action=restore).
+        type: str
     database_id:
         description:
             - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -290,6 +296,7 @@ EXAMPLES = """
     database_scn: database_scn_example
     timestamp: timestamp_example
     latest: true
+    pluggable_database_name: pluggable_database_name_example
 
 - name: Perform action rotate_vault_key on database
   oci_database_database_actions:
@@ -1002,6 +1009,7 @@ def main():
             database_scn=dict(type="str"),
             timestamp=dict(type="str"),
             latest=dict(type="bool"),
+            pluggable_database_name=dict(type="str"),
             database_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",

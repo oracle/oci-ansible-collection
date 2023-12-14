@@ -68,7 +68,7 @@ options:
                 elements: str
             autonomous_database_id:
                 description:
-                    - The OCID of the autonomous database registered as a target database in Data Safe.
+                    - The OCID of the Autonomous Database registered as a target database in Data Safe.
                     - Required when database_type is 'AUTONOMOUS_DATABASE'
                 type: str
             database_type:
@@ -97,7 +97,7 @@ options:
                 type: str
             db_system_id:
                 description:
-                    - The OCID of the cloud database system registered as a target database in Data Safe.
+                    - The OCID of the cloud database registered as a target database in Data Safe.
                     - Applicable when database_type is 'DATABASE_CLOUD_SERVICE'
                 type: str
             listener_port:
@@ -387,7 +387,7 @@ target_database:
             contains:
                 autonomous_database_id:
                     description:
-                        - The OCID of the autonomous database registered as a target database in Data Safe.
+                        - The OCID of the Autonomous Database registered as a target database in Data Safe.
                     returned: on success
                     type: str
                     sample: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
@@ -399,7 +399,7 @@ target_database:
                     sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
                 db_system_id:
                     description:
-                        - The OCID of the cloud database system registered as a target database in Data Safe.
+                        - The OCID of the cloud database registered as a target database in Data Safe.
                     returned: on success
                     type: str
                     sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -521,7 +521,7 @@ target_database:
                     sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         associated_resource_ids:
             description:
-                - The OCIDs of associated resources like Database, Data Safe private endpoint etc.
+                - The OCIDs of associated resources like database, Data Safe private endpoint etc.
             returned: on success
             type: list
             sample: []
@@ -539,7 +539,7 @@ target_database:
             sample: lifecycle_details_example
         time_created:
             description:
-                - The date and time of target database registration and creation in Data Safe.
+                - The date and time of the target database registration and creation in Data Safe.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

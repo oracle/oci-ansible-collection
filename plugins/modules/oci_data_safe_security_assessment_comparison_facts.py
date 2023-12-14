@@ -23,7 +23,7 @@ module: oci_data_safe_security_assessment_comparison_facts
 short_description: Fetches details about a SecurityAssessmentComparison resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SecurityAssessmentComparison resource in Oracle Cloud Infrastructure
-    - Gets the details of the comparison report on the security assessments submitted for comparison.
+    - Gets the details of the comparison report for the security assessments submitted for comparison.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,7 +34,7 @@ options:
         required: true
     comparison_security_assessment_id:
         description:
-            - The OCID of the baseline security assessment.
+            - The OCID of the security assessment baseline.
         type: str
         aliases: ["id"]
         required: true

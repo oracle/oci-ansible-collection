@@ -24,11 +24,12 @@ short_description: Manage a PluggableDatabase resource in Oracle Cloud Infrastru
 description:
     - This module allows the user to create, update and delete a PluggableDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates and starts a pluggable database in the specified container database.
+      Pluggable Database can be created using different operations (e.g. LocalClone, RemoteClone, Relocate ) with this API.
       Use the L(StartPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StartPluggableDatabase) and
       L(StopPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase) APIs to start and stop
       the pluggable database.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module:
-      disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone,
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module: convert_to_regular,
+      disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, refresh, remote_clone,
       rotate_pluggable_database_encryption_key, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -63,6 +64,59 @@ options:
             - The locked mode of the pluggable database admin account. If false, the user needs to provide the PDB Admin Password to connect to it.
               If true, the pluggable database will be locked and user cannot login to it.
         type: bool
+    container_database_admin_password:
+        description:
+            - The DB system administrator password of the Container Database.
+        type: str
+    should_create_pdb_backup:
+        description:
+            - Indicates whether to take Pluggable Database Backup after the operation.
+        type: bool
+    pdb_creation_type_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            dblink_username:
+                description:
+                    - The name of the DB link user.
+                    - Applicable when creation_type is one of ['REMOTE_CLONE_PDB', 'RELOCATE_PDB']
+                type: str
+            dblink_user_password:
+                description:
+                    - The DB link user password.
+                    - Applicable when creation_type is one of ['REMOTE_CLONE_PDB', 'RELOCATE_PDB']
+                type: str
+            source_container_database_admin_password:
+                description:
+                    - The DB system administrator password of the source Container Database.
+                    - Required when creation_type is one of ['REMOTE_CLONE_PDB', 'RELOCATE_PDB']
+                type: str
+            refreshable_clone_details:
+                description:
+                    - ""
+                    - Applicable when creation_type is 'REMOTE_CLONE_PDB'
+                type: dict
+                suboptions:
+                    is_refreshable_clone:
+                        description:
+                            - Indicates whether Pluggable Database is a refreshable clone.
+                            - Applicable when creation_type is 'REMOTE_CLONE_PDB'
+                        type: bool
+            creation_type:
+                description:
+                    - The Pluggable Database creation type.
+                type: str
+                choices:
+                    - "RELOCATE_PDB"
+                    - "REMOTE_CLONE_PDB"
+                    - "LOCAL_CLONE_PDB"
+                required: true
+            source_pluggable_database_id:
+                description:
+                    - The OCID of the Source Pluggable Database.
+                type: str
+                required: true
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -107,6 +161,17 @@ EXAMPLES = """
     pdb_admin_password: example-password
     tde_wallet_password: example-password
     should_pdb_admin_account_be_locked: true
+    container_database_admin_password: example-password
+    should_create_pdb_backup: true
+    pdb_creation_type_details:
+      # required
+      source_container_database_admin_password: example-password
+      creation_type: RELOCATE_PDB
+      source_pluggable_database_id: "ocid1.sourcepluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      dblink_username: dblink_username_example
+      dblink_user_password: example-password
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -198,8 +263,10 @@ pluggable_database:
                     sample: {}
         open_mode:
             description:
-                - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
-                  Database software).
+                - "**Deprecated.** Use L(PluggableDatabaseNodeLevelDetails,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/database/latest/datatypes/PluggableDatabaseNodeLevelDetails) for OpenMode details.
+                  The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
+                  Database software)."
             returned: on success
             type: str
             sample: READ_ONLY
@@ -243,6 +310,39 @@ pluggable_database:
                     returned: on success
                     type: str
                     sample: ENABLING
+        refreshable_clone_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_refreshable_clone:
+                    description:
+                        - Indicates whether the Pluggable Database is a refreshable clone.
+                    returned: on success
+                    type: bool
+                    sample: true
+        pdb_node_level_details:
+            description:
+                - "Pluggable Database Node Level Details.
+                  Example: [{\\"nodeName\\" : \\"node1\\", \\"openMode\\" : \\"READ_WRITE\\"}, {\\"nodeName\\" : \\"node2\\", \\"openMode\\" :
+                  \\"READ_ONLY\\"}]"
+            returned: on success
+            type: complex
+            contains:
+                node_name:
+                    description:
+                        - The Node name of the Database Instance.
+                    returned: on success
+                    type: str
+                    sample: node_name_example
+                open_mode:
+                    description:
+                        - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the
+                          Oracle Database software).
+                    returned: on success
+                    type: str
+                    sample: READ_ONLY
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -262,7 +362,14 @@ pluggable_database:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "pluggable_database_management_config": {
             "management_status": "ENABLING"
-        }
+        },
+        "refreshable_clone_config": {
+            "is_refreshable_clone": true
+        },
+        "pdb_node_level_details": [{
+            "node_name": "node_name_example",
+            "open_mode": "READ_ONLY"
+        }]
     }
 """
 
@@ -362,6 +469,9 @@ class PluggableDatabaseHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "tde_wallet_password",
+            "container_database_admin_password",
+            "should_create_pdb_backup",
+            "pdb_creation_type_details",
             "pdb_admin_password",
             "should_pdb_admin_account_be_locked",
         ]
@@ -432,6 +542,28 @@ def main():
             pdb_admin_password=dict(type="str", no_log=True),
             tde_wallet_password=dict(type="str", no_log=True),
             should_pdb_admin_account_be_locked=dict(type="bool"),
+            container_database_admin_password=dict(type="str", no_log=True),
+            should_create_pdb_backup=dict(type="bool"),
+            pdb_creation_type_details=dict(
+                type="dict",
+                options=dict(
+                    dblink_username=dict(type="str"),
+                    dblink_user_password=dict(type="str", no_log=True),
+                    source_container_database_admin_password=dict(
+                        type="str", no_log=True
+                    ),
+                    refreshable_clone_details=dict(
+                        type="dict",
+                        options=dict(is_refreshable_clone=dict(type="bool")),
+                    ),
+                    creation_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["RELOCATE_PDB", "REMOTE_CLONE_PDB", "LOCAL_CLONE_PDB"],
+                    ),
+                    source_pluggable_database_id=dict(type="str", required=True),
+                ),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             pluggable_database_id=dict(aliases=["id"], type="str"),

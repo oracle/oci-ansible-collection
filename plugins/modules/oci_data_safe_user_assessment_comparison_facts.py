@@ -23,7 +23,7 @@ module: oci_data_safe_user_assessment_comparison_facts
 short_description: Fetches details about a UserAssessmentComparison resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a UserAssessmentComparison resource in Oracle Cloud Infrastructure
-    - Gets the details of the comparison report for the user assessments provided.
+    - Gets the details of the comparison report for the user assessments submitted for comparison.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

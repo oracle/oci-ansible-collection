@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_actions -- Perform actions on an Alarm resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,8 @@ Synopsis
 .. Description
 
 - Perform actions on an Alarm resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves an alarm into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources Between Compartments <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
-- For *action=remove_alarm_suppression*, removes any existing suppression for the specified alarm. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
+- For *action=change_compartment*, moves an alarm into a different compartment within the same tenancy. For more information, see `Moving an Alarm <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/change-compartment-alarm.htm>`_.
+- For *action=remove_alarm_suppression*, removes any existing suppression for the specified alarm. For more information, see `Removing Suppression from an Alarm <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/remove-alarm-suppression.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
 
 .. Aliases
@@ -420,7 +420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices.</div>
+                                            <div>The human-readable content of the delivered alarm notification. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -475,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.</div>
+                                            <div>A list of destinations for alarm notifications. Each destination is represented by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a related resource, such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic'>topic</a>. Supported destination services: Notifications , Streaming. Limit: One destination per supported destination service.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -492,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>A user-friendly name for the alarm. It does not have to be unique, and it&#x27;s changeable.</div>
-                                            <div>This name is sent as the title for notifications related to this alarm.</div>
+                                            <div>This value determines the title of each alarm notification.</div>
                                             <div>Example: `High CPU Utilization`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -566,7 +566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>When set to `true`, splits notifications per metric stream. When set to `false`, groups notifications across metric streams. Example: `true`</div>
+                                            <div>When set to `true`, splits alarm notifications per metric stream. When set to `false`, groups alarm notifications across metric streams.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -603,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The format to use for notification messages sent from this alarm. The formats are: * `RAW` - Raw JSON blob. Default value. * `PRETTY_JSON`: JSON with new lines and indents. * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following subscription types: Email.</div>
+                                            <div>The format to use for alarm notifications. The formats are: * `RAW` - Raw JSON blob. Default value. When the `destinations` attribute specifies `Streaming`, all alarm notifications use this format. * `PRETTY_JSON`: JSON with new lines and indents. Available when the `destinations` attribute specifies `Notifications` only. * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Available when the `destinations` attribute specifies `Notifications` only. Applies to Email subscription types only.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RAW</div>
@@ -699,7 +699,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
                                             <div>Example of threshold alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
@@ -725,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The frequency at which notifications are re-submitted, if the alarm keeps firing without interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours. Minimum: PT1M. Maximum: P30D.</div>
+                                            <div>The frequency for re-submitting alarm notifications, if the alarm keeps firing without interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours. Minimum: PT1M. Maximum: P30D.</div>
                                             <div>Default value: null (notifications are not re-submitted).</div>
                                             <div>Example: `PT2H`</div>
                                         <br/>

@@ -170,6 +170,11 @@ options:
         choices:
             - "ECPU"
             - "OCPU"
+    in_memory_percentage:
+        description:
+            - The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database.
+            - This parameter is updatable.
+        type: int
     local_adg_auto_failover_max_data_loss_limit:
         description:
             - Parameter that allows users to select an acceptable maximum data loss limit in seconds, up to which Automatic Failover will be triggered when
@@ -675,6 +680,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -745,6 +751,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -817,6 +824,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -888,6 +896,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -961,6 +970,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1031,6 +1041,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1100,6 +1111,7 @@ EXAMPLES = """
     autonomous_maintenance_schedule_type: EARLY
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     cpu_core_count: 56
     compute_count: 3.4
     ocpu_count: 3.4
@@ -1160,6 +1172,7 @@ EXAMPLES = """
     # optional
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     local_adg_auto_failover_max_data_loss_limit: 56
     cpu_core_count: 56
     long_term_backup_schedule:
@@ -1233,6 +1246,7 @@ EXAMPLES = """
     # optional
     backup_retention_period_in_days: 56
     compute_model: ECPU
+    in_memory_percentage: 56
     local_adg_auto_failover_max_data_loss_limit: 56
     cpu_core_count: 56
     long_term_backup_schedule:
@@ -1397,6 +1411,18 @@ autonomous_database:
             returned: on success
             type: str
             sample: ncharacter_set_example
+        in_memory_percentage:
+            description:
+                - The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database.
+            returned: on success
+            type: int
+            sample: 56
+        in_memory_area_in_gbs:
+            description:
+                - The area assigned to In-Memory tables in Autonomous Database.
+            returned: on success
+            type: int
+            sample: 56
         next_long_term_backup_time_stamp:
             description:
                 - The date and time when the next long-term backup would be created.
@@ -2482,6 +2508,8 @@ autonomous_database:
         "db_name": "db_name_example",
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
+        "in_memory_percentage": 56,
+        "in_memory_area_in_gbs": 56,
         "next_long_term_backup_time_stamp": "2013-10-20T19:20:30+01:00",
         "long_term_backup_schedule": {
             "repeat_cadence": "ONE_TIME",
@@ -2868,6 +2896,7 @@ def main():
             ),
             backup_retention_period_in_days=dict(type="int"),
             compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
+            in_memory_percentage=dict(type="int"),
             local_adg_auto_failover_max_data_loss_limit=dict(type="int"),
             cpu_core_count=dict(type="int"),
             long_term_backup_schedule=dict(

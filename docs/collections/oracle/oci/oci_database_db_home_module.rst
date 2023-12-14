@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -863,6 +863,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/pluggable_databases"></div>
+                    <b>pluggable_databases</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/pluggable_databases" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of pluggable databases that needs to be restored into new database.</div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-database/sid_prefix"></div>
                     <b>sid_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-database/sid_prefix" title="Permalink to this option"></a>
@@ -1385,6 +1402,7 @@ Examples
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
           backup_tde_password: example-password
+          pluggable_databases: [ "pluggable_databases_example" ]
           db_name: db_name_example
           db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1440,6 +1458,7 @@ Examples
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
           backup_tde_password: example-password
+          pluggable_databases: [ "pluggable_databases_example" ]
           db_name: db_name_example
           db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1495,6 +1514,7 @@ Examples
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
           backup_tde_password: example-password
+          pluggable_databases: [ "pluggable_databases_example" ]
           db_name: db_name_example
           db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1558,6 +1578,7 @@ Examples
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
           backup_tde_password: example-password
+          pluggable_databases: [ "pluggable_databases_example" ]
           db_name: db_name_example
           db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1614,6 +1635,7 @@ Examples
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
           backup_tde_password: example-password
+          pluggable_databases: [ "pluggable_databases_example" ]
           db_name: db_name_example
           db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"

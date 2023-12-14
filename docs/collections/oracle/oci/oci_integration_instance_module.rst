@@ -30,7 +30,7 @@ oracle.oci.oci_integration_instance -- Manage an IntegrationInstance resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -406,6 +406,21 @@ Parameters
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-domain_id"></div>
+                    <b>domain_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-domain_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the identity domain, that will be used to determine the corresponding Idcs Stripe and create an Idcs application within the stripe. This parameter is mutually exclusive with parameter: idcsAt, i.e only one of two parameters should be specified.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="3">
@@ -887,6 +902,7 @@ Examples
             allowlisted_ips: [ "allowlisted_ips_example" ]
           is_integration_vcn_allowlisted: true
         shape: DEVELOPMENT
+        domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         is_file_server_enabled: true

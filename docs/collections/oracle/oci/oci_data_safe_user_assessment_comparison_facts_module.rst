@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_user_assessment_comparison_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a UserAssessmentComparison resource in Oracle Cloud Infrastructure
-- Gets the details of the comparison report for the user assessments provided.
+- Gets the details of the comparison report for the user assessments submitted for comparison.
 
 
 .. Aliases

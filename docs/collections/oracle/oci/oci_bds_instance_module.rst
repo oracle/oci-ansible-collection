@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance -- Manage a BdsInstance resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a Big Data Service cluster.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_bds_instance_actions <ansible_collections.oracle.oci.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_kafka, add_master_nodes, add_utility_nodes, add_worker_nodes, change_compartment, change_shape, execute_bootstrap_script, get_os_patch_details, install_os_patch, install_patch, list_os_patches, remove_cloud_sql, remove_kafka, remove_node, restart_node, start, stop.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_bds_instance_actions <ansible_collections.oracle.oci.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_kafka, add_master_nodes, add_utility_nodes, add_worker_nodes, certificate_service_info, change_compartment, change_shape, disable_certificate, enable_certificate, execute_bootstrap_script, get_os_patch_details, install_os_patch, install_patch, list_os_patches, remove_cloud_sql, remove_kafka, remove_node, renew_certificate, restart_node, start, stop.
 
 
 .. Aliases

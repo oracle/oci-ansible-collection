@@ -23,7 +23,7 @@ module: oci_data_safe_finding_facts
 short_description: Fetches details about one or multiple Finding resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Finding resources in Oracle Cloud Infrastructure
-    - List all the findings from all the targets in the specified assessment.
+    - List all the findings from all the targets in the specified compartment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -45,7 +45,7 @@ options:
             - "PASS"
     references:
         description:
-            - An optional filter to return only findings containing the specified reference.
+            - An optional filter to return only findings that match the specified reference.
         type: str
         choices:
             - "STIG"
@@ -69,7 +69,8 @@ options:
             - "ACCESSIBLE"
     finding_key:
         description:
-            - Each finding has a key. This key is same for the finding across targets
+            - Each finding in security assessment has an associated key (think of key as a finding's name).
+              For a given finding, the key will be the same across targets. The user can use these keys to filter the findings.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """

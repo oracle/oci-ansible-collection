@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_dimension_states_actions -- Perform actions on a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on an AlarmDimensionStates resource in Oracle Cloud Infrastructure
-- For *action=retrieve_dimension_states*, lists the current alarm status of each metric stream, where status is derived from the metric stream's last associated transition. Optionally filter by status value and one or more dimension key-value pairs. This operation is only valid for alarms that have notifications per dimension enabled (`isNotificationsPerMetricDimensionEnabled=true`). If `isNotificationsPerMetricDimensionEnabled` for the alarm is false or null, then no results are returned. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
+- For *action=retrieve_dimension_states*, lists the current alarm status of each metric stream, where status is derived from the metric stream's last associated transition. Optionally filter by status value and one or more dimension key-value pairs. For more information, see `Listing Metric Stream Status in an Alarm <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status-metric-stream.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
 
 .. Aliases

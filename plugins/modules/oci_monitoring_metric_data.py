@@ -24,10 +24,17 @@ short_description: Manage a MetricData resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a MetricData resource in Oracle Cloud Infrastructure
     - For I(state=present), publishes raw metric data points to the Monitoring service.
-      For more information about publishing metrics, see L(Publishing Custom
-      Metrics,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm).
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).
+    - For more information about publishing metrics, see
+      L(Publishing Custom Metrics,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm)
+      and
+      L(Custom Metrics Walkthrough,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/custom-metrics-walkthrough.htm).
+      For information about developing a metric-posting client, see
+      L(Developer Guide,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/devtoolslanding.htm).
+      For an example client, see
+      L(MonitoringMetricPostExample.java,https://github.com/oracle/oci-java-sdk/blob/master/bmc-examples/src/main/java/MonitoringMetricPostExample.java).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
     - Per-call limits information follows.
     - "* Dimensions per metric group*. Maximum: 20. Minimum: 1.
       * Unique metric streams*. Maximum: 50.
@@ -35,10 +42,10 @@ description:
     - "*A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits.
       A dimension is a qualifier provided in a metric definition.
       A metric stream is an individual set of aggregated data for a metric with zero or more dimension values.
-      For more information about metric-related concepts, see L(Monitoring
-      Concepts,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts)."
-    - "The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as
-      in the following example:"
+      For more information about metric-related concepts, see
+      L(Monitoring Concepts,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts)."
+    - "**Note:** The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the
+      endpoint, as in the following example:"
     - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
     - "This resource has the following action operations in the M(oracle.oci.oci_monitoring_metric_data_actions) module: summarize_metrics_data."
 version_added: "2.9.0"
@@ -103,6 +110,8 @@ options:
             datapoints:
                 description:
                     - A list of metric values with timestamps. At least one data point is required per call.
+                      For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the
+                      future).
                 type: list
                 elements: dict
                 required: true
@@ -110,6 +119,8 @@ options:
                     timestamp:
                         description:
                             - Timestamp for this metric value. Format defined by RFC3339.
+                              For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes
+                              in the future).
                             - "Example: `2019-02-01T01:02:29.600Z`"
                         type: str
                         required: true
@@ -272,12 +283,16 @@ metric_data:
                         datapoints:
                             description:
                                 - A list of metric values with timestamps. At least one data point is required per call.
+                                  For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10
+                                  minutes in the future).
                             returned: on success
                             type: complex
                             contains:
                                 timestamp:
                                     description:
                                         - Timestamp for this metric value. Format defined by RFC3339.
+                                          For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than
+                                          10 minutes in the future).
                                         - "Example: `2019-02-01T01:02:29.600Z`"
                                     returned: on success
                                     type: str

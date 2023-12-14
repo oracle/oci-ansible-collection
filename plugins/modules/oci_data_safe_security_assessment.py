@@ -175,20 +175,19 @@ security_assessment:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The date and time when the security assessment was created. Conforms to the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the security assessment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The date and time when the security assessment was last updated. Conforms to the format defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the security assessment was last updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_last_assessed:
             description:
-                - The date and time when the security assessment was last run. Conforms to the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the security assessment was last executed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

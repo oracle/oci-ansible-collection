@@ -30,7 +30,7 @@ oracle.oci.oci_database_database -- Manage a Database resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -845,6 +845,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/pluggable_databases"></div>
+                    <b>pluggable_databases</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/pluggable_databases" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of pluggable databases that needs to be restored into new database.</div>
+                                            <div>Applicable when source is &#x27;DB_BACKUP&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-database/sid_prefix"></div>
                     <b>sid_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-database/sid_prefix" title="Permalink to this option"></a>
@@ -1621,6 +1638,7 @@ Examples
           db_unique_name: db_unique_name_example
           db_name: db_name_example
           sid_prefix: sid_prefix_example
+          pluggable_databases: [ "pluggable_databases_example" ]
         db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
@@ -1673,6 +1691,7 @@ Examples
           db_unique_name: db_unique_name_example
           db_name: db_name_example
           sid_prefix: sid_prefix_example
+          pluggable_databases: [ "pluggable_databases_example" ]
         db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional

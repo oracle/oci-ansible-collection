@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_finding_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Finding resources in Oracle Cloud Infrastructure
-- List all the findings from all the targets in the specified assessment.
+- List all the findings from all the targets in the specified compartment.
 
 
 .. Aliases
@@ -281,7 +281,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Each finding has a key. This key is same for the finding across targets</div>
+                                            <div>Each finding in security assessment has an associated key (think of key as a finding&#x27;s name). For a given finding, the key will be the same across targets. The user can use these keys to filter the findings.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -320,7 +320,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>An optional filter to return only findings containing the specified reference.</div>
+                                            <div>An optional filter to return only findings that match the specified reference.</div>
                                                         </td>
             </tr>
                                 <tr>

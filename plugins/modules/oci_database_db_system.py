@@ -501,6 +501,12 @@ options:
                             - Specifies a prefix for the `Oracle SID` of the database to be created.
                             - Applicable when source is one of ['NONE', 'DB_BACKUP']
                         type: str
+                    pluggable_databases:
+                        description:
+                            - The list of pluggable databases that needs to be restored into new database.
+                            - Applicable when source is one of ['DATABASE', 'DB_BACKUP']
+                        type: list
+                        elements: str
     database_edition:
         description:
             - The Oracle Database Edition that applies to all the databases on the DB system.
@@ -854,6 +860,7 @@ EXAMPLES = """
         db_unique_name: db_unique_name_example
         db_name: db_name_example
         sid_prefix: sid_prefix_example
+        pluggable_databases: [ "pluggable_databases_example" ]
 
             # optional
       db_version: db_version_example
@@ -967,6 +974,7 @@ EXAMPLES = """
         db_unique_name: db_unique_name_example
         db_name: db_name_example
         sid_prefix: sid_prefix_example
+        pluggable_databases: [ "pluggable_databases_example" ]
 
             # optional
       db_version: db_version_example
@@ -1060,6 +1068,7 @@ EXAMPLES = """
         db_unique_name: db_unique_name_example
         db_name: db_name_example
         sid_prefix: sid_prefix_example
+        pluggable_databases: [ "pluggable_databases_example" ]
 
             # optional
       db_version: db_version_example
@@ -1155,6 +1164,7 @@ EXAMPLES = """
         db_unique_name: db_unique_name_example
         db_name: db_name_example
         sid_prefix: sid_prefix_example
+        pluggable_databases: [ "pluggable_databases_example" ]
 
             # optional
       db_version: db_version_example
@@ -2200,6 +2210,7 @@ def main():
                             db_unique_name=dict(type="str"),
                             db_name=dict(type="str"),
                             sid_prefix=dict(type="str"),
+                            pluggable_databases=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Metric resource in Oracle Cloud Infrastructure
-- For *action=list*, returns metric definitions that match the criteria specified in the request. Compartment OCID required. For information about metrics, see `Metrics Overview <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
+- For *action=list*, returns metric definitions that match the criteria specified in the request. Compartment OCID required. For more information, see `Listing Metric Definitions <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-metric.htm>`_. For information about metrics, see `Metrics Overview <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
 
 
 .. Aliases
@@ -312,7 +312,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Group metrics by these fields in the response. For example, to list all metric namespaces available in a compartment, groupBy the &quot;namespace&quot; field. Supported fields: namespace, name, resourceGroup.</div>
+                                            <div>Group metrics by these fields in the response. For example, to list all metric namespaces available in a compartment, groupBy the &quot;namespace&quot; field. Supported fields: namespace, name, resourceGroup. If `groupBy` is used, then `dimensionFilters` is ignored.</div>
                                             <div>Example - group by namespace: `[ &quot;namespace&quot; ]`</div>
                                                         </td>
             </tr>

@@ -97,7 +97,7 @@ target_alert_policy_association:
             sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled:
             description:
-                - Indicates if the target-alert policy association is enabled or disabled.
+                - Indicates if the target-alert policy association is enabled or disabled by user.
             returned: on success
             type: bool
             sample: true

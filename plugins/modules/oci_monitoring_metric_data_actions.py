@@ -24,9 +24,12 @@ short_description: Perform actions on a MetricData resource in Oracle Cloud Infr
 description:
     - Perform actions on a MetricData resource in Oracle Cloud Infrastructure
     - "For I(action=summarize_metrics_data), returns aggregated data that match the criteria specified in the request. Compartment OCID required.
-      For information on metric queries, see L(Building Metric Queries,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/buildingqueries.htm).
-      For important limits information, see L(Limits on
-      Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+      For more information, see
+      L(Querying Metric Data,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-landing.htm)
+      and
+      L(Creating a Query,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric.htm).
+      For important limits information, see
+      L(Limits on Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
       Transactions Per Second (TPS) per-tenancy limit for this operation: 10."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -64,8 +67,8 @@ options:
               us/iaas/api/#/en/monitoring/20180401/MetricData).
             - For details about Monitoring Query Language (MQL), see
               L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
-              For available dimensions, review the metric definition for the supported service.
-              See L(Supported Services,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
+              For available dimensions, review the metric definition for the supported service. See
+              L(Supported Services,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
             - "Example: `CpuUtilization[1m].sum()`"
         type: str
         required: true
@@ -86,7 +89,7 @@ options:
     resolution:
         description:
             - "The time between calculated aggregation windows. Use with the query interval to vary the
-              frequency at which aggregated data points are returned. For example, use a query interval of
+              frequency for returning aggregated data points. For example, use a query interval of
               5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
               frequency. The resolution must be equal or less than the interval in the query. The default
               resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`."
@@ -156,7 +159,7 @@ metric_data:
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
-                  resources from which the aggregated data was returned.
+                  resources that the aggregated data was returned from.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -185,7 +188,7 @@ metric_data:
         resolution:
             description:
                 - "The time between calculated aggregation windows. Use with the query interval to vary the
-                  frequency at which aggregated data points are returned. For example, use a query interval of
+                  frequency for returning aggregated data points. For example, use a query interval of
                   5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
                   frequency. The resolution must be equal or less than the interval in the query. The default
                   resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`."

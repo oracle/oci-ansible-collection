@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcements_preferences -- Manage an Anno
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -352,7 +352,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example America/Los_Angeles.</div>
+                                            <div>The time zone in which the user prefers to receive announcements. Specify the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example - America/Los_Angeles</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -609,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example America/Los_Angeles.</div>
+                                            <div>The time zone in which the user prefers to receive announcements. Specify the preference with a value that uses the IANA Time Zone Database format (x-obmcs-time-zone). For example - America/Los_Angeles</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">preferred_time_zone_example</div>

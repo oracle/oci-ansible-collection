@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_user_aggregation_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple UserAggregation resources in Oracle Cloud Infrastructure
-- Gets a list of aggregated user details from the specified user assessment. This provides information about the overall state of database user security.  For example, the user details include how many users have the DBA role and how many users are in the critical category. This data is especially useful content for dashboards or to support analytics.
+- Gets a list of aggregated user details from the specified user assessment. This provides information about the overall state. of database user security.  For example, the user details include how many users have the DBA role and how many users are in the critical category. This data is especially useful content for dashboards or to support analytics.
 - When you perform the ListUserAnalytics operation, if the parameter compartmentIdInSubtree is set to "true," and if the parameter accessLevel is set to ACCESSIBLE, then the operation returns compartments in which the requestor has INSPECT permissions on at least one resource, directly or indirectly (in subcompartments). If the operation is performed at the root compartment. If the requestor does not have access to at least one subcompartment of the compartment specified by compartmentId, then "Not Authorized" is returned.
 - The parameter compartmentIdInSubtree applies when you perform ListUserAnalytics on the compartmentId passed and when it is set to true, the entire hierarchy of compartments can be returned.
 - To use ListUserAnalytics to get a full list of all compartments and subcompartments in the tenancy from the root compartment, set the parameter compartmentIdInSubtree to true and accessLevel to ACCESSIBLE.

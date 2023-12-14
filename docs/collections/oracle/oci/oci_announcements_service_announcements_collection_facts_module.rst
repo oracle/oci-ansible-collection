@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcements_collection_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -219,6 +219,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-chain_id"></div>
+                    <b>chain_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-chain_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only announcements belonging to the specified announcement chain ID.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -400,6 +415,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-should_show_only_latest_in_chain"></div>
+                    <b>should_show_only_latest_in_chain</b>
+                    <a class="ansibleOptionLink" href="#parameter-should_show_only_latest_in_chain" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to display only the latest announcement in a chain.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
                     <b>sort_by</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
@@ -527,6 +561,8 @@ Examples
         service: service_example
         platform_type: IAAS
         exclude_announcement_types: [ "exclude_announcement_types_example" ]
+        should_show_only_latest_in_chain: true
+        chain_id: "ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -563,7 +599,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AnnouncementsCollection resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;affected_regions&#x27;: [], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;environment_name&#x27;: &#x27;environment_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;platform_type&#x27;: &#x27;IAAS&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_one_title&#x27;: &#x27;time_one_title_example&#x27;, &#x27;time_one_type&#x27;: &#x27;ACTION_REQUIRED_BY&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;time_two_title_example&#x27;, &#x27;time_two_type&#x27;: &#x27;END_TIME&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;user_statuses&#x27;: [{&#x27;time_acknowledged&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;user_status_announcement_id&#x27;: &#x27;ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;affected_regions&#x27;: [], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;chain_id&#x27;: &#x27;ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;environment_name&#x27;: &#x27;environment_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;platform_type&#x27;: &#x27;IAAS&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_one_title&#x27;: &#x27;time_one_title_example&#x27;, &#x27;time_one_type&#x27;: &#x27;ACTION_REQUIRED_BY&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;time_two_title_example&#x27;, &#x27;time_two_type&#x27;: &#x27;END_TIME&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;user_statuses&#x27;: [{&#x27;time_acknowledged&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;user_status_announcement_id&#x27;: &#x27;ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -616,6 +652,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTION_RECOMMENDED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-announcements_collection/items/chain_id"></div>
+                    <b>chain_id</b>
+                    <a class="ansibleOptionLink" href="#return-announcements_collection/items/chain_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The sequence of connected announcements, or announcement chain, that this announcement belongs to. Related announcements share the same chain ID.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

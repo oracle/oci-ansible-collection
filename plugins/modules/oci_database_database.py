@@ -312,6 +312,12 @@ options:
                 description:
                     - Specifies a prefix for the `Oracle SID` of the database to be created.
                 type: str
+            pluggable_databases:
+                description:
+                    - The list of pluggable databases that needs to be restored into new database.
+                    - Applicable when source is 'DB_BACKUP'
+                type: list
+                elements: str
     db_backup_config:
         description:
             - ""
@@ -559,6 +565,7 @@ EXAMPLES = """
       db_unique_name: db_unique_name_example
       db_name: db_name_example
       sid_prefix: sid_prefix_example
+      pluggable_databases: [ "pluggable_databases_example" ]
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -611,6 +618,7 @@ EXAMPLES = """
       db_unique_name: db_unique_name_example
       db_name: db_name_example
       sid_prefix: sid_prefix_example
+      pluggable_databases: [ "pluggable_databases_example" ]
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -1321,6 +1329,7 @@ def main():
                     db_unique_name=dict(type="str"),
                     db_name=dict(type="str"),
                     sid_prefix=dict(type="str"),
+                    pluggable_databases=dict(type="list", elements="str"),
                 ),
             ),
             db_backup_config=dict(

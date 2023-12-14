@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcement_facts -- Fetches details about
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -362,7 +362,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Announcement resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_information&#x27;: &#x27;additional_information_example&#x27;, &#x27;affected_regions&#x27;: [], &#x27;affected_resources&#x27;: [{&#x27;additional_properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;}], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;environment_name&#x27;: &#x27;environment_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;platform_type&#x27;: &#x27;IAAS&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_one_title&#x27;: &#x27;time_one_title_example&#x27;, &#x27;time_one_type&#x27;: &#x27;ACTION_REQUIRED_BY&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;time_two_title_example&#x27;, &#x27;time_two_type&#x27;: &#x27;END_TIME&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_information&#x27;: &#x27;additional_information_example&#x27;, &#x27;affected_regions&#x27;: [], &#x27;affected_resources&#x27;: [{&#x27;additional_properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;}], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;chain_id&#x27;: &#x27;ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;environment_name&#x27;: &#x27;environment_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;platform_type&#x27;: &#x27;IAAS&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_one_title&#x27;: &#x27;time_one_title_example&#x27;, &#x27;time_one_type&#x27;: &#x27;ACTION_REQUIRED_BY&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;time_two_title_example&#x27;, &#x27;time_two_type&#x27;: &#x27;END_TIME&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -547,6 +547,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTION_RECOMMENDED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-announcement/chain_id"></div>
+                    <b>chain_id</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/chain_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The sequence of connected announcements, or announcement chain, that this announcement belongs to. Related announcements share the same chain ID.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.chain.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_target_database_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -318,7 +318,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return target databases that match the database type of the target database.</div>
+                                            <div>A filter to return only target databases that match the specified database type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -355,7 +355,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return target databases that match the infrastructure type of the target database.</div>
+                                            <div>A filter to return only target databases that match the specified infrastructure type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -380,7 +380,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return the target databases that matches the current state of the target database.</div>
+                                            <div>A filter to return only target databases that match the specified lifecycle state.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -584,7 +584,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCIDs of associated resources like Database, Data Safe private endpoint etc.</div>
+                                            <div>The OCIDs of associated resources like database, Data Safe private endpoint etc.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -767,7 +767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the autonomous database registered as a target database in Data Safe.</div>
+                                            <div>The OCID of the Autonomous Database registered as a target database in Data Safe.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -805,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the cloud database system registered as a target database in Data Safe.</div>
+                                            <div>The OCID of the cloud database registered as a target database in Data Safe.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1119,7 +1119,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time of target database registration and creation in Data Safe.</div>
+                                            <div>The date and time of the target database registration and creation in Data Safe.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
