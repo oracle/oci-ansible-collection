@@ -37,6 +37,7 @@ options:
             - "BROWSER"
             - "SCRIPTED_REST"
             - "REST"
+            - "NETWORK"
     display_name:
         description:
             - Unique name that can be edited. The name should not contain any confidential information.
@@ -90,11 +91,12 @@ options:
         type: int
     target:
         description:
-            - Specify the endpoint on which to run the monitor.
+            - "Specify the endpoint on which to run the monitor.
               For BROWSER and REST monitor types, target is mandatory.
               If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor)
               against the specified target endpoint.
               If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
+              For NETWORK monitor with TCP protocol, a port needs to be provided along with target. Example: 192.168.0.1:80"
             - This parameter is updatable.
         type: str
     script_parameters:
@@ -124,7 +126,7 @@ options:
         suboptions:
             is_redirection_enabled:
                 description:
-                    - If redirection enabled, then redirects will be allowed while accessing target URL.
+                    - If redirection is enabled, then redirects will be allowed while accessing target URL.
                     - Applicable when config_type is 'REST_CONFIG'
                 type: bool
             request_method:
@@ -137,12 +139,13 @@ options:
                     - "POST"
             req_authentication_scheme:
                 description:
-                    - Request http authentication scheme.
-                    - Applicable when config_type is 'REST_CONFIG'
+                    - Request HTTP authentication scheme.
+                    - Applicable when config_type is one of ['SCRIPTED_REST_CONFIG', 'REST_CONFIG']
                 type: str
                 choices:
-                    - "OAUTH"
                     - "NONE"
+                    - "RESOURCE_PRINCIPAL"
+                    - "OAUTH"
                     - "BASIC"
                     - "BEARER"
             req_authentication_details:
@@ -153,7 +156,7 @@ options:
                 suboptions:
                     oauth_scheme:
                         description:
-                            - Request http oauth scheme.
+                            - Request HTTP OAuth scheme.
                             - Applicable when config_type is 'REST_CONFIG'
                         type: str
                         choices:
@@ -161,7 +164,7 @@ options:
                             - "BASIC"
                     auth_user_name:
                         description:
-                            - Username for authentication.
+                            - User name for authentication.
                             - Applicable when config_type is 'REST_CONFIG'
                         type: str
                     auth_user_password:
@@ -176,7 +179,7 @@ options:
                         type: str
                     auth_url:
                         description:
-                            - URL to get authetication token.
+                            - URL to get authentication token.
                             - Applicable when config_type is 'REST_CONFIG'
                         type: str
                     auth_headers:
@@ -210,6 +213,48 @@ options:
                             - Request post body.
                             - Applicable when config_type is 'REST_CONFIG'
                         type: str
+            client_certificate_details:
+                description:
+                    - ""
+                    - Applicable when config_type is 'REST_CONFIG'
+                type: dict
+                suboptions:
+                    client_certificate:
+                        description:
+                            - ""
+                            - Applicable when config_type is 'REST_CONFIG'
+                        type: dict
+                        suboptions:
+                            file_name:
+                                description:
+                                    - Name of the certificate file. The name should not contain any confidential information.
+                                    - Required when config_type is 'REST_CONFIG'
+                                type: str
+                                required: true
+                            content:
+                                description:
+                                    - Content of the client certificate file.
+                                    - Required when config_type is 'REST_CONFIG'
+                                type: str
+                                required: true
+                    private_key:
+                        description:
+                            - ""
+                            - Applicable when config_type is 'REST_CONFIG'
+                        type: dict
+                        suboptions:
+                            file_name:
+                                description:
+                                    - Name of the private key file.
+                                    - Required when config_type is 'REST_CONFIG'
+                                type: str
+                                required: true
+                            content:
+                                description:
+                                    - Content of the private key file.
+                                    - Required when config_type is 'REST_CONFIG'
+                                type: str
+                                required: true
             request_headers:
                 description:
                     - "List of request headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
@@ -257,45 +302,15 @@ options:
                       If response content does not match the verifyResponseContent value, then it will be considered a failure.
                     - Applicable when config_type is 'REST_CONFIG'
                 type: str
-            verify_response_codes:
-                description:
-                    - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
-                    - Applicable when config_type is 'REST_CONFIG'
-                type: list
-                elements: str
-            config_type:
-                description:
-                    - Type of configuration.
-                type: str
-                choices:
-                    - "SCRIPTED_REST_CONFIG"
-                    - "SCRIPTED_BROWSER_CONFIG"
-                    - "REST_CONFIG"
-                    - "BROWSER_CONFIG"
-                required: true
-            is_failure_retried:
-                description:
-                    - If isFailureRetried is enabled, then a failed call will be retried.
-                type: bool
-            dns_configuration:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    is_override_dns:
-                        description:
-                            - If isOverrideDns is true, then dns will be overridden.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: bool
-                    override_dns_ip:
-                        description:
-                            - "Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true."
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: str
             is_certificate_validation_enabled:
                 description:
                     - If certificate validation is enabled, then the call will fail in case of certification errors.
                     - Applicable when config_type is one of ['SCRIPTED_BROWSER_CONFIG', 'REST_CONFIG', 'BROWSER_CONFIG']
+                type: bool
+            is_default_snapshot_enabled:
+                description:
+                    - If disabled, auto snapshots are not collected.
+                    - Applicable when config_type is one of ['SCRIPTED_BROWSER_CONFIG', 'BROWSER_CONFIG']
                 type: bool
             verify_texts:
                 description:
@@ -310,9 +325,46 @@ options:
                             - Verification text in the response.
                             - Applicable when config_type is 'BROWSER_CONFIG'
                         type: str
+            verify_response_codes:
+                description:
+                    - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
+                    - Applicable when config_type is one of ['SCRIPTED_REST_CONFIG', 'REST_CONFIG', 'BROWSER_CONFIG']
+                type: list
+                elements: str
+            config_type:
+                description:
+                    - Type of configuration.
+                type: str
+                choices:
+                    - "SCRIPTED_REST_CONFIG"
+                    - "SCRIPTED_BROWSER_CONFIG"
+                    - "REST_CONFIG"
+                    - "BROWSER_CONFIG"
+                    - "NETWORK_CONFIG"
+                required: true
+            is_failure_retried:
+                description:
+                    - If isFailureRetried is enabled, then a failed call will be retried.
+                type: bool
+            dns_configuration:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    is_override_dns:
+                        description:
+                            - If isOverrideDns is true, then DNS settings will be overridden.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: bool
+                    override_dns_ip:
+                        description:
+                            - Attribute to override the DNS IP value. This value will be honored only if isOverrideDns is set to true.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: str
             network_configuration:
                 description:
                     - ""
+                    - Required when config_type is 'NETWORK_CONFIG'
                 type: dict
                 suboptions:
                     number_of_hops:
@@ -354,11 +406,13 @@ options:
         suboptions:
             max_allowed_failures_per_interval:
                 description:
-                    - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                    - Maximum number of failed runs allowed in an interval. If an interval has more failed runs than the specified value, then the interval will
+                      be classified as UNAVAILABLE.
                 type: int
             min_allowed_runs_per_interval:
                 description:
-                    - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                    - Minimum number of runs allowed in an interval. If an interval has fewer runs than the specified value, then the interval will be
+                      classified as UNKNOWN and will be excluded from the availability calculations.
                 type: int
     maintenance_window_schedule:
         description:
@@ -368,12 +422,12 @@ options:
         suboptions:
             time_started:
                 description:
-                    - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                    - "Start time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                       Example: `2020-02-12T22:47:12.613Z`"
                 type: str
             time_ended:
                 description:
-                    - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                    - "End time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                       Example: `2020-02-12T22:47:12.613Z`"
                 type: str
     freeform_tags:
@@ -390,12 +444,12 @@ options:
         type: dict
     is_run_now:
         description:
-            - If isRunNow is enabled, then the monitor will run now.
+            - If isRunNow is enabled, then the monitor will run immediately.
             - This parameter is updatable.
         type: bool
     scheduling_policy:
         description:
-            - Scheduling policy on Vantage points.
+            - Scheduling policy to decide the distribution of monitor executions on vantage points.
             - This parameter is updatable.
         type: str
         choices:
@@ -404,7 +458,7 @@ options:
             - "BATCHED_ROUND_ROBIN"
     batch_interval_in_seconds:
         description:
-            - "Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN)."
+            - "Time interval between two runs in round robin batch mode (SchedulingPolicy - BATCHED_ROUND_ROBIN)."
             - This parameter is updatable.
         type: int
     apm_domain_id:
@@ -456,6 +510,8 @@ EXAMPLES = """
       config_type: SCRIPTED_REST_CONFIG
 
       # optional
+      req_authentication_scheme: NONE
+      verify_response_codes: [ "verify_response_codes_example" ]
       is_failure_retried: true
       dns_configuration:
         # optional
@@ -506,6 +562,8 @@ EXAMPLES = """
       config_type: SCRIPTED_REST_CONFIG
 
       # optional
+      req_authentication_scheme: NONE
+      verify_response_codes: [ "verify_response_codes_example" ]
       is_failure_retried: true
       dns_configuration:
         # optional
@@ -555,6 +613,8 @@ EXAMPLES = """
       config_type: SCRIPTED_REST_CONFIG
 
       # optional
+      req_authentication_scheme: NONE
+      verify_response_codes: [ "verify_response_codes_example" ]
       is_failure_retried: true
       dns_configuration:
         # optional
@@ -618,7 +678,7 @@ monitor:
             sample: display_name_example
         monitor_type:
             description:
-                - Type of the monitor.
+                - Type of monitor.
             returned: on success
             type: str
             sample: SCRIPTED_BROWSER
@@ -690,11 +750,12 @@ monitor:
             sample: 56
         target:
             description:
-                - Specify the endpoint on which to run the monitor.
+                - "Specify the endpoint on which to run the monitor.
                   For BROWSER and REST monitor types, target is mandatory.
                   If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor)
                   against the specified target endpoint.
                   If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
+                  For NETWORK monitor with TCP protocol, a port needs to be provided along with target. Example: 192.168.0.1:80"
             returned: on success
             type: str
             sample: target_example
@@ -757,7 +818,7 @@ monitor:
                             sample: text_example
                 is_redirection_enabled:
                     description:
-                        - If redirection enabled, then redirects will be allowed while accessing target URL.
+                        - If redirection is enabled, then redirects will be allowed while accessing target URL.
                     returned: on success
                     type: bool
                     sample: true
@@ -767,12 +828,6 @@ monitor:
                     returned: on success
                     type: str
                     sample: GET
-                req_authentication_scheme:
-                    description:
-                        - Request http authentication scheme.
-                    returned: on success
-                    type: str
-                    sample: OAUTH
                 req_authentication_details:
                     description:
                         - ""
@@ -781,13 +836,13 @@ monitor:
                     contains:
                         oauth_scheme:
                             description:
-                                - Request http oauth scheme.
+                                - Request HTTP OAuth scheme.
                             returned: on success
                             type: str
                             sample: NONE
                         auth_user_name:
                             description:
-                                - Username for authentication.
+                                - User name for authentication.
                             returned: on success
                             type: str
                             sample: auth_user_name_example
@@ -805,7 +860,7 @@ monitor:
                             sample: auth_token_example
                         auth_url:
                             description:
-                                - URL to get authetication token.
+                                - URL to get authentication token.
                             returned: on success
                             type: str
                             sample: auth_url_example
@@ -839,6 +894,48 @@ monitor:
                             returned: on success
                             type: str
                             sample: auth_request_post_body_example
+                client_certificate_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        client_certificate:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_name:
+                                    description:
+                                        - Name of the certificate file. The name should not contain any confidential information.
+                                    returned: on success
+                                    type: str
+                                    sample: file_name_example
+                                content:
+                                    description:
+                                        - Content of the client certificate file.
+                                    returned: on success
+                                    type: str
+                                    sample: content_example
+                        private_key:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_name:
+                                    description:
+                                        - Name of the private key file.
+                                    returned: on success
+                                    type: str
+                                    sample: file_name_example
+                                content:
+                                    description:
+                                        - Content of the private key file.
+                                    returned: on success
+                                    type: str
+                                    sample: content_example
                 request_headers:
                     description:
                         - "List of request headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
@@ -888,15 +985,15 @@ monitor:
                     returned: on success
                     type: str
                     sample: verify_response_content_example
-                verify_response_codes:
-                    description:
-                        - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
-                    returned: on success
-                    type: list
-                    sample: []
                 is_certificate_validation_enabled:
                     description:
                         - If certificate validation is enabled, then the call will fail in case of certification errors.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_default_snapshot_enabled:
+                    description:
+                        - If disabled, auto snapshots are not collected.
                     returned: on success
                     type: bool
                     sample: true
@@ -920,16 +1017,28 @@ monitor:
                     contains:
                         is_override_dns:
                             description:
-                                - If isOverrideDns is true, then dns will be overridden.
+                                - If isOverrideDns is true, then DNS settings will be overridden.
                             returned: on success
                             type: bool
                             sample: true
                         override_dns_ip:
                             description:
-                                - "Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true."
+                                - Attribute to override the DNS IP value. This value will be honored only if isOverrideDns is set to true.
                             returned: on success
                             type: str
                             sample: override_dns_ip_example
+                req_authentication_scheme:
+                    description:
+                        - Request HTTP authentication scheme.
+                    returned: on success
+                    type: str
+                    sample: OAUTH
+                verify_response_codes:
+                    description:
+                        - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
+                    returned: on success
+                    type: list
+                    sample: []
                 network_configuration:
                     description:
                         - ""
@@ -974,13 +1083,15 @@ monitor:
             contains:
                 max_allowed_failures_per_interval:
                     description:
-                        - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                        - Maximum number of failed runs allowed in an interval. If an interval has more failed runs than the specified value, then the interval
+                          will be classified as UNAVAILABLE.
                     returned: on success
                     type: int
                     sample: 56
                 min_allowed_runs_per_interval:
                     description:
-                        - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                        - Minimum number of runs allowed in an interval. If an interval has fewer runs than the specified value, then the interval will be
+                          classified as UNKNOWN and will be excluded from the availability calculations.
                     returned: on success
                     type: int
                     sample: 56
@@ -992,14 +1103,14 @@ monitor:
             contains:
                 time_started:
                     description:
-                        - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                        - "Start time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                           Example: `2020-02-12T22:47:12.613Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_ended:
                     description:
-                        - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                        - "End time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                           Example: `2020-02-12T22:47:12.613Z`"
                     returned: on success
                     type: str
@@ -1036,19 +1147,19 @@ monitor:
             sample: {'Operations': {'CostCenter': 'US'}}
         is_run_now:
             description:
-                - If isRunNow is enabled, then the monitor will run now.
+                - If isRunNow is enabled, then the monitor will run immediately.
             returned: on success
             type: bool
             sample: true
         scheduling_policy:
             description:
-                - Scheduling policy on Vantage points.
+                - Scheduling policy to decide the distribution of monitor executions on vantage points.
             returned: on success
             type: str
             sample: ALL
         batch_interval_in_seconds:
             description:
-                - "Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN)."
+                - "Time interval between two runs in round robin batch mode (SchedulingPolicy - BATCHED_ROUND_ROBIN)."
             returned: on success
             type: int
             sample: 56
@@ -1082,7 +1193,6 @@ monitor:
             }],
             "is_redirection_enabled": true,
             "request_method": "GET",
-            "req_authentication_scheme": "OAUTH",
             "req_authentication_details": {
                 "oauth_scheme": "NONE",
                 "auth_user_name": "auth_user_name_example",
@@ -1096,6 +1206,16 @@ monitor:
                 "auth_request_method": "GET",
                 "auth_request_post_body": "auth_request_post_body_example"
             },
+            "client_certificate_details": {
+                "client_certificate": {
+                    "file_name": "file_name_example",
+                    "content": "content_example"
+                },
+                "private_key": {
+                    "file_name": "file_name_example",
+                    "content": "content_example"
+                }
+            },
             "request_headers": [{
                 "header_name": "header_name_example",
                 "header_value": "header_value_example"
@@ -1106,14 +1226,16 @@ monitor:
             }],
             "request_post_body": "request_post_body_example",
             "verify_response_content": "verify_response_content_example",
-            "verify_response_codes": [],
             "is_certificate_validation_enabled": true,
+            "is_default_snapshot_enabled": true,
             "config_type": "BROWSER_CONFIG",
             "is_failure_retried": true,
             "dns_configuration": {
                 "is_override_dns": true,
                 "override_dns_ip": "override_dns_ip_example"
             },
+            "req_authentication_scheme": "OAUTH",
+            "verify_response_codes": [],
             "network_configuration": {
                 "number_of_hops": 56,
                 "probe_per_hop": 56,
@@ -1305,7 +1427,13 @@ def main():
         dict(
             monitor_type=dict(
                 type="str",
-                choices=["SCRIPTED_BROWSER", "BROWSER", "SCRIPTED_REST", "REST"],
+                choices=[
+                    "SCRIPTED_BROWSER",
+                    "BROWSER",
+                    "SCRIPTED_REST",
+                    "REST",
+                    "NETWORK",
+                ],
             ),
             display_name=dict(aliases=["name"], type="str"),
             vantage_points=dict(type="list", elements="str"),
@@ -1329,7 +1457,14 @@ def main():
                     is_redirection_enabled=dict(type="bool"),
                     request_method=dict(type="str", choices=["GET", "POST"]),
                     req_authentication_scheme=dict(
-                        type="str", choices=["OAUTH", "NONE", "BASIC", "BEARER"]
+                        type="str",
+                        choices=[
+                            "NONE",
+                            "RESOURCE_PRINCIPAL",
+                            "OAUTH",
+                            "BASIC",
+                            "BEARER",
+                        ],
                     ),
                     req_authentication_details=dict(
                         type="dict",
@@ -1353,6 +1488,26 @@ def main():
                             auth_request_post_body=dict(type="str"),
                         ),
                     ),
+                    client_certificate_details=dict(
+                        type="dict",
+                        options=dict(
+                            client_certificate=dict(
+                                type="dict",
+                                options=dict(
+                                    file_name=dict(type="str", required=True),
+                                    content=dict(type="str", required=True),
+                                ),
+                            ),
+                            private_key=dict(
+                                type="dict",
+                                no_log=False,
+                                options=dict(
+                                    file_name=dict(type="str", required=True),
+                                    content=dict(type="str", required=True),
+                                ),
+                            ),
+                        ),
+                    ),
                     request_headers=dict(
                         type="list",
                         elements="dict",
@@ -1371,6 +1526,13 @@ def main():
                     ),
                     request_post_body=dict(type="str"),
                     verify_response_content=dict(type="str"),
+                    is_certificate_validation_enabled=dict(type="bool"),
+                    is_default_snapshot_enabled=dict(type="bool"),
+                    verify_texts=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(text=dict(type="str")),
+                    ),
                     verify_response_codes=dict(type="list", elements="str"),
                     config_type=dict(
                         type="str",
@@ -1380,6 +1542,7 @@ def main():
                             "SCRIPTED_BROWSER_CONFIG",
                             "REST_CONFIG",
                             "BROWSER_CONFIG",
+                            "NETWORK_CONFIG",
                         ],
                     ),
                     is_failure_retried=dict(type="bool"),
@@ -1389,12 +1552,6 @@ def main():
                             is_override_dns=dict(type="bool"),
                             override_dns_ip=dict(type="str"),
                         ),
-                    ),
-                    is_certificate_validation_enabled=dict(type="bool"),
-                    verify_texts=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(text=dict(type="str")),
                     ),
                     network_configuration=dict(
                         type="dict",

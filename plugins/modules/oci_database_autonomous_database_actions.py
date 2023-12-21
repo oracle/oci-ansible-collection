@@ -1346,6 +1346,30 @@ autonomous_database:
             returned: on success
             type: bool
             sample: true
+        time_of_joining_resource_pool:
+            description:
+                - The time the member joined the resource pool.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        resource_pool_leader_id:
+            description:
+                - The unique identifier for leader autonomous database OCID L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            returned: on success
+            type: str
+            sample: "ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx"
+        resource_pool_summary:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                pool_size:
+                    description:
+                        - Resource pool size.
+                    returned: on success
+                    type: int
+                    sample: 56
         is_reconnect_clone_enabled:
             description:
                 - Indicates if the refreshable clone can be reconnected to its source database.
@@ -1667,6 +1691,11 @@ autonomous_database:
         "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
         "peer_db_ids": [],
         "is_mtls_connection_required": true,
+        "time_of_joining_resource_pool": "2013-10-20T19:20:30+01:00",
+        "resource_pool_leader_id": "ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx",
+        "resource_pool_summary": {
+            "pool_size": 56
+        },
         "is_reconnect_clone_enabled": true,
         "time_until_reconnect_clone_enabled": "2013-10-20T19:20:30+01:00",
         "autonomous_maintenance_schedule_type": "EARLY",

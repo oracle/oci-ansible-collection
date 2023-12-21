@@ -390,6 +390,70 @@ table:
             returned: on success
             type: str
             sample: ddl_statement_example
+        schema_state:
+            description:
+                - "The current state of this table's schema. Available states are
+                  MUTABLE - The schema can be changed. The table is not eligible for replication.
+                  FROZEN - The schema is immutable. The table is eligible for replication."
+            returned: on success
+            type: str
+            sample: MUTABLE
+        is_multi_region:
+            description:
+                - True if this table is currently a member of a replication set.
+            returned: on success
+            type: bool
+            sample: true
+        local_replica_initialization_in_percent:
+            description:
+                - If this table is in a replication set, this value represents
+                  the progress of the initialization of the replica's data.  A
+                  value of 100 indicates that initialization has completed.
+            returned: on success
+            type: int
+            sample: 56
+        replicas:
+            description:
+                - An array of Replica listing this table's replicas, if any
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - A customer-facing region identifier
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                table_id:
+                    description:
+                        - The OCID of the replica table
+                    returned: on success
+                    type: str
+                    sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
+                max_write_units:
+                    description:
+                        - Maximum sustained write throughput limit of the replica table.
+                    returned: on success
+                    type: int
+                    sample: 56
+                capacity_mode:
+                    description:
+                        - The capacity mode of the replica.
+                    returned: on success
+                    type: str
+                    sample: PROVISIONED
+                lifecycle_state:
+                    description:
+                        - The state of the replica.
+                    returned: on success
+                    type: str
+                    sample: CREATING
+                lifecycle_details:
+                    description:
+                        - A message describing the current state in more detail.
+                    returned: on success
+                    type: str
+                    sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined
@@ -451,6 +515,17 @@ table:
             }
         },
         "ddl_statement": "ddl_statement_example",
+        "schema_state": "MUTABLE",
+        "is_multi_region": true,
+        "local_replica_initialization_in_percent": 56,
+        "replicas": [{
+            "region": "us-phoenix-1",
+            "table_id": "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx",
+            "max_write_units": 56,
+            "capacity_mode": "PROVISIONED",
+            "lifecycle_state": "CREATING",
+            "lifecycle_details": "lifecycle_details_example"
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

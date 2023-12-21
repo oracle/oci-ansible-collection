@@ -30,7 +30,7 @@ oracle.oci.oci_nosql_table_usage_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -410,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of TableUsage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;max_shard_size_usage_in_percent&#x27;: 56, &#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;max_shard_size_usage_in_percent&#x27;: 56, &#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -519,6 +519,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table_usages/time_started"></div>
+                    <b>time_started</b>
+                    <a class="ansibleOptionLink" href="#return-table_usages/time_started" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time stamp of this usage record.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

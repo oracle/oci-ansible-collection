@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.39.0]
+
+## Added
+- Support for the Caching Service
+- Support for elastic resource pools in the Database service
+- Support for new optional parameters on replica create, update and list operations in the MySQL Heatwave service
+- Support for integration with Database Management service in the MySQL HeatWave service
+- Support for global active tables in the NoSQL Database service
+- Support for specifying default snapshot enablement, verified response codes, client certificate details, and request authentication schemes when creating or updating synthetic monitors in the Application Performance Monitoring Synthetics service
+- Support for creating and updating network monitors in the Application Performance Monitoring Synthetics service
+- Support for unified agent operational metrics for the service configurations in the Logging Management service
+
+## Breaking
+- Properties `display_name` and `rqs_type` were removed from `parameters` in `oci_logging_service_facts` module of the Logging service
+- Parameter `service_stage` was removed from operation `list_services` of `oci_logging_service_facts` module of the Logging service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.118.0
+
 ## [4.38.0]
 
 ## Added

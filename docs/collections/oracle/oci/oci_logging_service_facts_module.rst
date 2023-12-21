@@ -30,7 +30,7 @@ oracle.oci.oci_logging_service_facts -- Fetches details about one or multiple Se
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -282,21 +282,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-service_stage"></div>
-                    <b>service_stage</b>
-                    <a class="ansibleOptionLink" href="#parameter-service_stage" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Service stage of a service. The allowed values are &quot;ProductionStage&quot;, &quot;DevStage&quot; and &quot;LAStage&quot;.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -338,9 +323,6 @@ Examples
     - name: List services
       oci_logging_service_facts:
 
-        # optional
-        service_stage: service_stage_example
-
 
 
 
@@ -376,7 +358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Service resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;resource_types&#x27;: [{&#x27;categories&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;, &#x27;rqs_type&#x27;: &#x27;rqs_type_example&#x27;, &#x27;type&#x27;: &#x27;integer&#x27;}]}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;service_principal_name&#x27;: &#x27;service_principal_name_example&#x27;, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;resource_types&#x27;: [{&#x27;categories&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;, &#x27;type&#x27;: &#x27;integer&#x27;}]}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;service_principal_name&#x27;: &#x27;service_principal_name_example&#x27;, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -548,27 +530,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-services/resource_types/categories/parameters/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-services/resource_types/categories/parameters/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user-friendly display name. This must be unique within the enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-services/resource_types/categories/parameters/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-services/resource_types/categories/parameters/name" title="Permalink to this return value"></a>
@@ -611,27 +572,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-services/resource_types/categories/parameters/rqs_type"></div>
-                    <b>rqs_type</b>
-                    <a class="ansibleOptionLink" href="#return-services/resource_types/categories/parameters/rqs_type" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Parameter rqsType if applicable.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rqs_type_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-services/resource_types/categories/parameters/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-services/resource_types/categories/parameters/type" title="Permalink to this return value"></a>
@@ -641,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Parameter type.</div>
+                                            <div></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">integer</div>

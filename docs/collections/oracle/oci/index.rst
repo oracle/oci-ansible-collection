@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.38.0
+Collection version 4.39.0
 
 .. toctree::
     :maxdepth: 1
@@ -809,6 +809,7 @@ Modules
 * :ref:`oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` -- Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_pluggable_database_facts_module>` -- Fetches details about one or multiple PluggableDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_refreshable_clone_facts <ansible_collections.oracle.oci.oci_database_refreshable_clone_facts_module>` -- Fetches details about one or multiple RefreshableClone resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_resource_pool_shape_facts <ansible_collections.oracle.oci.oci_database_resource_pool_shape_facts_module>` -- Fetches details about one or multiple ResourcePoolShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image <ansible_collections.oracle.oci.oci_database_software_image_module>` -- Manage a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_actions <ansible_collections.oracle.oci.oci_database_software_image_actions_module>` -- Perform actions on a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_facts <ansible_collections.oracle.oci.oci_database_software_image_facts_module>` -- Fetches details about one or multiple DatabaseSoftwareImage resources in Oracle Cloud Infrastructure
@@ -1740,6 +1741,9 @@ Modules
 * :ref:`oci_recovery_service_subnet <ansible_collections.oracle.oci.oci_recovery_service_subnet_module>` -- Manage a RecoveryServiceSubnet resource in Oracle Cloud Infrastructure
 * :ref:`oci_recovery_service_subnet_actions <ansible_collections.oracle.oci.oci_recovery_service_subnet_actions_module>` -- Perform actions on a RecoveryServiceSubnet resource in Oracle Cloud Infrastructure
 * :ref:`oci_recovery_service_subnet_facts <ansible_collections.oracle.oci.oci_recovery_service_subnet_facts_module>` -- Fetches details about one or multiple RecoveryServiceSubnet resources in Oracle Cloud Infrastructure
+* :ref:`oci_redis_cluster <ansible_collections.oracle.oci.oci_redis_cluster_module>` -- Manage a RedisCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_redis_cluster_actions <ansible_collections.oracle.oci.oci_redis_cluster_actions_module>` -- Perform actions on a RedisCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_redis_cluster_facts <ansible_collections.oracle.oci.oci_redis_cluster_facts_module>` -- Fetches details about one or multiple RedisCluster resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_module>` -- Manage a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
@@ -2782,6 +2786,7 @@ Modules
     oci_database_pluggable_database_actions_module
     oci_database_pluggable_database_facts_module
     oci_database_refreshable_clone_facts_module
+    oci_database_resource_pool_shape_facts_module
     oci_database_software_image_module
     oci_database_software_image_actions_module
     oci_database_software_image_facts_module
@@ -3713,6 +3718,9 @@ Modules
     oci_recovery_service_subnet_module
     oci_recovery_service_subnet_actions_module
     oci_recovery_service_subnet_facts_module
+    oci_redis_cluster_module
+    oci_redis_cluster_actions_module
+    oci_redis_cluster_facts_module
     oci_resource_manager_configuration_source_provider_module
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module

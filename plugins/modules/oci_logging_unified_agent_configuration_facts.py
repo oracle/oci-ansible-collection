@@ -136,7 +136,7 @@ unified_agent_configurations:
                     contains:
                         paths:
                             description:
-                                - Absolute paths for log source files. Wildcard can be used.
+                                - Absolute paths for log source files. Wildcards can be used.
                             returned: on success
                             type: list
                             sample: []
@@ -148,13 +148,13 @@ unified_agent_configurations:
                             contains:
                                 is_merge_cri_fields:
                                     description:
-                                        - If you don't need stream/logtag fields, set this to false.
+                                        - If you don't need stream or logtag fields, set this to false.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 nested_parser:
                                     description:
-                                        - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                        - Optional nested JSON Parser for CRI. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
                                     returned: on success
                                     type: complex
                                     contains:
@@ -166,7 +166,7 @@ unified_agent_configurations:
                                             sample: AUDITD
                                         field_time_key:
                                             description:
-                                                - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                                - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                             returned: on success
                                             type: str
                                             sample: field_time_key_example
@@ -202,19 +202,19 @@ unified_agent_configurations:
                                             sample: null_value_pattern_example
                                         is_null_empty_string:
                                             description:
-                                                - If true, an empty string field is replaced with nil.
+                                                - If true, an empty string field is replaced with a null value.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_estimate_current_event:
                                             description:
-                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_keep_time_key:
                                             description:
-                                                - If true, keep time field in the record.
+                                                - If true, keep the time field in the record.
                                             returned: on success
                                             type: bool
                                             sample: true
@@ -226,7 +226,7 @@ unified_agent_configurations:
                                             sample: 56
                                         time_type:
                                             description:
-                                                - Time type of JSON parser.
+                                                - JSON parser time type.
                                             returned: on success
                                             type: str
                                             sample: FLOAT
@@ -238,7 +238,7 @@ unified_agent_configurations:
                                             sample: time_format_example
                                 time_type:
                                     description:
-                                        - Time type of JSON parser.
+                                        - JSON parser time type.
                                     returned: on success
                                     type: str
                                     sample: FLOAT
@@ -256,13 +256,13 @@ unified_agent_configurations:
                                     sample: []
                                 grok_name_key:
                                     description:
-                                        - grok name key.
+                                        - Grok name key.
                                     returned: on success
                                     type: str
                                     sample: grok_name_key_example
                                 grok_failure_key:
                                     description:
-                                        - grok failure key.
+                                        - Grok failure key.
                                     returned: on success
                                     type: str
                                     sample: grok_failure_key_example
@@ -274,19 +274,19 @@ unified_agent_configurations:
                                     sample: multi_line_start_regexp_example
                                 patterns:
                                     description:
-                                        - grok pattern object.
+                                        - Grok pattern object.
                                     returned: on success
                                     type: complex
                                     contains:
                                         pattern:
                                             description:
-                                                - The grok pattern.
+                                                - The Grok pattern.
                                             returned: on success
                                             type: str
                                             sample: pattern_example
                                         name:
                                             description:
-                                                - The name key to tag this grok pattern.
+                                                - The name key to tag this Grok pattern.
                                             returned: on success
                                             type: str
                                             sample: name_example
@@ -328,25 +328,25 @@ unified_agent_configurations:
                                     sample: time_format_example
                                 rfc5424_time_format:
                                     description:
-                                        - rfc5424 time format.
+                                        - RFC 5424 time format.
                                     returned: on success
                                     type: str
                                     sample: rfc5424_time_format_example
                                 message_format:
                                     description:
-                                        - Message format of syslog.
+                                        - Syslog message format.
                                     returned: on success
                                     type: str
                                     sample: RFC3164
                                 is_with_priority:
                                     description:
-                                        - With priority or not.
+                                        - Specifies with priority or not. Corresponds to the Fluentd with_priority parameter.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_support_colonless_ident:
                                     description:
-                                        - Support colonless ident or not.
+                                        - Specifies whether or not to support colonless ident. Corresponds to the Fluentd support_colonless_ident parameter.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -364,7 +364,7 @@ unified_agent_configurations:
                                     sample: AUDITD
                                 field_time_key:
                                     description:
-                                        - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                        - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                     returned: on success
                                     type: str
                                     sample: field_time_key_example
@@ -400,19 +400,19 @@ unified_agent_configurations:
                                     sample: null_value_pattern_example
                                 is_null_empty_string:
                                     description:
-                                        - If true, an empty string field is replaced with nil.
+                                        - If true, an empty string field is replaced with a null value.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_estimate_current_event:
                                     description:
-                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_keep_time_key:
                                     description:
-                                        - If true, keep time field in the record.
+                                        - If true, keep the time field in the record.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -424,19 +424,19 @@ unified_agent_configurations:
                                     sample: 56
                                 delimiter:
                                     description:
-                                        - csv delimiter.
+                                        - CSV delimiter.
                                     returned: on success
                                     type: str
                                     sample: delimiter_example
                                 keys:
                                     description:
-                                        - csv keys.
+                                        - CSV keys.
                                     returned: on success
                                     type: list
                                     sample: []
                         name:
                             description:
-                                - unique name for the source
+                                - Unique name for the source.
                             returned: on success
                             type: str
                             sample: name_example
@@ -464,6 +464,60 @@ unified_agent_configurations:
                             returned: on success
                             type: str
                             sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+                        operational_metrics_configuration:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the unified monitoring agent operational metrics source object.
+                                            returned: on success
+                                            type: str
+                                            sample: UMA_METRICS
+                                        metrics:
+                                            description:
+                                                - List of unified monitoring agent operational metrics.
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                                        record_input:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                namespace:
+                                                    description:
+                                                        - Namespace to emit the operational metrics.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: namespace_example
+                                                resource_group:
+                                                    description:
+                                                        - Resource group to emit the operational metrics.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: resource_group_example
+                                destination:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        compartment_id:
+                                            description:
+                                                - The OCID of the compartment that the resource belongs to.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
                 - ""
@@ -612,7 +666,20 @@ unified_agent_configurations:
                 "channels": []
             }],
             "destination": {
-                "log_object_id": "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+                "log_object_id": "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx",
+                "operational_metrics_configuration": {
+                    "source": {
+                        "type": "UMA_METRICS",
+                        "metrics": [],
+                        "record_input": {
+                            "namespace": "namespace_example",
+                            "resource_group": "resource_group_example"
+                        }
+                    },
+                    "destination": {
+                        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                    }
+                }
             }
         },
         "group_association": {

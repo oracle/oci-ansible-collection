@@ -125,6 +125,14 @@ options:
         description:
             - A filter to return only resources that have Data Guard enabled.
         type: bool
+    is_resource_pool_leader:
+        description:
+            - Filter if the resource is the resource pool leader. A value of `true` returns only resource pool leader.
+        type: bool
+    resource_pool_leader_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resourcepool Leader Autonomous Database.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -151,6 +159,8 @@ EXAMPLES = """
     display_name: display_name_example
     is_refreshable_clone: true
     is_data_guard_enabled: true
+    is_resource_pool_leader: true
+    resource_pool_leader_id: "ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -1152,6 +1162,30 @@ autonomous_databases:
             returned: on success
             type: bool
             sample: true
+        time_of_joining_resource_pool:
+            description:
+                - The time the member joined the resource pool.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        resource_pool_leader_id:
+            description:
+                - The unique identifier for leader autonomous database OCID L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            returned: on success
+            type: str
+            sample: "ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx"
+        resource_pool_summary:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                pool_size:
+                    description:
+                        - Resource pool size.
+                    returned: on success
+                    type: int
+                    sample: 56
         is_reconnect_clone_enabled:
             description:
                 - Indicates if the refreshable clone can be reconnected to its source database.
@@ -1473,6 +1507,11 @@ autonomous_databases:
         "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
         "peer_db_ids": [],
         "is_mtls_connection_required": true,
+        "time_of_joining_resource_pool": "2013-10-20T19:20:30+01:00",
+        "resource_pool_leader_id": "ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx",
+        "resource_pool_summary": {
+            "pool_size": 56
+        },
         "is_reconnect_clone_enabled": true,
         "time_until_reconnect_clone_enabled": "2013-10-20T19:20:30+01:00",
         "autonomous_maintenance_schedule_type": "EARLY",
@@ -1552,6 +1591,8 @@ class AutonomousDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "is_refreshable_clone",
             "is_data_guard_enabled",
+            "is_resource_pool_leader",
+            "resource_pool_leader_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -1620,6 +1661,8 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             is_refreshable_clone=dict(type="bool"),
             is_data_guard_enabled=dict(type="bool"),
+            is_resource_pool_leader=dict(type="bool"),
+            resource_pool_leader_id=dict(type="str"),
         )
     )
 

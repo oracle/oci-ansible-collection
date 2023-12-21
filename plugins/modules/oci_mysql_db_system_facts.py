@@ -72,6 +72,14 @@ options:
             - Filter instances if they are using the latest revision of the
               Configuration they are associated with.
         type: bool
+    database_management:
+        description:
+            - Filter DB Systems by their Database Management configuration.
+        type: list
+        elements: str
+        choices:
+            - "ENABLED"
+            - "DISABLED"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Time fields are default ordered as descending. Display name is default ordered as
@@ -108,6 +116,7 @@ EXAMPLES = """
     lifecycle_state: CREATING
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     is_up_to_date: true
+    database_management: [ "ENABLED" ]
     sort_by: displayName
     sort_order: ASC
 
@@ -811,6 +820,12 @@ db_systems:
             returned: on success
             type: str
             sample: ENABLED
+        database_management:
+            description:
+                - Whether to enable monitoring via the Database Management service.
+            returned: on success
+            type: str
+            sample: ENABLED
     sample: [{
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "source": {
@@ -927,7 +942,8 @@ db_systems:
             }
         },
         "shape_name": "shape_name_example",
-        "crash_recovery": "ENABLED"
+        "crash_recovery": "ENABLED",
+        "database_management": "ENABLED"
     }]
 """
 
@@ -973,6 +989,7 @@ class MysqlDbSystemFactsHelperGen(OCIResourceFactsHelperBase):
             "lifecycle_state",
             "configuration_id",
             "is_up_to_date",
+            "database_management",
             "sort_by",
             "sort_order",
         ]
@@ -1017,6 +1034,9 @@ def main():
             ),
             configuration_id=dict(type="str"),
             is_up_to_date=dict(type="bool"),
+            database_management=dict(
+                type="list", elements="str", choices=["ENABLED", "DISABLED"]
+            ),
             sort_by=dict(type="str", choices=["displayName", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )
