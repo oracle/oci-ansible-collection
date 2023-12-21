@@ -307,6 +307,14 @@ options:
         choices:
             - "ENABLED"
             - "DISABLED"
+    database_management:
+        description:
+            - Whether to enable monitoring via the Database Management service.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ENABLED"
+            - "DISABLED"
     db_system_id:
         description:
             - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -374,6 +382,7 @@ EXAMPLES = """
       final_backup: SKIP_FINAL_BACKUP
       is_delete_protected: true
     crash_recovery: ENABLED
+    database_management: ENABLED
 
 - name: Update db_system
   oci_mysql_db_system:
@@ -418,6 +427,7 @@ EXAMPLES = """
       final_backup: SKIP_FINAL_BACKUP
       is_delete_protected: true
     crash_recovery: ENABLED
+    database_management: ENABLED
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
@@ -462,6 +472,7 @@ EXAMPLES = """
       final_backup: SKIP_FINAL_BACKUP
       is_delete_protected: true
     crash_recovery: ENABLED
+    database_management: ENABLED
 
 - name: Delete db_system
   oci_mysql_db_system:
@@ -1164,6 +1175,12 @@ db_system:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+        database_management:
+            description:
+                - Whether to enable monitoring via the Database Management service.
+            returned: on success
+            type: str
+            sample: ENABLED
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -1280,7 +1297,8 @@ db_system:
         "point_in_time_recovery_details": {
             "time_earliest_recovery_point": "2013-10-20T19:20:30+01:00",
             "time_latest_recovery_point": "2013-10-20T19:20:30+01:00"
-        }
+        },
+        "database_management": "ENABLED"
     }
 """
 
@@ -1509,6 +1527,7 @@ def main():
                 ),
             ),
             crash_recovery=dict(type="str", choices=["ENABLED", "DISABLED"]),
+            database_management=dict(type="str", choices=["ENABLED", "DISABLED"]),
             db_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

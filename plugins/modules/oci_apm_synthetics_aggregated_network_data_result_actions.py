@@ -47,11 +47,11 @@ options:
         suboptions:
             name:
                 description:
-                    - Vantage point name.
+                    - Name of the vantage point.
                 type: str
             executions:
                 description:
-                    - list of execution times in milli seconds.
+                    - List of execution times in milliseconds.
                 type: list
                 elements: long
     action:
@@ -93,109 +93,115 @@ aggregated_network_data_result:
             contains:
                 result_state:
                     description:
-                        - state of the result
+                        - Status of the aggregated network data result.
                     returned: on success
                     type: str
                     sample: SUCCESS
                 vantage_point_nodes:
                     description:
-                        - List of VantagePointNode items.
+                        - List of vantage point nodes.
                     returned: on success
                     type: complex
                     contains:
                         id:
                             description:
-                                - id of Vantage Point node
+                                - ID of the vantage point node.
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         name:
                             description:
-                                - name of Vantage Point node
+                                - Name of the vantage point node.
                             returned: on success
                             type: str
                             sample: name_example
                         display_name:
                             description:
-                                - display name of Vantage Point node
+                                - Display name of the vantage point node.
                             returned: on success
                             type: str
                             sample: display_name_example
                         geo_info:
                             description:
-                                - geo info
+                                - Geographical information of the vantage point node.
                             returned: on success
                             type: str
                             sample: geo_info_example
                         outgoing_links:
                             description:
-                                - links outgoing from this Vantage Point node
+                                - Outgoing links from the vantage point node.
                             returned: on success
                             type: list
                             sample: []
                 nodes_by_level:
                     description:
-                        - 2d array of nodes where each internal array corresponds to 1 level
+                        - An array of node arrays where each internal array corresponds to nodes at one level.
                     returned: on success
                     type: list
                     sample: []
                 links:
                     description:
-                        - map of Link objects
+                        - Map of link objects.
                     returned: on success
                     type: complex
                     contains:
                         id:
                             description:
-                                - id of Link
+                                - ID of the link.
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         source:
                             description:
-                                - source node id
+                                - ID of the source node.
                             returned: on success
                             type: str
                             sample: source_example
                         destination:
                             description:
-                                - destination node id
+                                - ID of the destination node.
                             returned: on success
                             type: str
                             sample: destination_example
                         repeat_count:
                             description:
-                                - number of times this link is repeated
+                                - Number of times the link is repeated.
                             returned: on success
                             type: int
                             sample: 56
                         forwarding_loss:
                             description:
-                                - average packet loss
+                                - Average packet loss.
                             returned: on success
                             type: float
                             sample: 1.2
                         delay_in_milliseconds:
                             description:
-                                - difference of packet response time between source and destination in milliseconds
+                                - Difference of the packet response time between source and destination nodes, in milliseconds.
                             returned: on success
                             type: float
                             sample: 1.2
                         min_delay_in_milliseconds:
                             description:
-                                - minimum delay in milliseconds
+                                - Minimum delay in milliseconds.
                             returned: on success
                             type: float
                             sample: 1.2
                         max_delay_in_milliseconds:
                             description:
-                                - maximum delay in milliseconds
+                                - Maximum delay in milliseconds.
                             returned: on success
                             type: float
                             sample: 1.2
+                        paths:
+                            description:
+                                - List of all path IDs of which this link is part of.
+                            returned: on success
+                            type: list
+                            sample: []
                 error_details:
                     description:
-                        - string contaiing error details
+                        - String containing error details.
                     returned: on success
                     type: str
                     sample: error_details_example
@@ -218,7 +224,8 @@ aggregated_network_data_result:
                 "forwarding_loss": 1.2,
                 "delay_in_milliseconds": 1.2,
                 "min_delay_in_milliseconds": 1.2,
-                "max_delay_in_milliseconds": 1.2
+                "max_delay_in_milliseconds": 1.2,
+                "paths": []
             },
             "error_details": "error_details_example"
         }

@@ -61,6 +61,15 @@ options:
             - Required to get a specific replica.
         type: str
         aliases: ["id"]
+    configuration_id:
+        description:
+            - The requested Configuration instance.
+        type: str
+    is_up_to_date:
+        description:
+            - Filter instances if they are using the latest revision of the
+              Configuration they are associated with.
+        type: bool
     sort_by:
         description:
             - The field to sort by. You can sort by one field only. By default, the Time field is sorted in descending order and the Display Name field in
@@ -95,6 +104,8 @@ EXAMPLES = """
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     replica_id: "ocid1.replica.oc1..xxxxxxEXAMPLExxxxxx"
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    is_up_to_date: true
     sort_by: timeCreated
     sort_order: ASC
 
@@ -163,7 +174,7 @@ replicas:
             sample: "2013-10-20T19:20:30+01:00"
         mysql_version:
             description:
-                - The MySQL version used by the read replica.
+                - The MySQL version currently in use by the read replica.
             returned: on success
             type: str
             sample: mysql_version_example
@@ -220,6 +231,48 @@ replicas:
             returned: on success
             type: bool
             sample: true
+        shape_name:
+            description:
+                - "The shape currently in use by the read replica. The shape determines the resources allocated:
+                  CPU cores and memory for VM shapes, CPU cores, memory and storage for non-VM (bare metal) shapes.
+                  To get a list of shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes)
+                  operation."
+            returned: on success
+            type: str
+            sample: shape_name_example
+        configuration_id:
+            description:
+                - The OCID of the Configuration currently in use by the read replica.
+            returned: on success
+            type: str
+            sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_overrides:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                mysql_version:
+                    description:
+                        - The MySQL version to be used by the read replica.
+                    returned: on success
+                    type: str
+                    sample: mysql_version_example
+                shape_name:
+                    description:
+                        - "The shape to be used by the read replica. The shape determines the resources allocated:
+                          CPU cores and memory for VM shapes, CPU cores, memory and storage for non-VM (bare metal) shapes.
+                          To get a list of shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes) operation."
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                configuration_id:
+                    description:
+                        - The OCID of the Configuration to be used by the read replica.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -238,7 +291,14 @@ replicas:
         "port_x": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "is_delete_protected": true
+        "is_delete_protected": true,
+        "shape_name": "shape_name_example",
+        "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_overrides": {
+            "mysql_version": "mysql_version_example",
+            "shape_name": "shape_name_example",
+            "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+        }
     }]
 """
 
@@ -281,6 +341,8 @@ class MysqlReplicaFactsHelperGen(OCIResourceFactsHelperBase):
             "db_system_id",
             "lifecycle_state",
             "replica_id",
+            "configuration_id",
+            "is_up_to_date",
             "sort_by",
             "sort_order",
         ]
@@ -324,6 +386,8 @@ def main():
                 ],
             ),
             replica_id=dict(aliases=["id"], type="str"),
+            configuration_id=dict(type="str"),
+            is_up_to_date=dict(type="bool"),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

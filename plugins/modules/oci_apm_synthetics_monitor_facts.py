@@ -190,7 +190,7 @@ monitors:
                             sample: text_example
                 is_redirection_enabled:
                     description:
-                        - If redirection enabled, then redirects will be allowed while accessing target URL.
+                        - If redirection is enabled, then redirects will be allowed while accessing target URL.
                     returned: on success
                     type: bool
                     sample: true
@@ -200,12 +200,6 @@ monitors:
                     returned: on success
                     type: str
                     sample: GET
-                req_authentication_scheme:
-                    description:
-                        - Request http authentication scheme.
-                    returned: on success
-                    type: str
-                    sample: OAUTH
                 req_authentication_details:
                     description:
                         - ""
@@ -214,13 +208,13 @@ monitors:
                     contains:
                         oauth_scheme:
                             description:
-                                - Request http oauth scheme.
+                                - Request HTTP OAuth scheme.
                             returned: on success
                             type: str
                             sample: NONE
                         auth_user_name:
                             description:
-                                - Username for authentication.
+                                - User name for authentication.
                             returned: on success
                             type: str
                             sample: auth_user_name_example
@@ -238,7 +232,7 @@ monitors:
                             sample: auth_token_example
                         auth_url:
                             description:
-                                - URL to get authetication token.
+                                - URL to get authentication token.
                             returned: on success
                             type: str
                             sample: auth_url_example
@@ -272,6 +266,48 @@ monitors:
                             returned: on success
                             type: str
                             sample: auth_request_post_body_example
+                client_certificate_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        client_certificate:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_name:
+                                    description:
+                                        - Name of the certificate file. The name should not contain any confidential information.
+                                    returned: on success
+                                    type: str
+                                    sample: file_name_example
+                                content:
+                                    description:
+                                        - Content of the client certificate file.
+                                    returned: on success
+                                    type: str
+                                    sample: content_example
+                        private_key:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_name:
+                                    description:
+                                        - Name of the private key file.
+                                    returned: on success
+                                    type: str
+                                    sample: file_name_example
+                                content:
+                                    description:
+                                        - Content of the private key file.
+                                    returned: on success
+                                    type: str
+                                    sample: content_example
                 request_headers:
                     description:
                         - "List of request headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
@@ -321,15 +357,15 @@ monitors:
                     returned: on success
                     type: str
                     sample: verify_response_content_example
-                verify_response_codes:
-                    description:
-                        - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
-                    returned: on success
-                    type: list
-                    sample: []
                 is_certificate_validation_enabled:
                     description:
                         - If certificate validation is enabled, then the call will fail in case of certification errors.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_default_snapshot_enabled:
+                    description:
+                        - If disabled, auto snapshots are not collected.
                     returned: on success
                     type: bool
                     sample: true
@@ -353,16 +389,28 @@ monitors:
                     contains:
                         is_override_dns:
                             description:
-                                - If isOverrideDns is true, then dns will be overridden.
+                                - If isOverrideDns is true, then DNS settings will be overridden.
                             returned: on success
                             type: bool
                             sample: true
                         override_dns_ip:
                             description:
-                                - "Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true."
+                                - Attribute to override the DNS IP value. This value will be honored only if isOverrideDns is set to true.
                             returned: on success
                             type: str
                             sample: override_dns_ip_example
+                req_authentication_scheme:
+                    description:
+                        - Request HTTP authentication scheme.
+                    returned: on success
+                    type: str
+                    sample: OAUTH
+                verify_response_codes:
+                    description:
+                        - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
+                    returned: on success
+                    type: list
+                    sample: []
                 network_configuration:
                     description:
                         - ""
@@ -408,13 +456,15 @@ monitors:
             contains:
                 max_allowed_failures_per_interval:
                     description:
-                        - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                        - Maximum number of failed runs allowed in an interval. If an interval has more failed runs than the specified value, then the interval
+                          will be classified as UNAVAILABLE.
                     returned: on success
                     type: int
                     sample: 56
                 min_allowed_runs_per_interval:
                     description:
-                        - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                        - Minimum number of runs allowed in an interval. If an interval has fewer runs than the specified value, then the interval will be
+                          classified as UNKNOWN and will be excluded from the availability calculations.
                     returned: on success
                     type: int
                     sample: 56
@@ -432,7 +482,7 @@ monitors:
             sample: display_name_example
         monitor_type:
             description:
-                - Type of the monitor.
+                - Type of monitor.
             returned: on success
             type: str
             sample: SCRIPTED_BROWSER
@@ -504,11 +554,12 @@ monitors:
             sample: 56
         target:
             description:
-                - Specify the endpoint on which to run the monitor.
+                - "Specify the endpoint on which to run the monitor.
                   For BROWSER and REST monitor types, target is mandatory.
                   If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor)
                   against the specified target endpoint.
                   If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
+                  For NETWORK monitor with TCP protocol, a port needs to be provided along with target. Example: 192.168.0.1:80"
             returned: on success
             type: str
             sample: target_example
@@ -520,14 +571,14 @@ monitors:
             contains:
                 time_started:
                     description:
-                        - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                        - "Start time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                           Example: `2020-02-12T22:47:12.613Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_ended:
                     description:
-                        - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                        - "End time of the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                           Example: `2020-02-12T22:47:12.613Z`"
                     returned: on success
                     type: str
@@ -564,19 +615,19 @@ monitors:
             sample: {'Operations': {'CostCenter': 'US'}}
         is_run_now:
             description:
-                - If isRunNow is enabled, then the monitor will run now.
+                - If isRunNow is enabled, then the monitor will run immediately.
             returned: on success
             type: bool
             sample: true
         scheduling_policy:
             description:
-                - Scheduling policy on Vantage points.
+                - Scheduling policy to decide the distribution of monitor executions on vantage points.
             returned: on success
             type: str
             sample: ALL
         batch_interval_in_seconds:
             description:
-                - "Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN)."
+                - "Time interval between two runs in round robin batch mode (SchedulingPolicy - BATCHED_ROUND_ROBIN)."
             returned: on success
             type: int
             sample: 56
@@ -595,7 +646,6 @@ monitors:
             }],
             "is_redirection_enabled": true,
             "request_method": "GET",
-            "req_authentication_scheme": "OAUTH",
             "req_authentication_details": {
                 "oauth_scheme": "NONE",
                 "auth_user_name": "auth_user_name_example",
@@ -609,6 +659,16 @@ monitors:
                 "auth_request_method": "GET",
                 "auth_request_post_body": "auth_request_post_body_example"
             },
+            "client_certificate_details": {
+                "client_certificate": {
+                    "file_name": "file_name_example",
+                    "content": "content_example"
+                },
+                "private_key": {
+                    "file_name": "file_name_example",
+                    "content": "content_example"
+                }
+            },
             "request_headers": [{
                 "header_name": "header_name_example",
                 "header_value": "header_value_example"
@@ -619,14 +679,16 @@ monitors:
             }],
             "request_post_body": "request_post_body_example",
             "verify_response_content": "verify_response_content_example",
-            "verify_response_codes": [],
             "is_certificate_validation_enabled": true,
+            "is_default_snapshot_enabled": true,
             "config_type": "BROWSER_CONFIG",
             "is_failure_retried": true,
             "dns_configuration": {
                 "is_override_dns": true,
                 "override_dns_ip": "override_dns_ip_example"
             },
+            "req_authentication_scheme": "OAUTH",
+            "verify_response_codes": [],
             "network_configuration": {
                 "number_of_hops": 56,
                 "probe_per_hop": 56,

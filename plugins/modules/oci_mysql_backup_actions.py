@@ -437,6 +437,12 @@ backup:
                     returned: on success
                     type: str
                     sample: ENABLED
+                database_management:
+                    description:
+                        - Whether to enable monitoring via the Database Management service.
+                    returned: on success
+                    type: str
+                    sample: ENABLED
         backup_size_in_gbs:
             description:
                 - The size of the backup in base-2 (IEC) gibibytes. (GiB).
@@ -542,7 +548,8 @@ backup:
             },
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "crash_recovery": "ENABLED"
+            "crash_recovery": "ENABLED",
+            "database_management": "ENABLED"
         },
         "backup_size_in_gbs": 56,
         "retention_in_days": 56,

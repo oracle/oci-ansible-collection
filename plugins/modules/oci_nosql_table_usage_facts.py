@@ -122,6 +122,12 @@ table_usages:
             returned: on success
             type: int
             sample: 56
+        time_started:
+            description:
+                - The time stamp of this usage record.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "seconds_in_period": 56,
         "read_units": 56,
@@ -130,7 +136,8 @@ table_usages:
         "read_throttle_count": 56,
         "write_throttle_count": 56,
         "storage_throttle_count": 56,
-        "max_shard_size_usage_in_percent": 56
+        "max_shard_size_usage_in_percent": 56,
+        "time_started": "2013-10-20T19:20:30+01:00"
     }]
 """
 

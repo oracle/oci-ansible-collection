@@ -124,7 +124,7 @@ public_vantage_points:
                     sample: country_name_example
                 latitude:
                     description:
-                        - Degrees north of the Equator.
+                        - Degrees north of the equator.
                     returned: on success
                     type: float
                     sample: 1.2

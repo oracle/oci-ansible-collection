@@ -30,7 +30,7 @@ oracle.oci.oci_logging_unified_agent_configuration_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -501,12 +501,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="6">Key</th>
+            <th colspan="7">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations"></div>
                     <b>unified_agent_configurations</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations" title="Permalink to this return value"></a>
@@ -519,12 +519,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of UnifiedAgentConfiguration resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_merge_cri_fields&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;nested_parser&#x27;: {&#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;operational_metrics_configuration&#x27;: {&#x27;destination&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;source&#x27;: {&#x27;metrics&#x27;: [], &#x27;record_input&#x27;: {&#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;}, &#x27;type&#x27;: &#x27;UMA_METRICS&#x27;}}}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_merge_cri_fields&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;nested_parser&#x27;: {&#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/compartment_id" title="Permalink to this return value"></a>
@@ -542,7 +542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/configuration_state"></div>
                     <b>configuration_state</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/configuration_state" title="Permalink to this return value"></a>
@@ -560,7 +560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/configuration_type"></div>
                     <b>configuration_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/configuration_type" title="Permalink to this return value"></a>
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/defined_tags" title="Permalink to this return value"></a>
@@ -598,7 +598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/description" title="Permalink to this return value"></a>
@@ -616,7 +616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/display_name" title="Permalink to this return value"></a>
@@ -634,7 +634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/freeform_tags" title="Permalink to this return value"></a>
@@ -652,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/group_association"></div>
                     <b>group_association</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/group_association" title="Permalink to this return value"></a>
@@ -670,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/group_association/group_list"></div>
                     <b>group_list</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/group_association/group_list" title="Permalink to this return value"></a>
@@ -687,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/id" title="Permalink to this return value"></a>
@@ -705,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/is_enabled" title="Permalink to this return value"></a>
@@ -723,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/lifecycle_state" title="Permalink to this return value"></a>
@@ -741,7 +741,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration"></div>
                     <b>service_configuration</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration" title="Permalink to this return value"></a>
@@ -759,7 +759,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/configuration_type"></div>
                     <b>configuration_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/configuration_type" title="Permalink to this return value"></a>
@@ -778,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination"></div>
                     <b>destination</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination" title="Permalink to this return value"></a>
@@ -796,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/log_object_id"></div>
                     <b>log_object_id</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/log_object_id" title="Permalink to this return value"></a>
@@ -812,11 +812,201 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration"></div>
+                    <b>operational_metrics_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/destination"></div>
+                    <b>destination</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/destination" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/destination/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/destination/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compartment that the resource belongs to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/metrics"></div>
+                    <b>metrics</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/metrics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of unified monitoring agent operational metrics.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input"></div>
+                    <b>record_input</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace to emit the operational metrics.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input/resource_group"></div>
+                    <b>resource_group</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/record_input/resource_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Resource group to emit the operational metrics.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_group_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/destination/operational_metrics_configuration/source/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the unified monitoring agent operational metrics source object.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UMA_METRICS</div>
+                                    </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources"></div>
                     <b>sources</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources" title="Permalink to this return value"></a>
@@ -834,7 +1024,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/channels"></div>
                     <b>channels</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/channels" title="Permalink to this return value"></a>
@@ -852,7 +1042,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/name" title="Permalink to this return value"></a>
@@ -862,7 +1052,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unique name for the source</div>
+                                            <div>Unique name for the source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -872,7 +1062,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser"></div>
                     <b>parser</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser" title="Permalink to this return value"></a>
@@ -891,7 +1081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/delimiter"></div>
                     <b>delimiter</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/delimiter" title="Permalink to this return value"></a>
@@ -901,7 +1091,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>csv delimiter.</div>
+                                            <div>CSV delimiter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">delimiter_example</div>
@@ -912,7 +1102,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/expression"></div>
                     <b>expression</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/expression" title="Permalink to this return value"></a>
@@ -933,7 +1123,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/field_time_key"></div>
                     <b>field_time_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/field_time_key" title="Permalink to this return value"></a>
@@ -943,7 +1133,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
+                                            <div>Specifies the time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_key_example</div>
@@ -954,7 +1144,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/format"></div>
                     <b>format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/format" title="Permalink to this return value"></a>
@@ -973,7 +1163,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/format_firstline"></div>
                     <b>format_firstline</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/format_firstline" title="Permalink to this return value"></a>
@@ -994,7 +1184,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/grok_failure_key"></div>
                     <b>grok_failure_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/grok_failure_key" title="Permalink to this return value"></a>
@@ -1004,7 +1194,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>grok failure key.</div>
+                                            <div>Grok failure key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">grok_failure_key_example</div>
@@ -1015,7 +1205,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/grok_name_key"></div>
                     <b>grok_name_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/grok_name_key" title="Permalink to this return value"></a>
@@ -1025,7 +1215,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>grok name key.</div>
+                                            <div>Grok name key.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">grok_name_key_example</div>
@@ -1036,7 +1226,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_estimate_current_event"></div>
                     <b>is_estimate_current_event</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_estimate_current_event" title="Permalink to this return value"></a>
@@ -1046,7 +1236,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.</div>
+                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1057,7 +1247,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_keep_time_key"></div>
                     <b>is_keep_time_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_keep_time_key" title="Permalink to this return value"></a>
@@ -1067,7 +1257,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, keep time field in the record.</div>
+                                            <div>If true, keep the time field in the record.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1078,7 +1268,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_merge_cri_fields"></div>
                     <b>is_merge_cri_fields</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_merge_cri_fields" title="Permalink to this return value"></a>
@@ -1088,7 +1278,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If you don&#x27;t need stream/logtag fields, set this to false.</div>
+                                            <div>If you don&#x27;t need stream or logtag fields, set this to false.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1099,7 +1289,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_null_empty_string"></div>
                     <b>is_null_empty_string</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_null_empty_string" title="Permalink to this return value"></a>
@@ -1109,7 +1299,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, an empty string field is replaced with nil.</div>
+                                            <div>If true, an empty string field is replaced with a null value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1120,7 +1310,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_support_colonless_ident"></div>
                     <b>is_support_colonless_ident</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_support_colonless_ident" title="Permalink to this return value"></a>
@@ -1130,7 +1320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Support colonless ident or not.</div>
+                                            <div>Specifies whether or not to support colonless ident. Corresponds to the Fluentd support_colonless_ident parameter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1141,7 +1331,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/is_with_priority"></div>
                     <b>is_with_priority</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/is_with_priority" title="Permalink to this return value"></a>
@@ -1151,7 +1341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>With priority or not.</div>
+                                            <div>Specifies with priority or not. Corresponds to the Fluentd with_priority parameter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1162,7 +1352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/keys"></div>
                     <b>keys</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/keys" title="Permalink to this return value"></a>
@@ -1172,7 +1362,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>csv keys.</div>
+                                            <div>CSV keys.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1181,7 +1371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/message_format"></div>
                     <b>message_format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/message_format" title="Permalink to this return value"></a>
@@ -1191,7 +1381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Message format of syslog.</div>
+                                            <div>Syslog message format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RFC3164</div>
@@ -1202,7 +1392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/message_key"></div>
                     <b>message_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/message_key" title="Permalink to this return value"></a>
@@ -1223,7 +1413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/multi_line_start_regexp"></div>
                     <b>multi_line_start_regexp</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/multi_line_start_regexp" title="Permalink to this return value"></a>
@@ -1244,7 +1434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser"></div>
                     <b>nested_parser</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser" title="Permalink to this return value"></a>
@@ -1254,7 +1444,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.</div>
+                                            <div>Optional nested JSON Parser for CRI. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1264,7 +1454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/field_time_key"></div>
                     <b>field_time_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/field_time_key" title="Permalink to this return value"></a>
@@ -1274,7 +1464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
+                                            <div>Specifies the time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_key_example</div>
@@ -1286,7 +1476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_estimate_current_event"></div>
                     <b>is_estimate_current_event</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_estimate_current_event" title="Permalink to this return value"></a>
@@ -1296,7 +1486,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.</div>
+                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1308,7 +1498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_keep_time_key"></div>
                     <b>is_keep_time_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_keep_time_key" title="Permalink to this return value"></a>
@@ -1318,7 +1508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, keep time field in the record.</div>
+                                            <div>If true, keep the time field in the record.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1330,7 +1520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_null_empty_string"></div>
                     <b>is_null_empty_string</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/is_null_empty_string" title="Permalink to this return value"></a>
@@ -1340,7 +1530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, an empty string field is replaced with nil.</div>
+                                            <div>If true, an empty string field is replaced with a null value.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1352,7 +1542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/null_value_pattern"></div>
                     <b>null_value_pattern</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/null_value_pattern" title="Permalink to this return value"></a>
@@ -1374,7 +1564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/parser_type"></div>
                     <b>parser_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/parser_type" title="Permalink to this return value"></a>
@@ -1396,7 +1586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/time_format"></div>
                     <b>time_format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/time_format" title="Permalink to this return value"></a>
@@ -1418,7 +1608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/time_type"></div>
                     <b>time_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/time_type" title="Permalink to this return value"></a>
@@ -1428,7 +1618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Time type of JSON parser.</div>
+                                            <div>JSON parser time type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FLOAT</div>
@@ -1440,7 +1630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/timeout_in_milliseconds"></div>
                     <b>timeout_in_milliseconds</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/timeout_in_milliseconds" title="Permalink to this return value"></a>
@@ -1462,7 +1652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/types"></div>
                     <b>types</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/nested_parser/types" title="Permalink to this return value"></a>
@@ -1490,7 +1680,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/null_value_pattern"></div>
                     <b>null_value_pattern</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/null_value_pattern" title="Permalink to this return value"></a>
@@ -1511,7 +1701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/parser_type"></div>
                     <b>parser_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/parser_type" title="Permalink to this return value"></a>
@@ -1532,7 +1722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns"></div>
                     <b>patterns</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns" title="Permalink to this return value"></a>
@@ -1542,7 +1732,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>grok pattern object.</div>
+                                            <div>Grok pattern object.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1552,7 +1742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_format"></div>
                     <b>field_time_format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_format" title="Permalink to this return value"></a>
@@ -1574,7 +1764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_key"></div>
                     <b>field_time_key</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_key" title="Permalink to this return value"></a>
@@ -1596,7 +1786,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_zone"></div>
                     <b>field_time_zone</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns/field_time_zone" title="Permalink to this return value"></a>
@@ -1618,7 +1808,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns/name" title="Permalink to this return value"></a>
@@ -1628,7 +1818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name key to tag this grok pattern.</div>
+                                            <div>The name key to tag this Grok pattern.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1640,7 +1830,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/patterns/pattern"></div>
                     <b>pattern</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/patterns/pattern" title="Permalink to this return value"></a>
@@ -1650,7 +1840,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The grok pattern.</div>
+                                            <div>The Grok pattern.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pattern_example</div>
@@ -1662,7 +1852,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/rfc5424_time_format"></div>
                     <b>rfc5424_time_format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/rfc5424_time_format" title="Permalink to this return value"></a>
@@ -1672,7 +1862,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>rfc5424 time format.</div>
+                                            <div>RFC 5424 time format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rfc5424_time_format_example</div>
@@ -1683,7 +1873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/syslog_parser_type"></div>
                     <b>syslog_parser_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/syslog_parser_type" title="Permalink to this return value"></a>
@@ -1704,7 +1894,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/time_format"></div>
                     <b>time_format</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/time_format" title="Permalink to this return value"></a>
@@ -1725,7 +1915,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/time_type"></div>
                     <b>time_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/time_type" title="Permalink to this return value"></a>
@@ -1735,7 +1925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Time type of JSON parser.</div>
+                                            <div>JSON parser time type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FLOAT</div>
@@ -1746,7 +1936,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/timeout_in_milliseconds"></div>
                     <b>timeout_in_milliseconds</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/timeout_in_milliseconds" title="Permalink to this return value"></a>
@@ -1767,7 +1957,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/parser/types"></div>
                     <b>types</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/parser/types" title="Permalink to this return value"></a>
@@ -1794,7 +1984,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/paths"></div>
                     <b>paths</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/paths" title="Permalink to this return value"></a>
@@ -1804,7 +1994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Absolute paths for log source files. Wildcard can be used.</div>
+                                            <div>Absolute paths for log source files. Wildcards can be used.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1812,7 +2002,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/service_configuration/sources/source_type"></div>
                     <b>source_type</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/service_configuration/sources/source_type" title="Permalink to this return value"></a>
@@ -1832,7 +2022,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/time_created" title="Permalink to this return value"></a>
@@ -1850,7 +2040,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/time_last_modified"></div>
                     <b>time_last_modified</b>
                     <a class="ansibleOptionLink" href="#return-unified_agent_configurations/time_last_modified" title="Permalink to this return value"></a>

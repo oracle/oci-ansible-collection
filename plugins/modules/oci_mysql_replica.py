@@ -64,6 +64,27 @@ options:
               protected themselves.
             - This parameter is updatable.
         type: bool
+    replica_overrides:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            mysql_version:
+                description:
+                    - The MySQL version to be used by the read replica.
+                type: str
+            shape_name:
+                description:
+                    - "The shape to be used by the read replica. The shape determines the resources allocated:
+                      CPU cores and memory for VM shapes, CPU cores, memory and storage for non-VM (bare metal) shapes.
+                      To get a list of shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes)
+                      operation."
+                type: str
+            configuration_id:
+                description:
+                    - The OCID of the Configuration to be used by the read replica.
+                type: str
     replica_id:
         description:
             - The Replica L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -102,6 +123,11 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_delete_protected: true
+    replica_overrides:
+      # optional
+      mysql_version: mysql_version_example
+      shape_name: shape_name_example
+      configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update replica
   oci_mysql_replica:
@@ -114,6 +140,11 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_delete_protected: true
+    replica_overrides:
+      # optional
+      mysql_version: mysql_version_example
+      shape_name: shape_name_example
+      configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update replica using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_replica:
@@ -126,6 +157,11 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_delete_protected: true
+    replica_overrides:
+      # optional
+      mysql_version: mysql_version_example
+      shape_name: shape_name_example
+      configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete replica
   oci_mysql_replica:
@@ -205,7 +241,7 @@ replica:
             sample: "2013-10-20T19:20:30+01:00"
         mysql_version:
             description:
-                - The MySQL version used by the read replica.
+                - The MySQL version currently in use by the read replica.
             returned: on success
             type: str
             sample: mysql_version_example
@@ -262,6 +298,48 @@ replica:
             returned: on success
             type: bool
             sample: true
+        shape_name:
+            description:
+                - "The shape currently in use by the read replica. The shape determines the resources allocated:
+                  CPU cores and memory for VM shapes, CPU cores, memory and storage for non-VM (bare metal) shapes.
+                  To get a list of shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes)
+                  operation."
+            returned: on success
+            type: str
+            sample: shape_name_example
+        configuration_id:
+            description:
+                - The OCID of the Configuration currently in use by the read replica.
+            returned: on success
+            type: str
+            sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_overrides:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                mysql_version:
+                    description:
+                        - The MySQL version to be used by the read replica.
+                    returned: on success
+                    type: str
+                    sample: mysql_version_example
+                shape_name:
+                    description:
+                        - "The shape to be used by the read replica. The shape determines the resources allocated:
+                          CPU cores and memory for VM shapes, CPU cores, memory and storage for non-VM (bare metal) shapes.
+                          To get a list of shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes) operation."
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                configuration_id:
+                    description:
+                        - The OCID of the Configuration to be used by the read replica.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -280,7 +358,14 @@ replica:
         "port_x": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "is_delete_protected": true
+        "is_delete_protected": true,
+        "shape_name": "shape_name_example",
+        "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_overrides": {
+            "mysql_version": "mysql_version_example",
+            "shape_name": "shape_name_example",
+            "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+        }
     }
 """
 
@@ -441,6 +526,14 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             is_delete_protected=dict(type="bool"),
+            replica_overrides=dict(
+                type="dict",
+                options=dict(
+                    mysql_version=dict(type="str"),
+                    shape_name=dict(type="str"),
+                    configuration_id=dict(type="str"),
+                ),
+            ),
             replica_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

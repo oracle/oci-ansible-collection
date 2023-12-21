@@ -435,6 +435,12 @@ backups:
                     returned: on success
                     type: str
                     sample: ENABLED
+                database_management:
+                    description:
+                        - Whether to enable monitoring via the Database Management service.
+                    returned: on success
+                    type: str
+                    sample: ENABLED
         id:
             description:
                 - OCID of the backup itself
@@ -585,7 +591,8 @@ backups:
             },
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "crash_recovery": "ENABLED"
+            "crash_recovery": "ENABLED",
+            "database_management": "ENABLED"
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

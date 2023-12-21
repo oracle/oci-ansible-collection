@@ -96,7 +96,7 @@ options:
                         elements: str
                     name:
                         description:
-                            - unique name for the source
+                            - Unique name for the source.
                         type: str
                         required: true
                     source_type:
@@ -109,7 +109,7 @@ options:
                         required: true
                     paths:
                         description:
-                            - Absolute paths for log source files. Wildcard can be used.
+                            - Absolute paths for log source files. Wildcards can be used.
                             - Required when source_type is 'LOG_TAIL'
                         type: list
                         elements: str
@@ -126,7 +126,7 @@ options:
                                 type: str
                             time_type:
                                 description:
-                                    - Time type of JSON parser.
+                                    - JSON parser time type.
                                     - Applicable when parser_type is 'JSON'
                                 type: str
                                 choices:
@@ -135,30 +135,30 @@ options:
                                     - "STRING"
                             grok_name_key:
                                 description:
-                                    - grok name key.
+                                    - Grok name key.
                                     - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: str
                             grok_failure_key:
                                 description:
-                                    - grok failure key.
+                                    - Grok failure key.
                                     - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: str
                             patterns:
                                 description:
-                                    - grok pattern object.
+                                    - Grok pattern object.
                                     - Required when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: list
                                 elements: dict
                                 suboptions:
                                     pattern:
                                         description:
-                                            - The grok pattern.
+                                            - The Grok pattern.
                                             - Required when parser_type is 'MULTILINE_GROK'
                                         type: str
                                         required: true
                                     name:
                                         description:
-                                            - The name key to tag this grok pattern.
+                                            - The name key to tag this Grok pattern.
                                             - Applicable when parser_type is 'MULTILINE_GROK'
                                         type: str
                                     field_time_key:
@@ -183,12 +183,12 @@ options:
                                 type: str
                             rfc5424_time_format:
                                 description:
-                                    - rfc5424 time format.
+                                    - RFC 5424 time format.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: str
                             message_format:
                                 description:
-                                    - Message format of syslog.
+                                    - Syslog message format.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: str
                                 choices:
@@ -197,12 +197,12 @@ options:
                                     - "AUTO"
                             is_with_priority:
                                 description:
-                                    - With priority or not.
+                                    - Specifies with priority or not. Corresponds to the Fluentd with_priority parameter.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: bool
                             is_support_colonless_ident:
                                 description:
-                                    - Support colonless ident or not.
+                                    - Specifies whether or not to support colonless ident. Corresponds to the Fluentd support_colonless_ident parameter.
                                     - Applicable when parser_type is 'SYSLOG'
                                 type: bool
                             syslog_parser_type:
@@ -236,12 +236,12 @@ options:
                                 elements: str
                             is_merge_cri_fields:
                                 description:
-                                    - If you don't need stream/logtag fields, set this to false.
+                                    - If you don't need stream or logtag fields, set this to false.
                                     - Applicable when parser_type is 'CRI'
                                 type: bool
                             nested_parser:
                                 description:
-                                    - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                    - Optional nested JSON Parser for CRI. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
                                     - Applicable when parser_type is 'CRI'
                                 type: dict
                                 suboptions:
@@ -268,7 +268,7 @@ options:
                                         required: true
                                     field_time_key:
                                         description:
-                                            - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                            - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                             - Applicable when parser_type is 'CRI'
                                         type: str
                                     types:
@@ -301,17 +301,17 @@ options:
                                         type: str
                                     is_null_empty_string:
                                         description:
-                                            - If true, an empty string field is replaced with nil.
+                                            - If true, an empty string field is replaced with a null value.
                                             - Applicable when parser_type is 'CRI'
                                         type: bool
                                     is_estimate_current_event:
                                         description:
-                                            - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                            - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                             - Applicable when parser_type is 'CRI'
                                         type: bool
                                     is_keep_time_key:
                                         description:
-                                            - If true, keep time field in the record.
+                                            - If true, keep the time field in the record.
                                             - Applicable when parser_type is 'CRI'
                                         type: bool
                                     timeout_in_milliseconds:
@@ -321,7 +321,7 @@ options:
                                         type: int
                                     time_type:
                                         description:
-                                            - Time type of JSON parser.
+                                            - JSON parser time type.
                                             - Applicable when parser_type is 'CRI'
                                         type: str
                                         choices:
@@ -355,7 +355,7 @@ options:
                                 required: true
                             field_time_key:
                                 description:
-                                    - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                    - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                 type: str
                             types:
                                 description:
@@ -385,15 +385,15 @@ options:
                                 type: str
                             is_null_empty_string:
                                 description:
-                                    - If true, an empty string field is replaced with nil.
+                                    - If true, an empty string field is replaced with a null value.
                                 type: bool
                             is_estimate_current_event:
                                 description:
-                                    - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                    - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                 type: bool
                             is_keep_time_key:
                                 description:
-                                    - If true, keep time field in the record.
+                                    - If true, keep the time field in the record.
                                 type: bool
                             timeout_in_milliseconds:
                                 description:
@@ -401,12 +401,12 @@ options:
                                 type: int
                             delimiter:
                                 description:
-                                    - tsv delimiter.
+                                    - TSV delimiter.
                                     - Applicable when parser_type is one of ['TSV', 'CSV']
                                 type: str
                             keys:
                                 description:
-                                    - tsv keys.
+                                    - TSV keys.
                                     - Required when parser_type is one of ['TSV', 'CSV']
                                 type: list
                                 elements: str
@@ -421,6 +421,54 @@ options:
                             - The OCID of the resource.
                         type: str
                         required: true
+                    operational_metrics_configuration:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            source:
+                                description:
+                                    - ""
+                                type: dict
+                                required: true
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the unified monitoring agent operational metrics source object.
+                                        type: str
+                                        choices:
+                                            - "UMA_METRICS"
+                                        required: true
+                                    metrics:
+                                        description:
+                                            - List of unified monitoring agent operational metrics.
+                                        type: list
+                                        elements: str
+                                    record_input:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            namespace:
+                                                description:
+                                                    - Namespace to emit the operational metrics.
+                                                type: str
+                                                required: true
+                                            resource_group:
+                                                description:
+                                                    - Resource group to emit the operational metrics.
+                                                type: str
+                            destination:
+                                description:
+                                    - ""
+                                type: dict
+                                required: true
+                                suboptions:
+                                    compartment_id:
+                                        description:
+                                            - The OCID of the compartment that the resource belongs to.
+                                        type: str
+                                        required: true
     group_association:
         description:
             - ""
@@ -469,6 +517,25 @@ EXAMPLES = """
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
 
+        # optional
+        operational_metrics_configuration:
+          # required
+          source:
+            # required
+            type: UMA_METRICS
+
+            # optional
+            metrics: [ "metrics_example" ]
+            record_input:
+              # required
+              namespace: namespace_example
+
+              # optional
+              resource_group: resource_group_example
+          destination:
+            # required
+            compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
     # optional
     display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -494,6 +561,25 @@ EXAMPLES = """
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        operational_metrics_configuration:
+          # required
+          source:
+            # required
+            type: UMA_METRICS
+
+            # optional
+            metrics: [ "metrics_example" ]
+            record_input:
+              # required
+              namespace: namespace_example
+
+              # optional
+              resource_group: resource_group_example
+          destination:
+            # required
+            compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -526,6 +612,25 @@ EXAMPLES = """
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        operational_metrics_configuration:
+          # required
+          source:
+            # required
+            type: UMA_METRICS
+
+            # optional
+            metrics: [ "metrics_example" ]
+            record_input:
+              # required
+              namespace: namespace_example
+
+              # optional
+              resource_group: resource_group_example
+          destination:
+            # required
+            compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     group_association:
       # optional
       group_list: [ "group_list_example" ]
@@ -644,7 +749,7 @@ unified_agent_configuration:
                     contains:
                         paths:
                             description:
-                                - Absolute paths for log source files. Wildcard can be used.
+                                - Absolute paths for log source files. Wildcards can be used.
                             returned: on success
                             type: list
                             sample: []
@@ -656,13 +761,13 @@ unified_agent_configuration:
                             contains:
                                 is_merge_cri_fields:
                                     description:
-                                        - If you don't need stream/logtag fields, set this to false.
+                                        - If you don't need stream or logtag fields, set this to false.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 nested_parser:
                                     description:
-                                        - Optional nested JSON Parser for CRI Parser. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
+                                        - Optional nested JSON Parser for CRI. Supported fields are fieldTimeKey, timeFormat, and isKeepTimeKey.
                                     returned: on success
                                     type: complex
                                     contains:
@@ -674,7 +779,7 @@ unified_agent_configuration:
                                             sample: AUDITD
                                         field_time_key:
                                             description:
-                                                - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                                - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                             returned: on success
                                             type: str
                                             sample: field_time_key_example
@@ -710,19 +815,19 @@ unified_agent_configuration:
                                             sample: null_value_pattern_example
                                         is_null_empty_string:
                                             description:
-                                                - If true, an empty string field is replaced with nil.
+                                                - If true, an empty string field is replaced with a null value.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_estimate_current_event:
                                             description:
-                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                                - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_keep_time_key:
                                             description:
-                                                - If true, keep time field in the record.
+                                                - If true, keep the time field in the record.
                                             returned: on success
                                             type: bool
                                             sample: true
@@ -734,7 +839,7 @@ unified_agent_configuration:
                                             sample: 56
                                         time_type:
                                             description:
-                                                - Time type of JSON parser.
+                                                - JSON parser time type.
                                             returned: on success
                                             type: str
                                             sample: FLOAT
@@ -746,7 +851,7 @@ unified_agent_configuration:
                                             sample: time_format_example
                                 time_type:
                                     description:
-                                        - Time type of JSON parser.
+                                        - JSON parser time type.
                                     returned: on success
                                     type: str
                                     sample: FLOAT
@@ -764,13 +869,13 @@ unified_agent_configuration:
                                     sample: []
                                 grok_name_key:
                                     description:
-                                        - grok name key.
+                                        - Grok name key.
                                     returned: on success
                                     type: str
                                     sample: grok_name_key_example
                                 grok_failure_key:
                                     description:
-                                        - grok failure key.
+                                        - Grok failure key.
                                     returned: on success
                                     type: str
                                     sample: grok_failure_key_example
@@ -782,19 +887,19 @@ unified_agent_configuration:
                                     sample: multi_line_start_regexp_example
                                 patterns:
                                     description:
-                                        - grok pattern object.
+                                        - Grok pattern object.
                                     returned: on success
                                     type: complex
                                     contains:
                                         pattern:
                                             description:
-                                                - The grok pattern.
+                                                - The Grok pattern.
                                             returned: on success
                                             type: str
                                             sample: pattern_example
                                         name:
                                             description:
-                                                - The name key to tag this grok pattern.
+                                                - The name key to tag this Grok pattern.
                                             returned: on success
                                             type: str
                                             sample: name_example
@@ -836,25 +941,25 @@ unified_agent_configuration:
                                     sample: time_format_example
                                 rfc5424_time_format:
                                     description:
-                                        - rfc5424 time format.
+                                        - RFC 5424 time format.
                                     returned: on success
                                     type: str
                                     sample: rfc5424_time_format_example
                                 message_format:
                                     description:
-                                        - Message format of syslog.
+                                        - Syslog message format.
                                     returned: on success
                                     type: str
                                     sample: RFC3164
                                 is_with_priority:
                                     description:
-                                        - With priority or not.
+                                        - Specifies with priority or not. Corresponds to the Fluentd with_priority parameter.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_support_colonless_ident:
                                     description:
-                                        - Support colonless ident or not.
+                                        - Specifies whether or not to support colonless ident. Corresponds to the Fluentd support_colonless_ident parameter.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -872,7 +977,7 @@ unified_agent_configuration:
                                     sample: AUDITD
                                 field_time_key:
                                     description:
-                                        - Specify time field for the event time. If the event doesn't have this field, the current time is used.
+                                        - Specifies the time field for the event time. If the event doesn't have this field, the current time is used.
                                     returned: on success
                                     type: str
                                     sample: field_time_key_example
@@ -908,19 +1013,19 @@ unified_agent_configuration:
                                     sample: null_value_pattern_example
                                 is_null_empty_string:
                                     description:
-                                        - If true, an empty string field is replaced with nil.
+                                        - If true, an empty string field is replaced with a null value.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_estimate_current_event:
                                     description:
-                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
+                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when the time_key is specified.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_keep_time_key:
                                     description:
-                                        - If true, keep time field in the record.
+                                        - If true, keep the time field in the record.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -932,19 +1037,19 @@ unified_agent_configuration:
                                     sample: 56
                                 delimiter:
                                     description:
-                                        - csv delimiter.
+                                        - CSV delimiter.
                                     returned: on success
                                     type: str
                                     sample: delimiter_example
                                 keys:
                                     description:
-                                        - csv keys.
+                                        - CSV keys.
                                     returned: on success
                                     type: list
                                     sample: []
                         name:
                             description:
-                                - unique name for the source
+                                - Unique name for the source.
                             returned: on success
                             type: str
                             sample: name_example
@@ -972,6 +1077,60 @@ unified_agent_configuration:
                             returned: on success
                             type: str
                             sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+                        operational_metrics_configuration:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the unified monitoring agent operational metrics source object.
+                                            returned: on success
+                                            type: str
+                                            sample: UMA_METRICS
+                                        metrics:
+                                            description:
+                                                - List of unified monitoring agent operational metrics.
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                                        record_input:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                namespace:
+                                                    description:
+                                                        - Namespace to emit the operational metrics.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: namespace_example
+                                                resource_group:
+                                                    description:
+                                                        - Resource group to emit the operational metrics.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: resource_group_example
+                                destination:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        compartment_id:
+                                            description:
+                                                - The OCID of the compartment that the resource belongs to.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
                 - ""
@@ -1051,7 +1210,20 @@ unified_agent_configuration:
                 "channels": []
             }],
             "destination": {
-                "log_object_id": "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+                "log_object_id": "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx",
+                "operational_metrics_configuration": {
+                    "source": {
+                        "type": "UMA_METRICS",
+                        "metrics": [],
+                        "record_input": {
+                            "namespace": "namespace_example",
+                            "resource_group": "resource_group_example"
+                        }
+                    },
+                    "destination": {
+                        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                    }
+                }
             }
         },
         "group_association": {
@@ -1367,7 +1539,44 @@ def main():
                     destination=dict(
                         type="dict",
                         required=True,
-                        options=dict(log_object_id=dict(type="str", required=True)),
+                        options=dict(
+                            log_object_id=dict(type="str", required=True),
+                            operational_metrics_configuration=dict(
+                                type="dict",
+                                options=dict(
+                                    source=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["UMA_METRICS"],
+                                            ),
+                                            metrics=dict(type="list", elements="str"),
+                                            record_input=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    namespace=dict(
+                                                        type="str", required=True
+                                                    ),
+                                                    resource_group=dict(type="str"),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    destination=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            compartment_id=dict(
+                                                type="str", required=True
+                                            )
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
             ),
