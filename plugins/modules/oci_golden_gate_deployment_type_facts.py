@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -46,6 +46,8 @@ options:
             - "DATABASE_MICROSOFT_SQLSERVER"
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
+            - "DATABASE_DB2ZOS"
+            - "DATA_TRANSFORMS"
     ogg_version:
         description:
             - Allows to query by a specific GoldenGate version.
@@ -98,8 +100,8 @@ deployment_types:
     contains:
         category:
             description:
-                - The deployment category defines the broad separation of the deployment type into categories.  Currently
-                  the separation is 'DATA_REPLICATION' and 'STREAM_ANALYTICS'.
+                - The deployment category defines the broad separation of the deployment type into three categories.
+                  Currently the separation is 'DATA_REPLICATION', 'STREAM_ANALYTICS' and 'DATA_TRANSFORMS'.
             returned: on success
             type: str
             sample: DATA_REPLICATION
@@ -145,6 +147,18 @@ deployment_types:
             returned: on success
             type: str
             sample: ogg_version_example
+        supported_technologies_url:
+            description:
+                - The URL to the webpage listing the supported technologies.
+            returned: on success
+            type: str
+            sample: supported_technologies_url_example
+        default_username:
+            description:
+                - The default admin username used by deployment.
+            returned: on success
+            type: str
+            sample: default_username_example
     sample: [{
         "category": "DATA_REPLICATION",
         "display_name": "display_name_example",
@@ -152,7 +166,9 @@ deployment_types:
         "connection_types": [],
         "source_technologies": [],
         "target_technologies": [],
-        "ogg_version": "ogg_version_example"
+        "ogg_version": "ogg_version_example",
+        "supported_technologies_url": "supported_technologies_url_example",
+        "default_username": "default_username_example"
     }]
 """
 
@@ -222,6 +238,8 @@ def main():
                     "DATABASE_MICROSOFT_SQLSERVER",
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
+                    "DATABASE_DB2ZOS",
+                    "DATA_TRANSFORMS",
                 ],
             ),
             ogg_version=dict(type="str"),

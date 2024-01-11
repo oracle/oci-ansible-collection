@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,8 +29,8 @@ description:
       before July 15, 2022 to ensure the applications continue to work.
       See the L(Service Change Notice,https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm#JMS) for more details.
       Migrate existing fleets using the `UpdateFleet` API to set the `inventoryLog` parameter."
-    - "This resource has the following action operations in the M(oracle.oci.oci_jms_fleet_actions) module: change_compartment, generate_agent_deploy_script,
-      request_crypto_analyses, request_java_migration_analyses, request_jfr_recordings, request_performance_tuning_analyses."
+    - "This resource has the following action operations in the M(oracle.oci.oci_jms_fleet_actions) module: change_compartment, disable_drs, enable_drs,
+      generate_agent_deploy_script, request_crypto_analyses, request_java_migration_analyses, request_jfr_recordings, request_performance_tuning_analyses."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -307,6 +307,12 @@ fleet:
             returned: on success
             type: bool
             sample: true
+        is_export_setting_enabled:
+            description:
+                - Whether or not export setting is enabled in this Fleet.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -363,6 +369,7 @@ fleet:
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "is_advanced_features_enabled": true,
+        "is_export_setting_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

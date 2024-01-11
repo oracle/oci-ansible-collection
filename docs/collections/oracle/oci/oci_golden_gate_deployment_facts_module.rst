@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -480,6 +480,13 @@ Parameters
                                                                                                                                                                                                 <li>HDFS</li>
                                                                                                                                                                                                 <li>ORACLE_NOSQL</li>
                                                                                                                                                                                                 <li>MONGODB</li>
+                                                                                                                                                                                                <li>AMAZON_KINESIS</li>
+                                                                                                                                                                                                <li>AMAZON_REDSHIFT</li>
+                                                                                                                                                                                                <li>REDIS</li>
+                                                                                                                                                                                                <li>ELASTICSEARCH</li>
+                                                                                                                                                                                                <li>GENERIC</li>
+                                                                                                                                                                                                <li>GOOGLE_CLOUD_STORAGE</li>
+                                                                                                                                                                                                <li>GOOGLE_BIGQUERY</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
