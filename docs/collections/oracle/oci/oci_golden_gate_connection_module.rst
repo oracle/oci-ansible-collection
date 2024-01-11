@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection -- Manage a Connection resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -99,10 +99,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Access key ID to access the Amazon S3 bucket. e.g.: &quot;this-is-not-the-secret&quot;</div>
+                                            <div>Access key ID to access the Amazon Kinesis.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;AMAZON_S3&#x27;</div>
-                                            <div>Required when connection_type is &#x27;AMAZON_S3&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_KINESIS&#x27;, &#x27;AMAZON_S3&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;AMAZON_KINESIS&#x27;, &#x27;AMAZON_S3&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -306,8 +306,8 @@ Parameters
                                                                 <td>
                                             <div>Used authentication mechanism to access Schema Registry.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,24 +561,31 @@ Parameters
                                                                                                                                                                                                 <li>KAFKA_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>JAVA_MESSAGE_SERVICE</li>
+                                                                                                                                                                                                <li>GOOGLE_BIGQUERY</li>
+                                                                                                                                                                                                <li>AMAZON_KINESIS</li>
                                                                                                                                                                                                 <li>SNOWFLAKE</li>
                                                                                                                                                                                                 <li>AZURE_DATA_LAKE_STORAGE</li>
                                                                                                                                                                                                 <li>MONGODB</li>
                                                                                                                                                                                                 <li>AMAZON_S3</li>
                                                                                                                                                                                                 <li>HDFS</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
+                                                                                                                                                                                                <li>ELASTICSEARCH</li>
                                                                                                                                                                                                 <li>AZURE_SYNAPSE_ANALYTICS</li>
+                                                                                                                                                                                                <li>REDIS</li>
                                                                                                                                                                                                 <li>MYSQL</li>
+                                                                                                                                                                                                <li>GENERIC</li>
+                                                                                                                                                                                                <li>GOOGLE_CLOUD_STORAGE</li>
                                                                                                                                                                                                 <li>KAFKA</li>
                                                                                                                                                                                                 <li>ORACLE</li>
                                                                                                                                                                                                 <li>GOLDENGATE</li>
+                                                                                                                                                                                                <li>AMAZON_REDSHIFT</li>
                                                                                                                                                                                                 <li>ORACLE_NOSQL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The connection type.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with connection_id present.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -595,8 +602,8 @@ Parameters
                                                                 <td>
                                             <div>Connectin URL of the Java Message Service, specifying the protocol, host, and port. e.g.: &#x27;mq://myjms.host.domain:7676&#x27;</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;SNOWFLAKE&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;]</div>
-                                            <div>Required when connection_type is &#x27;SNOWFLAKE&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;SNOWFLAKE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -752,7 +759,7 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -771,6 +778,23 @@ Parameters
                                             <div>Azure Storage service endpoint. e.g: https://test.blob.core.windows.net</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-fingerprint"></div>
+                    <b>fingerprint</b>
+                    <a class="ansibleOptionLink" href="#parameter-fingerprint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Fingerprint required by TLS security protocol. Eg.: &#x27;6152b2dfbff200f973c5074a5b91d06ab3b472c07c09a1ea57bb7fd406cdce9c&#x27;</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;ELASTICSEARCH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -823,8 +847,8 @@ Parameters
                                                                 <td>
                                             <div>The name or address of a host.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -957,7 +981,7 @@ Parameters
                                                                 <td>
                                             <div>The base64 encoded content of the KeyStore file.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -974,7 +998,7 @@ Parameters
                                                                 <td>
                                             <div>The KeyStore password.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1007,7 +1031,8 @@ Parameters
                                                                 <td>
                                             <div>The password Oracle GoldenGate uses to connect the associated system of the given technology. It must conform to the specific security requirements including length, case sensitivity, and so on.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1180,10 +1205,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Secret access key to access the Amazon S3 bucket. e.g.: &quot;this-is-not-the-secret&quot;</div>
+                                            <div>Secret access key to access the Amazon Kinesis.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;AMAZON_S3&#x27;</div>
-                                            <div>Required when connection_type is &#x27;AMAZON_S3&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_KINESIS&#x27;, &#x27;AMAZON_S3&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;AMAZON_KINESIS&#x27;, &#x27;AMAZON_S3&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1200,8 +1225,44 @@ Parameters
                                                                 <td>
                                             <div>Security protocol for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;KAFKA&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-servers"></div>
+                    <b>servers</b>
+                    <a class="ansibleOptionLink" href="#parameter-servers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 9200. Used for establishing the initial connection to the Elasticsearch cluster. Example: `&quot;server1.example.com:4000,server2.example.com:4000&quot;`</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-service_account_key_file"></div>
+                    <b>service_account_key_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-service_account_key_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 encoded content of the service account key file containing the credentials required to use Google BigQuery.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1346,7 +1407,7 @@ Parameters
                                                                 <td>
                                             <div>The password for the cert inside the KeyStore. In case it differs from the KeyStore password, it should be provided.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1481,7 +1542,7 @@ Parameters
                                                                 <td>
                                             <div>The base64 encoded content of the TrustStore file.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1498,7 +1559,7 @@ Parameters
                                                                 <td>
                                             <div>The TrustStore password.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1550,7 +1611,8 @@ Parameters
                                                                 <td>
                                             <div>The username Oracle GoldenGate uses to connect the associated system of the given technology. This username must already exist and be available by the system/application to be connected to and must conform to the case sensitivty requirments defined in it.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1654,7 +1716,6 @@ Examples
 
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -1668,6 +1729,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1715,7 +1777,6 @@ Examples
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         should_validate_server_certificate: true
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_ca: ssl_ca_example
@@ -1725,6 +1786,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1752,7 +1814,14 @@ Examples
         jndi_security_credentials: jndi_security_credentials_example
         connection_factory: connection_factory_example
         connection_url: connection_url_example
+        authentication_type: authentication_type_example
         private_ip: private_ip_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1762,6 +1831,43 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Create connection with connection_type = GOOGLE_BIGQUERY
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: GOOGLE_BIGQUERY
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Create connection with connection_type = AMAZON_KINESIS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: AMAZON_KINESIS
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Create connection with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -1892,6 +1998,29 @@ Examples
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
 
+    - name: Create connection with connection_type = ELASTICSEARCH
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: ELASTICSEARCH
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        fingerprint: fingerprint_example
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Create connection with connection_type = AZURE_SYNAPSE_ANALYTICS
       oci_golden_gate_connection:
         # required
@@ -1912,6 +2041,32 @@ Examples
         username: username_example
         password: example-password
 
+    - name: Create connection with connection_type = REDIS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: REDIS
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Create connection with connection_type = MYSQL
       oci_golden_gate_connection:
         # required
@@ -1921,7 +2076,6 @@ Examples
 
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -1936,6 +2090,7 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1945,6 +2100,42 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Create connection with connection_type = GENERIC
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: GENERIC
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Create connection with connection_type = GOOGLE_CLOUD_STORAGE
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: GOOGLE_CLOUD_STORAGE
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Create connection with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -2015,9 +2206,29 @@ Examples
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
         port: 56
         private_ip: private_ip_example
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Create connection with connection_type = AMAZON_REDSHIFT
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: AMAZON_REDSHIFT
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_url: connection_url_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2057,7 +2268,6 @@ Examples
         connection_type: POSTGRESQL
 
         # optional
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -2071,6 +2281,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2112,7 +2323,6 @@ Examples
 
         # optional
         should_validate_server_certificate: true
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_ca: ssl_ca_example
@@ -2122,6 +2332,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2146,7 +2357,14 @@ Examples
         jndi_security_credentials: jndi_security_credentials_example
         connection_factory: connection_factory_example
         connection_url: connection_url_example
+        authentication_type: authentication_type_example
         private_ip: private_ip_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2156,6 +2374,37 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Update connection with connection_type = GOOGLE_BIGQUERY
+      oci_golden_gate_connection:
+        # required
+        connection_type: GOOGLE_BIGQUERY
+
+        # optional
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Update connection with connection_type = AMAZON_KINESIS
+      oci_golden_gate_connection:
+        # required
+        connection_type: AMAZON_KINESIS
+
+        # optional
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -2268,6 +2517,26 @@ Examples
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
 
+    - name: Update connection with connection_type = ELASTICSEARCH
+      oci_golden_gate_connection:
+        # required
+        connection_type: ELASTICSEARCH
+
+        # optional
+        fingerprint: fingerprint_example
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Update connection with connection_type = AZURE_SYNAPSE_ANALYTICS
       oci_golden_gate_connection:
         # required
@@ -2285,13 +2554,35 @@ Examples
         username: username_example
         password: example-password
 
+    - name: Update connection with connection_type = REDIS
+      oci_golden_gate_connection:
+        # required
+        connection_type: REDIS
+
+        # optional
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Update connection with connection_type = MYSQL
       oci_golden_gate_connection:
         # required
         connection_type: MYSQL
 
         # optional
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -2306,6 +2597,7 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2315,6 +2607,36 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Update connection with connection_type = GENERIC
+      oci_golden_gate_connection:
+        # required
+        connection_type: GENERIC
+
+        # optional
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Update connection with connection_type = GOOGLE_CLOUD_STORAGE
+      oci_golden_gate_connection:
+        # required
+        connection_type: GOOGLE_CLOUD_STORAGE
+
+        # optional
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -2376,9 +2698,26 @@ Examples
 
         # optional
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
         port: 56
         private_ip: private_ip_example
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection with connection_type = AMAZON_REDSHIFT
+      oci_golden_gate_connection:
+        # required
+        connection_type: AMAZON_REDSHIFT
+
+        # optional
+        connection_url: connection_url_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2416,7 +2755,6 @@ Examples
         connection_type: POSTGRESQL
 
         # optional
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -2430,6 +2768,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2473,7 +2812,6 @@ Examples
 
         # optional
         should_validate_server_certificate: true
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_ca: ssl_ca_example
@@ -2483,6 +2821,7 @@ Examples
           name: name_example
           value: value_example
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2508,7 +2847,14 @@ Examples
         jndi_security_credentials: jndi_security_credentials_example
         connection_factory: connection_factory_example
         connection_url: connection_url_example
+        authentication_type: authentication_type_example
         private_ip: private_ip_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2518,6 +2864,39 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GOOGLE_BIGQUERY
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: GOOGLE_BIGQUERY
+
+        # optional
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AMAZON_KINESIS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: AMAZON_KINESIS
+
+        # optional
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -2636,6 +3015,27 @@ Examples
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
 
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = ELASTICSEARCH
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: ELASTICSEARCH
+
+        # optional
+        fingerprint: fingerprint_example
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_SYNAPSE_ANALYTICS
       oci_golden_gate_connection:
         # required
@@ -2654,6 +3054,30 @@ Examples
         username: username_example
         password: example-password
 
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = REDIS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: REDIS
+
+        # optional
+        servers: servers_example
+        authentication_type: authentication_type_example
+        security_protocol: security_protocol_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MYSQL
       oci_golden_gate_connection:
         # required
@@ -2661,7 +3085,6 @@ Examples
         connection_type: MYSQL
 
         # optional
-        host: host_example
         port: 56
         database_name: database_name_example
         ssl_mode: ssl_mode_example
@@ -2676,6 +3099,7 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
+        host: host_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2685,6 +3109,38 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         username: username_example
         password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GENERIC
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: GENERIC
+
+        # optional
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GOOGLE_CLOUD_STORAGE
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: GOOGLE_CLOUD_STORAGE
+
+        # optional
+        service_account_key_file: service_account_key_file_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -2749,9 +3205,27 @@ Examples
 
         # optional
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
         port: 56
         private_ip: private_ip_example
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AMAZON_REDSHIFT
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: AMAZON_REDSHIFT
+
+        # optional
+        connection_url: connection_url_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2831,7 +3305,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_key_id&#x27;: &#x27;ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_factory&#x27;: &#x27;connection_factory_example&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;connection_url&#x27;: &#x27;connection_url_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;jndi_connection_factory&#x27;: &#x27;jndi_connection_factory_example&#x27;, &#x27;jndi_initial_context_factory&#x27;: &#x27;jndi_initial_context_factory_example&#x27;, &#x27;jndi_provider_url&#x27;: &#x27;jndi_provider_url_example&#x27;, &#x27;jndi_security_principal&#x27;: &#x27;jndi_security_principal_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;should_use_jndi&#x27;: True, &#x27;should_validate_server_certificate&#x27;: True, &#x27;ssl_ca&#x27;: &#x27;ssl_ca_example&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AMAZON_S3&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_key_id&#x27;: &#x27;ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_factory&#x27;: &#x27;connection_factory_example&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;connection_url&#x27;: &#x27;connection_url_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;jndi_connection_factory&#x27;: &#x27;jndi_connection_factory_example&#x27;, &#x27;jndi_initial_context_factory&#x27;: &#x27;jndi_initial_context_factory_example&#x27;, &#x27;jndi_provider_url&#x27;: &#x27;jndi_provider_url_example&#x27;, &#x27;jndi_security_principal&#x27;: &#x27;jndi_security_principal_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;PLAIN&#x27;, &#x27;servers&#x27;: &#x27;servers_example&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;should_use_jndi&#x27;: True, &#x27;should_validate_server_certificate&#x27;: True, &#x27;ssl_ca&#x27;: &#x27;ssl_ca_example&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AMAZON_KINESIS&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2846,7 +3320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Access key ID to access the Amazon S3 bucket. e.g.: &quot;this-is-not-the-secret&quot;</div>
+                                            <div>Access key ID to access the Amazon Kinesis.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -3137,7 +3611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Connectin URL of the Java Message Service, specifying the protocol, host, and port. e.g.: &#x27;mq://myjms.host.domain:7676&#x27;</div>
+                                            <div>Connection URL. e.g.: &#x27;jdbc:redshift://aws-redshift-instance.aaaaaaaaaaaa.us-east-2.redshift.amazonaws.com:5439/mydb&#x27;</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connection_url_example</div>
@@ -3319,7 +3793,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name or address of a host.</div>
+                                            <div>Host and port separated by colon. Example: `&quot;server.example.com:1234&quot;`</div>
+                                            <div>For multiple hosts, provide a comma separated list. Example: `&quot;server1.example.com:1000,server1.example.com:2000&quot;`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
@@ -3587,10 +4062,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Kafka security protocol.</div>
+                                            <div>Security protocol for Elasticsearch</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SSL</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PLAIN</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/servers"></div>
+                    <b>servers</b>
+                    <a class="ansibleOptionLink" href="#return-connection/servers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 9200. Used for establishing the initial connection to the Elasticsearch cluster. Example: `&quot;server1.example.com:4000,server2.example.com:4000&quot;`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">servers_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -3748,10 +4241,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Amazon S3 technology type.</div>
+                                            <div>The Amazon Kinesis technology type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMAZON_S3</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMAZON_KINESIS</div>
                                     </td>
             </tr>
                                 <tr>

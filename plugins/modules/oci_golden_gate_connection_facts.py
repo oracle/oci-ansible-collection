@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -49,6 +49,7 @@ options:
         elements: str
         choices:
             - "GOLDENGATE"
+            - "GENERIC"
             - "OCI_AUTONOMOUS_DATABASE"
             - "OCI_AUTONOMOUS_JSON_DATABASE"
             - "OCI_MYSQL"
@@ -63,6 +64,8 @@ options:
             - "AMAZON_S3"
             - "AMAZON_AURORA_MYSQL"
             - "AMAZON_AURORA_POSTGRESQL"
+            - "AMAZON_KINESIS"
+            - "AMAZON_REDSHIFT"
             - "AMAZON_RDS_MARIADB"
             - "AMAZON_RDS_MYSQL"
             - "AMAZON_RDS_POSTGRESQL"
@@ -77,14 +80,19 @@ options:
             - "AZURE_SYNAPSE_ANALYTICS"
             - "CONFLUENT_KAFKA"
             - "CONFLUENT_SCHEMA_REGISTRY"
+            - "ELASTICSEARCH"
+            - "GOOGLE_BIGQUERY"
+            - "GOOGLE_CLOUD_STORAGE"
             - "GOOGLE_CLOUD_SQL_MYSQL"
             - "GOOGLE_CLOUD_SQL_POSTGRESQL"
+            - "GOOGLE_CLOUD_SQL_SQLSERVER"
             - "HDFS"
             - "MARIADB"
             - "MICROSOFT_SQLSERVER"
             - "MONGODB"
             - "MYSQL_SERVER"
             - "POSTGRESQL_SERVER"
+            - "REDIS"
             - "SINGLESTOREDB"
             - "SINGLESTOREDB_CLOUD"
             - "SNOWFLAKE"
@@ -110,6 +118,13 @@ options:
             - "HDFS"
             - "ORACLE_NOSQL"
             - "MONGODB"
+            - "AMAZON_KINESIS"
+            - "AMAZON_REDSHIFT"
+            - "REDIS"
+            - "ELASTICSEARCH"
+            - "GENERIC"
+            - "GOOGLE_CLOUD_STORAGE"
+            - "GOOGLE_BIGQUERY"
     assigned_deployment_id:
         description:
             - The OCID of the deployment which for the connection must be assigned.
@@ -129,6 +144,8 @@ options:
             - "DATABASE_MICROSOFT_SQLSERVER"
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
+            - "DATABASE_DB2ZOS"
+            - "DATA_TRANSFORMS"
     lifecycle_state:
         description:
             - A filter to return only connections having the 'lifecycleState' given.
@@ -197,8 +214,7 @@ connections:
     contains:
         access_key_id:
             description:
-                - "Access key ID to access the Amazon S3 bucket.
-                  e.g.: \\"this-is-not-the-secret\\""
+                - Access key ID to access the Amazon Kinesis.
                 - Returned for get operation
             returned: on success
             type: str
@@ -416,7 +432,10 @@ connections:
             sample: database_name_example
         host:
             description:
-                - The name or address of a host.
+                - "Host and port separated by colon.
+                  Example: `\\"server.example.com:1234\\"`"
+                - "For multiple hosts, provide a comma separated list.
+                  Example: `\\"server1.example.com:1000,server1.example.com:2000\\"`"
                 - Returned for get operation
             returned: on success
             type: str
@@ -448,13 +467,6 @@ connections:
                     returned: on success
                     type: str
                     sample: value_example
-        security_protocol:
-            description:
-                - Kafka security protocol.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: SSL
         ssl_mode:
             description:
                 - SSL modes for MySQL.
@@ -473,17 +485,34 @@ connections:
             returned: on success
             type: str
             sample: private_ip_example
-        technology_type:
+        servers:
             description:
-                - The Amazon S3 technology type.
+                - "Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional.
+                  If port is not specified, it defaults to 9200.
+                  Used for establishing the initial connection to the Elasticsearch cluster.
+                  Example: `\\"server1.example.com:4000,server2.example.com:4000\\"`"
                 - Returned for get operation
             returned: on success
             type: str
-            sample: AMAZON_S3
+            sample: servers_example
+        security_protocol:
+            description:
+                - Security protocol for Elasticsearch
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: PLAIN
+        technology_type:
+            description:
+                - The Amazon Kinesis technology type.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: AMAZON_KINESIS
         connection_url:
             description:
-                - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
-                  e.g.: 'mq://myjms.host.domain:7676'"
+                - "Connection URL.
+                  e.g.: 'jdbc:redshift://aws-redshift-instance.aaaaaaaaaaaa.us-east-2.redshift.amazonaws.com:5439/mydb'"
                 - Returned for get operation
             returned: on success
             type: str
@@ -601,12 +630,6 @@ connections:
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        subnet_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
-            returned: on success
-            type: str
-            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_ips:
             description:
                 - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
@@ -626,6 +649,12 @@ connections:
             returned: on success
             type: list
             sample: []
+        subnet_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
         "account_name": "account_name_example",
@@ -662,10 +691,11 @@ connections:
             "name": "name_example",
             "value": "value_example"
         }],
-        "security_protocol": "SSL",
         "ssl_mode": "DISABLED",
         "private_ip": "private_ip_example",
-        "technology_type": "AMAZON_S3",
+        "servers": "servers_example",
+        "security_protocol": "PLAIN",
+        "technology_type": "AMAZON_KINESIS",
         "connection_url": "connection_url_example",
         "authentication_type": "SHARED_KEY",
         "username": "username_example",
@@ -683,11 +713,11 @@ connections:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "ingress_ips": [{
             "ingress_ip": "ingress_ip_example"
         }],
-        "nsg_ids": []
+        "nsg_ids": [],
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -767,6 +797,7 @@ def main():
                 elements="str",
                 choices=[
                     "GOLDENGATE",
+                    "GENERIC",
                     "OCI_AUTONOMOUS_DATABASE",
                     "OCI_AUTONOMOUS_JSON_DATABASE",
                     "OCI_MYSQL",
@@ -781,6 +812,8 @@ def main():
                     "AMAZON_S3",
                     "AMAZON_AURORA_MYSQL",
                     "AMAZON_AURORA_POSTGRESQL",
+                    "AMAZON_KINESIS",
+                    "AMAZON_REDSHIFT",
                     "AMAZON_RDS_MARIADB",
                     "AMAZON_RDS_MYSQL",
                     "AMAZON_RDS_POSTGRESQL",
@@ -795,14 +828,19 @@ def main():
                     "AZURE_SYNAPSE_ANALYTICS",
                     "CONFLUENT_KAFKA",
                     "CONFLUENT_SCHEMA_REGISTRY",
+                    "ELASTICSEARCH",
+                    "GOOGLE_BIGQUERY",
+                    "GOOGLE_CLOUD_STORAGE",
                     "GOOGLE_CLOUD_SQL_MYSQL",
                     "GOOGLE_CLOUD_SQL_POSTGRESQL",
+                    "GOOGLE_CLOUD_SQL_SQLSERVER",
                     "HDFS",
                     "MARIADB",
                     "MICROSOFT_SQLSERVER",
                     "MONGODB",
                     "MYSQL_SERVER",
                     "POSTGRESQL_SERVER",
+                    "REDIS",
                     "SINGLESTOREDB",
                     "SINGLESTOREDB_CLOUD",
                     "SNOWFLAKE",
@@ -828,6 +866,13 @@ def main():
                     "HDFS",
                     "ORACLE_NOSQL",
                     "MONGODB",
+                    "AMAZON_KINESIS",
+                    "AMAZON_REDSHIFT",
+                    "REDIS",
+                    "ELASTICSEARCH",
+                    "GENERIC",
+                    "GOOGLE_CLOUD_STORAGE",
+                    "GOOGLE_BIGQUERY",
                 ],
             ),
             assigned_deployment_id=dict(type="str"),
@@ -841,6 +886,8 @@ def main():
                     "DATABASE_MICROSOFT_SQLSERVER",
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
+                    "DATABASE_DB2ZOS",
+                    "DATA_TRANSFORMS",
                 ],
             ),
             lifecycle_state=dict(

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,6 +25,8 @@ description:
     - Perform actions on a Fleet resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag
       values of the resource.
+    - For I(action=disable_drs), request to disable the DRS in the selected target in the Fleet.
+    - For I(action=enable_drs), request to enable the DRS in the selected target in the Fleet.
     - For I(action=generate_agent_deploy_script), generates Agent Deploy Script for Fleet using the information provided.
     - For I(action=request_crypto_analyses), request to perform crypto analysis on one or more selected targets in the Fleet. The result of the crypto analysis
       will be uploaded to the object storage bucket created by JMS on enabling the Crypto Event Analysis feature in the Fleet.
@@ -44,6 +46,23 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the Fleet should be moved.
             - Required for I(action=change_compartment).
         type: str
+    manage_drs_details:
+        description:
+            - ""
+            - Applicable only for I(action=disable_drs)I(action=enable_drs).
+        type: dict
+        suboptions:
+            targets:
+                description:
+                    - The targets to manage DRS.
+                type: list
+                elements: dict
+                suboptions:
+                    managed_instance_id:
+                        description:
+                            - OCID of the managed instance to manage DRS distribution.
+                        type: str
+                        required: true
     dest:
         description:
             - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
@@ -151,6 +170,8 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "disable_drs"
+            - "enable_drs"
             - "generate_agent_deploy_script"
             - "request_crypto_analyses"
             - "request_java_migration_analyses"
@@ -166,6 +187,32 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action disable_drs on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_drs
+
+    # optional
+    manage_drs_details:
+      # optional
+      targets:
+      - # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Perform action enable_drs on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_drs
+
+    # optional
+    manage_drs_details:
+      # optional
+      targets:
+      - # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action generate_agent_deploy_script on fleet
   oci_jms_fleet_actions:
@@ -368,6 +415,12 @@ fleet:
             returned: on success
             type: bool
             sample: true
+        is_export_setting_enabled:
+            description:
+                - Whether or not export setting is enabled in this Fleet.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -424,6 +477,7 @@ fleet:
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "is_advanced_features_enabled": true,
+        "is_export_setting_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -446,6 +500,8 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.jms import JavaManagementServiceClient
     from oci.jms.models import ChangeFleetCompartmentDetails
+    from oci.jms.models import DisableDrsDetails
+    from oci.jms.models import EnableDrsDetails
     from oci.jms.models import GenerateAgentDeployScriptDetails
     from oci.jms.models import RequestCryptoAnalysesDetails
     from oci.jms.models import RequestJavaMigrationAnalysesDetails
@@ -461,6 +517,8 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        disable_drs
+        enable_drs
         generate_agent_deploy_script
         request_crypto_analyses
         request_java_migration_analyses
@@ -493,6 +551,48 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 fleet_id=self.module.params.get("fleet_id"),
                 change_fleet_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def disable_drs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DisableDrsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_drs,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                disable_drs_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_drs(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableDrsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_drs,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                enable_drs_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -632,6 +732,18 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            manage_drs_details=dict(
+                type="dict",
+                options=dict(
+                    targets=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            managed_instance_id=dict(type="str", required=True)
+                        ),
+                    )
+                ),
+            ),
             dest=dict(type="str"),
             install_key_id=dict(type="str"),
             os_family=dict(
@@ -662,6 +774,8 @@ def main():
                 required=True,
                 choices=[
                     "change_compartment",
+                    "disable_drs",
+                    "enable_drs",
                     "generate_agent_deploy_script",
                     "request_crypto_analyses",
                     "request_java_migration_analyses",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -63,6 +63,13 @@ options:
             - "HDFS"
             - "ORACLE_NOSQL"
             - "MONGODB"
+            - "AMAZON_KINESIS"
+            - "AMAZON_REDSHIFT"
+            - "REDIS"
+            - "ELASTICSEARCH"
+            - "GENERIC"
+            - "GOOGLE_CLOUD_STORAGE"
+            - "GOOGLE_BIGQUERY"
     assigned_connection_id:
         description:
             - The OCID of the connection which for the deployment must be assigned.
@@ -703,6 +710,13 @@ def main():
                     "HDFS",
                     "ORACLE_NOSQL",
                     "MONGODB",
+                    "AMAZON_KINESIS",
+                    "AMAZON_REDSHIFT",
+                    "REDIS",
+                    "ELASTICSEARCH",
+                    "GENERIC",
+                    "GOOGLE_CLOUD_STORAGE",
+                    "GOOGLE_BIGQUERY",
                 ],
             ),
             assigned_connection_id=dict(type="str"),

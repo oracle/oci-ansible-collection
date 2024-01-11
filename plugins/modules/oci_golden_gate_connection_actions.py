@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -70,8 +70,7 @@ connection:
     contains:
         access_key_id:
             description:
-                - "Access key ID to access the Amazon S3 bucket.
-                  e.g.: \\"this-is-not-the-secret\\""
+                - Access key ID to access the Amazon Kinesis.
             returned: on success
             type: str
             sample: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -264,7 +263,10 @@ connection:
             sample: database_name_example
         host:
             description:
-                - The name or address of a host.
+                - "Host and port separated by colon.
+                  Example: `\\"server.example.com:1234\\"`"
+                - "For multiple hosts, provide a comma separated list.
+                  Example: `\\"server1.example.com:1000,server1.example.com:2000\\"`"
             returned: on success
             type: str
             sample: host_example
@@ -293,12 +295,6 @@ connection:
                     returned: on success
                     type: str
                     sample: value_example
-        security_protocol:
-            description:
-                - Kafka security protocol.
-            returned: on success
-            type: str
-            sample: SSL
         ssl_mode:
             description:
                 - SSL modes for MySQL.
@@ -315,6 +311,21 @@ connection:
             returned: on success
             type: str
             sample: private_ip_example
+        servers:
+            description:
+                - "Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional.
+                  If port is not specified, it defaults to 9200.
+                  Used for establishing the initial connection to the Elasticsearch cluster.
+                  Example: `\\"server1.example.com:4000,server2.example.com:4000\\"`"
+            returned: on success
+            type: str
+            sample: servers_example
+        security_protocol:
+            description:
+                - Security protocol for Elasticsearch
+            returned: on success
+            type: str
+            sample: PLAIN
         connection_type:
             description:
                 - The connection type.
@@ -412,12 +423,6 @@ connection:
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        subnet_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
-            returned: on success
-            type: str
-            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_ips:
             description:
                 - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
@@ -437,16 +442,22 @@ connection:
             returned: on success
             type: list
             sample: []
-        technology_type:
+        subnet_id:
             description:
-                - The Amazon S3 technology type.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
             returned: on success
             type: str
-            sample: AMAZON_S3
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type:
+            description:
+                - The Amazon Kinesis technology type.
+            returned: on success
+            type: str
+            sample: AMAZON_KINESIS
         connection_url:
             description:
-                - "Connectin URL of the Java Message Service, specifying the protocol, host, and port.
-                  e.g.: 'mq://myjms.host.domain:7676'"
+                - "Connection URL.
+                  e.g.: 'jdbc:redshift://aws-redshift-instance.aaaaaaaaaaaa.us-east-2.redshift.amazonaws.com:5439/mydb'"
             returned: on success
             type: str
             sample: connection_url_example
@@ -500,9 +511,10 @@ connection:
             "name": "name_example",
             "value": "value_example"
         }],
-        "security_protocol": "SSL",
         "ssl_mode": "DISABLED",
         "private_ip": "private_ip_example",
+        "servers": "servers_example",
+        "security_protocol": "PLAIN",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -517,12 +529,12 @@ connection:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "ingress_ips": [{
             "ingress_ip": "ingress_ip_example"
         }],
         "nsg_ids": [],
-        "technology_type": "AMAZON_S3",
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "technology_type": "AMAZON_KINESIS",
         "connection_url": "connection_url_example",
         "authentication_type": "SHARED_KEY",
         "username": "username_example"

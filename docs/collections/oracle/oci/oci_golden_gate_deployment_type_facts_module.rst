@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_type_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -263,6 +263,8 @@ Parameters
                                                                                                                                                                                                 <li>DATABASE_MICROSOFT_SQLSERVER</li>
                                                                                                                                                                                                 <li>DATABASE_MYSQL</li>
                                                                                                                                                                                                 <li>DATABASE_POSTGRESQL</li>
+                                                                                                                                                                                                <li>DATABASE_DB2ZOS</li>
+                                                                                                                                                                                                <li>DATA_TRANSFORMS</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -459,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DeploymentType resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category&#x27;: &#x27;DATA_REPLICATION&#x27;, &#x27;connection_types&#x27;: [], &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;source_technologies&#x27;: [], &#x27;target_technologies&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category&#x27;: &#x27;DATA_REPLICATION&#x27;, &#x27;connection_types&#x27;: [], &#x27;default_username&#x27;: &#x27;default_username_example&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;source_technologies&#x27;: [], &#x27;supported_technologies_url&#x27;: &#x27;supported_technologies_url_example&#x27;, &#x27;target_technologies&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -474,7 +476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The deployment category defines the broad separation of the deployment type into categories.  Currently the separation is &#x27;DATA_REPLICATION&#x27; and &#x27;STREAM_ANALYTICS&#x27;.</div>
+                                            <div>The deployment category defines the broad separation of the deployment type into three categories. Currently the separation is &#x27;DATA_REPLICATION&#x27;, &#x27;STREAM_ANALYTICS&#x27; and &#x27;DATA_TRANSFORMS&#x27;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DATA_REPLICATION</div>
@@ -495,6 +497,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An array of connectionTypes.</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_types/default_username"></div>
+                    <b>default_username</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_types/default_username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The default admin username used by deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_username_example</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -565,6 +585,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of the supported technologies generally.  The value is a freeform text string generally consisting of a description of the technology and optionally the speific version(s) support.  For example, [ &quot;Oracle Database 19c&quot;, &quot;Oracle Exadata&quot;, &quot;OCI Streaming&quot; ]</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_types/supported_technologies_url"></div>
+                    <b>supported_technologies_url</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_types/supported_technologies_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL to the webpage listing the supported technologies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">supported_technologies_url_example</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

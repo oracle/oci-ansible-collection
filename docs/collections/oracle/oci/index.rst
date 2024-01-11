@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.39.0
+Collection version 4.40.0
 
 .. toctree::
     :maxdepth: 1
