@@ -225,6 +225,13 @@ data_asset:
             returned: on success
             type: str
             sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. An object not in ACTIVE state may have functional limitations,
+                  see service documentation for details.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         time_created:
             description:
                 - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -430,6 +437,7 @@ data_asset:
         "external_key": "external_key_example",
         "type_key": "type_key_example",
         "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_harvested": "2013-10-20T19:20:30+01:00",

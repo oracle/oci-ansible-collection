@@ -992,6 +992,8 @@ class PluggableDatabaseActionsHelperCustom:
     START_ACTION_KEY = "start"
     LOCAL_CLONE_ACTION_KEY = "local_clone"
     REMOTE_CLONE_ACTION_KEY = "remote_clone"
+    ENABLE_PLUGGABLE_DATABASE_MANAGEMENT = "enable_pluggable_database_management"
+    DISABLE_PLUGGABLE_DATABASE_MANAGEMENT = "disable_pluggable_database_management"
 
     def get_existing_pluggable_databases(self, container_database_id):
         return [
@@ -1034,6 +1036,26 @@ class PluggableDatabaseActionsHelperCustom:
                     existing_pluggable_database, "pdb_name", None
                 ) == self.module.params.get("cloned_pdb_name"):
                     return False
+            return True
+        if action == self.ENABLE_PLUGGABLE_DATABASE_MANAGEMENT:
+            pluggable_database_management_config = getattr(
+                resource, "pluggable_database_management_config", None
+            )
+            if (
+                getattr(pluggable_database_management_config, "management_status", None)
+                == "ENABLED"
+            ):
+                return False
+            return True
+        if action == self.DISABLE_PLUGGABLE_DATABASE_MANAGEMENT:
+            pluggable_database_management_config = getattr(
+                resource, "pluggable_database_management_config", None
+            )
+            if (
+                getattr(pluggable_database_management_config, "management_status", None)
+                == "DISABLED"
+            ):
+                return False
             return True
         return super(PluggableDatabaseActionsHelperCustom, self).is_action_necessary(
             action, resource
