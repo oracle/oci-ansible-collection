@@ -486,6 +486,53 @@ EXAMPLES = """
 """
 
 RETURN = """
+validate_connection_result:
+    description:
+        - Details of the DataAsset resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        message:
+            description:
+                - The message from the connection validation.
+            returned: on success
+            type: str
+            sample: message_example
+        status:
+            description:
+                - The status returned from the connection validation.
+            returned: on success
+            type: str
+            sample: SUCCEEDED
+    sample: {
+        "message": "message_example",
+        "status": "SUCCEEDED"
+    }
+
+connection_alias_summary:
+    description:
+        - Details of the DataAsset resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        alias_name:
+            description:
+                - A user-friendly display name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: alias_name_example
+        alias_details:
+            description:
+                - The description about the database alias parsed from the file metadata.
+            returned: on success
+            type: str
+            sample: alias_details_example
+    sample: {
+        "alias_name": "alias_name_example",
+        "alias_details": "alias_details_example"
+    }
+
 data_asset:
     description:
         - Details of the DataAsset resource acted upon by the current operation
@@ -535,6 +582,13 @@ data_asset:
             returned: on success
             type: str
             sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. An object not in ACTIVE state may have functional limitations,
+                  see service documentation for details.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         time_created:
             description:
                 - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -740,6 +794,7 @@ data_asset:
         "external_key": "external_key_example",
         "type_key": "type_key_example",
         "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_harvested": "2013-10-20T19:20:30+01:00",
@@ -773,6 +828,276 @@ data_asset:
             "lifecycle_state": "CREATING"
         }],
         "properties": {}
+    }
+
+import_data_asset_job_result:
+    description:
+        - Details of the DataAsset resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        data_asset_key:
+            description:
+                - The unique key of the data asset on which import is triggered.
+            returned: on success
+            type: str
+            sample: data_asset_key_example
+        import_job_definition_key:
+            description:
+                - The unique key of the job definition resource that is used for the import.
+            returned: on success
+            type: str
+            sample: import_job_definition_key_example
+        import_job_key:
+            description:
+                - The unique key of the job policy for the import.
+            returned: on success
+            type: str
+            sample: import_job_key_example
+        import_job_execution_key:
+            description:
+                - The unique key of the parent job execution for which the log resource is created.
+            returned: on success
+            type: str
+            sample: import_job_execution_key_example
+        import_job_execution_status:
+            description:
+                - The status of the import job execution.
+            returned: on success
+            type: str
+            sample: CREATED
+    sample: {
+        "data_asset_key": "data_asset_key_example",
+        "import_job_definition_key": "import_job_definition_key_example",
+        "import_job_key": "import_job_key_example",
+        "import_job_execution_key": "import_job_execution_key_example",
+        "import_job_execution_status": "CREATED"
+    }
+
+connection:
+    description:
+        - Details of the DataAsset resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        key:
+            description:
+                - Unique connection key that is immutable.
+            returned: on success
+            type: str
+            sample: key_example
+        description:
+            description:
+                - A description of the connection.
+            returned: on success
+            type: str
+            sample: description_example
+        display_name:
+            description:
+                - A user-friendly display name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        time_created:
+            description:
+                - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: `2019-03-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        created_by_id:
+            description:
+                - OCID of the user who created the connection.
+            returned: on success
+            type: str
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+        updated_by_id:
+            description:
+                - OCID of the user who modified the connection.
+            returned: on success
+            type: str
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+        custom_property_members:
+            description:
+                - The list of customized properties along with the values for this object
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique Identifier of the attribute which is ID
+                    returned: on success
+                    type: str
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display name of the custom property
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description of the custom property
+                    returned: on success
+                    type: str
+                    sample: description_example
+                value:
+                    description:
+                        - The custom property value
+                    returned: on success
+                    type: str
+                    sample: value_example
+                data_type:
+                    description:
+                        - The data type of the custom property
+                    returned: on success
+                    type: str
+                    sample: TEXT
+                namespace_name:
+                    description:
+                        - Namespace name of the custom property
+                    returned: on success
+                    type: str
+                    sample: namespace_name_example
+                namespace_key:
+                    description:
+                        - Unique namespace key that is immutable
+                    returned: on success
+                    type: str
+                    sample: namespace_key_example
+                is_multi_valued:
+                    description:
+                        - If this field allows multiple values to be set
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden:
+                    description:
+                        - If this field is a hidden field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_editable:
+                    description:
+                        - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_list_type:
+                    description:
+                        - Is this property allowed to have list of values
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_values:
+                    description:
+                        - Allowed values for the custom property if any
+                    returned: on success
+                    type: list
+                    sample: []
+        properties:
+            description:
+                - "A map of maps that contains the properties which are specific to the connection type. Each connection type
+                  definition defines it's set of required and optional properties. The map keys are category names and the
+                  values are maps of property name to property value. Every property is contained inside of a category. Most
+                  connections have required properties within the \\"default\\" category.
+                  Example: `{\\"properties\\": { \\"default\\": { \\"username\\": \\"user1\\"}}}`"
+            returned: on success
+            type: dict
+            sample: {}
+        external_key:
+            description:
+                - Unique external key of this object from the source system.
+            returned: on success
+            type: str
+            sample: external_key_example
+        time_status_updated:
+            description:
+                - Time that the connections status was last updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the connection.
+            returned: on success
+            type: str
+            sample: CREATING
+        is_default:
+            description:
+                - Indicates whether this connection is the default connection.
+            returned: on success
+            type: bool
+            sample: true
+        data_asset_key:
+            description:
+                - Unique key of the parent data asset.
+            returned: on success
+            type: str
+            sample: data_asset_key_example
+        type_key:
+            description:
+                - The key of the object type. Type key's can be found via the '/types' endpoint.
+            returned: on success
+            type: str
+            sample: type_key_example
+        uri:
+            description:
+                - URI to the connection instance in the API.
+            returned: on success
+            type: str
+            sample: uri_example
+    sample: {
+        "key": "key_example",
+        "description": "description_example",
+        "display_name": "display_name_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
+        "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
+        "custom_property_members": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "value": "value_example",
+            "data_type": "TEXT",
+            "namespace_name": "namespace_name_example",
+            "namespace_key": "namespace_key_example",
+            "is_multi_valued": true,
+            "is_hidden": true,
+            "is_editable": true,
+            "is_shown_in_list": true,
+            "is_event_enabled": true,
+            "is_list_type": true,
+            "allowed_values": []
+        }],
+        "properties": {},
+        "external_key": "external_key_example",
+        "time_status_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "is_default": true,
+        "data_asset_key": "data_asset_key_example",
+        "type_key": "type_key_example",
+        "uri": "uri_example"
     }
 """
 
@@ -829,6 +1154,18 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
             catalog_id=self.module.params.get("catalog_id"),
             data_asset_key=self.module.params.get("data_asset_key"),
         )
+
+    def get_response_field_name(self, action):
+        response_fields = dict(
+            add_data_selector_patterns="data_asset",
+            import_connection="connection",
+            import_data_asset="import_data_asset_job_result",
+            parse_connection="connection_alias_summary",
+            remove_data_selector_patterns="data_asset",
+            synchronous_export="data_asset",
+            validate_connection="validate_connection_result",
+        )
+        return response_fields.get(action, "data_asset")
 
     def add_data_selector_patterns(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(

@@ -298,3 +298,17 @@ class ManagedDatabaseGroupActionsHelperCustom:
             return super(
                 ManagedDatabaseGroupActionsHelperCustom, self
             ).is_action_necessary(action, resource)
+
+
+class DbManagementPrivateEndpointHelperCustom:
+    # Removing is_cluster paramter from optional parameters because is_cluster query parameter
+    # cannot be used without vcn_id and vcn_id parameter is not part of create model.
+    def get_optional_kwargs_for_list(self):
+        optional_kwargs_for_list = super(
+            DbManagementPrivateEndpointHelperCustom, self
+        ).get_optional_kwargs_for_list()
+
+        if "is_cluster" in optional_kwargs_for_list:
+            optional_kwargs_for_list.pop("is_cluster", None)
+
+        return optional_kwargs_for_list
