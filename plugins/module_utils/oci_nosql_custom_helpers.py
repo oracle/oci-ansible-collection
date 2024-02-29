@@ -41,3 +41,18 @@ class TableHelperCustom:
         return oci_common_utils.call_with_backoff(
             self.client.get_table, table_name_or_id=summary_model.id,
         ).data
+
+
+class ReplicaHelperCustom:
+    def get_get_fn(self):
+        # This is just a dummy function so that the waiting logic does not thrown an error. The replica does
+        # not have implementation of this method.
+        def get_fn(response_id):
+            return oci_common_utils.get_default_response_from_resource(resource=None)
+
+        return get_fn
+
+    # resource does not have a get operation. Dummy implementation to make
+    # the base class work. This also means that the delete is not idempotent.
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(resource=None)
