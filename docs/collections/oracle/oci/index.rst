@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.41.0
+Collection version 4.42.0
 
 .. toctree::
     :maxdepth: 1
@@ -1481,6 +1481,9 @@ Modules
 * :ref:`oci_network_vtap_facts <ansible_collections.oracle.oci.oci_network_vtap_facts_module>` -- Fetches details about one or multiple Vtap resources in Oracle Cloud Infrastructure
 * :ref:`oci_nosql_index <ansible_collections.oracle.oci.oci_nosql_index_module>` -- Manage an Index resource in Oracle Cloud Infrastructure
 * :ref:`oci_nosql_index_facts <ansible_collections.oracle.oci.oci_nosql_index_facts_module>` -- Fetches details about one or multiple Index resources in Oracle Cloud Infrastructure
+* :ref:`oci_nosql_replica <ansible_collections.oracle.oci.oci_nosql_replica_module>` -- Manage a Replica resource in Oracle Cloud Infrastructure
+* :ref:`oci_nosql_row <ansible_collections.oracle.oci.oci_nosql_row_module>` -- Manage a Row resource in Oracle Cloud Infrastructure
+* :ref:`oci_nosql_row_facts <ansible_collections.oracle.oci.oci_nosql_row_facts_module>` -- Fetches details about a Row resource in Oracle Cloud Infrastructure
 * :ref:`oci_nosql_table <ansible_collections.oracle.oci.oci_nosql_table_module>` -- Manage a Table resource in Oracle Cloud Infrastructure
 * :ref:`oci_nosql_table_actions <ansible_collections.oracle.oci.oci_nosql_table_actions_module>` -- Perform actions on a Table resource in Oracle Cloud Infrastructure
 * :ref:`oci_nosql_table_facts <ansible_collections.oracle.oci.oci_nosql_table_facts_module>` -- Fetches details about one or multiple Table resources in Oracle Cloud Infrastructure
@@ -3464,6 +3467,9 @@ Modules
     oci_network_vtap_facts_module
     oci_nosql_index_module
     oci_nosql_index_facts_module
+    oci_nosql_replica_module
+    oci_nosql_row_module
+    oci_nosql_row_facts_module
     oci_nosql_table_module
     oci_nosql_table_actions_module
     oci_nosql_table_facts_module
