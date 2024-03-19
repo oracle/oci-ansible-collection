@@ -1396,7 +1396,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             instance_common_vars = to_dict(instance)
             compartment_name = self.sanitize(compartment.name)
             instance_common_vars.update({"compartment_name": compartment_name})
-
+            
+            if instance.image_id: 
+                try:
+                    image_details = compute_client.get_image(instance.image_id).data
+                    image_name = image_details.display_name
+                    instance_common_vars.update({"image_name": image_name})  
+                except ServiceError as e:
+                    self.debug(f"No se pudo obtener los detalles de la imagen para image_id {instance.image_id}: {e}")
+                    
             common_groups = self.get_common_groups(instance=instance, region=region)
 
             vnic_attachments = [
@@ -1846,16 +1854,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         try:
             compute_client = self.get_compute_client_for_region(region)
 
-            instances = self.get_filtered_resources(
-                oci_common_utils.list_all_resources(
-                    target_fn=compute_client.list_instances,
-                    compartment_id=compartment_ocid,
-                    lifecycle_state="RUNNING",
-                    limit=2000,
-                ),
-                compartment_ocid,
-            )
-            return instances
+            all_instances = []  
+
+            for state in ["PROVISIONING", "RUNNING", "STOPPING", "STOPPED", "STARTING"]:
+                temp_instances = self.get_filtered_resources(
+                    oci_common_utils.list_all_resources(
+                        target_fn=compute_client.list_instances,
+                        compartment_id=compartment_ocid,
+                        lifecycle_state=state,
+                        limit=2000,
+                    ),
+                    compartment_ocid,
+                )
+                all_instances.extend(temp_instances)
+
+            return all_instances
         except ServiceError as ex:
             self.debug(
                 "Service Error occurred in get_filtered_instances for compartment_ocid :{0} , region : {1} with "
