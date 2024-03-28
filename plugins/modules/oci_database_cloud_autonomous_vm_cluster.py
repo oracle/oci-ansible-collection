@@ -58,8 +58,7 @@ options:
         type: int
     memory_per_oracle_compute_unit_in_gbs:
         description:
-            - The amount of memory (in GBs) to be enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
-              Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
+            - The amount of memory (in GBs) to be enabled per OCPU or ECPU.
         type: int
     autonomous_data_storage_size_in_tbs:
         description:
@@ -72,8 +71,7 @@ options:
         type: str
     compute_model:
         description:
-            - The compute model of the Cloud Autonomous VM Cluster. See L(Compute Models in Autonomous Database on Dedicated Exadata
-              Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
+            - The compute model of the Cloud Autonomous VM Cluster. ECPU compute model is the recommended model and OCPU compute model is legacy.
         type: str
         choices:
             - "ECPU"
@@ -211,13 +209,14 @@ options:
     license_model:
         description:
             - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
-              premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
-              License Included allows you to subscribe to new Oracle Database software licenses and the Database service.
-              Note that when provisioning an Autonomous Database on L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
-              database/index.html), this attribute must be null because the attribute is already set at the
-              Autonomous Exadata Infrastructure level. When using L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
-              database/index.html), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
-            - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, adminPassword,
+              premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud.
+              License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service.
+              Note that when provisioning an L(Autonomous Database on dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
+              database/index.html), this attribute must be null. It is already set at the
+              Autonomous Exadata Infrastructure level. When provisioning an L(Autonomous Database Serverless],https://docs.oracle.com/en/cloud/paas/autonomous-
+              database/index.html) database, if a value is not specified, the system defaults the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license
+              (BYOL) also allows you to select the DB edition using the optional parameter.
+            - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword,
               isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier."
             - This parameter is updatable.
         type: str
@@ -533,8 +532,9 @@ cloud_autonomous_vm_cluster:
             sample: 3.4
         compute_model:
             description:
-                - The compute model of the Cloud Autonomous VM Cluster. See L(Compute Models in Autonomous Database on Dedicated Exadata
-                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
+                - "The compute model of the Cloud Autonomous VM Cluster. ECPU compute model is the recommended model and OCPU compute model is legacy. See
+                  L(Compute Models in Autonomous Database on Dedicated Exadata #Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
+                  database/dedicated/adbak) for more details."
             returned: on success
             type: str
             sample: ECPU
@@ -560,15 +560,15 @@ cloud_autonomous_vm_cluster:
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
-                  premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
-                  License Included allows you to subscribe to new Oracle Database software licenses and the Database service.
-                  Note that when provisioning an Autonomous Database on L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
-                  database/index.html), this attribute must be null because the attribute is already set at the
-                  Autonomous Exadata Infrastructure level. When using L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
-                  database/index.html), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
-                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs,
-                  adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or
-                  isFreeTier."
+                  premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud.
+                  License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service.
+                  Note that when provisioning an L(Autonomous Database on dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
+                  database/index.html), this attribute must be null. It is already set at the
+                  Autonomous Exadata Infrastructure level. When provisioning an L(Autonomous Database
+                  Serverless],https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html) database, if a value is not specified, the system defaults
+                  the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license (BYOL) also allows you to select the DB edition using the optional parameter.
+                - "This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword,
+                  isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier."
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
@@ -721,12 +721,9 @@ cloud_autonomous_vm_cluster:
             sample: 3.4
         reclaimable_cpus:
             description:
-                - "For Autonomous Databases on Dedicated Exadata Infrastructure:
-                  - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its
-                    Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by
-                    restarting the Autonomous Container Database.
-                  - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster's compute model. See L(Compute Models in Autonomous
-                    Database on Dedicated Exadata Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details."
+                - CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous
+                  Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the
+                  Autonomous Container Database.
             returned: on success
             type: float
             sample: 3.4
@@ -762,8 +759,7 @@ cloud_autonomous_vm_cluster:
             sample: 56
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per OCPU or ECPU. See L(Compute Models in Autonomous Database on Dedicated Exadata
-                  Infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak) for more details.
+                - The amount of memory (in GBs) enabled per OCPU or ECPU.
             returned: on success
             type: int
             sample: 56

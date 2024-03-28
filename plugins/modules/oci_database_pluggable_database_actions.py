@@ -57,6 +57,11 @@ options:
             - The DB system administrator password of the Container Database.
             - Applicable only for I(action=convert_to_regular).
         type: str
+    tde_wallet_password:
+        description:
+            - The existing TDE wallet password of the Container Database.
+            - Applicable only for I(action=convert_to_regular).
+        type: str
     credential_details:
         description:
             - ""
@@ -180,6 +185,7 @@ EXAMPLES = """
     # optional
     should_create_pdb_backup: true
     container_database_admin_password: example-password
+    tde_wallet_password: example-password
 
 - name: Perform action disable_pluggable_database_management on pluggable_database
   oci_database_pluggable_database_actions:
@@ -728,6 +734,7 @@ def main():
         dict(
             should_create_pdb_backup=dict(type="bool"),
             container_database_admin_password=dict(type="str", no_log=True),
+            tde_wallet_password=dict(type="str", no_log=True),
             credential_details=dict(
                 type="dict",
                 options=dict(

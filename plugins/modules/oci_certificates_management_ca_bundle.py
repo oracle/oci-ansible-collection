@@ -233,11 +233,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CaBundleHelperGen(OCIResourceHelperBase):
+class CertificatesManagementCaBundleHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(CaBundleHelperGen, self).get_possible_entity_types() + [
+        return super(
+            CertificatesManagementCaBundleHelperGen, self
+        ).get_possible_entity_types() + [
             "cabundle",
             "cabundles",
             "certificatesManagementcabundle",
@@ -352,10 +354,14 @@ class CaBundleHelperGen(OCIResourceHelperBase):
         )
 
 
-CaBundleHelperCustom = get_custom_class("CaBundleHelperCustom")
+CertificatesManagementCaBundleHelperCustom = get_custom_class(
+    "CertificatesManagementCaBundleHelperCustom"
+)
 
 
-class ResourceHelper(CaBundleHelperCustom, CaBundleHelperGen):
+class ResourceHelper(
+    CertificatesManagementCaBundleHelperCustom, CertificatesManagementCaBundleHelperGen
+):
     pass
 
 

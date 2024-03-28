@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database -- Manage an AutonomousDatabase reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -99,7 +99,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>**Important** The `adminPassword` must be specified for all Autonomous Databases except for refreshable clones. The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (&quot;) or the username &quot;admin&quot;, regardless of casing.</div>
+                                            <div>**Important** The `adminPassword` or `secretId` must be specified for all Autonomous Databases except for refreshable clones. The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (&quot;) or the username &quot;admin&quot;, regardless of casing.</div>
+                                            <div>This cannot be used in conjunction with with OCI vault secrets (secretId).</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -235,7 +236,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Autonomous Container Database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The Autonomous Container Database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. Used only by Autonomous Database on Dedicated Exadata Infrastructure.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,7 +290,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous Database follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the normal cycle.</div>
+                                            <div>The maintenance schedule type of the Autonomous Database Serverless. An EARLY maintenance schedule follows a schedule applying patches prior to the REGULAR schedule. A REGULAR maintenance schedule follows the normal cycle</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +336,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The character set for the autonomous database.  The default is AL32UTF8. Allowed values for an Autonomous Database on shared infrastructure as as returned by <a href='https://docs.cloud.oracle.com/autonomousDatabaseCharacterSets'>List Autonomous Database Character Sets</a></div>
+                                            <div>The character set for the autonomous database. The default is AL32UTF8. Allowed values for an Autonomous Database Serverless instance as as returned by <a href='https://docs.oracle.com/iaas/autonomous-database-serverless/doc/autonomous-character-set- selection.html'>List Autonomous Database Character Sets</a></div>
                                             <div>For an Autonomous Database on dedicated infrastructure, the allowed values are:</div>
                                             <div>AL32UTF8, AR8ADOS710, AR8ADOS720, AR8APTEC715, AR8ARABICMACS, AR8ASMO8X, AR8ISO8859P6, AR8MSWIN1256, AR8MUSSAD768, AR8NAFITHA711, AR8NAFITHA721, AR8SAKHR706, AR8SAKHR707, AZ8ISO8859P9E, BG8MSWIN, BG8PC437S, BLT8CP921, BLT8ISO8859P13, BLT8MSWIN1257, BLT8PC775, BN8BSCII, CDN8PC863, CEL8ISO8859P14, CL8ISO8859P5, CL8ISOIR111, CL8KOI8R, CL8KOI8U, CL8MACCYRILLICS, CL8MSWIN1251, EE8ISO8859P2, EE8MACCES, EE8MACCROATIANS, EE8MSWIN1250, EE8PC852, EL8DEC, EL8ISO8859P7, EL8MACGREEKS, EL8MSWIN1253, EL8PC437S, EL8PC851, EL8PC869, ET8MSWIN923, HU8ABMOD, HU8CWI2, IN8ISCII, IS8PC861, IW8ISO8859P8, IW8MACHEBREWS, IW8MSWIN1255, IW8PC1507, JA16EUC, JA16EUCTILDE, JA16SJIS, JA16SJISTILDE, JA16VMS, KO16KSC5601, KO16KSCCS, KO16MSWIN949, LA8ISO6937, LA8PASSPORT, LT8MSWIN921, LT8PC772, LT8PC774, LV8PC1117, LV8PC8LR, LV8RST104090, N8PC865, NE8ISO8859P10, NEE8ISO8859P4, RU8BESTA, RU8PC855, RU8PC866, SE8ISO8859P3, TH8MACTHAIS, TH8TISASCII, TR8DEC, TR8MACTURKISHS, TR8MSWIN1254, TR8PC857, US7ASCII, US8PC437, UTF8, VN8MSWIN1258, VN8VN3, WE8DEC, WE8DG, WE8ISO8859P1, WE8ISO8859P15, WE8ISO8859P9, WE8MACROMAN8S, WE8MSWIN1252, WE8NCR4970, WE8NEXTSTEP, WE8PC850, WE8PC858, WE8PC860, WE8ROMAN8, ZHS16CGB231280, ZHS16GBK, ZHT16BIG5, ZHT16CCDC, ZHT16DBT, ZHT16HKSCS, ZHT16MSWIN950, ZHT32EUC, ZHT32SOPS, ZHT32TRIS</div>
                                                         </td>
@@ -390,7 +391,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the &#x27;ECPU&#x27; compute model requires values in multiples of two. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.</div>
+                                            <div>The compute amount (CPUs) available to the database. Minimum and maximum values depend on the compute model and whether the database is an Autonomous Database Serverless instance or an Autonomous Database on Dedicated Exadata Infrastructure. For an Autonomous Database Serverless instance, the &#x27;ECPU&#x27; compute model requires a minimum value of one, for databases in the elastic resource pool and minimum value of two, otherwise. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value. Providing `computeModel` and `computeCount` is the preferred method for both OCPU and ECPU.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -410,7 +411,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value.</div>
+                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value. ECPU compute model is the recommended model and OCPU compute model is legacy.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -456,7 +457,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
+                                            <div>The number of CPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
                                             <div>**Note:** This parameter cannot be used with the `ocpuCount` parameter.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -557,7 +558,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters are not permitted. The database name must be unique in the tenancy. It is required in all cases except when creating a cross-region Autonomous Data Guard standby instance or a cross-region disaster recovery standby instance.</div>
+                                            <div>The database name. The name must begin with an alphabetic character and can contain a maximum of 30 alphanumeric characters. Special characters are not permitted. The database name must be unique in the tenancy. It is required in all cases except when creating a cross-region Autonomous Data Guard standby instance or a cross-region disaster recovery standby instance.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -782,7 +783,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database.</div>
+                                            <div>The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database. This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -803,7 +804,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates if the database-level access control is enabled. If disabled, database access is defined by the network security rules. If enabled, database access is restricted to the IP addresses defined by the rules specified with the `whitelistedIps` property. While specifying `whitelistedIps` rules is optional, if database-level access control is enabled and no rules are specified, the database will become inaccessible. The rules can be added later using the `UpdateAutonomousDatabase` API operation or edit option in console. When creating a database clone, the desired access control setting should be specified. By default, database-level access control will be disabled for the clone.</div>
-                                            <div>This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.</div>
+                                            <div>This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform. For Autonomous Database Serverless instances, `whitelistedIps` is used.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -823,7 +824,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`.</div>
+                                            <div>Indicates if auto scaling is enabled for the Autonomous Database CPU core count. The default value is `TRUE`.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -944,8 +945,8 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Specifies if the Autonomous Database requires mTLS connections.</div>
-                                            <div>This may not be updated in parallel with any of the following: licenseModel, databaseEdition, cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, whitelistedIps, openMode, permissionLevel, db-workload, privateEndpointLabel, nsgIds, customerContacts, dbVersion, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
-                                            <div>Service Change: The default value of the isMTLSConnectionRequired attribute will change from true to false on July 1, 2023 in the following APIs: - CreateAutonomousDatabase - GetAutonomousDatabase - UpdateAutonomousDatabase Details: Prior to the July 1, 2023 change, the isMTLSConnectionRequired attribute default value was true. This applies to Autonomous Databases on shared Exadata infrastructure. Does this impact me? If you use or maintain custom scripts or Terraform scripts referencing the CreateAutonomousDatabase, GetAutonomousDatabase, or UpdateAutonomousDatabase APIs, you want to check, and possibly modify, the scripts for the changed default value of the attribute. Should you choose not to leave your scripts unchanged, the API calls containing this attribute will continue to work, but the default value will switch from true to false. How do I make this change? Using either OCI SDKs or command line tools, update your custom scripts to explicitly set the isMTLSConnectionRequired attribute to true.</div>
+                                            <div>This may not be updated in parallel with any of the following: licenseModel, databaseEdition, cpuCoreCount, computeCount, dataStorageSizeInTBs, whitelistedIps, openMode, permissionLevel, db-workload, privateEndpointLabel, nsgIds, customerContacts, dbVersion, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
+                                            <div>Service Change: The default value of the isMTLSConnectionRequired attribute will change from true to false on July 1, 2023 in the following APIs: - CreateAutonomousDatabase - GetAutonomousDatabase - UpdateAutonomousDatabase Details: Prior to the July 1, 2023 change, the isMTLSConnectionRequired attribute default value was true. This applies to Autonomous Database Serverless. Does this impact me? If you use or maintain custom scripts or Terraform scripts referencing the CreateAutonomousDatabase, GetAutonomousDatabase, or UpdateAutonomousDatabase APIs, you want to check, and possibly modify, the scripts for the changed default value of the attribute. Should you choose not to leave your scripts unchanged, the API calls containing this attribute will continue to work, but the default value will switch from true to false. How do I make this change? Using either OCI SDKs or command line tools, update your custom scripts to explicitly set the isMTLSConnectionRequired attribute to true.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -965,7 +966,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>If set to `TRUE`, indicates that an Autonomous Database preview version is being provisioned, and that the preview version&#x27;s terms of service have been accepted. Note that preview version software is only available for databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a>.</div>
+                                            <div>If set to `TRUE`, indicates that an Autonomous Database preview version is being provisioned, and that the preview version&#x27;s terms of service have been accepted. Note that preview version software is only available for Autonomous Database Serverless instances (https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1035,8 +1036,8 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Database service. Note that when provisioning an Autonomous Database on <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>dedicated Exadata infrastructure</a>, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>shared Exadata infrastructure</a>, if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.</div>
-                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
+                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service. Note that when provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database on dedicated Exadata infrastructure</a>, this attribute must be null. It is already set at the Autonomous Exadata Infrastructure level. When provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database Serverless]</a> database, if a value is not specified, the system defaults the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license (BYOL) also allows you to select the DB edition using the optional parameter.</div>
+                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1153,22 +1154,6 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="parameter-max_cpu_core_count"></div>
-                    <b>max_cpu_core_count</b>
-                    <a class="ansibleOptionLink" href="#parameter-max_cpu_core_count" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The number of Max OCPU cores to be made available to the autonomous database with auto scaling of cpu enabled.</div>
-                                            <div>This parameter is updatable.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-ncharacter_set"></div>
                     <b>ncharacter_set</b>
                     <a class="ansibleOptionLink" href="#parameter-ncharacter_set" title="Permalink to this option"></a>
@@ -1179,7 +1164,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The character set for the Autonomous Database.  The default is AL32UTF8. Use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/autonomousDatabaseCharacterSets/ListAutonomousDatabaseCharacterSets'>List Autonomous Database Character Sets</a> to list the allowed values for an Autonomous Database on shared Exadata infrastructure. For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are: AL16UTF16 or UTF8.</div>
+                                            <div>The character set for the Autonomous Database. The default is AL32UTF8. Use <a href='https://docs.oracle.com/iaas/autonomous-database-serverless/doc/autonomous-character-set-selection.html'>List Autonomous Database Character Sets</a> to list the allowed values for an Autonomous Database Serverless instance. For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are: AL16UTF16 or UTF8.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1211,7 +1196,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of OCPU cores to be made available to the database.</div>
-                                            <div>The following points apply: - For Autonomous Databases on Dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of 0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous Databasese on shared Exadata infrastructure.) - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape. For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both shared and dedicated Exadata infrastructure.</div>
+                                            <div>The following points apply: - For Autonomous Databases on Dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of 0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous Database Serverless instances.) - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape. For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to an Autonomous Database Serverless instance or an Autonomous Database on Dedicated Exadata Infrastructure. - For Autonomous Database Serverless instances, this parameter is not used.</div>
                                             <div>For Autonomous Databases on Dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG- GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
                                             <div>**Note:** This parameter cannot be used with the `cpuCoreCount` parameter.</div>
                                             <div>This parameter is updatable.</div>
@@ -1250,7 +1235,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Autonomous Data Guard standby database located in a different (remote) region from the source primary Autonomous Database.</div>
+                                            <div>The database OCID(/Content/General/Concepts/identifiers.htm) of the Disaster Recovery peer (source Primary) database, which is located in a different (remote) region from the current peer database.</div>
                                             <div>To create or delete a local (in-region) standby, see the `isDataGuardEnabled` parameter.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -1304,7 +1289,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The resource&#x27;s private endpoint label. Setting this to an empty string, after the creation of the private endpoint database, changes the private endpoint database to a public endpoint database.</div>
+                                            <div>The resource&#x27;s private endpoint label. - Setting the endpoint label to a non-empty string creates a private endpoint database. - Resetting the endpoint label to an empty string, after the creation of the private endpoint database, changes the private endpoint database to a public endpoint database. - Setting the endpoint label to a non-empty string value, updates to a new private endpoint database, when the database is disabled and re- enabled.</div>
                                             <div>This setting cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps, isMTLSConnectionRequired, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -1376,7 +1361,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Indicates the cross-region disaster recovery (DR) type of the standby Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                            <div>Indicates the cross-region disaster recovery (DR) type of the standby Autonomous Database Serverless instance. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
                                             <div>Required when source is &#x27;CROSS_REGION_DISASTER_RECOVERY&#x27;</div>
                                                         </td>
             </tr>
@@ -1415,6 +1400,27 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-resource_pool_summary/is_disabled"></div>
+                    <b>is_disabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-resource_pool_summary/is_disabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates if the resource pool should be deleted for the Autonomous Database.</div>
+                                            <div>Applicable when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-resource_pool_summary/pool_size"></div>
                     <b>pool_size</b>
                     <a class="ansibleOptionLink" href="#parameter-resource_pool_summary/pool_size" title="Permalink to this option"></a>
@@ -1442,7 +1448,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of scheduled operations.</div>
+                                            <div>The list of scheduled operations. Consists of values such as dayOfWeek, scheduledStartTime, scheduledStopTime.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, isRefreshable, dbName, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -1540,6 +1546,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCI vault secret [/Content/General/Concepts/identifiers.htm]OCID.</div>
+                                            <div>This cannot be used in conjunction with adminPassword.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -1581,7 +1588,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The source of the database: Use `NONE` for creating a new Autonomous Database. Use `DATABASE` for creating a new Autonomous Database by cloning an existing Autonomous Database. Use `CROSS_REGION_DATAGUARD` to create a standby Data Guard database in another region.</div>
-                                            <div>For Autonomous Databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a>, the following cloning options are available: Use `BACKUP_FROM_ID` for creating a new Autonomous Database from a specified backup. Use `BACKUP_FROM_TIMESTAMP` for creating a point-in-time Autonomous Database clone using backups. For more information, see <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/clone-autonomous- database.html#GUID-D771796F-5081-4CFB-A7FF-0F893EABD7BC'>Cloning and Moving an Autonomous Database</a>.</div>
+                                            <div>For <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/'>Autonomous Database Serverless instances</a>, the following cloning options are available: Use `BACKUP_FROM_ID` for creating a new Autonomous Database from a specified backup. Use `BACKUP_FROM_TIMESTAMP` for creating a point-in-time Autonomous Database clone using backups. For more information, see <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/clone-autonomous- database.html#GUID-D771796F-5081-4CFB-A7FF-0F893EABD7BC'>Cloning and Moving an Autonomous Database</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1627,8 +1634,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The client IP access control list (ACL). This feature is available for autonomous databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.</div>
-                                            <div>For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.sea.&lt;u nique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
+                                            <div>The client IP access control list (ACL). This feature is available for <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. If `arePrimaryWhitelistedIpsUsed` is &#x27;TRUE&#x27; then Autonomous Database uses this primary&#x27;s IP access control list (ACL) for the disaster recovery peer called `standbywhitelistedips`.</div>
+                                            <div>For Autonomous Database Serverless, this is an array of CIDR (classless inter-domain routing) notations for a subnet or VCN OCID (virtual cloud network Oracle Cloud ID). Multiple IPs and VCN OCIDs should be separate strings separated by commas, but if it&#x27;s other configurations that need multiple pieces of information then its each piece is connected with semicolon (;) as a delimiter. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.sea.&lt;u nique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
                                             <div>For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
@@ -1736,7 +1743,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>. This parameter and `secretId` are required for Customer Managed Keys.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1785,8 +1792,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The client IP access control list (ACL). This feature is available for autonomous databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.</div>
-                                            <div>For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.sea.&lt;u nique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
+                                            <div>The client IP access control list (ACL). This feature is available for <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. If `arePrimaryWhitelistedIpsUsed` is &#x27;TRUE&#x27; then Autonomous Database uses this primary&#x27;s IP access control list (ACL) for the disaster recovery peer called `standbywhitelistedips`.</div>
+                                            <div>For Autonomous Database Serverless, this is an array of CIDR (classless inter-domain routing) notations for a subnet or VCN OCID (virtual cloud network Oracle Cloud ID). Multiple IPs and VCN OCIDs should be separate strings separated by commas, but if it&#x27;s other configurations that need multiple pieces of information then its each piece is connected with semicolon (;) as a delimiter. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.sea.&lt;u nique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
                                             <div>For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
@@ -1870,6 +1877,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -1880,7 +1888,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -1946,6 +1953,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -1956,7 +1964,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2022,6 +2029,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2032,7 +2040,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2098,6 +2105,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2108,7 +2116,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2176,6 +2183,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2186,7 +2194,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2251,6 +2258,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2261,7 +2269,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2325,6 +2332,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2335,7 +2343,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2402,6 +2409,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2412,7 +2420,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2479,6 +2486,7 @@ Examples
         resource_pool_summary:
           # optional
           pool_size: 56
+          is_disabled: true
         scheduled_operations:
         - # required
           day_of_week:
@@ -2489,7 +2497,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        max_cpu_core_count: 56
         database_edition: database_edition_example
         db_tools_details:
         - # required
@@ -2550,7 +2557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;backup_retention_period_in_days&#x27;: 56, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 3.4, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;database_transforms_url&#x27;: &#x27;database_transforms_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_notebook_url&#x27;: &#x27;machine_learning_notebook_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;mongo_db_url&#x27;: &#x27;mongo_db_url_example&#x27;, &#x27;ords_url&#x27;: &#x27;ords_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_tools_details&#x27;: [{&#x27;compute_count&#x27;: 3.4, &#x27;is_enabled&#x27;: True, &#x27;max_idle_time_in_minutes&#x27;: 56, &#x27;name&#x27;: &#x27;APEX&#x27;}], &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disaster_recovery_region_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;in_memory_area_in_gbs&#x27;: 56, &#x27;in_memory_percentage&#x27;: 56, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_adg_auto_failover_max_data_loss_limit&#x27;: 56, &#x27;local_disaster_recovery_type&#x27;: &#x27;local_disaster_recovery_type_example&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;long_term_backup_schedule&#x27;: {&#x27;is_disabled&#x27;: True, &#x27;repeat_cadence&#x27;: &#x27;ONE_TIME&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;max_cpu_core_count&#x27;: 56, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;next_long_term_backup_time_stamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;remote_disaster_recovery_configuration&#x27;: {&#x27;disaster_recovery_type&#x27;: &#x27;ADG&#x27;, &#x27;is_snapshot_standby&#x27;: True, &#x27;time_snapshot_standby_enabled_till&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;resource_pool_leader_id&#x27;: &#x27;ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_pool_summary&#x27;: {&#x27;pool_size&#x27;: 56}, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_joining_resource_pool&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_backup_storage_size_in_gbs&#x27;: 1.2, &#x27;used_data_storage_size_in_gbs&#x27;: 56, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_used_data_storage_size_in_tbs&#x27;: 1.2, &#x27;allocated_storage_size_in_tbs&#x27;: 1.2, &#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;backup_retention_period_in_days&#x27;: 56, &#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 3.4, &#x27;compute_model&#x27;: &#x27;ECPU&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;database_transforms_url&#x27;: &#x27;database_transforms_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_notebook_url&#x27;: &#x27;machine_learning_notebook_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;mongo_db_url&#x27;: &#x27;mongo_db_url_example&#x27;, &#x27;ords_url&#x27;: &#x27;ords_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_tools_details&#x27;: [{&#x27;compute_count&#x27;: 3.4, &#x27;is_enabled&#x27;: True, &#x27;max_idle_time_in_minutes&#x27;: 56, &#x27;name&#x27;: &#x27;APEX&#x27;}], &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disaster_recovery_region_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;in_memory_area_in_gbs&#x27;: 56, &#x27;in_memory_percentage&#x27;: 56, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_auto_scaling_for_storage_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_local_data_guard_enabled&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_reconnect_clone_enabled&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;is_remote_data_guard_enabled&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;local_adg_auto_failover_max_data_loss_limit&#x27;: 56, &#x27;local_disaster_recovery_type&#x27;: &#x27;local_disaster_recovery_type_example&#x27;, &#x27;local_standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;long_term_backup_schedule&#x27;: {&#x27;is_disabled&#x27;: True, &#x27;repeat_cadence&#x27;: &#x27;ONE_TIME&#x27;, &#x27;retention_period_in_days&#x27;: 56, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;next_long_term_backup_time_stamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;provisionable_cpus&#x27;: [], &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;remote_disaster_recovery_configuration&#x27;: {&#x27;disaster_recovery_type&#x27;: &#x27;ADG&#x27;, &#x27;is_snapshot_standby&#x27;: True, &#x27;time_snapshot_standby_enabled_till&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;resource_pool_leader_id&#x27;: &#x27;ocid1.resourcepoolleader.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_pool_summary&#x27;: {&#x27;is_disabled&#x27;: True, &#x27;pool_size&#x27;: 56}, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;scheduled_operations&#x27;: [{&#x27;day_of_week&#x27;: {&#x27;name&#x27;: &#x27;MONDAY&#x27;}, &#x27;scheduled_start_time&#x27;: &#x27;scheduled_start_time_example&#x27;, &#x27;scheduled_stop_time&#x27;: &#x27;scheduled_stop_time_example&#x27;}], &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_disaster_recovery_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_joining_resource_pool&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_until_reconnect_clone_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_backup_storage_size_in_gbs&#x27;: 1.2, &#x27;used_data_storage_size_in_gbs&#x27;: 56, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2675,7 +2682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Autonomous Container Database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The Autonomous Container Database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. Used only by Autonomous Database on Dedicated Exadata Infrastructure.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2693,7 +2700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous Database follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the normal cycle.</div>
+                                            <div>The maintenance schedule type of the Autonomous Database Serverless. An EARLY maintenance schedule follows a schedule applying patches prior to the REGULAR schedule. A REGULAR maintenance schedule follows the normal cycle</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EARLY</div>
@@ -2837,7 +2844,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the &#x27;ECPU&#x27; compute model requires values in multiples of two. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value.</div>
+                                            <div>The compute amount (CPUs) available to the database. Minimum and maximum values depend on the compute model and whether the database is an Autonomous Database Serverless instance or an Autonomous Database on Dedicated Exadata Infrastructure. For an Autonomous Database Serverless instance, the &#x27;ECPU&#x27; compute model requires a minimum value of one, for databases in the elastic resource pool and minimum value of two, otherwise. Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null value. Providing `computeModel` and `computeCount` is the preferred method for both OCPU and ECPU.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -2855,7 +2862,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value.</div>
+                                            <div>The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an error to specify `computeModel` to a non-null value. ECPU compute model is the recommended model and OCPU compute model is legacy.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ECPU</div>
@@ -3101,7 +3108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether the connection string is using the long (`LONG`), Easy Connect (`EZCONNECT`), or Easy Connect Plus (`EZCONNECTPLUS`) format. Autonomous Databases on shared Exadata infrastructure always use the long format.</div>
+                                            <div>Specifies whether the connection string is using the long (`LONG`), Easy Connect (`EZCONNECT`), or Easy Connect Plus (`EZCONNECTPLUS`) format. Autonomous Database Serverless instances always use the long format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LONG</div>
@@ -3330,7 +3337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of OCPU cores to be made available to the database. When the ECPU is selected, the value for cpuCoreCount is 0. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG- GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
+                                            <div>The number of CPU cores to be made available to the database. When the ECPU is selected, the value for cpuCoreCount is 0. For Autonomous Database on Dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG- GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
                                             <div>**Note:** This parameter cannot be used with the `ocpuCount` parameter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -3475,7 +3482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Autonomous Data Guard region type of the Autonomous Database. For Autonomous Databases on shared Exadata infrastructure, Data Guard associations have designated primary and standby regions, and these region types do not change when the database changes roles. The standby regions in Data Guard associations can be the same region designated as the primary region, or they can be remote regions. Certain database administrative operations may be available only in the primary region of the Data Guard association, and cannot be performed when the database using the &quot;primary&quot; role is operating in a remote Data Guard standby region.</div>
+                                            <div>The Autonomous Data Guard region type of the Autonomous Database. For Autonomous Database Serverless, Autonomous Data Guard associations have designated primary and standby regions, and these region types do not change when the database changes roles. The standby regions in Autonomous Data Guard associations can be the same region designated as the primary region, or they can be remote regions. Certain database administrative operations may be available only in the primary region of the Autonomous Data Guard association, and cannot be performed when the database using the primary role is operating in a remote Autonomous Data Guard standby region.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY_DG_REGION</div>
@@ -3661,7 +3668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The disaster recovery (DR) region type of the Autonomous Database. For Shared Autonomous Databases, DR associations have designated primary and standby regions. These region types do not change when the database changes roles. The standby region in DR associations can be the same region as the primary region, or they can be in a remote regions. Some database administration operations may be available only in the primary region of the DR association, and cannot be performed when the database using the primary role is operating in a remote region.</div>
+                                            <div>The disaster recovery (DR) region type of the Autonomous Database. For Autonomous Database Serverless instances, DR associations have designated primary and standby regions. These region types do not change when the database changes roles. The standby region in DR associations can be the same region as the primary region, or they can be in a remote regions. Some database administration operations may be available only in the primary region of the DR association, and cannot be performed when the database using the primary role is operating in a remote region.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>
@@ -3770,7 +3777,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database.</div>
+                                            <div>The percentage of the System Global Area(SGA) assigned to In-Memory tables in Autonomous Database. This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -3807,7 +3814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Indicates if the database-level access control is enabled. If disabled, database access is defined by the network security rules. If enabled, database access is restricted to the IP addresses defined by the rules specified with the `whitelistedIps` property. While specifying `whitelistedIps` rules is optional, if database-level access control is enabled and no rules are specified, the database will become inaccessible. The rules can be added later using the `UpdateAutonomousDatabase` API operation or edit option in console. When creating a database clone, the desired access control setting should be specified. By default, database-level access control will be disabled for the clone.</div>
-                                            <div>This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.</div>
+                                            <div>This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform. For Autonomous Database Serverless instances, `whitelistedIps` is used.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3825,7 +3832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates if auto scaling is enabled for the Autonomous Database CPU core count.</div>
+                                            <div>Indicates if auto scaling is enabled for the Autonomous Database CPU core count. The default value is `TRUE`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3935,8 +3942,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Specifies if the Autonomous Database requires mTLS connections.</div>
-                                            <div>This may not be updated in parallel with any of the following: licenseModel, databaseEdition, cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, whitelistedIps, openMode, permissionLevel, db-workload, privateEndpointLabel, nsgIds, customerContacts, dbVersion, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
-                                            <div>Service Change: The default value of the isMTLSConnectionRequired attribute will change from true to false on July 1, 2023 in the following APIs: - CreateAutonomousDatabase - GetAutonomousDatabase - UpdateAutonomousDatabase Details: Prior to the July 1, 2023 change, the isMTLSConnectionRequired attribute default value was true. This applies to Autonomous Databases on shared Exadata infrastructure. Does this impact me? If you use or maintain custom scripts or Terraform scripts referencing the CreateAutonomousDatabase, GetAutonomousDatabase, or UpdateAutonomousDatabase APIs, you want to check, and possibly modify, the scripts for the changed default value of the attribute. Should you choose not to leave your scripts unchanged, the API calls containing this attribute will continue to work, but the default value will switch from true to false. How do I make this change? Using either OCI SDKs or command line tools, update your custom scripts to explicitly set the isMTLSConnectionRequired attribute to true.</div>
+                                            <div>This may not be updated in parallel with any of the following: licenseModel, databaseEdition, cpuCoreCount, computeCount, dataStorageSizeInTBs, whitelistedIps, openMode, permissionLevel, db-workload, privateEndpointLabel, nsgIds, customerContacts, dbVersion, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
+                                            <div>Service Change: The default value of the isMTLSConnectionRequired attribute will change from true to false on July 1, 2023 in the following APIs: - CreateAutonomousDatabase - GetAutonomousDatabase - UpdateAutonomousDatabase Details: Prior to the July 1, 2023 change, the isMTLSConnectionRequired attribute default value was true. This applies to Autonomous Database Serverless. Does this impact me? If you use or maintain custom scripts or Terraform scripts referencing the CreateAutonomousDatabase, GetAutonomousDatabase, or UpdateAutonomousDatabase APIs, you want to check, and possibly modify, the scripts for the changed default value of the attribute. Should you choose not to leave your scripts unchanged, the API calls containing this attribute will continue to work, but the default value will switch from true to false. How do I make this change? Using either OCI SDKs or command line tools, update your custom scripts to explicitly set the isMTLSConnectionRequired attribute to true.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -4063,7 +4070,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless does not use key versions, hence is not applicable for Autonomous Database Serverless instances.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4101,7 +4108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>. This parameter and `secretId` are required for Customer Managed Keys.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4120,7 +4127,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the key store.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the key store of Oracle Vault.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4192,7 +4199,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless does not use key versions, hence is not applicable for Autonomous Database Serverless instances.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -4210,8 +4217,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Database service. Note that when provisioning an Autonomous Database on <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>dedicated Exadata infrastructure</a>, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>shared Exadata infrastructure</a>, if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.</div>
-                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
+                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service. Note that when provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database on dedicated Exadata infrastructure</a>, this attribute must be null. It is already set at the Autonomous Exadata Infrastructure level. When provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> database, if a value is not specified, the system defaults the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license (BYOL) also allows you to select the DB edition using the optional parameter.</div>
+                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LICENSE_INCLUDED</div>
@@ -4283,7 +4290,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates the local disaster recovery (DR) type of the Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                            <div>Indicates the local disaster recovery (DR) type of the Autonomous Database Serverless instance. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">local_disaster_recovery_type_example</div>
@@ -4497,24 +4504,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-autonomous_database/max_cpu_core_count"></div>
-                    <b>max_cpu_core_count</b>
-                    <a class="ansibleOptionLink" href="#return-autonomous_database/max_cpu_core_count" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The number of Max OCPU cores to be made available to the autonomous database with auto scaling of cpu enabled.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/memory_per_oracle_compute_unit_in_gbs"></div>
                     <b>memory_per_oracle_compute_unit_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/memory_per_oracle_compute_unit_in_gbs" title="Permalink to this return value"></a>
@@ -4524,7 +4513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The amount of memory (in GBs) enabled per OCPU or ECPU. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>The amount of memory (in GBs) enabled per ECPU or OCPU.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -4595,8 +4584,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The number of OCPU cores to be made available to the database.</div>
-                                            <div>The following points apply: - For Autonomous Databases on dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of 0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous Databasese on shared Exadata infrastructure.) - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape. For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both shared and dedicated Exadata infrastructure.</div>
-                                            <div>For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG- GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
+                                            <div>The following points apply: - For Autonomous Databases on Dedicated Exadata Infrastructure, to provision less than 1 core, enter a fractional value in an increment of 0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous Database Serverless instances.) - To provision cores, enter an integer between 1 and the maximum number of cores available for the infrastructure shape. For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both serverless and dedicated Exadata infrastructure. - For Autonomous Database Serverless instances, this parameter is not used.</div>
+                                            <div>For Autonomous Databases on Dedicated Exadata Infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbde/index.html'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
                                             <div>**Note:** This parameter cannot be used with the `cpuCoreCount` parameter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -4652,7 +4641,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of standby databases located in Autonomous Data Guard remote regions that are associated with the source database. Note that for shared Exadata infrastructure, standby databases located in the same region as the source primary database do not have OCIDs.</div>
+                                            <div>The list of <a href='https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of standby databases located in Autonomous Data Guard remote regions that are associated with the source database. Note that for Autonomous Database Serverless instances, standby databases located in the same region as the source primary database do not have OCIDs.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -4723,7 +4712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The resource&#x27;s private endpoint label. Setting this to an empty string, after the creation of the private endpoint database, changes the private endpoint database to a public endpoint database.</div>
+                                            <div>The resource&#x27;s private endpoint label. - Setting the endpoint label to a non-empty string creates a private endpoint database. - Resetting the endpoint label to an empty string, after the creation of the private endpoint database, changes the private endpoint database to a public endpoint database. - Setting the endpoint label to a non-empty string value, updates to a new private endpoint database, when the database is disabled and re- enabled.</div>
                                             <div>This setting cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, whitelistedIps, isMTLSConnectionRequired, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -4811,7 +4800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates the disaster recovery (DR) type of the Shared Autonomous Database. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
+                                            <div>Indicates the disaster recovery (DR) type of the Autonomous Database Serverless instance. Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ADG</div>
@@ -4894,6 +4883,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database/resource_pool_summary/is_disabled"></div>
+                    <b>is_disabled</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database/resource_pool_summary/is_disabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the resource pool should be deleted for the Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database/resource_pool_summary/pool_size"></div>
                     <b>pool_size</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database/resource_pool_summary/pool_size" title="Permalink to this return value"></a>
@@ -4940,7 +4948,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of scheduled operations.</div>
+                                            <div>The list of scheduled operations. Consists of values such as dayOfWeek, scheduledStartTime, scheduledStopTime.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, whitelistedIps, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, isRefreshable, dbName, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                         <br/>
                                                         </td>
@@ -5182,8 +5190,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The client IP access control list (ACL). This feature is available for autonomous databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.</div>
-                                            <div>For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.se a.&lt;unique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
+                                            <div>The client IP access control list (ACL). This feature is available for <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. If `arePrimaryWhitelistedIpsUsed` is &#x27;TRUE&#x27; then Autonomous Database uses this primary&#x27;s IP access control list (ACL) for the disaster recovery peer called `standbywhitelistedips`.</div>
+                                            <div>For Autonomous Database Serverless, this is an array of CIDR (classless inter-domain routing) notations for a subnet or VCN OCID (virtual cloud network Oracle Cloud ID). Multiple IPs and VCN OCIDs should be separate strings separated by commas, but if it&#x27;s other configurations that need multiple pieces of information then its each piece is connected with semicolon (;) as a delimiter. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.se a.&lt;unique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
                                             <div>For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                         <br/>
@@ -5577,7 +5585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>. This parameter and `secretId` are required for Customer Managed Keys.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -5595,8 +5603,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The client IP access control list (ACL). This feature is available for autonomous databases on <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>shared Exadata infrastructure</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.</div>
-                                            <div>For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.se a.&lt;unique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
+                                            <div>The client IP access control list (ACL). This feature is available for <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> and on Exadata Cloud@Customer. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. If `arePrimaryWhitelistedIpsUsed` is &#x27;TRUE&#x27; then Autonomous Database uses this primary&#x27;s IP access control list (ACL) for the disaster recovery peer called `standbywhitelistedips`.</div>
+                                            <div>For Autonomous Database Serverless, this is an array of CIDR (classless inter-domain routing) notations for a subnet or VCN OCID (virtual cloud network Oracle Cloud ID). Multiple IPs and VCN OCIDs should be separate strings separated by commas, but if it&#x27;s other configurations that need multiple pieces of information then its each piece is connected with semicolon (;) as a delimiter. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id&gt;&quot;,&quot;ocid1.vcn.oc1.sea.&lt;unique_id1&gt;;1.1.1.1&quot;,&quot;ocid1.vcn.oc1.se a.&lt;unique_id2&gt;;1.1.0.0/16&quot;]` For Exadata Cloud@Customer, this is an array of IP addresses or CIDR notations. Example: `[&quot;1.1.1.1&quot;,&quot;1.1.1.0/24&quot;,&quot;1.1.2.25&quot;]`</div>
                                             <div>For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.</div>
                                             <div>This cannot be updated in parallel with any of the following: licenseModel, dbEdition, cpuCoreCount, computeCount, computeModel, adminPassword, isMTLSConnectionRequired, openMode, permissionLevel, dbWorkload, dbVersion, isRefreshable, dbName, scheduledOperations, dbToolsDetails, isLocalDataGuardEnabled, or isFreeTier.</div>
                                         <br/>

@@ -18,16 +18,18 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CaBundleHelperCustom:
+class CertificatesManagementCaBundleHelperCustom:
     def __init__(self, *args, **kwargs):
-        super(CaBundleHelperCustom, self).__init__(*args, **kwargs)
+        super(CertificatesManagementCaBundleHelperCustom, self).__init__(
+            *args, **kwargs
+        )
         self.certificates_client = oci_config_utils.create_service_client(
             self.module, CertificatesClient
         )
 
     def get_existing_resource_dict_for_update(self):
         existing_resource_dict = super(
-            CaBundleHelperCustom, self
+            CertificatesManagementCaBundleHelperCustom, self
         ).get_existing_resource_dict_for_update()
         ca_bundle = self.certificates_client.get_ca_bundle(
             existing_resource_dict.get("id")
@@ -36,7 +38,7 @@ class CaBundleHelperCustom:
         return existing_resource_dict
 
 
-class CertificateAuthorityVersionActionsHelperCustom:
+class CertificatesManagementCertificateAuthorityVersionActionsHelperCustom:
 
     CANCEL_CERTIFICATE_AUTHORITY_VERSION_DELETION = (
         "cancel_certificate_authority_version_deletion"
@@ -57,5 +59,5 @@ class CertificateAuthorityVersionActionsHelperCustom:
             # do schedule_certificate_authority_version_deletion when the resource has no time_of_deletion
             return resource.time_of_deletion is None
         return super(
-            CertificateAuthorityVersionActionsHelperCustom, self
+            CertificatesManagementCertificateAuthorityVersionActionsHelperCustom, self
         ).is_action_necessary(action, resource)

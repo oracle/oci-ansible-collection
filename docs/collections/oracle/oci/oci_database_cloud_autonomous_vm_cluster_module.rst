@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_autonomous_vm_cluster -- Manage a CloudAutonomousV
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -300,7 +300,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The compute model of the Cloud Autonomous VM Cluster. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>The compute model of the Cloud Autonomous VM Cluster. ECPU compute model is the recommended model and OCPU compute model is legacy.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -500,8 +500,8 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Database service. Note that when provisioning an Autonomous Database on <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>dedicated Exadata infrastructure</a>, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>shared Exadata infrastructure</a>, if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.</div>
-                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
+                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service. Note that when provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database on dedicated Exadata infrastructure</a>, this attribute must be null. It is already set at the Autonomous Exadata Infrastructure level. When provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database Serverless]</a> database, if a value is not specified, the system defaults the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license (BYOL) also allows you to select the DB edition using the optional parameter.</div>
+                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -770,7 +770,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The amount of memory (in GBs) to be enabled per OCPU or ECPU. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>The amount of memory (in GBs) to be enabled per OCPU or ECPU.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1285,7 +1285,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The compute model of the Cloud Autonomous VM Cluster. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>The compute model of the Cloud Autonomous VM Cluster. ECPU compute model is the recommended model and OCPU compute model is legacy. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata #Infrastructure</a> for more details.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ECPU</div>
@@ -1590,8 +1590,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Database service. Note that when provisioning an Autonomous Database on <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>dedicated Exadata infrastructure</a>, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>shared Exadata infrastructure</a>, if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.</div>
-                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, maxCpuCoreCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
+                                            <div>The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on- premises Oracle software licenses to equivalent, highly automated Oracle services in the cloud. License Included allows you to subscribe to new Oracle Database software licenses and the Oracle Database service. Note that when provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous- database/index.html'>Autonomous Database on dedicated Exadata infrastructure</a>, this attribute must be null. It is already set at the Autonomous Exadata Infrastructure level. When provisioning an <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html'>Autonomous Database Serverless]</a> database, if a value is not specified, the system defaults the value to `BRING_YOUR_OWN_LICENSE`. Bring your own license (BYOL) also allows you to select the DB edition using the optional parameter.</div>
+                                            <div>This cannot be updated in parallel with any of the following: cpuCoreCount, computeCount, dataStorageSizeInTBs, adminPassword, isMTLSConnectionRequired, dbWorkload, privateEndpointLabel, nsgIds, dbVersion, dbName, scheduledOperations, dbToolsDetails, or isFreeTier.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LICENSE_INCLUDED</div>
@@ -1887,7 +1887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The amount of memory (in GBs) enabled per OCPU or ECPU. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>The amount of memory (in GBs) enabled per OCPU or ECPU.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1993,7 +1993,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For Autonomous Databases on Dedicated Exadata Infrastructure: - These are the CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the Autonomous Container Database. - The CPU type (OCPUs or ECPUs) is determined by the parent Autonomous Exadata VM Cluster&#x27;s compute model. See <a href='https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbak'>Compute Models in Autonomous Database on Dedicated Exadata Infrastructure</a> for more details.</div>
+                                            <div>CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the Autonomous Container Database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>

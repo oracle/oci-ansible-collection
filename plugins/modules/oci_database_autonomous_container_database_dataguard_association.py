@@ -101,7 +101,7 @@ autonomous_container_database_dataguard_association:
         autonomous_container_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Container Database that has a
-                  relationship with the peer Autonomous Container Database.
+                  relationship with the peer Autonomous Container Database. Used only by Autonomous Database on Dedicated Exadata Infrastructure.
             returned: on success
             type: str
             sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"

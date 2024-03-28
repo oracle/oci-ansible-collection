@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -608,6 +608,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tde_wallet_password"></div>
+                    <b>tde_wallet_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-tde_wallet_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The existing TDE wallet password of the Container Database.</div>
+                                            <div>Applicable only for <em>action=convert_to_regular</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -689,6 +705,7 @@ Examples
         # optional
         should_create_pdb_backup: true
         container_database_admin_password: example-password
+        tde_wallet_password: example-password
 
     - name: Perform action disable_pluggable_database_management on pluggable_database
       oci_database_pluggable_database_actions:

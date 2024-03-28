@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -277,7 +277,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The number of OCPU cores available for AMD-based virtual machine DB systems.</div>
+                                            <div>The number of CPU cores available for AMD-based virtual machine DB systems.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
@@ -642,7 +642,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED.</div>
+                                            <div>The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED. Bring your own license (BYOL) allows you to select the DB edition using the optional parameter, for Autonomous Database Serverless.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
