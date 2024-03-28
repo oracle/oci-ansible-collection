@@ -64,7 +64,7 @@ db_system_compute_performances:
             contains:
                 cpu_core_count:
                     description:
-                        - The number of OCPU cores available.
+                        - The number of CPU cores available.
                     returned: on success
                     type: int
                     sample: 56

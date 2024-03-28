@@ -46,7 +46,8 @@ options:
     kms_key_version_id:
         description:
             - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless does not
+              use key versions, hence is not applicable for Autonomous Database Serverless instances.
         type: str
     database_software_image_id:
         description:
@@ -339,13 +340,15 @@ options:
             kms_key_version_id:
                 description:
                     - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless
+                      does not use key versions, hence is not applicable for Autonomous Database Serverless instances.
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
             vault_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
-                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts). This parameter and `secretId` are required
+                      for Customer Managed Keys.
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
             sid_prefix:

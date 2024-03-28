@@ -244,7 +244,9 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CertificateAuthorityVersionActionsHelperGen(OCIActionsHelperBase):
+class CertificatesManagementCertificateAuthorityVersionActionsHelperGen(
+    OCIActionsHelperBase
+):
     """
     Supported actions:
         cancel_certificate_authority_version_deletion
@@ -323,14 +325,14 @@ class CertificateAuthorityVersionActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-CertificateAuthorityVersionActionsHelperCustom = get_custom_class(
-    "CertificateAuthorityVersionActionsHelperCustom"
+CertificatesManagementCertificateAuthorityVersionActionsHelperCustom = get_custom_class(
+    "CertificatesManagementCertificateAuthorityVersionActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    CertificateAuthorityVersionActionsHelperCustom,
-    CertificateAuthorityVersionActionsHelperGen,
+    CertificatesManagementCertificateAuthorityVersionActionsHelperCustom,
+    CertificatesManagementCertificateAuthorityVersionActionsHelperGen,
 ):
     pass
 

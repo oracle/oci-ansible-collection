@@ -1721,6 +1721,20 @@ oracle.oci
 * :ref:`oracle.oci.oci_osub_subscription_subscription_facts <ansible_collections.oracle.oci.oci_osub_subscription_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_osub_usage_computed_usage_aggregated_facts <ansible_collections.oracle.oci.oci_osub_usage_computed_usage_aggregated_facts_module>` -- Fetches details about one or multiple ComputedUsageAggregated resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_osub_usage_computed_usage_facts <ansible_collections.oracle.oci.oci_osub_usage_computed_usage_facts_module>` -- Fetches details about one or multiple ComputedUsage resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_backup <ansible_collections.oracle.oci.oci_psql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_backup_actions <ansible_collections.oracle.oci.oci_psql_backup_actions_module>` -- Perform actions on a Backup resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_backup_facts <ansible_collections.oracle.oci.oci_psql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_configuration <ansible_collections.oracle.oci.oci_psql_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_configuration_actions <ansible_collections.oracle.oci.oci_psql_configuration_actions_module>` -- Perform actions on a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_configuration_facts <ansible_collections.oracle.oci.oci_psql_configuration_facts_module>` -- Fetches details about one or multiple Configuration resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_connection_facts <ansible_collections.oracle.oci.oci_psql_connection_facts_module>` -- Fetches details about a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_db_system <ansible_collections.oracle.oci.oci_psql_db_system_module>` -- Manage a DbSystem resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_db_system_actions <ansible_collections.oracle.oci.oci_psql_db_system_actions_module>` -- Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_db_system_db_instance <ansible_collections.oracle.oci.oci_psql_db_system_db_instance_module>` -- Manage a DbSystemDbInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_db_system_facts <ansible_collections.oracle.oci.oci_psql_db_system_facts_module>` -- Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_default_configuration_facts <ansible_collections.oracle.oci.oci_psql_default_configuration_facts_module>` -- Fetches details about one or multiple DefaultConfiguration resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_primary_db_instance_facts <ansible_collections.oracle.oci.oci_psql_primary_db_instance_facts_module>` -- Fetches details about a PrimaryDbInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_psql_shape_facts <ansible_collections.oracle.oci.oci_psql_shape_facts_module>` -- Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_queue <ansible_collections.oracle.oci.oci_queue_module>` -- Manage a Queue resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_queue_actions <ansible_collections.oracle.oci.oci_queue_actions_module>` -- Perform actions on a Queue resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_queue_facts <ansible_collections.oracle.oci.oci_queue_facts_module>` -- Fetches details about one or multiple Queue resources in Oracle Cloud Infrastructure

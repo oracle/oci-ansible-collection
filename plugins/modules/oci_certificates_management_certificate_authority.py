@@ -965,12 +965,12 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CertificateAuthorityHelperGen(OCIResourceHelperBase):
+class CertificatesManagementCertificateAuthorityHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
     def get_possible_entity_types(self):
         return super(
-            CertificateAuthorityHelperGen, self
+            CertificatesManagementCertificateAuthorityHelperGen, self
         ).get_possible_entity_types() + [
             "certificateauthority",
             "certificateauthorities",
@@ -1079,10 +1079,15 @@ class CertificateAuthorityHelperGen(OCIResourceHelperBase):
         )
 
 
-CertificateAuthorityHelperCustom = get_custom_class("CertificateAuthorityHelperCustom")
+CertificatesManagementCertificateAuthorityHelperCustom = get_custom_class(
+    "CertificatesManagementCertificateAuthorityHelperCustom"
+)
 
 
-class ResourceHelper(CertificateAuthorityHelperCustom, CertificateAuthorityHelperGen):
+class ResourceHelper(
+    CertificatesManagementCertificateAuthorityHelperCustom,
+    CertificatesManagementCertificateAuthorityHelperGen,
+):
     pass
 
 

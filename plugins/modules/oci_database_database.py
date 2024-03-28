@@ -55,7 +55,8 @@ options:
     kms_key_version_id:
         description:
             - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless does not
+              use key versions, hence is not applicable for Autonomous Database Serverless instances.
         type: str
     database:
         description:
@@ -273,13 +274,15 @@ options:
             kms_key_version_id:
                 description:
                     - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless
+                      does not use key versions, hence is not applicable for Autonomous Database Serverless instances.
                     - Applicable when source is 'NONE'
                 type: str
             vault_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
-                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts). This parameter and `secretId` are required
+                      for Customer Managed Keys.
                     - Applicable when source is 'NONE'
                 type: str
             backup_id:
@@ -939,14 +942,16 @@ database:
         kms_key_version_id:
             description:
                 - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation. Autonomous Database Serverless does
+                  not use key versions, hence is not applicable for Autonomous Database Serverless instances.
             returned: on success
             type: str
             sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
-                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts). This parameter and `secretId` are required for
+                  Customer Managed Keys.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
@@ -995,7 +1000,7 @@ database:
             sample: sid_prefix_example
         key_store_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store of Oracle Vault.
             returned: on success
             type: str
             sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"

@@ -124,8 +124,8 @@ options:
                     - The type of credential used to connect to the database.
                 type: str
                 choices:
-                    - "NAME_REFERENCE"
                     - "SSL_DETAILS"
+                    - "NAME_REFERENCE"
                     - "DETAILS"
                 default: "DETAILS"
             credential_name:
@@ -205,7 +205,13 @@ EXAMPLES = """
       protocol: TCP
     connection_credentials:
       # required
-      credential_type: NAME_REFERENCE
+      ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      credential_type: SSL_DETAILS
+      username: username_example
+      password: example-password
+      role: SYSDBA
+
+      # optional
       credential_name: credential_name_example
 
 - name: Update external_database_connector with connector_type = MACS
@@ -224,7 +230,13 @@ EXAMPLES = """
       protocol: TCP
     connection_credentials:
       # required
-      credential_type: NAME_REFERENCE
+      ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      credential_type: SSL_DETAILS
+      username: username_example
+      password: example-password
+      role: SYSDBA
+
+      # optional
       credential_name: credential_name_example
 
 - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connector_type = MACS
@@ -245,7 +257,13 @@ EXAMPLES = """
       protocol: TCP
     connection_credentials:
       # required
-      credential_type: NAME_REFERENCE
+      ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      credential_type: SSL_DETAILS
+      username: username_example
+      password: example-password
+      role: SYSDBA
+
+      # optional
       credential_name: credential_name_example
 
 - name: Delete external_database_connector
@@ -667,7 +685,7 @@ def main():
                     credential_type=dict(
                         type="str",
                         default="DETAILS",
-                        choices=["NAME_REFERENCE", "SSL_DETAILS", "DETAILS"],
+                        choices=["SSL_DETAILS", "NAME_REFERENCE", "DETAILS"],
                     ),
                     credential_name=dict(type="str"),
                     username=dict(type="str"),

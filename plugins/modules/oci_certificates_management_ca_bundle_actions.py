@@ -161,7 +161,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CaBundleActionsHelperGen(OCIActionsHelperBase):
+class CertificatesManagementCaBundleActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
@@ -207,10 +207,15 @@ class CaBundleActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-CaBundleActionsHelperCustom = get_custom_class("CaBundleActionsHelperCustom")
+CertificatesManagementCaBundleActionsHelperCustom = get_custom_class(
+    "CertificatesManagementCaBundleActionsHelperCustom"
+)
 
 
-class ResourceHelper(CaBundleActionsHelperCustom, CaBundleActionsHelperGen):
+class ResourceHelper(
+    CertificatesManagementCaBundleActionsHelperCustom,
+    CertificatesManagementCaBundleActionsHelperGen,
+):
     pass
 
 

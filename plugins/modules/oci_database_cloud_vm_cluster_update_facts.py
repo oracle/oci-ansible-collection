@@ -88,7 +88,7 @@ cloud_vm_cluster_updates:
             sample: description_example
         last_action:
             description:
-                - The update action.
+                - The previous update action performed.
             returned: on success
             type: str
             sample: ROLLING_APPLY

@@ -30,7 +30,7 @@ oracle.oci.oci_database_external_database_connector -- Manage an ExternalDatabas
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -298,8 +298,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>NAME_REFERENCE</li>
-                                                                                                                                                                                                <li>SSL_DETAILS</li>
+                                                                                                                                                                <li>SSL_DETAILS</li>
+                                                                                                                                                                                                <li>NAME_REFERENCE</li>
                                                                                                                                                                                                 <li><div style="color: blue"><b>DETAILS</b>&nbsp;&larr;</div></li>
                                                                                     </ul>
                                                                             </td>
@@ -773,7 +773,13 @@ Examples
           protocol: TCP
         connection_credentials:
           # required
-          credential_type: NAME_REFERENCE
+          ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+          credential_type: SSL_DETAILS
+          username: username_example
+          password: example-password
+          role: SYSDBA
+
+          # optional
           credential_name: credential_name_example
 
     - name: Update external_database_connector with connector_type = MACS
@@ -792,7 +798,13 @@ Examples
           protocol: TCP
         connection_credentials:
           # required
-          credential_type: NAME_REFERENCE
+          ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+          credential_type: SSL_DETAILS
+          username: username_example
+          password: example-password
+          role: SYSDBA
+
+          # optional
           credential_name: credential_name_example
 
     - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connector_type = MACS
@@ -813,7 +825,13 @@ Examples
           protocol: TCP
         connection_credentials:
           # required
-          credential_type: NAME_REFERENCE
+          ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+          credential_type: SSL_DETAILS
+          username: username_example
+          password: example-password
+          role: SYSDBA
+
+          # optional
           credential_name: credential_name_example
 
     - name: Delete external_database_connector

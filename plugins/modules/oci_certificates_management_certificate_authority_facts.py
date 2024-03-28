@@ -679,7 +679,9 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class CertificateAuthorityFactsHelperGen(OCIResourceFactsHelperBase):
+class CertificatesManagementCertificateAuthorityFactsHelperGen(
+    OCIResourceFactsHelperBase
+):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -716,13 +718,14 @@ class CertificateAuthorityFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-CertificateAuthorityFactsHelperCustom = get_custom_class(
-    "CertificateAuthorityFactsHelperCustom"
+CertificatesManagementCertificateAuthorityFactsHelperCustom = get_custom_class(
+    "CertificatesManagementCertificateAuthorityFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    CertificateAuthorityFactsHelperCustom, CertificateAuthorityFactsHelperGen
+    CertificatesManagementCertificateAuthorityFactsHelperCustom,
+    CertificatesManagementCertificateAuthorityFactsHelperGen,
 ):
     pass
 

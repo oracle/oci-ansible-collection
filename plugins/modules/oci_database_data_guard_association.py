@@ -59,7 +59,7 @@ options:
         type: str
     cpu_core_count:
         description:
-            - The number of OCPU cores available for AMD-based virtual machine DB systems.
+            - The number of CPU cores available for AMD-based virtual machine DB systems.
             - Applicable when creation_type is 'NewDbSystem'
         type: int
     storage_volume_performance_mode:
@@ -143,7 +143,8 @@ options:
         type: str
     license_model:
         description:
-            - The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED.
+            - The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED. Bring your own
+              license (BYOL) allows you to select the DB edition using the optional parameter, for Autonomous Database Serverless.
             - Applicable when creation_type is 'NewDbSystem'
         type: str
         choices:

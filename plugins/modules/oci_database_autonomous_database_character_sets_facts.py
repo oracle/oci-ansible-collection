@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     is_shared:
         description:
-            - Specifies whether this request is for Autonomous Database on Shared infrastructure. By default, this request will be for Autonomous Database on
+            - Specifies whether this request is for an Autonomous Database Serverless instance. By default, this request will be for Autonomous Database on
               Dedicated Exadata Infrastructure.
         type: bool
     character_set_type:

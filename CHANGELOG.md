@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.43.0]
+
+## Added
+- Support for the PostgreSQL service
+- Updated parameters description of database modules in the Database Service
+
+## Fixed
+- `certificates_management` service's custom_helper class names to avoid conflicting with other service's custom_helper class names (#269)
+
+## Breaking
+- Parameter `max_cpu_core_count` was removed from `oci_database_autonomous_database`, `oci_database_autonomous_database_facts`, `oci_database_autonomous_database_actions` and `oci_database_autonomous_database_clones_facts` modules in the Database service.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.125.0
+
 ## [4.42.0]
 
 ## Added
