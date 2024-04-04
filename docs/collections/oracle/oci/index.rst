@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.43.0
+Collection version 5.0.0
 
 .. toctree::
     :maxdepth: 1
@@ -165,13 +165,6 @@ Modules
 * :ref:`oci_apm_traces_span_facts <ansible_collections.oracle.oci.oci_apm_traces_span_facts_module>` -- Fetches details about a Span resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_traces_trace_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_facts_module>` -- Fetches details about a Trace resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_traces_trace_snapshot_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_snapshot_facts_module>` -- Fetches details about a TraceSnapshot resource in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_migration <ansible_collections.oracle.oci.oci_application_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_migration_actions <ansible_collections.oracle.oci.oci_application_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_migration_facts <ansible_collections.oracle.oci.oci_application_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_source <ansible_collections.oracle.oci.oci_application_migration_source_module>` -- Manage a Source resource in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_source_actions <ansible_collections.oracle.oci.oci_application_migration_source_actions_module>` -- Perform actions on a Source resource in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_source_application_facts <ansible_collections.oracle.oci.oci_application_migration_source_application_facts_module>` -- Fetches details about one or multiple SourceApplication resources in Oracle Cloud Infrastructure
-* :ref:`oci_application_migration_source_facts <ansible_collections.oracle.oci.oci_application_migration_source_facts_module>` -- Fetches details about one or multiple Source resources in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_actions <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_actions_module>` -- Perform actions on a MonitoredInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_facts <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_facts_module>` -- Fetches details about one or multiple MonitoredInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
@@ -2165,13 +2158,6 @@ Modules
     oci_apm_traces_span_facts_module
     oci_apm_traces_trace_facts_module
     oci_apm_traces_trace_snapshot_facts_module
-    oci_application_migration_migration_module
-    oci_application_migration_migration_actions_module
-    oci_application_migration_migration_facts_module
-    oci_application_migration_source_module
-    oci_application_migration_source_actions_module
-    oci_application_migration_source_application_facts_module
-    oci_application_migration_source_facts_module
     oci_appmgmt_control_monitored_instance_actions_module
     oci_appmgmt_control_monitored_instance_facts_module
     oci_artifacts_container_configuration_module
