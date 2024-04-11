@@ -1403,7 +1403,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     image_name = image_details.display_name
                     instance_common_vars.update({"image_name": image_name})  
                 except ServiceError as e:
-                    self.debug(f"No se pudo obtener los detalles de la imagen para image_id {instance.image_id}: {e}")
+                    self.debug(f"It was not possible to obtain details for the image with image_id: {instance.image_id}: {e}")
                     
             common_groups = self.get_common_groups(instance=instance, region=region)
 
