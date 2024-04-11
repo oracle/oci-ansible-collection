@@ -1439,6 +1439,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         subnet = oci_common_utils.call_with_backoff(
                             virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
                         ).data
+                        availability_domain = instance.availability_domain
                     elif getattr(vnic, "vlan_id", None):
                         vlan = oci_common_utils.call_with_backoff(
                             virtual_nw_client.get_vlan, vlan_id=vnic.vlan_id
@@ -1450,7 +1451,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             )
                         )
                         continue
-
+                    attachments = compute_client.list_boot_volume_attachments(
+                        compartment_id=compartment.id,
+                        instance_id=instance.id,
+                        availability_domain=availability_domain  
+                    ).data
+                    boot_volume_ids = [attachment.boot_volume_id for attachment in attachments]
+                    # add the id of the boot volume of the machine
+                    instance_common_vars['boot_volume_id'] = boot_volume_ids
+                    
                     ipv6_ip_addresses = []
                     if self._get_enable_ipv6():
                         try:
