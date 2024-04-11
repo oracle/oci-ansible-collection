@@ -1418,6 +1418,16 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     vnic_attachment, lifecycle_state=self.LIFECYCLE_ATTACHED_STATE
                 )
             ]
+            
+            availability_domain = instance.availability_domain
+            attachments = compute_client.list_boot_volume_attachments(
+                compartment_id=compartment.id,
+                instance_id=instance.id,
+                availability_domain=availability_domain  
+            ).data
+            boot_volume_ids = [attachment.boot_volume_id for attachment in attachments]
+            # add the id of the boot volume of the machine
+            instance_common_vars['boot_volume_id'] = boot_volume_ids
 
             for vnic_attachment in vnic_attachments:
                 instance_vars = instance_common_vars.copy()
@@ -1451,15 +1461,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             )
                         )
                         continue
-                    attachments = compute_client.list_boot_volume_attachments(
-                        compartment_id=compartment.id,
-                        instance_id=instance.id,
-                        availability_domain=availability_domain  
-                    ).data
-                    boot_volume_ids = [attachment.boot_volume_id for attachment in attachments]
-                    # add the id of the boot volume of the machine
-                    instance_common_vars['boot_volume_id'] = boot_volume_ids
-                    
                     ipv6_ip_addresses = []
                     if self._get_enable_ipv6():
                         try:
