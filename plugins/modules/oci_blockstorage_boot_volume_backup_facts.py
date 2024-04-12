@@ -115,7 +115,7 @@ EXAMPLES = """
     lifecycle_state: CREATING
 
 - name: List all boot volume bakcups that match the freeform tags
-    oracle.oci.oci_blockstorage_boot_volume_backup_facts:
+  oracle.oci.oci_blockstorage_boot_volume_backup_facts:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags_filter:
         department: biology
