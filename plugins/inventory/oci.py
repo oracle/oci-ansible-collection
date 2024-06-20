@@ -1396,7 +1396,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             instance_common_vars = to_dict(instance)
             compartment_name = self.sanitize(compartment.name)
             instance_common_vars.update({"compartment_name": compartment_name})
-
+            
+            if instance.image_id: 
+                try:
+                    image_details = compute_client.get_image(instance.image_id).data
+                    image_name = image_details.display_name
+                    instance_common_vars.update({"image_name": image_name})  
+                except ServiceError as e:
+                    self.debug(f"It was not possible to obtain details for the image with image_id: {instance.image_id}: {e}")
+                    
             common_groups = self.get_common_groups(instance=instance, region=region)
 
             vnic_attachments = [
@@ -1410,6 +1418,16 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     vnic_attachment, lifecycle_state=self.LIFECYCLE_ATTACHED_STATE
                 )
             ]
+            
+            availability_domain = instance.availability_domain
+            attachments = compute_client.list_boot_volume_attachments(
+                compartment_id=compartment.id,
+                instance_id=instance.id,
+                availability_domain=availability_domain  
+            ).data
+            boot_volume_ids = [attachment.boot_volume_id for attachment in attachments]
+            # add the id of the boot volume of the machine
+            instance_common_vars['boot_volume_id'] = boot_volume_ids
 
             for vnic_attachment in vnic_attachments:
                 instance_vars = instance_common_vars.copy()
@@ -1431,6 +1449,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         subnet = oci_common_utils.call_with_backoff(
                             virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
                         ).data
+                        availability_domain = instance.availability_domain
                     elif getattr(vnic, "vlan_id", None):
                         vlan = oci_common_utils.call_with_backoff(
                             virtual_nw_client.get_vlan, vlan_id=vnic.vlan_id
@@ -1442,7 +1461,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             )
                         )
                         continue
-
                     ipv6_ip_addresses = []
                     if self._get_enable_ipv6():
                         try:
@@ -1846,16 +1864,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         try:
             compute_client = self.get_compute_client_for_region(region)
 
-            instances = self.get_filtered_resources(
-                oci_common_utils.list_all_resources(
-                    target_fn=compute_client.list_instances,
-                    compartment_id=compartment_ocid,
-                    lifecycle_state="RUNNING",
-                    limit=2000,
-                ),
-                compartment_ocid,
-            )
-            return instances
+            all_instances = []  
+
+            for state in ["PROVISIONING", "RUNNING", "STOPPING", "STOPPED", "STARTING"]:
+                temp_instances = self.get_filtered_resources(
+                    oci_common_utils.list_all_resources(
+                        target_fn=compute_client.list_instances,
+                        compartment_id=compartment_ocid,
+                        lifecycle_state=state,
+                        limit=2000,
+                    ),
+                    compartment_ocid,
+                )
+                all_instances.extend(temp_instances)
+
+            return all_instances
         except ServiceError as ex:
             self.debug(
                 "Service Error occurred in get_filtered_instances for compartment_ocid :{0} , region : {1} with "
