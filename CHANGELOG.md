@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [5.2.0]
+
+## Added
+- Support for MySQL to MySQL homogeneous migrations in the Database Migration service
+- Oracle Linux Automation Manager (OLAM) documentation
+
+## Breaking
+- `oci_database_migration_agent`, `oci_database_migration_agent_facts`, `oci_database_migration_agent_image_facts` and `oci_database_migration_agent_actions` modules are removed from Database Migration service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.129.1
+
 ## [5.1.0]
 
 ## Fixed

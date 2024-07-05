@@ -14,7 +14,7 @@
 
 .. Anchors
 
-.. _ansible_collections.oracle.oci.oci_database_migration_agent_module:
+.. _ansible_collections.oracle.oci.oci_database_migration_excluded_object_facts_module:
 
 .. Anchors: short name for ansible.builtin
 
@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_database_migration_agent -- Manage an Agent resource in Oracle Cloud Infrastructure
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_database_migration_excluded_object_facts -- Fetches details about one or multiple ExcludedObject resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -38,7 +38,7 @@ oracle.oci.oci_database_migration_agent -- Manage an Agent resource in Oracle Cl
 
     To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
-    To use it in a playbook, specify: :code:`oracle.oci.oci_database_migration_agent`.
+    To use it in a playbook, specify: :code:`oracle.oci.oci_database_migration_excluded_object_facts`.
 
 .. version_added
 
@@ -56,8 +56,8 @@ Synopsis
 
 .. Description
 
-- This module allows the user to update and delete an Agent resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oracle.oci.oci_database_migration_agent_actions <ansible_collections.oracle.oci.oci_database_migration_agent_actions_module>` module: change_compartment.
+- Fetches details about one or multiple ExcludedObject resources in Oracle Cloud Infrastructure
+- List the excluded database objects.
 
 
 .. Aliases
@@ -87,24 +87,6 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-agent_id"></div>
-                    <b>agent_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-agent_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The OCID of the agent</div>
-                                            <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
-                                    </td>
-            </tr>
-                                <tr>
                                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
@@ -221,23 +203,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The ID of the compartment in which to list resources.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -268,25 +233,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-job_id"></div>
+                    <b>job_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">dictionary</span>
-                                                                    </div>
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
-                                            <div>This parameter is updatable.</div>
+                                            <div>The OCID of the job</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-object"></div>
+                    <b>object</b>
+                    <a class="ansibleOptionLink" href="#parameter-object" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -294,33 +258,14 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>ODMS Agent name</div>
-                                            <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">dictionary</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
-                                            <div>This parameter is updatable.</div>
+                                            <div>Excluded object name</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-public_key"></div>
-                    <b>public_key</b>
-                    <a class="ansibleOptionLink" href="#parameter-public_key" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-object_contains"></div>
+                    <b>object_contains</b>
+                    <a class="ansibleOptionLink" href="#parameter-object_contains" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -328,8 +273,37 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>ODMS Agent public key.</div>
-                                            <div>This parameter is updatable.</div>
+                                            <div>Excluded object name which contains provided value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#parameter-owner" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Excluded object owner</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-owner_contains"></div>
+                    <b>owner_contains</b>
+                    <a class="ansibleOptionLink" href="#parameter-owner_contains" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Excluded object owner which contains provided value.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -353,6 +327,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-reason_category"></div>
+                    <b>reason_category</b>
+                    <a class="ansibleOptionLink" href="#parameter-reason_category" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ORACLE_MAINTAINED</li>
+                                                                                                                                                                                                <li>GG_UNSUPPORTED</li>
+                                                                                                                                                                                                <li>USER_EXCLUDED</li>
+                                                                                                                                                                                                <li>MANDATORY_EXCLUDED</li>
+                                                                                                                                                                                                <li>USER_EXCLUDED_TYPE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Reason category for the excluded object</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -368,30 +364,47 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-state"></div>
-                    <b>state</b>
-                    <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li><div style="color: blue"><b>present</b>&nbsp;&larr;</div></li>
-                                                                                                                                                                                                <li>absent</li>
+                                                                                                                                                                <li>type</li>
+                                                                                                                                                                                                <li>reasonCategory</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The state of the Agent.</div>
-                                            <div>Use <em>state=present</em> to update an existing an Agent.</div>
-                                            <div>Use <em>state=absent</em> to delete an Agent.</div>
+                                            <div>The field to sort by. Only one sort order may be provided. Default order for reasonCategory is ascending. If no value is specified reasonCategory is default.</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-stream_id"></div>
-                    <b>stream_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-stream_id" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
+                    <b>sort_order</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ASC</li>
+                                                                                                                                                                                                <li>DESC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_rule"></div>
+                    <b>source_rule</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_rule" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -399,8 +412,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Stream</div>
-                                            <div>This parameter is updatable.</div>
+                                            <div>Exclude object rule that matches the excluded object, if applicable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -420,9 +432,9 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-version"></div>
-                    <b>version</b>
-                    <a class="ansibleOptionLink" href="#parameter-version" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -430,42 +442,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>ODMS Agent version</div>
-                                            <div>This parameter is updatable.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-wait"></div>
-                    <b>wait</b>
-                    <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>no</li>
-                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
-                                                                                    </ul>
-                                                                            </td>
-                                                                <td>
-                                            <div>Whether to wait for create or delete operation to complete.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
-                    <b>wait_timeout</b>
-                    <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
+                                            <div>Excluded object type.</div>
                                                         </td>
             </tr>
                         </table>
@@ -493,44 +470,21 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Update agent
-      oci_database_migration_agent:
+    - name: List excluded_objects
+      oci_database_migration_excluded_object_facts:
         # required
-        agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
-        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
-        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-        version: version_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-
-    - name: Update agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_database_migration_agent:
-        # required
-        display_name: display_name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
-        # optional
-        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
-        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-        version: version_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-
-    - name: Delete agent
-      oci_database_migration_agent:
-        # required
-        agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
-        state: absent
-
-    - name: Delete agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_database_migration_agent:
-        # required
-        display_name: display_name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        state: absent
+        sort_order: ASC
+        sort_by: type
+        type: type_example
+        owner: owner_example
+        object: object_example
+        owner_contains: owner_contains_example
+        object_contains: object_contains_example
+        reason_category: ORACLE_MAINTAINED
+        source_rule: source_rule_example
 
 
 
@@ -555,251 +509,109 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-agent"></div>
-                    <b>agent</b>
-                    <a class="ansibleOptionLink" href="#return-agent" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects"></div>
+                    <b>excluded_objects</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Details of the Agent resource acted upon by the current operation</div>
+                                            <div>List of ExcludedObject resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;object&#x27;: &#x27;object_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;reason_category&#x27;: &#x27;ORACLE_MAINTAINED&#x27;, &#x27;source_rule&#x27;: &#x27;source_rule_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-agent/compartment_id" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects/object"></div>
+                    <b>object</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects/object" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>OCID of the compartment</div>
+                                            <div>Database object name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-agent/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-agent/display_name" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects/owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects/owner" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>ODMS Agent name</div>
+                                            <div>Database object owner.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">owner_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-agent/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-agent/id" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects/reason_category"></div>
+                    <b>reason_category</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects/reason_category" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the resource</div>
+                                            <div>Reason category for object exclusion.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ORACLE_MAINTAINED</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/lifecycle_details"></div>
-                    <b>lifecycle_details</b>
-                    <a class="ansibleOptionLink" href="#return-agent/lifecycle_details" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects/source_rule"></div>
+                    <b>source_rule</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects/source_rule" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>Reason for exclusion.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_rule_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-agent/lifecycle_state" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-excluded_objects/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-excluded_objects/type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the ODMS on-premises Agent.</div>
+                                            <div>Database object type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/public_key"></div>
-                    <b>public_key</b>
-                    <a class="ansibleOptionLink" href="#return-agent/public_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>ODMS Agent public key.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/stream_id"></div>
-                    <b>stream_id</b>
-                    <a class="ansibleOptionLink" href="#return-agent/stream_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The OCID of the Stream</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/system_tags"></div>
-                    <b>system_tags</b>
-                    <a class="ansibleOptionLink" href="#return-agent/system_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
-                                        <br/>
-                                                        </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-agent/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time the Agent was created. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-agent/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time of the last Agent details update. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent/version"></div>
-                    <b>version</b>
-                    <a class="ansibleOptionLink" href="#return-agent/version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>ODMS Agent version</div>
-                                        <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
                                     </td>
             </tr>
                     

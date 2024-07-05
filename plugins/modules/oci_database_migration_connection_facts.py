@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     connection_id:
         description:
-            - The OCID of the database connection
+            - The OCID of the database connection.
             - Required to get a specific connection.
         type: str
         aliases: ["id"]
@@ -38,6 +38,34 @@ options:
         description:
             - The ID of the compartment in which to list resources.
             - Required to list multiple connections.
+        type: str
+    technology_type:
+        description:
+            - The array of technology types.
+        type: list
+        elements: str
+        choices:
+            - "OCI_AUTONOMOUS_DATABASE"
+            - "OCI_MYSQL"
+            - "ORACLE_DATABASE"
+            - "ORACLE_EXADATA"
+            - "AMAZON_RDS_ORACLE"
+            - "AMAZON_AURORA_MYSQL"
+            - "AMAZON_RDS_MYSQL"
+            - "AZURE_MYSQL"
+            - "GOOGLE_CLOUD_SQL_MYSQL"
+            - "MYSQL_SERVER"
+    connection_type:
+        description:
+            - The array of connection types.
+        type: list
+        elements: str
+        choices:
+            - "MYSQL"
+            - "ORACLE"
+    source_connection_id:
+        description:
+            - The OCID of the source database connection.
         type: str
     display_name:
         description:
@@ -86,6 +114,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    technology_type: [ "OCI_AUTONOMOUS_DATABASE" ]
+    connection_type: [ "MYSQL" ]
+    source_connection_id: "ocid1.sourceconnection.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: timeCreated
     sort_order: ASC
@@ -100,232 +131,195 @@ connections:
     returned: on success
     type: complex
     contains:
-        connect_descriptor:
+        host:
             description:
-                - ""
+                - The IP Address of the host.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: host_example
+        port:
+            description:
+                - The port to be used for the connection.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        database_name:
+            description:
+                - The name of the database being referenced.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: database_name_example
+        security_protocol:
+            description:
+                - Security Protocol to be used for the connection.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: PLAIN
+        ssl_mode:
+            description:
+                - SSL mode to be used for the connection.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: DISABLED
+        additional_attributes:
+            description:
+                - An array of name-value pair attribute entries.
                 - Returned for get operation
             returned: on success
             type: complex
             contains:
-                host:
+                name:
                     description:
-                        - Host of the connect descriptor.
+                        - The name of the property entry.
                     returned: on success
                     type: str
-                    sample: host_example
-                port:
+                    sample: name_example
+                value:
                     description:
-                        - Port of the connect descriptor.
-                    returned: on success
-                    type: int
-                    sample: 56
-                database_service_name:
-                    description:
-                        - Database service name.
+                        - The value of the property entry.
                     returned: on success
                     type: str
-                    sample: database_service_name_example
-                connect_string:
-                    description:
-                        - Connect string.
-                    returned: on success
-                    type: str
-                    sample: connect_string_example
-        credentials_secret_id:
+                    sample: value_example
+        db_system_id:
             description:
-                - OCID of the Secret in the OCI vault containing the Database Connection credentials.
+                - The OCID of the database system being referenced.
                 - Returned for get operation
             returned: on success
             type: str
-            sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
-        certificate_tdn:
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        username:
             description:
-                - This name is the distinguished name used while creating the certificate on target database.
+                - The username (credential) used when creating or updating this resource.
                 - Returned for get operation
             returned: on success
             type: str
-            sample: certificate_tdn_example
-        ssh_details:
+            sample: username_example
+        password:
             description:
-                - ""
+                - The password (credential) used when creating or updating this resource.
                 - Returned for get operation
             returned: on success
-            type: complex
-            contains:
-                host:
-                    description:
-                        - Name of the host the SSH key is valid for.
-                    returned: on success
-                    type: str
-                    sample: host_example
-                user:
-                    description:
-                        - SSH user
-                    returned: on success
-                    type: str
-                    sample: user_example
-                sudo_location:
-                    description:
-                        - Sudo location
-                    returned: on success
-                    type: str
-                    sample: sudo_location_example
-        admin_credentials:
+            type: str
+            sample: example-password
+        replication_username:
             description:
-                - ""
+                - The username (credential) used when creating or updating this resource.
                 - Returned for get operation
             returned: on success
-            type: complex
-            contains:
-                username:
-                    description:
-                        - Administrator username
-                    returned: on success
-                    type: str
-                    sample: username_example
-        replication_credentials:
+            type: str
+            sample: replication_username_example
+        replication_password:
             description:
-                - ""
+                - The password (credential) used when creating or updating this resource.
                 - Returned for get operation
             returned: on success
-            type: complex
-            contains:
-                username:
-                    description:
-                        - Administrator username
-                    returned: on success
-                    type: str
-                    sample: username_example
-        private_endpoint:
+            type: str
+            sample: example-password
+        secret_id:
             description:
-                - ""
+                - The OCID of the resource being referenced.
                 - Returned for get operation
             returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
-                          private endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                vcn_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN where the Private Endpoint will be bound
-                          to.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-                subnet_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's
-                          subnet where the private endpoint VNIC will reside.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-                id:
-                    description:
-                        - L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a previously created Private Endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        vault_details:
+            type: str
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_id:
             description:
-                - ""
+                - The OCID of the resource being referenced.
                 - Returned for get operation
             returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - OCID of the compartment where the secret containing the credentials will be created.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                vault_id:
-                    description:
-                        - OCID of the vault
-                    returned: on success
-                    type: str
-                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-                key_id:
-                    description:
-                        - OCID of the vault encryption key
-                    returned: on success
-                    type: str
-                    sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        id:
+            type: str
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type:
             description:
-                - The OCID of the resource
+                - "The type of MySQL source or target connection.
+                  Example: OCI_MYSQL represents OCI MySQL HeatWave Database Service"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
+            sample: AMAZON_AURORA_MYSQL
+        connection_string:
             description:
-                - OCID of the compartment
+                - Connect descriptor or Easy Connect Naming method used to connect to a database.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        database_type:
-            description:
-                - Database connection type.
-            returned: on success
-            type: str
-            sample: MANUAL
-        manual_database_sub_type:
-            description:
-                - Database manual connection subtype. This value can only be specified for manual connections.
-            returned: on success
-            type: str
-            sample: ORACLE
-        is_dedicated:
-            description:
-                - True if the Autonomous Connection is dedicated. Not provided for Non-Autonomous Connections.
-            returned: on success
-            type: bool
-            sample: true
-        display_name:
-            description:
-                - Database Connection display name identifier.
-            returned: on success
-            type: str
-            sample: display_name_example
+            sample: connection_string_example
         database_id:
             description:
-                - The OCID of the cloud database.
+                - The OCID of the database being referenced.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
+        ssh_host:
             description:
-                - The time the Connection resource was created. An RFC3339 formatted datetime string.
+                - Name of the host the SSH key is valid for.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
+            sample: ssh_host_example
+        ssh_key:
             description:
-                - The time of the last Connection resource details update. An RFC3339 formatted datetime string.
+                - Private SSH key string.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
+            sample: ssh_key_example
+        ssh_user:
             description:
-                - The current state of the Connection resource.
+                - The username (credential) used when creating or updating this resource.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: CREATING
-        lifecycle_details:
+            sample: ssh_user_example
+        ssh_sudo_location:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information
-                  for a resource in Failed state.
+                - Sudo location
+                - Returned for get operation
             returned: on success
             type: str
-            sample: lifecycle_details_example
+            sample: ssh_sudo_location_example
+        connection_type:
+            description:
+                - Defines the type of connection. For example, ORACLE.
+            returned: on success
+            type: str
+            sample: MYSQL
+        id:
+            description:
+                - The OCID of the connection being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - A user-friendly description. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: description_example
+        compartment_id:
+            description:
+                - The OCID of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see Resource Tags. Example: {\\"Department\\": \\"Finance\\"}"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -343,6 +337,63 @@ connections:
             returned: on success
             type: dict
             sample: {}
+        lifecycle_state:
+            description:
+                - The Connection's current lifecycle state.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - The message describing the current state of the connection's lifecycle in detail.
+                  For example, can be used to provide actionable information for a connection in a Failed state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        time_created:
+            description:
+                - The time when this resource was created.
+                  An RFC3339 formatted datetime string such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time when this resource was updated.
+                  An RFC3339 formatted datetime string such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        vault_id:
+            description:
+                - OCI resource ID.
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id:
+            description:
+                - The OCID of the key used in cryptographic operations.
+            returned: on success
+            type: str
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        subnet_id:
+            description:
+                - OCI resource ID.
+            returned: on success
+            type: str
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        ingress_ips:
+            description:
+                - List of ingress IP addresses from where to connect to this connection's privateIp.
+            returned: on success
+            type: complex
+            contains:
+                ingress_ip:
+                    description:
+                        - A Private Endpoint IPv4 or IPv6 Address created in the customer's subnet.
+                    returned: on success
+                    type: str
+                    sample: ingress_ip_example
         nsg_ids:
             description:
                 - An array of Network Security Group OCIDs used to define network access for Connections.
@@ -350,50 +401,47 @@ connections:
             type: list
             sample: []
     sample: [{
-        "connect_descriptor": {
-            "host": "host_example",
-            "port": 56,
-            "database_service_name": "database_service_name_example",
-            "connect_string": "connect_string_example"
-        },
-        "credentials_secret_id": "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx",
-        "certificate_tdn": "certificate_tdn_example",
-        "ssh_details": {
-            "host": "host_example",
-            "user": "user_example",
-            "sudo_location": "sudo_location_example"
-        },
-        "admin_credentials": {
-            "username": "username_example"
-        },
-        "replication_credentials": {
-            "username": "username_example"
-        },
-        "private_endpoint": {
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "vault_details": {
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-            "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_type": "MANUAL",
-        "manual_database_sub_type": "ORACLE",
-        "is_dedicated": true,
-        "display_name": "display_name_example",
+        "host": "host_example",
+        "port": 56,
+        "database_name": "database_name_example",
+        "security_protocol": "PLAIN",
+        "ssl_mode": "DISABLED",
+        "additional_attributes": [{
+            "name": "name_example",
+            "value": "value_example"
+        }],
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "username": "username_example",
+        "password": "example-password",
+        "replication_username": "replication_username_example",
+        "replication_password": "example-password",
+        "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
+        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "technology_type": "AMAZON_AURORA_MYSQL",
+        "connection_string": "connection_string_example",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
+        "ssh_host": "ssh_host_example",
+        "ssh_key": "ssh_key_example",
+        "ssh_user": "ssh_user_example",
+        "ssh_sudo_location": "ssh_sudo_location_example",
+        "connection_type": "MYSQL",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "ingress_ips": [{
+            "ingress_ip": "ingress_ip_example"
+        }],
         "nsg_ids": []
     }]
 """
@@ -434,6 +482,9 @@ class ConnectionFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "technology_type",
+            "connection_type",
+            "source_connection_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -464,6 +515,26 @@ def main():
         dict(
             connection_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            technology_type=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "OCI_AUTONOMOUS_DATABASE",
+                    "OCI_MYSQL",
+                    "ORACLE_DATABASE",
+                    "ORACLE_EXADATA",
+                    "AMAZON_RDS_ORACLE",
+                    "AMAZON_AURORA_MYSQL",
+                    "AMAZON_RDS_MYSQL",
+                    "AZURE_MYSQL",
+                    "GOOGLE_CLOUD_SQL_MYSQL",
+                    "MYSQL_SERVER",
+                ],
+            ),
+            connection_type=dict(
+                type="list", elements="str", choices=["MYSQL", "ORACLE"]
+            ),
+            source_connection_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
