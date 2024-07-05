@@ -32,194 +32,89 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - OCID of the compartment
+            - The OCID of the compartment.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    database_type:
+    technology_type:
         description:
-            - Database connection type.
+            - "The type of MySQL source or target connection.
+              Example: OCI_MYSQL represents OCI MySQL HeatWave Database Service"
             - Required for create using I(state=present).
         type: str
-        choices:
-            - "MANUAL"
-            - "AUTONOMOUS"
-            - "USER_MANAGED_OCI"
-    manual_database_sub_type:
+    connection_string:
         description:
-            - Database manual connection subtype. This value can only be specified for manual connections.
+            - Connect descriptor or Easy Connect Naming method used to connect to a database.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-        choices:
-            - "ORACLE"
-            - "RDS_ORACLE"
-    display_name:
+    wallet:
         description:
-            - Database Connection display name identifier.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - The wallet contents used to make connections to a database.  This
+              attribute is expected to be base64 encoded.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-        aliases: ["name"]
     database_id:
         description:
-            - The OCID of the cloud database. Required if the database connection type is Autonomous.
+            - The OCID of the database being referenced.
             - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-    connect_descriptor:
+    ssh_host:
         description:
-            - ""
+            - Name of the host the SSH key is valid for.
             - This parameter is updatable.
-        type: dict
-        suboptions:
-            host:
-                description:
-                    - Host or IP address of the connect descriptor. Required if no connectString was specified.
-                    - This parameter is updatable.
-                type: str
-            port:
-                description:
-                    - Port of the connect descriptor. Required if no connectString was specified.
-                    - This parameter is updatable.
-                type: int
-            database_service_name:
-                description:
-                    - Database service name. Required if no connectString was specified.
-                    - This parameter is updatable.
-                type: str
-            connect_string:
-                description:
-                    - "Connect String. Required if no host, port nor databaseServiceName were specified.
-                      If a Private Endpoint was specified in the Connection, the host entry should be a valid IP address.
-                      Supported formats:
-                      Easy connect: <host>:<port>/<db_service_name>
-                      Long format: (description= (address=(port=<port>)(host=<host>))(connect_data=(service_name=<db_service_name>)))"
-                    - This parameter is updatable.
-                type: str
-    certificate_tdn:
-        description:
-            - This name is the distinguished name used while creating the certificate on target database. Requires a TLS wallet to be specified.
-              Not required for source container database connections.
-            - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-    tls_wallet:
+    ssh_key:
         description:
-            - cwallet.sso containing containing the TCPS/SSL certificate; base64 encoded String. Not required for source container database connections.
+            - Private SSH key string.
             - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-    tls_keystore:
+    ssh_user:
         description:
-            - keystore.jks file contents; base64 encoded String. Requires a TLS wallet to be specified. Not required for source container database connections.
+            - The username (credential) used when creating or updating this resource.
             - This parameter is updatable.
+            - Applicable when connection_type is 'ORACLE'
         type: str
-    ssh_details:
+    ssh_sudo_location:
         description:
-            - ""
+            - Sudo location
             - This parameter is updatable.
-        type: dict
-        suboptions:
-            host:
-                description:
-                    - Name of the host the SSH key is valid for.
-                    - This parameter is updatable.
-                type: str
-            sshkey:
-                description:
-                    - Private SSH key string.
-                    - This parameter is updatable.
-                type: str
-            user:
-                description:
-                    - SSH user
-                    - This parameter is updatable.
-                type: str
-            sudo_location:
-                description:
-                    - Sudo location
-                    - This parameter is updatable.
-                type: str
-    admin_credentials:
+            - Applicable when connection_type is 'ORACLE'
+        type: str
+    connection_type:
         description:
-            - ""
+            - Defines the type of connection. For example, ORACLE.
+            - Required for create using I(state=present), update using I(state=present) with connection_id present.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+        choices:
+            - "MYSQL"
+            - "ORACLE"
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            username:
-                description:
-                    - Administrator username
-                    - This parameter is updatable.
-                type: str
-            password:
-                description:
-                    - Administrator password
-                    - This parameter is updatable.
-                type: str
-    replication_credentials:
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+        aliases: ["name"]
+    description:
         description:
-            - ""
+            - A user-friendly description. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - This parameter is updatable.
-        type: dict
-        suboptions:
-            username:
-                description:
-                    - Administrator username
-                    - This parameter is updatable.
-                type: str
-            password:
-                description:
-                    - Administrator password
-                    - This parameter is updatable.
-                type: str
-    private_endpoint:
-        description:
-            - ""
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            compartment_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
-                      private endpoint.
-                    - This parameter is updatable.
-                type: str
-            vcn_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN where the Private Endpoint will be bound to.
-                    - This parameter is updatable.
-                type: str
-            subnet_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's subnet where the private endpoint
-                      VNIC
-                      will reside.
-                    - This parameter is updatable.
-                type: str
-    vault_details:
-        description:
-            - ""
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            compartment_id:
-                description:
-                    - OCID of the compartment where the secret containing the credentials will be created.
-                    - This parameter is updatable.
-                type: str
-            vault_id:
-                description:
-                    - OCID of the vault
-                    - This parameter is updatable.
-                type: str
-            key_id:
-                description:
-                    - OCID of the vault encryption key
-                    - This parameter is updatable.
-                type: str
+        type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see Resource Tags. Example: {\\"Department\\": \\"Finance\\"}"
             - This parameter is updatable.
         type: dict
     defined_tags:
@@ -228,15 +123,142 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    vault_id:
+        description:
+            - OCI resource ID.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+    key_id:
+        description:
+            - The OCID of the key used in cryptographic operations.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+    subnet_id:
+        description:
+            - OCI resource ID.
+            - This parameter is updatable.
+        type: str
     nsg_ids:
         description:
             - An array of Network Security Group OCIDs used to define network access for Connections.
             - This parameter is updatable.
         type: list
         elements: str
+    username:
+        description:
+            - The username (credential) used when creating or updating this resource.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+    password:
+        description:
+            - The password (credential) used when creating or updating this resource.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['MYSQL', 'ORACLE']
+        type: str
+    replication_username:
+        description:
+            - The username (credential) used when creating or updating this resource.
+            - This parameter is updatable.
+        type: str
+    replication_password:
+        description:
+            - The password (credential) used when creating or updating this resource.
+            - This parameter is updatable.
+        type: str
+    host:
+        description:
+            - The IP Address of the host.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    port:
+        description:
+            - The port to be used for the connection.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: int
+    database_name:
+        description:
+            - The name of the database being referenced.
+            - This parameter is updatable.
+            - Required when connection_type is 'MYSQL'
+        type: str
+    security_protocol:
+        description:
+            - Security Type for MySQL.
+            - This parameter is updatable.
+            - Required when connection_type is 'MYSQL'
+        type: str
+    ssl_mode:
+        description:
+            - SSL modes for MySQL.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    ssl_ca:
+        description:
+            - "Database Certificate - The base64 encoded content of mysql.pem file
+              containing the server public key (for 1 and 2-way SSL)."
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    ssl_crl:
+        description:
+            - "Certificates revoked by certificate authorities (CA).
+              Server certificate must not be on this list (for 1 and 2-way SSL).
+              Note: This is an optional and that too only applicable if TLS/MTLS option is selected."
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    ssl_cert:
+        description:
+            - "Client Certificate - The base64 encoded content of client-cert.pem file
+              containing the client public key (for 2-way SSL)."
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    ssl_key:
+        description:
+            - "Client Key - The client-key.pem containing the client private key (for 2-way SSL)."
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
+    additional_attributes:
+        description:
+            - An array of name-value pair attribute entries.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: list
+        elements: dict
+        suboptions:
+            name:
+                description:
+                    - The name of the property entry.
+                    - Required when connection_type is 'MYSQL'
+                type: str
+                required: true
+            value:
+                description:
+                    - The value of the property entry.
+                    - Required when connection_type is 'MYSQL'
+                type: str
+                required: true
+    db_system_id:
+        description:
+            - The OCID of the database system being referenced.
+            - This parameter is updatable.
+            - Applicable when connection_type is 'MYSQL'
+        type: str
     connection_id:
         description:
-            - The OCID of the database connection
+            - The OCID of the database connection.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -254,142 +276,188 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create connection
+- name: Create connection with connection_type = MYSQL
   oci_database_migration_connection:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    database_type: MANUAL
-    admin_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    vault_details:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
-    manual_database_sub_type: ORACLE
-    display_name: display_name_example
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    connect_descriptor:
-      # optional
-      host: host_example
-      port: 56
-      database_service_name: database_service_name_example
-      connect_string: connect_string_example
-    certificate_tdn: certificate_tdn_example
-    tls_wallet: tls_wallet_example
-    tls_keystore: tls_keystore_example
-    ssh_details:
-      # optional
-      host: host_example
-      sshkey: sshkey_example
-      user: user_example
-      sudo_location: sudo_location_example
-    replication_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    private_endpoint:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    nsg_ids: [ "nsg_ids_example" ]
-
-- name: Update connection
-  oci_database_migration_connection:
-    # required
-    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+    technology_type: technology_type_example
+    connection_type: MYSQL
 
     # optional
     display_name: display_name_example
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    connect_descriptor:
-      # optional
-      host: host_example
-      port: 56
-      database_service_name: database_service_name_example
-      connect_string: connect_string_example
-    certificate_tdn: certificate_tdn_example
-    tls_wallet: tls_wallet_example
-    tls_keystore: tls_keystore_example
-    ssh_details:
-      # optional
-      host: host_example
-      sshkey: sshkey_example
-      user: user_example
-      sudo_location: sudo_location_example
-    admin_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    replication_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    private_endpoint:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    vault_details:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    security_protocol: security_protocol_example
+    ssl_mode: ssl_mode_example
+    ssl_ca: ssl_ca_example
+    ssl_crl: ssl_crl_example
+    ssl_cert: ssl_cert_example
+    ssl_key: ssl_key_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Create connection with connection_type = ORACLE
   oci_database_migration_connection:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    technology_type: technology_type_example
+    connection_type: ORACLE
 
     # optional
+    connection_string: connection_string_example
+    wallet: wallet_example
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    connect_descriptor:
-      # optional
-      host: host_example
-      port: 56
-      database_service_name: database_service_name_example
-      connect_string: connect_string_example
-    certificate_tdn: certificate_tdn_example
-    tls_wallet: tls_wallet_example
-    tls_keystore: tls_keystore_example
-    ssh_details:
-      # optional
-      host: host_example
-      sshkey: sshkey_example
-      user: user_example
-      sudo_location: sudo_location_example
-    admin_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    replication_credentials:
-      # optional
-      username: username_example
-      password: example-password
-    private_endpoint:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    vault_details:
-      # optional
-      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    ssh_host: ssh_host_example
+    ssh_key: ssh_key_example
+    ssh_user: ssh_user_example
+    ssh_sudo_location: ssh_sudo_location_example
+    display_name: display_name_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
+
+- name: Update connection with connection_type = MYSQL
+  oci_database_migration_connection:
+    # required
+    connection_type: MYSQL
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    security_protocol: security_protocol_example
+    ssl_mode: ssl_mode_example
+    ssl_ca: ssl_ca_example
+    ssl_crl: ssl_crl_example
+    ssl_cert: ssl_cert_example
+    ssl_key: ssl_key_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update connection with connection_type = ORACLE
+  oci_database_migration_connection:
+    # required
+    connection_type: ORACLE
+
+    # optional
+    connection_string: connection_string_example
+    wallet: wallet_example
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    ssh_host: ssh_host_example
+    ssh_key: ssh_key_example
+    ssh_user: ssh_user_example
+    ssh_sudo_location: ssh_sudo_location_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MYSQL
+  oci_database_migration_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: MYSQL
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
+    host: host_example
+    port: 56
+    database_name: database_name_example
+    security_protocol: security_protocol_example
+    ssl_mode: ssl_mode_example
+    ssl_ca: ssl_ca_example
+    ssl_crl: ssl_crl_example
+    ssl_cert: ssl_cert_example
+    ssl_key: ssl_key_example
+    additional_attributes:
+    - # required
+      name: name_example
+      value: value_example
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = ORACLE
+  oci_database_migration_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: ORACLE
+
+    # optional
+    connection_string: connection_string_example
+    wallet: wallet_example
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    ssh_host: ssh_host_example
+    ssh_key: ssh_key_example
+    ssh_user: ssh_user_example
+    ssh_sudo_location: ssh_sudo_location_example
+    display_name: display_name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "nsg_ids_example" ]
+    username: username_example
+    password: example-password
+    replication_username: replication_username_example
+    replication_password: example-password
 
 - name: Delete connection
   oci_database_migration_connection:
@@ -413,224 +481,96 @@ connection:
     returned: on success
     type: complex
     contains:
+        host:
+            description:
+                - The IP Address of the host.
+            returned: on success
+            type: str
+            sample: host_example
+        port:
+            description:
+                - The port to be used for the connection.
+            returned: on success
+            type: int
+            sample: 56
+        database_name:
+            description:
+                - The name of the database being referenced.
+            returned: on success
+            type: str
+            sample: database_name_example
+        security_protocol:
+            description:
+                - Security Protocol to be used for the connection.
+            returned: on success
+            type: str
+            sample: PLAIN
+        ssl_mode:
+            description:
+                - SSL mode to be used for the connection.
+            returned: on success
+            type: str
+            sample: DISABLED
+        additional_attributes:
+            description:
+                - An array of name-value pair attribute entries.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the property entry.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                value:
+                    description:
+                        - The value of the property entry.
+                    returned: on success
+                    type: str
+                    sample: value_example
+        db_system_id:
+            description:
+                - The OCID of the database system being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type:
+            description:
+                - Defines the type of connection. For example, ORACLE.
+            returned: on success
+            type: str
+            sample: MYSQL
         id:
             description:
-                - The OCID of the resource
+                - The OCID of the connection being referenced.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - OCID of the compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        database_type:
-            description:
-                - Database connection type.
-            returned: on success
-            type: str
-            sample: MANUAL
-        manual_database_sub_type:
-            description:
-                - Database manual connection subtype. This value can only be specified for manual connections.
-            returned: on success
-            type: str
-            sample: ORACLE
-        is_dedicated:
-            description:
-                - True if the Autonomous Connection is dedicated. Not provided for Non-Autonomous Connections.
-            returned: on success
-            type: bool
-            sample: true
         display_name:
             description:
-                - Database Connection display name identifier.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
-        database_id:
+        description:
             description:
-                - The OCID of the cloud database.
+                - A user-friendly description. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        connect_descriptor:
+            sample: description_example
+        compartment_id:
             description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                host:
-                    description:
-                        - Host of the connect descriptor.
-                    returned: on success
-                    type: str
-                    sample: host_example
-                port:
-                    description:
-                        - Port of the connect descriptor.
-                    returned: on success
-                    type: int
-                    sample: 56
-                database_service_name:
-                    description:
-                        - Database service name.
-                    returned: on success
-                    type: str
-                    sample: database_service_name_example
-                connect_string:
-                    description:
-                        - Connect string.
-                    returned: on success
-                    type: str
-                    sample: connect_string_example
-        credentials_secret_id:
-            description:
-                - OCID of the Secret in the OCI vault containing the Database Connection credentials.
+                - The OCID of the compartment.
             returned: on success
             type: str
-            sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
-        certificate_tdn:
-            description:
-                - This name is the distinguished name used while creating the certificate on target database.
-            returned: on success
-            type: str
-            sample: certificate_tdn_example
-        ssh_details:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                host:
-                    description:
-                        - Name of the host the SSH key is valid for.
-                    returned: on success
-                    type: str
-                    sample: host_example
-                user:
-                    description:
-                        - SSH user
-                    returned: on success
-                    type: str
-                    sample: user_example
-                sudo_location:
-                    description:
-                        - Sudo location
-                    returned: on success
-                    type: str
-                    sample: sudo_location_example
-        admin_credentials:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                username:
-                    description:
-                        - Administrator username
-                    returned: on success
-                    type: str
-                    sample: username_example
-        replication_credentials:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                username:
-                    description:
-                        - Administrator username
-                    returned: on success
-                    type: str
-                    sample: username_example
-        private_endpoint:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
-                          private endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                vcn_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN where the Private Endpoint will be bound
-                          to.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-                subnet_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's
-                          subnet where the private endpoint VNIC will reside.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-                id:
-                    description:
-                        - L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a previously created Private Endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        vault_details:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - OCID of the compartment where the secret containing the credentials will be created.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                vault_id:
-                    description:
-                        - OCID of the vault
-                    returned: on success
-                    type: str
-                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-                key_id:
-                    description:
-                        - OCID of the vault encryption key
-                    returned: on success
-                    type: str
-                    sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current state of the Connection resource.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information
-                  for a resource in Failed state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        time_created:
-            description:
-                - The time the Connection resource was created. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time of the last Connection resource details update. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see Resource Tags. Example: {\\"Department\\": \\"Finance\\"}"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -648,58 +588,191 @@ connection:
             returned: on success
             type: dict
             sample: {}
+        lifecycle_state:
+            description:
+                - The Connection's current lifecycle state.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - The message describing the current state of the connection's lifecycle in detail.
+                  For example, can be used to provide actionable information for a connection in a Failed state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        time_created:
+            description:
+                - The time when this resource was created.
+                  An RFC3339 formatted datetime string such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time when this resource was updated.
+                  An RFC3339 formatted datetime string such as `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        vault_id:
+            description:
+                - OCI resource ID.
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id:
+            description:
+                - The OCID of the key used in cryptographic operations.
+            returned: on success
+            type: str
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        subnet_id:
+            description:
+                - OCI resource ID.
+            returned: on success
+            type: str
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        ingress_ips:
+            description:
+                - List of ingress IP addresses from where to connect to this connection's privateIp.
+            returned: on success
+            type: complex
+            contains:
+                ingress_ip:
+                    description:
+                        - A Private Endpoint IPv4 or IPv6 Address created in the customer's subnet.
+                    returned: on success
+                    type: str
+                    sample: ingress_ip_example
         nsg_ids:
             description:
                 - An array of Network Security Group OCIDs used to define network access for Connections.
             returned: on success
             type: list
             sample: []
+        username:
+            description:
+                - The username (credential) used when creating or updating this resource.
+            returned: on success
+            type: str
+            sample: username_example
+        password:
+            description:
+                - The password (credential) used when creating or updating this resource.
+            returned: on success
+            type: str
+            sample: example-password
+        replication_username:
+            description:
+                - The username (credential) used when creating or updating this resource.
+            returned: on success
+            type: str
+            sample: replication_username_example
+        replication_password:
+            description:
+                - The password (credential) used when creating or updating this resource.
+            returned: on success
+            type: str
+            sample: example-password
+        secret_id:
+            description:
+                - The OCID of the resource being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_id:
+            description:
+                - The OCID of the resource being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type:
+            description:
+                - "The type of MySQL source or target connection.
+                  Example: OCI_MYSQL represents OCI MySQL HeatWave Database Service"
+            returned: on success
+            type: str
+            sample: AMAZON_AURORA_MYSQL
+        connection_string:
+            description:
+                - Connect descriptor or Easy Connect Naming method used to connect to a database.
+            returned: on success
+            type: str
+            sample: connection_string_example
+        database_id:
+            description:
+                - The OCID of the database being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        ssh_host:
+            description:
+                - Name of the host the SSH key is valid for.
+            returned: on success
+            type: str
+            sample: ssh_host_example
+        ssh_key:
+            description:
+                - Private SSH key string.
+            returned: on success
+            type: str
+            sample: ssh_key_example
+        ssh_user:
+            description:
+                - The username (credential) used when creating or updating this resource.
+            returned: on success
+            type: str
+            sample: ssh_user_example
+        ssh_sudo_location:
+            description:
+                - Sudo location
+            returned: on success
+            type: str
+            sample: ssh_sudo_location_example
     sample: {
+        "host": "host_example",
+        "port": 56,
+        "database_name": "database_name_example",
+        "security_protocol": "PLAIN",
+        "ssl_mode": "DISABLED",
+        "additional_attributes": [{
+            "name": "name_example",
+            "value": "value_example"
+        }],
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_type": "MYSQL",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_type": "MANUAL",
-        "manual_database_sub_type": "ORACLE",
-        "is_dedicated": true,
         "display_name": "display_name_example",
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "connect_descriptor": {
-            "host": "host_example",
-            "port": 56,
-            "database_service_name": "database_service_name_example",
-            "connect_string": "connect_string_example"
-        },
-        "credentials_secret_id": "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx",
-        "certificate_tdn": "certificate_tdn_example",
-        "ssh_details": {
-            "host": "host_example",
-            "user": "user_example",
-            "sudo_location": "sudo_location_example"
-        },
-        "admin_credentials": {
-            "username": "username_example"
-        },
-        "replication_credentials": {
-            "username": "username_example"
-        },
-        "private_endpoint": {
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "vault_details": {
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-            "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        },
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "nsg_ids": []
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "ingress_ips": [{
+            "ingress_ip": "ingress_ip_example"
+        }],
+        "nsg_ids": [],
+        "username": "username_example",
+        "password": "example-password",
+        "replication_username": "replication_username_example",
+        "replication_password": "example-password",
+        "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
+        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "technology_type": "AMAZON_AURORA_MYSQL",
+        "connection_string": "connection_string_example",
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "ssh_host": "ssh_host_example",
+        "ssh_key": "ssh_key_example",
+        "ssh_user": "ssh_user_example",
+        "ssh_sudo_location": "ssh_sudo_location_example"
     }
 """
 
@@ -801,13 +874,7 @@ class ConnectionHelperGen(OCIResourceHelperBase):
         return CreateConnectionDetails
 
     def get_exclude_attributes(self):
-        return [
-            "replication_credentials.password",
-            "admin_credentials.password",
-            "tls_keystore",
-            "tls_wallet",
-            "ssh_details.sshkey",
-        ]
+        return ["ssl_crl", "wallet", "ssl_key", "ssl_ca", "ssl_cert"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -868,64 +935,45 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            database_type=dict(
-                type="str", choices=["MANUAL", "AUTONOMOUS", "USER_MANAGED_OCI"]
-            ),
-            manual_database_sub_type=dict(type="str", choices=["ORACLE", "RDS_ORACLE"]),
-            display_name=dict(aliases=["name"], type="str"),
+            technology_type=dict(type="str"),
+            connection_string=dict(type="str"),
+            wallet=dict(type="str"),
             database_id=dict(type="str"),
-            connect_descriptor=dict(
-                type="dict",
-                options=dict(
-                    host=dict(type="str"),
-                    port=dict(type="int"),
-                    database_service_name=dict(type="str"),
-                    connect_string=dict(type="str"),
-                ),
-            ),
-            certificate_tdn=dict(type="str"),
-            tls_wallet=dict(type="str"),
-            tls_keystore=dict(type="str", no_log=True),
-            ssh_details=dict(
-                type="dict",
-                options=dict(
-                    host=dict(type="str"),
-                    sshkey=dict(type="str", no_log=True),
-                    user=dict(type="str"),
-                    sudo_location=dict(type="str"),
-                ),
-            ),
-            admin_credentials=dict(
-                type="dict",
-                options=dict(
-                    username=dict(type="str"), password=dict(type="str", no_log=True)
-                ),
-            ),
-            replication_credentials=dict(
-                type="dict",
-                options=dict(
-                    username=dict(type="str"), password=dict(type="str", no_log=True)
-                ),
-            ),
-            private_endpoint=dict(
-                type="dict",
-                options=dict(
-                    compartment_id=dict(type="str"),
-                    vcn_id=dict(type="str"),
-                    subnet_id=dict(type="str"),
-                ),
-            ),
-            vault_details=dict(
-                type="dict",
-                options=dict(
-                    compartment_id=dict(type="str"),
-                    vault_id=dict(type="str"),
-                    key_id=dict(type="str"),
-                ),
-            ),
+            ssh_host=dict(type="str"),
+            ssh_key=dict(type="str", no_log=True),
+            ssh_user=dict(type="str"),
+            ssh_sudo_location=dict(type="str"),
+            connection_type=dict(type="str", choices=["MYSQL", "ORACLE"]),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            vault_id=dict(type="str"),
+            key_id=dict(type="str"),
+            subnet_id=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
+            username=dict(type="str"),
+            password=dict(type="str", no_log=True),
+            replication_username=dict(type="str"),
+            replication_password=dict(type="str", no_log=True),
+            host=dict(type="str"),
+            port=dict(type="int"),
+            database_name=dict(type="str"),
+            security_protocol=dict(type="str"),
+            ssl_mode=dict(type="str"),
+            ssl_ca=dict(type="str"),
+            ssl_crl=dict(type="str"),
+            ssl_cert=dict(type="str"),
+            ssl_key=dict(type="str", no_log=True),
+            additional_attributes=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    name=dict(type="str", required=True),
+                    value=dict(type="str", required=True),
+                ),
+            ),
+            db_system_id=dict(type="str"),
             connection_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

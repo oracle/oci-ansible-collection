@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_job_actions -- Perform actions on a Job resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -350,17 +350,19 @@ Parameters
                                                                                                                                                                                                 <li>ODMS_VALIDATE_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_PREMIGRATION_ADVISOR</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_GG_HUB</li>
-                                                                                                                                                                                                <li>ODMS_VALIDATE_GG_SERVICE</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_SRC</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC</li>
-                                                                                                                                                                                                <li>ODMS_INITIALIZE_GGS</li>
+                                                                                                                                                                                                <li>ODMS_FETCH_METADATA_SRC</li>
+                                                                                                                                                                                                <li>ODMS_FETCH_METADATA_TGT</li>
                                                                                                                                                                                                 <li>ODMS_VALIDATE</li>
                                                                                                                                                                                                 <li>ODMS_PREPARE</li>
+                                                                                                                                                                                                <li>ODMS_INITIALIZE_REPLICATION_INFRASTRUCTURE</li>
                                                                                                                                                                                                 <li>ODMS_INITIAL_LOAD_EXPORT</li>
                                                                                                                                                                                                 <li>ODMS_DATA_UPLOAD</li>
+                                                                                                                                                                                                <li>ODMS_INITIAL_LOAD_EXPORT_DATA_UPLOAD</li>
                                                                                                                                                                                                 <li>ODMS_INITIAL_LOAD_IMPORT</li>
                                                                                                                                                                                                 <li>ODMS_POST_INITIAL_LOAD</li>
                                                                                                                                                                                                 <li>ODMS_PREPARE_REPLICATION_TARGET</li>
@@ -515,7 +517,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {&quot;Department&quot;: &quot;Finance&quot;}</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>

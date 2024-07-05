@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 5.1.0
+Collection version 5.2.0
 
 .. toctree::
     :maxdepth: 1
@@ -785,13 +785,11 @@ Modules
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_top_sql_cpu_activity_facts <ansible_collections.oracle.oci.oci_database_management_top_sql_cpu_activity_facts_module>` -- Fetches details about a TopSqlCpuActivity resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_user_facts <ansible_collections.oracle.oci.oci_database_management_user_facts_module>` -- Fetches details about one or multiple User resources in Oracle Cloud Infrastructure
-* :ref:`oci_database_migration_agent <ansible_collections.oracle.oci.oci_database_migration_agent_module>` -- Manage an Agent resource in Oracle Cloud Infrastructure
-* :ref:`oci_database_migration_agent_actions <ansible_collections.oracle.oci.oci_database_migration_agent_actions_module>` -- Perform actions on an Agent resource in Oracle Cloud Infrastructure
-* :ref:`oci_database_migration_agent_facts <ansible_collections.oracle.oci.oci_database_migration_agent_facts_module>` -- Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
-* :ref:`oci_database_migration_agent_image_facts <ansible_collections.oracle.oci.oci_database_migration_agent_image_facts_module>` -- Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_advisor_report_facts <ansible_collections.oracle.oci.oci_database_migration_advisor_report_facts_module>` -- Fetches details about a AdvisorReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_connection <ansible_collections.oracle.oci.oci_database_migration_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_connection_actions <ansible_collections.oracle.oci.oci_database_migration_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_connection_facts <ansible_collections.oracle.oci.oci_database_migration_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_excluded_object_facts <ansible_collections.oracle.oci.oci_database_migration_excluded_object_facts_module>` -- Fetches details about one or multiple ExcludedObject resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_job <ansible_collections.oracle.oci.oci_database_migration_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_job_actions <ansible_collections.oracle.oci.oci_database_migration_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_job_content_facts <ansible_collections.oracle.oci.oci_database_migration_job_content_facts_module>` -- Fetches details about a JobContent resource in Oracle Cloud Infrastructure
@@ -800,6 +798,9 @@ Modules
 * :ref:`oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration_object_facts <ansible_collections.oracle.oci.oci_database_migration_migration_object_facts_module>` -- Fetches details about one or multiple MigrationObject resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration_object_type_facts <ansible_collections.oracle.oci.oci_database_migration_migration_object_type_facts_module>` -- Fetches details about one or multiple MigrationObjectType resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration_parameter_facts <ansible_collections.oracle.oci.oci_database_migration_migration_parameter_facts_module>` -- Fetches details about one or multiple MigrationParameter resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_oneoff_patch <ansible_collections.oracle.oci.oci_database_oneoff_patch_module>` -- Manage an OneoffPatch resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_oneoff_patch_actions <ansible_collections.oracle.oci.oci_database_oneoff_patch_actions_module>` -- Perform actions on an OneoffPatch resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_oneoff_patch_facts <ansible_collections.oracle.oci.oci_database_oneoff_patch_facts_module>` -- Fetches details about one or multiple OneoffPatch resources in Oracle Cloud Infrastructure
@@ -2778,13 +2779,11 @@ Modules
     oci_database_management_tablespace_facts_module
     oci_database_management_top_sql_cpu_activity_facts_module
     oci_database_management_user_facts_module
-    oci_database_migration_agent_module
-    oci_database_migration_agent_actions_module
-    oci_database_migration_agent_facts_module
-    oci_database_migration_agent_image_facts_module
+    oci_database_migration_advisor_report_facts_module
     oci_database_migration_connection_module
     oci_database_migration_connection_actions_module
     oci_database_migration_connection_facts_module
+    oci_database_migration_excluded_object_facts_module
     oci_database_migration_job_module
     oci_database_migration_job_actions_module
     oci_database_migration_job_content_facts_module
@@ -2793,6 +2792,9 @@ Modules
     oci_database_migration_migration_module
     oci_database_migration_migration_actions_module
     oci_database_migration_migration_facts_module
+    oci_database_migration_migration_object_facts_module
+    oci_database_migration_migration_object_type_facts_module
+    oci_database_migration_migration_parameter_facts_module
     oci_database_oneoff_patch_module
     oci_database_oneoff_patch_actions_module
     oci_database_oneoff_patch_facts_module

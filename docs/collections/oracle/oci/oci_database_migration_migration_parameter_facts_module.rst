@@ -14,7 +14,7 @@
 
 .. Anchors
 
-.. _ansible_collections.oracle.oci.oci_database_migration_agent_image_facts_module:
+.. _ansible_collections.oracle.oci.oci_database_migration_migration_parameter_facts_module:
 
 .. Anchors: short name for ansible.builtin
 
@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_database_migration_agent_image_facts -- Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_database_migration_migration_parameter_facts -- Fetches details about one or multiple MigrationParameter resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -38,7 +38,7 @@ oracle.oci.oci_database_migration_agent_image_facts -- Fetches details about one
 
     To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
-    To use it in a playbook, specify: :code:`oracle.oci.oci_database_migration_agent_image_facts`.
+    To use it in a playbook, specify: :code:`oracle.oci.oci_database_migration_migration_parameter_facts`.
 
 .. version_added
 
@@ -56,8 +56,8 @@ Synopsis
 
 .. Description
 
-- Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
-- Get details of the ODMS Agent Images available to install on-premises.
+- Fetches details about one or multiple MigrationParameter resources in Oracle Cloud Infrastructure
+- List of parameters that can be used to customize migrations.
 
 
 .. Aliases
@@ -233,6 +233,74 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_combination"></div>
+                    <b>database_combination</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_combination" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>MYSQL</li>
+                                                                                                                                                                                                <li>ORACLE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match a certain Database Combination.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Use <em>display_name</em> along with the other options to return only resources that match the given display name exactly.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-migration_type"></div>
+                    <b>migration_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-migration_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ONLINE</li>
+                                                                                                                                                                                                <li>OFFLINE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match a certain Migration Type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Use <em>name</em> along with the other options to return only resources that match the given name exactly.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -263,6 +331,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -324,10 +411,13 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: List agent_images
-      oci_database_migration_agent_image_facts:
+    - name: List migration_parameters
+      oci_database_migration_migration_parameter_facts:
 
         # optional
+        migration_type: ONLINE
+        database_combination: MYSQL
+        sort_by: timeCreated
         sort_order: ASC
 
 
@@ -353,55 +443,253 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-agent_images"></div>
-                    <b>agent_images</b>
-                    <a class="ansibleOptionLink" href="#return-agent_images" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters"></div>
+                    <b>migration_parameters</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of AgentImage resources</div>
+                                            <div>List of MigrationParameter resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;download_url&#x27;: &#x27;download_url_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category_display_name&#x27;: &#x27;category_display_name_example&#x27;, &#x27;category_name&#x27;: &#x27;category_name_example&#x27;, &#x27;data_type&#x27;: &#x27;STRING&#x27;, &#x27;database_combination&#x27;: &#x27;MYSQL&#x27;, &#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;doc_url_link&#x27;: &#x27;doc_url_link_example&#x27;, &#x27;hint_text&#x27;: &#x27;hint_text_example&#x27;, &#x27;max_value&#x27;: 3.4, &#x27;migration_type&#x27;: &#x27;ONLINE&#x27;, &#x27;min_value&#x27;: 3.4, &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent_images/download_url"></div>
-                    <b>download_url</b>
-                    <a class="ansibleOptionLink" href="#return-agent_images/download_url" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/category_display_name"></div>
+                    <b>category_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/category_display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>URL to download Agent Image of the ODMS Agent.</div>
+                                            <div>Parameter category display name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">download_url_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">category_display_name_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-agent_images/version"></div>
-                    <b>version</b>
-                    <a class="ansibleOptionLink" href="#return-agent_images/version" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/category_name"></div>
+                    <b>category_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/category_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>ODMS Agent Image version.</div>
+                                            <div>Parameter category name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">category_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/data_type"></div>
+                    <b>data_type</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/data_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter data type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STRING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/database_combination"></div>
+                    <b>database_combination</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/database_combination" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The combination of source and target databases participating in a migration. Example: ORACLE means the migration is meant for migrating Oracle source and target databases.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MYSQL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/default_value"></div>
+                    <b>default_value</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/default_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Default value for a parameter.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_value_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter name description.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter display name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/doc_url_link"></div>
+                    <b>doc_url_link</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/doc_url_link" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter documentation URL link.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">doc_url_link_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/hint_text"></div>
+                    <b>hint_text</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/hint_text" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Hint text for parameter value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hint_text_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/max_value"></div>
+                    <b>max_value</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/max_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter maximum value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/migration_type"></div>
+                    <b>migration_type</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/migration_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Migration Stage.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONLINE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/min_value"></div>
+                    <b>min_value</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/min_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter minimum value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration_parameters/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-migration_parameters/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Parameter name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

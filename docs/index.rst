@@ -16,6 +16,7 @@ Oracle Cloud Infrastructure Ansible Collection - |version|
    Wait Configuration <guides/wait-timeout.md>
    Modules Index <collections/oracle/oci/index>
    Inventory Plugin <inventory_plugin/index>
+   OLAM <guides/olam/index.md>
    AWX <guides/awx/index.rst>
    Logging <guides/logging-guide.rst>
 

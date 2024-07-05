@@ -293,8 +293,8 @@ jobs:
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see Resource Tags. Example: {\\"Department\\": \\"Finance\\"}"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
