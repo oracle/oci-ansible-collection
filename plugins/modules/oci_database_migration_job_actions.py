@@ -45,19 +45,17 @@ options:
             - "ODMS_VALIDATE_SRC"
             - "ODMS_VALIDATE_PREMIGRATION_ADVISOR"
             - "ODMS_VALIDATE_GG_HUB"
+            - "ODMS_VALIDATE_GG_SERVICE"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT"
             - "ODMS_VALIDATE_DATAPUMP_SRC"
             - "ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC"
-            - "ODMS_FETCH_METADATA_SRC"
-            - "ODMS_FETCH_METADATA_TGT"
+            - "ODMS_INITIALIZE_GGS"
             - "ODMS_VALIDATE"
             - "ODMS_PREPARE"
-            - "ODMS_INITIALIZE_REPLICATION_INFRASTRUCTURE"
             - "ODMS_INITIAL_LOAD_EXPORT"
             - "ODMS_DATA_UPLOAD"
-            - "ODMS_INITIAL_LOAD_EXPORT_DATA_UPLOAD"
             - "ODMS_INITIAL_LOAD_IMPORT"
             - "ODMS_POST_INITIAL_LOAD"
             - "ODMS_PREPARE_REPLICATION_TARGET"
@@ -283,8 +281,8 @@ job:
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see Resource Tags. Example: {\\"Department\\": \\"Finance\\"}"
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -447,19 +445,17 @@ def main():
                     "ODMS_VALIDATE_SRC",
                     "ODMS_VALIDATE_PREMIGRATION_ADVISOR",
                     "ODMS_VALIDATE_GG_HUB",
+                    "ODMS_VALIDATE_GG_SERVICE",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT",
                     "ODMS_VALIDATE_DATAPUMP_SRC",
                     "ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC",
-                    "ODMS_FETCH_METADATA_SRC",
-                    "ODMS_FETCH_METADATA_TGT",
+                    "ODMS_INITIALIZE_GGS",
                     "ODMS_VALIDATE",
                     "ODMS_PREPARE",
-                    "ODMS_INITIALIZE_REPLICATION_INFRASTRUCTURE",
                     "ODMS_INITIAL_LOAD_EXPORT",
                     "ODMS_DATA_UPLOAD",
-                    "ODMS_INITIAL_LOAD_EXPORT_DATA_UPLOAD",
                     "ODMS_INITIAL_LOAD_IMPORT",
                     "ODMS_POST_INITIAL_LOAD",
                     "ODMS_PREPARE_REPLICATION_TARGET",

@@ -19,29 +19,14 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_database_migration_migration_object_type_facts
-short_description: Fetches details about one or multiple MigrationObjectType resources in Oracle Cloud Infrastructure
+module: oci_database_migration_agent_image_facts
+short_description: Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about one or multiple MigrationObjectType resources in Oracle Cloud Infrastructure
-    - Display sample object types to exclude or include for a Migration.
+    - Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
+    - Get details of the ODMS Agent Images available to install on-premises.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    connection_type:
-        description:
-            - The connection type for migration objects.
-        type: str
-        choices:
-            - "MYSQL"
-            - "ORACLE"
-        required: true
-    sort_by:
-        description:
-            - The field to sort by. Only one sort order may be provided.
-              Default order for name is custom based on it's usage frequency. If no value is specified name is default.
-        type: str
-        choices:
-            - "name"
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -49,36 +34,40 @@ options:
         choices:
             - "ASC"
             - "DESC"
-extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
+extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List migration_object_types
-  oci_database_migration_migration_object_type_facts:
-    # required
-    connection_type: MYSQL
+- name: List agent_images
+  oci_database_migration_agent_image_facts:
 
     # optional
-    sort_by: name
     sort_order: ASC
 
 """
 
 RETURN = """
-migration_object_types:
+agent_images:
     description:
-        - List of MigrationObjectType resources
+        - List of AgentImage resources
     returned: on success
     type: complex
     contains:
-        name:
+        version:
             description:
-                - Object type name
+                - ODMS Agent Image version.
             returned: on success
             type: str
-            sample: name_example
+            sample: version_example
+        download_url:
+            description:
+                - URL to download Agent Image of the ODMS Agent.
+            returned: on success
+            type: str
+            sample: download_url_example
     sample: [{
-        "name": "name_example"
+        "version": "version_example",
+        "download_url": "download_url_example"
     }]
 """
 
@@ -97,19 +86,15 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class MigrationObjectTypeFactsHelperGen(OCIResourceFactsHelperBase):
+class AgentImageFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: list"""
 
     def get_required_params_for_list(self):
-        return [
-            "connection_type",
-        ]
+        return []
 
     def list_resources(self):
         optional_list_method_params = [
-            "sort_by",
             "sort_order",
-            "name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -117,35 +102,20 @@ class MigrationObjectTypeFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_migration_object_types,
-            connection_type=self.module.params.get("connection_type"),
-            **optional_kwargs
+            self.client.list_agent_images, **optional_kwargs
         )
 
 
-MigrationObjectTypeFactsHelperCustom = get_custom_class(
-    "MigrationObjectTypeFactsHelperCustom"
-)
+AgentImageFactsHelperCustom = get_custom_class("AgentImageFactsHelperCustom")
 
 
-class ResourceFactsHelper(
-    MigrationObjectTypeFactsHelperCustom, MigrationObjectTypeFactsHelperGen
-):
+class ResourceFactsHelper(AgentImageFactsHelperCustom, AgentImageFactsHelperGen):
     pass
 
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(
-        dict(
-            connection_type=dict(
-                type="str", required=True, choices=["MYSQL", "ORACLE"]
-            ),
-            sort_by=dict(type="str", choices=["name"]),
-            sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            name=dict(type="str"),
-        )
-    )
+    module_args.update(dict(sort_order=dict(type="str", choices=["ASC", "DESC"]),))
 
     module = OCIAnsibleModule(argument_spec=module_args)
 
@@ -154,7 +124,7 @@ def main():
 
     resource_facts_helper = ResourceFactsHelper(
         module=module,
-        resource_type="migration_object_type",
+        resource_type="agent_image",
         service_client_class=DatabaseMigrationClient,
         namespace="database_migration",
     )
@@ -166,7 +136,7 @@ def main():
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(migration_object_types=result)
+    module.exit_json(agent_images=result)
 
 
 if __name__ == "__main__":
