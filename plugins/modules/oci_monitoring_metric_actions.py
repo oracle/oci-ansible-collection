@@ -64,7 +64,7 @@ options:
         description:
             - Qualifiers that you want to use when searching for metric definitions.
               Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.
-            - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
+            - "Example: `{\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"}`"
         type: dict
     group_by:
         description:
@@ -172,7 +172,7 @@ metric:
             description:
                 - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
                   Each dimension takes the form of a key-value pair.
-                - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
+                - "Example: `{\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"}`"
             returned: on success
             type: dict
             sample: {}

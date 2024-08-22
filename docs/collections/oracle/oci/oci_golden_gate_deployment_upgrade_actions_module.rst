@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_upgrade_actions -- Perform actions on a De
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -274,6 +274,26 @@ Parameters
                                             <div>A unique Deployment Upgrade identifier.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>Applicable only for <em>action=rollback</em><em>action=upgrade</em>.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">

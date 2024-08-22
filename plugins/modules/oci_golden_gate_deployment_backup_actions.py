@@ -23,16 +23,25 @@ module: oci_golden_gate_deployment_backup_actions
 short_description: Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
+    - For I(action=add_deployment_backup_lock), adds a lock to a DeploymentBackup resource.
     - For I(action=cancel), cancels a Deployment Backup creation process.
     - For I(action=change_compartment), moves a DeploymentBackup into a different compartment within the same tenancy.  When provided,
       If-Match is checked against ETag values of the resource.  For information about moving
       resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=copy), creates a copy of a Deployment Backup.
+    - For I(action=remove_deployment_backup_lock), removes a lock from a DeploymentBackup resource.
     - For I(action=restore_deployment), restores a Deployment from a Deployment Backup created from the same Deployment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    msg:
+        description:
+            - A message added by the creator of the lock. This is typically used to give an
+              indication of why the resource is locked.
+            - Applicable only for I(action=add_deployment_backup_lock).
+        type: str
+        aliases: ["message"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
@@ -69,29 +78,56 @@ options:
         required: true
     type:
         description:
-            - The type of a deployment backup cancel
-            - Required for I(action=cancel), I(action=restore_deployment).
+            - Type of the lock.
+            - Required for I(action=add_deployment_backup_lock), I(action=cancel), I(action=remove_deployment_backup_lock), I(action=restore_deployment).
+            - Required when $p.relatedDiscriminatorFieldName is 'DEFAULT'
         type: str
         choices:
+            - "FULL"
+            - "DELETE"
             - "DEFAULT"
+            - "SPECIFIC_RELEASE"
+            - "CURRENT_RELEASE"
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=cancel)I(action=change_compartment)I(action=restore_deployment).
+        type: bool
     action:
         description:
             - The action to perform on the DeploymentBackup.
         type: str
         required: true
         choices:
+            - "add_deployment_backup_lock"
             - "cancel"
             - "change_compartment"
             - "copy"
+            - "remove_deployment_backup_lock"
             - "restore_deployment"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action cancel on deployment_backup with type = DEFAULT
+- name: Perform action add_deployment_backup_lock on deployment_backup
   oci_golden_gate_deployment_backup_actions:
     # required
-    type: DEFAULT
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: add_deployment_backup_lock
+
+    # optional
+    msg: msg_example
+
+- name: Perform action cancel on deployment_backup
+  oci_golden_gate_deployment_backup_actions:
+    # required
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: cancel
+
+    # optional
+    is_lock_override: true
 
 - name: Perform action change_compartment on deployment_backup
   oci_golden_gate_deployment_backup_actions:
@@ -99,6 +135,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    is_lock_override: true
 
 - name: Perform action copy on deployment_backup
   oci_golden_gate_deployment_backup_actions:
@@ -112,10 +151,22 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Perform action restore_deployment on deployment_backup with type = DEFAULT
+- name: Perform action remove_deployment_backup_lock on deployment_backup
   oci_golden_gate_deployment_backup_actions:
     # required
-    type: DEFAULT
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: remove_deployment_backup_lock
+
+- name: Perform action restore_deployment on deployment_backup
+  oci_golden_gate_deployment_backup_actions:
+    # required
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: restore_deployment
+
+    # optional
+    is_lock_override: true
 
 """
 
@@ -138,6 +189,14 @@ deployment_backup:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_type:
+            description:
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
+            returned: on success
+            type: str
+            sample: OGG
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
@@ -257,9 +316,41 @@ deployment_backup:
             returned: on success
             type: dict
             sample: {}
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "deployment_type": "OGG",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "is_automatic": true,
@@ -277,7 +368,13 @@ deployment_backup:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }]
     }
 """
 
@@ -293,9 +390,11 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.golden_gate import GoldenGateClient
+    from oci.golden_gate.models import AddResourceLockDetails
     from oci.golden_gate.models import CancelDeploymentBackupDetails
     from oci.golden_gate.models import ChangeDeploymentBackupCompartmentDetails
     from oci.golden_gate.models import CopyDeploymentBackupDetails
+    from oci.golden_gate.models import RemoveResourceLockDetails
     from oci.golden_gate.models import RestoreDeploymentDetails
 
     HAS_OCI_PY_SDK = True
@@ -306,9 +405,11 @@ except ImportError:
 class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_deployment_backup_lock
         cancel
         change_compartment
         copy
+        remove_deployment_backup_lock
         restore_deployment
     """
 
@@ -328,6 +429,29 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             deployment_backup_id=self.module.params.get("deployment_backup_id"),
         )
 
+    def add_deployment_backup_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_deployment_backup_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_backup_id=self.module.params.get("deployment_backup_id"),
+                add_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def cancel(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, CancelDeploymentBackupDetails
@@ -338,6 +462,7 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_backup_id=self.module.params.get("deployment_backup_id"),
                 cancel_deployment_backup_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -359,6 +484,7 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_backup_id=self.module.params.get("deployment_backup_id"),
                 change_deployment_backup_compartment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -393,6 +519,29 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def remove_deployment_backup_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_deployment_backup_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_backup_id=self.module.params.get("deployment_backup_id"),
+                remove_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def restore_deployment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RestoreDeploymentDetails
@@ -403,6 +552,7 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_backup_id=self.module.params.get("deployment_backup_id"),
                 restore_deployment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -432,17 +582,35 @@ def main():
     )
     module_args.update(
         dict(
+            msg=dict(aliases=["message"], type="str"),
             compartment_id=dict(type="str"),
             namespace_name=dict(type="str"),
             bucket_name=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             deployment_backup_id=dict(aliases=["id"], type="str", required=True),
-            type=dict(type="str", choices=["DEFAULT"]),
+            type=dict(
+                type="str",
+                choices=[
+                    "FULL",
+                    "DELETE",
+                    "DEFAULT",
+                    "SPECIFIC_RELEASE",
+                    "CURRENT_RELEASE",
+                ],
+            ),
+            is_lock_override=dict(type="bool"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cancel", "change_compartment", "copy", "restore_deployment"],
+                choices=[
+                    "add_deployment_backup_lock",
+                    "cancel",
+                    "change_compartment",
+                    "copy",
+                    "remove_deployment_backup_lock",
+                    "restore_deployment",
+                ],
             ),
         )
     )

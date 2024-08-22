@@ -65,6 +65,7 @@ options:
             - "MONGODB"
             - "AMAZON_KINESIS"
             - "AMAZON_REDSHIFT"
+            - "DB2"
             - "REDIS"
             - "ELASTICSEARCH"
             - "GENERIC"
@@ -217,7 +218,7 @@ deployments:
                     sample: ogg_version_example
                 certificate:
                     description:
-                        - A PEM-encoded SSL certificate.
+                        - The base64 encoded content of the PEM file containing the SSL certificate.
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -380,6 +381,20 @@ deployments:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        ingress_ips:
+            description:
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                ingress_ip:
+                    description:
+                        - A Private Endpoint IPv4 or IPv6 Address created in the customer's subnet.
+                    returned: on success
+                    type: str
+                    sample: ingress_ip_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
@@ -454,10 +469,27 @@ deployments:
             sample: {'Operations': {'CostCenter': 'US'}}
         subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet of the deployment's private endpoint.
+                  The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025,
+                  after which the private subnet will be enforced.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_subnet_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a public subnet in the customer tenancy.
+                  Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy.
+                  For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the loadbalancer in the customer's subnet.
+                  The loadbalancer of the public deployment created in the customer subnet.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         license_model:
             description:
                 - The Oracle license model that applies to a Deployment.
@@ -555,6 +587,37 @@ deployments:
             returned: on success
             type: bool
             sample: true
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "deployment_backup_id": "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx",
         "is_healthy": true,
@@ -591,6 +654,9 @@ deployments:
             "security_patch_upgrade_period_in_days": 56
         },
         "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00",
+        "ingress_ips": [{
+            "ingress_ip": "ingress_ip_example"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -603,6 +669,8 @@ deployments:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_subnet_id": "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
         "license_model": "LICENSE_INCLUDED",
         "fqdn": "fqdn_example",
         "cpu_core_count": 56,
@@ -616,7 +684,13 @@ deployments:
         "time_upgrade_required": "2013-10-20T19:20:30+01:00",
         "deployment_type": "OGG",
         "storage_utilization_in_bytes": 56,
-        "is_storage_utilization_limit_exceeded": true
+        "is_storage_utilization_limit_exceeded": true,
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }]
     }]
 """
 
@@ -712,6 +786,7 @@ def main():
                     "MONGODB",
                     "AMAZON_KINESIS",
                     "AMAZON_REDSHIFT",
+                    "DB2",
                     "REDIS",
                     "ELASTICSEARCH",
                     "GENERIC",

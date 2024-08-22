@@ -23,41 +23,88 @@ module: oci_golden_gate_connection_actions
 short_description: Perform actions on a Connection resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Connection resource in Oracle Cloud Infrastructure
+    - For I(action=add_connection_lock), adds a lock to a Connection resource.
     - For I(action=change_compartment), moves the Connection into a different compartment within the same tenancy. When
       provided, If-Match is checked against ETag values of the resource.  For information about
       moving resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=remove_connection_lock), removes a lock from a Connection resource.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    msg:
+        description:
+            - A message added by the creator of the lock. This is typically used to give an
+              indication of why the resource is locked.
+            - Applicable only for I(action=add_connection_lock).
+        type: str
+        aliases: ["message"]
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Required for I(action=change_compartment).
+        type: str
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=change_compartment).
+        type: bool
     connection_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Connection.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    type:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Type of the lock.
+            - Required for I(action=add_connection_lock), I(action=remove_connection_lock).
         type: str
-        required: true
+        choices:
+            - "FULL"
+            - "DELETE"
+            - "DEFAULT"
+            - "SPECIFIC_RELEASE"
+            - "CURRENT_RELEASE"
     action:
         description:
             - The action to perform on the Connection.
         type: str
         required: true
         choices:
+            - "add_connection_lock"
             - "change_compartment"
+            - "remove_connection_lock"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action change_compartment on connection
+- name: Perform action add_connection_lock on connection
   oci_golden_gate_connection_actions:
     # required
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: add_connection_lock
+
+    # optional
+    msg: msg_example
+
+- name: Perform action change_compartment on connection
+  oci_golden_gate_connection_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    is_lock_override: true
+
+- name: Perform action remove_connection_lock on connection
+  oci_golden_gate_connection_actions:
+    # required
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: remove_connection_lock
 
 """
 
@@ -179,6 +226,8 @@ connection:
                     sample: 56
                 private_ip:
                     description:
+                        - "Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host
+                          field, or make sure the host name is resolvable in the target VCN."
                         - The private IP address of the connection's endpoint in the customer's VCN, typically a
                           database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
                           In case the privateIp is provided, the subnetId must also be provided.
@@ -196,7 +245,7 @@ connection:
             sample: url_example
         ssl_ca:
             description:
-                - "Database Certificate - The base64 encoded content of pem file
+                - "Database Certificate - The base64 encoded content of a .pem or .crt file.
                   containing the server public key (for 1-way SSL)."
             returned: on success
             type: str
@@ -207,12 +256,6 @@ connection:
             returned: on success
             type: bool
             sample: true
-        db_system_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
-            returned: on success
-            type: str
-            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - "JDBC connection string.
@@ -221,6 +264,13 @@ connection:
             returned: on success
             type: str
             sample: connection_string_example
+        authentication_mode:
+            description:
+                - Authentication mode. It can be provided at creation of Oracle Autonomous Database Serverless connections,
+                  when a databaseId is provided. The default value is MTLS.
+            returned: on success
+            type: str
+            sample: TLS
         session_mode:
             description:
                 - "The mode of the database connection session to be established by the data client.
@@ -263,10 +313,7 @@ connection:
             sample: database_name_example
         host:
             description:
-                - "Host and port separated by colon.
-                  Example: `\\"server.example.com:1234\\"`"
-                - "For multiple hosts, provide a comma separated list.
-                  Example: `\\"server1.example.com:1000,server1.example.com:2000\\"`"
+                - The name or address of a host.
             returned: on success
             type: str
             sample: host_example
@@ -303,6 +350,8 @@ connection:
             sample: DISABLED
         private_ip:
             description:
+                - "Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host
+                  field, or make sure the host name is resolvable in the target VCN."
                 - The private IP address of the connection's endpoint in the customer's VCN, typically a
                   database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
                   In case the privateIp is provided, the subnetId must also be provided.
@@ -311,6 +360,12 @@ connection:
             returned: on success
             type: str
             sample: private_ip_example
+        db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         servers:
             description:
                 - "Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional.
@@ -322,10 +377,16 @@ connection:
             sample: servers_example
         security_protocol:
             description:
-                - Security protocol for Elasticsearch
+                - Security Protocol for the DB2 database.
             returned: on success
             type: str
             sample: PLAIN
+        redis_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Redis cluster.
+            returned: on success
+            type: str
+            sample: "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx"
         connection_type:
             description:
                 - The connection type.
@@ -408,6 +469,37 @@ connection:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - Refers to the customer's vault OCID.
@@ -444,10 +536,20 @@ connection:
             sample: []
         subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target subnet of the dedicated connection.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method:
+            description:
+                - "Controls the network traffic direction to the target:
+                  SHARED_SERVICE_ENDPOINT: Traffic flows through the Goldengate Service's network to public hosts. Cannot be used for private targets.
+                  SHARED_DEPLOYMENT_ENDPOINT: Network traffic flows from the assigned deployment's private endpoint through the deployment's subnet.
+                  DEDICATED_ENDPOINT: A dedicated private endpoint is created in the target VCN subnet for the connection. The subnetId is required when
+                  DEDICATED_ENDPOINT networking is selected."
+            returned: on success
+            type: str
+            sample: SHARED_SERVICE_ENDPOINT
         technology_type:
             description:
                 - The Amazon Kinesis technology type.
@@ -497,8 +599,8 @@ connection:
         "url": "url_example",
         "ssl_ca": "ssl_ca_example",
         "should_validate_server_certificate": true,
-        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_string": "connection_string_example",
+        "authentication_mode": "TLS",
         "session_mode": "DIRECT",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
@@ -513,8 +615,10 @@ connection:
         }],
         "ssl_mode": "DISABLED",
         "private_ip": "private_ip_example",
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "servers": "servers_example",
         "security_protocol": "PLAIN",
+        "redis_cluster_id": "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -527,6 +631,12 @@ connection:
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }],
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
         "ingress_ips": [{
@@ -534,6 +644,7 @@ connection:
         }],
         "nsg_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "routing_method": "SHARED_SERVICE_ENDPOINT",
         "technology_type": "AMAZON_KINESIS",
         "connection_url": "connection_url_example",
         "authentication_type": "SHARED_KEY",
@@ -553,7 +664,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.golden_gate import GoldenGateClient
+    from oci.golden_gate.models import AddResourceLockDetails
     from oci.golden_gate.models import ChangeConnectionCompartmentDetails
+    from oci.golden_gate.models import RemoveResourceLockDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -563,7 +676,9 @@ except ImportError:
 class ConnectionActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_connection_lock
         change_compartment
+        remove_connection_lock
     """
 
     @staticmethod
@@ -582,6 +697,29 @@ class ConnectionActionsHelperGen(OCIActionsHelperBase):
             connection_id=self.module.params.get("connection_id"),
         )
 
+    def add_connection_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_connection_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                connection_id=self.module.params.get("connection_id"),
+                add_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeConnectionCompartmentDetails
@@ -592,6 +730,7 @@ class ConnectionActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 connection_id=self.module.params.get("connection_id"),
                 change_connection_compartment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -601,6 +740,29 @@ class ConnectionActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_connection_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_connection_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                connection_id=self.module.params.get("connection_id"),
+                remove_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
 
@@ -617,9 +779,29 @@ def main():
     )
     module_args.update(
         dict(
+            msg=dict(aliases=["message"], type="str"),
+            compartment_id=dict(type="str"),
+            is_lock_override=dict(type="bool"),
             connection_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            type=dict(
+                type="str",
+                choices=[
+                    "FULL",
+                    "DELETE",
+                    "DEFAULT",
+                    "SPECIFIC_RELEASE",
+                    "CURRENT_RELEASE",
+                ],
+            ),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "add_connection_lock",
+                    "change_compartment",
+                    "remove_connection_lock",
+                ],
+            ),
         )
     )
 

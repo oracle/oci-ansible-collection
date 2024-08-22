@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_backup_actions -- Perform actions on a Dep
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,11 @@ Synopsis
 .. Description
 
 - Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
+- For *action=add_deployment_backup_lock*, adds a lock to a DeploymentBackup resource.
 - For *action=cancel*, cancels a Deployment Backup creation process.
 - For *action=change_compartment*, moves a DeploymentBackup into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.  For information about moving resources between compartments, see `Moving Resources Between Compartments <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=copy*, creates a copy of a Deployment Backup.
+- For *action=remove_deployment_backup_lock*, removes a lock from a DeploymentBackup resource.
 - For *action=restore_deployment*, restores a Deployment from a Deployment Backup created from the same Deployment.
 
 
@@ -100,9 +102,11 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>cancel</li>
+                                                                                                                                                                <li>add_deployment_backup_lock</li>
+                                                                                                                                                                                                <li>cancel</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>copy</li>
+                                                                                                                                                                                                <li>remove_deployment_backup_lock</li>
                                                                                                                                                                                                 <li>restore_deployment</li>
                                                                                     </ul>
                                                                             </td>
@@ -339,6 +343,43 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>Applicable only for <em>action=cancel</em><em>action=change_compartment</em><em>action=restore_deployment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-msg"></div>
+                    <b>msg</b>
+                    <a class="ansibleOptionLink" href="#parameter-msg" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                            <div>Applicable only for <em>action=add_deployment_backup_lock</em>.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: message</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#parameter-namespace_name" title="Permalink to this option"></a>
@@ -413,12 +454,17 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>DEFAULT</li>
+                                                                                                                                                                <li>FULL</li>
+                                                                                                                                                                                                <li>DELETE</li>
+                                                                                                                                                                                                <li>DEFAULT</li>
+                                                                                                                                                                                                <li>SPECIFIC_RELEASE</li>
+                                                                                                                                                                                                <li>CURRENT_RELEASE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of a deployment backup cancel</div>
-                                            <div>Required for <em>action=cancel</em>, <em>action=restore_deployment</em>.</div>
+                                            <div>Type of the lock.</div>
+                                            <div>Required for <em>action=add_deployment_backup_lock</em>, <em>action=cancel</em>, <em>action=remove_deployment_backup_lock</em>, <em>action=restore_deployment</em>.</div>
+                                            <div>Required when $p.relatedDiscriminatorFieldName is &#x27;DEFAULT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -480,10 +526,25 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action cancel on deployment_backup with type = DEFAULT
+    - name: Perform action add_deployment_backup_lock on deployment_backup
       oci_golden_gate_deployment_backup_actions:
         # required
-        type: DEFAULT
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        type: FULL
+        action: add_deployment_backup_lock
+
+        # optional
+        msg: msg_example
+
+    - name: Perform action cancel on deployment_backup
+      oci_golden_gate_deployment_backup_actions:
+        # required
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        type: FULL
+        action: cancel
+
+        # optional
+        is_lock_override: true
 
     - name: Perform action change_compartment on deployment_backup
       oci_golden_gate_deployment_backup_actions:
@@ -491,6 +552,9 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+        # optional
+        is_lock_override: true
 
     - name: Perform action copy on deployment_backup
       oci_golden_gate_deployment_backup_actions:
@@ -504,10 +568,22 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-    - name: Perform action restore_deployment on deployment_backup with type = DEFAULT
+    - name: Perform action remove_deployment_backup_lock on deployment_backup
       oci_golden_gate_deployment_backup_actions:
         # required
-        type: DEFAULT
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        type: FULL
+        action: remove_deployment_backup_lock
+
+    - name: Perform action restore_deployment on deployment_backup
+      oci_golden_gate_deployment_backup_actions:
+        # required
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        type: FULL
+        action: restore_deployment
+
+        # optional
+        is_lock_override: true
 
 
 
@@ -526,12 +602,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup"></div>
                     <b>deployment_backup</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup" title="Permalink to this return value"></a>
@@ -544,12 +620,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeploymentBackup resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backup_type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_backup_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backup_type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;locks&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;related_resource_id&#x27;: &#x27;ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;}], &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_backup_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/backup_type"></div>
                     <b>backup_type</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/backup_type" title="Permalink to this return value"></a>
@@ -567,7 +643,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/bucket_name" title="Permalink to this return value"></a>
@@ -585,7 +661,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/compartment_id" title="Permalink to this return value"></a>
@@ -603,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/defined_tags" title="Permalink to this return value"></a>
@@ -622,7 +698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/deployment_id"></div>
                     <b>deployment_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/deployment_id" title="Permalink to this return value"></a>
@@ -640,7 +716,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/display_name" title="Permalink to this return value"></a>
@@ -658,7 +752,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/freeform_tags" title="Permalink to this return value"></a>
@@ -677,7 +771,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/id" title="Permalink to this return value"></a>
@@ -695,7 +789,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/is_automatic"></div>
                     <b>is_automatic</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/is_automatic" title="Permalink to this return value"></a>
@@ -713,7 +807,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/lifecycle_details" title="Permalink to this return value"></a>
@@ -731,7 +825,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/lifecycle_state" title="Permalink to this return value"></a>
@@ -749,7 +843,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Locks associated with this resource.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/related_resource_id"></div>
+                    <b>related_resource_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/related_resource_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When the lock was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FULL</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/namespace_name" title="Permalink to this return value"></a>
@@ -767,7 +954,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/object_name" title="Permalink to this return value"></a>
@@ -785,7 +972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/ogg_version"></div>
                     <b>ogg_version</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/ogg_version" title="Permalink to this return value"></a>
@@ -803,7 +990,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/size_in_bytes"></div>
                     <b>size_in_bytes</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/size_in_bytes" title="Permalink to this return value"></a>
@@ -821,7 +1008,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/system_tags" title="Permalink to this return value"></a>
@@ -838,7 +1025,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_backup_finished"></div>
                     <b>time_backup_finished</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_backup_finished" title="Permalink to this return value"></a>
@@ -856,7 +1043,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_created" title="Permalink to this return value"></a>
@@ -874,7 +1061,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_of_backup"></div>
                     <b>time_of_backup</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_of_backup" title="Permalink to this return value"></a>
@@ -892,7 +1079,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_updated" title="Permalink to this return value"></a>

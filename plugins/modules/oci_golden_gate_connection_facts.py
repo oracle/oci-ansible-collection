@@ -52,11 +52,14 @@ options:
             - "GENERIC"
             - "OCI_AUTONOMOUS_DATABASE"
             - "OCI_AUTONOMOUS_JSON_DATABASE"
+            - "OCI_CACHE_WITH_REDIS"
             - "OCI_MYSQL"
             - "OCI_OBJECT_STORAGE"
+            - "OCI_POSTGRESQL"
             - "OCI_STREAMING"
             - "ORACLE_DATABASE"
             - "ORACLE_EXADATA"
+            - "ORACLE_EXADATA_DATABASE_AT_AZURE"
             - "ORACLE_NOSQL"
             - "ORACLE_WEBLOGIC_JMS"
             - "AMAZON_RDS_ORACLE"
@@ -71,6 +74,7 @@ options:
             - "AMAZON_RDS_POSTGRESQL"
             - "APACHE_KAFKA"
             - "AZURE_COSMOS_DB_FOR_MONGODB"
+            - "AZURE_COSMOS_DB_FOR_POSTGRESQL"
             - "AZURE_DATA_LAKE_STORAGE"
             - "AZURE_EVENT_HUBS"
             - "AZURE_MYSQL"
@@ -80,6 +84,7 @@ options:
             - "AZURE_SYNAPSE_ANALYTICS"
             - "CONFLUENT_KAFKA"
             - "CONFLUENT_SCHEMA_REGISTRY"
+            - "DB2_ZOS"
             - "ELASTICSEARCH"
             - "GOOGLE_BIGQUERY"
             - "GOOGLE_CLOUD_STORAGE"
@@ -91,6 +96,8 @@ options:
             - "MICROSOFT_SQLSERVER"
             - "MONGODB"
             - "MYSQL_SERVER"
+            - "MYSQL_HEATWAVE_ON_AZURE"
+            - "MYSQL_HEATWAVE_ON_AWS"
             - "POSTGRESQL_SERVER"
             - "REDIS"
             - "SINGLESTOREDB"
@@ -120,6 +127,7 @@ options:
             - "MONGODB"
             - "AMAZON_KINESIS"
             - "AMAZON_REDSHIFT"
+            - "DB2"
             - "REDIS"
             - "ELASTICSEARCH"
             - "GENERIC"
@@ -145,6 +153,7 @@ options:
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
             - "DATABASE_DB2ZOS"
+            - "GGSA"
             - "DATA_TRANSFORMS"
     lifecycle_state:
         description:
@@ -337,6 +346,8 @@ connections:
                     sample: 56
                 private_ip:
                     description:
+                        - "Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host
+                          field, or make sure the host name is resolvable in the target VCN."
                         - The private IP address of the connection's endpoint in the customer's VCN, typically a
                           database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
                           In case the privateIp is provided, the subnetId must also be provided.
@@ -355,7 +366,7 @@ connections:
             sample: url_example
         ssl_ca:
             description:
-                - "Database Certificate - The base64 encoded content of pem file
+                - "Database Certificate - The base64 encoded content of a .pem or .crt file.
                   containing the server public key (for 1-way SSL)."
                 - Returned for get operation
             returned: on success
@@ -368,13 +379,6 @@ connections:
             returned: on success
             type: bool
             sample: true
-        db_system_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - "JDBC connection string.
@@ -384,6 +388,14 @@ connections:
             returned: on success
             type: str
             sample: connection_string_example
+        authentication_mode:
+            description:
+                - Authentication mode. It can be provided at creation of Oracle Autonomous Database Serverless connections,
+                  when a databaseId is provided. The default value is MTLS.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: TLS
         session_mode:
             description:
                 - "The mode of the database connection session to be established by the data client.
@@ -432,10 +444,7 @@ connections:
             sample: database_name_example
         host:
             description:
-                - "Host and port separated by colon.
-                  Example: `\\"server.example.com:1234\\"`"
-                - "For multiple hosts, provide a comma separated list.
-                  Example: `\\"server1.example.com:1000,server1.example.com:2000\\"`"
+                - The name or address of a host.
                 - Returned for get operation
             returned: on success
             type: str
@@ -476,6 +485,8 @@ connections:
             sample: DISABLED
         private_ip:
             description:
+                - "Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host
+                  field, or make sure the host name is resolvable in the target VCN."
                 - The private IP address of the connection's endpoint in the customer's VCN, typically a
                   database endpoint or a big data endpoint (e.g. Kafka bootstrap server).
                   In case the privateIp is provided, the subnetId must also be provided.
@@ -485,6 +496,13 @@ connections:
             returned: on success
             type: str
             sample: private_ip_example
+        db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         servers:
             description:
                 - "Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional.
@@ -497,11 +515,18 @@ connections:
             sample: servers_example
         security_protocol:
             description:
-                - Security protocol for Elasticsearch
+                - Security Protocol for the DB2 database.
                 - Returned for get operation
             returned: on success
             type: str
             sample: PLAIN
+        redis_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Redis cluster.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx"
         technology_type:
             description:
                 - The Amazon Kinesis technology type.
@@ -651,10 +676,51 @@ connections:
             sample: []
         subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target subnet of the dedicated connection.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method:
+            description:
+                - "Controls the network traffic direction to the target:
+                  SHARED_SERVICE_ENDPOINT: Traffic flows through the Goldengate Service's network to public hosts. Cannot be used for private targets.
+                  SHARED_DEPLOYMENT_ENDPOINT: Network traffic flows from the assigned deployment's private endpoint through the deployment's subnet.
+                  DEDICATED_ENDPOINT: A dedicated private endpoint is created in the target VCN subnet for the connection. The subnetId is required when
+                  DEDICATED_ENDPOINT networking is selected."
+            returned: on success
+            type: str
+            sample: SHARED_SERVICE_ENDPOINT
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "access_key_id": "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx",
         "account_name": "account_name_example",
@@ -677,8 +743,8 @@ connections:
         "url": "url_example",
         "ssl_ca": "ssl_ca_example",
         "should_validate_server_certificate": true,
-        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_string": "connection_string_example",
+        "authentication_mode": "TLS",
         "session_mode": "DIRECT",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
@@ -693,8 +759,10 @@ connections:
         }],
         "ssl_mode": "DISABLED",
         "private_ip": "private_ip_example",
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "servers": "servers_example",
         "security_protocol": "PLAIN",
+        "redis_cluster_id": "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx",
         "technology_type": "AMAZON_KINESIS",
         "connection_url": "connection_url_example",
         "authentication_type": "SHARED_KEY",
@@ -717,7 +785,14 @@ connections:
             "ingress_ip": "ingress_ip_example"
         }],
         "nsg_ids": [],
-        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "routing_method": "SHARED_SERVICE_ENDPOINT",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }]
     }]
 """
 
@@ -800,11 +875,14 @@ def main():
                     "GENERIC",
                     "OCI_AUTONOMOUS_DATABASE",
                     "OCI_AUTONOMOUS_JSON_DATABASE",
+                    "OCI_CACHE_WITH_REDIS",
                     "OCI_MYSQL",
                     "OCI_OBJECT_STORAGE",
+                    "OCI_POSTGRESQL",
                     "OCI_STREAMING",
                     "ORACLE_DATABASE",
                     "ORACLE_EXADATA",
+                    "ORACLE_EXADATA_DATABASE_AT_AZURE",
                     "ORACLE_NOSQL",
                     "ORACLE_WEBLOGIC_JMS",
                     "AMAZON_RDS_ORACLE",
@@ -819,6 +897,7 @@ def main():
                     "AMAZON_RDS_POSTGRESQL",
                     "APACHE_KAFKA",
                     "AZURE_COSMOS_DB_FOR_MONGODB",
+                    "AZURE_COSMOS_DB_FOR_POSTGRESQL",
                     "AZURE_DATA_LAKE_STORAGE",
                     "AZURE_EVENT_HUBS",
                     "AZURE_MYSQL",
@@ -828,6 +907,7 @@ def main():
                     "AZURE_SYNAPSE_ANALYTICS",
                     "CONFLUENT_KAFKA",
                     "CONFLUENT_SCHEMA_REGISTRY",
+                    "DB2_ZOS",
                     "ELASTICSEARCH",
                     "GOOGLE_BIGQUERY",
                     "GOOGLE_CLOUD_STORAGE",
@@ -839,6 +919,8 @@ def main():
                     "MICROSOFT_SQLSERVER",
                     "MONGODB",
                     "MYSQL_SERVER",
+                    "MYSQL_HEATWAVE_ON_AZURE",
+                    "MYSQL_HEATWAVE_ON_AWS",
                     "POSTGRESQL_SERVER",
                     "REDIS",
                     "SINGLESTOREDB",
@@ -868,6 +950,7 @@ def main():
                     "MONGODB",
                     "AMAZON_KINESIS",
                     "AMAZON_REDSHIFT",
+                    "DB2",
                     "REDIS",
                     "ELASTICSEARCH",
                     "GENERIC",
@@ -887,6 +970,7 @@ def main():
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
                     "DATABASE_DB2ZOS",
+                    "GGSA",
                     "DATA_TRANSFORMS",
                 ],
             ),

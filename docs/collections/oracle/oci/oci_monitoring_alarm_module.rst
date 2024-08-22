@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm -- Manage an Alarm resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -105,6 +105,22 @@ Parameters
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-alarm_summary"></div>
+                    <b>alarm_summary</b>
+                    <a class="ansibleOptionLink" href="#parameter-alarm_summary" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Customizable alarm summary (`alarmSummary` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The alarm summary appears within the body of the alarm message and in responses to <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus'>ListAlarmStatus</a> <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory'>GetAlarmHistory</a> and <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="2">
@@ -218,7 +234,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The human-readable content of the delivered alarm notification. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
+                                            <div>The human-readable content of the delivered alarm notification. Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -315,7 +331,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of destinations for alarm notifications. Each destination is represented by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a related resource, such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic'>topic</a>. Supported destination services: Notifications , Streaming. Limit: One destination per supported destination service.</div>
+                                            <div>A list of destinations for alarm notifications. Each destination is represented by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a related resource, such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic'>topic</a>. Supported destination services: Notifications, Streaming. Limit: One destination per supported destination service.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -340,6 +356,22 @@ Parameters
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-evaluation_slack_duration"></div>
+                    <b>evaluation_slack_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-evaluation_slack_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Customizable slack period to wait for metric ingestion before evaluating the alarm. Specify a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H` for one hour). Minimum: PT3M. Maximum: PT2H. Default: PT3M. For more information about the slack period, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#reset'>About the Internal Reset Period</a>.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="2">
@@ -512,6 +544,153 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-notification_title"></div>
+                    <b>notification_title</b>
+                    <a class="ansibleOptionLink" href="#parameter-notification_title" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Customizable notification title (`title` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The notification title appears as the subject line in a formatted email message and as the title in a Slack message.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-notification_version"></div>
+                    <b>notification_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-notification_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The version of the alarm notification to be delivered. Allowed value: `1.X` The value must start with a number (up to four digits), followed by a period and an uppercase X.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides"></div>
+                    <b>overrides</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A set of overrides that control evaluations of the alarm.</div>
+                                            <div>Each override can specify values for query, severity, body, and pending duration. When an alarm contains overrides, the Monitoring service evaluates each override in order, beginning with the first override in the array (index position `0`), and then evaluates the alarm&#x27;s base values (`ruleName` value of `BASE`).</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides/body"></div>
+                    <b>body</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides/body" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The human-readable content of the delivered alarm notification. Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
+                                            <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides/pending_duration"></div>
+                    <b>pending_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides/pending_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The period of time that the condition defined in the alarm must persist before the alarm state changes from &quot;OK&quot; to &quot;FIRING&quot;. For example, a value of 5 minutes means that the alarm must persist in breaching the condition for five minutes before the alarm updates its state to &quot;FIRING&quot;.</div>
+                                            <div>The duration is specified as a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H` for one hour). Minimum: PT1M. Maximum: PT1H. Default: PT1M.</div>
+                                            <div>Under the default value of PT1M, the first evaluation that breaches the alarm updates the state to &quot;FIRING&quot;.</div>
+                                            <div>The alarm updates its status to &quot;OK&quot; when the breaching condition has been clear for the most recent minute.</div>
+                                            <div>Example: `PT5M`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides/query"></div>
+                    <b>query</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides/query" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Also, you can customize the <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/create-edit-alarm-query-absence-detection- period.htm'>absence detection period</a>. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>Example of threshold alarm:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
+                                            <div>-----</div>
+                                            <div>Example of absence alarm:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
+                                            <div>----- Example of absence alarm with custom absence detection period of 20 hours:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent(20h)</div>
+                                            <div>-----</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides/rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides/rule_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A user-friendly description for this alarm override. Must be unique across all `ruleName` values for the alarm.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-overrides/severity"></div>
+                    <b>severity</b>
+                    <a class="ansibleOptionLink" href="#parameter-overrides/severity" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The perceived severity of the alarm with regard to the affected system.</div>
+                                            <div>Example: `CRITICAL`</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-pending_duration"></div>
                     <b>pending_duration</b>
                     <a class="ansibleOptionLink" href="#parameter-pending_duration" title="Permalink to this option"></a>
@@ -542,7 +721,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Also, you can customize the <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/create-edit-alarm-query-absence-detection-period.htm'>absence detection period</a>. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
                                             <div>Example of threshold alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
@@ -550,6 +729,9 @@ Parameters
                                             <div>Example of absence alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
+                                            <div>----- Example of absence alarm with custom absence detection period of 20 hours:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent(20h)</div>
                                             <div>-----</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
@@ -642,6 +824,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-rule_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Identifier of the alarm&#x27;s base values for alarm evaluation, for use when the alarm contains overrides. Default value is `BASE`. For information about alarm overrides, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride'>AlarmOverride</a>.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-severity"></div>
                     <b>severity</b>
                     <a class="ansibleOptionLink" href="#parameter-severity" title="Permalink to this option"></a>
@@ -727,7 +925,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -744,7 +942,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T02:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T02:02:29.600Z`</div>
                                                         </td>
             </tr>
                     
@@ -852,6 +1050,18 @@ Examples
           description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        overrides:
+        - # optional
+          pending_duration: pending_duration_example
+          severity: severity_example
+          body: body_example
+          rule_name: rule_name_example
+          query: query_example
+        rule_name: rule_name_example
+        notification_version: notification_version_example
+        notification_title: notification_title_example
+        evaluation_slack_duration: evaluation_slack_duration_example
+        alarm_summary: alarm_summary_example
 
     - name: Update alarm
       oci_monitoring_alarm:
@@ -884,6 +1094,18 @@ Examples
         is_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        overrides:
+        - # optional
+          pending_duration: pending_duration_example
+          severity: severity_example
+          body: body_example
+          rule_name: rule_name_example
+          query: query_example
+        rule_name: rule_name_example
+        notification_version: notification_version_example
+        notification_title: notification_title_example
+        evaluation_slack_duration: evaluation_slack_duration_example
+        alarm_summary: alarm_summary_example
 
     - name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_monitoring_alarm:
@@ -915,6 +1137,18 @@ Examples
         is_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        overrides:
+        - # optional
+          pending_duration: pending_duration_example
+          severity: severity_example
+          body: body_example
+          rule_name: rule_name_example
+          query: query_example
+        rule_name: rule_name_example
+        notification_version: notification_version_example
+        notification_title: notification_title_example
+        evaluation_slack_duration: evaluation_slack_duration_example
+        alarm_summary: alarm_summary_example
 
     - name: Delete alarm
       oci_monitoring_alarm:
@@ -964,10 +1198,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Alarm resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;is_notifications_per_metric_dimension_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;repeat_notification_duration_example&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_summary&#x27;: &#x27;alarm_summary_example&#x27;, &#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;evaluation_slack_duration&#x27;: &#x27;evaluation_slack_duration_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;is_notifications_per_metric_dimension_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;notification_title&#x27;: &#x27;notification_title_example&#x27;, &#x27;notification_version&#x27;: &#x27;notification_version_example&#x27;, &#x27;overrides&#x27;: [{&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;rule_name&#x27;: &#x27;rule_name_example&#x27;, &#x27;severity&#x27;: &#x27;severity_example&#x27;}], &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;repeat_notification_duration_example&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;, &#x27;rule_name&#x27;: &#x27;rule_name_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/alarm_summary"></div>
+                    <b>alarm_summary</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/alarm_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable alarm summary (`alarmSummary` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The alarm summary appears within the body of the alarm message and in responses to <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus'>ListAlarmStatus</a> <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory'>GetAlarmHistory</a> and <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alarm_summary_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-alarm/body"></div>
@@ -979,7 +1231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The human-readable content of the delivered alarm notification. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices.</div>
+                                            <div>The human-readable content of the delivered alarm notification. Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1034,7 +1286,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of destinations for alarm notifications. Each destination is represented by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a related resource, such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic'>topic</a>. Supported destination services: Notifications , Streaming. Limit: One destination per supported destination service.</div>
+                                            <div>A list of destinations for alarm notifications. Each destination is represented by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a related resource, such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/notification/latest/NotificationTopic'>topic</a>. Supported destination services: Notifications, Streaming. Limit: One destination per supported destination service.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1056,6 +1308,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/evaluation_slack_duration"></div>
+                    <b>evaluation_slack_duration</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/evaluation_slack_duration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable slack period to wait for metric ingestion before evaluating the alarm. Specify a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H` for one hour). Minimum: PT3M. Maximum: PT2H. Default: PT3M. For more information about the slack period, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#reset'>About the Internal Reset Period</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">evaluation_slack_duration_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1227,6 +1497,172 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/notification_title"></div>
+                    <b>notification_title</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/notification_title" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable notification title (`title` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The notification title appears as the subject line in a formatted email message and as the title in a Slack message.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">notification_title_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/notification_version"></div>
+                    <b>notification_version</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/notification_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The version of the alarm notification to be delivered. Allowed value: `1.X` The value must start with a number (up to four digits), followed by a period and an uppercase X.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">notification_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides"></div>
+                    <b>overrides</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A set of overrides that control evaluations of the alarm.</div>
+                                            <div>Each override can specify values for query, severity, body, and pending duration. When an alarm contains overrides, the Monitoring service evaluates each override in order, beginning with the first override in the array (index position `0`), and then evaluates the alarm&#x27;s base values (`ruleName` value of `BASE`).</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides/body"></div>
+                    <b>body</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides/body" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The human-readable content of the delivered alarm notification. Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic- variables.htm'>dynamic variables</a>. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
+                                            <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">body_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides/pending_duration"></div>
+                    <b>pending_duration</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides/pending_duration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The period of time that the condition defined in the alarm must persist before the alarm state changes from &quot;OK&quot; to &quot;FIRING&quot;. For example, a value of 5 minutes means that the alarm must persist in breaching the condition for five minutes before the alarm updates its state to &quot;FIRING&quot;.</div>
+                                            <div>The duration is specified as a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H` for one hour). Minimum: PT1M. Maximum: PT1H. Default: PT1M.</div>
+                                            <div>Under the default value of PT1M, the first evaluation that breaches the alarm updates the state to &quot;FIRING&quot;.</div>
+                                            <div>The alarm updates its status to &quot;OK&quot; when the breaching condition has been clear for the most recent minute.</div>
+                                            <div>Example: `PT5M`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pending_duration_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides/query"></div>
+                    <b>query</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides/query" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Also, you can customize the <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/create-edit-alarm-query-absence-detection- period.htm'>absence detection period</a>. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>Example of threshold alarm:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
+                                            <div>-----</div>
+                                            <div>Example of absence alarm:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
+                                            <div>----- Example of absence alarm with custom absence detection period of 20 hours:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent(20h)</div>
+                                            <div>-----</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides/rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides/rule_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly description for this alarm override. Must be unique across all `ruleName` values for the alarm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rule_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm/overrides/severity"></div>
+                    <b>severity</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/overrides/severity" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The perceived severity of the alarm with regard to the affected system.</div>
+                                            <div>Example: `CRITICAL`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">severity_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-alarm/pending_duration"></div>
                     <b>pending_duration</b>
                     <a class="ansibleOptionLink" href="#return-alarm/pending_duration" title="Permalink to this return value"></a>
@@ -1258,7 +1694,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Also, you can customize the <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/create-edit-alarm-query-absence-detection-period.htm'>absence detection period</a>. Supported grouping functions: `grouping()`, `groupBy()`. For information about writing MQL expressions, see <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/query-metric-mql.htm'>Editing the MQL Expression for a Query</a>. For details about MQL, see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
                                             <div>Example of threshold alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
@@ -1266,6 +1702,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example of absence alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
+                                            <div>----- Example of absence alarm with custom absence detection period of 20 hours:</div>
+                                            <div>-----</div>
+                                            <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent(20h)</div>
                                             <div>-----</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1327,6 +1766,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_group_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/rule_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Identifier of the alarm&#x27;s base values for alarm evaluation, for use when the alarm contains overrides. Default value is `BASE`. For information about alarm overrides, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride'>AlarmOverride</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rule_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1399,7 +1856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1419,7 +1876,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T02:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T02:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1439,7 +1896,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time the alarm was created. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1458,7 +1915,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time the alarm was last updated. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-03T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-03T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

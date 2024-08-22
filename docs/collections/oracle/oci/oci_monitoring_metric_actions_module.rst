@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -297,7 +297,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Qualifiers that you want to use when searching for metric definitions. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
-                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
+                                            <div>Example: `{&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;}`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -564,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
-                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
+                                            <div>Example: `{&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;}`</div>
                                         <br/>
                                                         </td>
             </tr>

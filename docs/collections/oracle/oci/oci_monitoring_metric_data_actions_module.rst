@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data_actions -- Perform actions on a MetricData
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -297,7 +297,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The end of the time range to use when searching for metric data points. Format is defined by RFC3339. The response excludes metric data points for the endTime. Default value: the timestamp representing when the call was sent.</div>
-                                            <div>Example: `2019-02-01T02:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T02:02:29.600Z`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -328,10 +328,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Monitoring Query Language (MQL) expression to use when searching for metric data points to aggregate. The query must specify a metric, statistic, and interval. Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.</div>
+                                            <div>The Monitoring Query Language (MQL) expression to use when searching for metric data points to aggregate. The query must specify a metric, statistic, and interval. Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. When specifying a dimension value, surround it with double quotes, and escape each double quote with a backslash (`\`) character. Supported grouping functions: `grouping()`, `groupBy()`.</div>
                                             <div>Construct your query to avoid exceeding limits on returned data. See <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/20180401/MetricData'>MetricData Reference</a>.</div>
                                             <div>For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
-                                            <div>Example: `CpuUtilization[1m].sum()`</div>
+                                            <div>Example 1: `CpuUtilization[1m].sum()`</div>
+                                            <div>Example 2 (escaped double quotes for value string): `CpuUtilization[1m]{resourceId = \&quot;&lt;var&gt;&amp;lt;instance_OCID&amp;gt;&lt;/var&gt;\&quot;}.max()`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -413,7 +414,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The beginning of the time range to use when searching for metric data points. Format is defined by RFC3339. The response includes metric data points for the startTime. Default value: the timestamp 3 hours before the call was sent.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -539,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The date and time associated with the value of this data point. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -597,7 +598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Qualifiers provided in the definition of the returned metric. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
-                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
+                                            <div>Example: `{&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;}`</div>
                                         <br/>
                                                         </td>
             </tr>

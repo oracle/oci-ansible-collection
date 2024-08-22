@@ -27,6 +27,7 @@ description:
       Status is collective, across all metric streams in the alarm.
       To list alarm status for each metric stream, use L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+      Optionally filter by resource or status value.
       For more information, see
       L(Listing Alarm Statuses,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status.htm).
       For important limits information, see
@@ -77,8 +78,8 @@ options:
             - "DESC"
     resource_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a resource that is monitored by the
-              metric that you are searching for.
+            - A filter to return only the resource with the specified L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+              The resource must be monitored by the metric that you are searching for.
             - "Example: `ocid1.instance.oc1.phx.exampleuniqueID`"
         type: str
     service_name:
@@ -89,15 +90,15 @@ options:
         type: str
     entity_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entity monitored by the
-              metric that you are searching for.
+            - A filter to return only resources that match the given entity L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)
+              exactly.
+              The resource (entity) must be monitored by the metric that you are searching for.
             - "Example: `ocid1.instance.oc1.phx.exampleuniqueID`"
         type: str
     status:
         description:
-            - "The status of the metric stream to use for alarm filtering. For example, set `StatusQueryParam` to
-              \\"FIRING\\" to filter results to metric streams of the alarm with that status. Default behaviour is to return
-              alarms irrespective of metric streams' status."
+            - "A filter to return only metric streams that match the specified status.
+              For example, the value \\"FIRING\\" returns only firing metric streams."
             - "Example: `FIRING`"
         type: str
         choices:
@@ -146,19 +147,40 @@ alarm_statuses:
             sample: display_name_example
         severity:
             description:
-                - The configured severity of the alarm.
+                - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
                 - "Example: `CRITICAL`"
             returned: on success
             type: str
             sample: CRITICAL
+        rule_name:
+            description:
+                - Identifier of the alarm's base values for alarm evaluation, for use when the alarm contains overrides.
+                  Default value is `BASE`. For information about alarm overrides, see L(AlarmOverride,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride).
+            returned: on success
+            type: str
+            sample: rule_name_example
         timestamp_triggered:
             description:
                 - "Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
                   Note: A three-minute lag for this value accounts for any late-arriving metrics."
-                - "Example: `2019-02-01T01:02:29.600Z`"
+                - "Example: `2023-02-01T01:02:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        alarm_summary:
+            description:
+                - Customizable alarm summary (`alarmSummary` L(alarm message parameter,https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message-
+                  format.htm)).
+                  Optionally include L(dynamic variables,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm).
+                  The alarm summary appears within the body of the alarm message and in responses to
+                  L(ListAlarmStatus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus)
+                  L(GetAlarmHistory,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory) and
+                  L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+            returned: on success
+            type: str
+            sample: alarm_summary_example
         status:
             description:
                 - "The status of this alarm.
@@ -189,14 +211,14 @@ alarm_statuses:
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
-                        - "Example: `2019-02-01T01:02:29.600Z`"
+                        - "Example: `2023-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
-                        - "Example: `2019-02-01T02:02:29.600Z`"
+                        - "Example: `2023-02-01T02:02:29.600Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
@@ -204,7 +226,9 @@ alarm_statuses:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "severity": "CRITICAL",
+        "rule_name": "rule_name_example",
         "timestamp_triggered": "2013-10-20T19:20:30+01:00",
+        "alarm_summary": "alarm_summary_example",
         "status": "FIRING",
         "suppression": {
             "description": "description_example",

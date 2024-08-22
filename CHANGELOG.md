@@ -1,18 +1,41 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [5.3.0]
+
+## Added
+
+- Support for os_management_hub service
+- Support for adding and removing locks for connections, deployments, and deployment backups in the GoldenGate service
+- Support for additional connection types for deployments and connections in the GoldenGate service
+- Support for managing certificates of target Servers in the Golden Gate service
+- Support for additional connections types for Amazon Kinesis, Amazon Redshift, Elasticsearch, Generic, Google BigQuery, Google Cloud Storage and Redis Database resources in the Golden Gate service
+- Support for new operations for deployment upgrades in the GoldenGate service
+- Support for multiple severities in an alarm in the Monitoring service
+- Support for dimension specific alarm suppressions in the Monitoring service
+- Support for optional parameters for the list alarms status operation in the Monitoring Service
+
+## Changed
+
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.132.0
+
 ## [5.2.0]
 
 ## Added
+
 - Support for MySQL to MySQL homogeneous migrations in the Database Migration service
 - Oracle Linux Automation Manager (OLAM) documentation
 
 ## Breaking
+
 - `oci_database_migration_agent`, `oci_database_migration_agent_facts`, `oci_database_migration_agent_image_facts` and `oci_database_migration_agent_actions` modules are removed from Database Migration service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.129.1
 
 ## [5.1.0]
@@ -22,66 +45,82 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Issue with `oci_database_database` module using `key_by` parameter (#280)
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.126.4
 
 ## [5.0.0]
 
 ## Breaking
+
 - Support for The Application migration service (application_migration) is removed as it has reached the EOL
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.125.1
 
 ## [4.43.0]
 
 ## Added
+
 - Support for the PostgreSQL service
 - Updated parameters description of database modules in the Database Service
 
 ## Fixed
+
 - `certificates_management` service's custom_helper class names to avoid conflicting with other service's custom_helper class names (#269)
 
 ## Breaking
+
 - Parameter `max_cpu_core_count` was removed from `oci_database_autonomous_database`, `oci_database_autonomous_database_facts`, `oci_database_autonomous_database_actions` and `oci_database_autonomous_database_clones_facts` modules in the Database service.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.125.0
 
 ## [4.42.0]
 
 ## Added
+
 - Support for create/delete replicas in the NoSQL Database service
 - Support for update/delete row in a table in NoSQL Database service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.123.0
 
 ## [4.41.0]
 
 ## Added
+
 - Support for Compute Cloud at Customer service.
 - Support for `lifecycle_details` parameter in data_asset resource of Data Catalog service.
 
 ## Fixed
+
 - Issue with idempotence behaviour of create operation of `oci_database_management_db_management_private_endpoint` module.
 - Idempotency of `enable_pluggable_database_management` and `disable_pluggable_database_management` actions of `oci_database_pluggable_database_actions` module.
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.121.1
 
 ## [4.40.0]
 
 ## Added
+
 - Support for additional connections types for Amazon Kinesis, Amazon Redshift, Elasticsearch, Generic, Google BigQuery, Google Cloud Storage and Redis Database resources in the Golden Gate service
 - Support for enabling and disabling of Deployment Rule Set in the Java Management Service
 
 ## Breaking
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.118.2
 
 ## [4.39.0]
 
 ## Added
+
 - Support for the Caching Service
 - Support for elastic resource pools in the Database service
 - Support for new optional parameters on replica create, update and list operations in the MySQL Heatwave service
@@ -92,15 +131,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for unified agent operational metrics for the service configurations in the Logging Management service
 
 ## Breaking
+
 - Properties `display_name` and `rqs_type` were removed from `parameters` in `oci_logging_service_facts` module of the Logging service
 - Parameter `service_stage` was removed from operation `list_services` of `oci_logging_service_facts` module of the Logging service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.118.0
 
 ## [4.38.0]
 
 ## Added
+
 - Support for database in memory on autonomous database create operations in the Database service
 - Support for new hardware model X10M in ExaCC in the Database service
 - Support for pluggable database with enhanced features in Database service
@@ -110,26 +152,32 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for domains while creating integration instances in Oracle Integration Cloud service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.118.0
 
 ## [4.37.0]
 
 ## Added
+
 - Support for Java migration analysis, performance tuning recommendations in the Java Management service
 - Support for Additional options and information on recall data in the Logging Analytics service
 
 ## Fixed
+
 - An issue with WorkRequest Waiter client when custom ssl certificate bundle is passed for Gov/ONSR regions
 
 ## Breaking
+
 - Allowed value `ACCELERATION_MAINTENANCE` was removed from the parameter `task_type` in operation `list_scheduled_tasks` in the Logging Analytics service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.116.0
 
 ## [4.36.0]
 
 ## Added
+
 - Support to enable/disable IPv6 details in Inventory Plugin
 - Support for custom key/value pairs and custom document classification in the AI Document service
 - Support for synchronous operations in the AI Document service
@@ -140,14 +188,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for automatic backup download in the GoldenGate service
 
 ## Breaking
+
 - The type of property `size_in_bytes` was changed from `float` to `int` in `oci_golden_gate_trail_file_facts`, `oci_golden_gate_trail_sequence_facts`, `oci_golden_gate_deployment_backup`, `oci_golden_gate_deployment_backup_facts` modules
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.116.0
 
 ## [4.35.0]
 
 ## Added
+
 - Support for news reports in the Operations Insights service
 - Support to generate user security token in Identity Data Plane service
 - Support for tags in the Stack Monitoring service
@@ -158,11 +209,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for freeform and defined tags on resources in the Generic Artifacts service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.115.0
 
 ## [4.34.0]
 
 ## Added
+
 - Support for bulk include/exclude of migration objects in the Database Migration service
 - Support for File System Service (FSS) as transfer medium for data export and import in the Database Migration service
 - Support for integration of GoldenGate service for replication in the Database Migration Service
@@ -171,14 +224,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for allowing users to select the billing interval of deleted ESXi hosts while adding new ESXi hosts in the VMWare Solution service
 
 ## Fixed
+
 - Issue with idempotence behaviour of create operation of `oci_database_database` module (#242)
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.113.0
 
 ## [4.33.0]
 
 ## Added
+
 - Support for creating and updating a VM cluster network with disaster recovery network support in the Database service
 - Support for region-specific identity domain URL in Identity Service
 - Support for MySQL HeatWave Lakehouse in the MySQL Database service
@@ -191,13 +247,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for Compute Cloud at Customer resource type in the Operator Access Control service
 
 ## Breaking
-- `oci_mysql_analytics_cluster_actions`, `oci_mysql_analytics_cluster_facts`, `oci_mysql_analytics_cluster_memory_estimate_actions`, `oci_mysql_analytics_cluster_memory_estimate_facts` and `oci_mysql_analytics_cluster` modules are removed from MySQL Database service. Corresponding APIs are removed by service team in SDKs 
+
+- `oci_mysql_analytics_cluster_actions`, `oci_mysql_analytics_cluster_facts`, `oci_mysql_analytics_cluster_memory_estimate_actions`, `oci_mysql_analytics_cluster_memory_estimate_facts` and `oci_mysql_analytics_cluster` modules are removed from MySQL Database service. Corresponding APIs are removed by service team in SDKs
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.4
 
 ## [4.32.0]
 
 ## Added
+
 - Support for backup retention on autonomous database create operations in the Database service
 - Support for launching VM database systems using Ampere A1 shapes in the Database service
 - Support for adding and updating auto failover maximum data loss limits for local autonomous data guards in the Database service
@@ -207,11 +267,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for document classification on documents of more than one page in the Data Labeling service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.3
 
 ## [4.31.0]
 
 ## Added
+
 - Support for the Access Governance service
 - Support for changing the disaster recovery configuration of an autonomous database in remote regions of its disaster recovery association in the Database service
 - Support for creating a remote disaster recovery association clone of an autonomous database in the Database service
@@ -223,11 +285,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for returning networking details of instances in the Visual Builder service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.2
 
 ## [4.30.0]
 
 ## Added
+
 - Support for updating the envelope key of a volume backup in the Block Volume service
 - Support for capacity reports in the Compute service
 - Support for custom hostname in the Compute service
@@ -246,17 +310,21 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for SQL endpoints in the Data Flow service
 
 ## Breaking
+
 - Properties `classic_subscription_id`, `is_classic_subscription`, `payment_model`, `region_assignment`, `lifecycle_state`, `start_date`, `end_date`, `csi_number` are deleted from `list_assigned_subscriptions` operation's response in the `oci_tenant_manager_control_plane_assigned_subscription_facts` module in the Organizations service
 - Properties `is_classic_subscription`, `payment_model`, `region_assignment`, `lifecycle_state`, `start_date`, `end_date`, `classic_subscription_id`, `time_created` are deleted from `list_subscriptions` operation's response in the `oci_tenant_manager_control_plane_subscription_facts` module in the Organizations service
 - Property `function_id` is made required for step_type `INVOKE_FUNCTION` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
 - Properties `object_storage_script_location`, `run_on_instance_id` are made required for step_type `RUN_OBJECTSTORE_SCRIPT` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
 - Properties `script_command`, `run_on_instance_id` are made required for step_type `RUN_LOCAL_SCRIPT` in `oci_disaster_recovery_dr_plan` module in the Disaster Recovery service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.112.0
 
 ## [4.29.0]
 
 ## Added
+
 - Support for namespace-prefixed domains in the Object Storage service
 - Support for getting the full path to a pre-authenticated request in the Object Storage service
 - Support for rotation of certificates on autonomous VM clusters on Exadata Cloud at Customer in the Database service
@@ -269,36 +337,45 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for pre-emptible worker nodes in the Container Engine for Kubernetes service
 
 ## Fixed
+
 - Issue with enabling parallel processing in inventory plugin
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.110.1
 
 ## [4.28.0]
 
 ## Added
+
 - Support for ACD and OKV Wallet Naming for autonomous databases and dedicated autonomous databases on Exadata Cloud at Customer in the Database service
 - Support to create, update, list and download One-Off Patch resource in the Database service
 - Support for canceling backups in the Database service
 - Support for integrating with the Integration Cloud service in the Process Automation service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.108.0
 
 ## [4.27.0]
 
 ## Fixed
+
 - NotImplementedError Issue with `oci_loggingsearch_search_facts` module (#228)
 
 ## Breaking
+
 - Changed the response of the module `oci_loggingsearch_search_facts` to list.
 - Changed the response key of the return block of module `oci_loggingsearch_search_facts` from `search` to `searches`.
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.106.0
 
 ## [4.26.0]
 
 ## Added
+
 - Support for the TCPS protocol for cloud databases in the Operations Insights service
 - Support for AIX hosts that are monitored via Enterprise Manager in the Operations Insights service
 - Support for lookups in the Logging Analytics service
@@ -306,11 +383,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for changing the compartment of a dashboard in the Management Dashboard Service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.105.0
 
 ## [4.25.0]
 
 ## Added
+
 - Support for security token authentication in inventory plugin
 - Support for enabling create stack from OCI DevOps Service or Bitbucket Cloud/Server as Source Control Management in resource manager service.
 - Support for secondary egress zones in the DNS service
@@ -318,26 +397,27 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Breaking
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.104.3
 
 ## [4.24.0]
 
 ## Added
+
 - Support for security token authentication
 - Support for database OS patching in the Database service
 - Support for Long Term Backup for Autonomous Databases on Exadata Cloud at Customer in the Database Service
 - Support for setting a management dashboard or saved search to be shared across OCI Observability & Management services in the Management Dashboard service
 - Support to list management_dashboards in the Management Dashboard service
 
-
-
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.104.2
 
 ## [4.23.0]
 
 ## Added
+
 - Support for parity with the configuration options of the Compute service in the Compute Management service
 - Support for high-memory VMs in the Compute service
 - Support for launching bare metal instances in an RDMA network in the Compute service
@@ -346,85 +426,102 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for management saved search in Management Dashboard Service
 
 ## Fixed
+
 - Datatype issue with `drilldown_config` param in `oci_management_dashboard_actions` module
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.103.0
 
 ## [4.22.0]
 
 ## Added
+
 - Added modules (`oci_cloud_guard_target_responder_recipe` and `oci_cloud_guard_target_responder_recipe_facts`) to manage Cloud Guard Detector Recipes
 - Support for csiNumber organization in Tenant Manager Control Plane service
 - Support for add_governance, remove_governance actions in Tenant Manager Control Plane service.
 
 ## Breaking
+
 - The Data Connectivity Management service (oci_data_connectivity) support is removed
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.101.0
 
 ## [4.21.0]
 
- ## Added
- - Added modules (oci_cloud_guard_target_detector_recipe and oci_cloud_guard_target_detector_recipe_facts) to manage Cloud Guard Detector Recipes
- - Support for additional manageability features for large sensitive data models and masking policies in the Data Safe service
- - Support for getting user profile details and assignments for databases and fleets in the Data Safe service
- - Support for discovery and monitoring of External Exadata infrastructure in Database Management Service
- - Support for change_private_endpoint_outbound_connection operation in Integration Cloud service
- - Support for Enable Process in Integration Cloud service
+## Added
 
- ## Fixed
- - Fixed the issue with update operation of `oci_cloud_guard_target` in Cloud Guard service
+- Added modules (oci_cloud_guard_target_detector_recipe and oci_cloud_guard_target_detector_recipe_facts) to manage Cloud Guard Detector Recipes
+- Support for additional manageability features for large sensitive data models and masking policies in the Data Safe service
+- Support for getting user profile details and assignments for databases and fleets in the Data Safe service
+- Support for discovery and monitoring of External Exadata infrastructure in Database Management Service
+- Support for change_private_endpoint_outbound_connection operation in Integration Cloud service
+- Support for Enable Process in Integration Cloud service
+
+## Fixed
+
+- Fixed the issue with update operation of `oci_cloud_guard_target` in Cloud Guard service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.100.0
 
 ## [4.20.0]
 
 ## Added
+
 - Support for enabling ADDM spotlight for databases in the Operations Insights service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.99.1
 
 ## [4.19.0]
 
 ## Added
+
 - Support for validating the credentials of a connection in the DevOps service
 - Support for GoldenGate Replicat performance profiles when creating a migration in the Database Migration service
 - Support for connection diagnostics on registered databases in the Database Migration service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.98.0
 
 ## [4.18.0]
 
 ## Added
+
 - Support for managed build stages to be configured to use custom shape build runners in the DevOps service
 - Support for listing pre-built functions and creating functions from pre-built functions in the Functions service
 - Support for connections types for database resources of type Amazon S3, HDFS, SQL Server, Java Messaging service, Mongo DB, Oracle NoSQL, and Snowflake in the GoldenGate service
 
 ## Fixed
+
 - Issue with update (addition) the new shape to the compatible shapes in custom image using `oci_compute_image_shape_compatibility_entry` module. (#209)
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.96.1
 
 ## [4.17.0]
 
-
 ## ## Added
+
 - Support for maintenance features in the GoldenGate service
 - Support for host storage metrics and network metrics as part of host capacity planning in the Operations Insights service
 - Support for managing enhanced clusters, cluster add-ons, and serverless virtual node pools in the Container Engine for Kubernetes service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.96.0
 
 ## [4.16.0]
 
 ## Added
+
 - Support for specifying update operation constraints when updating an instance in the Compute Service
 - Support for creating and updating autonomous database long-term backup schedules in the Database service
 - Support for creating, updating, and deleting autonomous database long-term backups in the Database service
@@ -439,25 +536,30 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Error Message Improvements - More contextual information added to error messages which helps in troubleshooting the issues
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.95.0
 
 ## [4.15.0]
 
 ## Added
+
 - Support for discovery and monitoring of external Oracle database infrastructure components in the Database Management service
 - Support for async jobs in the AI Anomaly Detection service
 - Support for specifying algorithm hints and windows sizes during model training in the AI Anomaly Detection service
 - Support for specifying a sensitivity value during model detection in the AI Anomaly Detection service
 
-
 ## Fixed
+
 - Issue while updating shape_details for `oci_loadbalancer_load_balancer` module (#205)
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.93.1
 
 ## [4.14.0]
 
 ## Added
+
 - Support for the Autonomous Recovery service
 - Support for changing Data Guard role of a database instance within the Database service
 - Support for listing autonomous container database versions in the Database service
@@ -467,22 +569,27 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for creating autonomous VMs during the creation of autonomous VM clusters in the Database service
 - Support for custom configurations in the Operations Insights service
 - Support for machine learning pipelines in the Data Science service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.93.0
 
 ## [4.13.0]
 
 ## Added
+
 - Support for the Visual Builder Studio service
 - Support for Helm attestation and Helm arguments on deploy operations in the DevOps service
 - Support for uploading master key wallets for deployments in the GoldenGate service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.92.0
 
 ## [4.12.0]
 
 ## Added
+
 - Support for ECPU billing for autonomous databases and dedicated autonomous databases on Exadata Cloud at Customer in the Database service
 - Support for providing a vault secret ID when creating or updating autonomous shared databases in the Database service
 - Support for including ORDS and database transform URLs as autonomous database connections in the Database service
@@ -493,24 +600,27 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for configuration items, and reporting ownership of configuration items, in the Application Performance Monitoring service
 - Support for personally identifiable information detection in the AI Language service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.91.0
 
 ## [4.11.0]
 
 ## Added
+
 - Support for exadata db systems in inventory plugin
 - Support for target versions during infrastructure patching on Cloud Exadata infrastructure in the Database service
 - Support for setting up private DNS on ExaCS systems during provisioning in the Database service
 - Support for elastic storage expansion on infrastructure resources for Exadata Cloud at Customer in the Database service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.4
 
 ## [4.10.0]
 
 ## Added
+
 - Support for creating model version sets in the model catalog in the Data Science service
 - Support for associating a model with a model version set in the Data Science service
 - Support for custom key/value annotations on documents in the Data Labeling service
@@ -519,29 +629,35 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Breaking
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.3
 
 ## [4.9.1]
 
 ## Fixed
+
 - Inventory plugin documentation issue.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.2
 
 ## [4.9.0]
 
 ## Added
+
 - Support for the Document Understanding (ai_document) service
 - Support for language custom models and language translation in the AI Language service
 - Support to include/exclude default groups using jinja expressions in inventory plugin
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.2
 
 ## [4.8.0]
 
 ## Added
+
 - Support for Intel X9 shapes when launching VM database systems in the Database service
 - Support for enabling, disabling, and editing Database Management service connections on pluggable databases in the Database service
 - Support for cryptographic roadmap impact analysis in the Java Management service
@@ -555,17 +671,21 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for optional listeners and service discovery metadata on virtual deployments in the Service Mesh service
 
 ## Breaking
+
 - Property `rules` changed from optional to required for `oci_service_mesh_access_policy` module in Service Mesh service.
 
 ## Fixed
- - Issue while running `oci_object_storage_object` module in FIPS Mode
+
+- Issue while running `oci_object_storage_object` module in FIPS Mode
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.1
 
 ## [4.7.0]
 
 ## Added
+
 - Support for the Queue service
 - Support for elastic compute for Exadata Cloud at Customer in the Database service
 - Support for additional connections types on database resources in the GoldenGate service
@@ -576,11 +696,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for SQL Server discovery in the Stack Monitoring service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
 
 ## [4.6.0]
 
 ## Added
+
 - Support for the Container Instances service
 - Support for availability configurations and maintenance window schedules on synthetic monitors in the Application Performance Monitoring service
 - Support for managed read replicas in the MySQL Database service
@@ -593,18 +715,23 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for time zone and language preferences in the Announcements service
 
 ## Fixed
+
 - `Tenant has been throttled. Too Many Requests.` error while deleting tags of tag_namespace in identity service. (#191)
 
 ## Breaking
+
 - For database_type AUTONOMOUS_DATABASE, parameter `autonomous_database_id` of target database resource has changed from optional to required in the Data Safe service
 - For database_type INSTALLED_DATABASE, parameter `listener_port` of target database resource has changed from optional to required in the Data Safe service
 - For database_type INSTALLED_DATABASE & DATABASE_CLOUD_SERVICE, parameter `service_name` of target database has changed from optional to required in the Data Safe service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
 
 ## [4.5.0]
 
 ## Added
+
 - Support for third-party scanning using Qualys in the Vulnerability Scanning service
 - Support for security recipes in Cloud Guard service
 - Support for viewing top processes running at a particular point of time in the Operations Insights service
@@ -614,14 +741,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for Single Client Access Name (SCAN) in the Data Flow service
 
 ## Fixed
+
 - Issue with logging proper error message when error occurs instead of module failure for ansible version < 2.10 (#187)
- 
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
 
 ## [4.4.0]
 
 ## Added
+
 - Support for the Disaster Recovery service
 - Support for adding multiple cloud VM clusters in the Database service
 - Support for listing local and cross-region refreshable clones in the Database service
@@ -639,18 +769,22 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support to list outputs associated with resource manager job in the Resource Manager service
 
 ## Fixed
+
 - Issue with upgrade action of `oci_database_db_system_actions` module.
-- Inventory_plugin failure due to permission issue for `list_ipv6s` api. 
+- Inventory_plugin failure due to permission issue for `list_ipv6s` api.
 
 ## Breaking
+
 - Property `certificate_id` changed from optional to required for PrivateServerConfigDetails in the Resource Manager service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.89.0
 
 ## [4.3.0]
 
 ## Added
+
 - Support for the Cloud Migrations service
 - Support for the Cloud Bridge service
 - Support for cross-region replication in the File Storage service
@@ -665,17 +799,21 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for ipv6 ip_address details as host variables in Inventory plugin (#177)
 
 ## Breaking
+
 - Operations `delete_connection_validation`, `get_connection_validation` and `list_connection_validations` removed from the Data Connectivity Management service
 
 ## Fixed
+
 - Issue with deletion of resources in state ['FAILED', 'FAULTY'] (#185)
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.2
 
 ## [4.2.0]
 
 ## Added
+
 - Support for passing `NULL` value to Ansible module params
 - Support for connections for database resources in the GoldenGate service
 - Support for uploading bulk data in the NoSQL Database Cloud service
@@ -684,11 +822,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for specifying logset details and timezone in object collection rule in the Logging Analytics service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.1
 
 ## [4.1.0]
 
 ## Added
+
 - Support for starting and stopping clusters in the Big Data service
 - Support for additional compute shapes in the Big Data service
 - Support for search capabilities for monitored resources in the Stack Monitoring service
@@ -700,14 +840,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for triggering a build run based on an event in a Visual Builder Studio repository in the DevOps service
 
 ## Breaking
+
 - `deploy_stage_id` was made a required parameter when deployment_type is `SINGLE_STAGE_REDEPLOYMENT` and `SINGLE_STAGE_DEPLOYMENT` in the DevOps service
 - `previous_deployment_id` was made a required parameter when deployment_type is `PIPELINE_REDEPLOYMENT` in the DevOps service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.1
 
 ## [4.0.0]
 
 ## Added
+
 - Support for the Application Migration service
 - Support for the Tenant Manager Control Plane service
 - Support for the Data Transfer service
@@ -717,19 +861,21 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Improvements in logging which makes it easier to gather the debug logs
 
 ## Fixed
+
 - Issue with `fetch_db_hosts` in inventory plugin by excluding Exadata db_systems.
 
 ## Changed
-- Deprecated the use of environment variable `LOG_LEVEL`. Use `OCI_ANSIBLE_LOG_LEVEL` instead. 
+
+- Deprecated the use of environment variable `LOG_LEVEL`. Use `OCI_ANSIBLE_LOG_LEVEL` instead.
 - Deprecated the use of environment variable `LOG_PATH`. Use `OCI_ANSIBLE_LOG_DIR` instead.
 
 ## Breaking
+
 - Removed `oci_monitoring_suppression_actions` module. Use `oci_monitoring_alarm_actions` module instead.
 - Removed `oci_apigateway_waas_certificate_facts` module. Use `oci_apigateway_certificate_facts` module instead.
 - Removed `oci_apigateway_waas_certificate` module. Use `oci_apigateway_certificate` module instead.
 - Removed `oci_load_balancer_routing_policy` module. Use `oci_loadbalancer_routing_policy` module instead.
 - Removed `oci_load_balancer_routing_policy_facts` module. Use `oci_loadbalancer_routing_policy_facts` module instead.
-
 
 ## [3.5.0]
 
@@ -743,6 +889,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for display banners, trails, and sizes in the GoldenGate service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.85.0
 
 ## [3.4.0]
@@ -755,7 +902,9 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Fixed
 
 - Update migration guide for "oci_database_db_home_patch_history_facts". Fixes (#176)
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.84.0
 
 ## [3.3.0]
@@ -767,8 +916,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for single-client access name protocol as a data source for private access channels in the Analytics service
 - Support for network security groups, egress control on public datasources, and GitHub access in the Analytics service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.83.0
 
 ## [3.2.0]
@@ -786,8 +935,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for Logging Analytics as a streaming source target in the Service Connector Hub service
 - Support for the parent tenancy of an organisation to view child tenancy categories, recommendations, and resource actions in the Optimizer service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.82.0
 
 ## [3.1.0]
@@ -804,8 +953,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for runtime configurations in notebook sessions in the Data Science service
 - Support for rewards redemption summaries in the Usage service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.81.0
 
 ## [3.0.1]
@@ -813,28 +962,31 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Fixed
 
 - Issue with action operations of `oci_compute_instance_actions` module. Now you can pass `action_type` parameter only where it applies i.e. for actions reset, softreset and rebootMigrate.
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.80.1
 
 ## [3.0.0]
 
 ## Added
 
- - Support for CIMS service
- - Support for work_requests service
- - Support for additional languages and multimedia formats in transcription jobs in the AI Speech service
- - Support for security zones in the Cloud Guard service
+- Support for CIMS service
+- Support for work_requests service
+- Support for additional languages and multimedia formats in transcription jobs in the AI Speech service
+- Support for security zones in the Cloud Guard service
 
- ## Breaking
+## Breaking
 
- - Changed the response of the modules `oci_opsi_host_insight_resource_statistics_facts` , `oci_opsi_resource_statistics_facts`, `oci_opsi_sql_insights_facts` , `oci_opsi_sql_plan_insights_facts`, `oci_opsi_sql_response_time_distributions_facts` , `oci_opsi_sql_statistics_facts` , `oci_opsi_sql_statistics_time_series_by_plan_facts` , `oci_opsi_sql_statistics_time_series_facts` to list
- - Changed key of the return block of module `oci_opsi_tablespace_usage_trend_facts` from `tablespace_usage_trend` to `tablespace_usage_trends`
+- Changed the response of the modules `oci_opsi_host_insight_resource_statistics_facts` , `oci_opsi_resource_statistics_facts`, `oci_opsi_sql_insights_facts` , `oci_opsi_sql_plan_insights_facts`, `oci_opsi_sql_response_time_distributions_facts` , `oci_opsi_sql_statistics_facts` , `oci_opsi_sql_statistics_time_series_by_plan_facts` , `oci_opsi_sql_statistics_time_series_facts` to list
+- Changed key of the return block of module `oci_opsi_tablespace_usage_trend_facts` from `tablespace_usage_trend` to `tablespace_usage_trends`
 
 ## Fixed
 
 - Idempotence issue [#170|https://github.com/oracle/oci-ansible-collection/issues/170] in `oci_identity_api_key` module.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.80.1
 
 ## [2.58.0]
@@ -853,11 +1005,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Breaking
 
 - The property `inventory_log` is now a required property for create in `oci_jms_fleet` module
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.80.0
 
 ## [2.57.0]
-
 
 ## Added
 
@@ -871,155 +1024,173 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for filtering by agent id when listing management agent plugins in the Management Agent Cloud service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.79.0
 
 ## [2.56.0]
 
 ## Added
 
- - Support for the Process Automation service
- - Support for the Digital Media service
- - Support for the Managed Access (lockbox) service
- - Support for the Fusion Apps as a Service service
- - Support for `cert_bundle` param to override the default ssl certificate
- - Support for extending maintenance reboot due dates on virtual machines in the Compute service
- - Support for ingress routing tables on NAT gateways and internet gateways in the Networking service
- - Support for displaying rack serial numbers for Exadata infrastructure resources in the Database service
- - Support for creating Data Guard associations with new database systems in the Database service
- - Support for grace periods for wallet rotation on autonomous databases in the Database service
- - Support for container database and pluggable database discovery in the Stack Monitoring service
- - Support to provide database management private endpoint ID as input to enable DBCS databases in Operations Insights service
- - Support for hosting models on flexible compute shapes with customizable OCPUs and memory in the Data Science service
+- Support for the Process Automation service
+- Support for the Digital Media service
+- Support for the Managed Access (lockbox) service
+- Support for the Fusion Apps as a Service service
+- Support for `cert_bundle` param to override the default ssl certificate
+- Support for extending maintenance reboot due dates on virtual machines in the Compute service
+- Support for ingress routing tables on NAT gateways and internet gateways in the Networking service
+- Support for displaying rack serial numbers for Exadata infrastructure resources in the Database service
+- Support for creating Data Guard associations with new database systems in the Database service
+- Support for grace periods for wallet rotation on autonomous databases in the Database service
+- Support for container database and pluggable database discovery in the Stack Monitoring service
+- Support to provide database management private endpoint ID as input to enable DBCS databases in Operations Insights service
+- Support for hosting models on flexible compute shapes with customizable OCPUs and memory in the Data Science service
 
 ## Breaking
 
- - Parameter host_type in module `oci_opsi_host_insight_facts` in the Operations Insights service has strict value checking for allowed values.
+- Parameter host_type in module `oci_opsi_host_insight_facts` in the Operations Insights service has strict value checking for allowed values.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.77.0
 
 ## [2.55.0]
 
-# 
- ## Added
+#
 
- - Support for EmWarehouse Service
- - Support for native pod networking in the Container Engine for Kubernetes service
- - Support for safe-deleting nodes in the Container Engine for Kubernetes service
- - Support for backup policies returned as part of the database system list operation in the MySQL Database service
- - Support for diagnostics in the Database Management service
- - Support for the Network Monitoring service
- - Support for triggering reboot migration on instances with pending maintenance in the Compute service
- - Support for resource locking in the Identity service
+## Added
+
+- Support for EmWarehouse Service
+- Support for native pod networking in the Container Engine for Kubernetes service
+- Support for safe-deleting nodes in the Container Engine for Kubernetes service
+- Support for backup policies returned as part of the database system list operation in the MySQL Database service
+- Support for diagnostics in the Database Management service
+- Support for the Network Monitoring service
+- Support for triggering reboot migration on instances with pending maintenance in the Compute service
+- Support for resource locking in the Identity service
 
      2. Breaking
- * Parameter {{preserve_data_volumes}} is removed from operation {{terminate_instance}} in the Compute service.
+
+- Parameter {{preserve_data_volumes}} is removed from operation {{terminate_instance}} in the Compute service.
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.75.1
 
 ## [2.54.0]
 
 ## Added
 
- - Support for the OneSubscription service
- - Support for the Governance Rules service
- - Support for the Network Firewall service
- - Support for the Web Application Acceleration (WAA) service
- - Support for specifying application scan settings when creating or updating host scan recipes in the Vulnerability Scanning service
- - Support for configuration options in the Application Performance Monitoring service
- - Support for data collection logging events on Exadata instances in the Database service
- - Support for time zone in Cloud Autonomous VM (CAVM) clusters in the Database service
- - Support for shared infrastructure autonomous database character sets in the Database service
- - Support for quota resource locking in the Limits service
- - Support for returning the backup with the requested changes in the MySQL Database service
- - Support for CSV file type datasets for text labeling and JSONL in the Data Labeling service
- 
+- Support for the OneSubscription service
+- Support for the Governance Rules service
+- Support for the Network Firewall service
+- Support for the Web Application Acceleration (WAA) service
+- Support for specifying application scan settings when creating or updating host scan recipes in the Vulnerability Scanning service
+- Support for configuration options in the Application Performance Monitoring service
+- Support for data collection logging events on Exadata instances in the Database service
+- Support for time zone in Cloud Autonomous VM (CAVM) clusters in the Database service
+- Support for shared infrastructure autonomous database character sets in the Database service
+- Support for quota resource locking in the Limits service
+- Support for returning the backup with the requested changes in the MySQL Database service
+- Support for CSV file type datasets for text labeling and JSONL in the Data Labeling service
+
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.74.0
 
 ## [2.53.0]
 
-# 
- ## Added
+#
 
- - Support for packaged skill and instance metadata management, role-based access options on instance creation, and assigned ownership in the Digital Assistant service
- - Support for Oracle Linux 8 application streams in the OS Management service
- - Support for private endpoints in Resource Manager service
- - Support downloading generated Terraform plan output in JSON or binary format in Resource Manager service
- - Support for querying OPSI Data Objects in the Operations Insights service
+## Added
+
+- Support for packaged skill and instance metadata management, role-based access options on instance creation, and assigned ownership in the Digital Assistant service
+- Support for Oracle Linux 8 application streams in the OS Management service
+- Support for private endpoints in Resource Manager service
+- Support downloading generated Terraform plan output in JSON or binary format in Resource Manager service
+- Support for querying OPSI Data Objects in the Operations Insights service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.72.0
 
 ## [2.52.0]
 
-# 
- ## Added
+#
 
- - Support for the License Manager service
- - Support for `auth_purpose` parameter for instance_principal auth_type
- - Support for AMD E4 flex shapes on virtual machine database systems in the Database service
- - Support for compute capacity reservations in the VMWare Solution service
- - Support for flexible shapes in data flow service
- - Support for in-depth monitoring, diagnostics capabilities, and advanced management functionality for on-premise Oracle databases in the Database Management service
- - Support for Fault Domain placement in the Container Engine for Kubernetes service
- - Support for worker node images in the Container Engine for Kubernetes service
- - Support for Usage Plans in the API Gateway service
- - Support for Helm charts and repositories on deployments in the DevOps service
- - Support for Application Dependency Management service scan results on builds in the DevOps service
- - Support for build resources to use Bitbucket Cloud repositories for source code in the DevOps service
- - Support for using Oracle Cloud Agent to perform iSCSI login and logout for non multipath-enabled iSCSI attachments in compute service.
+## Added
 
- # 
- ## Breaking
+- Support for the License Manager service
+- Support for `auth_purpose` parameter for instance_principal auth_type
+- Support for AMD E4 flex shapes on virtual machine database systems in the Database service
+- Support for compute capacity reservations in the VMWare Solution service
+- Support for flexible shapes in data flow service
+- Support for in-depth monitoring, diagnostics capabilities, and advanced management functionality for on-premise Oracle databases in the Database Management service
+- Support for Fault Domain placement in the Container Engine for Kubernetes service
+- Support for worker node images in the Container Engine for Kubernetes service
+- Support for Usage Plans in the API Gateway service
+- Support for Helm charts and repositories on deployments in the DevOps service
+- Support for Application Dependency Management service scan results on builds in the DevOps service
+- Support for build resources to use Bitbucket Cloud repositories for source code in the DevOps service
+- Support for using Oracle Cloud Agent to perform iSCSI login and logout for non multipath-enabled iSCSI attachments in compute service.
 
- - The property specification is now a required for create in `oci_apigateway_deployment` module
+#
+
+## Breaking
+
+- The property specification is now a required for create in `oci_apigateway_deployment` module
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.70.1
 
 ## [2.51.0]
 
 ## Added
 
- - Support for the Application Dependency Management service
- - Support for platform configuration options on some bare metal shapes in the Compute service
- - Support for shielded instances for BM.Standard.E4.128 and BM.Standard3.64 shapes in the Compute service
- - Support for E4 dense VMs on launch and update instance operations in the Compute service
- - Support for reboot migration on DenseIO shapes in the Compute service
- - Support for stack monitoring on external databases in the Database service
- - Support for upgrading VM database systems in place in the Database service
- - Support for an increased database name maximum length, from 14 to 30 characters, in the Database service
- - Support for getting usage information for autonomous databases and Cloud at Customer autonomous databases in the Database service
- - Support for the "standby" lifecycle state on autonomous databases in the Database service
- - Support for character set selection on autonomous dedicated databases in the Database service
- - Support for listing autonomous dedicated database supported character sets in the Database service
- - Support for improvements for cross-region ADGs in the Database service
- - Support for TCPS on external containers as well as non-container and pluggable databases in the Database service
- - Support for provisioned concurrency in the Functions service
-
+- Support for the Application Dependency Management service
+- Support for platform configuration options on some bare metal shapes in the Compute service
+- Support for shielded instances for BM.Standard.E4.128 and BM.Standard3.64 shapes in the Compute service
+- Support for E4 dense VMs on launch and update instance operations in the Compute service
+- Support for reboot migration on DenseIO shapes in the Compute service
+- Support for stack monitoring on external databases in the Database service
+- Support for upgrading VM database systems in place in the Database service
+- Support for an increased database name maximum length, from 14 to 30 characters, in the Database service
+- Support for getting usage information for autonomous databases and Cloud at Customer autonomous databases in the Database service
+- Support for the "standby" lifecycle state on autonomous databases in the Database service
+- Support for character set selection on autonomous dedicated databases in the Database service
+- Support for listing autonomous dedicated database supported character sets in the Database service
+- Support for improvements for cross-region ADGs in the Database service
+- Support for TCPS on external containers as well as non-container and pluggable databases in the Database service
+- Support for provisioned concurrency in the Functions service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.69.0
 
 ## [2.50.0]
 
-# 
- ## Added
+#
 
- - Support for the Service Mesh service.
- - Support for the Stack Monitoring service
- - Support for virtual test access points (VTAPs) in the Networking service
- - Support for creating budgets that target subscriptions and child tenancies in the Budgets service
- - Support for security zones in the Cloud Guard service
- - Support for punctuation and the SRT transcription format in the AI Speech service
- - Support for cost management schedules in the Usage service
- - Support for enabling inspection of HTTP request bodies in the Web Application Acceleration and Security
- - Support for autoscaling on Open Data Hub (ODH) clusters in the Big Data service
- - Support for creating Open Data Hub (ODH) 0.9 clusters in the Big Data service
- - Support for Open Data Hub (ODH) patch management in the Big Data service
- - Support for customizable Kerberos realm names in the Big Data service
- - Support for viewing supported VMWare software versions when listing host shapes in the VMWare Solution service
- - Support for choosing compute shapes when creating SDDCs and ESXi hosts in the VMWare Solution service
+## Added
+
+- Support for the Service Mesh service.
+- Support for the Stack Monitoring service
+- Support for virtual test access points (VTAPs) in the Networking service
+- Support for creating budgets that target subscriptions and child tenancies in the Budgets service
+- Support for security zones in the Cloud Guard service
+- Support for punctuation and the SRT transcription format in the AI Speech service
+- Support for cost management schedules in the Usage service
+- Support for enabling inspection of HTTP request bodies in the Web Application Acceleration and Security
+- Support for autoscaling on Open Data Hub (ODH) clusters in the Big Data service
+- Support for creating Open Data Hub (ODH) 0.9 clusters in the Big Data service
+- Support for Open Data Hub (ODH) patch management in the Big Data service
+- Support for customizable Kerberos realm names in the Big Data service
+- Support for viewing supported VMWare software versions when listing host shapes in the VMWare Solution service
+- Support for choosing compute shapes when creating SDDCs and ESXi hosts in the VMWare Solution service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.67.0
 
 ## [2.49.0]
@@ -1035,8 +1206,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for bringing your own IPv6 addresses in the Networking service
 - Support for new parameters for BGP admin state and enabling/disabling BFD in the Networking service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.65.0
 
 ## [2.48.0]
@@ -1070,14 +1241,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Troubleshooting guides for common errors faced in inventory plugin and service errors.
 
 ## Breaking
+
 - Optional argument `repository_type` has been made required in `oci_devops_repository` module
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.63.0
 
 ## [2.47.0]
 
 ## Added
+
 - Support for the AI Vision service
 - Support for Data Connectivity service
 - Support for optionally specifying an admin username and password when creating a database system during a restore operation in the MySQL Database service
@@ -1087,8 +1261,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for querying additional fields of a resource using return clauses in the Resource Search service
 - Sample to create an Autonomous Transaction Processing Database on dedicated infrastructure
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.62.0
 
 ## [2.46.0]
@@ -1103,8 +1277,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support Storage Management in Database Management service
 - Support for more types of saved search enums in the Management Dashboard service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.60.1
 
 ## [2.45.0]
@@ -1118,6 +1292,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for upgrading and managing payment for subscriptions in the Account Management service (osp_gateway)
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.59.0
 
 ## [2.44.0]
@@ -1134,20 +1309,23 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Return attribute `source_data_retention` in detector recipe module in Cloud guard service
 - Attribute `risk_level` is made optional in the attribute `detector_rules` in detector recipe module in Cloud guard service
 
-
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.58.0
 
 ## [2.43.0]
 
-# 
- ## Added
+#
 
- - Support for the Visual Builder service
- - Support for the Console Dashboard service
- - Support for tagging in the Container Engine for Kubernetes service
- - Support for capacity reservation in the Container Engine for Kubernetes service
+## Added
+
+- Support for the Visual Builder service
+- Support for the Console Dashboard service
+- Support for tagging in the Container Engine for Kubernetes service
+- Support for capacity reservation in the Container Engine for Kubernetes service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.57.0
 
 ## [2.42.0]
@@ -1156,7 +1334,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 - Support for fetching listings by image OCID in the Marketplace service
 - Support for underscores and hyphens in project resource names in the DevOps service
- 
+
 ## Changed
 
 - Minimum required [OCI Python SDK]([https://github.com/oracle/oci-python-sdk]) changed to 2.56.0
@@ -1174,7 +1352,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Breaking
 
 - Deprecated support for  module param `model_artifact` in the module `oci_data_science_model_artifact` for  `data science` service.
- 
+
 ## Changed
 
 - Minimum required [OCI Python SDK]([https://github.com/oracle/oci-python-sdk]) changed to 2.55.1
@@ -1182,6 +1360,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## [2.40.0] - 2022-01-27
 
 ## Added
+
 - Support for OneSubscription billing schedule and subscription services
 - Support for cross-region replication of volume groups in the Block Storage service
 - Support for reconnecting refreshable clone to source for autonomous database on shared infrastructure in Database service
@@ -1193,20 +1372,24 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - IPv6 support in the Network Load Balancing service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.55.0
 
 ## [2.39.0] - 2021-01-20
 
 ## Added
+
 - Support for invoice operations in the Account Management service (osp_gateway)
 - Support for AWR hub integration in the Operations Insights service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.54.1
 
 ## [2.38.0] - 2022-01-06
 
 ## Added
+
 - Support for `Identity data plane` service.
 - Support for `Resource Discovery and Monitoring` service
 - Support for option `default_groups` in inventory plugin.
@@ -1220,14 +1403,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Troubleshooting Guides for common issues
 
 ## Fixed
+
 - Idempotence issue (#140) in `oci_database_pluggable_database_actions` module.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.53.1
 
 ## [2.37.0] - 2021-12-16
 
 ## Added
+
 - Support for standard tags in the Identity service
 - Support for enabling and disabling Database Management features for Autonomous Database
 - Support SQL Tuning Advisor in Database Management
@@ -1242,12 +1428,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for listing deployment backups in the GoldenGate service
 
 ## Changed
-- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.53.0
 
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.53.0
 
 ## [2.36.0] - 2021-12-02
 
 ## Added
+
 - Support for Service Manager Proxy service.
 - Support added to integrate with Object Storage for BDS service.
 - Support for getting subnet topology in the Networking service.
@@ -1260,16 +1447,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Cross-compartment support to Operations Insights (OPSI) service.
 
 ## Fixed
+
 - Installation script issues. Fixes [#129](https://github.com/oracle/oci-ansible-collection/issues/129) and [#107](https://github.com/oracle/oci-ansible-collection/issues/107)
 - Issue for modules having the message as a top-level module parameter. Fixes [#120](https://github.com/oracle/oci-ansible-collection/issues/120)
 
 ## Changed
-- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.52.0
 
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.52.0
 
 ## [2.35.0] - 2021-11-18
 
 ## Added
+
 - Support for devops build and repository
 - Support for Database Tools service
 - Support for Certificates service
@@ -1283,14 +1472,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for Default homepage preference & unprocessed data bucket for Logging Analytics service.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.51.0
-
-
-
 
 ## [2.34.0] - 2021-11-03
 
 ## Added
+
 - Support for Web Application Firewall service
 - Support for Application Performance Monitoring Configuration service
 - Support for Data Labeling Service
@@ -1302,17 +1490,19 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for creating db system from the backup with database software image.
 
 ## Fixed
+
 - Fixed documentation issue for oci_identity_customer_secret_key for key parameter.
 - Earlier we had made secret_name & vault_id mandatory in release 2.33.0, which we have now made optional again.
 - Added `source_autonomous_database_id` parameter in the `oci_database_autonomous_database` module, to support creating autonomous database when `source` is set as `BACKUP_FROM_TIMESTAMP`.
 
 ## Changed
-- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.49.1
 
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.49.1
 
 ## [2.33.0] - 2021-10-20
 
 ## Added
+
 - Support for excluding compartments from which hosts should be listed from
 - Support for list and read DeploymentUpgrade, cancel and restore DeploymentBackup in the Golden Gate service
 - Support for the run-once monitor feature and network data collection in the Application Performance Monitoring service
@@ -1322,15 +1512,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for uploading Datapump logs into Object Storage bucket, and filtering Database Objects in the Database Migration service.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.48.0
 
 ### Breaking
-- Param `is_agent_auto_upgradable` is removed from Management Agent Service.
 
+- Param `is_agent_auto_upgradable` is removed from Management Agent Service.
 
 ## [2.32.0] - 2021-10-07
 
 ## Added
+
 - Support for creating autonomous database and clones on shared infrastructure that do not require mTLS
 - Support to check if an autonomous database on shared infrastructure requires mTLS, with added field `is_mtls_connection_required`
 - Support to get connection string profiles for an autonomous database on shared infrastructure, with added field profiles in connectionStrings
@@ -1344,13 +1536,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for software package search in os management
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.47.0
 - Return None response for upload action in os management event content
-
 
 ## [2.31.0] - 2021-09-23
 
 ## Added
+
 - Support for monitoring and management of OCI virtual machine, bare metal, and ExaCS databases in the Database Management service
 - Support for metrics and Performance Hub on virtual machine, bare metal, and ExaCS databases in the Database Management service
 - Support for monitoring critical OS events in OCI Instances
@@ -1361,29 +1554,35 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for ML Jobs in the Data Science service
 
 ## Fixed
+
 - Issue with using `lifecycle_state` filter for listing compartments in `oci_identity_compartment_facts` module
 - Issue with ansible-doc when installed using ansible galaxy not showing documentation. Note: Issue is fixed only for core services (core, database, dns, load balancer and object storage). Other services continue to have this issue.
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.45.0
 
 ### Breaking
+
 - Parameter `oci_splat_generated_ocids` is removed from the module `oci_resource_manager_template` in the Resource Manager service
 
 ## [2.30.0] - 2021-09-09
 
 ## Added
+
 - Support for Email DKIM feature
 - Support for getting management agent hosts which are eligible to create Operations Insights host resources on, in the Operations Insights service
 - Support to generate recommended vm cluster network and create vm cluster network with given customer listener port
 - Support for getting summarized agent counts and summarized plugin counts in the Management Agent Cloud service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.44.1
 
 ## [2.29.0] - 2021-08-26
 
 ## Added
+
 - Support for DBAAS Exacs Network Bonding
 - Support for Autonomous Database Create with Early Patching
 - Support for manually copying volume group backups across regions in the Block Volume service
@@ -1393,11 +1592,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for Model Catalog v2.0 features including Provenance, Metadata, Schema, Artifact introspection
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.2
 
 ## [2.28.0] - 2021-08-12
 
 ## Added
+
 - Support added for server-side tag filter query parameters in Capacity Planning and SQL Warehouse APIs
 - Support for creating cross-region autonomous data guards in the Database service
 - Support for the customer contacts feature on cloud exadata infrastructure in the Database service
@@ -1406,11 +1607,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for cost analysis custom tables in the Usage service
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.2
 
 ## [2.27.0] - 2021-07-29
 
 ## Added
+
 - Support for Anomaly Detection service
 - Support for fetching monitor result in APM Synthetics service
 - Support for metastore and initial data asset import/export in the Data Catalog service
@@ -1420,13 +1623,16 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for new cluster type ODH for BDS Service.
 - Support for availability domain as an optional parameter when creating VLANs in the Networking service
 - Support for search domain type on DHCP options, to support multi-level domain search in the Networking service
+
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.0
 - Oracle Linux installation instructions
 
 ## [2.26.0] - 2021-07-15
 
 ## Added
+
 - Simplified installation of `oci-ansible-collection`. Check [README.md](https://github.com/oracle/oci-ansible-collection/blob/master/README.md) for more details
 - Support for `Resource Principal authentication` in Inventory plugin
 - Support for `Devops` Service
@@ -1439,12 +1645,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for new OCE instance license type - Starter Edition. The new license type is: STARTER
 
 ## Changed
+
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.41.1
 - Removed generic_artifact_content_body option from generic_artifact_content module
 
 ## [2.25.0] - 2021-07-01
 
 ## Added
+
 - Elastic Storage feature for Exadata Infrastructure and Vm Cluster resources for ExaCC
 - Support for migrating OKE cluster with a public Kubernetes API Endpoint that is not integrated with your VCN to a VCN-Native cluster (more secure)
 - Support for managing container scan recipes and targets in Vulnerability Scanning Service
@@ -1458,20 +1666,24 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - support for `is_data_ever_ingested` return parameter for `log_analytics_namespace` modules.
 
 ## Fixed
+
 - Instance configuration creation from instance issue
 - logging file permission issue
 
 ## Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
 ## Breaking
+
 - For Management Dashboard Service, fields `freeform_tags` and `defined_tags` removed from the response for the action `export_dashboard`.
 - For DataFlow Application, property spark_version is required for create
 
 ## [2.24.0] - 2021-06-17
 
 ## Added
-- Support for filtering options `exclude_host_filters` and `include_host_filters` in the Inventory plugin. Both 
+
+- Support for filtering options `exclude_host_filters` and `include_host_filters` in the Inventory plugin. Both
   options take a list of Jinja2 conditional expressions.
 - Support for Java Management Service
 - Support for Database Migration Service
@@ -1482,15 +1694,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for listing Secret Bundles by secret name and valultId
 
 ## Fixed
+
 - Inventory plugin issue for VMWare instances.
 - Idempotency for Generic Artifact Content upload.
 
 ## Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
 ## [2.23.0] - 2021-06-03
 
 ## Added
+
 - Option hostname_format_preferences in inventory plugin which allows a list of preferred hostname formats which can be specified using jinja 2 template expressions
 - Support for OCI Bastion service
 - Support for Generic Artifacts Service
@@ -1509,11 +1724,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for the HCX Enterprise add-on in the VMware Solution service
 
 ## Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
 ## [2.22.0] - 2021-05-20
 
 ## Added
+
 - Support for Golden Gate service
 - Support for Marketplace Service Catalog
 - Operations Insights support for Enterprise Manager external databases and Management Agent Service managed external databases and hosts
@@ -1533,16 +1750,19 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - `oci_database_db_node_facts` module now returns `primary_public_ip` and `primary_private_ip` as well
 
 ## Fixed
+
 - DB Home patching with database software image issue
 - Duplicate aliases for parameters `instance_pool_id` and `instance_id` in the module `oci_compute_management_instance_pool_instance_facts` module. Now only `instance_pool_id` has the alias `id`
 - Idempotence issue for `remove_export_drg_route_distribution` action in `oci_network_drg_attachment_actions` module
 
 ## Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
 ## [2.21.0] - 2021-05-06
 
 ## Added
+
 - Support for `delegation_token` based authentication for Inventory Plugin
 - Support for forceful deletion of a non-empty Object Storage bucket
 - Support for business name annotation of harvested objects in Data Catalog
@@ -1550,12 +1770,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for `display_name` to be used in the hostname_format of the inventory plugin for compute instances
 - Introducing Graph Studio Url option in the connection urls
 - Expanding DRG functionality in the Networking Service
-     - More than one VCN can be attached to a DRG
-     - Flexible routing inside DRG enables packet flow between any two attachments
-     - Routing policy to customize dynamic import/export of routes
+  - More than one VCN can be attached to a DRG
+  - Flexible routing inside DRG enables packet flow between any two attachments
+  - Routing policy to customize dynamic import/export of routes
 - Support for opt out of DNS record during instance launch, as well as attaching secondary VNICs
 - Support for option to opt-in and opt-out of live migration at an instance level
-- Support for mutable sizes on cluster networks 
+- Support for mutable sizes on cluster networks
 - Support for SDK generation feature in the API Gateway service
 - Support for KMS Cross Regional Replication of Keys
 - Support for request validation policies within the deployment specification in the API Gateway service
@@ -1566,10 +1786,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for `resource_action` in `policies` declaration in `autoscaling` service
 
 ## Fixed
+
 - Idempotence issue for `bulk_add_virtual_circuit_public_prefixes` and `bulk_delete_virtual_circuit_public_prefixes` actions in `oci_network_virtual_circuit_actions` module
 - Issue with logging exceptions in inventory plugin
 
 ## Changed
+
 - Updated python supported versions to >=3.6 in the documentation
 - Parameter `specification` is marked optional for API deployment create in the API Gateway service
 - `vcn_id` is now optional for listing vlans in `oci_network_vlan_facts` module
@@ -1579,6 +1801,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## [2.20.0] - 2021-04-22
 
 ## Added
+
 - Support for Ipv6
 - Support for Network Topology service
 - Support for [preemptible instances](https://docs.oracle.com/en-us/iaas/Content/Compute/Concepts/preemptible.htm) in the Compute service
@@ -1602,12 +1825,15 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - compartment name to the hostvars of OCI Inventory Plugin
 
 ## Fixed
+
 - Issue with debug logging in inventory plugin when there is a service error
 
 ## Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
-## Deprecated:
+## Deprecated
+
 - Module `oci_load_balancer_routing_policy` is deprecated,  
   use `oci_loadbalancer_routing_policy` instead
 - Module `oci_load_balancer_routing_policy_facts` is deprecated,  
@@ -1616,6 +1842,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## [2.19.0] - 2021-04-08
 
 ## Added
+
 - Support for resource principal authentication
 - Support for Network Load Balancer
 - Support for OCI Vulnerability Scanning Service
@@ -1630,11 +1857,13 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for nosql table change compartment
 
 ## Fixed
+
 - Updated the modules `oci_resource_manager_stack_tf_state_facts` and `oci_resource_manager_job_tf_state_facts` to write the output to the given file
 - Idempotence for resource manager stack creation `oci_resource_manager_stack` via private templates
 - Inventory plugin to return hostsvars for db hosts
 
 ### Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 - pyyaml requirement version from 5.1.2 to 5.4 in oci-cloudnative solution
 
@@ -1656,15 +1885,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Modules `oci_opsi_database_insights_facts` and `oci_opsi_sql_searches_facts` in opsi service
 
 ### Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
 
-### Deprecated:
+### Deprecated
+
 - Module `oci_apigateway_waas_certificate_facts` is deprecated use `oci_apigateway_certificate_facts` instead
 - Module `oci_apigateway_waas_certificate` is deprecated use `oci_apigateway_certificate` instead
 
 ## [2.17.0] - 2021-03-11
 
 ### Added
+
 - Support for the OCI Registry Service
 - Support for enabling and disabling database management for external database
 - Support for listing recommendation strategies in the optimizer service
@@ -1674,9 +1906,11 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - `primary_vnic_only` option in inventory plugin to process only the primary vnic of a compute instance
 
 ### Fixed
+
 - Return documentation for `oci_object_storage_object_actions` module
 
 ### Changed
+
 - Python 2 reached end of life on 1st January, 2020 and [OCI Python SDK](https://github.com/oracle/oci-python-sdk) stopped support for Python 2 long back. We cannot support Python 2 since we have a hard dependency on [OCI Python SDK](https://github.com/oracle/oci-python-sdk). We strongly recommend you to move to Python 3 if you are still using Python 2
 - `resource_action_ids` parameter is made optional in `oci_optimizer_recommendation_actions` module
 - Parameter `name` is now updatable in `oci_optimizer_profile`
@@ -1685,6 +1919,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## [2.16.0] - 2021-2-25
 
 ### Added
+
 - Support for [external databases](https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/externaloverview.htm)
 - Support for importing and exporting Management Dashboards.
 - Support for exporting an existing running VM, or a copy of VM, into a VMDK, QCOW2, VDI, VHD, or OCI formatted image in the Compute service
@@ -1697,20 +1932,23 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Support for load balancer shape update for a BlockchainPlatform
 
 ### Fixed
+
 - Issue with re-encrypt object action return value.
 - Issue with inventory plugin generating inventory for instances with multiple vnics having valid hostname_format for secondary vnics but not the primary vnic.
 
 ### Changed
+
 - Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk).
 - Disabled the logs for inventory plugin by default to reduce the noise. Can be enabled using the `debug` flag.
 
 ### Breaking Changes
-- Parameter idcs_access_token is now required to create a blockchain platform in `oci_blockchain_platform` module
 
+- Parameter idcs_access_token is now required to create a blockchain platform in `oci_blockchain_platform` module
 
 ## [2.15.0] - 2021-2-11
 
 ### Added
+
 - Support for [Cloud Advisor](https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Tasks/cloudadvisor-getting_started.htm).
 - Support for [Resource Manager Private Templates](https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingprivatetemplates.htm)
 - Support for update_object_storage_tier action in Object Module of Object Storage service.
@@ -1723,13 +1961,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Sample to create boot-volume from an existing instance.
 - Sample to create and connect local peering gateways.
 
-### Changed:
-- Please update to the latest version of OCI Python SDK
+### Changed
 
+- Please update to the latest version of OCI Python SDK
 
 ## [2.14.0] - 2021-1-28
 
 ### Added
+
 - Added modules to manage [Data Safe On-Premises Connector](https://docs.oracle.com/en-us/iaas/data-safe/doc/register-onpremises-oracle-databases-using-oracle-data-safe-onpremises-connector.html)
 - Support for resetting and resuming mysql channel (`oci_mysql_channel_actions` module)
 - Create dataguard association with standby database from given database software image.
@@ -1743,20 +1982,23 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Sample to create public and private DNS
 
 ### Fixed
-- Issue https://github.com/oracle/oci-ansible-collection/issues/15
-- Issue https://github.com/oracle/oci-ansible-collection/issues/35
+
+- Issue <https://github.com/oracle/oci-ansible-collection/issues/15>
+- Issue <https://github.com/oracle/oci-ansible-collection/issues/35>
 
 ### Breaking changes
+
 - Parameters `freeform_tags` and `defined_tags` are **removed** from `oci_data_safe_configuration` module
 - Parameter compartment_id is **required** to list multiple `data_safe_private_endpoint`s in `oci_data_safe_private_endpoint_facts` module
 
-### Changed:
-- Please update to the latest version of OCI Python SDK (2.28.0)
+### Changed
 
+- Please update to the latest version of OCI Python SDK (2.28.0)
 
 ## [2.13.0] - 2021-1-13
 
 ### Added
+
 - Added new modules and features in core service
 - Added new modules and features in database service
 - Added new modules and features in load balancer service
@@ -1768,17 +2010,19 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added new features in object_storage service
 
 ### Solutions and Samples
+
 - Updated Database Patching solution
 - Added sample for creating autoscaling configuration
 - Refactored the name of the muShop solution
 
-### Changed:
-- Please update to the latest version of OCI Python SDK (2.27.0)
+### Changed
 
+- Please update to the latest version of OCI Python SDK (2.27.0)
 
 ## [2.12.0] - 2020-12-23
 
 ### Added
+
 - Added support for multiple CIDRs in `oci_network_vcn`
 - Added `instance_options` parameter in `oci_compute_instance` and related modules
 - Added `oci_management_agent_availability_history_facts` module
@@ -1793,17 +2037,21 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added the `debug` option to inventory plugin
 
 ### Fixes
+
 - Fixed the logging for inventory plugin and added warnings
 
 ### Solutions
+
 - Added Database Patching solution
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.26.0)
 
 ## [2.11.0] - 2020-11-19
 
 ### Added
+
 - Support for Private DNS
 - Support for BYOIP
 - New Compute Samples
@@ -1817,18 +2065,22 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added `oci_management_agent_plugin_facts` module
 
 ### Fixes
+
 - Password return issue on creation of SMTP_credential creation [Github issue link](https://github.com/oracle/oci-ansible-collection/issues/29)
 - Fixed the `oci_identity_compartment` create example in the module
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.24.0)
 
-### Deprecated:
+### Deprecated
+
 - Module `oci_monitoring_suppression_actions` is deprecated use `oci_monitoring_alarm_actions` instead.
 
 ## [2.10.0] - 2020-10-29
 
-### Added:
+### Added
+
 - New modules & features for database service. Added support for resources cloud exdata infrastructure, cloud vm cluster, database software image
 - New modules and features in KMS service. Added support for protection_mode.
 - New features added for container engine (OKE) service.
@@ -1838,14 +2090,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - New Identity samples.
 
 ### Fixes
+
 - Inventory plugin issues: [fetch_hosts_from_subcompartments](https://github.com/oracle/oci-ansible-collection/issues/25)
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.23.2)
 
 ## [2.9.0] - 2020-10-15
 
-### Added:
+### Added
+
 - Modules for management agent service
 - Modules for cloud-guard service
 - Modules for unified agent configuration
@@ -1854,15 +2109,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - New [samples](https://github.com/oracle/oci-ansible-collection/tree/v2.8.0/samples/compute)
 
 ### Fixes
+
 - Inventory plugin issues: Filtering options, Host FQDN lookup
 - Updated the description and current use of flags for `compartments` in inventory plugin
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.23.0)
 
 ## [2.8.0] - 2020-9-24
 
-### Added:
+### Added
+
 - Added [Blockchain](https://docs.cloud.oracle.com/en-us/iaas/blockchain-platform/index.html) service modules
 - Added [Service Connector Hub (SCH)](https://docs.cloud.oracle.com/en-us/iaas/Content/service-connector-hub/overview.htm) modules
 - Added new features in [Inventory Plugin](https://github.com/oracle/oci-ansible-collection/blob/master/plugins/inventory/oci.py) (List Database VMs and other enhancements)
@@ -1871,12 +2129,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added new features for Identity (bulk_delete_tags and cascade_delete_tag_namespace)
 - Added new features for load_balancer service
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.21.5).
 
 ## [2.7.0] - 2020-9-10
 
-### Added:
+### Added
+
 - Added VMWare (ocvp) modules
 - Added Data Integration Workspace modules
 - Added multiple Database modules and features
@@ -1885,29 +2145,33 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added multiple Identity modules and features
 - Added support for auto_backup_window in Database service
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK (2.21.3).
 
-### Fixes:
-- Removed the redirect to home region in these modules oci_identity_fault_domain_facts 
+### Fixes
+
+- Removed the redirect to home region in these modules oci_identity_fault_domain_facts
 and oci_identity_availability_domain_facts.
 
 ## [2.6.0] - 2020-8-27
 
-### Added:
+### Added
+
 - Added Big Data modules
 - Added Usage modules
 - Added multiple Database modules and features
 - Added support for Database VM cluster and Exadata Infrastructure
 - Added multiple Identity modules and features
 
-### Changed:
-- Please update to the latest version of OCI Python SDK.
+### Changed
 
+- Please update to the latest version of OCI Python SDK.
 
 ## [2.5.0] - 2020-8-6
 
-### Added:
+### Added
+
 - Added Analytics modules
 - Added Web Application Acceleration and Security Services modules
 - Added Limits modules
@@ -1922,13 +2186,14 @@ and oci_identity_availability_domain_facts.
 - Added multiple loadbalancer features.
 - Added `oci_loadbalancer_network_security_groups`, `oci_loadbalancer_listener_rule_facts` modules
 
-### Changed:
-- Please update to the latest version of OCI Python SDK.
+### Changed
 
+- Please update to the latest version of OCI Python SDK.
 
 ## [2.4.0] - 2020-7-16
 
-### Added:
+### Added
+
 - Added Resource Manager modules
 - Added Announcement modules
 - Added Integration modules
@@ -1939,21 +2204,24 @@ and oci_identity_availability_domain_facts.
 - Added Content and Experience modules
 - Added samples for Container Engine and Block Volume
 
-### Changed:
-- Please update to the latest version of OCI Python SDK.
+### Changed
 
+- Please update to the latest version of OCI Python SDK.
 
 ## [2.3.0] - 2020-7-2
 
-### Added:
+### Added
+
 - Added OS Management modules
 
-### Fixed:
+### Fixed
+
 - `name` parameter in `oci_healthchecks_health_checks_vantage_point_facts` previously did not work because there was a conflict between the `name` alias for `display_name` parameter and the `name` module parameter.  This resulted in no results being returned when `name` parameter was specified, this issue is now resolved.
 
 ## [2.2.0] - 2020-6-25
 
-### Added:
+### Added
+
 - Added Domain Name System (DNS) modules
 - Added Email modules
 - Added Marketplace modules
@@ -1966,49 +2234,55 @@ and oci_identity_availability_domain_facts.
 - Added subparameter `admission_controller_options` in the options parameter of module `oci_container_engine_cluster`
 - Added `node_source_details` parameter in the `oci_container_engine_node_pool module`
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK.
 - `compartment_id` parameter removed from `oci_database_maintenance_run.py`
   - This parameter was optional and was unused by the module so is being removed
 
 ## [2.1.2-Beta] - 2020-6-9
 
-### Changed:
+### Changed
+
 - Updated the README and MigrationGuide
 
 ## [2.1.0-Beta] - 2020-6-8
 
-### Added:
+### Added
+
 - Added Database modules
 - Added the following modules:
-    - oci_blockstorage_boot_volume_kms_key
-    - oci_blockstorage_boot_volume_kms_key_facts
-    - oci_blockstorage_volume_kms_key
-    - oci_blockstorage_volume_kms_key_facts
-    - oci_compute_management_instance_pool_load_balancer_attachment_facts
-    - oci_vault_secret
-    - oci_vault_secret_version_facts
-    - oci_vault_secret_facts
-    - oci_vault_secret_version_actions
-    - oci_vault_secret_actions
-    - oci_secrets_secret_bundle_facts
-    - oci_secrets_secret_bundle_version_facts
+  - oci_blockstorage_boot_volume_kms_key
+  - oci_blockstorage_boot_volume_kms_key_facts
+  - oci_blockstorage_volume_kms_key
+  - oci_blockstorage_volume_kms_key_facts
+  - oci_compute_management_instance_pool_load_balancer_attachment_facts
+  - oci_vault_secret
+  - oci_vault_secret_version_facts
+  - oci_vault_secret_facts
+  - oci_vault_secret_version_actions
+  - oci_vault_secret_actions
+  - oci_secrets_secret_bundle_facts
+  - oci_secrets_secret_bundle_version_facts
 
 - Added new parameters to the following modules:
-    - `backup_policy_id` in oci_blockstorage_boot_volume
-    - `is_shareable` in oci_compute_volume_attachment
-    - `fault_domains` in oci_compute_management_instance_pool
-    - `purge_security_rules` and `delete_security_rules` in `oci_network_security_list`
+  - `backup_policy_id` in oci_blockstorage_boot_volume
+  - `is_shareable` in oci_compute_volume_attachment
+  - `fault_domains` in oci_compute_management_instance_pool
+  - `purge_security_rules` and `delete_security_rules` in `oci_network_security_list`
 
-### Changed:
+### Changed
+
 - Removed the parameter `launch_options` in the module oci_compute_image.
 
 ## [2.0.0-Beta] - 2020-5-14
 
-### Added:
+### Added
+
 New release of collection modules.
 
-### Changed:
+### Changed
+
 - Please update to the latest version of OCI Python SDK.
 - Please expect a few breaking changes as we transition from legacy modules to the new collection modules.
 We recommend you to refer to the [Migration Guide](https://github.com/oracle/oci-ansible-collections/blob/master/MigrationGuide.md) as you plan to migrate.

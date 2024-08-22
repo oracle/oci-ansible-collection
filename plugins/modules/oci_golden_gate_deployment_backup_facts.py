@@ -127,6 +127,14 @@ deployment_backups:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_type:
+            description:
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
+            returned: on success
+            type: str
+            sample: OGG
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
@@ -246,9 +254,41 @@ deployment_backups:
             returned: on success
             type: dict
             sample: {}
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "deployment_type": "OGG",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "is_automatic": true,
@@ -266,7 +306,13 @@ deployment_backups:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }]
     }]
 """
 

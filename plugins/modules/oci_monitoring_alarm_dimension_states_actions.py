@@ -84,6 +84,19 @@ alarm_dimension_states_collection:
     returned: on success
     type: complex
     contains:
+        alarm_summary:
+            description:
+                - Customizable alarm summary (`alarmSummary` L(alarm message parameter,https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message-
+                  format.htm)).
+                  Optionally include L(dynamic variables,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm).
+                  The alarm summary appears within the body of the alarm message and in responses to
+                  L(ListAlarmStatus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus)
+                  L(GetAlarmHistory,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory) and
+                  L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+            returned: on success
+            type: str
+            sample: alarm_summary_example
         dimensions:
             description:
                 - Indicator of the metric stream associated with the alarm state entry. Includes one or more dimension key-value pairs.
@@ -97,6 +110,14 @@ alarm_dimension_states_collection:
             returned: on success
             type: str
             sample: FIRING
+        rule_name:
+            description:
+                - Identifier of the alarm's base values for alarm evaluation, for use when the alarm contains overrides.
+                  Default value is `BASE`. For information about alarm overrides, see L(AlarmOverride,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride).
+            returned: on success
+            type: str
+            sample: rule_name_example
         timestamp:
             description:
                 - Transition time associated with the alarm state entry. Format defined by RFC3339.
@@ -105,8 +126,10 @@ alarm_dimension_states_collection:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: {
+        "alarm_summary": "alarm_summary_example",
         "dimensions": {},
         "status": "FIRING",
+        "rule_name": "rule_name_example",
         "timestamp": "2013-10-20T19:20:30+01:00"
     }
 """

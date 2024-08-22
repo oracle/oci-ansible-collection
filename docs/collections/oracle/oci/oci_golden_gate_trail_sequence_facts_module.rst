@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_trail_sequence_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple TrailSequence resources in Oracle Cloud Infrastructure
-- Lists the Trail Sequences for a TrailFile in a given deployment.
+- Lists the Trail Sequences for a TrailFile in a given deployment. Deprecated: Please access trail file management functions directly on OGG console which are available since version Oracle GoldenGate 23c.
 
 
 .. Aliases

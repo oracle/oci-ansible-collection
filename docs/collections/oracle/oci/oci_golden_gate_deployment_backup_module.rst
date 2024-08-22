@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_backup -- Manage a DeploymentBackup resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DeploymentBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new DeploymentBackup.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_backup_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_backup_actions_module>` module: cancel, change_compartment, copy, restore_deployment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_backup_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_backup_actions_module>` module: add_deployment_backup_lock, cancel, change_compartment, copy, remove_deployment_backup_lock, restore_deployment.
 
 
 .. Aliases
@@ -83,12 +83,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -148,7 +148,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -166,7 +166,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -188,7 +188,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#parameter-bucket_name" title="Permalink to this option"></a>
@@ -204,7 +204,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -219,7 +219,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -237,7 +237,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -252,7 +252,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -267,7 +267,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -284,7 +284,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-deployment_backup_id"></div>
                     <b>deployment_backup_id</b>
                     <a class="ansibleOptionLink" href="#parameter-deployment_backup_id" title="Permalink to this option"></a>
@@ -302,7 +302,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-deployment_id"></div>
                     <b>deployment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-deployment_id" title="Permalink to this option"></a>
@@ -318,7 +318,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -336,7 +336,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -355,7 +355,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -372,7 +372,27 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -387,7 +407,62 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Locks associated with this resource.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/message" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>FULL</li>
+                                                                                                                                                                                                <li>DELETE</li>
+                                                                                                                                                                                                <li>DEFAULT</li>
+                                                                                                                                                                                                <li>SPECIFIC_RELEASE</li>
+                                                                                                                                                                                                <li>CURRENT_RELEASE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the lock.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#parameter-namespace_name" title="Permalink to this option"></a>
@@ -403,7 +478,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#parameter-object_name" title="Permalink to this option"></a>
@@ -419,7 +494,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
                     <b>realm_specific_endpoint_template_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
@@ -438,7 +513,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -453,7 +528,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -474,7 +549,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -489,7 +564,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -508,7 +583,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -558,6 +633,12 @@ Examples
         object_name: object_name_example
 
         # optional
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -569,6 +650,7 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        is_lock_override: true
 
     - name: Update deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment_backup:
@@ -579,12 +661,16 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        is_lock_override: true
 
     - name: Delete deployment_backup
       oci_golden_gate_deployment_backup:
         # required
         deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
+
+        # optional
+        is_lock_override: true
 
     - name: Delete deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment_backup:
@@ -610,12 +696,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup"></div>
                     <b>deployment_backup</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup" title="Permalink to this return value"></a>
@@ -628,12 +714,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeploymentBackup resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backup_type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_backup_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backup_type&#x27;: &#x27;INCREMENTAL&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_automatic&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;locks&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;related_resource_id&#x27;: &#x27;ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;}], &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_backup_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_backup&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/backup_type"></div>
                     <b>backup_type</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/backup_type" title="Permalink to this return value"></a>
@@ -651,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/bucket_name" title="Permalink to this return value"></a>
@@ -669,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/compartment_id" title="Permalink to this return value"></a>
@@ -687,7 +773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/defined_tags" title="Permalink to this return value"></a>
@@ -706,7 +792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/deployment_id"></div>
                     <b>deployment_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/deployment_id" title="Permalink to this return value"></a>
@@ -724,7 +810,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of deployment, which can be any one of the Allowed values. NOTE: Use of the value &#x27;OGG&#x27; is maintained for backward compatibility purposes. Its use is discouraged in favor of &#x27;DATABASE_ORACLE&#x27;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/display_name" title="Permalink to this return value"></a>
@@ -742,7 +846,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/freeform_tags" title="Permalink to this return value"></a>
@@ -761,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/id" title="Permalink to this return value"></a>
@@ -779,7 +883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/is_automatic"></div>
                     <b>is_automatic</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/is_automatic" title="Permalink to this return value"></a>
@@ -797,7 +901,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/lifecycle_details" title="Permalink to this return value"></a>
@@ -815,7 +919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/lifecycle_state" title="Permalink to this return value"></a>
@@ -833,7 +937,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Locks associated with this resource.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/related_resource_id"></div>
+                    <b>related_resource_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/related_resource_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When the lock was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment_backup/locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment_backup/locks/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FULL</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/namespace_name" title="Permalink to this return value"></a>
@@ -851,7 +1048,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/object_name" title="Permalink to this return value"></a>
@@ -869,7 +1066,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/ogg_version"></div>
                     <b>ogg_version</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/ogg_version" title="Permalink to this return value"></a>
@@ -887,7 +1084,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/size_in_bytes"></div>
                     <b>size_in_bytes</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/size_in_bytes" title="Permalink to this return value"></a>
@@ -905,7 +1102,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/system_tags" title="Permalink to this return value"></a>
@@ -922,7 +1119,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_backup_finished"></div>
                     <b>time_backup_finished</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_backup_finished" title="Permalink to this return value"></a>
@@ -940,7 +1137,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_created" title="Permalink to this return value"></a>
@@ -958,7 +1155,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_of_backup"></div>
                     <b>time_of_backup</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_of_backup" title="Permalink to this return value"></a>
@@ -976,7 +1173,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment_backup/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-deployment_backup/time_updated" title="Permalink to this return value"></a>

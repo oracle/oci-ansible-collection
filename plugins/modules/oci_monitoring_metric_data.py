@@ -61,8 +61,8 @@ options:
             namespace:
                 description:
                     - The source service or application emitting the metric.
-                    - "A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. The \\"oci_\\"
-                      prefix is reserved.
+                    - "A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. Custom metrics
+                      can't use the following reserved prefixes: `oci_` and `oracle_`
                       Avoid entering confidential information."
                     - "Example: `my_namespace`"
                 type: str
@@ -85,7 +85,7 @@ options:
                 description:
                     - The name of the metric.
                     - A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar
-                      signs. The `oci_` prefix is reserved.
+                      signs.
                       Avoid entering confidential information.
                     - "Example: `my_app.success_rate`"
                 type: str
@@ -97,7 +97,7 @@ options:
                       A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256.
                       A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512.
                       Empty strings are not allowed for keys or values. Avoid entering confidential information.
-                    - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
+                    - "Example: `{\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"}`"
                 type: dict
                 required: true
             metadata:
@@ -121,7 +121,7 @@ options:
                             - Timestamp for this metric value. Format defined by RFC3339.
                               For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes
                               in the future).
-                            - "Example: `2019-02-01T01:02:29.600Z`"
+                            - "Example: `2023-02-01T01:02:29.600Z`"
                         type: str
                         required: true
                     value:
@@ -226,8 +226,8 @@ metric_data:
                         namespace:
                             description:
                                 - The source service or application emitting the metric.
-                                - "A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. The
-                                  \\"oci_\\" prefix is reserved.
+                                - "A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores.
+                                  Custom metrics can't use the following reserved prefixes: `oci_` and `oracle_`
                                   Avoid entering confidential information."
                                 - "Example: `my_namespace`"
                             returned: on success
@@ -254,7 +254,7 @@ metric_data:
                             description:
                                 - The name of the metric.
                                 - A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores,
-                                  hyphens, and dollar signs. The `oci_` prefix is reserved.
+                                  hyphens, and dollar signs.
                                   Avoid entering confidential information.
                                 - "Example: `my_app.success_rate`"
                             returned: on success
@@ -267,7 +267,7 @@ metric_data:
                                   A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256.
                                   A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512.
                                   Empty strings are not allowed for keys or values. Avoid entering confidential information.
-                                - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
+                                - "Example: `{\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"}`"
                             returned: on success
                             type: dict
                             sample: {}
@@ -293,7 +293,7 @@ metric_data:
                                         - Timestamp for this metric value. Format defined by RFC3339.
                                           For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than
                                           10 minutes in the future).
-                                        - "Example: `2019-02-01T01:02:29.600Z`"
+                                        - "Example: `2023-02-01T01:02:29.600Z`"
                                     returned: on success
                                     type: str
                                     sample: "2013-10-20T19:20:30+01:00"

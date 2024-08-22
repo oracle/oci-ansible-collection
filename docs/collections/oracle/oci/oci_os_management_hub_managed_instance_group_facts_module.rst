@@ -1,0 +1,1257 @@
+.. Document meta
+
+:orphan:
+
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
+.. Anchors
+
+.. _ansible_collections.oracle.oci.oci_os_management_hub_managed_instance_group_facts_module:
+
+.. Anchors: short name for ansible.builtin
+
+.. Anchors: aliases
+
+
+
+.. Title
+
+oracle.oci.oci_os_management_hub_managed_instance_group_facts -- Fetches details about one or multiple ManagedInstanceGroup resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
+
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+
+    To use it in a playbook, specify: :code:`oracle.oci.oci_os_management_hub_managed_instance_group_facts`.
+
+.. version_added
+
+.. versionadded:: 2.9.0 of oracle.oci
+
+.. contents::
+   :local:
+   :depth: 1
+
+.. Deprecated
+
+
+Synopsis
+--------
+
+.. Description
+
+- Fetches details about one or multiple ManagedInstanceGroup resources in Oracle Cloud Infrastructure
+- Lists managed instance groups that match the specified compartment or managed instance group `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_. Filter the list against a variety of criteria including but not limited to name, status, architecture, and OS family.
+- If *managed_instance_group_id* is specified, the details of a single ManagedInstanceGroup will be returned.
+
+
+.. Aliases
+
+
+.. Requirements
+
+Requirements
+------------
+The below requirements are needed on the host that executes this module.
+
+- python >= 3.6
+- Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
+
+
+.. Options
+
+Parameters
+----------
+
+.. raw:: html
+
+    <table  border=0 cellpadding=0 class="documentation-table">
+        <tr>
+            <th colspan="1">Parameter</th>
+            <th>Choices/<font color="blue">Defaults</font></th>
+                        <th width="100%">Comments</th>
+        </tr>
+                    <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
+                    <b>api_user</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
+                    <b>api_user_fingerprint</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Fingerprint for the key pair being used. If not set, then the value of the OCI_USER_FINGERPRINT environment variable, if any, is used. This option is required if the key fingerprint is not specified through a configuration file (See <code>config_file_location</code>). To get the key pair&#x27;s fingerprint value please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
+                    <b>api_user_key_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Full path and filename of the private key (in PEM format). If not set, then the value of the OCI_USER_KEY_FILE variable, if any, is used. This option is required if the private key is not specified through a configuration file (See <code>config_file_location</code>). If the key is encrypted with a pass-phrase, the <code>api_user_key_pass_phrase</code> option must also be provided.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
+                    <b>api_user_key_pass_phrase</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-arch_type"></div>
+                    <b>arch_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-arch_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>X86_64</li>
+                                                                                                                                                                                                <li>AARCH64</li>
+                                                                                                                                                                                                <li>I686</li>
+                                                                                                                                                                                                <li>NOARCH</li>
+                                                                                                                                                                                                <li>SRC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only profiles that match the given archType.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
+                    <b>auth_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>instance_principal</li>
+                                                                                                                                                                                                <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
+                                                                                                                                                                                                <li>security_token</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compartment that contains the resources to list. This filter returns only resources contained within the specified compartment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
+                    <b>config_file_location</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Path to configuration file. If not set then the value of the OCI_CONFIG_FILE environment variable, if any, is used. Otherwise, defaults to ~/.oci/config.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
+                    <b>config_profile_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return resources that match the given display names.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-display_name_contains"></div>
+                    <b>display_name_contains</b>
+                    <a class="ansibleOptionLink" href="#parameter-display_name_contains" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return resources that may partially match the given display name.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_managed_by_autonomous_linux"></div>
+                    <b>is_managed_by_autonomous_linux</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_managed_by_autonomous_linux" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether to list only resources managed by the Autonomous Linux service.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-lifecycle_state" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only managed instance groups that are in the specified state.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-location"></div>
+                    <b>location</b>
+                    <a class="ansibleOptionLink" href="#parameter-location" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ON_PREMISE</li>
+                                                                                                                                                                                                <li>OCI_COMPUTE</li>
+                                                                                                                                                                                                <li>AZURE</li>
+                                                                                                                                                                                                <li>EC2</li>
+                                                                                                                                                                                                <li>GCP</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources whose location matches the given value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-location_not_equal_to"></div>
+                    <b>location_not_equal_to</b>
+                    <a class="ansibleOptionLink" href="#parameter-location_not_equal_to" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ON_PREMISE</li>
+                                                                                                                                                                                                <li>OCI_COMPUTE</li>
+                                                                                                                                                                                                <li>AZURE</li>
+                                                                                                                                                                                                <li>EC2</li>
+                                                                                                                                                                                                <li>GCP</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources whose location does not match the given value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-managed_instance_group_id"></div>
+                    <b>managed_instance_group_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-managed_instance_group_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the managed instance group.</div>
+                                            <div>Required to get a specific managed_instance_group.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-os_family"></div>
+                    <b>os_family</b>
+                    <a class="ansibleOptionLink" href="#parameter-os_family" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ORACLE_LINUX_9</li>
+                                                                                                                                                                                                <li>ORACLE_LINUX_8</li>
+                                                                                                                                                                                                <li>ORACLE_LINUX_7</li>
+                                                                                                                                                                                                <li>ORACLE_LINUX_6</li>
+                                                                                                                                                                                                <li>WINDOWS_SERVER_2016</li>
+                                                                                                                                                                                                <li>WINDOWS_SERVER_2019</li>
+                                                                                                                                                                                                <li>WINDOWS_SERVER_2022</li>
+                                                                                                                                                                                                <li>ALL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match the given operating system family.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-realm_specific_endpoint_template_enabled"></div>
+                    <b>realm_specific_endpoint_template_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-realm_specific_endpoint_template_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enable/Disable realm specific endpoint template for service client. By Default, realm specific endpoint template is disabled. If not set, then the value of the OCI_REALM_SPECIFIC_SERVICE_ENDPOINT_TEMPLATE_ENABLED variable, if any, is used.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-region"></div>
+                    <b>region</b>
+                    <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-software_source_id"></div>
+                    <b>software_source_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-software_source_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the software source. This filter returns resources associated with this software source.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
+                    <b>sort_order</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ASC</li>
+                                                                                                                                                                                                <li>DESC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The sort order to use, either &#x27;ASC&#x27; or &#x27;DESC&#x27;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
+                    <b>tenancy</b>
+                    <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                        </table>
+    <br/>
+
+.. Attributes
+
+
+.. Notes
+
+Notes
+-----
+
+.. note::
+   - For OCI python sdk configuration, please refer to https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/configuration.html
+
+.. Seealso
+
+
+.. Examples
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Get a specific managed_instance_group
+      oci_os_management_hub_managed_instance_group_facts:
+        # required
+        managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: List managed_instance_groups
+      oci_os_management_hub_managed_instance_group_facts:
+
+        # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: [ "display_name_example" ]
+        display_name_contains: display_name_contains_example
+        arch_type: X86_64
+        os_family: ORACLE_LINUX_9
+        lifecycle_state: CREATING
+        location: [ "ON_PREMISE" ]
+        location_not_equal_to: [ "ON_PREMISE" ]
+        is_managed_by_autonomous_linux: true
+        sort_order: ASC
+        sort_by: timeCreated
+
+
+
+
+
+.. Facts
+
+
+.. Return values
+
+Return Values
+-------------
+Common return values are documented :ref:`here <common_return_values>`, the following are the fields unique to this module:
+
+.. raw:: html
+
+    <table border=0 cellpadding=0 class="documentation-table">
+        <tr>
+            <th colspan="3">Key</th>
+            <th>Returned</th>
+            <th width="100%">Description</th>
+        </tr>
+                    <tr>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups"></div>
+                    <b>managed_instance_groups</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of ManagedInstanceGroup resources</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;arch_type&#x27;: &#x27;X86_64&#x27;, &#x27;autonomous_settings&#x27;: {&#x27;is_data_collection_authorized&#x27;: True, &#x27;scheduled_job_id&#x27;: &#x27;ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_managed_by_autonomous_linux&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;location&#x27;: &#x27;ON_PREMISE&#x27;, &#x27;managed_instance_count&#x27;: 56, &#x27;managed_instance_ids&#x27;: [], &#x27;notification_topic_id&#x27;: &#x27;ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;os_family&#x27;: &#x27;ORACLE_LINUX_9&#x27;, &#x27;pending_job_count&#x27;: 56, &#x27;software_source_ids&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_mandatory_for_autonomous_linux&#x27;: True, &#x27;software_source_type&#x27;: &#x27;VENDOR&#x27;}], &#x27;software_sources&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_mandatory_for_autonomous_linux&#x27;: True, &#x27;software_source_type&#x27;: &#x27;VENDOR&#x27;}], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vendor_name&#x27;: &#x27;ORACLE&#x27;}]</div>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/arch_type"></div>
+                    <b>arch_type</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/arch_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The CPU architecture of the instances in the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">X86_64</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/autonomous_settings"></div>
+                    <b>autonomous_settings</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/autonomous_settings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/autonomous_settings/is_data_collection_authorized"></div>
+                    <b>is_data_collection_authorized</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/autonomous_settings/is_data_collection_authorized" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether Autonomous Linux will collect crash files. This setting can be changed by the user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/autonomous_settings/scheduled_job_id"></div>
+                    <b>scheduled_job_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/autonomous_settings/scheduled_job_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the restricted scheduled job associated with this instance. This value cannot be deleted by the user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>User-specified information about the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly name for the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/is_managed_by_autonomous_linux"></div>
+                    <b>is_managed_by_autonomous_linux</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/is_managed_by_autonomous_linux" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether the Autonomous Linux service manages the group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/location"></div>
+                    <b>location</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/location" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The location of managed instances attached to the group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ON_PREMISE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/managed_instance_count"></div>
+                    <b>managed_instance_count</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/managed_instance_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of managed instances in the group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/managed_instance_ids"></div>
+                    <b>managed_instance_ids</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/managed_instance_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of managed instance <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> attached to the managed instance group.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/notification_topic_id"></div>
+                    <b>notification_topic_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/notification_topic_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> for the Oracle Notifications service (ONS) topic. ONS is the channel used to send notifications to the customer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/os_family"></div>
+                    <b>os_family</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/os_family" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The operating system type of the instances in the managed instance group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ORACLE_LINUX_9</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/pending_job_count"></div>
+                    <b>pending_job_count</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/pending_job_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of scheduled jobs pending against the managed instance group.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids"></div>
+                    <b>software_source_ids</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of software source <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> that the managed instance group will use.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Software source description.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Software source name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the software source.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids/is_mandatory_for_autonomous_linux"></div>
+                    <b>is_mandatory_for_autonomous_linux</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids/is_mandatory_for_autonomous_linux" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether this is a required software source for Autonomous Linux instances. If true, the user can&#x27;t unselect it.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_source_ids/software_source_type"></div>
+                    <b>software_source_type</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_source_ids/software_source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the software source.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VENDOR</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources"></div>
+                    <b>software_sources</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of software sources that the managed instance group will use.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Software source description.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Software source name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the software source.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources/is_mandatory_for_autonomous_linux"></div>
+                    <b>is_mandatory_for_autonomous_linux</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources/is_mandatory_for_autonomous_linux" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether this is a required software source for Autonomous Linux instances. If true, the user can&#x27;t unselect it.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/software_sources/software_source_type"></div>
+                    <b>software_source_type</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/software_sources/software_source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the software source.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VENDOR</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>System tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the managed instance group was created (in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a> format).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/time_modified"></div>
+                    <b>time_modified</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/time_modified" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the managed instance group was last modified (in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a> format).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance_groups/vendor_name"></div>
+                    <b>vendor_name</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance_groups/vendor_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The vendor of the operating system used by the managed instances in the group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ORACLE</div>
+                                    </td>
+            </tr>
+                    
+                        </table>
+    <br/><br/>
+
+..  Status (Presently only deprecated)
+
+
+.. Authors
+
+Authors
+~~~~~~~
+
+- Oracle (@oracle)
+
+
+
+.. Parsing errors
+

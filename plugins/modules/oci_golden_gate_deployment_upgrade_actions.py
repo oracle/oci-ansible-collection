@@ -54,6 +54,11 @@ options:
             - "DEFAULT"
             - "RESCHEDULE_TO_DATE"
         required: true
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=rollback)I(action=upgrade).
+        type: bool
     action:
         description:
             - The action to perform on the DeploymentUpgrade.
@@ -496,6 +501,7 @@ class DeploymentUpgradeActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_upgrade_id=self.module.params.get("deployment_upgrade_id"),
                 rollback_deployment_upgrade_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -540,6 +546,7 @@ class DeploymentUpgradeActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_upgrade_id=self.module.params.get("deployment_upgrade_id"),
                 upgrade_deployment_upgrade_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -574,6 +581,7 @@ def main():
             type=dict(
                 type="str", required=True, choices=["DEFAULT", "RESCHEDULE_TO_DATE"]
             ),
+            is_lock_override=dict(type="bool"),
             action=dict(
                 type="str",
                 required=True,

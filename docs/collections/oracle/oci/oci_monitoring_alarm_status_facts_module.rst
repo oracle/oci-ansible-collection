@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_status_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AlarmStatus resources in Oracle Cloud Infrastructure
-- List the status of each alarm in the specified compartment. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use `RetrieveDimensionStates <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates>`_. For more information, see `Listing Alarm Statuses <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_.
+- List the status of each alarm in the specified compartment. Status is collective, across all metric streams in the alarm. To list alarm status for each metric stream, use `RetrieveDimensionStates <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates>`_. Optionally filter by resource or status value. For more information, see `Listing Alarm Statuses <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/list-alarm-status.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits>`_.
 - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
 
@@ -295,7 +295,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the entity monitored by the metric that you are searching for.</div>
+                                            <div>A filter to return only resources that match the given entity <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> exactly. The resource (entity) must be monitored by the metric that you are searching for.</div>
                                             <div>Example: `ocid1.instance.oc1.phx.exampleuniqueID`</div>
                                                         </td>
             </tr>
@@ -345,7 +345,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a resource that is monitored by the metric that you are searching for.</div>
+                                            <div>A filter to return only the resource with the specified <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>. The resource must be monitored by the metric that you are searching for.</div>
                                             <div>Example: `ocid1.instance.oc1.phx.exampleuniqueID`</div>
                                                         </td>
             </tr>
@@ -421,7 +421,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The status of the metric stream to use for alarm filtering. For example, set `StatusQueryParam` to &quot;FIRING&quot; to filter results to metric streams of the alarm with that status. Default behaviour is to return alarms irrespective of metric streams&#x27; status.</div>
+                                            <div>A filter to return only metric streams that match the specified status. For example, the value &quot;FIRING&quot; returns only firing metric streams.</div>
                                             <div>Example: `FIRING`</div>
                                                         </td>
             </tr>
@@ -515,10 +515,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AlarmStatus resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;status&#x27;: &#x27;FIRING&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;timestamp_triggered&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;alarm_summary&#x27;: &#x27;alarm_summary_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rule_name&#x27;: &#x27;rule_name_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;status&#x27;: &#x27;FIRING&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;timestamp_triggered&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm_statuses/alarm_summary"></div>
+                    <b>alarm_summary</b>
+                    <a class="ansibleOptionLink" href="#return-alarm_statuses/alarm_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable alarm summary (`alarmSummary` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The alarm summary appears within the body of the alarm message and in responses to <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus'>ListAlarmStatus</a> <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory'>GetAlarmHistory</a> and <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alarm_summary_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-alarm_statuses/display_name"></div>
@@ -558,6 +576,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm_statuses/rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#return-alarm_statuses/rule_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Identifier of the alarm&#x27;s base values for alarm evaluation, for use when the alarm contains overrides. Default value is `BASE`. For information about alarm overrides, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride'>AlarmOverride</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rule_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-alarm_statuses/severity"></div>
                     <b>severity</b>
                     <a class="ansibleOptionLink" href="#return-alarm_statuses/severity" title="Permalink to this return value"></a>
@@ -567,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The configured severity of the alarm.</div>
+                                            <div>The perceived type of response required when the alarm is in the &quot;FIRING&quot; state.</div>
                                             <div>Example: `CRITICAL`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -643,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -663,7 +699,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T02:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T02:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -683,7 +719,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing. Note: A three-minute lag for this value accounts for any late-arriving metrics.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_history_collection_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -100,10 +100,12 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>STATE_HISTORY</li>
                                                                                                                                                                                                 <li>STATE_TRANSITION_HISTORY</li>
+                                                                                                                                                                                                <li>RULE_HISTORY</li>
+                                                                                                                                                                                                <li>RULE_TRANSITION_HISTORY</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of history entries to retrieve. State history (STATE_HISTORY) or state transition history (STATE_TRANSITION_HISTORY). If not specified, entries of both types are retrieved.</div>
+                                            <div>The type of history entries to retrieve. State history (STATE_HISTORY), state transition history (STATE_TRANSITION_HISTORY), rule history (RULE_HISTORY) or rule transition history (RULE_TRANSITION_HISTORY). If not specified, entries of all types are retrieved.</div>
                                             <div>Example: `STATE_HISTORY`</div>
                                                         </td>
             </tr>
@@ -330,7 +332,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A filter to return only alarm history entries with timestamps occurring on or after the specified date and time. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-01-01T01:00:00.789Z`</div>
+                                            <div>Example: `2023-01-01T01:00:00.789Z`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -346,7 +348,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A filter to return only alarm history entries with timestamps occurring before the specified date and time. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-01-02T01:00:00.789Z`</div>
+                                            <div>Example: `2023-01-02T01:00:00.789Z`</div>
                                                         </td>
             </tr>
                         </table>
@@ -419,7 +421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>AlarmHistoryCollection resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_id&#x27;: &#x27;ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;entries&#x27;: [{&#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timestamp_triggered&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;is_enabled&#x27;: True}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_id&#x27;: &#x27;ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;entries&#x27;: [{&#x27;alarm_summary&#x27;: &#x27;alarm_summary_example&#x27;, &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timestamp_triggered&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;is_enabled&#x27;: True}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -460,6 +462,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm_history_collection/entries/alarm_summary"></div>
+                    <b>alarm_summary</b>
+                    <a class="ansibleOptionLink" href="#return-alarm_history_collection/entries/alarm_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable alarm summary (`alarmSummary` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm- message-format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic- variables.htm'>dynamic variables</a>. The alarm summary appears within the body of the alarm message and in responses to <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus'>ListAlarmStatus</a> <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory'>GetAlarmHistory</a> and <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alarm_summary_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-alarm_history_collection/entries/summary"></div>
                     <b>summary</b>
                     <a class="ansibleOptionLink" href="#return-alarm_history_collection/entries/summary" title="Permalink to this return value"></a>
@@ -491,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Timestamp for this alarm history entry. Format defined by RFC3339.</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -511,7 +532,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing. Available for state transition entries only. Note: A three-minute lag for this value accounts for any late-arriving metrics.</div>
-                                            <div>Example: `2019-02-01T0:59:00.789Z`</div>
+                                            <div>Example: `2023-02-01T0:59:00.789Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

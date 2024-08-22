@@ -528,6 +528,43 @@ class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter
         return get_response.data
 
 
+class CreateGoldenGateCertificateOperationWorkRequestWaiter(
+    CreateOperationWorkRequestWaiter
+):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateGoldenGateCertificateOperationWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    # get operation expects 2 paramters
+    # Accepting more than one params for get call is not handled in parent class.
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        if hasattr(wait_response.data, "resources"):
+            identifier = get_resource_identifier_from_wait_response_resources(
+                wait_response.data, entity_type
+            )
+        elif hasattr(
+            wait_response.data, self.resource_helper.get_module_resource_id_param()
+        ):
+            identifier = getattr(
+                wait_response.data, self.resource_helper.get_module_resource_id_param()
+            )
+
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+        deployment_id = self.resource_helper.module.params.get("deployment_id")
+        get_response = self.resource_helper.get_get_fn()(
+            deployment_id=deployment_id, certificate_key=identifier
+        )
+        return get_response.data
+
+
 class CreateBdsMetastoreConfigurationOperationWorkRequestWaiter(
     CreateOperationWorkRequestWaiter
 ):
@@ -1129,6 +1166,11 @@ _WAITER_OVERRIDE_MAP = {
         "bds_api_key",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): CreateBdsApiKeyOperationWorkRequestWaiter,
+    (
+        "golden_gate",
+        "certificate",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateGoldenGateCertificateOperationWorkRequestWaiter,
     (
         "bds",
         "bds_metastore_configuration",
