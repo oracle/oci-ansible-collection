@@ -24,8 +24,9 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Deployment.
-    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: change_compartment,
-      collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, import_deployment_wallet, start, stop, upgrade."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: add_deployment_lock,
+      change_compartment, collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, generate_library_url, import_deployment_wallet,
+      remove_deployment_lock, start, stop, upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -36,6 +37,28 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    locks:
+        description:
+            - Locks associated with this resource.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the lock.
+                type: str
+                choices:
+                    - "FULL"
+                    - "DELETE"
+                    - "DEFAULT"
+                    - "SPECIFIC_RELEASE"
+                    - "CURRENT_RELEASE"
+                required: true
+            message:
+                description:
+                    - A message added by the creator of the lock. This is typically used to give an
+                      indication of why the resource is locked.
+                type: str
     deployment_backup_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
@@ -55,6 +78,7 @@ options:
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
             - "DATABASE_DB2ZOS"
+            - "GGSA"
             - "DATA_TRANSFORMS"
     display_name:
         description:
@@ -99,8 +123,17 @@ options:
         elements: str
     subnet_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet of the deployment's private endpoint.
+              The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025,
+              after which the private subnet will be enforced.
             - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    load_balancer_subnet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a public subnet in the customer tenancy.
+              Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy.
+              For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.
             - This parameter is updatable.
         type: str
     is_public:
@@ -174,12 +207,12 @@ options:
                 type: str
             certificate:
                 description:
-                    - A PEM-encoded SSL certificate.
+                    - The base64 encoded content of the PEM file containing the SSL certificate.
                     - This parameter is updatable.
                 type: str
             key:
                 description:
-                    - A PEM-encoded private key.
+                    - The base64 encoded content of the PEM file containing the private key.
                     - This parameter is updatable.
                 type: str
     maintenance_window:
@@ -254,6 +287,11 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the Deployment.
@@ -279,11 +317,18 @@ EXAMPLES = """
     is_auto_scaling_enabled: true
 
     # optional
+    locks:
+    - # required
+      type: FULL
+
+      # optional
+      message: message_example
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     nsg_ids: [ "nsg_ids_example" ]
+    load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_public: true
     fqdn: fqdn_example
     ogg_data:
@@ -322,6 +367,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     nsg_ids: [ "nsg_ids_example" ]
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_public: true
     fqdn: fqdn_example
     cpu_core_count: 56
@@ -348,6 +394,7 @@ EXAMPLES = """
       bundle_release_upgrade_period_in_days: 56
       major_release_upgrade_period_in_days: 56
       security_patch_upgrade_period_in_days: 56
+    is_lock_override: true
 
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
@@ -362,6 +409,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     nsg_ids: [ "nsg_ids_example" ]
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_public: true
     fqdn: fqdn_example
     cpu_core_count: 56
@@ -388,12 +436,16 @@ EXAMPLES = """
       bundle_release_upgrade_period_in_days: 56
       major_release_upgrade_period_in_days: 56
       security_patch_upgrade_period_in_days: 56
+    is_lock_override: true
 
 - name: Delete deployment
   oci_golden_gate_deployment:
     # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
@@ -489,6 +541,37 @@ deployment:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         is_healthy:
             description:
                 - True if all of the aggregate resources are working correctly.
@@ -497,10 +580,27 @@ deployment:
             sample: true
         subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet of the deployment's private endpoint.
+                  The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025,
+                  after which the private subnet will be enforced.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_subnet_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a public subnet in the customer tenancy.
+                  Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy.
+                  For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the loadbalancer in the customer's subnet.
+                  The loadbalancer of the public deployment created in the customer subnet.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         fqdn:
             description:
                 - A three-label Fully Qualified Domain Name (FQDN) for a resource.
@@ -631,7 +731,7 @@ deployment:
                     sample: ogg_version_example
                 certificate:
                     description:
-                        - A PEM-encoded SSL certificate.
+                        - The base64 encoded content of the PEM file containing the SSL certificate.
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -787,6 +887,19 @@ deployment:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        ingress_ips:
+            description:
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
+            returned: on success
+            type: complex
+            contains:
+                ingress_ip:
+                    description:
+                        - A Private Endpoint IPv4 or IPv6 Address created in the customer's subnet.
+                    returned: on success
+                    type: str
+                    sample: ingress_ip_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -800,8 +913,16 @@ deployment:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }],
         "is_healthy": true,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_subnet_id": "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
         "fqdn": "fqdn_example",
         "license_model": "LICENSE_INCLUDED",
         "cpu_core_count": 56,
@@ -848,7 +969,10 @@ deployment:
             "major_release_upgrade_period_in_days": 56,
             "security_patch_upgrade_period_in_days": 56
         },
-        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00"
+        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00",
+        "ingress_ips": [{
+            "ingress_ip": "ingress_ip_example"
+        }]
     }
 """
 
@@ -977,6 +1101,7 @@ class DeploymentHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 update_deployment_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -989,7 +1114,10 @@ class DeploymentHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_deployment,
             call_fn_args=(),
-            call_fn_kwargs=dict(deployment_id=self.module.params.get("deployment_id"),),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -1012,6 +1140,24 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            locks=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "FULL",
+                            "DELETE",
+                            "DEFAULT",
+                            "SPECIFIC_RELEASE",
+                            "CURRENT_RELEASE",
+                        ],
+                    ),
+                    message=dict(type="str"),
+                ),
+            ),
             deployment_backup_id=dict(type="str"),
             deployment_type=dict(
                 type="str",
@@ -1023,6 +1169,7 @@ def main():
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
                     "DATABASE_DB2ZOS",
+                    "GGSA",
                     "DATA_TRANSFORMS",
                 ],
             ),
@@ -1035,6 +1182,7 @@ def main():
             defined_tags=dict(type="dict"),
             nsg_ids=dict(type="list", elements="str"),
             subnet_id=dict(type="str"),
+            load_balancer_subnet_id=dict(type="str"),
             is_public=dict(type="bool"),
             fqdn=dict(type="str"),
             cpu_core_count=dict(type="int"),
@@ -1083,6 +1231,7 @@ def main():
                 ),
             ),
             deployment_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

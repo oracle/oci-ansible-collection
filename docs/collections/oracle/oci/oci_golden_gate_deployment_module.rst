@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment -- Manage a Deployment resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Deployment.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_actions_module>` module: change_compartment, collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, import_deployment_wallet, start, stop, upgrade.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_deployment_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_actions_module>` module: add_deployment_lock, change_compartment, collect_deployment_diagnostic, deployment_wallet_exists, export_deployment_wallet, generate_library_url, import_deployment_wallet, remove_deployment_lock, start, stop, upgrade.
 
 
 .. Aliases
@@ -335,6 +335,7 @@ Parameters
                                                                                                                                                                                                 <li>DATABASE_MYSQL</li>
                                                                                                                                                                                                 <li>DATABASE_POSTGRESQL</li>
                                                                                                                                                                                                 <li>DATABASE_DB2ZOS</li>
+                                                                                                                                                                                                <li>GGSA</li>
                                                                                                                                                                                                 <li>DATA_TRANSFORMS</li>
                                                                                     </ul>
                                                                             </td>
@@ -453,6 +454,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-is_public"></div>
                     <b>is_public</b>
                     <a class="ansibleOptionLink" href="#parameter-is_public" title="Permalink to this option"></a>
@@ -507,6 +528,77 @@ Parameters
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-load_balancer_subnet_id"></div>
+                    <b>load_balancer_subnet_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-load_balancer_subnet_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a public subnet in the customer tenancy. Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy. For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Locks associated with this resource.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/message" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>FULL</li>
+                                                                                                                                                                                                <li>DELETE</li>
+                                                                                                                                                                                                <li>DEFAULT</li>
+                                                                                                                                                                                                <li>SPECIFIC_RELEASE</li>
+                                                                                                                                                                                                <li>CURRENT_RELEASE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the lock.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_configuration"></div>
@@ -752,7 +844,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A PEM-encoded SSL certificate.</div>
+                                            <div>The base64 encoded content of the PEM file containing the SSL certificate.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -823,7 +915,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A PEM-encoded private key.</div>
+                                            <div>The base64 encoded content of the PEM file containing the private key.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -928,7 +1020,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet being referenced.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet of the deployment&#x27;s private endpoint. The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025, after which the private subnet will be enforced.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -1019,11 +1111,18 @@ Examples
         is_auto_scaling_enabled: true
 
         # optional
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         nsg_ids: [ "nsg_ids_example" ]
+        load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_public: true
         fqdn: fqdn_example
         ogg_data:
@@ -1062,6 +1161,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         nsg_ids: [ "nsg_ids_example" ]
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_public: true
         fqdn: fqdn_example
         cpu_core_count: 56
@@ -1088,6 +1188,7 @@ Examples
           bundle_release_upgrade_period_in_days: 56
           major_release_upgrade_period_in_days: 56
           security_patch_upgrade_period_in_days: 56
+        is_lock_override: true
 
     - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment:
@@ -1102,6 +1203,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         nsg_ids: [ "nsg_ids_example" ]
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_subnet_id: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_public: true
         fqdn: fqdn_example
         cpu_core_count: 56
@@ -1128,12 +1230,16 @@ Examples
           bundle_release_upgrade_period_in_days: 56
           major_release_upgrade_period_in_days: 56
           security_patch_upgrade_period_in_days: 56
+        is_lock_override: true
 
     - name: Delete deployment
       oci_golden_gate_deployment:
         # required
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
+
+        # optional
+        is_lock_override: true
 
     - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment:
@@ -1177,7 +1283,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_diagnostic_data&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;diagnostic_state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_diagnostic_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_diagnostic_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;maintenance_configuration&#x27;: {&#x27;bundle_release_upgrade_period_in_days&#x27;: 56, &#x27;interim_release_upgrade_period_in_days&#x27;: 56, &#x27;is_interim_release_auto_upgrade_enabled&#x27;: True, &#x27;major_release_upgrade_period_in_days&#x27;: 56, &#x27;security_patch_upgrade_period_in_days&#x27;: 56}, &#x27;maintenance_window&#x27;: {&#x27;day&#x27;: &#x27;MONDAY&#x27;, &#x27;start_hour&#x27;: 56}, &#x27;next_maintenance_action_type&#x27;: &#x27;UPGRADE&#x27;, &#x27;next_maintenance_description&#x27;: &#x27;next_maintenance_description_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;credential_store&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;identity_domain_id&#x27;: &#x27;ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ogg_version_supported_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_diagnostic_data&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;diagnostic_state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_diagnostic_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_diagnostic_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;load_balancer_subnet_id&#x27;: &#x27;ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;locks&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;related_resource_id&#x27;: &#x27;ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;}], &#x27;maintenance_configuration&#x27;: {&#x27;bundle_release_upgrade_period_in_days&#x27;: 56, &#x27;interim_release_upgrade_period_in_days&#x27;: 56, &#x27;is_interim_release_auto_upgrade_enabled&#x27;: True, &#x27;major_release_upgrade_period_in_days&#x27;: 56, &#x27;security_patch_upgrade_period_in_days&#x27;: 56}, &#x27;maintenance_window&#x27;: {&#x27;day&#x27;: &#x27;MONDAY&#x27;, &#x27;start_hour&#x27;: 56}, &#x27;next_maintenance_action_type&#x27;: &#x27;UPGRADE&#x27;, &#x27;next_maintenance_description&#x27;: &#x27;next_maintenance_description_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;credential_store&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;identity_domain_id&#x27;: &#x27;ocid1.identitydomain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;, &#x27;password_secret_id&#x27;: &#x27;ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_ogg_version_supported_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1514,6 +1620,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/ingress_ips"></div>
+                    <b>ingress_ips</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/ingress_ips" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of ingress IP addresses from where the GoldenGate deployment connects to this connection&#x27;s privateIp. Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/ingress_ips/ingress_ip"></div>
+                    <b>ingress_ip</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/ingress_ips/ingress_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A Private Endpoint IPv4 or IPv6 Address created in the customer&#x27;s subnet.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ingress_ip_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-deployment/is_auto_scaling_enabled"></div>
                     <b>is_auto_scaling_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/is_auto_scaling_enabled" title="Permalink to this return value"></a>
@@ -1673,6 +1815,135 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RECOVERING</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/load_balancer_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the loadbalancer in the customer&#x27;s subnet. The loadbalancer of the public deployment created in the customer subnet.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/load_balancer_subnet_id"></div>
+                    <b>load_balancer_subnet_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/load_balancer_subnet_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a public subnet in the customer tenancy. Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy. For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/locks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Locks associated with this resource.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/locks/message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/locks/related_resource_id"></div>
+                    <b>related_resource_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/locks/related_resource_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/locks/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/locks/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When the lock was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/locks/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FULL</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1940,7 +2211,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A PEM-encoded SSL certificate.</div>
+                                            <div>The base64 encoded content of the PEM file containing the SSL certificate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----</div>
@@ -2108,7 +2379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet being referenced.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet of the deployment&#x27;s private endpoint. The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025, after which the private subnet will be enforced.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>

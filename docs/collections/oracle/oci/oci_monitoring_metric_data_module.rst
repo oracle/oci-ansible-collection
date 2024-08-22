@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -387,7 +387,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Timestamp for this metric value. Format defined by RFC3339. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -423,7 +423,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
-                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
+                                            <div>Example: `{&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;}`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -457,7 +457,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the metric.</div>
-                                            <div>A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar signs. The `oci_` prefix is reserved. Avoid entering confidential information.</div>
+                                            <div>A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar signs. Avoid entering confidential information.</div>
                                             <div>Example: `my_app.success_rate`</div>
                                                         </td>
             </tr>
@@ -475,7 +475,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The source service or application emitting the metric.</div>
-                                            <div>A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. The &quot;oci_&quot; prefix is reserved. Avoid entering confidential information.</div>
+                                            <div>A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. Custom metrics can&#x27;t use the following reserved prefixes: `oci_` and `oracle_` Avoid entering confidential information.</div>
                                             <div>Example: `my_namespace`</div>
                                                         </td>
             </tr>
@@ -781,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Timestamp for this metric value. Format defined by RFC3339. For a data point to be posted, its timestamp must be near current time (less than two hours in the past and less than 10 minutes in the future).</div>
-                                            <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Example: `2023-02-01T01:02:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -825,7 +825,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
-                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
+                                            <div>Example: `{&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;}`</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -863,7 +863,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The name of the metric.</div>
-                                            <div>A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar signs. The `oci_` prefix is reserved. Avoid entering confidential information.</div>
+                                            <div>A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar signs. Avoid entering confidential information.</div>
                                             <div>Example: `my_app.success_rate`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -885,7 +885,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The source service or application emitting the metric.</div>
-                                            <div>A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. The &quot;oci_&quot; prefix is reserved. Avoid entering confidential information.</div>
+                                            <div>A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. Custom metrics can&#x27;t use the following reserved prefixes: `oci_` and `oracle_` Avoid entering confidential information.</div>
                                             <div>Example: `my_namespace`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

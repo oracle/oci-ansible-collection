@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_dimension_states_actions -- Perform actions on a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -414,10 +414,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AlarmDimensionStates resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dimensions&#x27;: {}, &#x27;status&#x27;: &#x27;FIRING&#x27;, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_summary&#x27;: &#x27;alarm_summary_example&#x27;, &#x27;dimensions&#x27;: {}, &#x27;rule_name&#x27;: &#x27;rule_name_example&#x27;, &#x27;status&#x27;: &#x27;FIRING&#x27;, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm_dimension_states_collection/alarm_summary"></div>
+                    <b>alarm_summary</b>
+                    <a class="ansibleOptionLink" href="#return-alarm_dimension_states_collection/alarm_summary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Customizable alarm summary (`alarmSummary` <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-message- format.htm'>alarm message parameter</a>). Optionally include <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm'>dynamic variables</a>. The alarm summary appears within the body of the alarm message and in responses to <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus'>ListAlarmStatus</a> <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory'>GetAlarmHistory</a> and <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates'>RetrieveDimensionStates</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alarm_summary_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-alarm_dimension_states_collection/dimensions"></div>
@@ -432,6 +450,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Indicator of the metric stream associated with the alarm state entry. Includes one or more dimension key-value pairs.</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-alarm_dimension_states_collection/rule_name"></div>
+                    <b>rule_name</b>
+                    <a class="ansibleOptionLink" href="#return-alarm_dimension_states_collection/rule_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Identifier of the alarm&#x27;s base values for alarm evaluation, for use when the alarm contains overrides. Default value is `BASE`. For information about alarm overrides, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/AlarmOverride'>AlarmOverride</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rule_name_example</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

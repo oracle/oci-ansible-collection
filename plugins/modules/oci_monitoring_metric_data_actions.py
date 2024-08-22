@@ -62,6 +62,7 @@ options:
               aggregate. The query must specify a metric, statistic, and interval.
               Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges.
               You can optionally specify dimensions and grouping functions.
+              When specifying a dimension value, surround it with double quotes, and escape each double quote with a backslash (`\\\\`) character.
               Supported grouping functions: `grouping()`, `groupBy()`."
             - Construct your query to avoid exceeding limits on returned data. See L(MetricData Reference,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/monitoring/20180401/MetricData).
@@ -69,7 +70,8 @@ options:
               L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
               For available dimensions, review the metric definition for the supported service. See
               L(Supported Services,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
-            - "Example: `CpuUtilization[1m].sum()`"
+            - "Example 1: `CpuUtilization[1m].sum()`"
+            - "Example 2 (escaped double quotes for value string): `CpuUtilization[1m]{resourceId = \\\\\\"<var>&lt;instance_OCID&gt;</var>\\\\\\"}.max()`"
         type: str
         required: true
     start_time:
@@ -77,14 +79,14 @@ options:
             - "The beginning of the time range to use when searching for metric data points.
               Format is defined by RFC3339. The response includes metric data points for the startTime.
               Default value: the timestamp 3 hours before the call was sent."
-            - "Example: `2019-02-01T01:02:29.600Z`"
+            - "Example: `2023-02-01T01:02:29.600Z`"
         type: str
     end_time:
         description:
             - "The end of the time range to use when searching for metric data points.
               Format is defined by RFC3339. The response excludes metric data points for the endTime.
               Default value: the timestamp representing when the call was sent."
-            - "Example: `2019-02-01T02:02:29.600Z`"
+            - "Example: `2023-02-01T02:02:29.600Z`"
         type: str
     resolution:
         description:
@@ -174,7 +176,7 @@ metric_data:
             description:
                 - Qualifiers provided in the definition of the returned metric.
                   Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.
-                - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
+                - "Example: `{\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"}`"
             returned: on success
             type: dict
             sample: {}
@@ -206,7 +208,7 @@ metric_data:
                 timestamp:
                     description:
                         - The date and time associated with the value of this data point. Format defined by RFC3339.
-                        - "Example: `2019-02-01T01:02:29.600Z`"
+                        - "Example: `2023-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"

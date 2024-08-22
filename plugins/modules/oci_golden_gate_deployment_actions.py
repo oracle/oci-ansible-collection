@@ -23,6 +23,7 @@ module: oci_golden_gate_deployment_actions
 short_description: Perform actions on a Deployment resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Deployment resource in Oracle Cloud Infrastructure
+    - For I(action=add_deployment_lock), adds a lock to a Deployment resource.
     - For I(action=change_compartment), moves the Deployment into a different compartment within the same tenancy.  When provided,
       If-Match is checked against ETag values of the resource.  For information about moving
       resources between compartments, see L(Moving Resources Between
@@ -33,14 +34,24 @@ description:
       the resource.
     - For I(action=export_deployment_wallet), export the OGG wallet from the deployment to OCI vault. When provided, If-Match is checked against ETag values of
       the resource.
+    - For I(action=generate_library_url), generates a Pre-Authenticated Request Object URL to a DB2 for z/OS library that needs to be uploaded to your DB2 for
+      z/OS server in order to establish GoldenGate connections to it. For licensing reasons, the URL is accessible for 10 minutes only.
     - For I(action=import_deployment_wallet), imports an OGG wallet from the OCI Vault to the Deployment. When provided, If-Match is checked against ETag values
       of the resource.
+    - For I(action=remove_deployment_lock), removes a lock from a Deployment resource.
     - For I(action=start), starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=stop), stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=upgrade), upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    msg:
+        description:
+            - A message added by the creator of the lock. This is typically used to give an
+              indication of why the resource is locked.
+            - Applicable only for I(action=add_deployment_lock).
+        type: str
+        aliases: ["message"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
@@ -78,6 +89,13 @@ options:
             - Name of the secret with which secret is shown in vault
             - Required for I(action=export_deployment_wallet).
         type: str
+    library_type:
+        description:
+            - The type of the library URL generation.
+            - Required for I(action=generate_library_url).
+        type: str
+        choices:
+            - "LOG_READER_COMPONENT"
     vault_id:
         description:
             - Refers to the customer's vault OCID.
@@ -122,24 +140,36 @@ options:
         type: str
     type:
         description:
-            - The type of a deployment for wallet
-            - Required for I(action=deployment_wallet_exists), I(action=start), I(action=stop), I(action=upgrade).
+            - Type of the lock.
+            - Required for I(action=add_deployment_lock), I(action=deployment_wallet_exists), I(action=remove_deployment_lock), I(action=start), I(action=stop),
+              I(action=upgrade).
+            - Required when $p.relatedDiscriminatorFieldName is one of ['CURRENT_RELEASE', 'DEFAULT', 'SPECIFIC_RELEASE']
         type: str
         choices:
+            - "FULL"
+            - "DELETE"
             - "DEFAULT"
             - "SPECIFIC_RELEASE"
             - "CURRENT_RELEASE"
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=change_compartment)I(action=import_deployment_wallet)I(action=start)I(action=stop)I(action=upgrade).
+        type: bool
     action:
         description:
             - The action to perform on the Deployment.
         type: str
         required: true
         choices:
+            - "add_deployment_lock"
             - "change_compartment"
             - "collect_deployment_diagnostic"
             - "deployment_wallet_exists"
             - "export_deployment_wallet"
+            - "generate_library_url"
             - "import_deployment_wallet"
+            - "remove_deployment_lock"
             - "start"
             - "stop"
             - "upgrade"
@@ -147,12 +177,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action add_deployment_lock on deployment
+  oci_golden_gate_deployment_actions:
+    # required
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: add_deployment_lock
+
+    # optional
+    msg: msg_example
+
 - name: Perform action change_compartment on deployment
   oci_golden_gate_deployment_actions:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    is_lock_override: true
 
 - name: Perform action collect_deployment_diagnostic on deployment
   oci_golden_gate_deployment_actions:
@@ -167,20 +210,12 @@ EXAMPLES = """
     time_diagnostic_start: time_diagnostic_start_example
     time_diagnostic_end: time_diagnostic_end_example
 
-- name: Perform action deployment_wallet_exists on deployment with type = DEFAULT
+- name: Perform action deployment_wallet_exists on deployment
   oci_golden_gate_deployment_actions:
     # required
-    type: DEFAULT
-
-- name: Perform action deployment_wallet_exists on deployment with type = SPECIFIC_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
-    type: SPECIFIC_RELEASE
-
-- name: Perform action deployment_wallet_exists on deployment with type = CURRENT_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
-    type: CURRENT_RELEASE
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: deployment_wallet_exists
 
 - name: Perform action export_deployment_wallet on deployment
   oci_golden_gate_deployment_actions:
@@ -194,6 +229,11 @@ EXAMPLES = """
     # optional
     description: description_example
 
+- name: Perform action generate_library_url on deployment with library_type = LOG_READER_COMPONENT
+  oci_golden_gate_deployment_actions:
+    # required
+    library_type: LOG_READER_COMPONENT
+
 - name: Perform action import_deployment_wallet on deployment
   oci_golden_gate_deployment_actions:
     # required
@@ -206,56 +246,65 @@ EXAMPLES = """
     wallet_backup_secret_name: wallet_backup_secret_name_example
     master_encryption_key_id: "ocid1.masterencryptionkey.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
+    is_lock_override: true
 
-- name: Perform action start on deployment with type = DEFAULT
+- name: Perform action remove_deployment_lock on deployment
   oci_golden_gate_deployment_actions:
     # required
-    type: DEFAULT
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: remove_deployment_lock
 
-- name: Perform action start on deployment with type = SPECIFIC_RELEASE
+- name: Perform action start on deployment
   oci_golden_gate_deployment_actions:
     # required
-    type: SPECIFIC_RELEASE
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: start
 
-- name: Perform action start on deployment with type = CURRENT_RELEASE
+    # optional
+    is_lock_override: true
+
+- name: Perform action stop on deployment
   oci_golden_gate_deployment_actions:
     # required
-    type: CURRENT_RELEASE
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: stop
 
-- name: Perform action stop on deployment with type = DEFAULT
+    # optional
+    is_lock_override: true
+
+- name: Perform action upgrade on deployment
   oci_golden_gate_deployment_actions:
     # required
-    type: DEFAULT
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: upgrade
 
-- name: Perform action stop on deployment with type = SPECIFIC_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
-    type: SPECIFIC_RELEASE
-
-- name: Perform action stop on deployment with type = CURRENT_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
-    type: CURRENT_RELEASE
-
-- name: Perform action upgrade on deployment with type = DEFAULT
-  oci_golden_gate_deployment_actions:
-    # required
-    type: DEFAULT
-
-- name: Perform action upgrade on deployment with type = SPECIFIC_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
+    # optional
     ogg_version: ogg_version_example
-    type: SPECIFIC_RELEASE
-
-- name: Perform action upgrade on deployment with type = CURRENT_RELEASE
-  oci_golden_gate_deployment_actions:
-    # required
-    type: CURRENT_RELEASE
+    is_lock_override: true
 
 """
 
 RETURN = """
+library_url:
+    description:
+        - Details of the Deployment resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains:
+        url:
+            description:
+                - The URL of a resource.
+            returned: on success
+            type: str
+            sample: url_example
+    sample: {
+        "url": "url_example"
+    }
+
 deployment_wallet_exists_response_details:
     description:
         - Details of the Deployment resource acted upon by the current operation
@@ -356,6 +405,37 @@ deployment:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         is_healthy:
             description:
                 - True if all of the aggregate resources are working correctly.
@@ -364,10 +444,27 @@ deployment:
             sample: true
         subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet of the deployment's private endpoint.
+                  The subnet must be a private subnet. For backward compatibility, public subnets are allowed until May 31 2025,
+                  after which the private subnet will be enforced.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_subnet_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a public subnet in the customer tenancy.
+                  Can be provided only for public deployments. If provided, the loadbalancer will be created in this subnet instead of the service tenancy.
+                  For backward compatibility, this is an optional property. It will become mandatory for public deployments after October 1, 2024.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the loadbalancer in the customer's subnet.
+                  The loadbalancer of the public deployment created in the customer subnet.
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         fqdn:
             description:
                 - A three-label Fully Qualified Domain Name (FQDN) for a resource.
@@ -498,7 +595,7 @@ deployment:
                     sample: ogg_version_example
                 certificate:
                     description:
-                        - A PEM-encoded SSL certificate.
+                        - The base64 encoded content of the PEM file containing the SSL certificate.
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
@@ -654,6 +751,19 @@ deployment:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        ingress_ips:
+            description:
+                - List of ingress IP addresses from where the GoldenGate deployment connects to this connection's privateIp.
+                  Customers may optionally set up ingress security rules to restrict traffic from these IP addresses.
+            returned: on success
+            type: complex
+            contains:
+                ingress_ip:
+                    description:
+                        - A Private Endpoint IPv4 or IPv6 Address created in the customer's subnet.
+                    returned: on success
+                    type: str
+                    sample: ingress_ip_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -667,8 +777,16 @@ deployment:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }],
         "is_healthy": true,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_subnet_id": "ocid1.loadbalancersubnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
         "fqdn": "fqdn_example",
         "license_model": "LICENSE_INCLUDED",
         "cpu_core_count": 56,
@@ -715,7 +833,10 @@ deployment:
             "major_release_upgrade_period_in_days": 56,
             "security_patch_upgrade_period_in_days": 56
         },
-        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00"
+        "time_ogg_version_supported_until": "2013-10-20T19:20:30+01:00",
+        "ingress_ips": [{
+            "ingress_ip": "ingress_ip_example"
+        }]
     }
 """
 
@@ -731,11 +852,14 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.golden_gate import GoldenGateClient
+    from oci.golden_gate.models import AddResourceLockDetails
     from oci.golden_gate.models import ChangeDeploymentCompartmentDetails
     from oci.golden_gate.models import CollectDeploymentDiagnosticDetails
     from oci.golden_gate.models import DeploymentWalletExistsDetails
     from oci.golden_gate.models import ExportDeploymentWalletDetails
+    from oci.golden_gate.models import GenerateLibraryUrlDetails
     from oci.golden_gate.models import ImportDeploymentWalletDetails
+    from oci.golden_gate.models import RemoveResourceLockDetails
     from oci.golden_gate.models import StartDeploymentDetails
     from oci.golden_gate.models import StopDeploymentDetails
     from oci.golden_gate.models import UpgradeDeploymentDetails
@@ -748,11 +872,14 @@ except ImportError:
 class DeploymentActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_deployment_lock
         change_compartment
         collect_deployment_diagnostic
         deployment_wallet_exists
         export_deployment_wallet
+        generate_library_url
         import_deployment_wallet
+        remove_deployment_lock
         start
         stop
         upgrade
@@ -778,14 +905,40 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
         response_fields = dict(
             stop="deployment",
             start="deployment",
+            add_deployment_lock="deployment",
             collect_deployment_diagnostic="deployment",
             deployment_wallet_exists="deployment_wallet_exists_response_details",
             export_deployment_wallet="deployment",
+            generate_library_url="library_url",
             import_deployment_wallet="deployment",
+            remove_deployment_lock="deployment",
             upgrade="deployment",
             change_compartment="deployment",
         )
         return response_fields.get(action, "deployment")
+
+    def add_deployment_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_deployment_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                add_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
@@ -797,6 +950,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 change_deployment_compartment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -873,6 +1027,29 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def generate_library_url(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, GenerateLibraryUrlDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.generate_library_url,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                generate_library_url_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def import_deployment_wallet(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ImportDeploymentWalletDetails
@@ -883,6 +1060,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 import_deployment_wallet_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -892,6 +1070,29 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_deployment_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveResourceLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_deployment_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                remove_resource_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def start(self):
@@ -904,6 +1105,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 start_deployment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -925,6 +1127,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 stop_deployment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -946,6 +1149,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 upgrade_deployment_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -971,6 +1175,7 @@ def main():
     )
     module_args.update(
         dict(
+            msg=dict(aliases=["message"], type="str"),
             compartment_id=dict(type="str"),
             namespace_name=dict(type="str"),
             bucket_name=dict(type="str"),
@@ -978,6 +1183,7 @@ def main():
             time_diagnostic_start=dict(type="str"),
             time_diagnostic_end=dict(type="str"),
             secret_name=dict(type="str"),
+            library_type=dict(type="str", choices=["LOG_READER_COMPONENT"]),
             vault_id=dict(type="str"),
             new_wallet_secret_id=dict(type="str"),
             wallet_backup_secret_name=dict(type="str"),
@@ -986,17 +1192,28 @@ def main():
             deployment_id=dict(aliases=["id"], type="str", required=True),
             ogg_version=dict(type="str"),
             type=dict(
-                type="str", choices=["DEFAULT", "SPECIFIC_RELEASE", "CURRENT_RELEASE"]
+                type="str",
+                choices=[
+                    "FULL",
+                    "DELETE",
+                    "DEFAULT",
+                    "SPECIFIC_RELEASE",
+                    "CURRENT_RELEASE",
+                ],
             ),
+            is_lock_override=dict(type="bool"),
             action=dict(
                 type="str",
                 required=True,
                 choices=[
+                    "add_deployment_lock",
                     "change_compartment",
                     "collect_deployment_diagnostic",
                     "deployment_wallet_exists",
                     "export_deployment_wallet",
+                    "generate_library_url",
                     "import_deployment_wallet",
+                    "remove_deployment_lock",
                     "start",
                     "stop",
                     "upgrade",

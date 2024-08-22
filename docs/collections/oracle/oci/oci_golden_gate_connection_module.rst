@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection -- Manage a Connection resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Connection.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_connection_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_connection_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_actions_module>` module: add_connection_lock, change_compartment, remove_connection_lock.
 
 
 .. Aliases
@@ -154,7 +154,7 @@ Parameters
                                                                 <td>
                                             <div>An array of name-value pair attribute entries. Used as additional parameters in connection string.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -294,6 +294,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-authentication_mode"></div>
+                    <b>authentication_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-authentication_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Authentication mode. It can be provided at creation of Oracle Autonomous Database Serverless connections, when a databaseId is provided. The default value is MTLS.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;ORACLE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-authentication_type"></div>
                     <b>authentication_type</b>
                     <a class="ansibleOptionLink" href="#parameter-authentication_type" title="Permalink to this option"></a>
@@ -391,6 +408,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
+                                            <div>Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host field, or make sure the host name is resolvable in the target VCN.</div>
                                             <div>The private IP address of the connection&#x27;s endpoint in the customer&#x27;s VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.</div>
                                             <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
                                                         </td>
@@ -569,6 +587,7 @@ Parameters
                                                                                                                                                                                                 <li>AMAZON_S3</li>
                                                                                                                                                                                                 <li>HDFS</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
+                                                                                                                                                                                                <li>DB2</li>
                                                                                                                                                                                                 <li>ELASTICSEARCH</li>
                                                                                                                                                                                                 <li>AZURE_SYNAPSE_ANALYTICS</li>
                                                                                                                                                                                                 <li>REDIS</li>
@@ -585,7 +604,7 @@ Parameters
                                                                 <td>
                                             <div>The connection type.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with connection_id present.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -672,8 +691,8 @@ Parameters
                                                                 <td>
                                             <div>The name of the database.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -690,7 +709,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the database system being referenced.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -759,7 +778,7 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GOOGLE_BIGQUERY&#x27;, &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;GOOGLE_CLOUD_STORAGE&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;HDFS&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;AMAZON_KINESIS&#x27;, &#x27;GENERIC&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;AMAZON_S3&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;ORACLE_NOSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -847,8 +866,28 @@ Parameters
                                                                 <td>
                                             <div>The name or address of a host.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;GENERIC&#x27;, &#x27;DB2&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1003,6 +1042,63 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Locks associated with this resource.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/message" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                            <div>Applicable when connection_type is &#x27;POSTGRESQL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-locks/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>FULL</li>
+                                                                                                                                                                                                <li>DELETE</li>
+                                                                                                                                                                                                <li>DEFAULT</li>
+                                                                                                                                                                                                <li>SPECIFIC_RELEASE</li>
+                                                                                                                                                                                                <li>CURRENT_RELEASE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the lock.</div>
+                                            <div>Required when connection_type is &#x27;POSTGRESQL&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#parameter-nsg_ids" title="Permalink to this option"></a>
@@ -1031,8 +1127,8 @@ Parameters
                                                                 <td>
                                             <div>The password Oracle GoldenGate uses to connect the associated system of the given technology. It must conform to the specific security requirements including length, case sensitivity, and so on.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;DB2&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1049,8 +1145,8 @@ Parameters
                                                                 <td>
                                             <div>The port of an endpoint usually specified for a connection.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;DB2&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1065,6 +1161,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
+                                            <div>Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host field, or make sure the host name is resolvable in the target VCN.</div>
                                             <div>The private IP address of the connection&#x27;s endpoint in the customer&#x27;s VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
@@ -1161,6 +1258,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-redis_cluster_id"></div>
+                    <b>redis_cluster_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-redis_cluster_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Redis cluster.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;REDIS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -1174,6 +1288,27 @@ Parameters
                                             <div>The name of the region. e.g.: us-ashburn-1</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;ORACLE_NOSQL&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-routing_method"></div>
+                    <b>routing_method</b>
+                    <a class="ansibleOptionLink" href="#parameter-routing_method" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SHARED_SERVICE_ENDPOINT</li>
+                                                                                                                                                                                                <li>SHARED_DEPLOYMENT_ENDPOINT</li>
+                                                                                                                                                                                                <li>DEDICATED_ENDPOINT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Controls the network traffic direction to the target: SHARED_SERVICE_ENDPOINT: Traffic flows through the Goldengate Service&#x27;s network to public hosts. Cannot be used for private targets. SHARED_DEPLOYMENT_ENDPOINT: Network traffic flows from the assigned deployment&#x27;s private endpoint through the deployment&#x27;s subnet. DEDICATED_ENDPOINT: A dedicated private endpoint is created in the target VCN subnet for the connection. The subnetId is required when DEDICATED_ENDPOINT networking is selected.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1225,8 +1360,8 @@ Parameters
                                                                 <td>
                                             <div>Security protocol for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;KAFKA&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1244,7 +1379,7 @@ Parameters
                                             <div>Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 9200. Used for establishing the initial connection to the Elasticsearch cluster. Example: `&quot;server1.example.com:4000,server2.example.com:4000&quot;`</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;REDIS&#x27;, &#x27;ELASTICSEARCH&#x27;]</div>
+                                            <div>Required when connection_type is &#x27;ELASTICSEARCH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1337,7 +1472,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL.</div>
+                                            <div>The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL. The supported file formats are .pem and .crt.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
@@ -1354,9 +1489,43 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The base64 encoded certificate of the PostgreSQL server.</div>
+                                            <div>The base64 encoded certificate of the PostgreSQL server. The supported file formats are .pem and .crt.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_client_keystash"></div>
+                    <b>ssl_client_keystash</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_client_keystash" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 encoded keystash file which contains the encrypted password to the key database file.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;DB2&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_client_keystoredb"></div>
+                    <b>ssl_client_keystoredb</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_client_keystoredb" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 encoded keystore file created at the client containing the server certificate / CA root certificate.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;DB2&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1371,7 +1540,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA) for PostgreSQL.</div>
+                                            <div>The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA).</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
@@ -1388,7 +1557,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The base64 encoded private key of the PostgreSQL server.</div>
+                                            <div>The base64 encoded private key of the PostgreSQL server. The supported file formats are .pem and .crt.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
@@ -1425,6 +1594,23 @@ Parameters
                                             <div>SSL modes for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_server_certificate"></div>
+                    <b>ssl_server_certificate</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_server_certificate" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 encoded file which contains the self-signed server certificate / Certificate Authority (CA) certificate.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;DB2&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1477,7 +1663,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet being referenced.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the target subnet of the dedicated connection.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1611,8 +1798,8 @@ Parameters
                                                                 <td>
                                             <div>The username Oracle GoldenGate uses to connect the associated system of the given technology. This username must already exist and be available by the system/application to be connected to and must conform to the case sensitivty requirments defined in it.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AMAZON_REDSHIFT&#x27;, &#x27;MYSQL&#x27;, &#x27;MONGODB&#x27;, &#x27;JAVA_MESSAGE_SERVICE&#x27;, &#x27;ORACLE&#x27;, &#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;DB2&#x27;, &#x27;REDIS&#x27;, &#x27;SNOWFLAKE&#x27;, &#x27;KAFKA&#x27;, &#x27;ELASTICSEARCH&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MICROSOFT_SQLSERVER&#x27;, &#x27;MYSQL&#x27;, &#x27;AMAZON_REDSHIFT&#x27;, &#x27;DB2&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1715,15 +1902,21 @@ Examples
         connection_type: POSTGRESQL
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        port: 56
-        database_name: database_name_example
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -1737,6 +1930,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -1748,7 +1943,12 @@ Examples
         connection_type: KAFKA_SCHEMA_REGISTRY
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         url: url_example
         authentication_type: authentication_type_example
         private_ip: private_ip_example
@@ -1764,6 +1964,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -1775,12 +1977,17 @@ Examples
         connection_type: MICROSOFT_SQLSERVER
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         should_validate_server_certificate: true
-        port: 56
-        database_name: database_name_example
         ssl_ca: ssl_ca_example
         private_ip: private_ip_example
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -1794,6 +2001,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -1805,7 +2014,12 @@ Examples
         connection_type: JAVA_MESSAGE_SERVICE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         should_use_jndi: true
         jndi_connection_factory: jndi_connection_factory_example
         jndi_provider_url: jndi_provider_url_example
@@ -1816,12 +2030,12 @@ Examples
         connection_url: connection_url_example
         authentication_type: authentication_type_example
         private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
         ssl_key_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1829,6 +2043,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -1840,7 +2056,12 @@ Examples
         connection_type: GOOGLE_BIGQUERY
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         service_account_key_file: service_account_key_file_example
         display_name: display_name_example
         description: description_example
@@ -1849,6 +2070,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = AMAZON_KINESIS
       oci_golden_gate_connection:
@@ -1858,7 +2081,12 @@ Examples
         connection_type: AMAZON_KINESIS
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
         secret_access_key: secret_access_key_example
         display_name: display_name_example
@@ -1868,6 +2096,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -1877,7 +2107,12 @@ Examples
         connection_type: SNOWFLAKE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         connection_url: connection_url_example
         authentication_type: authentication_type_example
         private_key_file: private_key_file_example
@@ -1889,6 +2124,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -1900,7 +2137,12 @@ Examples
         connection_type: AZURE_DATA_LAKE_STORAGE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         account_name: account_name_example
         account_key: account_key_example
         sas_token: sas_token_example
@@ -1916,6 +2158,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = MONGODB
       oci_golden_gate_connection:
@@ -1925,7 +2169,12 @@ Examples
         connection_type: MONGODB
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
@@ -1934,6 +2183,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -1946,7 +2197,12 @@ Examples
         connection_type: AMAZON_S3
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
         secret_access_key: secret_access_key_example
         display_name: display_name_example
@@ -1956,6 +2212,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = HDFS
       oci_golden_gate_connection:
@@ -1965,7 +2223,12 @@ Examples
         connection_type: HDFS
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         core_site_xml: core_site_xml_example
         display_name: display_name_example
         description: description_example
@@ -1974,6 +2237,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -1983,7 +2248,12 @@ Examples
         connection_type: OCI_OBJECT_STORAGE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         region: us-phoenix-1
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1997,6 +2267,45 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+
+    - name: Create connection with connection_type = DB2
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: DB2
+
+        # optional
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
+        database_name: database_name_example
+        port: 56
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
+        ssl_client_keystoredb: ssl_client_keystoredb_example
+        ssl_client_keystash: ssl_client_keystash_example
+        ssl_server_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+        username: username_example
+        password: example-password
 
     - name: Create connection with connection_type = ELASTICSEARCH
       oci_golden_gate_connection:
@@ -2006,7 +2315,12 @@ Examples
         connection_type: ELASTICSEARCH
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         fingerprint: fingerprint_example
         servers: servers_example
         authentication_type: authentication_type_example
@@ -2018,6 +2332,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2029,7 +2345,12 @@ Examples
         connection_type: AZURE_SYNAPSE_ANALYTICS
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2037,6 +2358,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2049,14 +2372,20 @@ Examples
         connection_type: REDIS
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         servers: servers_example
+        redis_cluster_id: "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx"
         authentication_type: authentication_type_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2064,6 +2393,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2075,20 +2406,25 @@ Examples
         connection_type: MYSQL
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        port: 56
-        database_name: database_name_example
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
           value: value_example
-        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
         host: host_example
         display_name: display_name_example
@@ -2098,6 +2434,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2109,7 +2447,12 @@ Examples
         connection_type: GENERIC
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         host: host_example
         display_name: display_name_example
         description: description_example
@@ -2118,6 +2461,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = GOOGLE_CLOUD_STORAGE
       oci_golden_gate_connection:
@@ -2127,7 +2472,12 @@ Examples
         connection_type: GOOGLE_CLOUD_STORAGE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         service_account_key_file: service_account_key_file_example
         display_name: display_name_example
         description: description_example
@@ -2136,6 +2486,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Create connection with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -2145,7 +2497,12 @@ Examples
         connection_type: KAFKA
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
         bootstrap_servers:
         - # required
@@ -2154,7 +2511,6 @@ Examples
           # optional
           port: 56
           private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -2162,6 +2518,7 @@ Examples
         ssl_key_password: example-password
         consumer_properties: consumer_properties_example
         producer_properties: producer_properties_example
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2169,6 +2526,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2180,7 +2539,13 @@ Examples
         connection_type: ORACLE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
+        authentication_mode: authentication_mode_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2192,6 +2557,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2204,10 +2571,15 @@ Examples
         connection_type: GOLDENGATE
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        port: 56
         private_ip: private_ip_example
+        port: 56
         host: host_example
         display_name: display_name_example
         description: description_example
@@ -2216,6 +2588,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2227,7 +2601,12 @@ Examples
         connection_type: AMAZON_REDSHIFT
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         connection_url: connection_url_example
         display_name: display_name_example
         description: description_example
@@ -2236,6 +2615,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2247,7 +2628,12 @@ Examples
         connection_type: ORACLE_NOSQL
 
         # optional
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        locks:
+        - # required
+          type: FULL
+
+          # optional
+          message: message_example
         tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         region: us-phoenix-1
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2261,6 +2647,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = POSTGRESQL
       oci_golden_gate_connection:
@@ -2268,14 +2656,15 @@ Examples
         connection_type: POSTGRESQL
 
         # optional
-        port: 56
-        database_name: database_name_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -2289,6 +2678,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2313,6 +2704,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2323,10 +2716,10 @@ Examples
 
         # optional
         should_validate_server_certificate: true
-        port: 56
-        database_name: database_name_example
         ssl_ca: ssl_ca_example
         private_ip: private_ip_example
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -2340,6 +2733,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2359,12 +2754,12 @@ Examples
         connection_url: connection_url_example
         authentication_type: authentication_type_example
         private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
         ssl_key_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2372,6 +2767,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2389,6 +2786,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = AMAZON_KINESIS
       oci_golden_gate_connection:
@@ -2405,6 +2804,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -2423,6 +2824,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2447,6 +2850,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = MONGODB
       oci_golden_gate_connection:
@@ -2462,6 +2867,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2481,6 +2888,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = HDFS
       oci_golden_gate_connection:
@@ -2496,6 +2905,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -2516,6 +2927,37 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+
+    - name: Update connection with connection_type = DB2
+      oci_golden_gate_connection:
+        # required
+        connection_type: DB2
+
+        # optional
+        database_name: database_name_example
+        port: 56
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
+        ssl_client_keystoredb: ssl_client_keystoredb_example
+        ssl_client_keystash: ssl_client_keystash_example
+        ssl_server_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+        username: username_example
+        password: example-password
 
     - name: Update connection with connection_type = ELASTICSEARCH
       oci_golden_gate_connection:
@@ -2534,6 +2976,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2550,6 +2994,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2561,12 +3007,13 @@ Examples
 
         # optional
         servers: servers_example
+        redis_cluster_id: "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx"
         authentication_type: authentication_type_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2574,6 +3021,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2583,19 +3032,19 @@ Examples
         connection_type: MYSQL
 
         # optional
-        port: 56
-        database_name: database_name_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
           value: value_example
-        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
         host: host_example
         display_name: display_name_example
@@ -2605,6 +3054,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2622,6 +3073,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = GOOGLE_CLOUD_STORAGE
       oci_golden_gate_connection:
@@ -2637,6 +3090,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -2652,7 +3107,6 @@ Examples
           # optional
           port: 56
           private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -2660,6 +3114,7 @@ Examples
         ssl_key_password: example-password
         consumer_properties: consumer_properties_example
         producer_properties: producer_properties_example
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2667,6 +3122,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2676,6 +3133,7 @@ Examples
         connection_type: ORACLE
 
         # optional
+        authentication_mode: authentication_mode_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2687,6 +3145,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2698,8 +3158,8 @@ Examples
 
         # optional
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        port: 56
         private_ip: private_ip_example
+        port: 56
         host: host_example
         display_name: display_name_example
         description: description_example
@@ -2708,6 +3168,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2725,6 +3187,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2747,6 +3211,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = POSTGRESQL
       oci_golden_gate_connection:
@@ -2755,14 +3221,15 @@ Examples
         connection_type: POSTGRESQL
 
         # optional
-        port: 56
-        database_name: database_name_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -2776,6 +3243,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2801,6 +3270,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2812,10 +3283,10 @@ Examples
 
         # optional
         should_validate_server_certificate: true
-        port: 56
-        database_name: database_name_example
         ssl_ca: ssl_ca_example
         private_ip: private_ip_example
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
@@ -2829,6 +3300,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2849,12 +3322,12 @@ Examples
         connection_url: connection_url_example
         authentication_type: authentication_type_example
         private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
         ssl_key_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -2862,6 +3335,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2880,6 +3355,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AMAZON_KINESIS
       oci_golden_gate_connection:
@@ -2897,6 +3374,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = SNOWFLAKE
       oci_golden_gate_connection:
@@ -2916,6 +3395,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -2941,6 +3422,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MONGODB
       oci_golden_gate_connection:
@@ -2957,6 +3440,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -2977,6 +3462,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = HDFS
       oci_golden_gate_connection:
@@ -2993,6 +3480,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -3014,6 +3503,38 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = DB2
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: DB2
+
+        # optional
+        database_name: database_name_example
+        port: 56
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
+        ssl_client_keystoredb: ssl_client_keystoredb_example
+        ssl_client_keystash: ssl_client_keystash_example
+        ssl_server_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        host: host_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
+        username: username_example
+        password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = ELASTICSEARCH
       oci_golden_gate_connection:
@@ -3033,6 +3554,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3050,6 +3573,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -3062,12 +3587,13 @@ Examples
 
         # optional
         servers: servers_example
+        redis_cluster_id: "ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx"
         authentication_type: authentication_type_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
         key_store_password: example-password
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -3075,6 +3601,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3085,19 +3613,19 @@ Examples
         connection_type: MYSQL
 
         # optional
-        port: 56
-        database_name: database_name_example
         ssl_mode: ssl_mode_example
         ssl_ca: ssl_ca_example
         ssl_crl: ssl_crl_example
         ssl_cert: ssl_cert_example
         ssl_key: ssl_key_example
         private_ip: private_ip_example
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        port: 56
         additional_attributes:
         - # required
           name: name_example
           value: value_example
-        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
         host: host_example
         display_name: display_name_example
@@ -3107,6 +3635,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3125,6 +3655,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GOOGLE_CLOUD_STORAGE
       oci_golden_gate_connection:
@@ -3141,6 +3673,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = KAFKA
       oci_golden_gate_connection:
@@ -3157,7 +3691,6 @@ Examples
           # optional
           port: 56
           private_ip: private_ip_example
-        security_protocol: security_protocol_example
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -3165,6 +3698,7 @@ Examples
         ssl_key_password: example-password
         consumer_properties: consumer_properties_example
         producer_properties: producer_properties_example
+        security_protocol: security_protocol_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -3172,6 +3706,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3182,6 +3718,7 @@ Examples
         connection_type: ORACLE
 
         # optional
+        authentication_mode: authentication_mode_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -3193,6 +3730,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         connection_string: connection_string_example
         username: username_example
         password: example-password
@@ -3205,8 +3744,8 @@ Examples
 
         # optional
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        port: 56
         private_ip: private_ip_example
+        port: 56
         host: host_example
         display_name: display_name_example
         description: description_example
@@ -3215,6 +3754,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3233,6 +3774,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
         username: username_example
         password: example-password
 
@@ -3256,12 +3799,17 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        routing_method: SHARED_SERVICE_ENDPOINT
 
     - name: Delete connection
       oci_golden_gate_connection:
         # required
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
+
+        # optional
+        is_lock_override: true
 
     - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_connection:
@@ -3305,7 +3853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_key_id&#x27;: &#x27;ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_factory&#x27;: &#x27;connection_factory_example&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;connection_url&#x27;: &#x27;connection_url_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;jndi_connection_factory&#x27;: &#x27;jndi_connection_factory_example&#x27;, &#x27;jndi_initial_context_factory&#x27;: &#x27;jndi_initial_context_factory_example&#x27;, &#x27;jndi_provider_url&#x27;: &#x27;jndi_provider_url_example&#x27;, &#x27;jndi_security_principal&#x27;: &#x27;jndi_security_principal_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;PLAIN&#x27;, &#x27;servers&#x27;: &#x27;servers_example&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;should_use_jndi&#x27;: True, &#x27;should_validate_server_certificate&#x27;: True, &#x27;ssl_ca&#x27;: &#x27;ssl_ca_example&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AMAZON_KINESIS&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_key_id&#x27;: &#x27;ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_mode&#x27;: &#x27;TLS&#x27;, &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_factory&#x27;: &#x27;connection_factory_example&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;connection_url&#x27;: &#x27;connection_url_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;jndi_connection_factory&#x27;: &#x27;jndi_connection_factory_example&#x27;, &#x27;jndi_initial_context_factory&#x27;: &#x27;jndi_initial_context_factory_example&#x27;, &#x27;jndi_provider_url&#x27;: &#x27;jndi_provider_url_example&#x27;, &#x27;jndi_security_principal&#x27;: &#x27;jndi_security_principal_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;locks&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;related_resource_id&#x27;: &#x27;ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;}], &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;redis_cluster_id&#x27;: &#x27;ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;routing_method&#x27;: &#x27;SHARED_SERVICE_ENDPOINT&#x27;, &#x27;security_protocol&#x27;: &#x27;PLAIN&#x27;, &#x27;servers&#x27;: &#x27;servers_example&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;should_use_jndi&#x27;: True, &#x27;should_validate_server_certificate&#x27;: True, &#x27;ssl_ca&#x27;: &#x27;ssl_ca_example&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AMAZON_KINESIS&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -3399,6 +3947,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/authentication_mode"></div>
+                    <b>authentication_mode</b>
+                    <a class="ansibleOptionLink" href="#return-connection/authentication_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Authentication mode. It can be provided at creation of Oracle Autonomous Database Serverless connections, when a databaseId is provided. The default value is MTLS.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TLS</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -3502,6 +4068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
+                                            <div>Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host field, or make sure the host name is resolvable in the target VCN.</div>
                                             <div>The private IP address of the connection&#x27;s endpoint in the customer&#x27;s VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -3793,8 +4360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Host and port separated by colon. Example: `&quot;server.example.com:1234&quot;`</div>
-                                            <div>For multiple hosts, provide a comma separated list. Example: `&quot;server1.example.com:1000,server1.example.com:2000&quot;`</div>
+                                            <div>The name or address of a host.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
@@ -3983,6 +4549,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/locks"></div>
+                    <b>locks</b>
+                    <a class="ansibleOptionLink" href="#return-connection/locks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Locks associated with this resource.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/locks/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#return-connection/locks/message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message added by the creator of the lock. This is typically used to give an indication of why the resource is locked.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/locks/related_resource_id"></div>
+                    <b>related_resource_id</b>
+                    <a class="ansibleOptionLink" href="#return-connection/locks/related_resource_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/locks/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-connection/locks/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When the lock was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/locks/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-connection/locks/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the lock.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FULL</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#return-connection/nsg_ids" title="Permalink to this return value"></a>
@@ -4026,10 +4685,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
+                                            <div>Deprecated: this field will be removed in future versions. Either specify the private IP in the connectionString or host field, or make sure the host name is resolvable in the target VCN.</div>
                                             <div>The private IP address of the connection&#x27;s endpoint in the customer&#x27;s VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">private_ip_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/redis_cluster_id"></div>
+                    <b>redis_cluster_id</b>
+                    <a class="ansibleOptionLink" href="#return-connection/redis_cluster_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Redis cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.rediscluster.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -4053,6 +4731,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/routing_method"></div>
+                    <b>routing_method</b>
+                    <a class="ansibleOptionLink" href="#return-connection/routing_method" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Controls the network traffic direction to the target: SHARED_SERVICE_ENDPOINT: Traffic flows through the Goldengate Service&#x27;s network to public hosts. Cannot be used for private targets. SHARED_DEPLOYMENT_ENDPOINT: Network traffic flows from the assigned deployment&#x27;s private endpoint through the deployment&#x27;s subnet. DEDICATED_ENDPOINT: A dedicated private endpoint is created in the target VCN subnet for the connection. The subnetId is required when DEDICATED_ENDPOINT networking is selected.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SHARED_SERVICE_ENDPOINT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/security_protocol"></div>
                     <b>security_protocol</b>
                     <a class="ansibleOptionLink" href="#return-connection/security_protocol" title="Permalink to this return value"></a>
@@ -4062,7 +4758,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Security protocol for Elasticsearch</div>
+                                            <div>Security Protocol for the DB2 database.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PLAIN</div>
@@ -4152,7 +4848,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database Certificate - The base64 encoded content of pem file containing the server public key (for 1-way SSL).</div>
+                                            <div>Database Certificate - The base64 encoded content of a .pem or .crt file. containing the server public key (for 1-way SSL).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssl_ca_example</div>
@@ -4206,7 +4902,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet being referenced.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the target subnet of the dedicated connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>

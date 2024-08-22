@@ -24,8 +24,8 @@ short_description: Manage a DeploymentBackup resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete a DeploymentBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DeploymentBackup.
-    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_backup_actions) module: cancel, change_compartment,
-      copy, restore_deployment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_backup_actions) module: add_deployment_backup_lock,
+      cancel, change_compartment, copy, remove_deployment_backup_lock, restore_deployment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -63,6 +63,28 @@ options:
             - Name of the object to be uploaded to object storage
             - Required for create using I(state=present).
         type: str
+    locks:
+        description:
+            - Locks associated with this resource.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the lock.
+                type: str
+                choices:
+                    - "FULL"
+                    - "DELETE"
+                    - "DEFAULT"
+                    - "SPECIFIC_RELEASE"
+                    - "CURRENT_RELEASE"
+                required: true
+            message:
+                description:
+                    - A message added by the creator of the lock. This is typically used to give an
+                      indication of why the resource is locked.
+                type: str
     freeform_tags:
         description:
             - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
@@ -83,6 +105,11 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the DeploymentBackup.
@@ -107,6 +134,12 @@ EXAMPLES = """
     object_name: object_name_example
 
     # optional
+    locks:
+    - # required
+      type: FULL
+
+      # optional
+      message: message_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -118,6 +151,7 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Update deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment_backup:
@@ -128,12 +162,16 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Delete deployment_backup
   oci_golden_gate_deployment_backup:
     # required
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 - name: Delete deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment_backup:
@@ -163,6 +201,14 @@ deployment_backup:
             returned: on success
             type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_type:
+            description:
+                - "The type of deployment, which can be any one of the Allowed values.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.
+                      Its use is discouraged in favor of 'DATABASE_ORACLE'."
+            returned: on success
+            type: str
+            sample: OGG
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
@@ -282,9 +328,41 @@ deployment_backup:
             returned: on success
             type: dict
             sample: {}
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+        "deployment_type": "OGG",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "is_automatic": true,
@@ -302,7 +380,13 @@ deployment_backup:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }]
     }
 """
 
@@ -427,6 +511,7 @@ class DeploymentBackupHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 deployment_backup_id=self.module.params.get("deployment_backup_id"),
                 update_deployment_backup_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -443,6 +528,7 @@ class DeploymentBackupHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 deployment_backup_id=self.module.params.get("deployment_backup_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -471,9 +557,28 @@ def main():
             namespace_name=dict(type="str"),
             bucket_name=dict(type="str"),
             object_name=dict(type="str"),
+            locks=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "FULL",
+                            "DELETE",
+                            "DEFAULT",
+                            "SPECIFIC_RELEASE",
+                            "CURRENT_RELEASE",
+                        ],
+                    ),
+                    message=dict(type="str"),
+                ),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             deployment_backup_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

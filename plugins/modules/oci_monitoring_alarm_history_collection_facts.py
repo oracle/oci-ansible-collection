@@ -42,22 +42,26 @@ options:
         required: true
     alarm_historytype:
         description:
-            - The type of history entries to retrieve. State history (STATE_HISTORY) or state transition history (STATE_TRANSITION_HISTORY).
-              If not specified, entries of both types are retrieved.
+            - The type of history entries to retrieve.
+              State history (STATE_HISTORY), state transition history (STATE_TRANSITION_HISTORY), rule history (RULE_HISTORY) or rule transition history
+              (RULE_TRANSITION_HISTORY).
+              If not specified, entries of all types are retrieved.
             - "Example: `STATE_HISTORY`"
         type: str
         choices:
             - "STATE_HISTORY"
             - "STATE_TRANSITION_HISTORY"
+            - "RULE_HISTORY"
+            - "RULE_TRANSITION_HISTORY"
     timestamp_greater_than_or_equal_to:
         description:
             - A filter to return only alarm history entries with timestamps occurring on or after the specified date and time. Format defined by RFC3339.
-            - "Example: `2019-01-01T01:00:00.789Z`"
+            - "Example: `2023-01-01T01:00:00.789Z`"
         type: str
     timestamp_less_than:
         description:
             - A filter to return only alarm history entries with timestamps occurring before the specified date and time. Format defined by RFC3339.
-            - "Example: `2019-01-02T01:00:00.789Z`"
+            - "Example: `2023-01-02T01:00:00.789Z`"
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -101,6 +105,20 @@ alarm_history_collection:
             returned: on success
             type: complex
             contains:
+                alarm_summary:
+                    description:
+                        - Customizable alarm summary (`alarmSummary` L(alarm message parameter,https://docs.cloud.oracle.com/iaas/Content/Monitoring/alarm-
+                          message-format.htm)).
+                          Optionally include L(dynamic variables,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-
+                          variables.htm).
+                          The alarm summary appears within the body of the alarm message and in responses to
+                          L(ListAlarmStatus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus)
+                          L(GetAlarmHistory,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory) and
+                          L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+                    returned: on success
+                    type: str
+                    sample: alarm_summary_example
                 summary:
                     description:
                         - Description for this alarm history entry.
@@ -112,7 +130,7 @@ alarm_history_collection:
                 timestamp:
                     description:
                         - Timestamp for this alarm history entry. Format defined by RFC3339.
-                        - "Example: `2019-02-01T01:02:29.600Z`"
+                        - "Example: `2023-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
@@ -120,7 +138,7 @@ alarm_history_collection:
                     description:
                         - "Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
                           Available for state transition entries only. Note: A three-minute lag for this value accounts for any late-arriving metrics."
-                        - "Example: `2019-02-01T0:59:00.789Z`"
+                        - "Example: `2023-02-01T0:59:00.789Z`"
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
@@ -128,6 +146,7 @@ alarm_history_collection:
         "alarm_id": "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx",
         "is_enabled": true,
         "entries": [{
+            "alarm_summary": "alarm_summary_example",
             "summary": "summary_example",
             "timestamp": "2013-10-20T19:20:30+01:00",
             "timestamp_triggered": "2013-10-20T19:20:30+01:00"
@@ -193,7 +212,13 @@ def main():
         dict(
             alarm_id=dict(aliases=["id"], type="str", required=True),
             alarm_historytype=dict(
-                type="str", choices=["STATE_HISTORY", "STATE_TRANSITION_HISTORY"]
+                type="str",
+                choices=[
+                    "STATE_HISTORY",
+                    "STATE_TRANSITION_HISTORY",
+                    "RULE_HISTORY",
+                    "RULE_TRANSITION_HISTORY",
+                ],
             ),
             timestamp_greater_than_or_equal_to=dict(type="str"),
             timestamp_less_than=dict(type="str"),

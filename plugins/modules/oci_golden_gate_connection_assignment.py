@@ -45,6 +45,10 @@ options:
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+        type: bool
     compartment_id:
         description:
             - The OCID of the compartment that contains the work request. Work requests should be scoped
@@ -72,11 +76,17 @@ EXAMPLES = """
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    is_lock_override: true
+
 - name: Delete connection_assignment
   oci_golden_gate_connection_assignment:
     # required
     connection_assignment_id: "ocid1.connectionassignment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 """
 
@@ -249,7 +259,10 @@ class ConnectionAssignmentHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_connection_assignment,
             call_fn_args=(),
-            call_fn_kwargs=dict(create_connection_assignment_details=create_details,),
+            call_fn_kwargs=dict(
+                create_connection_assignment_details=create_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -265,6 +278,7 @@ class ConnectionAssignmentHelperGen(OCIResourceHelperBase):
                 connection_assignment_id=self.module.params.get(
                     "connection_assignment_id"
                 ),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -290,6 +304,7 @@ def main():
             connection_id=dict(type="str"),
             deployment_id=dict(type="str"),
             connection_assignment_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

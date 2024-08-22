@@ -51,6 +51,7 @@ options:
             - "DATABASE_MYSQL"
             - "DATABASE_POSTGRESQL"
             - "DATABASE_DB2ZOS"
+            - "GGSA"
             - "DATA_TRANSFORMS"
     sort_order:
         description:
@@ -211,6 +212,7 @@ def main():
                     "DATABASE_MYSQL",
                     "DATABASE_POSTGRESQL",
                     "DATABASE_DB2ZOS",
+                    "GGSA",
                     "DATA_TRANSFORMS",
                 ],
             ),

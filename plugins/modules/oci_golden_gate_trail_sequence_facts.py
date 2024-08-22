@@ -23,7 +23,8 @@ module: oci_golden_gate_trail_sequence_facts
 short_description: Fetches details about one or multiple TrailSequence resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple TrailSequence resources in Oracle Cloud Infrastructure
-    - Lists the Trail Sequences for a TrailFile in a given deployment.
+    - "Lists the Trail Sequences for a TrailFile in a given deployment. Deprecated: Please access trail file management functions directly on OGG console which
+      are available since version Oracle GoldenGate 23c."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
