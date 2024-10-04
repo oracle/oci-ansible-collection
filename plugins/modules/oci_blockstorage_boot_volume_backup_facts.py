@@ -85,6 +85,13 @@ options:
             - "TERMINATED"
             - "FAULTY"
             - "REQUEST_RECEIVED"
+    freeform_tags_filter:
+        description:
+            - A filter to return just the boot volumes backups that have the exact values of the indicated freeform tags.
+            - For more than one tag indicated, the module searchs tu fulfill all the conditions, like a 'and' conditional.
+        type: dict
+        default: {}
+        required: false
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -106,6 +113,13 @@ EXAMPLES = """
     sort_by: TIMECREATED
     sort_order: ASC
     lifecycle_state: CREATING
+
+- name: List all boot volume bakcups that match the freeform tags
+  oracle.oci.oci_blockstorage_boot_volume_backup_facts:
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags_filter:
+        department: biology
+        use: production
 
 """
 
@@ -271,6 +285,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.core import BlockstorageClient
+    from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -310,12 +325,27 @@ class BootVolumeBackupFactsHelperGen(OCIResourceFactsHelperBase):
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.list_all_resources(
+        all_resources = oci_common_utils.list_all_resources(
             self.client.list_boot_volume_backups,
             compartment_id=self.module.params.get("compartment_id"),
             **optional_kwargs
         )
+        freeform_tags_filter = self.module.params.get('freeform_tags_filter')
+        if freeform_tags_filter:
+            all_resources = self.filter_by_freeform_tags(all_resources, freeform_tags_filter)
 
+        return all_resources
+
+    def filter_by_freeform_tags(self, resources, freeform_tags_filter):
+        filtered_resources = []
+        for resource in resources:
+            resource_dict = to_dict(resource)
+            if all(
+                resource_dict.get('freeform_tags', {}).get(tag) == value
+                for tag, value in freeform_tags_filter.items()
+            ):
+                filtered_resources.append(resource)
+        return filtered_resources
 
 BootVolumeBackupFactsHelperCustom = get_custom_class(
     "BootVolumeBackupFactsHelperCustom"
@@ -350,6 +380,7 @@ def main():
                     "REQUEST_RECEIVED",
                 ],
             ),
+            freeform_tags_filter=dict(type='dict', default={}),
         )
     )
 
