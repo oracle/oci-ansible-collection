@@ -526,8 +526,8 @@ as simple as the following example:
 .. important::
    ``use_extra_vars`` option will work with ansible v2.11 or higher.
 
-Fetch All Compute Hosts
-~~~~~~~~~~~~~~~~~~~~~~~
+Fetch Compute Hosts
+~~~~~~~~~~~~~~~~~~~
 
 To fetch all hosts, your configuration can be as simple as the following
 example:
@@ -535,6 +535,18 @@ example:
 .. code:: yaml
 
    plugin: oracle.oci.oci
+
+Fetch All Compute Hosts (Regardless Of State)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To fetch all hosts regardless of the instance's lifecycle state, your configuration would look
+similar to the following example:
+
+.. code:: yaml
+
+   plugin: oracle.oci.oci
+
+   fetch_only_running_hosts: False
 
 Fetch Only DB Hosts
 ~~~~~~~~~~~~~~~~~~~
@@ -733,6 +745,7 @@ with more configuration options:
 
    # Compute Hosts (bool type)
    fetch_compute_hosts: True
+   fetch_all_compute_hosts: False
 
    # Process only the primary vnic of a compute instance
    primary_vnic_only: True
