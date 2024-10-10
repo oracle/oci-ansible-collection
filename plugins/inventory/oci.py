@@ -124,6 +124,9 @@ DOCUMENTATION = """
         fetch_compute_hosts:
              description: When set, the compute nodes are fetched. Default value set to True.
              type: bool
+        fetch_all_compute_hosts:
+             description: When set along with fetch_compute_hosts, compute nodes in any lifecycle state are fetched. Default value set to False.
+             type: bool
         primary_vnic_only:
             description: The default behavior of the plugin is to process all VNIC's attached to a compute instance.
                          This might result in instance having multiple entries. When this parameter is set to True,
@@ -354,6 +357,7 @@ fetch_db_hosts: True
 
 # Compute Hosts (bool type)
 fetch_compute_hosts: True
+fetch_all_compute_hosts: False
 
 # Process only the primary vnic of a compute instance
 primary_vnic_only: True
@@ -1845,16 +1849,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         )
         try:
             compute_client = self.get_compute_client_for_region(region)
+            limit = 2000
 
-            instances = self.get_filtered_resources(
-                oci_common_utils.list_all_resources(
-                    target_fn=compute_client.list_instances,
-                    compartment_id=compartment_ocid,
-                    lifecycle_state="RUNNING",
-                    limit=2000,
-                ),
-                compartment_ocid,
-            )
+            if self.get_option("fetch_all_compute_hosts"):
+                instances = self.get_filtered_resources(
+                    oci_common_utils.list_all_resources(
+                        target_fn=compute_client.list_instances,
+                        compartment_id=compartment_ocid,
+                        limit=limit,
+                    ),
+                    compartment_ocid,
+                )
+            else:
+                instances = self.get_filtered_resources(
+                    oci_common_utils.list_all_resources(
+                        target_fn=compute_client.list_instances,
+                        compartment_id=compartment_ocid,
+                        lifecycle_state="RUNNING",
+                        limit=limit,
+                    ),
+                    compartment_ocid,
+                )
+
             return instances
         except ServiceError as ex:
             self.debug(
