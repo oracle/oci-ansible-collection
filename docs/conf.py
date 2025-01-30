@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -38,7 +38,7 @@ author = "Oracle Corporation"
 # XXX Fill in the version and release from the OCI ansible modules'
 # version
 # The short X.Y version
-version = "5.3.0"
+version = "5.4.0"
 # The full version, including alpha/beta/rc tags
 release = version
 

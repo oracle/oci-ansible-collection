@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -500,7 +500,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class LifecycleEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
+class OsManagementHubLifecycleEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -541,13 +541,14 @@ class LifecycleEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-LifecycleEnvironmentFactsHelperCustom = get_custom_class(
-    "LifecycleEnvironmentFactsHelperCustom"
+OsManagementHubLifecycleEnvironmentFactsHelperCustom = get_custom_class(
+    "OsManagementHubLifecycleEnvironmentFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    LifecycleEnvironmentFactsHelperCustom, LifecycleEnvironmentFactsHelperGen
+    OsManagementHubLifecycleEnvironmentFactsHelperCustom,
+    OsManagementHubLifecycleEnvironmentFactsHelperGen,
 ):
     pass
 

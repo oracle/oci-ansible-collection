@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -127,7 +127,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ManagedInstanceGroupAvailableSoftwareSourceFactsHelperGen(
+class OsManagementHubManagedInstanceGroupAvailableSoftwareSourceFactsHelperGen(
     OCIResourceFactsHelperBase
 ):
     """Supported operations: list"""
@@ -159,14 +159,14 @@ class ManagedInstanceGroupAvailableSoftwareSourceFactsHelperGen(
         )
 
 
-ManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom = get_custom_class(
-    "ManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom"
+OsManagementHubManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom = get_custom_class(
+    "OsManagementHubManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    ManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom,
-    ManagedInstanceGroupAvailableSoftwareSourceFactsHelperGen,
+    OsManagementHubManagedInstanceGroupAvailableSoftwareSourceFactsHelperCustom,
+    OsManagementHubManagedInstanceGroupAvailableSoftwareSourceFactsHelperGen,
 ):
     pass
 

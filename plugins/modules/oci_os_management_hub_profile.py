@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -535,11 +535,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProfileHelperGen(OCIResourceHelperBase):
+class OsManagementHubProfileHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(ProfileHelperGen, self).get_possible_entity_types() + [
+        return super(
+            OsManagementHubProfileHelperGen, self
+        ).get_possible_entity_types() + [
             "profile",
             "profiles",
             "osManagementHubprofile",
@@ -666,10 +668,14 @@ class ProfileHelperGen(OCIResourceHelperBase):
         )
 
 
-ProfileHelperCustom = get_custom_class("ProfileHelperCustom")
+OsManagementHubProfileHelperCustom = get_custom_class(
+    "OsManagementHubProfileHelperCustom"
+)
 
 
-class ResourceHelper(ProfileHelperCustom, ProfileHelperGen):
+class ResourceHelper(
+    OsManagementHubProfileHelperCustom, OsManagementHubProfileHelperGen
+):
     pass
 
 
