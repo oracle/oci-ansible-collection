@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -360,6 +360,7 @@ class ObjectHelperCustom:
 
     def download_object(self, dest, force):
 
+        dest = os.path.expanduser(dest)
         try:
             get_response = self.get_resource()
         except ServiceError as ex:
@@ -421,6 +422,7 @@ class ObjectHelperCustom:
             )
 
     def upload_object(self, src, force):
+        src = os.path.expanduser(src)
         if not os.path.isfile(to_bytes(src)):
             self.module.fail_json(msg="The source path %s must be a file." % src)
 

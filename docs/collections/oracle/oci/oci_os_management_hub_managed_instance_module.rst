@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_hub_managed_instance -- Manage a ManagedInstance re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update and delete a ManagedInstance resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_hub_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_hub_managed_instance_actions_module>` module: attach_profile, attach_software_sources, detach_profile, detach_software_sources, disable_module_stream, enable_module_stream, install_all_windows_updates_on_managed_instances_in_compartment, install_module_stream_profile, install_packages, install_windows_updates, manage_module_streams, refresh_software, remove_module_stream_profile, remove_packages, switch_module_stream, update_all_packages_on_managed_instances_in_compartment, update_packages.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_hub_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_hub_managed_instance_actions_module>` module: attach_profile, attach_software_sources, detach_profile, detach_software_sources, disable_module_stream, enable_module_stream, install_module_stream_profile, install_packages, install_windows_updates, manage_module_streams, refresh_software, remove_module_stream_profile, remove_packages, switch_module_stream, update_packages.
 
 
 .. Aliases
