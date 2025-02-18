@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a SoftwareSource resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new versioned or custom software source.
     - "This resource has the following action operations in the M(oracle.oci.oci_os_management_hub_software_source_actions) module: add_packages,
-      change_availability_of, change_compartment, search_software_source_module_streams, search_software_source_modules, search_software_source_package_groups."
+      change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -959,14 +959,16 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class SoftwareSourceHelperGen(OCIResourceHelperBase):
+class OsManagementHubSoftwareSourceHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
 
     def get_possible_entity_types(self):
-        return super(SoftwareSourceHelperGen, self).get_possible_entity_types() + [
+        return super(
+            OsManagementHubSoftwareSourceHelperGen, self
+        ).get_possible_entity_types() + [
             "softwaresource",
             "softwaresources",
             "osManagementHubsoftwaresource",
@@ -1080,10 +1082,14 @@ class SoftwareSourceHelperGen(OCIResourceHelperBase):
         )
 
 
-SoftwareSourceHelperCustom = get_custom_class("SoftwareSourceHelperCustom")
+OsManagementHubSoftwareSourceHelperCustom = get_custom_class(
+    "OsManagementHubSoftwareSourceHelperCustom"
+)
 
 
-class ResourceHelper(SoftwareSourceHelperCustom, SoftwareSourceHelperGen):
+class ResourceHelper(
+    OsManagementHubSoftwareSourceHelperCustom, OsManagementHubSoftwareSourceHelperGen
+):
     pass
 
 

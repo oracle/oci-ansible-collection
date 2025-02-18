@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_hub_software_source -- Manage a SoftwareSource reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 5.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a SoftwareSource resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new versioned or custom software source.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_hub_software_source_actions <ansible_collections.oracle.oci.oci_os_management_hub_software_source_actions_module>` module: add_packages, change_availability_of, change_compartment, search_software_source_module_streams, search_software_source_modules, search_software_source_package_groups.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_hub_software_source_actions <ansible_collections.oracle.oci.oci_os_management_hub_software_source_actions_module>` module: add_packages, change_compartment.
 
 
 .. Aliases

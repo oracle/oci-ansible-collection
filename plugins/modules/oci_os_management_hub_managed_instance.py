@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,10 +24,9 @@ short_description: Manage a ManagedInstance resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to update and delete a ManagedInstance resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oracle.oci.oci_os_management_hub_managed_instance_actions) module: attach_profile,
-      attach_software_sources, detach_profile, detach_software_sources, disable_module_stream, enable_module_stream,
-      install_all_windows_updates_on_managed_instances_in_compartment, install_module_stream_profile, install_packages, install_windows_updates,
-      manage_module_streams, refresh_software, remove_module_stream_profile, remove_packages, switch_module_stream,
-      update_all_packages_on_managed_instances_in_compartment, update_packages."
+      attach_software_sources, detach_profile, detach_software_sources, disable_module_stream, enable_module_stream, install_module_stream_profile,
+      install_packages, install_windows_updates, manage_module_streams, refresh_software, remove_module_stream_profile, remove_packages, switch_module_stream,
+      update_packages."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -504,14 +503,16 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ManagedInstanceHelperGen(OCIResourceHelperBase):
+class OsManagementHubManagedInstanceHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get, list and delete"""
 
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
 
     def get_possible_entity_types(self):
-        return super(ManagedInstanceHelperGen, self).get_possible_entity_types() + [
+        return super(
+            OsManagementHubManagedInstanceHelperGen, self
+        ).get_possible_entity_types() + [
             "managedinstance",
             "managedinstances",
             "osManagementHubmanagedinstance",
@@ -605,10 +606,14 @@ class ManagedInstanceHelperGen(OCIResourceHelperBase):
         )
 
 
-ManagedInstanceHelperCustom = get_custom_class("ManagedInstanceHelperCustom")
+OsManagementHubManagedInstanceHelperCustom = get_custom_class(
+    "OsManagementHubManagedInstanceHelperCustom"
+)
 
 
-class ResourceHelper(ManagedInstanceHelperCustom, ManagedInstanceHelperGen):
+class ResourceHelper(
+    OsManagementHubManagedInstanceHelperCustom, OsManagementHubManagedInstanceHelperGen
+):
     pass
 
 

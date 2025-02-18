@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -93,6 +93,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_management_dashboard_custom_helpers,
     oci_loggingsearch_custom_helpers,
     oci_psql_custom_helpers,
+    oci_os_management_hub_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -160,5 +161,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_management_dashboard_custom_helpers,
         oci_loggingsearch_custom_helpers,
         oci_psql_custom_helpers,
+        oci_os_management_hub_custom_helpers,
     ]
 )

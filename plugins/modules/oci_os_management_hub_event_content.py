@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2024 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2025 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -71,11 +71,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class EventContentHelperGen(OCIResourceHelperBase):
+class OsManagementHubEventContentHelperGen(OCIResourceHelperBase):
     """Supported operations: get and delete"""
 
     def get_possible_entity_types(self):
-        return super(EventContentHelperGen, self).get_possible_entity_types() + [
+        return super(
+            OsManagementHubEventContentHelperGen, self
+        ).get_possible_entity_types() + [
             "eventcontent",
             "eventcontents",
             "osManagementHubeventcontent",
@@ -120,10 +122,14 @@ class EventContentHelperGen(OCIResourceHelperBase):
         )
 
 
-EventContentHelperCustom = get_custom_class("EventContentHelperCustom")
+OsManagementHubEventContentHelperCustom = get_custom_class(
+    "OsManagementHubEventContentHelperCustom"
+)
 
 
-class ResourceHelper(EventContentHelperCustom, EventContentHelperGen):
+class ResourceHelper(
+    OsManagementHubEventContentHelperCustom, OsManagementHubEventContentHelperGen
+):
     pass
 
 
