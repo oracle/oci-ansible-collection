@@ -4,4 +4,4 @@
 # Apache License v2.0
 # See LICENSE.TXT for details.
 
-__version__ = "5.4.0"
+__version__ = "5.5.0"

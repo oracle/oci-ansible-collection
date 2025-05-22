@@ -1259,11 +1259,6 @@ _WAITER_OVERRIDE_MAP = {
         "sdk",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): ApiGatewayCreateSdkWorkRequestWaiter,
-    (
-        "os_management",
-        "managed_instance_group",
-        "{0}_{1}".format("INSTALL_ALL_UPDATES", oci_common_utils.ACTION_OPERATION_KEY,),
-    ): NoneWaiter,
     ("devops", "repository_ref", oci_common_utils.UPDATE_OPERATION_KEY,): NoneWaiter,
     (
         "certificates_management",
