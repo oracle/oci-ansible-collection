@@ -18,10 +18,10 @@ To run the sample, after ensuring that you have the pre-requisites for OCI
 ansible cloud modules, please provide values (that are specific to your tenancy)
 for the following variables in the `vars` section of `sample.yaml`:
 
-- compartment_ocid
+- SAMPLE_COMPARTMENT_OCID
 - cpu_core_count
 - display_name
-- admin_password
+- SAMPLE_ADMIN_PASSWORD
 - db_name
 - data_storage_size_in_tbs
 - license_model

@@ -1479,7 +1479,7 @@ def main():
                                 elements="dict",
                                 options=dict(
                                     header_name=dict(type="str", required=True),
-                                    header_value=dict(type="str"),
+                                    header_value=dict(type="str", no_log=True),
                                 ),
                             ),
                             auth_request_method=dict(
@@ -1500,10 +1500,9 @@ def main():
                             ),
                             private_key=dict(
                                 type="dict",
-                                no_log=False,
                                 options=dict(
                                     file_name=dict(type="str", required=True),
-                                    content=dict(type="str", required=True),
+                                    content=dict(type="str", required=True, no_log=True),
                                 ),
                             ),
                         ),
@@ -1513,7 +1512,7 @@ def main():
                         elements="dict",
                         options=dict(
                             header_name=dict(type="str", required=True),
-                            header_value=dict(type="str"),
+                            header_value=dict(type="str", no_log=True),
                         ),
                     ),
                     request_query_params=dict(

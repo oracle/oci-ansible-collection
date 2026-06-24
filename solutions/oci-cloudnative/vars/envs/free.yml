@@ -1,2 +1,0 @@
----
-oci_tenancy_ocid: "{{ lookup('env', 'OCI_TENANCY') }}"

@@ -1391,7 +1391,7 @@ def main():
             connection_detail=dict(
                 type="dict",
                 options=dict(
-                    enc_properties=dict(type="dict"),
+                    enc_properties=dict(type="dict", no_log=True),
                     key=dict(type="str", no_log=True),
                     description=dict(type="str"),
                     display_name=dict(aliases=["name"], type="str"),

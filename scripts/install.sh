@@ -11,7 +11,9 @@
 # Shell script for installing ansible collection for Oracle Cloud Infrastructure
 
 SCRIPT_NAME="./install.py"
-INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/test-branch/scripts/install.py"
+INSTALL_SCRIPT_REF="${INSTALL_SCRIPT_REF:-v5.5.0}"
+INSTALL_SCRIPT_URL="${INSTALL_SCRIPT_URL:-https://raw.githubusercontent.com/oracle/oci-ansible-collection/${INSTALL_SCRIPT_REF}/scripts/install.py}"
+INSTALL_SCRIPT_SHA256="${INSTALL_SCRIPT_SHA256:-}"
 
 set -e
 
@@ -72,6 +74,13 @@ Following arguments can be passed to the script:
         Runs the script in dry run mode i.e no network calls during installation and installation of dependecies.
         Disabled by default.
         Ex: --dry-run    will enable the dry run mode
+
+    --install-script-ref
+        Git ref used to download install.py when a local install.py is not available.
+        Defaults to the release tag for this installer.
+
+    --install-script-sha256
+        SHA-256 checksum for the downloaded install.py. Required for remote downloads.
     
     --upgrade
         Users can specify this to upgrade the oci-ansible-collection and its required dependencies.
@@ -86,7 +95,7 @@ Following arguments can be passed to the script:
 "
 
 
-install_args=""
+install_args=()
 OFFLINE=false
 PYTHON=""
 
@@ -96,54 +105,69 @@ key=$1
 case $key in
     --virtual-env-dir)
     VIRTUAL_ENV_DIR="$2"
-    install_args="$install_args --virtual-env-dir $VIRTUAL_ENV_DIR"
+    install_args+=(--virtual-env-dir "$VIRTUAL_ENV_DIR")
     shift
     shift
     ;;
     --virtual-env-name)
     VIRTUAL_ENV_NAME="$2"
-    install_args="$install_args --virtual-env-name $VIRTUAL_ENV_NAME"
+    install_args+=(--virtual-env-name "$VIRTUAL_ENV_NAME")
     shift
     shift
     ;;
     --ansible-version)
     ANSIBLE_VERSION="$2"
-    install_args="$install_args --ansible-version $ANSIBLE_VERSION"
+    install_args+=(--ansible-version "$ANSIBLE_VERSION")
     shift
     shift
     ;;
     --oci-ansible-collection-path)
     OCI_ANSIBLE_COLLECTION_PATH="$2"
-    install_args="$install_args --oci-ansible-collection-path $OCI_ANSIBLE_COLLECTION_PATH"
+    install_args+=(--oci-ansible-collection-path "$OCI_ANSIBLE_COLLECTION_PATH")
     shift
     shift
     ;;
     --version)
     OCI_ANSIBLE_COLLECTION_VERSION="$2"
-    install_args="$install_args --version $OCI_ANSIBLE_COLLECTION_VERSION"
+    install_args+=(--version "$OCI_ANSIBLE_COLLECTION_VERSION")
+    if [ "$INSTALL_SCRIPT_REF" = "v5.5.0" ]; then
+        INSTALL_SCRIPT_REF="v$OCI_ANSIBLE_COLLECTION_VERSION"
+        INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/${INSTALL_SCRIPT_REF}/scripts/install.py"
+    fi
     shift
     shift
     ;;
     --verbose)
-    install_args="$install_args --verbose"
+    install_args+=(--verbose)
     shift
     ;;
     --upgrade-pip)
-    install_args="$install_args --upgrade-pip"
+    install_args+=(--upgrade-pip)
     shift
     ;;
     --dry-run)
     DRY_RUN=true
-    install_args="$install_args --dry-run"
+    install_args+=(--dry-run)
     shift
     ;;
     --upgrade)
     DRY_RUN=true
-    install_args="$install_args --upgrade"
+    install_args+=(--upgrade)
     shift
     ;;
     --python-path)
     PYTHON="$2"
+    shift
+    shift
+    ;;
+    --install-script-ref)
+    INSTALL_SCRIPT_REF="$2"
+    INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/${INSTALL_SCRIPT_REF}/scripts/install.py"
+    shift
+    shift
+    ;;
+    --install-script-sha256)
+    INSTALL_SCRIPT_SHA256="$2"
     shift
     shift
     ;;
@@ -218,14 +242,37 @@ if [ "$python_installed" == false ]; then
     exit 1
 fi
 
+verify_sha256() {
+    local file_path="$1"
+    local expected_sha="$2"
+    local actual_sha=""
+
+    if command -v sha256sum >/dev/null 2>&1; then
+        actual_sha=$(sha256sum "$file_path" | awk '{print $1}')
+    elif command -v shasum >/dev/null 2>&1; then
+        actual_sha=$(shasum -a 256 "$file_path" | awk '{print $1}')
+    else
+        echo "ERROR: sha256sum or shasum is required to verify downloaded installer integrity"
+        exit 1
+    fi
+
+    if [ "$actual_sha" != "$expected_sha" ]; then
+        echo "ERROR: installer checksum verification failed"
+        echo "Expected: $expected_sha"
+        echo "Actual:   $actual_sha"
+        exit 1
+    fi
+}
+
 
 
 downloaded_script=true
 echo "Downloading installer script..."
 # -t option does not work in all unix environments. Use it if available, else fallback to just mktemp.
 install_script=$(mktemp -t oci_ansible_install_tmp_XXXX 2>/dev/null || mktemp) || exit
+chmod 600 "$install_script"
 echo "Downloading oci-ansible-collection install script from $INSTALL_SCRIPT_URL to $install_script."
-curl -# -f $INSTALL_SCRIPT_URL > $install_script
+curl -# -fL "$INSTALL_SCRIPT_URL" -o "$install_script"
 if [ $? -ne 0 ]; then
     downloaded_script=false
 fi
@@ -237,11 +284,17 @@ if [ "$downloaded_script" == false ]; then
     exit 1
 fi
 
+if [ -z "$INSTALL_SCRIPT_SHA256" ]; then
+    echo "ERROR: --install-script-sha256 or INSTALL_SCRIPT_SHA256 is required for remote installer downloads"
+    exit 1
+fi
+
+verify_sha256 "$install_script" "$INSTALL_SCRIPT_SHA256"
+
 set -e
 
-chmod 775 $SCRIPT_NAME
 # SCRIPT_NAME="./install.py" # ----> remove comment to run locally
-echo "-- $python_exe $SCRIPT_NAME $install_args"
+echo "-- $python_exe $SCRIPT_NAME ${install_args[*]}"
 echo
-$python_exe $SCRIPT_NAME $install_args
+"$python_exe" "$SCRIPT_NAME" "${install_args[@]}"
 echo

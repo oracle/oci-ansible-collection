@@ -50,11 +50,12 @@
     ssh_public_key_full_path: '{{ ssh_public_key_path }}/public_key.pem'
     ssh_public_keys:
       - "{{ lookup('file', ssh_public_key_full_path) }}"
+    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') }}"
     db_system_freeform_tags:
       system_license: 'trial'
     db_home:
       database:
-        admin_password: 'BEstr0ng_#1'
+        admin_password: "{{ admin_password }}"
         character_set: 'AL32UTF8'
         db_backup_config:
           auto_backup_enabled: False
@@ -67,8 +68,8 @@
       display_name: 'dbdisplayname'
     cluster_name: 'dbcluster'
     backup_db_name: 'dbfrombkp'
-    database_admin_password: 'BEstr0ng_#1'
-    backup_tde_password: 'backup_tde_password_example'
+    database_admin_password: "{{ lookup('env', 'SAMPLE_DATABASE_ADMIN_PASSWORD') }}"
+    backup_tde_password: "{{ lookup('env', 'SAMPLE_BACKUP_TDE_PASSWORD') }}"
     updated_freeform_tags:
       Department: 'updated'
     backup_display_name: 'bkpdisplayname'
@@ -90,6 +91,9 @@
           with_items:
             - "SAMPLE_COMPARTMENT_OCID"
             - "SAMPLE_AD_NAME"
+            - "SAMPLE_ADMIN_PASSWORD"
+            - "SAMPLE_DATABASE_ADMIN_PASSWORD"
+            - "SAMPLE_BACKUP_TDE_PASSWORD"
 
         - import_tasks: setup.yaml
 

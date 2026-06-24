@@ -626,7 +626,7 @@ def main():
                 ),
             ),
             properties=dict(type="dict"),
-            enc_properties=dict(type="dict"),
+            enc_properties=dict(type="dict", no_log=True),
             is_default=dict(type="bool"),
             catalog_id=dict(type="str", required=True),
             data_asset_key=dict(type="str", required=True, no_log=True),

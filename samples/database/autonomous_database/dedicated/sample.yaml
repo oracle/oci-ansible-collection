@@ -18,7 +18,7 @@
     compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
     ocpu_count: "{{ lookup('env', 'SAMPLE_OCPU_COUNT') | default(1, true) }}" # sample value, ocpu_count: 1
     adb_display_name: "{{ lookup('env', 'SAMPLE_ADB_DISPLAY_NAME') | default('sample_autonomous_adb', true) }}" # sample value, display_name: 'sample_autonomous_db'
-    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') | default('BEstr0ng_#11', true) }}" # sample value, admin_password: 'BEstr0ng_#11'
+    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') }}"
     db_name: "{{ lookup('env', 'SAMPLE_DB_NAME') | default('autonomousdb', true) }}" # sample value, db_name: 'autonomousdb' (Maximum 14 alphanumeric characters)
     data_storage_size_in_gbs: "{{ lookup('env', 'SAMPLE_DATA_STORAGE_SIZE_IN_GBS') | default(50, true) }}" # sample value, data_storage_size_in_gbs: 50
     is_dedicated: "{{ lookup('env', 'SAMPLE_IS_DEDICATED') | default(true, true) }}" # sample value, is_dedicated: true
@@ -26,14 +26,13 @@
     acd_display_name: "{{ lookup('env', 'SAMPLE_ACD_DISPLAY_NAME') | default('sample_autonomous_acd', true) }}" # sample value, display_name: 'sample_autonomous_db'
 
 #Example OS veriables:
-#export SAMPLE_COMPARTMENT_OCID=ocid1.compartment.oc1..aaaaaaaakpmroakfsteyo5ln6zl5p3ncgcpo7urwgg7m7sjwudjjrjjfjwf
+#export SAMPLE_COMPARTMENT_OCID=ocid1.compartment.oc1..<unique_id>
 #export SAMPLE_OCPU_COUNT=.5
 #export SAMPLE_ADB_DISPLAY_NAME=ANSDED
 #export SAMPLE_DB_NAME=ANSDED
-#export SAMPLE_ADMIN_PASSWORD=OciOci2022##
 #export SAMPLE_DATA_STORAGE_SIZE_IN_GBS=75
 #export SAMPLE_IS_DEDICATED=true
-#export SAMPLE_CLOUD_AUTONOMOUS_VM_CLUSTER_ID=ocid1.autonomousexainfrastructure.oc1.iad.abuwcljsw2gxfuf2nsbmlav7ejdpk2gjwp2pdjtjejfjyiejsjrjjdjjejshr
+#export SAMPLE_CLOUD_AUTONOMOUS_VM_CLUSTER_ID=ocid1.autonomousexainfrastructure.oc1.iad.<unique_id>
 #export SAMPLE_ACD_DISPLAY_NAME=ANSACD
 #####################################################################################################################################################
 
@@ -48,6 +47,7 @@
           when: item not in ansible_env
           with_items:
             - "SAMPLE_COMPARTMENT_OCID"
+            - "SAMPLE_ADMIN_PASSWORD"
 
 #Create a new Autonomous Container Database and record the ID for use later
         - name: Create a new Autonomous Container Database
