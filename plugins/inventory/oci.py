@@ -124,6 +124,9 @@ DOCUMENTATION = """
         fetch_compute_hosts:
              description: When set, the compute nodes are fetched. Default value set to True.
              type: bool
+        fetch_only_running_hosts:
+             description: When set along with fetch_compute_hosts, only compute nodes in a RUNNING lifecycle state are fetched. Default value set to True.
+             type: bool
         primary_vnic_only:
             description: The default behavior of the plugin is to process all VNIC's attached to a compute instance.
                          This might result in instance having multiple entries. When this parameter is set to True,
@@ -354,6 +357,7 @@ fetch_db_hosts: True
 
 # Compute Hosts (bool type)
 fetch_compute_hosts: True
+fetch_only_running_hosts: True
 
 # Process only the primary vnic of a compute instance
 primary_vnic_only: True
@@ -735,6 +739,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self.get_option("fetch_compute_hosts") is None:
             return True
         return self.get_option("fetch_compute_hosts")
+
+    def _fetch_only_running_hosts(self):
+        # check if we should fetch only running hosts
+        if self.get_option("fetch_only_running_hosts") is None:
+            return True
+        return self.get_option("fetch_only_running_hosts")
 
     @staticmethod
     def create_instance_principal_signer(delegation_token_location=None):
@@ -1845,16 +1855,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         )
         try:
             compute_client = self.get_compute_client_for_region(region)
+            list_all_resources_args = {
+                "target_fn": compute_client.list_instances,
+                "compartment_id": compartment_ocid,
+                "limit": 2000,
+            }
+
+            if self._fetch_only_running_hosts():
+                list_all_resources_args["lifecycle_state"] = "RUNNING"
 
             instances = self.get_filtered_resources(
-                oci_common_utils.list_all_resources(
-                    target_fn=compute_client.list_instances,
-                    compartment_id=compartment_ocid,
-                    lifecycle_state="RUNNING",
-                    limit=2000,
-                ),
+                oci_common_utils.list_all_resources(**list_all_resources_args),
                 compartment_ocid,
             )
+
             return instances
         except ServiceError as ex:
             self.debug(
