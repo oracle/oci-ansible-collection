@@ -1,6 +1,0 @@
-mushop_version: '1.1.4'
-
-mushop_release_url: "https://github.com/oracle-quickstart/\
-                     oci-cloudnative/releases/download/\
-                     v{{ mushop_version }}/\
-                     mushop-basic-stack-v{{ mushop_version }}.zip"

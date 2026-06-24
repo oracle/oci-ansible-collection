@@ -20,8 +20,11 @@ The sample
 
 To run the sample, after ensuring that you have the pre-requisites for OCI Ansible cloud modules, please provide values (that are specific to your tenancy) for the following variables in the `vars` section of `sample.yaml`:
 
-- compartment_id
-- availability_domain
+- SAMPLE_COMPARTMENT_OCID
+- SAMPLE_AD_NAME
+- SAMPLE_ADMIN_PASSWORD
+- SAMPLE_DATABASE_ADMIN_PASSWORD
+- SAMPLE_BACKUP_TDE_PASSWORD
 
 Note: The sample, by default, sets up an Virtual Machine DB System, creates database in DB System, prints an information message,
 runs a few tests to show that it is working, and tears down the DB System. If you want

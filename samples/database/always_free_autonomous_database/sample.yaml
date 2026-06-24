@@ -25,7 +25,7 @@
     # variables
     #########################################
     compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
-    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') }}" # sample value, admin_password: 'BEstr0ng_#11'
+    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') }}"
 
   tasks:
     - block:

@@ -360,7 +360,7 @@ class ObjectHelperCustom:
 
     def download_object(self, dest, force):
 
-        dest = os.path.expanduser(dest)
+        dest = os.path.realpath(os.path.abspath(os.path.expanduser(dest)))
         try:
             get_response = self.get_resource()
         except ServiceError as ex:

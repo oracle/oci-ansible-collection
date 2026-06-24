@@ -418,7 +418,7 @@ EXAMPLES = """
         is_custom_phase_one_config: true
         authentication_algorithm: SHA2_384
         encryption_algorithm: AES_256_CBC
-        diffie_helman_group: GROUP2
+        diffie_helman_group: GROUP20
         lifetime_in_seconds: 56
       phase_two_config:
         # optional
@@ -427,7 +427,7 @@ EXAMPLES = """
         encryption_algorithm: AES_256_GCM
         lifetime_in_seconds: 56
         is_pfs_enabled: true
-        pfs_dh_group: GROUP2
+        pfs_dh_group: GROUP20
       dpd_config:
         # optional
         dpd_mode: INITIATE_AND_RESPOND

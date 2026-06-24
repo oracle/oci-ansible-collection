@@ -1,8 +1,0 @@
----
-atp:
-  cpu_core_count: 1
-  data_storage_size_in_tbs: 1
-  is_free_tier: True
-  db_workload: 'OLTP'
-  db_name: 'MuShopDB'
-  db_version: '19c'

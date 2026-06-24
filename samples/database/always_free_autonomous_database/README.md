@@ -19,7 +19,7 @@ ansible cloud modules, please provide values (that are specific to your tenancy)
 for the following variables in the `vars` section of `sample.yaml`:
 
 - compartment_ocid
-- admin_password
+- SAMPLE_ADMIN_PASSWORD
 
 Note: The sample, by default, sets up an Autonomous Transaction Processing Database, prints an information message,
 runs a few tests to show that it is working, and tears down the Autonomous Transaction Processing Database. If you want

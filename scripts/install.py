@@ -14,9 +14,7 @@ import shutil
 import sys
 import os
 import subprocess
-import tempfile
 import platform
-from urllib.request import urlopen
 
 
 class CollectionInstallerException(Exception):
@@ -31,7 +29,6 @@ class OciAnsibleCollectionInstaller:
     DEFAULT_VENV_NAME = "oci-ansible-collection"
     SUPPORTS_UPGRADE = ["oci"]
     DEPENDENCIES = {"oci": None, "ansible": None}
-    GET_PIP_DOWNLOAD_URL = "https://bootstrap.pypa.io/get-pip.py"
     LINUX_DISTRIBUTIONS = ["ubuntu", "debian"]
 
     def __init__(
@@ -205,23 +202,21 @@ class OciAnsibleCollectionInstaller:
         else:
             if not self.dry_run:
                 self._debug("Installing pip..")
-                tmp_dir = tempfile.mkdtemp()
                 try:
-                    response = urlopen(self.GET_PIP_DOWNLOAD_URL)
-                    tmp_file = os.path.join(tmp_dir, "getpip.py")
-                    f = open(os.path.join(tmp_dir, "getpip.py"), "wb")
-                    f.write(response.read())
-                    f.close()
                     cmd = [
                         sys.executable if not self.python_path else self.python_path,
-                        tmp_file,
+                        "-m",
+                        "ensurepip",
+                        "--upgrade",
                     ]
                     self._exec(cmd)
-                    shutil.rmtree(tmp_dir)
                     self._debug("Installed pip")
                 except Exception as e:
-                    shutil.rmtree(tmp_dir)
-                    self._fail("Error while setting up pip " + str(e))
+                    self._fail(
+                        "Error while setting up pip with ensurepip. "
+                        "Install pip for the selected Python interpreter and rerun this script. "
+                        + str(e)
+                    )
 
         cmd = [
             self.python_path,
@@ -407,6 +402,12 @@ def main():
                 Speciying --version along with --upgrade will result in a conflict
                 Error will raised and installation will not continue.
                 """,
+    )
+
+    parser.add_argument(
+        "--upgrade-pip",
+        action="store_true",
+        help="""Accepted for compatibility. Pip is upgraded during setup.""",
     )
 
     args = parser.parse_args()

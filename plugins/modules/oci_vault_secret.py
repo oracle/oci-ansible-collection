@@ -574,12 +574,11 @@ def main():
             metadata=dict(type="dict"),
             secret_content=dict(
                 type="dict",
-                no_log=False,
                 options=dict(
                     content_type=dict(type="str", required=True, choices=["BASE64"]),
                     name=dict(type="str"),
                     stage=dict(type="str", choices=["CURRENT", "PENDING"]),
-                    content=dict(type="str"),
+                    content=dict(type="str", no_log=True),
                 ),
             ),
             secret_rules=dict(
