@@ -413,6 +413,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 
 try:
     import oci
+    from oci.core.models import GetPublicIpByPrivateIpIdDetails
     from oci.core.compute_client import ComputeClient
     from oci.identity.identity_client import IdentityClient
     from oci.core.virtual_network_client import VirtualNetworkClient
@@ -640,7 +641,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def setup_clients(self, regions):
         """
-            :param regions: A list of regions to create clients
+        :param regions: A list of regions to create clients
 
         """
         self.regions = regions
@@ -1198,7 +1199,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
                 )
                 root_compartment = oci_common_utils.call_with_backoff(
-                    self.identity_client.get_compartment, compartment_id=compartment_id,
+                    self.identity_client.get_compartment,
+                    compartment_id=compartment_id,
                 ).data
                 queue.append(root_compartment)
             while len(queue) > 0:
@@ -1554,6 +1556,75 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 virtual_nw_client.get_vnic, vnic_id=db_host.vnic_id
             ).data
 
+            node_ip = None
+            private_ip_list = oci_common_utils.call_with_backoff(
+                virtual_nw_client.list_private_ips, vnic_id=vnic.id
+            ).data
+
+            for private_ip_item in private_ip_list:
+                if private_ip_item.hostname_label == getattr(db_host, "hostname", None):
+                    node_ip = private_ip_item
+                    break
+
+            if not node_ip:
+                if not getattr(db_host, "vnic2_id", None):
+                    self.debug(
+                        "\n\n\nVNIC {0} does not have hostname matching node {1}\n\n\n".format(
+                            db_host.vnic_id, getattr(db_host, "hostname", None)
+                        )
+                    )
+                else:
+                    self.debug(
+                        "\n\n\nVNIC {0} does not have hostname matching node {1}. Trying VNIC {0}\n\n\n".format(
+                            db_host.vnic_id,
+                            getattr(db_host, "hostname", None),
+                            db_host.vnic2_id,
+                        )
+                    )
+
+                    vnic = oci_common_utils.call_with_backoff(
+                        virtual_nw_client.get_vnic, vnic_id=db_host.vnic2_id
+                    ).data
+
+                    private_ip_list = oci_common_utils.call_with_backoff(
+                        virtual_nw_client.list_private_ips, vnic_id=vnic.id
+                    ).data
+
+                    for private_ip_item in private_ip_list:
+                        if private_ip_item.hostname_label == getattr(
+                            db_host, "hostname", None
+                        ):
+                            node_ip = private_ip_item
+                            break
+
+            private_ip = vnic.private_ip
+            public_ip = vnic.public_ip
+
+            self.debug("\n\n\nnode_ip = {0}\n\n\n".format(node_ip))
+
+            if node_ip:
+                private_ip = node_ip.ip_address
+                public_ip = None
+                public_ip_item = None
+
+                try:
+                    public_ip_item = oci_common_utils.call_with_backoff(
+                        virtual_nw_client.get_public_ip_by_private_ip_id,
+                        get_public_ip_by_private_ip_id_details=GetPublicIpByPrivateIpIdDetails(
+                            private_ip_id=node_ip.id
+                        ),
+                    ).data
+                    public_ip = public_ip_item.ip_address
+                except ServiceError as ex:
+                    if ex.status != 404:  # 404 = not found, no public IP
+                        raise
+                finally:
+                    self.debug(
+                        "\n\n\nprivate_ip = {0}\npublic_ip = {1}\n\n\n".format(
+                            private_ip, public_ip
+                        )
+                    )
+
             self.debug(
                 "VNIC {0} is attached to db_host {1}.".format(vnic.id, db_host.id)
             )
@@ -1562,7 +1633,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
             ).data
 
-            if getattr(vnic, "hostname_label", None):
+            if node_ip:
+                db_host_vars.update({"hostname_label": node_ip.hostname_label})
+            elif getattr(vnic, "hostname_label", None):
                 db_host_vars.update({"hostname_label": vnic.hostname_label})
 
             db_host_vars.update({"vcn_id": subnet.vcn_id})
@@ -1570,9 +1643,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             db_host_vars.update({"vnic_id": vnic.id})
             db_host_vars.update({"subnet": to_dict(subnet)})
             db_host_vars.update({"subnet_id": vnic.subnet_id})
-            db_host_vars.update({"public_ip": vnic.public_ip})
-            db_host_vars.update({"private_ip": vnic.private_ip})
-            host_name = self.get_hostname(db_host_vars, vnic, region)
+            # db_host_vars.update({"public_ip": vnic.public_ip})
+            db_host_vars.update({"public_ip": public_ip})
+            # db_host_vars.update({"private_ip": vnic.private_ip})
+            db_host_vars.update({"private_ip": private_ip})
+            host_name = self.get_hostname(
+                db_host_vars, vnic, region, node_ip, public_ip
+            )
             if not host_name:
                 if self.get_option("strict"):
                     raise AnsibleError(
@@ -1678,10 +1755,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     resources_filtered.append(resource)
                 continue
             if all(
-                True
-                if not self.filters.get(filter)
-                or getattr(resource, filter, None) == self.filters[filter]
-                else False
+                (
+                    True
+                    if not self.filters.get(filter)
+                    or getattr(resource, filter, None) == self.filters[filter]
+                    else False
+                )
                 for filter in filters
             ):
                 resources_filtered.append(resource)
@@ -1888,15 +1967,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         return self._database_clients[region]
 
-    def get_hostname(self, host_vars, vnic, region):
+    def get_hostname(self, host_vars, vnic, region, node_ip=None, public_ip=None):
         if self.get_option("hostname_format_preferences"):
             return self._get_hostname_from_preference(host_vars)
-        return self.get_host_from_hostname_format(host_vars, vnic, region)
+        return self.get_host_from_hostname_format(
+            host_vars, vnic, region, node_ip, public_ip
+        )
 
-    def get_host_from_hostname_format(self, host_vars, vnic, region):
+    def get_host_from_hostname_format(
+        self, host_vars, vnic, region, node_ip=None, public_ip=None
+    ):
         # This method should return public_ip by default
         hostname_format = self.params.get("hostname_format", "public_ip")
         if hostname_format == "fqdn":
+            hostname_label = node_ip.hostname_label if node_ip else vnic.hostname_label
             virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             subnet = oci_common_utils.call_with_backoff(
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
@@ -1906,10 +1990,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             ).data
 
             oraclevcn_domain_name = ".oraclevcn.com"
-            if not (vnic.hostname_label and subnet.dns_label and vcn.dns_label):
+            if not (hostname_label and subnet.dns_label and vcn.dns_label):
                 return None
             fqdn = (
-                vnic.hostname_label
+                hostname_label
                 + "."
                 + subnet.dns_label
                 + "."
@@ -1919,10 +2003,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
             return fqdn
         elif hostname_format == "private_ip":
-            self.debug(
-                "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
-            )
-            return vnic.private_ip
+            private_ip = node_ip.ip_address if node_ip else vnic.private_ip
+            self.debug("Private IP for VNIC: {0} is {1}.".format(vnic.id, private_ip))
+            return private_ip
         elif hostname_format == "display_name":
             if self._fetch_db_hosts():
                 if self.get_option("strict"):
@@ -1937,16 +2020,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 )
             )
             return host_vars.get("display_name")
+        public_ip = public_ip if public_ip else vnic.public_ip
         self.debug(
             "public_ip of the instance : {0} is {1}".format(
-                host_vars.get("id"), vnic.public_ip
+                host_vars.get("id"), public_ip
             )
         )
-        return vnic.public_ip
+        return public_ip
 
     def _query(self, regions):
         """
-            :param regions: a list of regions to query
+        :param regions: a list of regions to query
         """
         try:
             return self._get_instances_by_region(regions)
@@ -2046,10 +2130,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def _process_query_options(self, config_data):
         """
-            :param config_data: contents of the inventory config file
-            :return A list of regions to query
-                    a list of filters
-                    a list of possible hostnames
+        :param config_data: contents of the inventory config file
+        :return A list of regions to query
+                a list of filters
+                a list of possible hostnames
         """
         options = {
             "regions": {"type_to_be": list, "value": config_data.get("regions", [])},
@@ -2173,10 +2257,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def _validate_option(self, name, desired_type, option_value):
         """
-            :param name: the option name
-            :param desired_type: the class the option needs to be
-            :param option: the value the user has provided
-            :return The option of the correct class
+        :param name: the option name
+        :param desired_type: the class the option needs to be
+        :param option: the value the user has provided
+        :return The option of the correct class
         """
 
         if isinstance(option_value, string_types) and desired_type == list:
