@@ -68,19 +68,19 @@ EXAMPLES = """
   oci_database_db_node_actions:
     # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
-    action: STOP
+    action: START
 
 - name: Perform action softreset on db_node
   oci_database_db_node_actions:
     # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
-    action: STOP
+    action: SOFTRESET
 
 - name: Perform action reset on db_node
   oci_database_db_node_actions:
     # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
-    action: STOP
+    action: RESET
 
 """
 
