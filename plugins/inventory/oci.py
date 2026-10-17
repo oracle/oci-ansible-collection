@@ -398,6 +398,12 @@ from ansible.module_utils.six import string_types
 from ansible.plugins.inventory import BaseInventoryPlugin, Constructable, Cacheable
 from ansible.utils.display import Display
 
+try:
+    from ansible.template import trust_as_template
+except ImportError:  # ansible-core < 2.19
+    def trust_as_template(value):
+        return value
+
 from ansible.module_utils import six
 from collections import deque, defaultdict
 from multiprocessing.pool import ThreadPool
@@ -1637,7 +1643,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.templar.available_variables = hostvars
         for condition_template in filter_template_list:
             try:
-                jinja_condition = "%s%s%s" % ("{{", condition_template, "}}")
+                jinja_condition = trust_as_template(
+                    "%s%s%s" % ("{{", condition_template, "}}")
+                )
                 if self.templar.template(jinja_condition):
                     return True
             except Exception as ex:
